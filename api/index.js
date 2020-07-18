@@ -33,11 +33,12 @@ if(isProduction){
 }
 
 router.use('/auth', require('./routes/auth'))
+router.use('/users', require('./routes/users'))
 
 router.get('/profile', auth.authenticated, function(req, res) {
-  User.findById(req.payload.id).exec(function(err, user) {
+  User.findById(req.payload.id).populate('site').exec(function(err, user) {
     if (!err) {
-      res.send(user)
+      res.send(user.data())
     }
   })
 })

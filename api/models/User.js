@@ -73,5 +73,16 @@ UserSchema.methods.toAuthJSON = function() {
   };
 };
 
+UserSchema.methods.data = function() {
+  return {
+    _id: this._id,
+    site: this.site,
+    email: this.email,
+    roles: this.roles,
+    name: this.name,
+    image: this.image
+  };
+};
+
 
 export const User = mongoose.models.User || mongoose.model('User', UserSchema);

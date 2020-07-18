@@ -14,5 +14,13 @@ module.exports = {
   plugins: [
   ],
   // add your custom rules here
-  rules: {}
+  rules: {
+    'nuxt/no-cjs-in-config': 'off',
+    'vue/singleline-html-element-content-newline': 'off',
+    'space-before-function-paren': 'off',
+    'vue/max-attributes-per-line': 'off',
+    'vue/no-v-html': 'off',
+    'arrow-parens': 'off',
+  }
+
 }

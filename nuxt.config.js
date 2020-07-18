@@ -38,6 +38,7 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
+    "~plugins/validate.js"
   ],
   /*
   ** Auto import components
@@ -63,7 +64,10 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     '@nuxtjs/auth',
-    '@nuxtjs/toast'
+    '@nuxtjs/toast',
+    ['nuxt-validate', {
+      lang: 'pt_BR'
+    }]
   ],
   /*
   ** Axios module configuration

@@ -9,10 +9,10 @@
         <nuxt-link to="/site" class="btn btn-success">
           Site
         </nuxt-link>
-        <nuxt-link to="/dashboard" class="btn btn-primary">
+        <nuxt-link to="/admin" class="btn btn-primary">
           Admin
         </nuxt-link>
-        <b-button v-if="$auth.loggedIn" @click="logout">
+        <b-button v-if="$auth.loggedIn">
           Sair
         </b-button>
       </div>
@@ -21,14 +21,5 @@
 </template>
 
 <script>
-export default {
-  created () {
-    console.log(this.$auth.user.roles)
-  },
-  methods: {
-    logout () {
-      this.$auth.logout()
-    }
-  }
-}
+export default {}
 </script>
