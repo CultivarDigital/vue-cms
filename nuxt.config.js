@@ -14,6 +14,9 @@ export default {
   ** Headers of the page
   ** See https://nuxtjs.org/api/configuration-head
   */
+  serverMiddleware: [
+    '~/api/index.js',
+  ],
   head: {
     title: process.env.npm_package_name || '',
     meta: [
@@ -59,7 +62,8 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
-    '@nuxtjs/auth'
+    '@nuxtjs/auth',
+    '@nuxtjs/toast'
   ],
   /*
   ** Axios module configuration
@@ -76,16 +80,22 @@ export default {
         endpoints: {
           login: { url: '/api/auth/login', method: 'post', propertyName: 'token' },
           logout: { url: '/api/auth/logout', method: 'post' },
-          user: { url: '/api/auth/user', method: 'get', propertyName: 'user' }
+          user: { url: '/api/profile', method: 'get', propertyName: false }
         },
         // tokenRequired: true,
-        // tokenType: 'bearer',
+        tokenType: 'Token',
         // globalToken: true,
         // autoFetchUser: true
       }
-    }
+    },
+    scopeKey: 'roles'
   },
-
+  toast: {
+  },
   build: {
+  },
+  // watch: ['api/routes', 'api/models'],
+  proxy: {
+    pathRewrite: { '^/api/': '/' }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "name": "caminhos-da-semente",
+  "name": "terrakrya",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -25,9 +25,17 @@
     "@nuxtjs/auth": "^4.9.1",
     "@nuxtjs/axios": "^5.11.0",
     "@nuxtjs/pwa": "^3.0.0-beta.20",
+    "@nuxtjs/toast": "^3.3.1",
     "bootstrap": "^4.5.0",
     "bootstrap-vue": "^2.15.0",
-    "nuxt": "^2.13.0"
+    "express-jwt": "^6.0.0",
+    "express-session": "^1.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.25",
+    "mongoose-unique-validator": "^2.0.3",
+    "nuxt": "^2.13.0",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^3.0.0",
