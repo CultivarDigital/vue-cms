@@ -46,7 +46,12 @@ export default {
     ValidationProvider
   },
   mixins: [mixins],
-  props: ['site'],
+  props: {
+    site: {
+      type: String,
+      default: null
+    }
+  },
   data () {
     return {
       form: {
@@ -58,8 +63,7 @@ export default {
     }
   },
   created () {
-    console.log(this.site)
-    console.log(this.toForm(this.form, this.site))
+    this.toForm(this.form, this.site)
   },
   methods: {
     async save () {

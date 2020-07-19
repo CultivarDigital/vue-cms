@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
 const SiteSchema = mongoose.Schema({
   name: {
@@ -18,12 +18,12 @@ const SiteSchema = mongoose.Schema({
 }, {
   timestamps: true,
   toJSON: { virtuals: true }
-});
+})
 
 SiteSchema.virtual('users', {
   ref: 'User',
   localField: '_id',
   foreignField: 'site'
-});
+})
 
-export const Site = mongoose.models.Site || mongoose.model('Site', SiteSchema);
+export const Site = mongoose.models.Site || mongoose.model('Site', SiteSchema)

@@ -2,23 +2,22 @@ require('./models/Site')
 require('./models/User')
 require('./config/passport')
 
-const express = require('express'),
-  app = express(),
-  router = require('express').Router(),
-  bodyParser = require('body-parser'),
-  session = require('express-session'),
-  mongoose = require('mongoose'),
-  User = mongoose.model('User'),
-  auth = require('./config/auth')
+const express = require('express')
+const app = express()
+const router = require('express').Router()
+const bodyParser = require('body-parser')
+const session = require('express-session')
+const mongoose = require('mongoose')
+const User = mongoose.model('User')
+const auth = require('./config/auth')
 
+const isProduction = process.env.NODE_ENV === 'production'
 
-var isProduction = process.env.NODE_ENV === 'production'
-
-app.use(session({ secret: 'terrakrya', cookie: { maxAge: null }, resave: false, saveUninitialized: false  }))
+app.use(session({ secret: 'terrakrya', cookie: { maxAge: null }, resave: false, saveUninitialized: false }))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-if(isProduction){
+if (isProduction) {
   mongoose.connect(process.env.MONGODB_URI, {
     keepAlive: 1,
     connectTimeoutMS: 30000,
@@ -47,6 +46,6 @@ router.get('/profile', auth.authenticated, function(req, res) {
 app.use(router)
 
 module.exports = {
-   path: '/api',
-   handler: app
+  path: '/api',
+  handler: app
 }

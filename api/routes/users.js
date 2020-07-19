@@ -1,12 +1,11 @@
-var mongoose = require('mongoose'),
-  router = require('express').Router(),
-  passport = require('passport'),
-  auth = require('../config/auth')
-  User = mongoose.model('User')
+const mongoose = require('mongoose')
+const router = require('express').Router()
+const auth = require('../config/auth')
+const User = mongoose.model('User')
 
 router.get('/', auth.super, function(req, res) {
-  var filters = {}
-  if (req.query.role && req.query.role != 'user') {
+  let filters = {}
+  if (req.query.role && req.query.role !== 'user') {
     filters = {
       roles: req.query.role
     }
@@ -22,7 +21,7 @@ router.get('/', auth.super, function(req, res) {
 })
 
 router.post('/', auth.admin, function(req, res, next) {
-  var user = new User()
+  const user = new User()
 
   user.email = req.body.email
   user.name = req.body.name
@@ -31,9 +30,7 @@ router.post('/', auth.admin, function(req, res, next) {
   if (req.payload.roles.includes('super')) {
     user.roles = req.body.roles
   } else {
-    user.roles = req.body.roles.filter(value => {
-      value == 'super'
-    })
+    user.roles = req.body.roles.filter(role => role === 'super')
   }
 
   user.setPassword(req.body.password)
@@ -45,7 +42,6 @@ router.post('/', auth.admin, function(req, res, next) {
 
 router.put('/:id', auth.admin, function(req, res, next) {
   User.findById(req.params.id).then(function(user) {
-
     user.email = req.body.email
     user.name = req.body.name
 
@@ -65,10 +61,6 @@ router.put('/:id', auth.admin, function(req, res, next) {
 
 router.put('/', auth.authenticated, function(req, res, next) {
   User.findById(req.payload.id).then(function(user) {
-    console.log('user')
-    console.log(user)
-    console.log(req.body)
-
     user.email = req.body.email
     user.name = req.body.name
 
@@ -85,6 +77,5 @@ router.put('/', auth.authenticated, function(req, res, next) {
     }).catch(next)
   })
 })
-
 
 module.exports = router

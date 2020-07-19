@@ -1,13 +1,13 @@
-var mongoose = require('mongoose'),
-  uniqueValidator = require('mongoose-unique-validator'),
-  crypto = require('crypto'),
-  jwt = require('jsonwebtoken'),
-  secret = require('../config').secret,
-  ObjectId = mongoose.Schema.Types.ObjectId
+const crypto = require('crypto')
+const mongoose = require('mongoose')
+const uniqueValidator = require('mongoose-unique-validator')
+const jwt = require('jsonwebtoken')
+const secret = require('../config').secret
+const ObjectId = mongoose.Schema.Types.ObjectId
 
 mongoose.set('useCreateIndex', true)
 
-var UserSchema = new mongoose.Schema({
+const UserSchema = new mongoose.Schema({
   site: {
     type: ObjectId,
     ref: 'Site'
@@ -19,37 +19,37 @@ var UserSchema = new mongoose.Schema({
     match: [/\S+@\S+\.\S+/, 'inválido'],
     index: {
       unique: true,
-      partialFilterExpression: { email: { $type: 'string' } },
+      partialFilterExpression: { email: { $type: 'string' } }
     },
     default: null
   },
   hash: String,
   salt: String,
   name: String,
-  roles: [String],
+  roles: [String]
 }, {
   timestamps: true,
   toJSON: { virtuals: true }
-});
+})
 
 UserSchema.plugin(uniqueValidator, {
   message: 'já está sendo usado'
-});
+})
 
 UserSchema.methods.validPassword = function(password) {
-  var hash = crypto.pbkdf2Sync(password, this.salt, 10000, 512, 'sha512').toString('hex');
-  return this.hash === hash;
-};
+  const hash = crypto.pbkdf2Sync(password, this.salt, 10000, 512, 'sha512').toString('hex')
+  return this.hash === hash
+}
 
 UserSchema.methods.setPassword = function(password) {
-  this.salt = crypto.randomBytes(16).toString('hex');
-  this.hash = crypto.pbkdf2Sync(password, this.salt, 10000, 512, 'sha512').toString('hex');
-};
+  this.salt = crypto.randomBytes(16).toString('hex')
+  this.hash = crypto.pbkdf2Sync(password, this.salt, 10000, 512, 'sha512').toString('hex')
+}
 
 UserSchema.methods.generateJWT = function() {
-  var today = new Date();
-  var exp = new Date(today);
-  exp.setDate(today.getDate() + 60);
+  const today = new Date()
+  const exp = new Date(today)
+  exp.setDate(today.getDate() + 60)
 
   return jwt.sign({
     id: this._id,
@@ -57,9 +57,9 @@ UserSchema.methods.generateJWT = function() {
     roles: this.roles,
     site: this.site,
     image: this.image,
-    exp: parseInt(exp.getTime() / 1000),
-  }, secret);
-};
+    exp: parseInt(exp.getTime() / 1000)
+  }, secret)
+}
 
 UserSchema.methods.toAuthJSON = function() {
   return {
@@ -70,8 +70,8 @@ UserSchema.methods.toAuthJSON = function() {
     roles: this.roles,
     name: this.name,
     image: this.image
-  };
-};
+  }
+}
 
 UserSchema.methods.data = function() {
   return {
@@ -81,8 +81,7 @@ UserSchema.methods.data = function() {
     roles: this.roles,
     name: this.name,
     image: this.image
-  };
-};
+  }
+}
 
-
-export const User = mongoose.models.User || mongoose.model('User', UserSchema);
+export const User = mongoose.models.User || mongoose.model('User', UserSchema)
