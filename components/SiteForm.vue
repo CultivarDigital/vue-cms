@@ -48,7 +48,7 @@ export default {
   mixins: [mixins],
   props: {
     site: {
-      type: String,
+      type: Object,
       default: null
     }
   },

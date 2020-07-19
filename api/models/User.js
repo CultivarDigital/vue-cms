@@ -12,6 +12,7 @@ const UserSchema = new mongoose.Schema({
     type: ObjectId,
     ref: 'Site'
   },
+  name: String,
   email: {
     unique: true,
     type: String,
@@ -25,7 +26,6 @@ const UserSchema = new mongoose.Schema({
   },
   hash: String,
   salt: String,
-  name: String,
   roles: [String]
 }, {
   timestamps: true,

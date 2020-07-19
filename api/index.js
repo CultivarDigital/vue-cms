@@ -37,8 +37,10 @@ router.use('/sites', require('./routes/sites'))
 
 router.get('/profile', auth.authenticated, function(req, res) {
   User.findById(req.payload.id).populate('site').exec(function(err, user) {
-    if (!err) {
+    if (!err && user) {
       res.send(user.data())
+    } else {
+      res.status(422).send('Usuário não encontrado')
     }
   })
 })

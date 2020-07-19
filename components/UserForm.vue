@@ -1,7 +1,6 @@
 <template>
-  <div class="profile">
-    <b-breadcrumb :items="breadcrumb" />
-    <ValidationObserver v-slot="{ invalid }" tag="form" @submit.prevent="save">
+  <ValidationObserver v-slot="{ validate, invalid }">
+    <b-form @submit.prevent="validate().then(save)">
       <b-row>
         <b-col md="6">
           <b-form-group label="Nome *">
@@ -13,7 +12,7 @@
         </b-col>
         <b-col md="6">
           <b-form-group label="Email *">
-            <validation-provider v-slot="{ errors }" name="email" rules="required|email">
+            <validation-provider v-slot="{ errors }" name="domínio" rules="required|email">
               <b-form-input v-model="form.email" name="email" />
               <span class="text-danger">{{ errors[0] }}</span>
             </validation-provider>
@@ -34,7 +33,7 @@
         </b-col>
         <b-col md="6">
           <b-form-group label="Confirmar senha *">
-            <validation-provider v-slot="{ errors }" rules="password_confirmation:password">
+            <validation-provider v-slot="{ errors }" rules="required">
               <b-form-input v-model="form.password_confirmation" type="password" name="pass_confirmation" />
               <span class="text-danger">{{ errors[0] }}</span>
               <span v-if="!passwordConfirmed" class="text-danger">As senhas digitadas não conferem</span>
@@ -42,11 +41,26 @@
           </b-form-group>
         </b-col>
       </b-row>
-      <b-button type="submit" variant="primary" block :disabled="invalid || !passwordConfirmed">
+      <b-row v-if="$auth.hasScope('super')">
+        <b-col v-if="sites" md="6">
+          <b-form-group label="Site">
+            <b-form-select v-model="form.site" :options="sites" />
+          </b-form-group>
+        </b-col>
+        <b-col md="6">
+          <b-form-group label="Perfil *">
+            <validation-provider v-slot="{ errors }" rules="required">
+              <b-form-select v-model="form.roles" :options="roles" />
+              <span class="text-danger">{{ errors[0] }}</span>
+            </validation-provider>
+          </b-form-group>
+        </b-col>
+      </b-row>
+      <b-button type="submit" variant="primary" block :disabled="invalid">
         Salvar
       </b-button>
-    </ValidationObserver>
-  </div>
+    </b-form>
+  </ValidationObserver>
 </template>
 
 <script>
@@ -54,24 +68,32 @@ import { ValidationObserver, ValidationProvider } from 'vee-validate'
 import mixins from '@/mixins/form'
 
 export default {
-  layout: 'admin',
   components: {
     ValidationObserver,
     ValidationProvider
   },
   mixins: [mixins],
+  props: {
+    user: {
+      type: Object,
+      default: null
+    }
+  },
   data () {
     return {
-      show_password: false,
+      sites: [{ text: 'Selecione um site', value: null }],
+      show_password: !this.user,
       form: {
+        site: '',
         name: '',
         email: '',
         password: '',
-        password_confirmation: ''
+        password_confirmation: '',
+        roles: []
       },
-      breadcrumb: [
-        { text: 'Painel', to: '/admin' },
-        { text: 'Perfil do usuário', active: true }
+      roles: [
+        { text: 'Super usuário', value: ['super'] },
+        { text: 'Administrador', value: ['admin'] }
       ]
     }
   },
@@ -81,16 +103,26 @@ export default {
     }
   },
   async created () {
-    const profile = await this.$axios.$get('/api/profile')
-    this.toForm(this.form, profile)
+    this.toForm(this.form, this.user)
+    const sites = await this.$axios.$get('/api/sites')
+    sites.forEach(site => {
+      this.sites.push({ value: site._id, text: site.name })
+    })
   },
   methods: {
     async save () {
-      const profile = await this.$axios.$put('/api/users', this.form)
-      if (profile) {
-        this.$auth.setUser(profile)
-        this.$toast.success('Seus dados foram atualizados com sucesso')
-        this.$router.push('/admin')
+      if (this.user) {
+        const user = await this.$axios.$put('/api/users/' + this.user._id, this.form)
+        if (user) {
+          this.$toast.success('Usuário atualizado com sucesso!')
+          this.$router.push('/admin/users')
+        }
+      } else {
+        const user = await this.$axios.$post('/api/users', this.form)
+        if (user) {
+          this.$toast.success('Usuário cadastrado com sucesso!')
+          this.$router.push('/admin/users')
+        }
       }
     },
     changePassword () {
