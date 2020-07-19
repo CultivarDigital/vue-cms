@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="profile">
+    <b-breadcrumb :items="breadcrumb" />
     <ValidationObserver v-slot="{ invalid }" tag="form" @submit.prevent="save">
       <b-row>
         <b-col>
@@ -67,7 +68,11 @@ export default {
         email: '',
         password: '',
         password_confirmation: ''
-      }
+      },
+      breadcrumb: [
+        { text: 'Painel', to: '/admin' },
+        { text: 'Perfil do usuário', active: true }
+      ]
     }
   },
   computed: {

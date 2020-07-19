@@ -34,6 +34,7 @@ if(isProduction){
 
 router.use('/auth', require('./routes/auth'))
 router.use('/users', require('./routes/users'))
+router.use('/sites', require('./routes/sites'))
 
 router.get('/profile', auth.authenticated, function(req, res) {
   User.findById(req.payload.id).populate('site').exec(function(err, user) {

@@ -6,13 +6,15 @@ const SiteSchema = mongoose.Schema({
     required: true
   },
   slug: {
-    type: String
+    type: String,
+    required: true
   },
-  domain_name: String,
+  domain_name: {
+    type: String,
+    required: true
+  },
   description: String,
-  contact: {
-    type: String
-  }
+  contact: String
 }, {
   timestamps: true,
   toJSON: { virtuals: true }

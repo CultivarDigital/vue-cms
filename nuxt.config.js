@@ -15,7 +15,7 @@ export default {
   ** See https://nuxtjs.org/api/configuration-head
   */
   serverMiddleware: [
-    '~/api/index.js',
+    '~/api/index.js'
   ],
   head: {
     title: process.env.npm_package_name || '',
@@ -38,7 +38,7 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
-    "~plugins/validate.js"
+    '~plugins/bootstrap-vue.js'
   ],
   /*
   ** Auto import components
@@ -50,9 +50,9 @@ export default {
   */
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
-    '@nuxtjs/eslint-module',
+    '@nuxtjs/eslint-module'
     // Doc: https://github.com/nuxt-community/stylelint-module
-    '@nuxtjs/stylelint-module'
+    // '@nuxtjs/stylelint-module'
   ],
   /*
   ** Nuxt.js modules
@@ -86,15 +86,15 @@ export default {
           logout: { url: '/api/auth/logout', method: 'post' },
           user: { url: '/api/profile', method: 'get', propertyName: false }
         },
-        // tokenRequired: true,
-        tokenType: 'Token',
-        // globalToken: true,
-        // autoFetchUser: true
+        tokenType: 'Token'
       }
     },
     scopeKey: 'roles'
   },
   toast: {
+    duration: 7000,
+    keepOnHover: true,
+    theme: 'bubble'
   },
   build: {
   },

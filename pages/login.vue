@@ -7,7 +7,7 @@
     <span class="subtitle">
       Entre com seus dados para acessar
     </span>
-    <form @submit.prevent="login" class="mt-4">
+    <form class="mt-4" @submit.prevent="login">
       <b-form-group label="Digite seu email">
         <b-form-input v-model="form.email" type="text" />
       </b-form-group>
@@ -36,10 +36,8 @@ export default {
   methods: {
     async login () {
       try {
-        const response = await this.$auth.loginWith('local', { data: this.form })
-        console.log(response)
+        await this.$auth.loginWith('local', { data: this.form })
       } catch (err) {
-        console.log(err.response.data)
         this.$toast.error(err.response.data)
       }
     }

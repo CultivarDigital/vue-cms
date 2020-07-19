@@ -2,7 +2,7 @@
   <div class="admin">
     <b-navbar toggleable="lg" type="dark" variant="info">
       <b-navbar-brand to="/admin">Terrakrya</b-navbar-brand>
-      <b-navbar-toggle target="header-menu"></b-navbar-toggle>
+      <b-navbar-toggle target="header-menu" />
       <b-collapse id="header-menu" is-nav>
         <b-navbar-nav>
           <b-nav-item to="/admin/sites">Sites</b-nav-item>
@@ -19,7 +19,7 @@
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
-    <b-container class="mt-5">
+    <b-container class="mt-4">
       <Nuxt />
     </b-container>
   </div>
@@ -35,3 +35,8 @@ export default {
   }
 }
 </script>
+<style lang="sass">
+  .b-table
+    tr > td, tr > th
+      vertical-align: middle !important
+</style>
