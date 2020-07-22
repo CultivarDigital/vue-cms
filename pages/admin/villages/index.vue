@@ -1,16 +1,16 @@
 <template>
-  <div class="categories">
+  <div class="villages">
     <b-breadcrumb :items="breadcrumb" />
-    <PageForm slug="categories"/>
+    <PageForm slug="villages"/>
     <div class="text-right mb-3">
-      <b-button variant="primary" to="/admin/categories/new">
+      <b-button variant="primary" to="/admin/villages/new">
         Cadastrar
       </b-button>
     </div>
-    <div v-if="categories">
-      <b-table v-if="categories.length" :fields="table" :items="categories" responsive="sm">
+    <div v-if="villages">
+      <b-table v-if="villages.length" :fields="table" :items="villages" responsive="sm">
         <template v-slot:cell(actions)="data">
-          <n-link class="btn btn-info btn-sm" :to="'/admin/categories/' + data.item.slug + '/edit'">
+          <n-link class="btn btn-info btn-sm" :to="'/admin/villages/' + data.item.slug + '/edit'">
             <b-icon-pencil />
           </n-link>
           <b-button variant="danger" size="sm" @click="remove(data.item)">
@@ -27,8 +27,8 @@
 </template>
 
 <script>
-import PageForm from '@/components/PageForm'
 import mixinGlobal from '@/mixins/global'
+import PageForm from '@/components/PageForm'
 export default {
   layout: 'admin',
   mixins: [mixinGlobal],
@@ -37,10 +37,10 @@ export default {
   },
   data () {
     return {
-      categories: null,
+      villages: null,
       breadcrumb: [
         { text: 'Painel', to: '/admin' },
-        { text: 'Linhas de ação', active: true }
+        { text: 'Aldeias', active: true }
       ],
       table: [
         { key: 'name', label: 'Nome' },
@@ -53,14 +53,14 @@ export default {
   },
   methods: {
     async list () {
-      this.categories = await this.$axios.$get('/api/categories').catch(this.showError)
+      this.villages = await this.$axios.$get('/api/villages').catch(this.showError)
     },
-    remove (category) {
+    remove (village) {
       this.$bvModal.msgBoxConfirm('Tem certeza que deseja excluír este ítem?').then(async confirmed => {
         if (confirmed) {
-          await this.$axios.delete('/api/categories/' + category.slug).then(() => {
+          await this.$axios.delete('/api/villages/' + village.slug).then(() => {
             this.list()
-            this.$toast.success('Linha de ação removida com sucesso!')
+            this.$toast.success('Aldeia removida com sucesso!')
           }).catch(this.showError)
         }
       })

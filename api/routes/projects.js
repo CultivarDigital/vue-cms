@@ -6,7 +6,8 @@ const auth = require('../config/auth')
 const Project = mongoose.model('Project')
 
 router.get('/', (req, res) => {
-  Project.find({}).populate(req.params.populate).exec((err, projects) => {
+  console.log(req.query.populate)
+  Project.find({}).populate(req.query.populate).exec((err, projects) => {
     if (err) {
       res.status(422).send(err.message)
     } else {
@@ -44,7 +45,7 @@ router.put('/:id', auth.admin, (req, res) => {
   const params = req.body
   params.slug = slugify(params.name).toLowerCase()
   Project.findOneAndUpdate({
-    _id: req.params.id
+    slug: req.params.id
   }, {
     $set: params
   }, {
@@ -60,7 +61,7 @@ router.put('/:id', auth.admin, (req, res) => {
 
 router.delete('/:id', auth.admin, (req, res) => {
   Project.findOne({
-    _id: req.params.id
+    slug: req.params.id
   }).exec((err, project) => {
     if (err) {
       res.status(422).send(err.message)

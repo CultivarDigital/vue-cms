@@ -1,16 +1,18 @@
 <template>
-  <div class="categories">
+  <div class="posts">
     <b-breadcrumb :items="breadcrumb" />
-    <PageForm slug="categories"/>
     <div class="text-right mb-3">
-      <b-button variant="primary" to="/admin/categories/new">
+      <b-button variant="primary" to="/admin/posts/new">
         Cadastrar
       </b-button>
     </div>
-    <div v-if="categories">
-      <b-table v-if="categories.length" :fields="table" :items="categories" responsive="sm">
+    <div v-if="posts">
+      <b-table v-if="posts.length" :fields="table" :items="posts" responsive="sm">
+        <template v-slot:cell(tags)="data">
+          {{ data.value.map(tag => tag.name).join(', ') }}
+        </template>
         <template v-slot:cell(actions)="data">
-          <n-link class="btn btn-info btn-sm" :to="'/admin/categories/' + data.item.slug + '/edit'">
+          <n-link class="btn btn-info btn-sm" :to="'/admin/posts/' + data.item.slug + '/edit'">
             <b-icon-pencil />
           </n-link>
           <b-button variant="danger" size="sm" @click="remove(data.item)">
@@ -27,23 +29,20 @@
 </template>
 
 <script>
-import PageForm from '@/components/PageForm'
 import mixinGlobal from '@/mixins/global'
 export default {
   layout: 'admin',
   mixins: [mixinGlobal],
-  components: {
-    PageForm
-  },
   data () {
     return {
-      categories: null,
+      posts: null,
       breadcrumb: [
         { text: 'Painel', to: '/admin' },
-        { text: 'Linhas de ação', active: true }
+        { text: 'Notícias', active: true }
       ],
       table: [
-        { key: 'name', label: 'Nome' },
+        { key: 'title', label: 'Título' },
+        { key: 'tags', label: 'Tags' },
         { key: 'actions', label: '', class: 'text-right' }
       ]
     }
@@ -53,14 +52,14 @@ export default {
   },
   methods: {
     async list () {
-      this.categories = await this.$axios.$get('/api/categories').catch(this.showError)
+      this.posts = await this.$axios.$get('/api/posts', { params: { populate: 'tags' } }).catch(this.showError)
     },
-    remove (category) {
+    remove (post) {
       this.$bvModal.msgBoxConfirm('Tem certeza que deseja excluír este ítem?').then(async confirmed => {
         if (confirmed) {
-          await this.$axios.delete('/api/categories/' + category.slug).then(() => {
+          await this.$axios.delete('/api/posts/' + post.slug).then(() => {
             this.list()
-            this.$toast.success('Linha de ação removida com sucesso!')
+            this.$toast.success('Notícia removida com sucesso!')
           }).catch(this.showError)
         }
       })

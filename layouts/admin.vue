@@ -9,7 +9,7 @@
           <b-nav-item to="/admin/villages">Aldeias</b-nav-item>
           <b-nav-item to="/admin/categories">Linhas de ação</b-nav-item>
           <b-nav-item to="/admin/projects">Projetos</b-nav-item>
-          <b-nav-item to="/admin/projects">Tags</b-nav-item>
+          <b-nav-item to="/admin/tags">Tags</b-nav-item>
           <b-nav-item to="/admin/posts">Notícias</b-nav-item>
           <b-nav-item to="/admin/pages/quem-somos/edit">Quem somos</b-nav-item>
           <b-nav-item to="/admin/users">Usuários</b-nav-item>

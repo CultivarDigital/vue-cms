@@ -3,9 +3,9 @@
     <b-form @submit.prevent="validate().then(save)">
       <b-row>
         <b-col md="12">
-          <b-form-group label="Nome *">
-            <validation-provider v-slot="{ errors }" name="nome" rules="required">
-              <b-form-input v-model="form.name" name="name" />
+          <b-form-group label="Título *">
+            <validation-provider v-slot="{ errors }" name="título" rules="required">
+              <b-form-input v-model="form.title" name="title" />
               <span class="text-danger">{{ errors[0] }}</span>
             </validation-provider>
           </b-form-group>
@@ -24,10 +24,12 @@
           <pictures-upload :form="form" field="picture" url="/api/uploads/images" label="Foto de capa" />
         </b-col>
         <b-col md="12">
-          <pictures-upload :form="form" field="icon" url="/api/uploads/images" label="Ícone" />
+          <b-form-group label="Tags">
+            <form-entities-select type="tags" :form="form" field="tags" />
+          </b-form-group>
         </b-col>
       </b-row>
-      <b-button class="mb-4" type="submit" variant="primary" block :disabled="invalid">
+      <b-button class="mb-4 mt-4" type="submit" variant="primary" block :disabled="invalid">
         Salvar
       </b-button>
     </b-form>
@@ -39,16 +41,18 @@ import { ValidationObserver, ValidationProvider } from 'vee-validate'
 import mixinGlobal from '@/mixins/global'
 import mixinForm from '@/mixins/form'
 import PicturesUpload from '@/components/PicturesUpload'
+import FormEntitiesSelect from '@/components/FormEntitiesSelect'
 
 export default {
   components: {
     ValidationObserver,
     ValidationProvider,
-    PicturesUpload
+    PicturesUpload,
+    FormEntitiesSelect
   },
   mixins: [mixinGlobal, mixinForm],
   props: {
-    category: {
+    post: {
       type: Object,
       default: null
     }
@@ -56,30 +60,30 @@ export default {
   data () {
     return {
       form: {
-        name: '',
+        title: '',
         description: '',
         content: '',
         picture: null,
-        icon: null
+        tags: []
       }
     }
   },
   created () {
-    this.toForm(this.form, this.category)
+    this.toForm(this.form, this.post)
   },
   methods: {
     async save () {
-      if (this.category) {
-        const category = await this.$axios.$put('/api/categories/' + this.category.slug, this.form).catch(this.showError)
-        if (category) {
-          this.$toast.success('Linha de ação atualizada com sucesso!')
-          this.$router.push('/admin/categories')
+      if (this.post) {
+        const post = await this.$axios.$put('/api/posts/' + this.post.slug, this.form).catch(this.showError)
+        if (post) {
+          this.$toast.success('Notícia atualizada com sucesso!')
+          this.$router.push('/admin/posts')
         }
       } else {
-        const category = await this.$axios.$post('/api/categories', this.form).catch(this.showError)
-        if (category) {
-          this.$toast.success('Linha de ação cadastrada com sucesso!')
-          this.$router.push('/admin/categories')
+        const post = await this.$axios.$post('/api/posts', this.form).catch(this.showError)
+        if (post) {
+          this.$toast.success('Notícia cadastrada com sucesso!')
+          this.$router.push('/admin/posts')
         }
       }
     }

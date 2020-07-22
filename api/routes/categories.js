@@ -6,7 +6,7 @@ const auth = require('../config/auth')
 const Category = mongoose.model('Category')
 
 router.get('/', (req, res) => {
-  Category.find({}).populate(req.params.populate).exec((err, categories) => {
+  Category.find({}).populate(req.query.populate).sort('name').exec((err, categories) => {
     if (err) {
       res.status(422).send(err.message)
     } else {
@@ -45,7 +45,7 @@ router.put('/:id', auth.admin, (req, res) => {
   const params = req.body
   params.slug = slugify(params.name).toLowerCase()
   Category.findOneAndUpdate({
-    _id: req.params.id
+    slug: req.params.id
   }, {
     $set: params
   }, {
@@ -61,7 +61,7 @@ router.put('/:id', auth.admin, (req, res) => {
 
 router.delete('/:id', auth.admin, (req, res) => {
   Category.findOne({
-    _id: req.params.id
+    slug: req.params.id
   }).populate('projects').exec((err, category) => {
     if (err) {
       res.status(422).send(err.message)

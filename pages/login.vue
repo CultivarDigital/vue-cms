@@ -24,7 +24,9 @@
 </template>
 
 <script>
+import mixinGlobal from '@/mixins/global'
 export default {
+  mixins: [mixinGlobal],
   data () {
     return {
       form: {
@@ -35,11 +37,7 @@ export default {
   },
   methods: {
     async login () {
-      try {
-        await this.$auth.loginWith('local', { data: this.form })
-      } catch (err) {
-        this.$toast.error(err.response.data)
-      }
+      await this.$auth.loginWith('local', { data: this.form }).catch(this.showError)
     }
   }
 }

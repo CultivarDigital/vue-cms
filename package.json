@@ -39,6 +39,7 @@
     "nuxt": "^2.13.0",
     "nuxt-i18n": "^6.13.1",
     "nuxt-validate": "^1.0.1",
+    "nuxt-vue-select": "^0.1.4",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "pdf-image": "^2.0.0",

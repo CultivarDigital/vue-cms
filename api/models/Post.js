@@ -14,7 +14,7 @@ const PostSchema = mongoose.Schema({
     index: true,
     unique: true
   },
-  name: {
+  title: {
     type: String,
     required: true
   },

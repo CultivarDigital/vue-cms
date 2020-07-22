@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const uniqueValidator = require('mongoose-unique-validator')
 const ObjectId = mongoose.Schema.Types.ObjectId
 
-const ProjectSchema = mongoose.Schema({
+const VillageSchema = mongoose.Schema({
   site: {
     type: ObjectId,
     ref: 'Site',
@@ -24,8 +24,8 @@ const ProjectSchema = mongoose.Schema({
   toJSON: { virtuals: true }
 })
 
-ProjectSchema.plugin(uniqueValidator, {
+VillageSchema.plugin(uniqueValidator, {
   message: 'já está sendo usado'
 })
 
-export const Project = mongoose.models.Project || mongoose.model('Project', ProjectSchema)
+export const Village = mongoose.models.Village || mongoose.model('Village', VillageSchema)

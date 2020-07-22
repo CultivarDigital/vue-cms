@@ -1,16 +1,22 @@
 <template>
-  <div class="categories">
+  <div class="projects">
     <b-breadcrumb :items="breadcrumb" />
-    <PageForm slug="categories"/>
+    <PageForm slug="projects"/>
     <div class="text-right mb-3">
-      <b-button variant="primary" to="/admin/categories/new">
+      <b-button variant="primary" to="/admin/projects/new">
         Cadastrar
       </b-button>
     </div>
-    <div v-if="categories">
-      <b-table v-if="categories.length" :fields="table" :items="categories" responsive="sm">
+    <div v-if="projects">
+      <b-table v-if="projects.length" :fields="table" :items="projects" responsive="sm">
+        <template v-slot:cell(categories)="data">
+          {{ data.value.map(category => category.name).join(', ') }}
+        </template>
+        <template v-slot:cell(tags)="data">
+          {{ data.value.map(tag => tag.name).join(', ') }}
+        </template>
         <template v-slot:cell(actions)="data">
-          <n-link class="btn btn-info btn-sm" :to="'/admin/categories/' + data.item.slug + '/edit'">
+          <n-link class="btn btn-info btn-sm" :to="'/admin/projects/' + data.item.slug + '/edit'">
             <b-icon-pencil />
           </n-link>
           <b-button variant="danger" size="sm" @click="remove(data.item)">
@@ -27,8 +33,8 @@
 </template>
 
 <script>
-import PageForm from '@/components/PageForm'
 import mixinGlobal from '@/mixins/global'
+import PageForm from '@/components/PageForm'
 export default {
   layout: 'admin',
   mixins: [mixinGlobal],
@@ -37,13 +43,15 @@ export default {
   },
   data () {
     return {
-      categories: null,
+      projects: null,
       breadcrumb: [
         { text: 'Painel', to: '/admin' },
-        { text: 'Linhas de ação', active: true }
+        { text: 'Projetos', active: true }
       ],
       table: [
         { key: 'name', label: 'Nome' },
+        { key: 'categories', label: 'Categorias' },
+        { key: 'tags', label: 'Tags' },
         { key: 'actions', label: '', class: 'text-right' }
       ]
     }
@@ -53,14 +61,14 @@ export default {
   },
   methods: {
     async list () {
-      this.categories = await this.$axios.$get('/api/categories').catch(this.showError)
+      this.projects = await this.$axios.$get('/api/projects', { params: { populate: 'tags categories' } }).catch(this.showError)
     },
-    remove (category) {
+    remove (project) {
       this.$bvModal.msgBoxConfirm('Tem certeza que deseja excluír este ítem?').then(async confirmed => {
         if (confirmed) {
-          await this.$axios.delete('/api/categories/' + category.slug).then(() => {
+          await this.$axios.delete('/api/projects/' + project.slug).then(() => {
             this.list()
-            this.$toast.success('Linha de ação removida com sucesso!')
+            this.$toast.success('Projeto removido com sucesso!')
           }).catch(this.showError)
         }
       })

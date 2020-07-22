@@ -84,7 +84,8 @@ export default {
           fallbackLocale: 'pt-BR'
         }
       }
-    ]
+    ],
+    'nuxt-vue-select'
   ],
   /*
   ** Axios module configuration

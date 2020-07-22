@@ -6,7 +6,7 @@ const auth = require('../config/auth')
 const Village = mongoose.model('Village')
 
 router.get('/', (req, res) => {
-  Village.find({}).populate(req.params.populate).exec((err, villages) => {
+  Village.find({}).populate(req.query.populate).sort('name').exec((err, villages) => {
     if (err) {
       res.status(422).send(err.message)
     } else {
@@ -44,7 +44,7 @@ router.put('/:id', auth.admin, (req, res) => {
   const params = req.body
   params.slug = slugify(params.name).toLowerCase()
   Village.findOneAndUpdate({
-    _id: req.params.id
+    slug: req.params.id
   }, {
     $set: params
   }, {
@@ -60,7 +60,7 @@ router.put('/:id', auth.admin, (req, res) => {
 
 router.delete('/:id', auth.admin, (req, res) => {
   Village.findOne({
-    _id: req.params.id
+    slug: req.params.id
   }).exec((err, village) => {
     if (err) {
       res.status(422).send(err.message)

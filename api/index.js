@@ -4,6 +4,8 @@ require('./models/Category')
 require('./models/Project')
 require('./models/Post')
 require('./models/Tag')
+require('./models/Village')
+require('./models/Page')
 require('./config/passport')
 
 const express = require('express')
@@ -44,6 +46,8 @@ router.use('/categories', require('./routes/categories'))
 router.use('/projects', require('./routes/projects'))
 router.use('/posts', require('./routes/posts'))
 router.use('/tags', require('./routes/tags'))
+router.use('/villages', require('./routes/villages'))
+router.use('/pages', require('./routes/pages'))
 
 router.get('/profile', auth.authenticated, function(req, res) {
   User.findById(req.payload.id).populate('site').exec(function(err, user) {

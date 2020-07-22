@@ -6,7 +6,7 @@ const auth = require('../config/auth')
 const Post = mongoose.model('Post')
 
 router.get('/', (req, res) => {
-  Post.find({}).populate(req.params.populate).exec((err, posts) => {
+  Post.find({}).populate(req.query.populate).sort({createdAt: -1}).exec((err, posts) => {
     if (err) {
       res.status(422).send(err.message)
     } else {
@@ -30,7 +30,7 @@ router.get('/:id', (req, res) => {
 router.post('/', auth.admin, (req, res) => {
   const newPost = new Post(req.body)
   newPost.site = req.payload.site
-  newPost.slug = slugify(newPost.name).toLowerCase()
+  newPost.slug = slugify(newPost.title).toLowerCase()
   newPost.save((err, post) => {
     if (err) {
       res.status(422).send(err.message)
@@ -42,9 +42,9 @@ router.post('/', auth.admin, (req, res) => {
 
 router.put('/:id', auth.admin, (req, res) => {
   const params = req.body
-  params.slug = slugify(params.name).toLowerCase()
+  params.slug = slugify(params.title).toLowerCase()
   Post.findOneAndUpdate({
-    _id: req.params.id
+    slug: req.params.id
   }, {
     $set: params
   }, {
@@ -60,7 +60,7 @@ router.put('/:id', auth.admin, (req, res) => {
 
 router.delete('/:id', auth.admin, (req, res) => {
   Post.findOne({
-    _id: req.params.id
+    slug: req.params.id
   }).exec((err, post) => {
     if (err) {
       res.status(422).send(err.message)
