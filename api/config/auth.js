@@ -96,25 +96,25 @@ function authenticatedAdmin(req, res, next) {
 
 const auth = {
   authenticated: jwt({
-    process.env.SECRET,
+    secret: process.env.SECRET,
     algorithms: ['HS256'],
     userProperty: 'payload',
     getToken: getTokenFromHeader
   }),
   super: [jwt({
-    process.env.SECRET,
+    secret: process.env.SECRET,
     algorithms: ['HS256'],
     userProperty: 'payload',
     getToken: getTokenFromHeader
   }), authenticatedSuper],
   admin: [jwt({
-    process.env.SECRET,
+    secret: process.env.SECRET,
     algorithms: ['HS256'],
     userProperty: 'payload',
     getToken: getTokenFromHeader
   }), authenticatedAdmin],
   optional: jwt({
-    process.env.SECRET,
+    secret: process.env.SECRET,
     algorithms: ['HS256'],
     userProperty: 'payload',
     credentialsRequired: false,
