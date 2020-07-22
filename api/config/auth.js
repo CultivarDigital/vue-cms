@@ -1,7 +1,6 @@
 const jwt = require('express-jwt')
 const mongoose = require('mongoose')
 const Site = mongoose.model('Site')
-const secret = require('../config').secret
 
 async function applySite(req, res, query, type) {
   const site = await belongsToSite(req)
@@ -97,25 +96,25 @@ function authenticatedAdmin(req, res, next) {
 
 const auth = {
   authenticated: jwt({
-    secret,
+    process.env.SECRET,
     algorithms: ['HS256'],
     userProperty: 'payload',
     getToken: getTokenFromHeader
   }),
   super: [jwt({
-    secret,
+    process.env.SECRET,
     algorithms: ['HS256'],
     userProperty: 'payload',
     getToken: getTokenFromHeader
   }), authenticatedSuper],
   admin: [jwt({
-    secret,
+    process.env.SECRET,
     algorithms: ['HS256'],
     userProperty: 'payload',
     getToken: getTokenFromHeader
   }), authenticatedAdmin],
   optional: jwt({
-    secret,
+    process.env.SECRET,
     algorithms: ['HS256'],
     userProperty: 'payload',
     credentialsRequired: false,
