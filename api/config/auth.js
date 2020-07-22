@@ -94,29 +94,31 @@ function authenticatedAdmin(req, res, next) {
   }
 }
 
-console.log('process.env.SECRET');
-console.log(process.env.SECRET);
+function getSecret() {
+  return process.env.SECRET || 'secret'
+}
+
 const auth = {
   authenticated: jwt({
-    secret: process.env.SECRET,
+    secret: getSecret(),
     algorithms: ['HS256'],
     userProperty: 'payload',
     getToken: getTokenFromHeader
   }),
   super: [jwt({
-    secret: process.env.SECRET,
+    secret: getSecret(),
     algorithms: ['HS256'],
     userProperty: 'payload',
     getToken: getTokenFromHeader
   }), authenticatedSuper],
   admin: [jwt({
-    secret: process.env.SECRET,
+    secret: getSecret(),
     algorithms: ['HS256'],
     userProperty: 'payload',
     getToken: getTokenFromHeader
   }), authenticatedAdmin],
   optional: jwt({
-    secret: process.env.SECRET,
+    secret: getSecret(),
     algorithms: ['HS256'],
     userProperty: 'payload',
     credentialsRequired: false,

@@ -59,7 +59,8 @@ export default {
   */
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
-    '@nuxtjs/eslint-module'
+    '@nuxtjs/eslint-module',
+    '@nuxtjs/style-resources'
     // Doc: https://github.com/nuxt-community/stylelint-module
     // '@nuxtjs/stylelint-module'
   ],
@@ -69,7 +70,6 @@ export default {
   modules: [
     // Doc: https://bootstrap-vue.js.org
     ['bootstrap-vue/nuxt', { css: false }],
-    '@nuxtjs/style-resources',
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
@@ -127,8 +127,5 @@ export default {
   proxy: {
     pathRewrite: { '^/api/': '/' }
   },
-  env: {
-    SECRET: process.env.SECRET || 'secret',
-    MONGODB_URI: process.env.MONGODB_URI || 'mongodb://localhost/terrakrya-cms'
-  }
+  env: { }
 }

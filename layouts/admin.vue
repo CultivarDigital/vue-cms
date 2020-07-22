@@ -1,7 +1,7 @@
 <template>
   <div class="admin">
     <b-navbar toggleable="lg" type="dark" variant="default">
-      <b-navbar-brand to="/admin">{{ $auth.user.site ? $auth.user.site.name : 'Terrakrya CMS' }}</b-navbar-brand>
+      <b-navbar-brand href="/">{{ $auth.user.site ? $auth.user.site.name : 'Terrakrya CMS' }}</b-navbar-brand>
       <b-navbar-toggle target="header-menu" />
       <b-collapse id="header-menu" is-nav>
         <b-navbar-nav>
@@ -12,6 +12,7 @@
           <b-nav-item to="/admin/posts">Notícias</b-nav-item>
           <b-nav-item to="/admin/about">Quem somos</b-nav-item>
           <b-nav-item to="/admin/users">Usuários</b-nav-item>
+          <b-nav-item href="/" target="_blank">Ver site</b-nav-item>
           <b-nav-item v-if="$auth.hasScope('super')" to="/admin/sites">Sites</b-nav-item>
         </b-navbar-nav>
         <b-navbar-nav class="ml-auto">
