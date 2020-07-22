@@ -76,13 +76,13 @@ export default {
       if (this.project) {
         const project = await this.$axios.$put('/api/projects/' + this.project.slug, this.form).catch(this.showError)
         if (project) {
-          this.$toast.success('Projeto atualizada com sucesso!')
+          this.$toast.success('Projeto atualizado com sucesso!')
           this.$router.push('/admin/projects')
         }
       } else {
         const project = await this.$axios.$post('/api/projects', this.form).catch(this.showError)
         if (project) {
-          this.$toast.success('Projeto cadastrada com sucesso!')
+          this.$toast.success('Projeto cadastrado com sucesso!')
           this.$router.push('/admin/projects')
         }
       }

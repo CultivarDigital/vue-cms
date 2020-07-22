@@ -1,7 +1,7 @@
 <template>
   <div class="projects">
     <b-breadcrumb :items="breadcrumb" />
-    <PageForm slug="projects"/>
+    <PageForm slug="projects" />
     <div class="text-right mb-3">
       <b-button variant="primary" to="/admin/projects/new">
         Cadastrar
@@ -22,6 +22,12 @@
           <b-button variant="danger" size="sm" @click="remove(data.item)">
             <b-icon-trash />
           </b-button>
+          <b-button size="sm" @click="moveUp(data)">
+            <b-icon-arrow-up />
+          </b-button>
+          <b-button size="sm" @click="moveDown(data)">
+            <b-icon-arrow-down />
+          </b-button>
         </template>
       </b-table>
       <b-alert v-else show variant="dark" class="text-center">Nenhum item encontrado</b-alert>
@@ -37,10 +43,10 @@ import mixinGlobal from '@/mixins/global'
 import PageForm from '@/components/PageForm'
 export default {
   layout: 'admin',
-  mixins: [mixinGlobal],
   components: {
     PageForm
   },
+  mixins: [mixinGlobal],
   data () {
     return {
       projects: null,
@@ -62,6 +68,25 @@ export default {
   methods: {
     async list () {
       this.projects = await this.$axios.$get('/api/projects', { params: { populate: 'tags categories' } }).catch(this.showError)
+    },
+    moveUp (data) {
+      this.projects[data.index].order -= 1.1
+      this.saveReorder()
+    },
+    moveDown (data) {
+      this.projects[data.index].order += 1.1
+      this.saveReorder()
+    },
+    async saveReorder () {
+      this.projects.sort((a, b) => a.order - b.order).forEach((project, index) => {
+        this.projects[index].order = index
+      })
+      const ids = this.projects.map(project => {
+        return { slug: project.slug, order: project.order }
+      })
+      await this.$axios.post('/api/projects/reorder', ids).then(() => {
+        this.list()
+      }).catch(this.showError)
     },
     remove (project) {
       this.$bvModal.msgBoxConfirm('Tem certeza que deseja excluír este ítem?').then(async confirmed => {

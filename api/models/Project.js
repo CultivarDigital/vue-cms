@@ -27,7 +27,11 @@ const ProjectSchema = mongoose.Schema({
   tags: [{
     type: ObjectId,
     ref: 'Tag'
-  }]
+  }],
+  order: {
+    type: Number,
+    default: 0
+  }
 }, {
   timestamps: true,
   toJSON: { virtuals: true }
