@@ -16,9 +16,6 @@
           </b-form-group>
         </b-col>
         <b-col md="12">
-          <pictures-upload :form="form" field="pictures" url="/api/uploads/images" :multiple="true" />
-        </b-col>
-        <b-col md="12">
           <b-form-group label="Categorias">
             <form-entities-select type="categories" :form="form" field="categories" />
           </b-form-group>
@@ -27,6 +24,12 @@
           <b-form-group label="Tags">
             <form-entities-select type="tags" :form="form" field="tags" />
           </b-form-group>
+        </b-col>
+        <b-col md="12">
+          <pictures-upload :form="form" field="pictures" url="/api/uploads/images" :multiple="true" />
+        </b-col>
+        <b-col md="12">
+          <pdfs-upload :form="form" field="pdfs" url="/api/uploads/pdfs" :multiple="true" />
         </b-col>
       </b-row>
       <b-button type="submit" variant="primary" block :disabled="invalid">
@@ -41,6 +44,7 @@ import { ValidationObserver, ValidationProvider } from 'vee-validate'
 import mixinGlobal from '@/mixins/global'
 import mixinForm from '@/mixins/form'
 import PicturesUpload from '@/components/PicturesUpload'
+import PdfsUpload from '@/components/PdfsUpload'
 import FormEntitiesSelect from '@/components/FormEntitiesSelect'
 
 export default {
@@ -48,6 +52,7 @@ export default {
     ValidationObserver,
     ValidationProvider,
     PicturesUpload,
+    PdfsUpload,
     FormEntitiesSelect
   },
   mixins: [mixinGlobal, mixinForm],
@@ -64,7 +69,8 @@ export default {
         content: '',
         pictures: [],
         categories: [],
-        tags: []
+        tags: [],
+        pdfs: []
       }
     }
   },

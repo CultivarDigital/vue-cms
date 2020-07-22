@@ -8,7 +8,7 @@
       <b-row v-if="Array.isArray(form[field]) && form[field].length > 0" class="row images_preview">
         <b-col v-for="(image, index) in form[field]" :key="index" md="3">
           <div class="fileinput-new thumbnail">
-            <b-img :src="image.thumb" />
+            <b-img :src="image.thumb" fluid thumbnail />
           </div>
           <br>
           <p class="text-center">
@@ -24,8 +24,7 @@
         <b-col cols="2">
           <b-img :src="form[field].thumb" fluid thumbnail />
           <br>
-          <br>
-          <p class="text-center"><a class="btn btn-sm" @click="deleteImage()"><b-icon-trash /></a></p>
+          <b-button class="btn btn-sm" @click="deleteImage()"><b-icon-trash /> Remover</b-button>
         </b-col>
       </b-row>
     </div>

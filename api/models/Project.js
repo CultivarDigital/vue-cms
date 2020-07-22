@@ -20,6 +20,7 @@ const ProjectSchema = mongoose.Schema({
   },
   content: String,
   pictures: [Object],
+  pdfs: [Object],
   categories: [{
     type: ObjectId,
     ref: 'Category'
