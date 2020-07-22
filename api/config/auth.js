@@ -94,6 +94,8 @@ function authenticatedAdmin(req, res, next) {
   }
 }
 
+console.log('process.env.SECRET');
+console.log(process.env.SECRET);
 const auth = {
   authenticated: jwt({
     secret: process.env.SECRET,
