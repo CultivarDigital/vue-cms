@@ -10,6 +10,10 @@ export default {
   ** See https://nuxtjs.org/api/configuration-target
   */
   target: 'server',
+  server: {
+    port: process.env.PORT || 3000, // default: 3000
+    host: process.env.HOST || 'localhost' // default: localhost
+  },
   /*
   ** Headers of the page
   ** See https://nuxtjs.org/api/configuration-head
@@ -125,7 +129,6 @@ export default {
   },
   env: {
     SECRET: process.env.SECRET || 'secret',
-    PORT: process.env.PORT || 3000,
     MONGODB_URI: process.env.MONGODB_URI || 'mongodb://localhost/terrakrya-cms'
   }
 }
