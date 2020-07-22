@@ -38,14 +38,15 @@
 
 <script>
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
-import mixins from '@/mixins/form'
+import mixinGlobal from '@/mixins/global'
+import mixinForm from '@/mixins/form'
 
 export default {
   components: {
     ValidationObserver,
     ValidationProvider
   },
-  mixins: [mixins],
+  mixins: [mixinGlobal, mixinForm],
   props: {
     site: {
       type: Object,
@@ -68,13 +69,13 @@ export default {
   methods: {
     async save () {
       if (this.site) {
-        const site = await this.$axios.$put('/api/sites/' + this.site._id, this.form)
+        const site = await this.$axios.$put('/api/sites/' + this.site._id, this.form).catch(this.showError)
         if (site) {
           this.$toast.success('Site atualizado com sucesso!')
           this.$router.push('/admin/sites')
         }
       } else {
-        const site = await this.$axios.$post('/api/sites', this.form)
+        const site = await this.$axios.$post('/api/sites', this.form).catch(this.showError)
         if (site) {
           this.$toast.success('Site cadastrado com sucesso!')
           this.$router.push('/admin/sites')

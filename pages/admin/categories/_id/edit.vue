@@ -1,34 +1,34 @@
 <template>
   <div class="create">
     <b-breadcrumb :items="breadcrumb" />
-    <SiteForm v-if="site" :site="site" />
+    <CategoryForm v-if="category" :category="category" />
     <div v-else class="text-center">
       <b-spinner label="Carregando..." />
     </div>
   </div>
 </template>
 <script>
-import SiteForm from '@/components/SiteForm'
+import CategoryForm from '@/components/CategoryForm'
 import mixinGlobal from '@/mixins/global'
 
 export default {
   layout: 'admin',
   components: {
-    SiteForm
+    CategoryForm
   },
   mixins: [mixinGlobal],
   data () {
     return {
-      site: null,
+      category: null,
       breadcrumb: [
         { text: 'Painel', to: '/admin' },
-        { text: 'Sites', to: '/admin/sites' },
+        { text: 'Linhas de ação', to: '/admin/categories' },
         { text: 'Editar', active: true }
       ]
     }
   },
   async created () {
-    this.site = await this.$axios.$get('/api/sites/' + this.$route.params.id).catch(this.showError)
+    this.category = await this.$axios.$get('/api/categories/' + this.$route.params.id).catch(this.showError)
   }
 }
 </script>

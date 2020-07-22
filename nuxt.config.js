@@ -31,14 +31,19 @@ export default {
   /*
   ** Global CSS
   */
-  css: [
-  ],
+  // css: [],
+  styleResources: {
+    sass: [
+      '@/assets/css/main.sass'
+    ]
+  },
   /*
   ** Plugins to load before mounting the App
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
-    '~plugins/bootstrap-vue.js'
+    '~plugins/bootstrap-vue.js',
+    { src: '~plugins/quill.js', ssr: false }
   ],
   /*
   ** Auto import components
@@ -59,7 +64,8 @@ export default {
   */
   modules: [
     // Doc: https://bootstrap-vue.js.org
-    'bootstrap-vue/nuxt',
+    ['bootstrap-vue/nuxt', { css: false }],
+    '@nuxtjs/style-resources',
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
@@ -67,7 +73,18 @@ export default {
     '@nuxtjs/toast',
     ['nuxt-validate', {
       lang: 'pt_BR'
-    }]
+    }],
+    '@tui-nuxt/editor',
+    [
+      'nuxt-i18n',
+      {
+        locales: ['pt-BR'],
+        defaultLocale: 'pt-BR',
+        vueI18n: {
+          fallbackLocale: 'pt-BR'
+        }
+      }
+    ]
   ],
   /*
   ** Axios module configuration
@@ -95,6 +112,9 @@ export default {
     duration: 7000,
     keepOnHover: true,
     theme: 'bubble'
+  },
+  tui: {
+    editor: {}
   },
   build: {
   },

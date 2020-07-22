@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const uniqueValidator = require('mongoose-unique-validator')
 
 const SiteSchema = mongoose.Schema({
   name: {
@@ -11,13 +12,20 @@ const SiteSchema = mongoose.Schema({
   },
   domain_name: {
     type: String,
-    required: true
+    required: true,
+    index: true,
+    unique: true
   },
   description: String,
   contact: String
 }, {
   timestamps: true,
   toJSON: { virtuals: true }
+})
+
+
+SiteSchema.plugin(uniqueValidator, {
+  message: 'já está sendo usado'
 })
 
 SiteSchema.virtual('users', {

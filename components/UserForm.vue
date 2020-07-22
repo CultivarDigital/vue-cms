@@ -65,14 +65,15 @@
 
 <script>
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
-import mixins from '@/mixins/form'
+import mixinGlobal from '@/mixins/global'
+import mixinForm from '@/mixins/form'
 
 export default {
   components: {
     ValidationObserver,
     ValidationProvider
   },
-  mixins: [mixins],
+  mixins: [mixinGlobal, mixinForm],
   props: {
     user: {
       type: Object,
@@ -104,7 +105,7 @@ export default {
   },
   async created () {
     this.toForm(this.form, this.user)
-    const sites = await this.$axios.$get('/api/sites')
+    const sites = await this.$axios.$get('/api/sites').catch(this.showError)
     sites.forEach(site => {
       this.sites.push({ value: site._id, text: site.name })
     })
@@ -112,13 +113,13 @@ export default {
   methods: {
     async save () {
       if (this.user) {
-        const user = await this.$axios.$put('/api/users/' + this.user._id, this.form)
+        const user = await this.$axios.$put('/api/users/' + this.user._id, this.form).catch(this.showError)
         if (user) {
           this.$toast.success('Usuário atualizado com sucesso!')
           this.$router.push('/admin/users')
         }
       } else {
-        const user = await this.$axios.$post('/api/users', this.form)
+        const user = await this.$axios.$post('/api/users', this.form).catch(this.showError)
         if (user) {
           this.$toast.success('Usuário cadastrado com sucesso!')
           this.$router.push('/admin/users')

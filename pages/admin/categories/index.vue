@@ -1,15 +1,15 @@
 <template>
-  <div class="users">
+  <div class="categories">
     <b-breadcrumb :items="breadcrumb" />
     <div class="text-right mb-3">
-      <b-button variant="primary" to="/admin/users/new">
+      <b-button variant="primary" to="/admin/categories/new">
         Cadastrar
       </b-button>
     </div>
-    <div v-if="users">
-      <b-table v-if="users.length" :fields="table" :items="users" responsive="sm">
+    <div v-if="categories">
+      <b-table v-if="categories.length" :fields="table" :items="categories" responsive="sm">
         <template v-slot:cell(actions)="data">
-          <n-link class="btn btn-info btn-sm" :to="'/admin/users/' + data.item._id + '/edit'">
+          <n-link class="btn btn-info btn-sm" :to="'/admin/categories/' + data.item.slug + '/edit'">
             <b-icon-pencil />
           </n-link>
           <b-button variant="danger" size="sm" @click="remove(data.item)">
@@ -27,41 +27,35 @@
 
 <script>
 import mixinGlobal from '@/mixins/global'
-
 export default {
   layout: 'admin',
   mixins: [mixinGlobal],
   data () {
     return {
-      users: null,
+      categories: null,
       breadcrumb: [
         { text: 'Painel', to: '/admin' },
-        { text: 'Usuários', active: true }
+        { text: 'Linhas de ação', active: true }
       ],
       table: [
         { key: 'name', label: 'Nome' },
-        { key: 'email', label: 'Email' }
+        { key: 'actions', label: '', class: 'text-right' }
       ]
     }
   },
   created () {
-    if (this.$auth.hasScope('super')) {
-      this.table.push({ key: 'site.name', label: 'Site' })
-      this.table.push({ key: 'roles', label: 'Perfil' })
-    }
-    this.table.push({ key: 'actions', label: '', class: 'text-right' })
     this.list()
   },
   methods: {
     async list () {
-      this.users = await this.$axios.$get('/api/users').catch(this.showError)
+      this.categories = await this.$axios.$get('/api/categories').catch(this.showError)
     },
-    remove (user) {
-      this.$bvModal.msgBoxConfirm('Tem certeza que deseja excluír este ítem?').then(confirmed => {
+    remove (category) {
+      this.$bvModal.msgBoxConfirm('Tem certeza que deseja excluír este ítem?').then(async confirmed => {
         if (confirmed) {
-          this.$axios.$delete('/api/users/' + user._id).then(res => {
+          await this.$axios.delete('/api/categories/' + category.slug).then(() => {
             this.list()
-            this.$toast.success('Usuário removido com sucesso!')
+            this.$toast.success('Linha de ação removida com sucesso!')
           }).catch(this.showError)
         }
       })

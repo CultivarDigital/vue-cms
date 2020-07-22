@@ -51,7 +51,8 @@
 
 <script>
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
-import mixins from '@/mixins/form'
+import mixinGlobal from '@/mixins/global'
+import mixinForm from '@/mixins/form'
 
 export default {
   layout: 'admin',
@@ -59,7 +60,7 @@ export default {
     ValidationObserver,
     ValidationProvider
   },
-  mixins: [mixins],
+  mixins: [mixinGlobal, mixinForm],
   data () {
     return {
       show_password: false,
@@ -81,12 +82,14 @@ export default {
     }
   },
   async created () {
-    const profile = await this.$axios.$get('/api/profile')
-    this.toForm(this.form, profile)
+    const profile = await this.$axios.$get('/api/profile').catch(this.showError)
+    if (profile) {
+      this.toForm(this.form, profile)
+    }
   },
   methods: {
     async save () {
-      const profile = await this.$axios.$put('/api/users', this.form)
+      const profile = await this.$axios.$put('/api/users', this.form).catch(this.showError)
       if (profile) {
         this.$auth.setUser(profile)
         this.$toast.success('Seus dados foram atualizados com sucesso')

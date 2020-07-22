@@ -1,11 +1,17 @@
 <template>
   <div class="admin">
-    <b-navbar toggleable="lg" type="dark" variant="info">
-      <b-navbar-brand to="/admin">{{ $auth.user.site.name }}</b-navbar-brand>
+    <b-navbar toggleable="lg" type="dark" variant="default">
+      <b-navbar-brand to="/admin">{{ $auth.user.site ? $auth.user.site.name : 'Terrakrya CMS' }}</b-navbar-brand>
       <b-navbar-toggle target="header-menu" />
       <b-collapse id="header-menu" is-nav>
         <b-navbar-nav>
           <b-nav-item v-if="$auth.hasScope('super')" to="/admin/sites">Sites</b-nav-item>
+          <b-nav-item to="/admin/villages">Aldeias</b-nav-item>
+          <b-nav-item to="/admin/categories">Linhas de ação</b-nav-item>
+          <b-nav-item to="/admin/projects">Projetos</b-nav-item>
+          <b-nav-item to="/admin/projects">Tags</b-nav-item>
+          <b-nav-item to="/admin/posts">Notícias</b-nav-item>
+          <b-nav-item to="/admin/pages/quem-somos/edit">Quem somos</b-nav-item>
           <b-nav-item to="/admin/users">Usuários</b-nav-item>
         </b-navbar-nav>
         <b-navbar-nav class="ml-auto">
@@ -26,7 +32,6 @@
 </template>
 <script>
 export default {
-  layout: 'admin',
   middleware: 'auth',
   methods: {
     logout () {

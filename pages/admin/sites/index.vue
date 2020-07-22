@@ -8,9 +8,6 @@
     </div>
     <div v-if="sites">
       <b-table v-if="sites.length" :fields="table" :items="sites" responsive="sm">
-        <template v-slot:cell(name)="data">
-          <n-link :to="'/admin/sites/' + data.item._id">{{ data.value }}</n-link>
-        </template>
         <template v-slot:cell(actions)="data">
           <n-link class="btn btn-info btn-sm" :to="'/admin/sites/' + data.item._id + '/edit'">
             <b-icon-pencil />
@@ -29,8 +26,10 @@
 </template>
 
 <script>
+import mixinGlobal from '@/mixins/global'
 export default {
   layout: 'admin',
+  mixins: [mixinGlobal],
   data () {
     return {
       sites: null,
@@ -52,14 +51,15 @@ export default {
   },
   methods: {
     async list () {
-      this.sites = await this.$axios.$get('/api/sites')
+      this.sites = await this.$axios.$get('/api/sites').catch(this.showError)
     },
     remove (site) {
       this.$bvModal.msgBoxConfirm('Tem certeza que deseja excluír este ítem?').then(async confirmed => {
         if (confirmed) {
-          await this.$axios.$delete('/api/sites/' + site._id)
-          this.list()
-          this.$toast.success('Site removido com sucesso!')
+          await this.$axios.delete('/api/sites/' + site._id).then(() => {
+            this.list()
+            this.$toast.success('Site removido com sucesso!')
+          }).catch(this.showError)
         }
       })
     }

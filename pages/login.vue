@@ -1,8 +1,8 @@
 <template>
   <div class="container text-center mt-4">
     <Logo />
-    <h1 class="title">
-      Terrakrya
+    <h1 class="title mt-4">
+      Terrakrya CMS
     </h1>
     <span class="subtitle">
       Entre com seus dados para acessar

@@ -1,4 +1,4 @@
-# terrakrya
+# terrakrya-cms
 
 ## Build Setup
 
@@ -19,5 +19,6 @@ $ yarn start
 # generate static project
 $ yarn generate
 ```
+## Aways run "yarn lint" before commit
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).

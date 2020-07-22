@@ -28,9 +28,9 @@ router.get('/:id', auth.super, (req, res) => {
 })
 
 router.post('/', auth.super, (req, res) => {
-  const newNetwork = new Site(req.body)
-  newNetwork.slug = slugify(newNetwork.name).toLowerCase()
-  newNetwork.save((err, site) => {
+  const site = new Site(req.body)
+  newSite.slug = slugify(newSite.name).toLowerCase()
+  newSite.save((err, site) => {
     if (err) {
       res.status(422).send(err.message)
     } else {
@@ -48,11 +48,11 @@ router.put('/:id', auth.super, (req, res) => {
     $set: params
   }, {
     upsert: true
-  }, (err, newNetwork) => {
+  }, (err, site) => {
     if (err) {
       res.status(422).send(err.message)
     } else {
-      res.send(newNetwork)
+      res.send(site)
     }
   })
 })
