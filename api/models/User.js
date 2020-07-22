@@ -2,7 +2,6 @@ const crypto = require('crypto')
 const mongoose = require('mongoose')
 const uniqueValidator = require('mongoose-unique-validator')
 const jwt = require('jsonwebtoken')
-const secret = require('../config').secret
 const ObjectId = mongoose.Schema.Types.ObjectId
 
 mongoose.set('useCreateIndex', true)
@@ -58,7 +57,7 @@ UserSchema.methods.generateJWT = function() {
     site: this.site,
     image: this.image,
     exp: parseInt(exp.getTime() / 1000)
-  }, secret)
+  }, process.env.SECRET)
 }
 
 UserSchema.methods.toAuthJSON = function() {
