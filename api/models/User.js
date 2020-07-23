@@ -57,7 +57,7 @@ UserSchema.methods.generateJWT = function() {
     site: this.site,
     image: this.image,
     exp: parseInt(exp.getTime() / 1000)
-  }, process.env.SECRET)
+  }, (process.env.SECRET || 'secret'))
 }
 
 UserSchema.methods.toAuthJSON = function() {

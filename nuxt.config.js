@@ -29,18 +29,19 @@ export default {
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap' }
     ]
   },
   /*
   ** Global CSS
   */
-  // css: [],
-  styleResources: {
-    sass: [
-      '@/assets/css/main.sass'
-    ]
-  },
+  css: ['@/assets/css/main.scss'],
+  // styleResources: {
+  //   sass: [
+  //     // '@/assets/css/main.sass'
+  //   ]
+  // },
   /*
   ** Plugins to load before mounting the App
   ** https://nuxtjs.org/guide/plugins
@@ -69,7 +70,7 @@ export default {
   */
   modules: [
     // Doc: https://bootstrap-vue.js.org
-    ['bootstrap-vue/nuxt', { css: false }],
+    ['bootstrap-vue/nuxt'],
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
@@ -100,6 +101,10 @@ export default {
   ** Build configuration
   ** See https://nuxtjs.org/api/configuration-build/
   */
+  bootstrapVue: {
+    bootstrapCSS: false, // Or `css: false`
+    bootstrapVueCSS: false // Or `bvCSS: false`
+  },
   auth: {
     strategies: {
       local: {

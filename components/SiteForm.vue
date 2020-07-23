@@ -2,7 +2,7 @@
   <ValidationObserver v-slot="{ validate, invalid }">
     <b-form @submit.prevent="validate().then(save)">
       <b-row>
-        <b-col md="6">
+        <b-col md="12">
           <b-form-group label="Nome *">
             <validation-provider v-slot="{ errors }" name="nome" rules="required">
               <b-form-input v-model="form.name" name="name" />
@@ -19,7 +19,12 @@
           </b-form-group>
         </b-col>
         <b-col md="6">
-          <b-form-group label="Descrição">
+          <b-form-group label="Email">
+            <b-form-input v-model="form.email" name="email" />
+          </b-form-group>
+        </b-col>
+        <b-col md="6">
+          <b-form-group label="Descrição curta">
             <b-form-textarea v-model="form.description" name="description" />
           </b-form-group>
         </b-col>
@@ -27,6 +32,32 @@
           <b-form-group label="Contatos">
             <b-form-textarea v-model="form.contact" name="contact" />
           </b-form-group>
+        </b-col>
+        <b-col md="6">
+          <b-form-group label="Link do Facebook">
+            <b-form-input v-model="form.url_facebook" name="url_facebook" />
+          </b-form-group>
+        </b-col>
+        <b-col md="6">
+          <b-form-group label="Link do Youtube">
+            <b-form-input v-model="form.url_youtube" name="url_youtube" />
+          </b-form-group>
+        </b-col>
+        <b-col md="6">
+          <b-form-group label="Link do Flickr">
+            <b-form-input v-model="form.url_flickr" name="url_flickr" />
+          </b-form-group>
+        </b-col>
+        <b-col md="6">
+          <b-form-group label="Link do Instagram">
+            <b-form-input v-model="form.url_instagram" name="url_instagram" />
+          </b-form-group>
+        </b-col>
+        <b-col md="12">
+          <pictures-upload :form="form" field="logo" url="/api/uploads/images" label="Logo do site" />
+        </b-col>
+        <b-col md="12">
+          <pictures-upload :form="form" field="pictures" url="/api/uploads/images" label="Banners da home" description="Envie as imagens na ordem que aparecerão na tela de início" :multiple="true" />
         </b-col>
       </b-row>
       <b-button type="submit" variant="primary" block :disabled="invalid">
@@ -59,7 +90,12 @@ export default {
         name: '',
         domain_name: '',
         description: '',
-        contact: ''
+        contact: '',
+        email: '',
+        url_facebook: '',
+        url_youtube: '',
+        url_flickr: '',
+        url_instagram: ''
       }
     }
   },

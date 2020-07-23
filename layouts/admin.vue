@@ -12,7 +12,6 @@
           <b-nav-item to="/admin/posts">Notícias</b-nav-item>
           <b-nav-item to="/admin/about">Quem somos</b-nav-item>
           <b-nav-item to="/admin/users">Usuários</b-nav-item>
-          <b-nav-item href="/" target="_blank">Ver site</b-nav-item>
           <b-nav-item v-if="$auth.hasScope('super')" to="/admin/sites">Sites</b-nav-item>
         </b-navbar-nav>
         <b-navbar-nav class="ml-auto">

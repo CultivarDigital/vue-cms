@@ -17,7 +17,14 @@ const SiteSchema = mongoose.Schema({
     unique: true
   },
   description: String,
-  contact: String
+  contact: String,
+  email: String,
+  url_facebook: String,
+  url_youtube: String,
+  url_flickr: String,
+  url_instagram: String,
+  logo: Object,
+  pictures: [Object],
 }, {
   timestamps: true,
   toJSON: { virtuals: true }
