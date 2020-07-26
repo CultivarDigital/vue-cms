@@ -30,7 +30,7 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap' }
+      // { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap' }
     ]
   },
   /*
@@ -61,7 +61,8 @@ export default {
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
-    '@nuxtjs/style-resources'
+    // '@nuxtjs/style-resources',
+    '@nuxtjs/google-fonts',
     // Doc: https://github.com/nuxt-community/stylelint-module
     // '@nuxtjs/stylelint-module'
   ],
@@ -90,7 +91,8 @@ export default {
         }
       }
     ],
-    'nuxt-vue-select'
+    'nuxt-vue-select',
+    'vue-scrollto/nuxt'
   ],
   /*
   ** Axios module configuration
@@ -125,6 +127,14 @@ export default {
   },
   tui: {
     editor: {}
+  },
+  googleFonts: {
+    families: {
+      'Titillium Web': true,
+      'Amatic SC': {
+        wght: [700]
+      }
+    }
   },
   build: {
   },

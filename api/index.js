@@ -15,6 +15,7 @@ const bodyParser = require('body-parser')
 const session = require('express-session')
 const mongoose = require('mongoose')
 const User = mongoose.model('User')
+const Site = mongoose.model('Site')
 const auth = require('./config/auth')
 
 const isProduction = process.env.NODE_ENV === 'production'
@@ -55,6 +56,16 @@ router.get('/profile', auth.authenticated, function(req, res) {
       res.send(user.data())
     } else {
       res.status(422).send('Usuário não encontrado')
+    }
+  })
+})
+
+router.get('/site', function(req, res) {
+  Site.findOne({ domain_name: req.headers.host }).populate('pages categories tags projects posts villages').exec(function(err, site) {
+    if (!err && site) {
+      res.send(site)
+    } else {
+      res.status(422).send('Site não encontrado')
     }
   })
 })

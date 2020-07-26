@@ -41,4 +41,40 @@ SiteSchema.virtual('users', {
   foreignField: 'site'
 })
 
+SiteSchema.virtual('categories', {
+  ref: 'Category',
+  localField: '_id',
+  foreignField: 'site'
+})
+
+SiteSchema.virtual('pages', {
+  ref: 'Page',
+  localField: '_id',
+  foreignField: 'site'
+})
+
+SiteSchema.virtual('posts', {
+  ref: 'Post',
+  localField: '_id',
+  foreignField: 'site'
+})
+
+SiteSchema.virtual('projects', {
+  ref: 'Project',
+  localField: '_id',
+  foreignField: 'site'
+})
+
+SiteSchema.virtual('tags', {
+  ref: 'Tag',
+  localField: '_id',
+  foreignField: 'site'
+})
+
+SiteSchema.virtual('villages', {
+  ref: 'Village',
+  localField: '_id',
+  foreignField: 'site'
+})
+
 export const Site = mongoose.models.Site || mongoose.model('Site', SiteSchema)

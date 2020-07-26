@@ -45,11 +45,13 @@
     "pdf-image": "^2.0.0",
     "sharp": "^0.25.4",
     "slugify": "^1.4.4",
-    "vue-quill-editor": "^3.0.6"
+    "vue-quill-editor": "^3.0.6",
+    "vue-scrollto": "^2.18.1"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^3.0.0",
     "@nuxtjs/eslint-module": "^2.0.0",
+    "@nuxtjs/google-fonts": "^1.0.0",
     "@nuxtjs/stylelint-module": "^4.0.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.2.0",
