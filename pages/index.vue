@@ -34,7 +34,7 @@ export default {
   },
   head () {
     return {
-      title: this.site.name + '',
+      title: this.site.name,
       meta: [
         { hid: 'description', name: 'description', content: this.site.description }
       ]
@@ -51,7 +51,7 @@ export default {
       margin-top: -240px
       position: relative
     .content
-      background: transparent url('~assets/img/pattern1.svg')
+      background: transparent url('~assets/img/pattern1.png')
       background-position-x: center
       margin-top: -60px
       padding-top: 60px

@@ -8,17 +8,21 @@
         <h3>Quem somos</h3>
       </b-container>
     </div>
-    <section class="content">
-      <b-container v-html="page.content" />
+    <section class="content pb-5">
+      <b-container>
+        <img src="~assets/img/pattern-left.png" class="pattern-left" />
+        <h1 v-if="page.title" class="title">{{ page.title }}</h1>
+        <p v-if="page.description">{{ page.description }}</p>
+        <div v-html="page.content" class="quill-content mt-4" />
+      </b-container>
     </section>
   </div>
 </template>
 
 <script>
-import mixinGlobal from '@/mixins/global'
 import mixinPage from '@/mixins/page'
 export default {
-  mixins: [mixinGlobal, mixinPage],
+  mixins: [mixinPage],
   data () {
     return {
       page_id: 'about'
@@ -28,7 +32,7 @@ export default {
     return {
       title: this.site.name + ' - Quem somos',
       meta: [
-        { hid: 'description', name: 'description', content: this.site.description }
+        { hid: 'description', name: 'description', content: this.page.description || this.site.description }
       ]
     }
   }
@@ -45,9 +49,18 @@ export default {
         font-size: 28px
         margin: 0
     .content
-      background: transparent url('~assets/img/pattern1.svg')
+      background: transparent url('~assets/img/pattern2.png')
       background-position-x: center
       position: relative
-      img
-        max-width: 100%
+      background-size: 1300px
+      color: #2A114B
+      .title
+        font-family: 'Amatic SC', cursive
+        font-weight: 700
+        font-size: 46px
+        margin-top: 40px
+      .pattern-left
+        width: 100px
+        margin-left: -120px
+        margin-bottom: -159px
 </style>

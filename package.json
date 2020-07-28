@@ -45,6 +45,7 @@
     "pdf-image": "^2.0.0",
     "sharp": "^0.25.4",
     "slugify": "^1.4.4",
+    "vue-light-gallery": "^1.0.1",
     "vue-quill-editor": "^3.0.6",
     "vue-scrollto": "^2.18.1"
   },

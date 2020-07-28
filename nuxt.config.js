@@ -48,7 +48,8 @@ export default {
   */
   plugins: [
     '~plugins/bootstrap-vue.js',
-    { src: '~plugins/quill.js', ssr: false }
+    { src: '~plugins/quill.js', ssr: false },
+    '~/plugins/lightGallery.client.js'
   ],
   /*
   ** Auto import components

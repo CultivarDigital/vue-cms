@@ -24,7 +24,7 @@
         <b-container>
           <b-row>
             <b-col sm="3">
-              <b-img src="~/assets/img/fundo-amazonia.png" />
+              <a href="http://www.fundoamazonia.gov.br"><b-img src="~/assets/img/fundo-amazonia.png" /></a>
             </b-col>
             <b-col sm="3">
               Rua Lateral, Nº 38
@@ -34,11 +34,12 @@
               Tucumã - Pará
             </b-col>
             <b-col sm="6">
-              <a mailto="floresta@florestaprotegida.org.br">floresta@florestaprotegida.org.br</a>
-              <b-img v-if="site.url_facebook" src="~/assets/img/facebook_icon.png" />
-              <b-img v-if="site.url_youtube" src="~/assets/img/youtube_icon.png" />
-              <b-img v-if="site.url_flickr" src="~/assets/img/flickr_icon.png" />
-              <b-img v-if="site.url_instagram" src="~/assets/img/instagram_icon.png" />
+              <a href="mailto:floresta@florestaprotegida.org.br">floresta@florestaprotegida.org.br</a>
+              &nbsp;
+              <a v-if="site.url_facebook" :href="site.url_facebook" target="_blank"><b-img src="~/assets/img/facebook_icon.png" /></a>
+              <a v-if="site.url_youtube" :href="site.url_youtube" target="_blank"><b-img src="~/assets/img/youtube_icon.png" /></a>
+              <a v-if="site.url_flickr" :href="site.url_flickr" target="_blank"><b-img src="~/assets/img/flickr_icon.png" /></a>
+              <a v-if="site.url_instagram" :href="site.url_instagram" target="_blank"><b-img src="~/assets/img/instagram_icon.png" /></a>
             </b-col>
           </b-row>
         </b-container>
@@ -71,7 +72,7 @@ export default {
     background-color: #1E2C18
     color: #fff
     min-height: 100vh
-    h3
+    h3, .modal h3
       font-family: 'Amatic SC', cursive
       font-weight: 700
       font-size: 32px
@@ -99,6 +100,9 @@ export default {
       background-color: #fff
       color: #2A114B
       padding: 20px 0
+      a
+        color: #2A114B
+
       .row > div
         display: flex
         align-items: center
@@ -113,8 +117,6 @@ export default {
             max-width: 20px
             max-height: 20px
             margin: 5px
-    .carousel
-      // min-height: 1000px
     .carousel-caption
       font-family: 'Amatic SC', cursive
       left: 5%
@@ -135,5 +137,28 @@ export default {
         background-color: transparent
         border: 1px solid #fff
         border-radius: 100%
-
+    .quill-content
+      background-color: #f5e7c5
+      border-radius: 20px
+      padding: 15px
+      p
+        margin-bottom: 0
+      p:first-child img
+        border-bottom-left-radius: 0
+        border-bottom-right-radius: 0
+        margin: -15px -15px 0 -15px
+        width: calc(100% + 30px)
+        max-width: calc(100% + 30px)
+      p:last-child img
+        border-top-left-radius: 0
+        border-top-right-radius: 0
+        margin: 0 -15px -15px -15px
+        width: calc(100% + 30px)
+        max-width: calc(100% + 30px)
+      img
+        max-width: 100%
+        border-radius: 20px
+      h1, h2, h3, h4, h5, h6
+        font-family: 'Amatic SC', cursive
+        font-weight: 700
 </style>

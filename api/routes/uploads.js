@@ -50,7 +50,7 @@ router.post('/images', [auth.authenticated, imageUploader.single('image')], (req
   console.log('original');
   console.log(original);
   sharp(original)
-    .resize(250)
+    .resize(400)
     .toFile(thumb, function(err) {
       console.log(err);
       if (!err) {

@@ -1,27 +1,32 @@
 <template>
   <div class="villages">
     <b-breadcrumb :items="breadcrumb" />
-    <PageForm slug="villages"/>
-    <div class="text-right mb-3">
-      <b-button variant="primary" to="/admin/villages/new">
-        Cadastrar
-      </b-button>
-    </div>
-    <div v-if="villages">
-      <b-table v-if="villages.length" :fields="table" :items="villages" responsive="sm">
-        <template v-slot:cell(actions)="data">
-          <n-link class="btn btn-info btn-sm" :to="'/admin/villages/' + data.item.slug + '/edit'">
-            <b-icon-pencil />
-          </n-link>
-          <b-button variant="danger" size="sm" @click="remove(data.item)">
-            <b-icon-trash />
-          </b-button>
-        </template>
-      </b-table>
-      <b-alert v-else show variant="dark" class="text-center">Nenhum item encontrado</b-alert>
-    </div>
-    <div v-else class="text-center">
-      <b-spinner label="Carregando..." />
+    <PageForm v-if="show_page_form" slug="villages" @cancel="show_page_form = !show_page_form" />
+    <div v-else>
+      <div class="text-right mb-3">
+        <b-button @click="show_page_form = !show_page_form">
+          Configurar página
+        </b-button>
+        <b-button variant="primary" to="/admin/villages/new">
+          Cadastrar
+        </b-button>
+      </div>
+      <div v-if="villages">
+        <b-table v-if="villages.length" :fields="table" :items="villages" responsive="sm">
+          <template v-slot:cell(actions)="data">
+            <n-link class="btn btn-info btn-sm" :to="'/admin/villages/' + data.item.slug + '/edit'">
+              <b-icon-pencil />
+            </n-link>
+            <b-button variant="danger" size="sm" @click="remove(data.item)">
+              <b-icon-trash />
+            </b-button>
+          </template>
+        </b-table>
+        <b-alert v-else show variant="dark" class="text-center">Nenhum item encontrado</b-alert>
+      </div>
+      <div v-else class="text-center">
+        <b-spinner label="Carregando..." />
+      </div>
     </div>
   </div>
 </template>
@@ -37,6 +42,7 @@ export default {
   },
   data () {
     return {
+      show_page_form: false,
       villages: null,
       breadcrumb: [
         { text: 'Painel', to: '/admin' },

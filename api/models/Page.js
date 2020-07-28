@@ -14,6 +14,8 @@ const PageSchema = mongoose.Schema({
     index: true,
     unique: true
   },
+  title: String,
+  description: String,
   content: String,
   pictures: [Object]
 }, {

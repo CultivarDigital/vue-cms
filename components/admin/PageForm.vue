@@ -3,6 +3,16 @@
     <b-form @submit.prevent="validate().then(save)">
       <b-row>
         <b-col md="12">
+          <b-form-group label="Título">
+            <b-form-input v-model="form.title" name="title" />
+          </b-form-group>
+        </b-col>
+        <b-col md="12">
+          <b-form-group label="Introdução">
+            <b-form-textarea v-model="form.description" name="description" />
+          </b-form-group>
+        </b-col>
+        <b-col md="12">
           <pictures-upload :form="form" field="pictures" url="/api/uploads/images" :multiple="true" label="Banners" />
         </b-col>
         <b-col md="12">
@@ -11,6 +21,9 @@
           </b-form-group>
         </b-col>
       </b-row>
+      <b-button class="mb-4 mt-4" @click="$emit('cancel')">
+        Cancelar
+      </b-button>
       <b-button class="mb-4 mt-4" type="submit" variant="primary" :disabled="invalid">
         Salvar conteúdo da página
       </b-button>
@@ -40,6 +53,8 @@ export default {
       page: null,
       form: {
         slug: this.slug,
+        title: '',
+        description: '',
         content: '',
         pictures: []
       }
@@ -56,12 +71,14 @@ export default {
         if (page) {
           this.page = page
           this.$toast.success('Conteúdo da página atualizado com sucesso!')
+          this.$emit('cancel')
         }
       } else {
         const page = await this.$axios.$post('/api/pages', this.form).catch(this.showError)
         if (page) {
           this.page = page
           this.$toast.success('Conteúdo da página cadastrado com sucesso!')
+          this.$emit('cancel')
         }
       }
     }
