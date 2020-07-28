@@ -33,4 +33,18 @@
     animation-delay: -0.2s
   .arrow-right span:nth-child(3)
     animation-delay: -0.4s
+  @media (max-width: 768px)
+    .arrow-right span
+      margin-top: -15px
+      width: 15px
+      height: 15px
+      border-bottom: 1px solid #fff
+      border-right: 1px solid #fff
+    .arrow-right span:nth-of-type(1)
+      right: 0
+    .arrow-right span:nth-of-type(2)
+      right: 3px
+    .arrow-right span:nth-of-type(3)
+      right: 6px
+
 </style>

@@ -1,19 +1,22 @@
 <template>
-  <div class="arrow">
-    <span :class="{ animate: animate, type }" />
-    <span :class="{ animate: animate, type }" />
-    <span :class="{ animate: animate, type }" />
+  <div class="arrow" @click="scroll">
+    <span class="animate" />
+    <span class="animate" />
+    <span class="animate" />
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    type: {
-      default: 'down'
-    },
-    animate: {
-      default: true
+    target: {
+      type: String,
+      default: '.categories'
+    }
+  },
+  methods: {
+    scroll () {
+      this.$scrollTo(this.target || '.categories')
     }
   }
 }

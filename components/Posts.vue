@@ -1,18 +1,20 @@
 <template>
   <b-container class="posts pt-4">
-    <h3 class="text-center mb-4">NOTÍCIAS</h3>
+    <h3 class="text-center mb-4 mt-4">NOTÍCIAS</h3>
     <b-row>
       <b-col v-for="(post, index) in posts" :key="post._id" md="4">
-        <b-card v-if="index >= (page * 3) && index < ((page * 3) + 3)" no-body :img-src="post.picture ? post.picture.url : null" img-alt="Image" img-top>
-          <template v-slot:header>
-            <h3 class="mb-0">{{ post.title }}</h3>
-          </template>
-          <b-card-body>
-            <b-card-text>
-              {{ post.description }}
-            </b-card-text>
-          </b-card-body>
-        </b-card>
+        <transition name="slide-fade">
+          <b-card v-if="index >= (page * 3) && index < ((page * 3) + 3)" no-body :img-src="post.picture ? post.picture.url : null" img-alt="Image" img-top>
+            <template v-slot:header>
+              <h3 class="mb-0">{{ post.title }}</h3>
+            </template>
+            <b-card-body>
+              <b-card-text>
+                {{ post.description }}
+              </b-card-text>
+            </b-card-body>
+          </b-card>
+        </transition>
       </b-col>
     </b-row>
     <arrows-left @click="prev()" />
@@ -79,8 +81,9 @@ export default {
       .card-header
         height: 48px
         background-color: #1e2048
+        padding: 10px 20px
         h3
-          font-size: 22px
+          font-size: 24px
           height: 24px
           overflow-y: hidden
       .card-text
@@ -88,4 +91,11 @@ export default {
         overflow-y: hidden
         font-size: 13px
         font-family: 'Titillium Web', sans-serif
+  .slide-fade-enter-active
+    transition: all .3s ease
+  .slide-fade-leave-active
+    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0)
+  .slide-fade-enter, .slide-fade-leave-to
+    transform: translateX(100%)
+    opacity: 0
 </style>

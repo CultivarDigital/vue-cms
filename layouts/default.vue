@@ -57,11 +57,12 @@ export default {
   pre
     background-color: #fff
   .default-layout
-    background-color: #1b2411
+    background-color: #1E2C18
     color: #fff
     h3
       font-family: 'Amatic SC', cursive
-      font-size: 30px
+      font-weight: 700
+      font-size: 32px
       color: #fff
     header
       margin-bottom: -93px
@@ -70,15 +71,18 @@ export default {
       width: 100%
       .navbar-brand
         img
-          width: 189px
+          width: 220px
           @media (max-width: 768px)
             width: 150px
           @media (max-width: 576px)
             width: 120px
       .navbar-nav
         .nav-item
-          font-family: 'Amatic SC', cursive
-          font-size: 20px
+          .nav-link
+            font-family: 'Amatic SC', cursive
+            color: #fff
+            font-weight: 700
+            font-size: 20px
     footer
       background-color: #fff
       color: #1e2048
@@ -90,7 +94,8 @@ export default {
           font-size: 11px
         &.col-sm-6
           font-family: 'Amatic SC', cursive
-          font-size: 18px
+          font-weight: 700
+          font-size: 20px
           justify-content: flex-end
           img
             max-width: 20px

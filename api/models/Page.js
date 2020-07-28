@@ -14,7 +14,8 @@ const PageSchema = mongoose.Schema({
     index: true,
     unique: true
   },
-  content: String
+  content: String,
+  pictures: [Object]
 }, {
   timestamps: true,
   toJSON: { virtuals: true }

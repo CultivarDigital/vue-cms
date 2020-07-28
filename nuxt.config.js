@@ -132,9 +132,10 @@ export default {
     families: {
       'Titillium Web': true,
       'Amatic SC': {
-        wght: [700]
+        wght: [400, 700]
       }
-    }
+    },
+    download: true
   },
   build: {
   },

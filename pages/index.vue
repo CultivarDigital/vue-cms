@@ -1,14 +1,14 @@
 <template>
   <div v-if="site">
-    <b-carousel :interval="60000" indicators>
+    <b-carousel :interval="60000" indicators @sliding-start="init">
       <b-carousel-slide caption="FLORESTA EM PÉ PARA GARANTIA DA VIDA DO POVO MẼBÊNGÔKRE" img-src="~/assets/img/banner-cultura.png" />
       <b-carousel-slide caption="MONITORAMENTO AMBIENTAL E TERRITORIAL" img-src="~/assets/img/banner-monitoramento.png" />
       <b-carousel-slide caption="ATIVIDADES PRODUTIVAS E GERAÇÃO DE RENDA" img-src="~/assets/img/banner-atividades.png" />
       <b-carousel-slide caption="FORTALECIMENTO INSTITUCIONAL E POLÍTICO" img-src="~/assets/img/banner-politica.png" />
       <arrows />
     </b-carousel>
+    <div class="divisor" />
     <section class="content">
-      <div class="divisor" />
       <categories :categories="site.categories" />
       <posts :posts="site.posts" />
       <tags :tags="site.tags" />
@@ -39,6 +39,9 @@ export default {
     }
   },
   methods: {
+    init () {
+      console.log('this.page |ZXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXx')
+    },
     prev () {
       console.log(this.page)
       if (this.page > 0) {
@@ -48,6 +51,14 @@ export default {
       }
       this.$scrollTo('.posts')
     }
+  },
+  head () {
+    return {
+      title: this.site.name + '',
+      meta: [
+        { hid: 'description', name: 'description', content: this.site.description }
+      ]
+    }
   }
 }
 </script>
@@ -55,15 +66,15 @@ export default {
   @import "@/assets/css/_vars.scss"
   .carousel-caption
     font-family: 'Amatic SC', cursive
+    left: 5%
+    right: 5%
     h3
-      font-size: 18px
+      font-size: 20px
+      font-weight: 400
     @media (min-width: 768px)
       bottom: 18%
       h3
-        font-size: 28px
-    @media (min-width: 992px)
-      h3
-        font-size: 32px 0% 0% no-repeat padding-box
+        font-size: 40px
   .carousel-indicators
     @media (min-width: 768px)
       bottom: 16%
@@ -73,15 +84,18 @@ export default {
       background-color: transparent
       border: 1px solid $white
       border-radius: 100%
+  .divisor
+    background: transparent url('~assets/img/degrade.png')
+    height: 240px
+    width: 100%
+    margin-top: -240px
+    position: relative
   .content
-    // background: transparent url('~assets/img/bg1.png')
-    margin-top: -120px
-    .divisor
-      background: transparent url('~assets/img/degrade.png')
-      height: 241px
-      width: 100%
-      position: relative
-      margin-top: -241px
+    background: transparent url('~assets/img/pattern1.svg')
+    background-position-x: center
+    margin-top: -60px
+    padding-top: 60px
+    position: relative
   .categories
     .row
       margin-left: -5px
