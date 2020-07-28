@@ -1,12 +1,12 @@
 <template>
-  <div class="villages">
+  <div class="about">
     <b-breadcrumb :items="breadcrumb" />
     <PageForm slug="about" />
   </div>
 </template>
 
 <script>
-import PageForm from '@/components/PageForm'
+import PageForm from '@/components/admin/PageForm'
 export default {
   layout: 'admin',
   components: {

@@ -8,7 +8,7 @@
   </div>
 </template>
 <script>
-import CategoryForm from '@/components/CategoryForm'
+import CategoryForm from '@/components/admin/CategoryForm'
 import mixinGlobal from '@/mixins/global'
 
 export default {

@@ -5,7 +5,7 @@
   </div>
 </template>
 <script>
-import PostForm from '@/components/PostForm'
+import PostForm from '@/components/admin/PostForm'
 export default {
   layout: 'admin',
   components: {

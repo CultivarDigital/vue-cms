@@ -8,7 +8,7 @@
   </div>
 </template>
 <script>
-import SiteForm from '@/components/SiteForm'
+import SiteForm from '@/components/admin/SiteForm'
 import mixinGlobal from '@/mixins/global'
 
 export default {

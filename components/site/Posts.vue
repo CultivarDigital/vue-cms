@@ -23,8 +23,8 @@
 </template>
 
 <script>
-import ArrowsLeft from '@/components/ArrowsLeft'
-import ArrowsRight from '@/components/ArrowsRight'
+import ArrowsLeft from '@/components/site/ArrowsLeft'
+import ArrowsRight from '@/components/site/ArrowsRight'
 export default {
   components: {
     ArrowsLeft,
@@ -71,7 +71,7 @@ export default {
         padding-right: 5px
     .card
       border: none
-      color: #1e2048
+      color: #2A114B
       background-color: #edd5b5
       margin-bottom: 15px
       border-radius: 15px
@@ -80,7 +80,7 @@ export default {
         border-top-right-radius: 15px
       .card-header
         height: 48px
-        background-color: #1e2048
+        background-color: #2A114B
         padding: 10px 20px
         h3
           font-size: 24px

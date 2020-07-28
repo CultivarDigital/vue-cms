@@ -39,7 +39,7 @@ export default {
         padding-right: 5px
     .card
       border: none
-      color: #1e2048
+      color: #2A114B
       text-align: center
       background-color: #edd5b5
       margin-bottom: 15px
@@ -52,7 +52,7 @@ export default {
         overflow-y: hidden
         font-size: 13px
         .icon
-          background-color: #1e2048
+          background-color: #2A114B
           border-radius: 100%
           width: 80px
           height: 80px
@@ -69,7 +69,7 @@ export default {
         h3
           font-size: 24px
           height: 60px
-          color: #1e2048
+          color: #2A114B
         p
           font-family: 'Titillium Web', sans-serif
 </style>

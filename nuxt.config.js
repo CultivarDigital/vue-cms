@@ -134,12 +134,10 @@ export default {
       'Amatic SC': {
         wght: [400, 700]
       }
-    },
-    download: true
+    }
   },
   build: {
   },
-  // watch: ['api/routes', 'api/models'],
   proxy: {
     pathRewrite: { '^/api/': '/' }
   },

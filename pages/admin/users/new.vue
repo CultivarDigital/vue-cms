@@ -5,7 +5,7 @@
   </div>
 </template>
 <script>
-import UserForm from '@/components/UserForm'
+import UserForm from '@/components/admin/UserForm'
 export default {
   layout: 'admin',
   components: {

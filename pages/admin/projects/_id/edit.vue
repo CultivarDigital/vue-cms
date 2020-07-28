@@ -8,7 +8,7 @@
   </div>
 </template>
 <script>
-import ProjectForm from '@/components/ProjectForm'
+import ProjectForm from '@/components/admin/ProjectForm'
 import mixinGlobal from '@/mixins/global'
 
 export default {

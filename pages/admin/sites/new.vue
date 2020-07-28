@@ -5,7 +5,7 @@
   </div>
 </template>
 <script>
-import SiteForm from '@/components/SiteForm'
+import SiteForm from '@/components/admin/SiteForm'
 export default {
   layout: 'admin',
   components: {

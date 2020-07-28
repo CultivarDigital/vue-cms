@@ -5,7 +5,7 @@
   </div>
 </template>
 <script>
-import TagForm from '@/components/TagForm'
+import TagForm from '@/components/admin/TagForm'
 export default {
   layout: 'admin',
   components: {

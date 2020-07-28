@@ -5,7 +5,7 @@
   </div>
 </template>
 <script>
-import VillageForm from '@/components/VillageForm'
+import VillageForm from '@/components/admin/VillageForm'
 export default {
   layout: 'admin',
   components: {

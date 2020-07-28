@@ -3,6 +3,9 @@
     <b-form @submit.prevent="validate().then(save)">
       <b-row>
         <b-col md="12">
+          <pictures-upload :form="form" field="pictures" url="/api/uploads/images" :multiple="true" label="Banners" />
+        </b-col>
+        <b-col md="12">
           <b-form-group label="Contúdo da página">
             <quill-editor v-model="form.content" />
           </b-form-group>
@@ -37,7 +40,8 @@ export default {
       page: null,
       form: {
         slug: this.slug,
-        content: ''
+        content: '',
+        pictures: []
       }
     }
   },

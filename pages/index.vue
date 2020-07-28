@@ -1,14 +1,11 @@
 <template>
-  <div v-if="site">
-    <b-carousel :interval="60000" indicators @sliding-start="init">
-      <b-carousel-slide caption="FLORESTA EM PÉ PARA GARANTIA DA VIDA DO POVO MẼBÊNGÔKRE" img-src="~/assets/img/banner-cultura.png" />
-      <b-carousel-slide caption="MONITORAMENTO AMBIENTAL E TERRITORIAL" img-src="~/assets/img/banner-monitoramento.png" />
-      <b-carousel-slide caption="ATIVIDADES PRODUTIVAS E GERAÇÃO DE RENDA" img-src="~/assets/img/banner-atividades.png" />
-      <b-carousel-slide caption="FORTALECIMENTO INSTITUCIONAL E POLÍTICO" img-src="~/assets/img/banner-politica.png" />
+  <div v-if="site" class="home-page">
+    <b-carousel :interval="60000" :indicators="site.pictures.length > 1">
+      <b-carousel-slide v-for="(picture, index) in site.pictures" :key="index" :caption="picture.title" :img-src="picture.url" />
       <arrows />
     </b-carousel>
     <div class="divisor" />
-    <section class="content">
+    <section class="content pb-4">
       <categories :categories="site.categories" />
       <posts :posts="site.posts" />
       <tags :tags="site.tags" />
@@ -17,10 +14,11 @@
 </template>
 
 <script>
-import Arrows from '@/components/Arrows'
-import Categories from '@/components/Categories'
-import Posts from '@/components/Posts'
-import Tags from '@/components/Tags'
+import Arrows from '@/components/site/Arrows'
+import Categories from '@/components/site/Categories'
+import Posts from '@/components/site/Posts'
+import Tags from '@/components/site/Tags'
+import mixinPage from '@/mixins/page'
 export default {
   components: {
     Arrows,
@@ -28,28 +26,10 @@ export default {
     Posts,
     Tags
   },
-  computed: {
-    site () {
-      return this.$store.state.site
-    }
-  },
+  mixins: [mixinPage],
   data () {
     return {
-      page: 0
-    }
-  },
-  methods: {
-    init () {
-      console.log('this.page |ZXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXx')
-    },
-    prev () {
-      console.log(this.page)
-      if (this.page > 0) {
-        this.page -= 1
-      } else {
-        this.page = this.site.categories.length / 4
-      }
-      this.$scrollTo('.posts')
+      page_id: 'home'
     }
   },
   head () {
@@ -62,78 +42,18 @@ export default {
   }
 }
 </script>
-<style lang="sass">
-  @import "@/assets/css/_vars.scss"
-  .carousel-caption
-    font-family: 'Amatic SC', cursive
-    left: 5%
-    right: 5%
-    h3
-      font-size: 20px
-      font-weight: 400
-    @media (min-width: 768px)
-      bottom: 18%
-      h3
-        font-size: 40px
-  .carousel-indicators
-    @media (min-width: 768px)
-      bottom: 16%
-    li
-      width: 6px
-      height: 6px
-      background-color: transparent
-      border: 1px solid $white
-      border-radius: 100%
-  .divisor
-    background: transparent url('~assets/img/degrade.png')
-    height: 240px
-    width: 100%
-    margin-top: -240px
-    position: relative
-  .content
-    background: transparent url('~assets/img/pattern1.svg')
-    background-position-x: center
-    margin-top: -60px
-    padding-top: 60px
-    position: relative
-  .categories
-    .row
-      margin-left: -5px
-      margin-right: -5px
-      .col-lg-3, .col-sm-6
-        padding-left: 5px
-        padding-right: 5px
-    .card
-      border: none
-      color: #1e2048
-      text-align: center
-      background-color: #edd5b5
-      margin-bottom: 15px
-      border-radius: 15px
-      .card-img-top
-        border-top-left-radius: 15px
-        border-top-right-radius: 15px
-      .card-text
-        height: 150px
-        overflow-y: hidden
-        font-size: 12px
-        .icon
-          background-color: #1e2048
-          border-radius: 100%
-          width: 80px
-          height: 80px
-          display: flex
-          align-items: center
-          justify-content: center
-          position: absolute
-          left: 0
-          right: 0
-          margin: auto
-          margin-top: -60px
-          img
-            width: 65px
-        h3
-          font-size: 24px
-          height: 60px
-          color: #1e2048
+<style lang="sass" scoped>
+  .home-page
+    .divisor
+      background: transparent url('~assets/img/degrade.png')
+      height: 240px
+      width: 100%
+      margin-top: -240px
+      position: relative
+    .content
+      background: transparent url('~assets/img/pattern1.svg')
+      background-position-x: center
+      margin-top: -60px
+      padding-top: 60px
+      position: relative
 </style>

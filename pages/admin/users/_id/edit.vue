@@ -9,7 +9,7 @@
 </template>
 <script>
 import mixinGlobal from '@/mixins/global'
-import UserForm from '@/components/UserForm'
+import UserForm from '@/components/admin/UserForm'
 export default {
   layout: 'admin',
   components: {

@@ -23,11 +23,8 @@
         <b-col md="12">
           <pictures-upload :form="form" field="picture" url="/api/uploads/images" label="Foto de capa" />
         </b-col>
-        <b-col md="12">
-          <pictures-upload :form="form" field="icon" url="/api/uploads/images" label="Ícone" />
-        </b-col>
       </b-row>
-      <b-button class="mb-4" type="submit" variant="primary" block :disabled="invalid">
+      <b-button class="mb-4 mt-4" type="submit" variant="primary" block :disabled="invalid">
         Salvar
       </b-button>
     </b-form>
@@ -38,7 +35,7 @@
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
 import mixinGlobal from '@/mixins/global'
 import mixinForm from '@/mixins/form'
-import PicturesUpload from '@/components/PicturesUpload'
+import PicturesUpload from '@/components/admin/PicturesUpload'
 
 export default {
   components: {
@@ -48,7 +45,7 @@ export default {
   },
   mixins: [mixinGlobal, mixinForm],
   props: {
-    category: {
+    tag: {
       type: Object,
       default: null
     }
@@ -59,27 +56,26 @@ export default {
         name: '',
         description: '',
         content: '',
-        picture: null,
-        icon: null
+        picture: null
       }
     }
   },
   created () {
-    this.toForm(this.form, this.category)
+    this.toForm(this.form, this.tag)
   },
   methods: {
     async save () {
-      if (this.category) {
-        const category = await this.$axios.$put('/api/categories/' + this.category.slug, this.form).catch(this.showError)
-        if (category) {
-          this.$toast.success('Linha de ação atualizada com sucesso!')
-          this.$router.push('/admin/categories')
+      if (this.tag) {
+        const tag = await this.$axios.$put('/api/tags/' + this.tag.slug, this.form).catch(this.showError)
+        if (tag) {
+          this.$toast.success('Tag atualizada com sucesso!')
+          this.$router.push('/admin/tags')
         }
       } else {
-        const category = await this.$axios.$post('/api/categories', this.form).catch(this.showError)
-        if (category) {
-          this.$toast.success('Linha de ação cadastrada com sucesso!')
-          this.$router.push('/admin/categories')
+        const tag = await this.$axios.$post('/api/tags', this.form).catch(this.showError)
+        if (tag) {
+          this.$toast.success('Tag cadastrada com sucesso!')
+          this.$router.push('/admin/tags')
         }
       }
     }

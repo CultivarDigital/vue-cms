@@ -7,9 +7,10 @@
     <div v-if="!isLoading" class="text-center">
       <b-row v-if="Array.isArray(form[field]) && form[field].length > 0" class="row images_preview">
         <b-col v-for="(image, index) in form[field]" :key="index" md="3">
-          <div class="fileinput-new thumbnail">
+          <div class="thumbnail">
             <b-img :src="image.thumb" fluid thumbnail />
           </div>
+          <b-form-input v-model="form[field][index].title" placeholder="Título da imagem" />
           <br>
           <p>
             <span v-if="multiple">
@@ -21,9 +22,11 @@
         </b-col>
       </b-row>
       <b-row v-if="!Array.isArray(form[field]) && form[field] && form[field].thumb">
-        <b-col cols="2">
-          <b-img :src="form[field].thumb" fluid thumbnail />
-          <br>
+        <b-col cols="3">
+          <div class="thumbnail">
+            <b-img :src="form[field].thumb" fluid thumbnail />
+          </div>
+          <b-form-input v-model="form[field].title" placeholder="Título da imagem" />
           <br>
           <b-button class="btn btn-sm" @click="deleteImage()"><b-icon-trash /> Remover</b-button>
         </b-col>

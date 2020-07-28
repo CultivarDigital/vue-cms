@@ -5,7 +5,7 @@
   </div>
 </template>
 <script>
-import CategoryForm from '@/components/CategoryForm'
+import CategoryForm from '@/components/admin/CategoryForm'
 export default {
   layout: 'admin',
   components: {

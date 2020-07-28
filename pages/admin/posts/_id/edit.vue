@@ -8,7 +8,7 @@
   </div>
 </template>
 <script>
-import PostForm from '@/components/PostForm'
+import PostForm from '@/components/admin/PostForm'
 import mixinGlobal from '@/mixins/global'
 
 export default {

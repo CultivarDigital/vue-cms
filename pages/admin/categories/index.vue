@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import PageForm from '@/components/PageForm'
+import PageForm from '@/components/admin/PageForm'
 import mixinGlobal from '@/mixins/global'
 export default {
   layout: 'admin',

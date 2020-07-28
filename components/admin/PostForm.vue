@@ -3,9 +3,9 @@
     <b-form @submit.prevent="validate().then(save)">
       <b-row>
         <b-col md="12">
-          <b-form-group label="Nome *">
-            <validation-provider v-slot="{ errors }" name="nome" rules="required">
-              <b-form-input v-model="form.name" name="name" />
+          <b-form-group label="Título *">
+            <validation-provider v-slot="{ errors }" name="título" rules="required">
+              <b-form-input v-model="form.title" name="title" />
               <span class="text-danger">{{ errors[0] }}</span>
             </validation-provider>
           </b-form-group>
@@ -23,6 +23,11 @@
         <b-col md="12">
           <pictures-upload :form="form" field="picture" url="/api/uploads/images" label="Foto de capa" />
         </b-col>
+        <b-col md="12">
+          <b-form-group label="Tags">
+            <form-entities-select type="tags" :form="form" field="tags" />
+          </b-form-group>
+        </b-col>
       </b-row>
       <b-button class="mb-4 mt-4" type="submit" variant="primary" block :disabled="invalid">
         Salvar
@@ -35,17 +40,19 @@
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
 import mixinGlobal from '@/mixins/global'
 import mixinForm from '@/mixins/form'
-import PicturesUpload from '@/components/PicturesUpload'
+import PicturesUpload from '@/components/admin/PicturesUpload'
+import FormEntitiesSelect from '@/components/admin/FormEntitiesSelect'
 
 export default {
   components: {
     ValidationObserver,
     ValidationProvider,
-    PicturesUpload
+    PicturesUpload,
+    FormEntitiesSelect
   },
   mixins: [mixinGlobal, mixinForm],
   props: {
-    tag: {
+    post: {
       type: Object,
       default: null
     }
@@ -53,29 +60,30 @@ export default {
   data () {
     return {
       form: {
-        name: '',
+        title: '',
         description: '',
         content: '',
-        picture: null
+        picture: null,
+        tags: []
       }
     }
   },
   created () {
-    this.toForm(this.form, this.tag)
+    this.toForm(this.form, this.post)
   },
   methods: {
     async save () {
-      if (this.tag) {
-        const tag = await this.$axios.$put('/api/tags/' + this.tag.slug, this.form).catch(this.showError)
-        if (tag) {
-          this.$toast.success('Tag atualizada com sucesso!')
-          this.$router.push('/admin/tags')
+      if (this.post) {
+        const post = await this.$axios.$put('/api/posts/' + this.post.slug, this.form).catch(this.showError)
+        if (post) {
+          this.$toast.success('Notícia atualizada com sucesso!')
+          this.$router.push('/admin/posts')
         }
       } else {
-        const tag = await this.$axios.$post('/api/tags', this.form).catch(this.showError)
-        if (tag) {
-          this.$toast.success('Tag cadastrada com sucesso!')
-          this.$router.push('/admin/tags')
+        const post = await this.$axios.$post('/api/posts', this.form).catch(this.showError)
+        if (post) {
+          this.$toast.success('Notícia cadastrada com sucesso!')
+          this.$router.push('/admin/posts')
         }
       }
     }

@@ -5,7 +5,7 @@
   </div>
 </template>
 <script>
-import ProjectForm from '@/components/ProjectForm'
+import ProjectForm from '@/components/admin/ProjectForm'
 export default {
   layout: 'admin',
   components: {

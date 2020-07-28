@@ -8,7 +8,7 @@
   </div>
 </template>
 <script>
-import VillageForm from '@/components/VillageForm'
+import VillageForm from '@/components/admin/VillageForm'
 import mixinGlobal from '@/mixins/global'
 
 export default {

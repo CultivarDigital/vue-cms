@@ -43,9 +43,9 @@
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
 import mixinGlobal from '@/mixins/global'
 import mixinForm from '@/mixins/form'
-import PicturesUpload from '@/components/PicturesUpload'
-import PdfsUpload from '@/components/PdfsUpload'
-import FormEntitiesSelect from '@/components/FormEntitiesSelect'
+import PicturesUpload from '@/components/admin/PicturesUpload'
+import PdfsUpload from '@/components/admin/PdfsUpload'
+import FormEntitiesSelect from '@/components/admin/FormEntitiesSelect'
 
 export default {
   components: {

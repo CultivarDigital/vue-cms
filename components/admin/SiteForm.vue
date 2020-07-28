@@ -92,6 +92,7 @@ export default {
         description: '',
         contact: '',
         email: '',
+        pictures: [],
         url_facebook: '',
         url_youtube: '',
         url_flickr: '',
