@@ -11,7 +11,7 @@ export default {
   props: {
     target: {
       type: String,
-      default: '.categories'
+      default: '.content'
     }
   },
   methods: {

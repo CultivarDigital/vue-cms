@@ -1,9 +1,9 @@
 <template>
-  <b-container class="tags pt-4 pb-4 text-center">
+  <div class="tags">
     <b-button v-for="tag in tags" :key="tag._id" size="sm">
       {{ tag.name }}
     </b-button>
-  </b-container>
+  </div>
 </template>
 <script>
 export default {

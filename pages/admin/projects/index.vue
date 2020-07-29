@@ -1,39 +1,44 @@
 <template>
   <div class="projects">
     <b-breadcrumb :items="breadcrumb" />
-    <PageForm slug="projects" />
-    <div class="text-right mb-3">
-      <b-button variant="primary" to="/admin/projects/new">
-        Cadastrar
-      </b-button>
-    </div>
-    <div v-if="projects">
-      <b-table v-if="projects.length" :fields="table" :items="projects" responsive="sm">
-        <template v-slot:cell(categories)="data">
-          {{ data.value.map(category => category.name).join(', ') }}
-        </template>
-        <template v-slot:cell(tags)="data">
-          {{ data.value.map(tag => tag.name).join(', ') }}
-        </template>
-        <template v-slot:cell(actions)="data">
-          <n-link class="btn btn-info btn-sm" :to="'/admin/projects/' + data.item.slug + '/edit'">
-            <b-icon-pencil />
-          </n-link>
-          <b-button variant="danger" size="sm" @click="remove(data.item)">
-            <b-icon-trash />
-          </b-button>
-          <b-button size="sm" @click="moveUp(data)">
-            <b-icon-arrow-up />
-          </b-button>
-          <b-button size="sm" @click="moveDown(data)">
-            <b-icon-arrow-down />
-          </b-button>
-        </template>
-      </b-table>
-      <b-alert v-else show variant="dark" class="text-center">Nenhum item encontrado</b-alert>
-    </div>
-    <div v-else class="text-center">
-      <b-spinner label="Carregando..." />
+    <PageForm v-if="show_page_form" @cancel="show_page_form = !show_page_form" slug="projects" />
+    <div v-else>
+      <div class="text-right mb-3">
+        <b-button @click="show_page_form = !show_page_form">
+          Configurar página
+        </b-button>
+        <b-button variant="primary" to="/admin/projects/new">
+          Cadastrar
+        </b-button>
+      </div>
+      <div v-if="projects">
+        <b-table v-if="projects.length" :fields="table" :items="projects" responsive="sm">
+          <template v-slot:cell(categories)="data">
+            {{ data.value.map(category => category.name).join(', ') }}
+          </template>
+          <template v-slot:cell(tags)="data">
+            {{ data.value.map(tag => tag.name).join(', ') }}
+          </template>
+          <template v-slot:cell(actions)="data">
+            <n-link class="btn btn-info btn-sm" :to="'/admin/projects/' + data.item.slug + '/edit'">
+              <b-icon-pencil />
+            </n-link>
+            <b-button variant="danger" size="sm" @click="remove(data.item)">
+              <b-icon-trash />
+            </b-button>
+            <b-button size="sm" @click="moveUp(data)">
+              <b-icon-arrow-up />
+            </b-button>
+            <b-button size="sm" @click="moveDown(data)">
+              <b-icon-arrow-down />
+            </b-button>
+          </template>
+        </b-table>
+        <b-alert v-else show variant="dark" class="text-center">Nenhum item encontrado</b-alert>
+      </div>
+      <div v-else class="text-center">
+        <b-spinner label="Carregando..." />
+      </div>
     </div>
   </div>
 </template>
@@ -49,6 +54,7 @@ export default {
   mixins: [mixinGlobal],
   data () {
     return {
+      show_page_form: false,
       projects: null,
       breadcrumb: [
         { text: 'Painel', to: '/admin' },

@@ -6,9 +6,12 @@
     </b-carousel>
     <div class="divisor" />
     <section class="content pb-4">
+      <h3 class="text-center mb-4">LINHAS DE AÇÃO</h3>
       <categories :categories="site.categories" />
       <posts :posts="site.posts" />
-      <tags :tags="site.tags" />
+      <b-container class="pt-4 pb-4 text-center">
+        <tags :tags="site.tags" />
+      </b-container>
     </section>
   </div>
 </template>

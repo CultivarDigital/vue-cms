@@ -1,22 +1,24 @@
 <template>
-  <div v-if="page" class="villages-page">
+  <div v-if="page" class="categories-page">
     <b-carousel :interval="60000" :indicators="page.pictures.length > 1">
       <b-carousel-slide v-for="(picture, index) in page.pictures" :key="index" :caption="picture.title" :img-src="picture.url" />
     </b-carousel>
     <div class="page-title">
       <b-container>
-        <h3>Aldeias</h3>
+        <h3>Linhas de ação</h3>
       </b-container>
     </div>
     <section class="content pb-5">
       <b-container>
         <img src="~assets/img/pattern-left.png" class="pattern-left" />
         <h1 v-if="page.title" class="title">{{ page.title }}</h1>
-        <p v-if="page.description">{{ page.description }}</p>
+        <p v-if="page.description">{{ page.description }}<br><br></p>
         <div v-html="page.content" class="quill-content mt-4" v-if="page.content"/>
-        <iframe src="https://afp.maps.arcgis.com/apps/webappviewer/index.html?id=98614b1d13ee4e0cac0477d214a4fc4a"></iframe>
       </b-container>
-      <villages :villages="site.villages" />
+      <categories :categories="site.categories" />
+      <b-container class="pt-4 pb-4 text-center">
+        <tags :tags="site.tags" />
+      </b-container>
     </section>
   </div>
 </template>
@@ -24,20 +26,22 @@
 <script>
 import mixinGlobal from '@/mixins/global'
 import mixinPage from '@/mixins/page'
-import Villages from '@/components/site/Villages'
+import Categories from '@/components/site/Categories'
+import Tags from '@/components/site/Tags'
 export default {
   components: {
-    Villages
+    Categories,
+    Tags
   },
   mixins: [mixinGlobal, mixinPage],
   data () {
     return {
-      page_id: 'villages'
+      page_id: 'categories'
     }
   },
   head () {
     return {
-      title: this.site.name + ' - Aldeias',
+      title: this.site.name + ' - Linhas de ação',
       meta: [
         { hid: 'description', name: 'description', content: this.page.description || this.site.description }
       ]
@@ -45,8 +49,8 @@ export default {
   }
 }
 </script>
-<style lang="sass" scoped>
-  .villages-page
+<style lang="sass">
+  .categories-page
     background-color: #ECDAB2
     .page-title
       background-color: #2A114B
@@ -61,11 +65,24 @@ export default {
       position: relative
       background-size: 1300px
       color: #2A114B
-      .title
+      h1
         font-family: 'Amatic SC', cursive
         font-weight: 700
         font-size: 46px
         margin-top: 40px
+      .categories
+        > h3
+          font-family: 'Amatic SC', cursive
+          font-weight: 700
+          font-size: 46px
+          margin-top: 40px
+          text-align: left
+        .card
+          background-color: #ECDAB2
+      .tags
+        .btn
+          color: #2A114B
+          border-color: #2A114B
       .pattern-left
         width: 100px
         margin-left: -120px

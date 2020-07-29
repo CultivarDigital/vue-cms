@@ -1,13 +1,12 @@
 <template>
-  <b-container class="categories pt-4">
-    <h3 class="text-center mb-4">LINHAS DE AÇÃO</h3>
+  <b-container class="categories">
     <b-row>
       <b-col v-for="category in categories" :key="category._id" lg="3" sm="6">
-        <b-card no-body :img-src="category.picture ? category.picture.url : null" img-alt="Image" img-top>
+        <b-card @click="open(category)" no-body :img-src="category.picture ? category.picture.url : null" :img-alt="category.name" img-top>
           <b-card-body>
             <b-card-text>
               <div class="icon">
-                <b-img :src="category.icon.url" />
+                <b-img :src="category.icon.url" to="projetos" />
               </div>
               <h3 class="mt-4">{{ category.name }}</h3>
               <p>{{ category.description }}</p>
@@ -25,6 +24,11 @@ export default {
     categories: {
       type: Array,
       default: () => []
+    }
+  },
+  methods: {
+    open (category) {
+      this.$router.push('/' + category.slug + '/projetos')
     }
   }
 }
@@ -44,6 +48,7 @@ export default {
       background-color: #edd5b5
       margin-bottom: 15px
       border-radius: 15px
+      cursor: pointer
       .card-img-top
         border-top-left-radius: 15px
         border-top-right-radius: 15px

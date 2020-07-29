@@ -23,9 +23,9 @@
         <b-col md="12">
           <pictures-upload :form="form" field="picture" url="/api/uploads/images" label="Foto de capa" />
         </b-col>
-        <b-col md="12">
+        <!-- <b-col md="12">
           <pictures-upload :form="form" field="icon" url="/api/uploads/images" label="Ícone" />
-        </b-col>
+        </b-col> -->
       </b-row>
       <b-button class="mb-4" type="submit" variant="primary" block :disabled="invalid">
         Salvar

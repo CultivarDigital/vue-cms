@@ -37,6 +37,7 @@ export default {
   ** Global CSS
   */
   css: ['@/assets/css/main.scss'],
+  pageTransition: 'page',
   // styleResources: {
   //   sass: [
   //     // '@/assets/css/main.sass'
