@@ -4,7 +4,10 @@ export default {
       return this.$store.state.site
     },
     page () {
-      return this.site.pages.find(page => page.slug === this.page_id)
+      if (this.site) {
+        return this.site.pages.find(page => page.slug === this.page_id)
+      }
+      return null
     }
   }
 }

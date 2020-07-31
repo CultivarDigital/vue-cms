@@ -1,6 +1,6 @@
 <template>
   <div v-if="page" class="projects-page">
-    <b-carousel :interval="60000" :indicators="page.pictures.length > 1">
+    <b-carousel v-if="banners" :interval="60000" :indicators="banners.length > 1">
       <b-carousel-slide v-for="(picture, index) in banners" :key="index" :caption="picture.title" :img-src="picture.url" />
     </b-carousel>
     <div class="page-title">
@@ -28,7 +28,7 @@
         <!-- <p class="text-justify" v-else-if="page.description">{{ page.description }}<br><br></p> -->
         <b-row>
           <b-col md="9">
-            <projects :projects="projects" />
+            <projects v-if="projects" :projects="projects" />
             <h3 v-if="projects.length == 0" class="text-center">Nenhum projeto encontrado</h3>
           </b-col>
           <b-col md="3">

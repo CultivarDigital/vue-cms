@@ -10,7 +10,7 @@
             <h3>{{ project.name }}</h3>
           </b-card-title>
           <b-card-text>
-            {{ project.description | truncate(1000) }}
+            <!-- {{ project.description | truncate(1000) }} -->
             <br>
             <br>
             <!-- <tags :tags="project.tags" @click="filter" /> -->
