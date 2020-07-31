@@ -14,12 +14,12 @@ export const actions = {
     state
   }, { $axios, req }) {
     if (!state.site) {
-      var baseURL = 'http://localhost:3000'
-      if (process.env.NODE_ENV === 'production') {
-        baseURL = 'http://' + req.headers.host
-      }
-      const data = await $axios.$get('/api/site', { baseURL }).catch(e => {
-        console.log(e);
+      // let baseURL = 'http://localhost:3000'
+      // if (process.env.NODE_ENV === 'production') {
+      //   baseURL = 'http://' + req.headers.host
+      // }
+      const data = await $axios.$get('/api/site').catch(e => {
+        console.error(e)
         console.log('Não existe site com esse domínio')
       })
       if (data) {

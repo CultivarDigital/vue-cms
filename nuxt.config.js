@@ -102,7 +102,7 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    baseURL: '', // Used as fallback if no runtime config is provided
+    // baseURL: '', // Used as fallback if no runtime config is provided
   },
 
   publicRuntimeConfig: {

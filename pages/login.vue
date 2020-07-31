@@ -3,7 +3,7 @@
     <b-img v-if="site && site.logo" :src="site.logo.url" />
     <Logo v-else />
     <h1 class="title mt-4">
-      {{ site ? site.name : 'Terrakrya CMS'}}
+      {{ site ? site.name : 'Terrakrya CMS' }}
     </h1>
     <span class="subtitle">
       Entre com seus dados para acessar
@@ -44,8 +44,8 @@ export default {
   },
   methods: {
     async login () {
-      console.log(this.$axios.defaults);
-      console.log(await this.$axios.$get('/api/site'));
+      console.log(this.$axios.defaults)
+      console.log(await this.$axios.$get('/api/site'))
       await this.$auth.loginWith('local', { data: this.form }).catch(this.showError)
     }
   }
