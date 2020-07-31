@@ -22,7 +22,7 @@ export const actions = {
       console.log(process.env.NODE_ENV)
       console.log(req.headers.host)
       console.log($axios.defaults.baseURL)
-      const data = await $axios.$get('/api/site', { baseURL: 'http://localhost:' + process.env.PORT} ).catch(e => {
+      const data = await $axios.$get('/api/site').catch(e => {
         console.log(e);
         console.log('Não existe site com esse domínio')
       })
