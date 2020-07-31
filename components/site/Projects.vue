@@ -13,7 +13,7 @@
             {{ project.description | truncate(1000) }}
             <br>
             <br>
-            <tags :tags="project.tags" @click="filter" />
+            <!-- <tags :tags="project.tags" @click="filter" /> -->
           </b-card-text>
         </b-card-body>
       </b-card>
@@ -22,11 +22,11 @@
 </template>
 
 <script>
-import Tags from '@/components/site/Tags'
+// import Tags from '@/components/site/Tags'
 export default {
-  components: {
-    Tags
-  },
+  // components: {
+  //   Tags
+  // },
   props: {
     projects: {
       type: Array,
