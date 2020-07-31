@@ -61,6 +61,8 @@ router.get('/profile', auth.authenticated, function(req, res) {
 })
 
 router.get('/site', function(req, res) {
+  console.log('sitesitesitesitesitesitesitesitesitesitesitesitesitesitesitesitesitesitesitesitesitesitesitesite')
+  console.log(req.headers.host);
   Site.findOne({ domain_name: req.headers.host })
     .populate('pages')
     .populate('categories')
