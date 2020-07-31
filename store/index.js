@@ -15,9 +15,10 @@ export const actions = {
   }, { $axios, req }) {
     if (!state.site) {
       console.log('req.headers.host')
-      if (process.env.NODE_ENV === 'production') {
-        $axios.defaults.baseURL = 'http://' + req.headers.host
-      }
+      // if (process.env.NODE_ENV === 'production') {
+      //   $axios.defaults.baseURL = 'http://' + req.headers.host
+      //   $axios.defaults.browserBaseURL = 'http://' + req.headers.host
+      // }
       console.log(process.env.NODE_ENV)
       console.log(req.headers.host)
       console.log($axios.defaults.baseURL)
