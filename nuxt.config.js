@@ -10,10 +10,10 @@ export default {
   ** See https://nuxtjs.org/api/configuration-target
   */
   target: 'server',
-  server: {
-    port: process.env.PORT || 3000, // default: 3000
-    host: process.env.HOST || 'localhost' // default: localhost
-  },
+  // server: {
+  //   port: process.env.PORT || 3000, // default: 3000
+  //   host: process.env.HOST || 'localhost' // default: localhost
+  // },
   /*
   ** Headers of the page
   ** See https://nuxtjs.org/api/configuration-head
