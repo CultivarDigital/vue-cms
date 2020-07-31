@@ -14,10 +14,9 @@ export const actions = {
     state
   }, { $axios, req }) {
     if (!state.site) {
-      // let baseURL = 'http://localhost:3000'
-      // if (process.env.NODE_ENV === 'production') {
-      //   baseURL = 'http://' + req.headers.host
-      // }
+      if (process.env.NODE_ENV === 'production') {
+        this.$axios.setBaseURL('http://' + req.headers.host)
+      }
       const data = await $axios.$get('/api/site').catch(e => {
         console.error(e)
         console.log('Não existe site com esse domínio')
