@@ -48,6 +48,7 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
+    '~plugins/filters.js',
     '~plugins/bootstrap-vue.js',
     { src: '~plugins/quill.js', ssr: false },
     '~/plugins/lightGallery.client.js'

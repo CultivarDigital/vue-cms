@@ -121,6 +121,9 @@ export default {
           }
           this.form[this.field].push(image)
         })
+        this.form[this.field] = this.form[this.field].sort((a, b) => {
+          return (a.default === b.default) ? 0 : a.default ? -1 : 1
+        })
       }
     },
     selectFile() {

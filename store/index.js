@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 export const state = () => ({
   site: null
 })
@@ -14,10 +12,14 @@ export const actions = {
   async nuxtServerInit({
     commit,
     state
-  }) {
+  }, context) {
     if (!state.site) {
-      const resp = await axios.get('http://localhost:3000/api/site')
-      commit('SET_SITE', resp.data)
+      const data = await context.$axios.$get('/api/site').catch(e => {
+        console.log('Não existe site com esse domínio')
+      })
+      if (data) {
+        commit('SET_SITE', data)
+      }
     }
   }
 }

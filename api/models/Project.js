@@ -18,6 +18,7 @@ const ProjectSchema = mongoose.Schema({
     type: String,
     required: true
   },
+  description: String,
   content: String,
   pictures: [Object],
   pdfs: [Object],

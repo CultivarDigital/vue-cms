@@ -1,5 +1,5 @@
 <template>
-  <b-container class="categories">
+  <b-container class="categories-component">
     <b-row>
       <b-col v-for="category in categories" :key="category._id" lg="3" sm="6">
         <b-card @click="open(category)" no-body :img-src="category.picture ? category.picture.url : null" :img-alt="category.name" img-top>
@@ -34,7 +34,7 @@ export default {
 }
 </script>
 <style lang="sass">
-  .categories
+  .categories-component
     .row
       margin-left: -5px
       margin-right: -5px

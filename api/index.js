@@ -61,7 +61,36 @@ router.get('/profile', auth.authenticated, function(req, res) {
 })
 
 router.get('/site', function(req, res) {
-  Site.findOne({ domain_name: req.headers.host }).populate('pages categories tags projects posts villages').exec(function(err, site) {
+  Site.findOne({ domain_name: req.headers.host })
+    .populate('pages')
+    .populate('categories')
+    .populate('tags')
+    .populate({
+      path: 'projects',
+      model: 'Project',
+      options: { sort: 'order' },
+      populate: [{
+          path: 'tags',
+          model: 'Tag'
+        }
+      ]
+    })
+    .populate({
+      path: 'posts',
+      model: 'Post',
+      options: { sort: { createdAt: -1 } },
+      populate: [{
+          path: 'tags',
+          model: 'Tag'
+        }
+      ]
+    })
+    .populate({
+      path: 'villages',
+      model: 'Village',
+      options: { sort: 'name' }
+    })
+    .exec(function(err, site) {
     if (!err && site) {
       res.send(site)
     } else {

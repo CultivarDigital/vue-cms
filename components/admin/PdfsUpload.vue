@@ -7,7 +7,7 @@
     <div v-if="!isLoading">
       <b-row v-if="Array.isArray(form[field]) && form[field].length > 0">
         <b-col v-for="(doc, index) in form[field]" :key="index" cols="3" class="text-center">
-          <a :href="doc.url" target="_blank"><b-img :src="doc.medium" fluid thumbnail /></a>
+          <a :href="doc.url" target="_blank"><b-img :src="doc.average" fluid thumbnail /></a>
           <br>
           <br>
           <b-button class="btn btn-sm" @click="deletePdf(index)"><b-icon-trash /> Remover</b-button>
@@ -15,7 +15,7 @@
       </b-row>
       <b-row v-if="!Array.isArray(form[field]) && form[field]">
         <b-col cols="3" class="text-center">
-          <a :href="form[field].url" target="_blank"><b-img :src="form[field].medium" fluid thumbnail /></a>
+          <a :href="form[field].url" target="_blank"><b-img :src="form[field].average" fluid thumbnail /></a>
           <br>
           <b-button class="btn btn-sm" @click="deletePdf()"><b-icon-trash /> Remover</b-button>
         </b-col>

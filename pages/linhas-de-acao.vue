@@ -70,7 +70,7 @@ export default {
         font-weight: 700
         font-size: 46px
         margin-top: 40px
-      .categories
+      .categories-component
         > h3
           font-family: 'Amatic SC', cursive
           font-weight: 700
@@ -78,11 +78,13 @@ export default {
           margin-top: 40px
           text-align: left
         .card
-          background-color: #ECDAB2
-      .tags
+          background-color: #f5e7c5
+      .tags-component
         .btn
-          color: #2A114B
-          border-color: #2A114B
+          color: #722b1d
+          border-color: #f5e7c5
+          background-color: #f5e7c5
+
       .pattern-left
         width: 100px
         margin-left: -120px

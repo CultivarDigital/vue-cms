@@ -28,7 +28,7 @@ router.get('/:id', auth.super, (req, res) => {
 })
 
 router.post('/', auth.super, (req, res) => {
-  const site = new Site(req.body)
+  const newSite = new Site(req.body)
   newSite.slug = slugify(newSite.name).toLowerCase()
   newSite.save((err, site) => {
     if (err) {
@@ -41,7 +41,6 @@ router.post('/', auth.super, (req, res) => {
 
 router.put('/:id', auth.super, (req, res) => {
   const params = req.body
-  params.slug = slugify(params.name).toLowerCase()
   Site.findOneAndUpdate({
     _id: req.params.id
   }, {

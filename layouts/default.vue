@@ -72,7 +72,7 @@ export default {
     background-color: #1E2C18
     color: #fff
     min-height: 100vh
-    h3, .modal h3
+    h3, .modal h3, h4
       font-family: 'Amatic SC', cursive
       font-weight: 700
       font-size: 32px

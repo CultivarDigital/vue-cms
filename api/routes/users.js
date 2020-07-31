@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const router = require('express').Router()
 const auth = require('../config/auth')
 const User = mongoose.model('User')
+const Site = mongoose.model('Site')
 
 router.get('/', auth.admin, function(req, res) {
   let filters = {}
@@ -33,7 +34,7 @@ router.get('/:id', auth.admin, function(req, res) {
   })
 })
 
-router.post('/', auth.admin, function(req, res, next) {
+router.post('/', auth.admin, async (req, res, next) => {
   const user = new User()
 
   user.email = req.body.email
@@ -47,6 +48,11 @@ router.post('/', auth.admin, function(req, res, next) {
     user.roles = req.body.roles = ['admin']
   }
 
+  if (user.site) {
+    const site = await Site.findById(user.site)
+    user.site_slug = site.slug
+  }
+
   user.setPassword(req.body.password)
 
   user.save().then(function() {
@@ -55,7 +61,7 @@ router.post('/', auth.admin, function(req, res, next) {
 })
 
 router.put('/:id', auth.admin, function(req, res, next) {
-  User.findById(req.params.id).then(function(user) {
+  User.findById(req.params.id).then(async (user) => {
     user.email = req.body.email
     user.name = req.body.name
 
@@ -64,6 +70,11 @@ router.put('/:id', auth.admin, function(req, res, next) {
       if (req.body.roles && req.body.roles.length > 0) {
         user.roles = req.body.roles
       }
+    }
+
+    if (user.site) {
+      const site = await Site.findById(user.site)
+      user.site_slug = site.slug
     }
 
     if (req.body.password) {

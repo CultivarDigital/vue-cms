@@ -1,8 +1,11 @@
 <template>
-  <b-container class="villages pt-4">
+  <b-container class="villages-component pt-4">
     <b-row>
       <b-col v-for="village in villages" :key="village._id" lg="3" sm="6">
-        <b-card v-b-modal="'modal-' + village._id" no-body :img-src="defaultPicture(village.pictures).thumb" :img-alt="village.name" img-top>
+        <b-card v-b-modal="'modal-' + village._id" no-body>
+          <div class="img">
+            <b-card-img :src="defaultPicture(village.pictures).average" :alt="village.name" />
+          </div>
           <b-card-body>
             <b-card-text>
               <div class="icon">
@@ -42,7 +45,7 @@ export default {
 }
 </script>
 <style lang="sass">
-  .villages
+  .villages-component
     .row
       margin-left: -5px
       margin-right: -5px
@@ -56,7 +59,14 @@ export default {
       background-color: #f5e7c5
       margin-bottom: 15px
       border-radius: 15px
-      .card-img-top
+      .img
+        max-height: 11vw
+        overflow-y: hidden
+        @media (max-width: 992px)
+          max-height: 19vw
+        @media (max-width: 576px)
+          max-height: 30vw
+      .card-img
         border-top-left-radius: 15px
         border-top-right-radius: 15px
       .card-text

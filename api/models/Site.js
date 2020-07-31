@@ -8,7 +8,9 @@ const SiteSchema = mongoose.Schema({
   },
   slug: {
     type: String,
-    required: true
+    required: true,
+    index: true,
+    unique: true
   },
   domain_name: {
     type: String,

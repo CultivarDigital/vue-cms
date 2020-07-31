@@ -1,14 +1,17 @@
 <template>
-  <b-container class="posts pt-4">
+  <b-container class="posts-component pt-4">
     <h3 class="text-center mb-4 mt-4">NOTÍCIAS</h3>
     <b-row>
       <b-col v-for="(post, index) in posts" :key="post._id" md="4">
         <transition name="slide-fade">
-          <b-card v-if="index >= (page * 3) && index < ((page * 3) + 3)" no-body :img-src="post.picture ? post.picture.url : null" img-alt="Image" img-top>
-            <template v-slot:header>
-              <h3 class="mb-0">{{ post.title }}</h3>
-            </template>
+          <b-card v-if="index >= (page * 3) && index < ((page * 3) + 3)" no-body img-top>
+            <div class="img">
+              <b-card-img :src="post.picture ? post.picture.url : null" :alt="post.name" />
+            </div>
             <b-card-body>
+              <b-card-title>
+                <h3>{{ post.title }}</h3>
+              </b-card-title>
               <b-card-text>
                 {{ post.description }}
               </b-card-text>
@@ -62,7 +65,7 @@ export default {
 }
 </script>
 <style lang="sass">
-  .posts
+  .posts-component
     .row
       margin-left: -5px
       margin-right: -5px
@@ -75,13 +78,22 @@ export default {
       background-color: #edd5b5
       margin-bottom: 15px
       border-radius: 15px
-      .card-img-top
+      .img
+        max-height: 16vw
+        overflow-y: hidden
+        @media (max-width: 992px)
+          max-height: 14vw
+        @media (max-width: 768px)
+          max-height: none
+      .card-img
         border-top-left-radius: 15px
         border-top-right-radius: 15px
-      .card-header
+      .card-title
         height: 48px
         background-color: #2A114B
         padding: 10px 20px
+        margin: -20px
+        margin-bottom: 20px
         h3
           font-size: 24px
           height: 24px

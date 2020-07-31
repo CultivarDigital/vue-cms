@@ -11,6 +11,7 @@ const UserSchema = new mongoose.Schema({
     type: ObjectId,
     ref: 'Site'
   },
+  site_slug: String,
   name: String,
   email: {
     unique: true,
@@ -55,7 +56,7 @@ UserSchema.methods.generateJWT = function() {
     email: this.email,
     roles: this.roles,
     site: this.site,
-    image: this.image,
+    site_slug: this.site_slug,
     exp: parseInt(exp.getTime() / 1000)
   }, (process.env.SECRET || 'secret'))
 }
@@ -64,11 +65,11 @@ UserSchema.methods.toAuthJSON = function() {
   return {
     _id: this._id,
     site: this.site,
+    site_slug: this.site_slug,
     email: this.email,
     token: this.generateJWT(),
     roles: this.roles,
     name: this.name,
-    image: this.image
   }
 }
 
@@ -76,6 +77,7 @@ UserSchema.methods.data = function() {
   return {
     _id: this._id,
     site: this.site,
+    site_slug: this.site_slug,
     email: this.email,
     roles: this.roles,
     name: this.name,

@@ -10,7 +10,7 @@
       <categories :categories="site.categories" />
       <posts :posts="site.posts" />
       <b-container class="pt-4 pb-4 text-center">
-        <tags :tags="site.tags" />
+        <tags :tags="site.tags" @click="openTag" />
       </b-container>
     </section>
   </div>
@@ -33,6 +33,11 @@ export default {
   data () {
     return {
       page_id: 'home'
+    }
+  },
+  methods: {
+    openTag (tag) {
+      this.$router.push('/projetos?tag=' + tag.slug)
     }
   },
   head () {
