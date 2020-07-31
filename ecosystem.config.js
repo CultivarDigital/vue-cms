@@ -9,7 +9,7 @@ module.exports = {
       autorestart: true,
       env: {
         NODE_ENV: 'production',
-        HOST: 'localhost',
+        HOST: '0.0.0.0',
         PORT: 3008,
         MONGODB_URI: 'mongodb://localhost/terrakrya-cms',
         SECRET: 'ee9fc1362652d72faba35fb72c0dc26e'
