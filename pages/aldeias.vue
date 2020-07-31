@@ -48,6 +48,8 @@ export default {
 <style lang="sass" scoped>
   .villages-page
     background-color: #ECDAB2
+    .carousel-item
+      max-height: 41vw
     .page-title
       background-color: #2A114B
       color: #fff

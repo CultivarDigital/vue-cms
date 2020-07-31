@@ -5,12 +5,12 @@
       <b-navbar-toggle target="header-menu" />
       <b-collapse id="header-menu" is-nav>
         <b-navbar-nav>
-          <b-nav-item to="/admin/villages">Aldeias</b-nav-item>
-          <b-nav-item to="/admin/categories">Linhas de ação</b-nav-item>
-          <b-nav-item to="/admin/projects">Projetos</b-nav-item>
-          <b-nav-item to="/admin/tags">Tags</b-nav-item>
-          <b-nav-item to="/admin/posts">Notícias</b-nav-item>
-          <b-nav-item to="/admin/about">Quem somos</b-nav-item>
+          <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/villages">Aldeias</b-nav-item>
+          <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/categories">Linhas de ação</b-nav-item>
+          <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/projects">Projetos</b-nav-item>
+          <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/tags">Tags</b-nav-item>
+          <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/posts">Notícias</b-nav-item>
+          <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/about">Quem somos</b-nav-item>
           <b-nav-item to="/admin/users">Usuários</b-nav-item>
           <b-nav-item v-if="$auth.hasScope('super')" to="/admin/sites">Sites</b-nav-item>
         </b-navbar-nav>

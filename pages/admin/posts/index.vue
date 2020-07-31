@@ -2,32 +2,34 @@
   <div class="posts">
     <b-breadcrumb :items="breadcrumb" />
     <PageForm v-if="show_page_form" @cancel="show_page_form = !show_page_form" slug="posts" />
-    <div class="text-right mb-3">
-      <b-button @click="show_page_form = !show_page_form">
-        Configurar página
-      </b-button>
-      <b-button variant="primary" to="/admin/posts/new">
-        Cadastrar
-      </b-button>
-    </div>
-    <div v-if="posts">
-      <b-table v-if="posts.length" :fields="table" :items="posts" responsive="sm">
-        <template v-slot:cell(tags)="data">
-          {{ data.value.map(tag => tag.name).join(', ') }}
-        </template>
-        <template v-slot:cell(actions)="data">
-          <n-link class="btn btn-info btn-sm" :to="'/admin/posts/' + data.item.slug + '/edit'">
-            <b-icon-pencil />
-          </n-link>
-          <b-button variant="danger" size="sm" @click="remove(data.item)">
-            <b-icon-trash />
-          </b-button>
-        </template>
-      </b-table>
-      <b-alert v-else show variant="dark" class="text-center">Nenhum item encontrado</b-alert>
-    </div>
-    <div v-else class="text-center">
-      <b-spinner label="Carregando..." />
+    <div v-else>
+      <div class="text-right mb-3">
+        <b-button @click="show_page_form = !show_page_form">
+          Configurar página
+        </b-button>
+        <b-button variant="primary" to="/admin/posts/new">
+          Cadastrar
+        </b-button>
+      </div>
+      <div v-if="posts">
+        <b-table v-if="posts.length" :fields="table" :items="posts" responsive="sm">
+          <template v-slot:cell(tags)="data">
+            {{ data.value.map(tag => tag.name).join(', ') }}
+          </template>
+          <template v-slot:cell(actions)="data">
+            <n-link class="btn btn-info btn-sm" :to="'/admin/posts/' + data.item.slug + '/edit'">
+              <b-icon-pencil />
+            </n-link>
+            <b-button variant="danger" size="sm" @click="remove(data.item)">
+              <b-icon-trash />
+            </b-button>
+          </template>
+        </b-table>
+        <b-alert v-else show variant="dark" class="text-center">Nenhum item encontrado</b-alert>
+      </div>
+      <div v-else class="text-center">
+        <b-spinner label="Carregando..." />
+      </div>
     </div>
   </div>
 </template>
