@@ -14,15 +14,11 @@ export const actions = {
     state
   }, { $axios, req }) {
     if (!state.site) {
-      console.log('req.headers.host')
-      // if (process.env.NODE_ENV === 'production') {
-      //   $axios.defaults.baseURL = 'http://' + req.headers.host
-      //   $axios.defaults.browserBaseURL = 'http://' + req.headers.host
-      // }
-      console.log(process.env.NODE_ENV)
-      console.log(req.headers.host)
-      console.log($axios.defaults.baseURL)
-      const data = await $axios.$get('/api/site').catch(e => {
+      var baseURL = 'http://localhost:3000'
+      if (process.env.NODE_ENV === 'production') {
+        baseURL = 'http://' + req.headers.host
+      }
+      const data = await $axios.$get('/api/site', { baseURL }).catch(e => {
         console.log(e);
         console.log('Não existe site com esse domínio')
       })
