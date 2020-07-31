@@ -1,6 +1,6 @@
 <template>
   <div v-if="page" class="projects-page">
-    <b-carousel v-if="banners" :interval="60000" :indicators="banners.length > 1">
+    <b-carousel :interval="60000" :indicators="page.pictures.length > 1">
       <b-carousel-slide v-for="(picture, index) in banners" :key="index" :caption="picture.title" :img-src="picture.url" />
     </b-carousel>
     <div class="page-title">
@@ -24,16 +24,16 @@
             </b-row>
           </b-col>
         </b-row>
-        <!-- <p class="text-justify" v-if="$route.params.categoria && currentCategory.description">{{ currentCategory.description }}<br><br></p> -->
-        <!-- <p class="text-justify" v-else-if="page.description">{{ page.description }}<br><br></p> -->
+        <p class="text-justify" v-if="$route.params.categoria && currentCategory.description">{{ currentCategory.description }}<br><br></p>
+        <p class="text-justify" v-else-if="page.description">{{ page.description }}<br><br></p>
         <b-row>
           <b-col md="9">
-            <projects v-if="projects" :projects="projects" />
+            <projects :projects="projects" />
             <h3 v-if="projects.length == 0" class="text-center">Nenhum projeto encontrado</h3>
           </b-col>
           <b-col md="3">
             <h3>Tags</h3>
-            <!-- <tags :tags="site.tags" @click="filter" /> -->
+            <tags :tags="site.tags" @click="filter" />
           </b-col>
         </b-row>
       </b-container>
@@ -45,11 +45,11 @@
 import mixinGlobal from '@/mixins/global'
 import mixinPage from '@/mixins/page'
 import Projects from '@/components/site/Projects'
-// import Tags from '@/components/site/Tags'
+import Tags from '@/components/site/Tags'
 export default {
   components: {
     Projects,
-    // Tags
+    Tags
   },
   mixins: [mixinGlobal, mixinPage],
   data () {
