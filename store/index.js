@@ -18,6 +18,9 @@ export const actions = {
       if (process.env.NODE_ENV === 'production') {
         $axios.defaults.baseURL = 'http://' + req.headers.host
       }
+      console.log(process.env.NODE_ENV)
+      console.log(req.headers.host)
+      console.log($axios.defaults.baseURL)
       const data = await $axios.$get('/api/site').catch(e => {
         console.log('Não existe site com esse domínio')
       })
