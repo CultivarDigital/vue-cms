@@ -3,7 +3,7 @@
     <v-select v-model="entity" :options="list" label="title" placeholder="Busque pelo nome clique para adicionar à lista">
       <template v-slot:option="option">
         <div class="select-item">
-          <img v-if="option.picture" :src="baseUrl + option.picture">
+          <img v-if="option.picture" :src="option.picture">
           <div class="desc">
             <strong>{{ option.title }}</strong>
             <br>
@@ -14,7 +14,7 @@
       </template>
       <template v-slot:selected-option="option">
         <div class="select-item">
-          <img v-if="option.picture" :src="baseUrl + option.picture">
+          <img v-if="option.picture" :src="option.picture">
           <div class="desc">
             <strong>{{ option.title }}</strong>
             <br>
@@ -29,7 +29,7 @@
       <div class="list-group">
         <div v-for="(item_preview, index) in preview" :key="index" class="list-group-item">
           <div>
-            <img v-if="item_preview && item_preview.picture" :src="baseUrl + item_preview.picture">
+            <img v-if="item_preview && item_preview.picture" :src="item_preview.picture">
             <span v-if="item_preview">{{ item_preview.title }}</span>
             <b-button v-if="item_preview" class="float-right" size="sm" variant="danger" @click="removeItem(item_preview.id)">
               <b-icon-trash />

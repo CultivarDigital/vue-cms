@@ -12,9 +12,13 @@ export const actions = {
   async nuxtServerInit({
     commit,
     state
-  }, context) {
+  }, { $axios, req }) {
     if (!state.site) {
-      const data = await context.$axios.$get('/api/site').catch(e => {
+      console.log('req.headers.host')
+      if (process.env.NODE_ENV === 'production') {
+        $axios.defaults.baseURL = 'http://' + req.headers.host
+      }
+      const data = await $axios.$get('/api/site').catch(e => {
         console.log('Não existe site com esse domínio')
       })
       if (data) {

@@ -3,7 +3,7 @@
     <v-select v-model="entity" v-validate="validate" :options="list" label="title" :name="field" :placeholder="placeholder || 'Busque pelo nome clique para selecionar'">
       <template v-slot:option="option">
         <div class="select-item">
-          <img v-if="option.picture" :src="baseUrl + option.picture">
+          <img v-if="option.picture" :src="option.picture">
           <div class="desc">
             <strong>{{ option.title }}</strong>
             <br>
@@ -14,7 +14,7 @@
       </template>
       <template v-slot:selected-option="option">
         <div class="select-item">
-          <img v-if="option.picture" :src="baseUrl + option.picture">
+          <img v-if="option.picture" :src="option.picture">
           <div class="desc">
             <strong>{{ option.title }}</strong>
             <br>
