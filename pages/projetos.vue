@@ -24,8 +24,8 @@
             </b-row>
           </b-col>
         </b-row>
-        <p class="text-justify" v-if="$route.params.categoria && currentCategory.description">{{ currentCategory.description }}<br><br></p>
-        <p class="text-justify" v-else-if="page.description">{{ page.description }}<br><br></p>
+        <!-- <p class="text-justify" v-if="$route.params.categoria && currentCategory.description">{{ currentCategory.description }}<br><br></p> -->
+        <!-- <p class="text-justify" v-else-if="page.description">{{ page.description }}<br><br></p> -->
         <b-row>
           <b-col md="9">
             <projects :projects="projects" />
@@ -33,7 +33,7 @@
           </b-col>
           <b-col md="3">
             <h3>Tags</h3>
-            <tags :tags="site.tags" @click="filter" />
+            <!-- <tags :tags="site.tags" @click="filter" /> -->
           </b-col>
         </b-row>
       </b-container>
@@ -45,11 +45,11 @@
 import mixinGlobal from '@/mixins/global'
 import mixinPage from '@/mixins/page'
 import Projects from '@/components/site/Projects'
-import Tags from '@/components/site/Tags'
+// import Tags from '@/components/site/Tags'
 export default {
   components: {
     Projects,
-    Tags
+    // Tags
   },
   mixins: [mixinGlobal, mixinPage],
   data () {
