@@ -9,8 +9,8 @@ module.exports = {
       autorestart: true,
       env: {
         NODE_ENV: 'production',
-        HOST: 'http://florestaprotegidanovo.encenar.tk',
-        PORT: 80,
+        HOST: 'localhost',
+        PORT: 3000,
         MONGODB_URI: 'mongodb://localhost/terrakrya-cms',
         SECRET: 'ee9fc1362652d72faba35fb72c0dc26e'
       }
