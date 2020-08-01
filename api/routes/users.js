@@ -114,7 +114,7 @@ router.delete('/:id', auth.admin, (req, res) => {
       res.status(422).send(err.message)
     } else if (req.payload.roles.includes('super')) {
       res.status(422).send('Super usuários não podem ser excluídos')
-    } else if (req.params.id == req.payload.id) {
+    } else if (req.params.id === req.payload.id) {
       res.status(422).send('Você não pode excuír você mesmo')
     } else if (req.payload.site !== user.site.toString()) {
       res.status(422).send('Você não tem permissão para excluír este usuário')

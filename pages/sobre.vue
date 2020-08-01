@@ -10,10 +10,10 @@
     </div>
     <section class="content pb-5">
       <b-container>
-        <img src="~assets/img/pattern-left.png" class="pattern-left" />
+        <img src="~assets/img/pattern-left.png" class="pattern-left">
         <h1 v-if="page.title" class="title">{{ page.title }}</h1>
         <p v-if="page.description">{{ page.description }}</p>
-        <div v-html="page.content" class="quill-content mt-4" />
+        <div class="quill-content mt-4" v-html="page.content" />
       </b-container>
     </section>
   </div>

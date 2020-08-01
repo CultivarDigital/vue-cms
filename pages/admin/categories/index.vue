@@ -1,7 +1,7 @@
 <template>
   <div class="categories">
     <b-breadcrumb :items="breadcrumb" />
-    <PageForm v-if="show_page_form" @cancel="show_page_form = !show_page_form" slug="categories" />
+    <PageForm v-if="show_page_form" slug="categories" @cancel="show_page_form = !show_page_form" />
     <div v-else>
       <div class="text-right mb-3">
         <b-button @click="show_page_form = !show_page_form">
@@ -36,10 +36,10 @@ import PageForm from '@/components/admin/PageForm'
 import mixinGlobal from '@/mixins/global'
 export default {
   layout: 'admin',
-  mixins: [mixinGlobal],
   components: {
     PageForm
   },
+  mixins: [mixinGlobal],
   data () {
     return {
       show_page_form: false,

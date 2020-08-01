@@ -11,11 +11,11 @@ const { downloadPicture, getAttrFromString, stripHtml } = require('../../utils/i
 
 router.get('/import', auth.admin, (req, res) => {
   Project.deleteMany({}).then(async () => {
-    let list = []
+    const list = []
     let order = 0
-    for (project of projects.sort((a, b) => a.name.localeCompare(b.name))) {
+    for (const project of projects.sort((a, b) => a.name.localeCompare(b.name))) {
       let images = []
-      let pictures = []
+      const pictures = []
 
       if (project.description) {
         images = getAttrFromString(project.description, 'img', 'src')
@@ -40,14 +40,14 @@ router.get('/import', auth.admin, (req, res) => {
         downloadPicture(image, req.payload.site_slug)
       })
 
-      var tags = []
-      for (tag of project.tags) {
-        let t = await Tag.findOne({slug: tag.slug})
+      const tags = []
+      for (const tag of project.tags) {
+        const t = await Tag.findOne({ slug: tag.slug })
         tags.push(t._id)
       }
-      var categories = []
-      for (category of project.categories) {
-        let c = await Category.findOne({slug: category.slug})
+      const categories = []
+      for (const category of project.categories) {
+        const c = await Category.findOne({ slug: category.slug })
         categories.push(c._id)
       }
       const newProject = new Project({
@@ -56,10 +56,10 @@ router.get('/import', auth.admin, (req, res) => {
         name: project.name.split(':::').join('').trim(),
         description: project.intro ? stripHtml(project.intro).split('&nbsp;').join(' ') : '',
         content: project.description ? project.description.split('https://nyc3.digitaloceanspaces.com/terrakryadev/').join('/api/uploads/' + req.payload.site_slug + '/images/averages/').split('%20').join('') : null,
-        pictures: pictures,
-        tags: tags,
-        categories: categories,
-        order: order
+        pictures,
+        tags,
+        categories,
+        order
       })
 
       list.push(await newProject.save())
@@ -93,11 +93,11 @@ router.get('/:id', (req, res) => {
 })
 
 router.post('/reorder', auth.admin, async (req, res) => {
-  for (var item in req.body) {
+  for (const item in req.body) {
     await Project.findOneAndUpdate({
       slug: req.body[item].slug
     }, {
-      $set: { order: req.body[item].order}
+      $set: { order: req.body[item].order }
     }, {
       upsert: true
     })

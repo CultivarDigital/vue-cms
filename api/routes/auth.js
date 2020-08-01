@@ -17,8 +17,6 @@ router.post('/login', function(req, res, next) {
       session: true
     }, function(err, user, info) {
       if (err) {
-        console.log('err');
-        console.log(err);
         return res.status(500).json('Ocorreu um erro ao fazer a autenticação: ' + err)
       }
 

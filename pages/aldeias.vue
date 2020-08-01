@@ -10,11 +10,11 @@
     </div>
     <section class="content pb-5">
       <b-container>
-        <img src="~assets/img/pattern-left.png" class="pattern-left" />
+        <img src="~assets/img/pattern-left.png" class="pattern-left">
         <h1 v-if="page.title" class="title">{{ page.title }}</h1>
         <p v-if="page.description">{{ page.description }}</p>
         <div v-if="page.content" class="quill-content mt-4" v-html="page.content" />
-        <iframe src="https://afp.maps.arcgis.com/apps/webappviewer/index.html?id=98614b1d13ee4e0cac0477d214a4fc4a"></iframe>
+        <iframe src="https://afp.maps.arcgis.com/apps/webappviewer/index.html?id=98614b1d13ee4e0cac0477d214a4fc4a" />
       </b-container>
       <villages :villages="site.villages" />
     </section>

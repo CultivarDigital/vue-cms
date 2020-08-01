@@ -9,8 +9,8 @@ const { downloadPicture, getAttrFromString, stripHtml } = require('../../utils/i
 
 router.get('/import', auth.admin, (req, res) => {
   Post.deleteMany({}).then(async () => {
-    let list = []
-    for (post of posts) {
+    const list = []
+    for (const post of posts) {
       let images = []
       if (post.description) {
         images = getAttrFromString(post.description, 'img', 'src')
@@ -43,7 +43,7 @@ router.get('/import', auth.admin, (req, res) => {
 })
 
 router.get('/', (req, res) => {
-  Post.find({}).populate(req.query.populate).sort({createdAt: -1}).exec((err, posts) => {
+  Post.find({}).populate(req.query.populate).sort({ createdAt: -1 }).exec((err, posts) => {
     if (err) {
       res.status(422).send(err.message)
     } else {

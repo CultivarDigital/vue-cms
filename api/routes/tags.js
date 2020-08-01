@@ -9,8 +9,8 @@ const { downloadPicture, getAttrFromString, stripHtml } = require('../../utils/i
 
 router.get('/import', auth.admin, (req, res) => {
   Tag.deleteMany({}).then(async () => {
-    let list = []
-    for (tag of tags) {
+    const list = []
+    for (const tag of tags) {
       let images = []
       if (tag.description) {
         images = getAttrFromString(tag.description, 'img', 'src')

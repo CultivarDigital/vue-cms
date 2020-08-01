@@ -22,14 +22,14 @@ export default {
     '~/api/index.js'
   ],
   head: {
-    title: "Terrakrya CMS" || '',
+    title: 'Terrakrya CMS' || '',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
       // { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap' }
     ]
   },
@@ -66,7 +66,7 @@ export default {
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
     // '@nuxtjs/style-resources',
-    '@nuxtjs/google-fonts',
+    '@nuxtjs/google-fonts'
     // Doc: https://github.com/nuxt-community/stylelint-module
     // '@nuxtjs/stylelint-module'
   ],
@@ -104,7 +104,7 @@ export default {
   */
   axios: {
     // baseURL: 'https://florestaprotegidanovo.encenar.tk', // Used as fallback if no runtime config is provided
-    baseURL: 'https://terrakrya-cms.encenar.tk', // Used as fallback if no runtime config is provided
+    baseURL: 'https://terrakrya-cms.encenar.tk' // Used as fallback if no runtime config is provided
   },
   /*
   ** Build configuration

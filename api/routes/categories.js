@@ -9,8 +9,8 @@ const { downloadPicture, getAttrFromString, stripHtml } = require('../../utils/i
 
 router.get('/import', auth.admin, (req, res) => {
   Category.deleteMany({}).then(async () => {
-    let list = []
-    for (category of categories) {
+    const list = []
+    for (const category of categories) {
       let images = []
       if (category.description) {
         images = getAttrFromString(category.description, 'img', 'src')

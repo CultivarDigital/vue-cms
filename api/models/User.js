@@ -69,7 +69,7 @@ UserSchema.methods.toAuthJSON = function() {
     email: this.email,
     token: this.generateJWT(),
     roles: this.roles,
-    name: this.name,
+    name: this.name
   }
 }
 

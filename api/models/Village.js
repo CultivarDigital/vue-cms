@@ -18,7 +18,7 @@ const VillageSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  pictures: [Object],
+  pictures: [Object]
 }, {
   timestamps: true,
   toJSON: { virtuals: true }

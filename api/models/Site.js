@@ -27,12 +27,11 @@ const SiteSchema = mongoose.Schema({
   url_instagram: String,
   logo: Object,
   favicon: Object,
-  pictures: [Object],
+  pictures: [Object]
 }, {
   timestamps: true,
   toJSON: { virtuals: true }
 })
-
 
 SiteSchema.plugin(uniqueValidator, {
   message: 'já está sendo usado'

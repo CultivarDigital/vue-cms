@@ -26,36 +26,28 @@ module.exports = {
     const imagesPath = 'api/uploads/' + slug + '/images/'
     const thumb = imagesPath + 'thumbs/' + filename
     const average = imagesPath + 'averages/' + filename
-    console.log('filename')
-    console.log(filename)
     wget({
       url: remoteUrl,
       dest: imagesPath + filename
     }, function(error, response, body) {
-      if (error) {
-        console.log(error)
-      } else {
+      if (!error) {
         sharp(imagesPath + filename, { failOnError: false })
           .resize(400)
           .toFile(thumb, function(err) {
-            if (err) {
-              console.log('Thumb error: ', err)
+            if (!err) {
+              sharp(imagesPath + filename, { failOnError: false })
+                .resize(1600)
+                .toFile(average, function(err) {
+                  if (!err) {
+                    const img = {
+                      url: '/' + imagesPath + filename,
+                      average: '/' + average,
+                      thumb: '/' + thumb
+                    }
+                    return img
+                  }
+                })
             }
-            sharp(imagesPath + filename, { failOnError: false })
-              .resize(1600)
-              .toFile(average, function(err) {
-                if (err) {
-                  console.log('File upload error: ', err)
-                }
-                const img = {
-                  url: '/' + imagesPath + filename,
-                  average: '/' + average,
-                  thumb: '/' + thumb
-                }
-                console.log('Picture downloaded:')
-                console.log(img)
-                return img
-              })
           })
       }
     })

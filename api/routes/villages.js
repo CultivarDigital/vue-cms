@@ -5,13 +5,13 @@ const slugify = require('slugify')
 const auth = require('../config/auth')
 const Village = mongoose.model('Village')
 const villages = require('../../data/villages.json')
-const { downloadPicture, getAttrFromString, stripHtml } = require('../../utils/index')
+const { downloadPicture } = require('../../utils/index')
 
 router.get('/import', auth.admin, (req, res) => {
   Village.deleteMany({}).then(async () => {
-    let list = []
-    for (village of villages) {
-      let images = village.photos || []
+    const list = []
+    for (const village of villages) {
+      const images = village.photos || []
 
       images.forEach(image => {
         downloadPicture(image, req.payload.site_slug)
@@ -27,7 +27,7 @@ router.get('/import', auth.admin, (req, res) => {
             average: photo.replace('https://nyc3.digitaloceanspaces.com/terrakryadev/', '/api/uploads/' + req.payload.site_slug + '/images/averages/').split('%20').join(''),
             thumb: photo.replace('https://nyc3.digitaloceanspaces.com/terrakryadev/', '/api/uploads/' + req.payload.site_slug + '/images/thumbs/').split('%20').join('')
           }
-        }) : [],
+        }) : []
       })
       list.push(await newVillage.save())
       list.push(newVillage)

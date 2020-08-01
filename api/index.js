@@ -23,9 +23,10 @@ const isProduction = process.env.NODE_ENV === 'production'
 app.use(session({ secret: 'terrakrya-cms', cookie: { maxAge: null }, resave: false, saveUninitialized: false }))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-app.use('/uploads', express.static(__dirname + '/uploads'));
+// eslint-disable-next-line
+app.use('/uploads', express.static(__dirname + '/uploads'))
 
-mongoose.set('useFindAndModify', false);
+mongoose.set('useFindAndModify', false)
 if (isProduction) {
   mongoose.connect(process.env.MONGODB_URI, {
     keepAlive: 1,
@@ -71,9 +72,9 @@ router.get('/site', function(req, res) {
       model: 'Project',
       options: { sort: 'order' },
       populate: [{
-          path: 'tags',
-          model: 'Tag'
-        }
+        path: 'tags',
+        model: 'Tag'
+      }
       ]
     })
     .populate({
@@ -81,9 +82,9 @@ router.get('/site', function(req, res) {
       model: 'Post',
       options: { sort: { createdAt: -1 } },
       populate: [{
-          path: 'tags',
-          model: 'Tag'
-        }
+        path: 'tags',
+        model: 'Tag'
+      }
       ]
     })
     .populate({
@@ -92,12 +93,12 @@ router.get('/site', function(req, res) {
       options: { sort: 'name' }
     })
     .exec(function(err, site) {
-    if (!err && site) {
-      res.send(site)
-    } else {
-      res.status(422).send('Site não encontrado')
-    }
-  })
+      if (!err && site) {
+        res.send(site)
+      } else {
+        res.status(422).send('Site não encontrado')
+      }
+    })
 })
 
 app.use(router)

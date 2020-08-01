@@ -22,12 +22,10 @@ export default {
           'Content-Type': 'multipart/form-data'
         }
       }).then(r => {
-        console.log('quillllllll')
-        console.log(r)
         const range = this.$refs.quillEdit.quill.getSelection()
         this.$refs.quillEdit.quill.insertEmbed(range.index, 'image', `${r.average}`)
       }).catch(e => {
-        console.log('error')
+        this.$toast.error('Ocorreu um erro ao enviar a imagem: ' + e.message)
       })
     }
   }

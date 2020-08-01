@@ -24,12 +24,12 @@
             </b-row>
           </b-col>
         </b-row>
-        <p class="text-justify" v-if="$route.params.categoria && currentCategory.description">{{ currentCategory.description }}<br><br></p>
-        <p class="text-justify" v-else-if="page.description">{{ page.description }}<br><br></p>
+        <p v-if="$route.params.categoria && currentCategory.description" class="text-justify">{{ currentCategory.description }}<br><br></p>
+        <p v-else-if="page.description" class="text-justify">{{ page.description }}<br><br></p>
         <b-row>
           <b-col md="9">
             <projects :projects="projects" />
-            <h3 v-if="projects.length == 0" class="text-center">Nenhum projeto encontrado</h3>
+            <h3 v-if="projects.length === 0" class="text-center">Nenhum projeto encontrado</h3>
           </b-col>
           <b-col md="3">
             <h3 class="mt-3">Tags</h3>

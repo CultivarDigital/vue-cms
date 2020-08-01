@@ -60,7 +60,6 @@ export default {
     }
   },
   mounted () {
-    console.log('mounted')
     this.show_content = true
   },
   head () {

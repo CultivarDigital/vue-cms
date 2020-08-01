@@ -14,7 +14,7 @@
         <b-row>
           <b-col md="9">
             <posts-large :posts="posts" />
-            <h3 v-if="posts.length == 0" class="text-center">Nenhuma notícia encontrada</h3>
+            <h3 v-if="posts.length === 0" class="text-center">Nenhuma notícia encontrada</h3>
           </b-col>
           <b-col md="3">
             <h3 class="mt-3">Tags</h3>

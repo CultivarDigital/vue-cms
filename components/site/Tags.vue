@@ -3,7 +3,7 @@
     <b-button v-if="$route.query.tag" :to="linkTo()" @click="clicked(null)">
       Todas as tags
     </b-button>
-    <b-button v-for="tag in tags" :to="linkTo(tag)" :key="tag._id" size="sm" @click="clicked(tag)" :class="{ active: ($route.query.tag === tag.slug)}">
+    <b-button v-for="tag in tags" :key="tag._id" :to="linkTo(tag)" size="sm" :class="{ active: ($route.query.tag === tag.slug)}" @click="clicked(tag)">
       {{ tag.name }}
     </b-button>
   </div>
