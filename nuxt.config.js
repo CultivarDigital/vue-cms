@@ -107,17 +107,17 @@ export default {
     baseURL: 'https://terrakrya-cms.encenar.tk', // Used as fallback if no runtime config is provided
   },
 
-  // publicRuntimeConfig: {
-  //   axios: {
-  //     browserBaseURL: 'https://terrakrya-cms.encenar.tk'
-  //   }
-  // },
-  //
-  // privateRuntimeConfig: {
-  //   axios: {
-  //     baseURL: 'https://terrakrya-cms.encenar.tk'
-  //   }
-  // },
+  publicRuntimeConfig: {
+    axios: {
+      browserBaseURL: 'https://terrakrya-cms.encenar.tk'
+    }
+  },
+
+  privateRuntimeConfig: {
+    axios: {
+      baseURL: 'https://terrakrya-cms.encenar.tk'
+    }
+  },
   /*
   ** Build configuration
   ** See https://nuxtjs.org/api/configuration-build/
