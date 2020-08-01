@@ -103,7 +103,8 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    baseURL: 'http://terrakrya-cms.encenar.tk', // Used as fallback if no runtime config is provided
+    baseURL: 'http://florestaprotegida.encenar.tk', // Used as fallback if no runtime config is provided
+    // baseURL: 'http://terrakrya-cms.encenar.tk', // Used as fallback if no runtime config is provided
   },
 
   // publicRuntimeConfig: {
