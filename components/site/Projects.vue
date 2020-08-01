@@ -1,24 +1,26 @@
 <template>
-  <b-container class="projects-component pt-4">
+  <div class="projects-component pt-4">
     <div v-for="project in projects" :key="project._id" md="4">
-      <b-card no-body img-top>
-        <div class="img">
-          <b-card-img :src="project.pictures && project.pictures.length ? project.pictures[0].average : null" :alt="project.name" />
-        </div>
-        <b-card-body>
-          <b-card-title>
-            <h3>{{ project.name }}</h3>
-          </b-card-title>
-          <b-card-text>
-            {{ project.description | truncate(1000) }}
-            <br>
-            <br>
-            <tags :tags="project.tags" @click="filter" />
-          </b-card-text>
-        </b-card-body>
-      </b-card>
+      <nuxt-link :to="'/projetos/' + project.slug">
+        <b-card no-body img-top>
+          <div class="img">
+            <b-card-img :src="project.pictures && project.pictures.length ? project.pictures[0].average : null" :alt="project.name" />
+          </div>
+          <b-card-body>
+            <b-card-title>
+              <h3>{{ project.name }}</h3>
+            </b-card-title>
+            <b-card-text>
+              {{ (project.description || stripHtml(project.content)) | truncate(1000) }}
+              <br>
+              <br>
+              <tags :tags="project.tags" :to="$route.path" />
+            </b-card-text>
+          </b-card-body>
+        </b-card>
+      </nuxt-link>
     </div>
-  </b-container>
+  </div>
 </template>
 
 <script>
@@ -34,8 +36,8 @@ export default {
     }
   },
   methods: {
-    filter(tag) {
-      this.$router.push(this.$route.path + '?tag=' + tag.slug)
+    stripHtml: (html) => {
+      return html ? html.replace(/<\/?[^>]+(>|$)/g, '') : ''
     }
   }
 }
@@ -51,6 +53,7 @@ export default {
       .img
         overflow-y: hidden
       .card-img
+        border-radius: 0
         border-top-left-radius: 15px
         border-top-right-radius: 15px
       .card-title
@@ -65,7 +68,7 @@ export default {
           height: 24px
           overflow-y: hidden
       .card-text
-        font-size: 13px
+        font-size: 14px
         font-family: 'Titillium Web', sans-serif
         .tags-component
           .btn

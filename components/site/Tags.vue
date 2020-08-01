@@ -1,9 +1,9 @@
 <template>
   <div class="tags-component">
-    <b-button v-if="$route.query.tag" @click="clicked(null)">
+    <b-button v-if="$route.query.tag" :to="linkTo()" @click="clicked(null)">
       Todas as tags
     </b-button>
-    <b-button v-for="tag in tags" :key="tag._id" size="sm" @click="clicked(tag)" :class="{ active: ($route.query.tag === tag.slug)}">
+    <b-button v-for="tag in tags" :to="linkTo(tag)" :key="tag._id" size="sm" @click="clicked(tag)" :class="{ active: ($route.query.tag === tag.slug)}">
       {{ tag.name }}
     </b-button>
   </div>
@@ -11,12 +11,26 @@
 <script>
 export default {
   props: {
+    to: {
+      type: String,
+      default: null
+    },
     tags: {
       type: Array,
       default: () => []
     }
   },
   methods: {
+    linkTo (tag) {
+      if (this.to) {
+        if (tag) {
+          return this.to + '?tag=' + tag.slug
+        } else {
+          return this.to
+        }
+      }
+      return null
+    },
     clicked (tag) {
       this.$emit('click', tag)
     }

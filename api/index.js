@@ -25,6 +25,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use('/uploads', express.static(__dirname + '/uploads'));
 
+mongoose.set('useFindAndModify', false);
 if (isProduction) {
   mongoose.connect(process.env.MONGODB_URI, {
     keepAlive: 1,
@@ -35,8 +36,8 @@ if (isProduction) {
     useUnifiedTopology: true
   })
 } else {
-  mongoose.connect('mongodb://localhost/terrakrya-cms', { useNewUrlParser: true, useUnifiedTopology: true })
   mongoose.set('debug', true)
+  mongoose.connect('mongodb://localhost/terrakrya-cms', { useNewUrlParser: true, useUnifiedTopology: true })
 }
 
 router.use('/auth', require('./routes/auth'))
@@ -61,8 +62,6 @@ router.get('/profile', auth.authenticated, function(req, res) {
 })
 
 router.get('/site', function(req, res) {
-  console.log('sitesitesitesitesitesitesitesitesitesitesitesitesitesitesitesitesitesitesitesitesitesitesitesite')
-  console.log(req.headers.host);
   Site.findOne({ domain_name: req.headers.host })
     .populate('pages')
     .populate('categories')

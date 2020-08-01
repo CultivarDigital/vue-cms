@@ -9,6 +9,7 @@
         <b-col v-for="(doc, index) in form[field]" :key="index" cols="3" class="text-center">
           <a :href="doc.url" target="_blank"><b-img :src="doc.average" fluid thumbnail /></a>
           <br>
+          <b-form-input v-model="form[field][index].title" placeholder="Nome do documento" />
           <br>
           <b-button class="btn btn-sm" @click="deletePdf(index)"><b-icon-trash /> Remover</b-button>
         </b-col>
@@ -16,6 +17,8 @@
       <b-row v-if="!Array.isArray(form[field]) && form[field]">
         <b-col cols="3" class="text-center">
           <a :href="form[field].url" target="_blank"><b-img :src="form[field].average" fluid thumbnail /></a>
+          <br>
+          <b-form-input v-model="form[field].title" placeholder="Nome do documento" />
           <br>
           <b-button class="btn btn-sm" @click="deletePdf()"><b-icon-trash /> Remover</b-button>
         </b-col>

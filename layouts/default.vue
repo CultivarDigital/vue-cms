@@ -4,7 +4,7 @@
       <header>
         <b-navbar toggleable="md" variant="faded" type="dark">
           <b-container class="mt-2">
-            <b-navbar-brand href="/"><b-img src="~/assets/img/logo.png" /> </b-navbar-brand>
+            <b-navbar-brand to="/"><b-img src="~/assets/img/logo.png" /> </b-navbar-brand>
             <b-navbar-toggle target="header-menu" />
             <b-collapse id="header-menu" is-nav>
               <b-navbar-nav />
@@ -62,16 +62,37 @@ export default {
   mounted () {
     console.log('mounted')
     this.show_content = true
+  },
+  head () {
+    return {
+      title: 'Inicio - ' + this.site.name,
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: this.site.favicon ? this.site.favicon.url : '/favicon.ico' }
+      ]
+    }
   }
 }
 </script>
 <style lang="sass">
   pre
     background-color: #fff
+  .modal-gallery
+    h3
+      font-family: 'Amatic SC', cursive
+      font-weight: 700
+      color: #2A114B
+    .modal-footer
+      justify-content: center
+      .btn-primary
+        background-color: #2A114B
+        border-color: #2A114B
+
   .default-layout
     background-color: #1E2C18
     color: #fff
     min-height: 100vh
+    a
+      text-decoration: none !important
     h3, .modal h3, h4
       font-family: 'Amatic SC', cursive
       font-weight: 700
@@ -140,21 +161,21 @@ export default {
     .quill-content
       background-color: #f5e7c5
       border-radius: 20px
-      padding: 15px
+      padding: 20px
       p
         margin-bottom: 0
       p:first-child img
         border-bottom-left-radius: 0
         border-bottom-right-radius: 0
-        margin: -15px -15px 0 -15px
-        width: calc(100% + 30px)
-        max-width: calc(100% + 30px)
+        margin: -20px -20px 0 -20px
+        width: calc(100% + 40px)
+        max-width: calc(100% + 40px)
       p:last-child img
         border-top-left-radius: 0
         border-top-right-radius: 0
-        margin: 0 -15px -15px -15px
-        width: calc(100% + 30px)
-        max-width: calc(100% + 30px)
+        margin: 0 -20px -20px -20px
+        width: calc(100% + 40px)
+        max-width: calc(100% + 40px)
       img
         max-width: 100%
         border-radius: 20px

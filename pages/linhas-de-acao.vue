@@ -1,6 +1,6 @@
 <template>
   <div v-if="page" class="categories-page">
-    <b-carousel :interval="60000" :indicators="page.pictures.length > 1">
+    <b-carousel :interval="7000" :indicators="page.pictures.length > 1">
       <b-carousel-slide v-for="(picture, index) in page.pictures" :key="index" :caption="picture.title" :img-src="picture.url" />
     </b-carousel>
     <div class="page-title">
@@ -13,7 +13,7 @@
         <img src="~assets/img/pattern-left.png" class="pattern-left" />
         <h1 v-if="page.title" class="title">{{ page.title }}</h1>
         <p v-if="page.description">{{ page.description }}<br><br></p>
-        <div v-html="page.content" class="quill-content mt-4" v-if="page.content"/>
+        <div v-if="page.content" class="quill-content mt-4" v-html="page.content" />
       </b-container>
       <categories :categories="site.categories" />
       <b-container class="pt-4 pb-4 text-center">
@@ -41,7 +41,7 @@ export default {
   },
   head () {
     return {
-      title: this.site.name + ' - Linhas de ação',
+      title: 'Linhas de ação - ' + this.site.name,
       meta: [
         { hid: 'description', name: 'description', content: this.page.description || this.site.description }
       ]

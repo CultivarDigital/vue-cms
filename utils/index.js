@@ -3,14 +3,15 @@ const sharp = require('sharp')
 
 module.exports = {
   stripHtml: (html) => {
-    return html.replace(/<\/?[^>]+(>|$)/g, "")
+    return html ? html.replace(/<\/?[^>]+(>|$)/g, '') : ''
   },
   getAttrFromString: (str, node, attr) => {
-      var regex = new RegExp('<' + node + ' .*?' + attr + '="(.*?)"', "gi"), result, res = []
-      while ((result = regex.exec(str))) {
-          res.push(result[1])
-      }
-      return res
+    // eslint-disable-next-line
+    let regex = new RegExp('<' + node + ' .*?' + attr + '="(.*?)"', "gi"), result, res = []
+    while ((result = regex.exec(str))) {
+      res.push(result[1])
+    }
+    return res
   },
   defaultPicture: (pictures) => {
     let picture = {}
@@ -20,11 +21,11 @@ module.exports = {
     return picture
   },
   downloadPicture: (remoteUrl, slug) => {
-    var filename = decodeURI(remoteUrl).split("/").pop()
+    let filename = decodeURI(remoteUrl).split('/').pop()
     filename = filename.split(' ').join('')
-    var imagesPath = 'api/uploads/' + slug + '/images/'
-    var thumb = imagesPath + 'thumbs/' + filename
-    var average = imagesPath + 'averages/' + filename
+    const imagesPath = 'api/uploads/' + slug + '/images/'
+    const thumb = imagesPath + 'thumbs/' + filename
+    const average = imagesPath + 'averages/' + filename
     console.log('filename')
     console.log(filename)
     wget({
@@ -38,26 +39,25 @@ module.exports = {
           .resize(400)
           .toFile(thumb, function(err) {
             if (err) {
-              console.log("Thumb error: ", err)
+              console.log('Thumb error: ', err)
             }
             sharp(imagesPath + filename, { failOnError: false })
-              .resize(1024)
+              .resize(1600)
               .toFile(average, function(err) {
                 if (err) {
-                  console.log("File upload error: ", err)
+                  console.log('File upload error: ', err)
                 }
                 const img = {
                   url: '/' + imagesPath + filename,
                   average: '/' + average,
                   thumb: '/' + thumb
                 }
-                console.log("Picture downloaded:")
+                console.log('Picture downloaded:')
                 console.log(img)
                 return img
               })
           })
       }
     })
-
   }
 }

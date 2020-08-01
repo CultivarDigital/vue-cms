@@ -1,24 +1,26 @@
 <template>
-  <b-container class="posts-large-component pt-4">
+  <div class="posts-large-component pt-4">
     <div v-for="post in posts" :key="post._id" md="4">
-      <b-card no-body img-top>
-        <div class="img">
-          <b-card-img :src="post.picture ? post.picture.average : null" :alt="post.name" />
-        </div>
-        <b-card-body>
-          <b-card-title>
-            <h3>{{ post.name }}</h3>
-          </b-card-title>
-          <b-card-text>
-            {{ post.description | truncate(1000) }}
-            <br>
-            <br>
-            <tags :tags="post.tags" @click="filter" />
-          </b-card-text>
-        </b-card-body>
-      </b-card>
+      <nuxt-link :to="'/noticias/' + post.slug">
+        <b-card no-body img-top>
+          <div class="img">
+            <b-card-img :src="post.picture ? post.picture.average : null" :alt="post.title" />
+          </div>
+          <b-card-body>
+            <b-card-title>
+              <h3>{{ post.title }}</h3>
+            </b-card-title>
+            <b-card-text>
+              {{ (post.description || stripHtml(post.content)) | truncate(1000) }}
+              <br>
+              <br>
+              <tags :tags="post.tags" @click="filter" />
+            </b-card-text>
+          </b-card-body>
+        </b-card>
+      </nuxt-link>
     </div>
-  </b-container>
+  </div>
 </template>
 
 <script>

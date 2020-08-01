@@ -79,7 +79,7 @@ router.post('/images', [auth.authenticated, imageUploader.single('image')], (req
     .toFile(thumb, function(err) {
       if (!err) {
         sharp(original, { failOnError: false })
-          .resize(1024)
+          .resize(1600)
           .toFile(average, function(err) {
             if (!err) {
               res.status(201).send({
@@ -160,32 +160,32 @@ var pdfUploader = multer({
 router.post('/pdfs', [auth.authenticated, pdfUploader.single('pdf')], (req, res) => {
   const filename = req.file.filename
 
-  let path = imagesPath(req.payload.site_slug)
+  // let path = pdfsPath(req.payload.site_slug)
 
-  const original = imagesPath(req.payload.site_slug) + filename
-  const thumb = thumbsPath(req.payload.site_slug) + filename
-  const average = averagesPath(req.payload.site_slug) + filename
+  // const original = imagesPath(req.payload.site_slug) + filename
+  const thumb = thumbsPath(req.payload.site_slug) + filename.replace('.pdf', '.png')
+  const average = averagesPath(req.payload.site_slug) + filename.replace('.pdf', '.png')
 
-  var pdfImage = new PDFImage(original)
+  var pdfImage = new PDFImage(req.file.path)
   console.log('pdf loaded', pdfImage)
 
   pdfImage.convertPage(0).then(function(original) {
     console.log('averageConverted', original)
     sharp(original, { failOnError: false })
-      .resize(100)
+      .resize(400)
       .toFile(thumb, function(err) {
         if (err) {
           console.log("File upload error: ", err)
         }
         sharp(original, { failOnError: false })
-          .resize(600)
+          .resize(1600)
           .toFile(average, function(err) {
             if (err) {
               console.log("File upload error: ", err)
             }
 
             res.status(201).send({
-              url: '/' + original,
+              url: '/' + req.file.path,
               average: '/' + average,
               thumb: '/' + thumb
             })

@@ -26,6 +26,7 @@ const SiteSchema = mongoose.Schema({
   url_flickr: String,
   url_instagram: String,
   logo: Object,
+  favicon: Object,
   pictures: [Object],
 }, {
   timestamps: true,

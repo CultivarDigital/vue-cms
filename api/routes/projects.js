@@ -39,7 +39,6 @@ router.get('/import', auth.admin, (req, res) => {
       images.forEach(image => {
         downloadPicture(image, req.payload.site_slug)
       })
-      console.log(images)
 
       var tags = []
       for (tag of project.tags) {
@@ -55,7 +54,7 @@ router.get('/import', auth.admin, (req, res) => {
         site: req.payload.site,
         slug: project.slug,
         name: project.name.split(':::').join('').trim(),
-        description: project.description ? stripHtml(project.description).split('&nbsp;').join(' ') : '',
+        description: project.intro ? stripHtml(project.intro).split('&nbsp;').join(' ') : '',
         content: project.description ? project.description.split('https://nyc3.digitaloceanspaces.com/terrakryadev/').join('/api/uploads/' + req.payload.site_slug + '/images/averages/').split('%20').join('') : null,
         pictures: pictures,
         tags: tags,

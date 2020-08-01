@@ -1,8 +1,12 @@
 export default ({ $axios, req }) => {
-  if ($axios && req && process.env.NODE_ENV === 'production') {
-    console.log('XXXX updating domain to: XXXX')
-    console.log('https://' + req.headers.host)
-    $axios.setBaseURL('https://' + req.headers.host)
-    console.log($axios.defaults.baseURL)
+  const protocol = process.env.NODE_ENV === 'production' ? 'https://' : 'http://'
+
+  if (process.client && window) {
+    $axios.setBaseURL(protocol + window.location.host)
+    console.log('New Client baseURL: ' + protocol + window.location.host)
+  }
+  if (process.server && req) {
+    $axios.setBaseURL(protocol + req.headers.host)
+    console.log('New Server baseURL: ' + protocol + req.headers.host)
   }
 }

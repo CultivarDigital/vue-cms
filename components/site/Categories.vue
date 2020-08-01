@@ -2,17 +2,19 @@
   <b-container class="categories-component">
     <b-row>
       <b-col v-for="category in categories" :key="category._id" lg="3" sm="6">
-        <b-card @click="open(category)" no-body :img-src="category.picture ? category.picture.url : null" :img-alt="category.name" img-top>
-          <b-card-body>
-            <b-card-text>
-              <div class="icon">
-                <b-img :src="category.icon.url" to="projetos" />
-              </div>
-              <h3 class="mt-4">{{ category.name }}</h3>
-              <p>{{ category.description }}</p>
-            </b-card-text>
-          </b-card-body>
-        </b-card>
+        <nuxt-link :to="'/' + category.slug + '/projetos'">
+          <b-card no-body :img-src="category.picture ? category.picture.url : null" :img-alt="category.name" img-top>
+            <b-card-body>
+              <b-card-text>
+                <div class="icon">
+                  <b-img :src="category.icon.url" to="projetos" />
+                </div>
+                <h3 class="mt-4">{{ category.name }}</h3>
+                <p>{{ category.description }}</p>
+              </b-card-text>
+            </b-card-body>
+          </b-card>
+        </nuxt-link>
       </b-col>
     </b-row>
   </b-container>
@@ -35,6 +37,8 @@ export default {
 </script>
 <style lang="sass">
   .categories-component
+    a:hover
+      text-decoration: none
     .row
       margin-left: -5px
       margin-right: -5px
@@ -48,7 +52,6 @@ export default {
       background-color: #edd5b5
       margin-bottom: 15px
       border-radius: 15px
-      cursor: pointer
       .card-img-top
         border-top-left-radius: 15px
         border-top-right-radius: 15px

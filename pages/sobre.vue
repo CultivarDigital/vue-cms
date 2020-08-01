@@ -1,6 +1,6 @@
 <template>
   <div v-if="page" class="about-page">
-    <b-carousel :interval="60000" :indicators="page.pictures.length > 1">
+    <b-carousel :interval="7000" :indicators="page.pictures.length > 1">
       <b-carousel-slide v-for="(picture, index) in page.pictures" :key="index" :caption="picture.title" :img-src="picture.url" />
     </b-carousel>
     <div class="page-title">
@@ -30,7 +30,7 @@ export default {
   },
   head () {
     return {
-      title: this.site.name + ' - Quem somos',
+      title: 'Quem somos - ' + this.site.name,
       meta: [
         { hid: 'description', name: 'description', content: this.page.description || this.site.description }
       ]

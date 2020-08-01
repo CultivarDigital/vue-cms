@@ -10,13 +10,13 @@
             <b-card-text>
               <div class="icon">
                 <b-icon-image />
+                <village :village="village" />
               </div>
               <h3 class="mt-4">{{ village.name }}</h3>
               <p v-if="village.description">{{ village.description }}</p>
             </b-card-text>
           </b-card-body>
         </b-card>
-        <village :village="village" />
       </b-col>
     </b-row>
   </b-container>
@@ -87,7 +87,7 @@ export default {
           margin: auto
           margin-top: -60px
           color: #fff
-          font-size: 30px
+          font-size: 25px
         h3
           font-size: 24px
           height: 60px

@@ -12,7 +12,8 @@
         </b-col>
         <b-col md="12">
           <b-form-group label="Descrição completa">
-            <quill-editor v-model="form.content" />
+            <quill-editor v-model="form.content" ref="quillEdit" />
+            <input type="file" @change="quillUpload" id="quillfile" hidden>
           </b-form-group>
         </b-col>
         <b-col md="12">

@@ -57,6 +57,9 @@
           <pictures-upload :form="form" field="logo" url="/api/uploads/images" label="Logo do site" />
         </b-col>
         <b-col md="12">
+          <pictures-upload :form="form" field="favicon" url="/api/uploads/images" label="Favicon do site" />
+        </b-col>
+        <b-col md="12">
           <pictures-upload :form="form" field="pictures" url="/api/uploads/images" label="Banners da home" description="Envie as imagens na ordem que aparecerão na tela de início" :multiple="true" />
         </b-col>
       </b-row>
@@ -92,6 +95,8 @@ export default {
         description: '',
         contact: '',
         email: '',
+        logo: null,
+        favicon: null,
         pictures: [],
         url_facebook: '',
         url_youtube: '',

@@ -1,6 +1,6 @@
 <template>
   <div v-if="site" class="home-page">
-    <b-carousel :interval="60000" :indicators="site.pictures.length > 1">
+    <b-carousel :interval="7000" :indicators="site.pictures.length > 1">
       <b-carousel-slide v-for="(picture, index) in site.pictures" :key="index" :caption="picture.title" :img-src="picture.url" />
       <arrows />
     </b-carousel>
@@ -10,7 +10,7 @@
       <categories :categories="site.categories" />
       <posts :posts="site.posts" />
       <b-container class="pt-4 pb-4 text-center">
-        <tags :tags="site.tags" @click="openTag" />
+        <tags :tags="site.tags" to="/projetos" />
       </b-container>
     </section>
   </div>
