@@ -103,20 +103,20 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    // baseURL: '', // Used as fallback if no runtime config is provided
+    baseURL: 'http://terrakrya-cms.encenar.tk', // Used as fallback if no runtime config is provided
   },
 
-  publicRuntimeConfig: {
-    axios: {
-      browserBaseURL: ''
-    }
-  },
-
-  privateRuntimeConfig: {
-    axios: {
-      baseURL: ''
-    }
-  },
+  // publicRuntimeConfig: {
+  //   axios: {
+  //     browserBaseURL: 'http://terrakrya-cms.encenar.tk'
+  //   }
+  // },
+  //
+  // privateRuntimeConfig: {
+  //   axios: {
+  //     baseURL: 'http://terrakrya-cms.encenar.tk'
+  //   }
+  // },
   /*
   ** Build configuration
   ** See https://nuxtjs.org/api/configuration-build/
