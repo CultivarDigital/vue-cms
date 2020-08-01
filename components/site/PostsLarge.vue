@@ -11,8 +11,7 @@
               <h3>{{ post.title }}</h3>
             </b-card-title>
             <b-card-text>
-              {{ (post.description || stripHtml(post.content)) | truncate(1000) }}
-              <br>
+              <p>{{ (post.description || stripHtml(post.content)) | truncate(1000) }}</p>
               <br>
               <tags :tags="post.tags" @click="filter" />
             </b-card-text>
@@ -36,6 +35,9 @@ export default {
     }
   },
   methods: {
+    stripHtml: (html) => {
+      return html ? html.replace(/<\/?[^>]+(>|$)/g, '') : ''
+    },
     filter(tag) {
       this.$router.push(this.$route.path + '?tag=' + tag.slug)
     }

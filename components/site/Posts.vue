@@ -13,9 +13,9 @@
                 <b-card-title>
                   <h3>{{ post.title }}</h3>
                 </b-card-title>
-                <!-- <b-card-text>
-                  {{ post.description }}
-                </b-card-text> -->
+                <b-card-text>
+                  <p>{{ (post.description || stripHtml(post.content)) | truncate(1000) }}</p>
+                </b-card-text>
               </b-card-body>
             </b-card>
           </nuxt-link>
@@ -47,6 +47,9 @@ export default {
     }
   },
   methods: {
+    stripHtml: (html) => {
+      return html ? html.replace(/<\/?[^>]+(>|$)/g, '') : ''
+    },
     prev () {
       if (this.page > 0) {
         this.page -= 1
@@ -64,6 +67,7 @@ export default {
       this.$scrollTo('.posts')
     }
   }
+
 }
 </script>
 <style lang="sass">
