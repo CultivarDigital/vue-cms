@@ -4,7 +4,7 @@
       <header>
         <b-navbar toggleable="md" variant="faded" type="dark">
           <b-container class="mt-2">
-            <b-navbar-brand to="/"><b-img src="~/assets/img/logo.png" /> </b-navbar-brand>
+            <b-navbar-brand to="/"><b-img :src="this.site.logo.url" /> </b-navbar-brand>
             <b-navbar-toggle target="header-menu" />
             <b-collapse id="header-menu" is-nav>
               <b-navbar-nav />
