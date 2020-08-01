@@ -13,9 +13,9 @@
                 <b-card-title>
                   <h3>{{ post.title }}</h3>
                 </b-card-title>
-                <b-card-text>
-                  zsfgsdgfsdfg
-                </b-card-text>
+                <div class="card-text">
+                  asdfadf
+                </div>
               </b-card-body>
             </b-card>
           </nuxt-link>
