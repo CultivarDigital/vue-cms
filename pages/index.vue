@@ -7,10 +7,10 @@
     <div class="divisor" />
     <section class="content pb-4">
       <h3 class="text-center mb-4">LINHAS DE AÇÃO</h3>
-      <categories :categories="site.categories" />
-      <posts :posts="site.posts" />
+      <!-- <categories :categories="site.categories" /> -->
+      <!-- <posts :posts="site.posts" /> -->
       <b-container class="pt-4 pb-4 text-center">
-        <tags :tags="site.tags" to="/projetos" />
+        <!-- <tags :tags="site.tags" to="/projetos" /> -->
       </b-container>
     </section>
   </div>
@@ -18,16 +18,16 @@
 
 <script>
 import Arrows from '@/components/site/Arrows'
-import Categories from '@/components/site/Categories'
-import Posts from '@/components/site/Posts'
-import Tags from '@/components/site/Tags'
+// import Categories from '@/components/site/Categories'
+// import Posts from '@/components/site/Posts'
+// import Tags from '@/components/site/Tags'
 import mixinPage from '@/mixins/page'
 export default {
   components: {
-    Arrows,
-    Categories,
-    Posts,
-    Tags
+    Arrows
+    // Categories,
+    // Posts,
+    // Tags
   },
   mixins: [mixinPage],
   data () {
