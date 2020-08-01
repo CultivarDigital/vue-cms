@@ -1,6 +1,7 @@
 export default ({ $axios, req }) => {
-  if (process.env.NODE_ENV === 'production') {
-    // $axios.setBaseURL('http://' + req.headers.host)
+  if ($axios && req) {
+    console.log('http://' + req.headers.host)
+    $axios.setBaseURL('http://' + req.headers.host)
+    console.log($axios.defaults.baseURL)
   }
-  console.log($axios.defaults.baseURL)
 }
