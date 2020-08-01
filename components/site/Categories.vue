@@ -56,9 +56,9 @@ export default {
         border-top-left-radius: 15px
         border-top-right-radius: 15px
       .card-text
-        height: 150px
+        height: 160px
         overflow-y: hidden
-        font-size: 13px
+        font-size: 14px
         .icon
           background-color: #2A114B
           border-radius: 100%

@@ -67,7 +67,7 @@ export default {
           height: 24px
           overflow-y: hidden
       .card-text
-        font-size: 13px
+        font-size: 14px
         font-family: 'Titillium Web', sans-serif
         .tags-component
           .btn

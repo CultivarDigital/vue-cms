@@ -107,7 +107,7 @@ export default {
   .projects-page
     background-color: #ECDAB2
     .carousel-item
-      max-height: 41vw
+      max-height: 38vw
     .page-title
       background-color: #2A114B
       color: #fff

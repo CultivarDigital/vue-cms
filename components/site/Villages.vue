@@ -72,7 +72,6 @@ export default {
       .card-text
         height: 60px
         overflow-y: hidden
-        font-size: 13px
         .icon
           background-color: #2A114B
           border-radius: 100%

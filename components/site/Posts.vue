@@ -4,19 +4,21 @@
     <b-row>
       <b-col v-for="(post, index) in posts" :key="post._id" md="4">
         <transition name="slide-fade">
-          <b-card v-if="index >= (page * 3) && index < ((page * 3) + 3)" no-body img-top>
-            <div class="img">
-              <b-card-img :src="post.picture ? post.picture.url : null" :alt="post.name" />
-            </div>
-            <b-card-body>
-              <b-card-title>
-                <h3>{{ post.title }}</h3>
-              </b-card-title>
-              <b-card-text>
-                {{ post.description }}
-              </b-card-text>
-            </b-card-body>
-          </b-card>
+          <nuxt-link :to="'/noticias/' + post.slug">
+            <b-card v-if="index >= (page * 3) && index < ((page * 3) + 3)" no-body img-top>
+              <div class="img">
+                <b-card-img :src="post.picture ? post.picture.url : null" :alt="post.name" />
+              </div>
+              <b-card-body>
+                <b-card-title>
+                  <h3>{{ post.title }}</h3>
+                </b-card-title>
+                <b-card-text>
+                  {{ post.description }}
+                </b-card-text>
+              </b-card-body>
+            </b-card>
+          </nuxt-link>
         </transition>
       </b-col>
     </b-row>
@@ -101,7 +103,7 @@ export default {
       .card-text
         height: 60px
         overflow-y: hidden
-        font-size: 13px
+        font-size: 14px
         font-family: 'Titillium Web', sans-serif
   .slide-fade-enter-active
     transition: all .3s ease
