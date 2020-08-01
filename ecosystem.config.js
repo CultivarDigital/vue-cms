@@ -4,8 +4,7 @@ module.exports = {
       name: 'terrakrya-cms',
       exec_mode: 'cluster',
       instances: 'max', // Or a number of instances
-      script: './node_modules/nuxt/bin/nuxt.js',
-      args: 'start',
+      script: 'node_modules/nuxt/bin/nuxt.js start',
       autorestart: true,
       env: {
         BASE_URL: 'https://terrakrya-cms.encenar.tk',
