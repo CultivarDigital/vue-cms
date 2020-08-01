@@ -9,14 +9,12 @@
               <div class="img">
                 <b-card-img :src="post.picture ? post.picture.url : null" :alt="post.name" />
               </div>
-              <b-card-body>
-                <b-card-title>
-                  <h3>{{ post.title }}</h3>
-                </b-card-title>
-                <div class="card-text">
-                  asdfadf
-                </div>
-              </b-card-body>
+              <b-card-title>
+                <h3>{{ post.title }}</h3>
+              </b-card-title>
+              <b-card-text>
+                <p>{{ (post.description || stripHtml(post.content)) | truncate(1000) }}</p>
+              </b-card-text>
             </b-card>
           </nuxt-link>
         </transition>
