@@ -14,7 +14,7 @@
                   <h3>{{ post.title }}</h3>
                 </b-card-title>
                 <b-card-text>
-                  <p>{{ (post.description || stripHtml(post.content)) | truncate(1000) }}</p>
+                  <p v-if="post.description">{{ (post.description || stripHtml(post.content)) | truncate(1000) }}</p>
                 </b-card-text>
               </b-card-body>
             </b-card>
