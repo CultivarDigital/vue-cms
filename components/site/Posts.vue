@@ -5,8 +5,8 @@
       <b-col v-for="(post, index) in posts" :key="post._id" md="4">
         <transition name="slide-fade">
           <nuxt-link :to="'/noticias/' + post.slug">
-            <!-- <b-card v-if="index >= (page * 3) && index < ((page * 3) + 3)" no-body img-top>
-              <div class="img">
+            <b-card v-if="index >= (page * 3) && index < ((page * 3) + 3)" no-body img-top>
+              <!-- <div class="img">
                 <b-card-img :src="post.picture ? post.picture.url : null" :alt="post.name" />
               </div>
               <b-card-body>
@@ -16,8 +16,8 @@
                 <b-card-text>
                   {{ post.description }}
                 </b-card-text>
-              </b-card-body>
-            </b-card> -->
+              </b-card-body> -->
+            </b-card>
           </nuxt-link>
         </transition>
       </b-col>
