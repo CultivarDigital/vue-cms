@@ -44,8 +44,6 @@ export default {
   },
   methods: {
     async login () {
-      console.log(this.$axios.defaults)
-      console.log(await this.$axios.$get('/api/site'))
       await this.$auth.loginWith('local', { data: this.form }).catch(this.showError)
     }
   }
