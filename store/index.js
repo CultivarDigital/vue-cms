@@ -15,7 +15,7 @@ export const actions = {
   }, { $axios, req }) {
     if (!state.site) {
       const data = await $axios.$get('/api/site').catch(e => {
-        console.error(e)
+        console.log(e)
         console.log('Não existe site com esse domínio')
       })
       if (data) {
