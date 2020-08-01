@@ -8,7 +8,7 @@
     <section class="content pb-4">
       <h3 class="text-center mb-4">LINHAS DE AÇÃO</h3>
       <categories :categories="site.categories" />
-      <!-- <posts :posts="site.posts" /> -->
+      <posts :posts="site.posts" />
       <b-container class="pt-4 pb-4 text-center">
         <!-- <tags :tags="site.tags" to="/projetos" /> -->
       </b-container>
@@ -19,14 +19,14 @@
 <script>
 import Arrows from '@/components/site/Arrows'
 import Categories from '@/components/site/Categories'
-// import Posts from '@/components/site/Posts'
+import Posts from '@/components/site/Posts'
 // import Tags from '@/components/site/Tags'
 import mixinPage from '@/mixins/page'
 export default {
   components: {
     Arrows,
-    Categories
-    // Posts,
+    Categories,
+    Posts
     // Tags
   },
   mixins: [mixinPage],
