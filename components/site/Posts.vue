@@ -3,7 +3,7 @@
     <h3 class="text-center mb-4 mt-4">NOTÍCIAS</h3>
     <b-row>
       <b-col v-for="(post, index) in posts" :key="post._id" md="4">
-        <transition name="slide-fade">
+        <!-- <transition name="slide-fade">
           <nuxt-link :to="'/noticias/' + post.slug">
             <b-card v-if="index >= (page * 3) && index < ((page * 3) + 3)" no-body img-top>
               <div class="img">
@@ -19,7 +19,7 @@
               </b-card-body>
             </b-card>
           </nuxt-link>
-        </transition>
+        </transition> -->
       </b-col>
     </b-row>
     <arrows-left @click="prev()" />
