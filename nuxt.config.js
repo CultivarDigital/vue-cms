@@ -49,6 +49,7 @@ export default {
   */
   plugins: [
     '~plugins/filters.js',
+    '~plugins/url.js',
     '~plugins/bootstrap-vue.js',
     { src: '~plugins/quill.js', ssr: false },
     '~/plugins/lightGallery.client.js'

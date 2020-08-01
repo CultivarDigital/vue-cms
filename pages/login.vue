@@ -42,12 +42,6 @@ export default {
       return this.$store.state.site
     }
   },
-  created () {
-    if (process.env.NODE_ENV === 'production') {
-      console.log('http://' + req.headers.host)
-      this.$axios.setBaseURL('http://' + req.headers.host)
-    }
-  },
   methods: {
     async login () {
       console.log(this.$axios.defaults)
