@@ -103,19 +103,19 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    baseURL: 'http://florestaprotegida.encenar.tk', // Used as fallback if no runtime config is provided
-    // baseURL: 'http://terrakrya-cms.encenar.tk', // Used as fallback if no runtime config is provided
+    baseURL: 'https://florestaprotegida.encenar.tk', // Used as fallback if no runtime config is provided
+    // baseURL: 'https://terrakrya-cms.encenar.tk', // Used as fallback if no runtime config is provided
   },
 
   // publicRuntimeConfig: {
   //   axios: {
-  //     browserBaseURL: 'http://terrakrya-cms.encenar.tk'
+  //     browserBaseURL: 'https://terrakrya-cms.encenar.tk'
   //   }
   // },
   //
   // privateRuntimeConfig: {
   //   axios: {
-  //     baseURL: 'http://terrakrya-cms.encenar.tk'
+  //     baseURL: 'https://terrakrya-cms.encenar.tk'
   //   }
   // },
   /*
