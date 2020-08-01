@@ -11,6 +11,11 @@
           </b-form-group>
         </b-col>
         <b-col md="12">
+          <b-form-group label="Introdução">
+            <b-form-textarea v-model="form.description" name="description" />
+          </b-form-group>
+        </b-col>
+        <b-col md="12">
           <b-form-group label="Descrição completa">
             <quill-editor ref="quillEdit" v-model="form.content" />
             <input id="quillfile" type="file" hidden @change="quillUpload">
@@ -67,6 +72,7 @@ export default {
     return {
       form: {
         name: '',
+        description: '',
         content: '',
         pictures: [],
         categories: [],
