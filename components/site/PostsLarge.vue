@@ -6,16 +6,14 @@
           <div class="img">
             <b-card-img :src="post.picture ? post.picture.average : null" :alt="post.title" />
           </div>
-          <b-card-body>
-            <b-card-title>
-              <h3>{{ post.title }}</h3>
-            </b-card-title>
-            <b-card-text>
-              <p>{{ (post.description || stripHtml(post.content)) | truncate(1000) }}</p>
-              <br>
-              <tags :tags="post.tags" @click="filter" />
-            </b-card-text>
-          </b-card-body>
+          <b-card-title>
+            <h3>{{ post.title }}</h3>
+          </b-card-title>
+          <div class="card-text">
+            <p>{{ (post.description || stripHtml(post.content)) | truncate(1000) }}</p>
+            <br>
+            <tags :tags="post.tags" @click="filter" />
+          </div>
         </b-card>
       </nuxt-link>
     </div>

@@ -6,17 +6,15 @@
           <div class="img">
             <b-card-img :src="project.pictures && project.pictures.length ? project.pictures[0].average : null" :alt="project.name" />
           </div>
-          <b-card-body>
-            <b-card-title>
-              <h3>{{ project.name }}</h3>
-            </b-card-title>
-            <b-card-text>
-              {{ (project.description || stripHtml(project.content)) | truncate(1000) }}
-              <br>
-              <br>
-              <tags :tags="project.tags" :to="$route.path" />
-            </b-card-text>
-          </b-card-body>
+          <b-card-title>
+            <h3>{{ project.name }}</h3>
+          </b-card-title>
+          <div class="card-text">
+            {{ (project.description || stripHtml(project.content)) | truncate(1000) }}
+            <br>
+            <br>
+            <tags :tags="project.tags" :to="$route.path" />
+          </div>
         </b-card>
       </nuxt-link>
     </div>

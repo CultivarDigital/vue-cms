@@ -3,17 +3,18 @@
     <b-row>
       <b-col v-for="category in categories" :key="category._id" lg="3" sm="6">
         <nuxt-link :to="'/' + category.slug + '/projetos'">
-          <b-card no-body :img-src="category.picture ? category.picture.url : null" :img-alt="category.name" img-top>
-            <b-card-body>
-              <b-card-text>
+          <div class="card">
+            <b-img :src="category.picture ? category.picture.url : null" class="card-img-top" :alt="category.name" />
+            <div class="card-body">
+              <div class="card-text">
                 <div class="icon">
                   <b-img :src="category.icon.url" to="projetos" />
                 </div>
                 <h3 class="mt-4">{{ category.name }}</h3>
                 <p>{{ category.description }}</p>
-              </b-card-text>
-            </b-card-body>
-          </b-card>
+              </div>
+            </div>
+          </div>
         </nuxt-link>
       </b-col>
     </b-row>

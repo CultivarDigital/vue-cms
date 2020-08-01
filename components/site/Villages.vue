@@ -6,16 +6,14 @@
           <div class="img">
             <b-card-img :src="defaultPicture(village.pictures).average" :alt="village.name" />
           </div>
-          <b-card-body>
-            <b-card-text>
-              <div class="icon">
-                <b-icon-image />
-                <village :village="village" />
-              </div>
-              <h3 class="mt-4">{{ village.name }}</h3>
-              <p v-if="village.description">{{ village.description }}</p>
-            </b-card-text>
-          </b-card-body>
+          <div class="card-text">
+            <div class="icon">
+              <b-icon-image />
+              <village :village="village" />
+            </div>
+            <h3 class="mt-4">{{ village.name }}</h3>
+            <p v-if="village.description">{{ village.description }}</p>
+          </div>
         </b-card>
       </b-col>
     </b-row>
