@@ -181,4 +181,14 @@ export default {
       h1, h2, h3, h4, h5, h6
         font-family: 'Amatic SC', cursive
         font-weight: 700
+    .card
+      cursor: pointer
+      .card-img-top
+        border-top-left-radius: 15px
+        border-top-right-radius: 15px
+    .pattern-left
+      width: 200px
+      margin-left: -220px
+      margin-bottom: -159px
+
 </style>

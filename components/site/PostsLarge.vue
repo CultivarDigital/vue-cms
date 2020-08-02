@@ -1,20 +1,20 @@
 <template>
   <div class="posts-large-component pt-4">
     <div v-for="post in posts" :key="post._id" md="4">
-      <nuxt-link :to="'/noticias/' + post.slug">
-        <b-card no-body img-top>
-          <div class="img">
-            <b-card-img :src="post.picture ? post.picture.average : null" :alt="post.title" />
-          </div>
-          <b-card-title>
+      <nuxt-link :to="'/noticias/' + post.slug" tag="div" class="card">
+        <div class="img">
+          <b-img :src="post.picture ? post.picture.average : null" :alt="post.title" class="card-img-top" />
+        </div>
+        <div class="card-body">
+          <div class="card-title">
             <h3>{{ post.title }}</h3>
-          </b-card-title>
+          </div>
           <div class="card-text">
             <p>{{ (post.description || stripHtml(post.content)) | truncate(1000) }}</p>
             <br>
-            <tags :tags="post.tags" @click="filter" />
+            <tags :tags="post.tags" :to="'/noticias/' + post.slug" />
           </div>
-        </b-card>
+        </div>
       </nuxt-link>
     </div>
   </div>

@@ -68,10 +68,6 @@ export default {
         font-weight: 700
         font-size: 46px
         margin-top: 40px
-      .pattern-left
-        width: 100px
-        margin-left: -120px
-        margin-bottom: -159px
       iframe
         width: 100%
         border: none

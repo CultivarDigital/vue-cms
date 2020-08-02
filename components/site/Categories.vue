@@ -2,17 +2,15 @@
   <b-container class="categories-component">
     <b-row>
       <b-col v-for="category in categories" :key="category._id" lg="3" sm="6">
-        <nuxt-link :to="'/' + category.slug + '/projetos'">
-          <div class="card">
-            <b-img :src="category.picture ? category.picture.url : null" class="card-img-top" :alt="category.name" />
-            <div class="card-body">
-              <div class="card-text">
-                <div class="icon">
-                  <b-img :src="category.icon.url" to="projetos" />
-                </div>
-                <h3 class="mt-4">{{ category.name }}</h3>
-                <p>{{ category.description }}</p>
+        <nuxt-link :to="'/' + category.slug + '/projetos'" tag="div" class="card">
+          <b-img :src="category.picture ? category.picture.url : null" class="card-img-top" :alt="category.name" />
+          <div class="card-body">
+            <div class="card-text">
+              <div class="icon">
+                <b-img :src="category.icon.url" to="projetos" />
               </div>
+              <h3 class="mt-4">{{ category.name }}</h3>
+              <p>{{ category.description }}</p>
             </div>
           </div>
         </nuxt-link>
@@ -53,9 +51,6 @@ export default {
       background-color: #edd5b5
       margin-bottom: 15px
       border-radius: 15px
-      .card-img-top
-        border-top-left-radius: 15px
-        border-top-right-radius: 15px
       .card-text
         height: 160px
         overflow-y: hidden

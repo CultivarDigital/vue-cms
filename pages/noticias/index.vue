@@ -131,13 +131,4 @@ export default {
             color: #f5e7c5
             border-color: #722b1d
             background-color: #722b1d
-
-      .pattern-left
-        width: 100px
-        margin-left: -120px
-        margin-bottom: -159px
-      iframe
-        width: 100%
-        border: none
-        min-height: 600px
 </style>

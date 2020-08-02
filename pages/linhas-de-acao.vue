@@ -17,7 +17,7 @@
       </b-container>
       <categories :categories="site.categories" />
       <b-container class="pt-4 pb-4 text-center">
-        <tags :tags="site.tags" />
+        <tags :tags="site.tags" to="/projetos" />
       </b-container>
     </section>
   </div>
@@ -84,13 +84,4 @@ export default {
           color: #722b1d
           border-color: #f5e7c5
           background-color: #f5e7c5
-
-      .pattern-left
-        width: 100px
-        margin-left: -120px
-        margin-bottom: -159px
-      iframe
-        width: 100%
-        border: none
-        min-height: 600px
 </style>

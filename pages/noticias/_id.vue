@@ -113,14 +113,6 @@ export default {
         .col-lg-4
           @media (min-width: 992px)
             border-right: 2px solid #2A114B
-      .pdfs
-        a
-          text-decoration: none
-          color: #2A114B
-          .img
-            min-height: 18vw
-            img
-              border-radius: 0
       .tags-component
         .btn
           width: 100%
@@ -133,12 +125,4 @@ export default {
             border-color: #722b1d
             background-color: #722b1d
 
-      .pattern-left
-        width: 100px
-        margin-left: -120px
-        margin-bottom: -159px
-      iframe
-        width: 100%
-        border: none
-        min-height: 600px
 </style>

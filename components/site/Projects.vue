@@ -1,21 +1,21 @@
 <template>
-  <div class="projects-component pt-4">
+  <div class="projects-component pt-4 row">
     <div v-for="project in projects" :key="project._id" md="4">
-      <nuxt-link :to="'/projetos/' + project.slug">
-        <b-card no-body img-top>
-          <div class="img">
-            <b-card-img :src="project.pictures && project.pictures.length ? project.pictures[0].average : null" :alt="project.name" />
-          </div>
-          <b-card-title>
+      <nuxt-link :to="'/projetos/' + project.slug" tag="div" class="card">
+        <div class="img">
+          <b-img :src="project.pictures && project.pictures.length ? project.pictures[0].average : null" :alt="project.name" class="card-img-top" />
+        </div>
+        <div class="card-body">
+          <div class="card-title">
             <h3>{{ project.name }}</h3>
-          </b-card-title>
+          </div>
           <div class="card-text">
             {{ (project.description || stripHtml(project.content)) | truncate(1000) }}
             <br>
             <br>
             <tags :tags="project.tags" :to="$route.path" />
           </div>
-        </b-card>
+        </div>
       </nuxt-link>
     </div>
   </div>

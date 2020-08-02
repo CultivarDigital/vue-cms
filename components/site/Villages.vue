@@ -2,19 +2,21 @@
   <b-container class="villages-component pt-4">
     <b-row>
       <b-col v-for="village in villages" :key="village._id" lg="3" sm="6">
-        <b-card v-b-modal="'modal-' + village._id" no-body>
+        <div v-b-modal="'modal-' + village._id" class="card">
           <div class="img">
-            <b-card-img :src="defaultPicture(village.pictures).average" :alt="village.name" />
+            <b-img :src="defaultPicture(village.pictures).average" :alt="village.name" class="card-img-top" />
           </div>
-          <div class="card-text">
-            <div class="icon">
-              <b-icon-image />
-              <village :village="village" />
+          <div class="card-body">
+            <div class="card-text">
+              <div class="icon">
+                <b-icon-image />
+                <village :village="village" />
+              </div>
+              <h3 class="mt-4">{{ village.name }}</h3>
+              <p v-if="village.description">{{ village.description }}</p>
             </div>
-            <h3 class="mt-4">{{ village.name }}</h3>
-            <p v-if="village.description">{{ village.description }}</p>
           </div>
-        </b-card>
+        </div>
       </b-col>
     </b-row>
   </b-container>
