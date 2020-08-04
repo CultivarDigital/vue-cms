@@ -22,7 +22,7 @@ export default {
     '~/api/index.js'
   ],
   head: {
-    title: 'Terrakrya CMS' || '',
+    title: 'Caminhos da Semente' || '',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -104,7 +104,7 @@ export default {
   */
   axios: {
     // baseURL: 'https://florestaprotegidanovo.encenar.tk', // Used as fallback if no runtime config is provided
-    baseURL: 'https://terrakrya-cms.encenar.tk' // Used as fallback if no runtime config is provided
+    baseURL: 'https://caminhos-da-semente.encenar.tk' // Used as fallback if no runtime config is provided
   },
   /*
   ** Build configuration
@@ -146,7 +146,10 @@ export default {
   build: {
   },
   proxy: {
-    pathRewrite: { '^/api/': '/' }
+    pathRewrite: {
+      'localhost:3000': '/caminhos-da-semente',
+      '^/api/': '/'
+    }
   },
   env: { }
 }

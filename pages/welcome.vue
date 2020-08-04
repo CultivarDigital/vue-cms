@@ -3,7 +3,7 @@
     <div>
       <Logo />
       <h1 class="title mt-5">
-        Terrakrya CMS
+        Caminhos da Semente
       </h1>
       <div class="links mt-5">
         <nuxt-link to="/site" class="btn btn-success">

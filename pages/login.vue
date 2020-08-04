@@ -3,7 +3,7 @@
     <b-img v-if="site && site.logo" :src="site.logo.url" />
     <Logo v-else />
     <h1 class="title mt-4">
-      {{ site ? site.name : 'Terrakrya CMS' }}
+      {{ site ? site.name : 'Caminhos da Semente' }}
     </h1>
     <span class="subtitle">
       Entre com seus dados para acessar

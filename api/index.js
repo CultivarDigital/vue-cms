@@ -20,7 +20,7 @@ const auth = require('./config/auth')
 
 const isProduction = process.env.NODE_ENV === 'production'
 
-app.use(session({ secret: 'terrakrya-cms', cookie: { maxAge: null }, resave: false, saveUninitialized: false }))
+app.use(session({ secret: 'caminhos-da-semente', cookie: { maxAge: null }, resave: false, saveUninitialized: false }))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 // eslint-disable-next-line
@@ -37,8 +37,8 @@ if (isProduction) {
     useUnifiedTopology: true
   })
 } else {
-  mongoose.set('debug', true)
-  mongoose.connect('mongodb://localhost/terrakrya-cms', { useNewUrlParser: true, useUnifiedTopology: true })
+  // mongoose.set('debug', true)
+  mongoose.connect('mongodb://localhost/caminhos-da-semente', { useNewUrlParser: true, useUnifiedTopology: true })
 }
 
 router.use('/auth', require('./routes/auth'))

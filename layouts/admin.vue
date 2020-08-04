@@ -1,7 +1,7 @@
 <template>
   <div class="admin">
     <b-navbar toggleable="lg" type="dark" variant="default">
-      <b-navbar-brand href="/">{{ $auth.user.site ? $auth.user.site.name : 'Terrakrya CMS' }}</b-navbar-brand>
+      <b-navbar-brand href="/">{{ $auth.user.site ? $auth.user.site.name : 'Caminhos da Semente' }}</b-navbar-brand>
       <b-navbar-toggle target="header-menu" />
       <b-collapse id="header-menu" is-nav>
         <b-navbar-nav>

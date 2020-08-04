@@ -1,4 +1,4 @@
-# terrakrya-cms
+# caminhos-da-semente
 
 ## Build Setup
 
