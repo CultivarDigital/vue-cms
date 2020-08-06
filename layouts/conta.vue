@@ -1,86 +1,56 @@
 <template>
   <div class="default-layout">
-    <div v-show="show_content">
+    <div class="conta">
       <Header />
-      <Nuxt />
+      <div class="mb-5" fluid>
+        <b-navbar toggleable="lg" type="dark" variant="default">
+          <b-navbar-brand to="/conta">Painel do usuário</b-navbar-brand>
+          <b-navbar-toggle target="header-conta" />
+          <b-collapse id="header-conta" is-nav>
+            <b-navbar-nav>
+              <b-nav-item to="/conta/unidades-de-aprendizado">Unidades de aprendizado</b-nav-item>
+            </b-navbar-nav>
+            <b-navbar-nav class="ml-auto">
+              <b-nav-item-dropdown right>
+                <template v-slot:button-content>
+                  <em>{{ $auth.user.name }}</em>
+                </template>
+                <b-dropdown-item to="/conta/perfil">Meus dados</b-dropdown-item>
+                <b-dropdown-item @click="logout">Sair</b-dropdown-item>
+              </b-nav-item-dropdown>
+            </b-navbar-nav>
+          </b-collapse>
+        </b-navbar>
+        <div class="container">
+          <Nuxt />
+        </div>
+      </div>
       <Footer />
     </div>
   </div>
 </template>
 <script>
-import Header from '@/components/site/Header'
-import Footer from '@/components/site/Footer'
 export default {
-  components: {
-    Header,
-    Footer
-  },
   middleware: 'auth',
-  data () {
-    return {
-      show_content: false
-    }
-  },
-  computed: {
-    site () {
-      return this.$store.state.site
-    }
-  },
-  mounted () {
-    if (this.site) {
-      this.show_content = true
+  created () {
+    if (this.$auth.hasScope('super') || this.$auth.hasScope('admin')) {
+      this.$router.push('/admin')
     }
   },
   methods: {
     logout () {
       this.$auth.logout()
     }
-  },
-  head () {
-    return {
-      title: 'Inicio - ' + this.site.name,
-      link: [
-        { rel: 'icon', type: 'image/x-icon', href: this.site.favicon ? this.site.favicon.url : '/favicon.ico' }
-      ]
-    }
   }
 }
 </script>
 <style lang="sass">
-  pre
-    background-color: #fff
-  .default-layout
-    font-family: 'Arvo', serif
-    color: #384e3f
-    .btn-primary
-      background-color: #384e3f
-    .banners
-      .carousel-caption
-        h2
-          font-weight: 700
-          font-size: 30px
-    .quill-content
-      background-color: #fff
-      border-radius: 20px
-      padding: 20px
-      p
-        margin-bottom: 0
-      p:first-child img
-        border-bottom-left-radius: 0
-        border-bottom-right-radius: 0
-        margin: -20px -20px 0 -20px
-        width: calc(100% + 40px)
-        max-width: calc(100% + 40px)
-      p:last-child img
-        border-top-left-radius: 0
-        border-top-right-radius: 0
-        margin: 0 -20px -20px -20px
-        width: calc(100% + 40px)
-        max-width: calc(100% + 40px)
-      img
-        max-width: 100%
-        border-radius: 20px
-      h1, h2, h3, h4, h5, h6
-        font-family: 'Arvo', serif
-        font-weight: 700
+  .conta
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"
+    color: #222
+  .form-group
+    margin-bottom: 2rem
+    legend
+      font-weight: bold
+
 </style>

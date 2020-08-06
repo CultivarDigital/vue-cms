@@ -9,6 +9,11 @@ const LearningUnitSchema = mongoose.Schema({
     ref: 'Site',
     required: true
   },
+  user: {
+    type: ObjectId,
+    ref: 'User',
+    required: true
+  },
   slug: {
     type: String,
     required: true,

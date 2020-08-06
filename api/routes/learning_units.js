@@ -6,7 +6,11 @@ const auth = require('../config/auth')
 const LearningUnit = mongoose.model('LearningUnit')
 
 router.get('/', (req, res) => {
-  LearningUnit.find({}).populate(req.query.populate).sort('order').exec((err, learning_units) => {
+  let query = {}
+  if (req.query.user) {
+    query.user = req.query.user
+  }
+  LearningUnit.find(query).populate(req.query.populate).sort('order').exec((err, learning_units) => {
     if (err) {
       res.status(422).send(err.message)
     } else {
@@ -27,7 +31,7 @@ router.get('/:id', (req, res) => {
   })
 })
 
-router.post('/reorder', auth.admin, async (req, res) => {
+router.post('/reorder', auth.authenticated, async (req, res) => {
   for (const item in req.body) {
     await LearningUnit.findOneAndUpdate({
       slug: req.body[item].slug
@@ -40,11 +44,15 @@ router.post('/reorder', auth.admin, async (req, res) => {
   res.json('ok')
 })
 
-router.post('/', auth.admin, (req, res) => {
+router.post('/', auth.authenticated, (req, res) => {
   const newLearningUnit = new LearningUnit(req.body)
   newLearningUnit.site = req.payload.site
   newLearningUnit.slug = slugify(newLearningUnit.name).toLowerCase()
-  // newLearningUnit.order = 0
+
+  if (req.payload.roles.includes('user')) {
+    newLearningUnit.user = req.payload.id
+  }
+
   newLearningUnit.save((err, learning_unit) => {
     if (err) {
       res.status(422).send(err.message)
@@ -54,7 +62,7 @@ router.post('/', auth.admin, (req, res) => {
   })
 })
 
-router.put('/:id', auth.admin, (req, res) => {
+router.put('/:id', auth.authenticated, (req, res) => {
   const params = req.body
   params.slug = slugify(params.name).toLowerCase()
   LearningUnit.findOneAndUpdate({
@@ -72,7 +80,7 @@ router.put('/:id', auth.admin, (req, res) => {
   })
 })
 
-router.delete('/:id', auth.admin, (req, res) => {
+router.delete('/:id', auth.authenticated, (req, res) => {
   LearningUnit.findOne({
     slug: req.params.id
   }).exec((err, learning_unit) => {

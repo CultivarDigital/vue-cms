@@ -33,7 +33,7 @@
         </b-col>
         <b-col md="6">
           <b-form-group label="Confirmar senha *">
-            <validation-provider v-slot="{ errors }" rules="required">
+            <validation-provider v-slot="{ errors }" name="confirmar senha" rules="required">
               <b-form-input v-model="form.password_confirmation" type="password" name="pass_confirmation" />
               <span class="text-danger">{{ errors[0] }}</span>
               <span v-if="!passwordConfirmed" class="text-danger">As senhas digitadas não conferem</span>
@@ -94,7 +94,7 @@ export default {
       sites: [{ text: 'Selecione um site', value: null }],
       show_password: !this.user,
       form: {
-        site: '',
+        site: null,
         name: '',
         email: '',
         organization: '',

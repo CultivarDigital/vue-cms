@@ -4,7 +4,7 @@
       <Header />
       <div class="mb-5" fluid>
         <b-navbar toggleable="lg" type="dark" variant="default">
-          <b-navbar-brand href="/">Administrador</b-navbar-brand>
+          <b-navbar-brand to="/admin">Administrador</b-navbar-brand>
           <b-navbar-toggle target="header-admin" />
           <b-collapse id="header-admin" is-nav>
             <b-navbar-nav>

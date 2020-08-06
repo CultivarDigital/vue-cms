@@ -4,18 +4,17 @@
     <ProfileForm />
   </div>
 </template>
-
 <script>
 import ProfileForm from '@/components/admin/ProfileForm'
 export default {
-  layout: 'admin',
+  layout: 'conta',
   components: {
     ProfileForm
   },
   data () {
     return {
       breadcrumb: [
-        { text: 'Painel', to: '/admin' },
+        { text: 'Minha conta', to: '/conta' },
         { text: 'Perfil do usuário', active: true }
       ]
     }

@@ -36,13 +36,13 @@
                   <b-row>
                     <b-col>
                       <validation-provider v-slot="{ errors }" name="latitude" rules="required">
-                        <b-form-input v-model="form.address.location.coordinates[0]" name="latitude" placeholder="Latitude" type="number" min="-90.000000" max="90.000000" step="0.000001" />
+                        <b-form-input v-model="form.address.location.coordinates[0]" name="latitude" placeholder="Latitude" type="number" min="-90.000000" max="90.000000" step="0.000000001" />
                         <span class="text-danger">{{ errors[0] }}</span>
                       </validation-provider>
                     </b-col>
                     <b-col>
                       <validation-provider v-slot="{ errors }" name="longitude" rules="required">
-                        <b-form-input v-model="form.address.location.coordinates[1]" name="longitude" placeholder="Longitude" type="number" min="-180.000000" max="180.000000" step="0.000001" />
+                        <b-form-input v-model="form.address.location.coordinates[1]" name="longitude" placeholder="Longitude" type="number" min="-180.000000" max="180.000000" step="0.000000001" />
                         <span class="text-danger">{{ errors[0] }}</span>
                       </validation-provider>
                     </b-col>
@@ -474,13 +474,21 @@ export default {
         const learningUnit = await this.$axios.$put('/api/learning_units/' + this.learningUnit.slug, this.form).catch(this.showError)
         if (learningUnit) {
           this.$toast.success('Unidade de aprendizado atualizada com sucesso!')
-          this.$router.push('/admin/learning_units')
+          if (this.$auth.hasScope('super') || this.$auth.hasScope('admin')) {
+            this.$router.push('/admin/learning_units')
+          } else {
+            this.$router.push('/conta/unidades-de-aprendizado')
+          }
         }
       } else {
         const learningUnit = await this.$axios.$post('/api/learning_units', this.form).catch(this.showError)
         if (learningUnit) {
           this.$toast.success('Unidade de aprendizado cadastrada com sucesso!')
-          this.$router.push('/admin/learning_units')
+          if (this.$auth.hasScope('super') || this.$auth.hasScope('admin')) {
+            this.$router.push('/admin/learning_units')
+          } else {
+            this.$router.push('/conta/unidades-de-aprendizado')
+          }
         }
       }
     },

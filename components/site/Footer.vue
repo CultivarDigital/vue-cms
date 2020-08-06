@@ -3,7 +3,7 @@
     <b-container fluid="lg">
       <b-row>
         <b-col sm="3">
-          <a href="/"><b-img src="~assets/img/logo-branca.png" /></a>
+          <n-link to="/"><b-img src="~assets/img/logo-branca.png" /></n-link>
         </b-col>
         <b-col sm="3">
           {{ site.contact }}

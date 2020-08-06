@@ -61,7 +61,7 @@ router.post('/', auth.admin, async (req, res, next) => {
   }).catch(next)
 })
 
-router.post('/register', auth.admin, async (req, res, next) => {
+router.post('/register', async (req, res, next) => {
   const user = new User()
 
   user.email = req.body.email

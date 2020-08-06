@@ -14,6 +14,7 @@ const UserSchema = new mongoose.Schema({
   site_slug: String,
   name: String,
   email: {
+    required: true,
     unique: true,
     type: String,
     lowercase: true,
