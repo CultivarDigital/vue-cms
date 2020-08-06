@@ -2,7 +2,7 @@ module.exports = {
   apps: [
     {
       name: 'caminhos-da-semente',
-      exec_mode: 'cluster',
+      exec_mode: 'fork',
       instances: 'max', // Or a number of instances
       script: 'node_modules/nuxt/bin/nuxt.js start',
       autorestart: true,
