@@ -4,37 +4,6 @@ const router = express.Router()
 const slugify = require('slugify')
 const auth = require('../config/auth')
 const Village = mongoose.model('Village')
-const villages = require('../../data/villages.json')
-const { downloadPicture } = require('../../utils/index')
-
-router.get('/import', auth.admin, (req, res) => {
-  Village.deleteMany({}).then(async () => {
-    const list = []
-    for (const village of villages) {
-      const images = village.photos || []
-
-      images.forEach(image => {
-        downloadPicture(image, req.payload.site_slug)
-      })
-
-      const newVillage = new Village({
-        site: req.payload.site,
-        slug: village.slug,
-        name: village.name.split(':::').join('').trim(),
-        pictures: village.photos ? village.photos.map(photo => {
-          return {
-            url: photo.replace('https://nyc3.digitaloceanspaces.com/terrakryadev/', '/api/uploads/' + req.payload.site_slug + '/images/').split('%20').join(''),
-            average: photo.replace('https://nyc3.digitaloceanspaces.com/terrakryadev/', '/api/uploads/' + req.payload.site_slug + '/images/averages/').split('%20').join(''),
-            thumb: photo.replace('https://nyc3.digitaloceanspaces.com/terrakryadev/', '/api/uploads/' + req.payload.site_slug + '/images/thumbs/').split('%20').join('')
-          }
-        }) : []
-      })
-      list.push(await newVillage.save())
-      list.push(newVillage)
-    }
-    res.json(list)
-  })
-})
 
 router.get('/', (req, res) => {
   Village.find({}).populate(req.query.populate).sort('name').exec((err, villages) => {

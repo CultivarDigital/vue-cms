@@ -39,14 +39,36 @@ router.post('/', auth.admin, async (req, res, next) => {
 
   user.email = req.body.email
   user.name = req.body.name
+  user.organization = req.body.organization
 
   if (req.payload.roles.includes('super')) {
     user.site = req.body.site
     user.roles = req.body.roles
   } else {
     user.site = req.payload.site
-    user.roles = req.body.roles = ['admin']
+    user.roles = req.body.roles.filter(r => r === 'super')
   }
+
+  if (user.site) {
+    const site = await Site.findById(user.site)
+    user.site_slug = site.slug
+  }
+
+  user.setPassword(req.body.password)
+
+  user.save().then(function() {
+    return res.send(user.data())
+  }).catch(next)
+})
+
+router.post('/register', auth.admin, async (req, res, next) => {
+  const user = new User()
+
+  user.email = req.body.email
+  user.name = req.body.name
+  user.organization = req.body.organization
+  user.site = req.body.site
+  user.roles = ['user']
 
   if (user.site) {
     const site = await Site.findById(user.site)
@@ -64,12 +86,16 @@ router.put('/:id', auth.admin, function(req, res, next) {
   User.findById(req.params.id).then(async (user) => {
     user.email = req.body.email
     user.name = req.body.name
+    user.organization = req.body.organization
 
     if (req.payload.roles.includes('super')) {
       user.site = req.body.site
       if (req.body.roles && req.body.roles.length > 0) {
         user.roles = req.body.roles
       }
+    } else {
+      user.site = req.payload.site
+      user.roles = req.body.roles.filter(r => r !== 'super')
     }
 
     if (user.site) {
@@ -91,15 +117,10 @@ router.put('/', auth.authenticated, function(req, res, next) {
   User.findById(req.payload.id).then(function(user) {
     user.email = req.body.email
     user.name = req.body.name
-
-    // if (req.payload.roles.includes('super') && req.body.roles && req.body.roles.lenght > 0) {
-    //   user.roles = req.body.roles
-    // }
-
+    user.organization = req.body.organization
     if (req.body.password) {
       user.setPassword(req.body.password)
     }
-
     user.save().then(function() {
       return res.send(user.data())
     }).catch(next)

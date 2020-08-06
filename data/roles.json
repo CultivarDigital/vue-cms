@@ -1,0 +1,5 @@
+[
+  { "text": "Usuário", "value": ["user"] },
+  { "text": "Administrador", "value": ["admin"] },
+  { "text": "Super usuário", "value": ["super"] }
+]

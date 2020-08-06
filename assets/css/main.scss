@@ -2,3 +2,4 @@
 $theme-colors: ( primary: $primary, default: $default, success: $success );
 @import 'bootstrap/scss/bootstrap.scss';
 @import 'bootstrap-vue/src/index.scss';
+@import '@/assets/css/custom.sass';

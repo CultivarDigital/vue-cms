@@ -24,6 +24,7 @@ const UserSchema = new mongoose.Schema({
     },
     default: null
   },
+  organization: String,
   hash: String,
   salt: String,
   roles: [String]
@@ -57,6 +58,8 @@ UserSchema.methods.generateJWT = function() {
     roles: this.roles,
     site: this.site,
     site_slug: this.site_slug,
+    name: this.name,
+    organization: this.organization,
     exp: parseInt(exp.getTime() / 1000)
   }, (process.env.SECRET || 'secret'))
 }
@@ -69,7 +72,8 @@ UserSchema.methods.toAuthJSON = function() {
     email: this.email,
     token: this.generateJWT(),
     roles: this.roles,
-    name: this.name
+    name: this.name,
+    organization: this.organization
   }
 }
 
@@ -81,7 +85,7 @@ UserSchema.methods.data = function() {
     email: this.email,
     roles: this.roles,
     name: this.name,
-    image: this.image
+    organization: this.organization
   }
 }
 

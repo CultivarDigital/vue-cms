@@ -88,6 +88,7 @@
           </b-tab>
           <b-tab title="Diagnóstico e preparo da área">
             <h4>Histórico de Ocupação</h4>
+            <br>
             <b-row>
               <b-col md="12">
                 <b-form-group label="Vegetação original">
@@ -110,7 +111,9 @@
                 </b-form-group>
               </b-col>
             </b-row>
+            <br>
             <h4>Análise da área</h4>
+            <br>
             <b-row>
               <b-col md="12">
                 <b-form-group label="Tipo de Solo">
@@ -139,7 +142,9 @@
                 </b-form-group>
               </b-col>
             </b-row>
+            <br>
             <h4>Análise da paisagem</h4>
+            <br>
             <b-row>
               <b-col md="12">
                 <b-form-group label="Mata nativa mais próxima (km)">
@@ -162,7 +167,9 @@
                 </b-form-group>
               </b-col>
             </b-row>
+            <br>
             <h4>Fatores de pertubação</h4>
+            <br>
             <b-row>
               <b-col md="12">
                 <b-form-group label="Presença de gado e/ou outros animais">
@@ -181,7 +188,9 @@
                 </b-form-group>
               </b-col>
             </b-row>
+            <br>
             <h4>Preparo da área</h4>
+            <br>
             <b-row>
               <b-col md="12">
                 <b-form-group label="Uso de herbicida">
@@ -336,6 +345,7 @@
           <b-tab title="Monitoramento e manejo"><p>I'm a disabled tab!</p></b-tab>
         </b-tabs>
       </b-card>
+      <br>
       <b-button type="submit" variant="primary" block :disabled="invalid">
         Salvar
       </b-button>

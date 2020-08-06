@@ -42,6 +42,16 @@
           </b-form-group>
         </b-col>
       </b-row>
+      <b-row>
+        <b-col md="12">
+          <b-form-group label="Organização *">
+            <validation-provider v-slot="{ errors }" name="organização" rules="required">
+              <b-form-input v-model="form.organization" />
+              <span class="text-danger">{{ errors[0] }}</span>
+            </validation-provider>
+          </b-form-group>
+        </b-col>
+      </b-row>
       <b-button type="submit" variant="primary" block :disabled="invalid || !passwordConfirmed">
         Salvar
       </b-button>
@@ -68,7 +78,8 @@ export default {
         name: '',
         email: '',
         password: '',
-        password_confirmation: ''
+        password_confirmation: '',
+        organization: ''
       },
       breadcrumb: [
         { text: 'Painel', to: '/admin' },

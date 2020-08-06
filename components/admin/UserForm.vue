@@ -16,7 +16,7 @@
               <b-form-input v-model="form.email" name="email" />
               <span class="text-danger">{{ errors[0] }}</span>
             </validation-provider>
-            <b-button size="sm" class="float-right mt-1" @click="changePassword">
+            <b-button v-if="user" size="sm" class="float-right mt-1" @click="changePassword">
               Alterar senha
             </b-button>
           </b-form-group>
@@ -41,8 +41,8 @@
           </b-form-group>
         </b-col>
       </b-row>
-      <b-row v-if="$auth.hasScope('super')">
-        <b-col v-if="sites" md="6">
+      <b-row v-if="$auth.hasScope('super') || $auth.hasScope('admin')">
+        <b-col v-if="$auth.hasScope('super') && sites" md="6">
           <b-form-group label="Site">
             <b-form-select v-model="form.site" :options="sites" />
           </b-form-group>
@@ -51,6 +51,14 @@
           <b-form-group label="Perfil *">
             <validation-provider v-slot="{ errors }" rules="required">
               <b-form-select v-model="form.roles" :options="roles" />
+              <span class="text-danger">{{ errors[0] }}</span>
+            </validation-provider>
+          </b-form-group>
+        </b-col>
+        <b-col v-if="form.roles && form.roles[0] == 'user'" md="6">
+          <b-form-group label="Organização *">
+            <validation-provider v-slot="{ errors }" name="organização" rules="required">
+              <b-form-input v-model="form.organization" />
               <span class="text-danger">{{ errors[0] }}</span>
             </validation-provider>
           </b-form-group>
@@ -67,6 +75,7 @@
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
 import mixinGlobal from '@/mixins/global'
 import mixinForm from '@/mixins/form'
+import roles from '@/data/roles.json'
 
 export default {
   components: {
@@ -88,19 +97,23 @@ export default {
         site: '',
         name: '',
         email: '',
+        organization: '',
         password: '',
         password_confirmation: '',
         roles: []
-      },
-      roles: [
-        { text: 'Super usuário', value: ['super'] },
-        { text: 'Administrador', value: ['admin'] }
-      ]
+      }
     }
   },
   computed: {
     passwordConfirmed () {
       return !this.show_password || this.form.password === this.form.password_confirmation
+    },
+    roles () {
+      if (this.$auth.hasScope('super')) {
+        return roles
+      } else {
+        return roles.filter(role => role.value[0] !== 'super')
+      }
     }
   },
   async created () {

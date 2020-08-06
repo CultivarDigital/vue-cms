@@ -8,6 +8,9 @@
     </div>
     <div v-if="users">
       <b-table v-if="users.length" :fields="table" :items="users" responsive="sm">
+        <template v-slot:cell(roles)="data">
+          {{ role(data.value) }}
+        </template>
         <template v-slot:cell(actions)="data">
           <n-link class="btn btn-info btn-sm" :to="'/admin/users/' + data.item._id + '/edit'">
             <b-icon-pencil />
@@ -27,6 +30,7 @@
 
 <script>
 import mixinGlobal from '@/mixins/global'
+import roles from '@/data/roles.json'
 
 export default {
   layout: 'admin',
@@ -48,6 +52,9 @@ export default {
     if (this.$auth.hasScope('super')) {
       this.table.push({ key: 'site.name', label: 'Site' })
       this.table.push({ key: 'roles', label: 'Perfil' })
+    } else if (this.$auth.hasScope('admin')) {
+      this.table.push({ key: 'roles', label: 'Perfil' })
+      this.table.push({ key: 'organization', label: 'Organização' })
     }
     this.table.push({ key: 'actions', label: '', class: 'text-right' })
     this.list()
@@ -65,6 +72,11 @@ export default {
           }).catch(this.showError)
         }
       })
+    },
+    role (userRoles) {
+      if (userRoles && userRoles.length > 0) {
+        return roles.find(r => r.value[0] === userRoles[0]).text
+      }
     }
   }
 }
