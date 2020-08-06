@@ -20,7 +20,7 @@ const LearningUnitSchema = mongoose.Schema({
     index: true,
     unique: true
   },
-
+  status: String,
   name: {
     type: String,
     required: true

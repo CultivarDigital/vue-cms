@@ -10,6 +10,9 @@ router.get('/', (req, res) => {
   if (req.query.user) {
     query.user = req.query.user
   }
+  if (req.query.status) {
+    query.status = req.query.status
+  }
   LearningUnit.find(query).populate(req.query.populate).sort('order').exec((err, learning_units) => {
     if (err) {
       res.status(422).send(err.message)
@@ -31,19 +34,6 @@ router.get('/:id', (req, res) => {
   })
 })
 
-router.post('/reorder', auth.authenticated, async (req, res) => {
-  for (const item in req.body) {
-    await LearningUnit.findOneAndUpdate({
-      slug: req.body[item].slug
-    }, {
-      $set: { order: req.body[item].order }
-    }, {
-      upsert: true
-    })
-  }
-  res.json('ok')
-})
-
 router.post('/', auth.authenticated, (req, res) => {
   const newLearningUnit = new LearningUnit(req.body)
   newLearningUnit.site = req.payload.site
@@ -51,6 +41,9 @@ router.post('/', auth.authenticated, (req, res) => {
 
   if (req.payload.roles.includes('user')) {
     newLearningUnit.user = req.payload.id
+    newLearningUnit.status = 'pending'
+  } else {
+    newLearningUnit.status = 'approved'
   }
 
   newLearningUnit.save((err, learning_unit) => {
@@ -64,7 +57,9 @@ router.post('/', auth.authenticated, (req, res) => {
 
 router.put('/:id', auth.authenticated, (req, res) => {
   const params = req.body
-  params.slug = slugify(params.name).toLowerCase()
+  if (params.name) {
+    params.slug = slugify(params.name).toLowerCase()    
+  }
   LearningUnit.findOneAndUpdate({
     slug: req.params.id
   }, {

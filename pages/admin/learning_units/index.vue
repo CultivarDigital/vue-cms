@@ -4,9 +4,6 @@
     <PageForm v-if="show_page_form" slug="learning_units" @cancel="show_page_form = !show_page_form" />
     <div v-else>
       <div class="text-right mb-3">
-        <!-- <b-button @click="show_page_form = !show_page_form">
-          Configurar página
-        </b-button> -->
         <b-button variant="primary" to="/admin/learning_units/new">
           Cadastrar
         </b-button>
@@ -19,6 +16,9 @@
             </n-link>
             <b-button variant="danger" size="sm" @click="remove(data.item)">
               <b-icon-trash />
+            </b-button>
+            <b-button v-if="data.item.status !== 'approved'" variant="primary" size="sm" @click="approve(data.item)">
+              Aprovar
             </b-button>
           </template>
           <template v-slot:cell(area_size)="data">
@@ -94,6 +94,12 @@ export default {
           }).catch(this.showError)
         }
       })
+    },
+    async approve (learningUnit) {
+      await this.$axios.put('/api/learning_units/' + learningUnit.slug, { status: 'approved' }).then(() => {
+        this.list()
+        this.$toast.success('Unidade de aprendizado aprovada com sucesso!')
+      }).catch(this.showError)
     }
   }
 }

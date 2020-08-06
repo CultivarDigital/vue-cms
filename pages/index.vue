@@ -45,7 +45,7 @@
                 <client-only>
                   <l-map :zoom="4" :center="[-17,-55]">
                     <l-tile-layer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png" />
-                    <template v-for="learning_unit in site.learning_units">
+                    <template v-for="learning_unit in site.learning_units.filter(l => l.status === 'approved')">
                       <l-marker v-if="learning_unit.address && learning_unit.address.location && learning_unit.address.location.coordinates" :lat-lng="learning_unit.address.location.coordinates" :key="learning_unit._id">
                         <l-popup>{{ learning_unit.name }}</l-popup>
                       </l-marker>
