@@ -98,7 +98,6 @@ export default {
   },
   proxy: {
     pathRewrite: {
-      'localhost:3000': '/caminhos-da-semente',
       '^/api/': '/'
     }
   },

@@ -10,7 +10,7 @@ module.exports = {
         BASE_URL: 'https://caminhos-da-semente.encenar.tk',
         NODE_ENV: 'production',
         HOST: '0.0.0.0',
-        PORT: 3008,
+        PORT: 3009,
         MONGODB_URI: 'mongodb://localhost/caminhos-da-semente',
         SECRET: 'ee9fc1362652d72faba35fb72c0dc26e'
       }
