@@ -47,7 +47,7 @@ export default {
     .card
       border: none
       color: #722b1d
-      background-color: #f5e7c5
+      background-color: #fff
       margin-bottom: 15px
       border-radius: 15px
       .img
@@ -57,7 +57,7 @@ export default {
         border-top-right-radius: 15px
       .card-title
         height: 48px
-        background-color: #2A114B
+        background-color: #394e3f
         padding: 10px 20px
         margin: -20px
         margin-bottom: 20px
@@ -73,7 +73,7 @@ export default {
           .btn
             background-color: #722b1d
             border-color: #722b1d
-            color: #f5e7c5
+            color: #fff
             width: auto
             margin: 5px 5px 0 0
 

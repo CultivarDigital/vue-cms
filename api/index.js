@@ -38,7 +38,7 @@ if (isProduction) {
     useUnifiedTopology: true
   })
 } else {
-  // mongoose.set('debug', true)
+  mongoose.set('debug', true)
   mongoose.connect('mongodb://localhost/caminhos-da-semente', { useNewUrlParser: true, useUnifiedTopology: true })
 }
 
@@ -67,17 +67,10 @@ router.get('/profile', auth.authenticated, function(req, res) {
 router.get('/site', function(req, res) {
   Site.findOne({ domain_name: req.headers.host })
     .populate('pages')
-    .populate('categories')
-    .populate('tags')
     .populate({
-      path: 'projects',
-      model: 'Project',
-      options: { sort: 'order' },
-      populate: [{
-        path: 'tags',
-        model: 'Tag'
-      }
-      ]
+      path: 'learning_units',
+      model: 'LearningUnit',
+      options: { sort: 'name' },
     })
     .populate({
       path: 'posts',
@@ -86,13 +79,7 @@ router.get('/site', function(req, res) {
       populate: [{
         path: 'tags',
         model: 'Tag'
-      }
-      ]
-    })
-    .populate({
-      path: 'villages',
-      model: 'Village',
-      options: { sort: 'name' }
+      }]
     })
     .exec(function(err, site) {
       if (!err && site) {

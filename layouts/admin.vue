@@ -6,8 +6,9 @@
       <b-collapse id="header-menu" is-nav>
         <b-navbar-nav>
           <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/learning_units">Unidades de aprendizado</b-nav-item>
-          <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/learning_units">Prestadores de serviço</b-nav-item>
-          <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/learning_units">Redes de semente</b-nav-item>
+          <!-- <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/learning_units">Prestadores de serviço</b-nav-item>
+          <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/learning_units">Redes de semente</b-nav-item> -->
+          <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/tags">Tags</b-nav-item>
           <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/posts">Notícias</b-nav-item>
           <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/about">Quem somos</b-nav-item>
           <b-nav-item to="/admin/users">Usuários</b-nav-item>

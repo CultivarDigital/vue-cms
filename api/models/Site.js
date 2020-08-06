@@ -79,4 +79,10 @@ SiteSchema.virtual('villages', {
   foreignField: 'site'
 })
 
+SiteSchema.virtual('learning_units', {
+  ref: 'LearningUnit',
+  localField: '_id',
+  foreignField: 'site'
+})
+
 export const Site = mongoose.models.Site || mongoose.model('Site', SiteSchema)

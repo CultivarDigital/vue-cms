@@ -28,18 +28,17 @@
               </div>
             </b-col>
           </b-row>
-          <div id="map-wrap" style="height: 100%; min-height: 300px">
+          <div id="map-wrap" style="height: 100vh">
             <client-only>
-              <l-map :zoom="13" :center="[55.9464418,8.1277591]">
+              <l-map :zoom="4" :center="[-17,-55]">
                 <l-tile-layer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png" />
-                <l-marker :lat-lng="[55.9464418,8.1277591]" />
+                <template v-for="learning_unit in site.learning_units">
+                  <l-marker v-if="learning_unit.address && learning_unit.address.location && learning_unit.address.location.coordinates" :lat-lng="learning_unit.address.location.coordinates" :key="learning_unit._id">
+                    <l-popup>{{ learning_unit.name }}</l-popup>
+                  </l-marker>
+                </template>
               </l-map>
             </client-only>
-          </div>
-          <div class="legend">
-            <div class="pattern" />
-            <h4>Legenda</h4>
-            <p>teste</p>
           </div>
         </div>
       </b-container>

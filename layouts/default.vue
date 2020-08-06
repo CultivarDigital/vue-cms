@@ -11,14 +11,15 @@
               <b-navbar-nav class="ml-auto">
                 <b-nav-item to="/sobre">Quem Somos</b-nav-item>
                 <b-nav-item to="/mapa">Mapa</b-nav-item>
-                <b-nav-item-dropdown>
+                <b-nav-item to="/noticias">Notícias</b-nav-item>
+                <!-- <b-nav-item-dropdown>
                   <template v-slot:button-content>
                     <em>Sobre Sementes</em>
                   </template>
                   <b-dropdown-item to="/noticias">Notícias</b-dropdown-item>
                   <b-dropdown-item to="/biblioteca">Biblioteca</b-dropdown-item>
-                </b-nav-item-dropdown>
-                <b-nav-item to="/projetos">Contato</b-nav-item>
+                </b-nav-item-dropdown> -->
+                <b-nav-item @click="$scrollTo('footer')">Contato</b-nav-item>
                 <b-nav-item to="/entrar" class="btn-login">Login / Cadastro</b-nav-item>
               </b-navbar-nav>
             </b-collapse>

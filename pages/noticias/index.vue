@@ -1,25 +1,20 @@
 <template>
   <div v-if="page" class="posts-page">
-    <b-carousel :interval="7000" :indicators="page.pictures.length > 1">
-      <b-carousel-slide v-for="(picture, index) in page.pictures" :key="index" :caption="picture.title" :img-src="picture.url" />
-    </b-carousel>
-    <div class="page-title">
-      <b-container>
-        <h3>Notícias</h3>
-      </b-container>
-    </div>
     <section class="content pb-5">
-      <b-container>
-        <b-row>
-          <b-col md="9">
-            <posts-large :posts="posts" />
-            <h3 v-if="posts.length === 0" class="text-center">Nenhuma notícia encontrada</h3>
-          </b-col>
-          <b-col md="3">
-            <h3 class="mt-3">Tags</h3>
-            <tags :tags="site.tags" :to="$route.path" />
-          </b-col>
-        </b-row>
+      <b-container fluid="lg" class="map">
+        <h6 class="pt-5 mb-4 text-center">Notícias</h6>
+        <div>
+          <b-row>
+            <b-col md="9">
+              <posts-large :posts="posts" />
+              <h3 v-if="posts.length === 0" class="text-center">Nenhuma notícia encontrada</h3>
+            </b-col>
+            <b-col md="3">
+              <h3 class="mt-3">Tags</h3>
+              <tags :tags="site.tags" :to="$route.path" />
+            </b-col>
+          </b-row>
+        </div>
       </b-container>
     </section>
   </div>
@@ -62,71 +57,65 @@ export default {
   }
 }
 </script>
-<style lang="sass">
+<style lang="sass" scoped>
   .posts-page
-    background-color: #ECDAB2
-    .carousel-item
-      max-height: 38vw
-    .page-title
-      background-color: #2A114B
-      color: #fff
-      padding: 5px 20px
-      h3
-        font-size: 28px
-        margin: 0
-        span
-          font-weight: 400
-          font-size: 20px
-          margin-top: 5px
-          float: right
-          position: relative
-          @media (max-width: 576px)
-            display: none
     .content
-      background-position-x: center
-      position: relative
-      background-size: 1300px
-      color: #2A114B
-      h1
-        font-family: 'Amatic SC', cursive
-        font-weight: 700
-        font-size: 46px
-        a
-          text-decoration: none
-          color: #2A114B
-      h3
-        color: #2A114B
-        font-size: 40px
-      .categories
-        margin-top: 40px
-        margin-bottom: 40px
-        text-align: center
-        img
-          width: 70px
-        h3
-          font-size: 20px
-          color: #2A114B
-        .col-lg-4
-          @media (min-width: 992px)
-            border-right: 2px solid #2A114B
-      .posts
-        > h3
-          font-family: 'Amatic SC', cursive
+      background-color: #f6a447
+      .map
+        h6
           font-weight: 700
-          font-size: 46px
-          margin-top: 40px
-          text-align: left
         .card
-          background-color: #ECDAB2
-      .tags-component
-        .btn
-          width: 100%
-          color: #722b1d
-          border-color: #f5e7c5
-          background-color: #f5e7c5
-          margin: 10px 0
-          &:hover, &.active
-            color: #f5e7c5
-            border-color: #722b1d
-            background-color: #722b1d
+          border-radius: 15px
+          border: none
+          h3
+            font-weight: 700
+            color: #f6a447
+            font-size: 22px
+            text-align: center
+          .col
+            padding: 50px
+            h4
+              font-weight: 700
+              font-size: 18px
+            .legend
+              p
+                font-size: 12px
+                .btn
+                  background-color: #f6a447
+                  padding: 1px 3px
+                  border: none
+                  color: #384e3f
+                  line-height: 10px
+                  font-size: 10px
+                  margin-left: 6px
+              .pattern
+                width: 15px
+                height: 25px
+                background-color: #384e3f
+                position: absolute
+                left: 0
+            // padding: 30px
+        .col-md-2
+          padding: 30px
+          h4
+            margin-top: 30px
+            font-weight: 700
+            font-size: 16px
+          .legend
+            p
+              font-size: 12px
+              .btn
+                background-color: #f6a447
+                padding: 1px 3px
+                border: none
+                color: #384e3f
+                line-height: 10px
+                font-size: 10px
+                margin-left: 6px
+            .pattern
+              width: 15px
+              height: 25px
+              background-color: #384e3f
+              position: absolute
+              left: 0
 </style>
