@@ -6,6 +6,7 @@ require('./models/Post')
 require('./models/Tag')
 require('./models/Village')
 require('./models/Page')
+require('./models/LearningUnit')
 require('./config/passport')
 
 const express = require('express')
@@ -51,6 +52,7 @@ router.use('/posts', require('./routes/posts'))
 router.use('/tags', require('./routes/tags'))
 router.use('/villages', require('./routes/villages'))
 router.use('/pages', require('./routes/pages'))
+router.use('/learning_units', require('./routes/learning_units'))
 
 router.get('/profile', auth.authenticated, function(req, res) {
   User.findById(req.payload.id).populate('site').exec(function(err, user) {

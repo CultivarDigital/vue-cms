@@ -1,0 +1,261 @@
+<template>
+  <div class="address-form">
+    <b-button v-if="currentAddress" class="btn btn-default btn-sm" @click="show_modal = !show_modal">Mudar endereço</b-button>
+    <b-button v-else class="btn btn-default btn-sm" @click="show_modal = !show_modal">Configurar endereço</b-button>
+    <b-modal v-model="show_modal" title="Localização" hide-footer hide-header>
+      <div v-if="show_auto_complete">
+        <div v-if="!address">
+          <b-form-group label="Digite seu endereço para buscar a localização.">
+            <b-form-input v-model="address_input" class="input-lg" @keyup.enter="searchByAddress" />
+            <br>
+            <div class="text-right">
+              <small>Ex: rua das nascentes, alto paraíso, goiás</small>
+              <b-button class="btn btn-default btn-sm pull-right" @click="getLocation()">Usar GPS</b-button>
+            </div>
+            <div class="clearfix" />
+            <p class="text-center">
+              <button v-if="address_input" class="btn btn-rose btn-lg" @click="searchByAddress">Buscar endereço</button>
+            </p>
+            <p v-if="loading_gps" class="text-center">
+              <small><i class="fa fa-spinner fa-spin" /> Buscando dados do GPS...</small>
+            </p>
+          </b-form-group>
+        </div>
+        <div v-else class="text-center">
+          <div v-if="Array.isArray(address)" class="text-center">
+            <h3>Algum desses é seu endereço?</h3>
+            <table class="table md-auto">
+              <tr v-for="(a, index) in address" :key="index" class="table">
+                <td class="text-left">
+                  <strong>{{ a.description }}</strong>
+                </td>
+                <td class="text-right">
+                  <button class="btn btn-success btn-sm" @click="setAddressForm(a)">Selecionar</button>
+                </td>
+              </tr>
+            </table>
+            <button class="btn btn-warning btn-lg" @click="showAutoComplete()">Nenhum desses é meu endereço</button>
+          </div>
+          <div v-else class="text-center">
+            <h3>Este é seu endereço?</h3>
+            <h5>{{ address.description }}</h5>
+            <div v-if="address && address.location">
+              <l-map :zoom="16" :center="address.location.coordinates" style="height: 250px">
+                <l-tile-layer :url="url" :attribution="attribution" />
+                <l-marker :lat-lng="address.location.coordinates" draggable @dragend="updateMarker">
+                  <l-tooltip>Clique e arraste para refinar sua localização.</l-tooltip>
+                </l-marker>
+              </l-map>
+              <p>
+                <small>Coordenadas: {{ address.location.coordinates.join(',') }}</small>
+              </p>
+            </div>
+            <button class="btn btn-success btn-lg" @click="setAddressForm(address)">Sim</button>
+            <button class="btn btn-warning btn-lg" @click="showAutoComplete()">Não</button>
+          </div>
+        </div>
+      </div>
+      <div v-else>
+        <div class="form-address">
+          <h5 class="text-center">Complete os dados e confirme o endereço</h5>
+          <div class="row">
+            <div class="col-sm-6">
+              <b-form-group label="Estado">
+                <b-form-input v-model="form.uf" class="form-control" />
+              </b-form-group>
+            </div>
+            <div class="col-sm-6">
+              <b-form-group label="Cidade">
+                <b-form-input v-model="form.city" class="form-control" />
+              </b-form-group>
+            </div>
+            <div class="col-sm-12">
+              <b-form-group label="Endereço/Rua/Av">
+                <b-form-input v-model="form.street" name="street" />
+              </b-form-group>
+            </div>
+            <div class="col-sm-9">
+              <b-form-group label="Bairro">
+                <b-form-input v-model="form.neighborhood" name="neighborhood" />
+              </b-form-group>
+            </div>
+            <div class="col-sm-3">
+              <b-form-group label="Número">
+                <b-form-input v-model="form.number" name="number" />
+              </b-form-group>
+            </div>
+            <div class="col-sm-9">
+              <b-form-group label="Complemento">
+                <b-form-input v-model="form.complement" name="complement" />
+              </b-form-group>
+            </div>
+            <div class="col-sm-3">
+              <b-form-group label="CEP">
+                <b-form-input v-model="form.postal_code" />
+              </b-form-group>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-success btn-lg" @click="confirmAddress()">Confirmar endereço</button>
+        <button class="btn btn-warning btn-lg" @click="showAutoComplete()">Mudar localização</button>
+      </div>
+    </b-modal>
+  </div>
+</template>
+<script>
+import axios from 'axios'
+// import {
+//   L
+// } from 'vue2-leaflet'
+//
+// delete L.Icon.Default.prototype._getIconUrl
+// L.Icon.Default.mergeOptions({
+//   iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
+//   iconUrl: require('leaflet/dist/images/marker-icon.png'),
+//   shadowUrl: require('leaflet/dist/images/marker-shadow.png')
+// })
+
+const emptyForm = {
+  city: '',
+  uf: '',
+  street: '',
+  number: '',
+  neighborhood: '',
+  complement: '',
+  postal_code: '',
+  description: '',
+  source: '',
+  location: {
+    type: 'Point',
+    coordinates: []
+  }
+}
+
+export default {
+  props: {
+    currentAddress: {
+      type: Object,
+      default: null
+    },
+    autoload: {
+      type: Boolean,
+      default: false
+    }
+  },
+  data() {
+    return {
+      loading_gps: false,
+      show_modal: false,
+      address: null,
+      location: null,
+      address_input: '',
+      show_auto_complete: true,
+      form: emptyForm,
+      url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+      attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    }
+  },
+  created() {
+    if (!this.currentAddress && this.autoload) {
+      this.show_modal = true
+      this.getLocation()
+    } else {
+      this.address = this.currentAddress
+      if (this.currentAddress) {
+        Object.keys(this.form).forEach(k => {
+          this.form[k] = this.currentAddress[k]
+        })
+      }
+    }
+  },
+  methods: {
+    getLocation() {
+      if (navigator.geolocation) {
+        this.loading_gps = true
+        navigator.geolocation.getCurrentPosition(position => {
+          this.searchByLocation(position.coords.latitude, position.coords.longitude)
+        }, this.locationError)
+      } else {
+        this.locationError()
+      }
+    },
+    searchByLocation(latitude, longitude) {
+      axios.get('https://us1.locationiq.com/v1/reverse.php?key=81b80182fef784&lat=' + latitude + '&lon=' + longitude + '&accept-language=pt-BR&normalizecity=1&format=json').then(resp => {
+        this.address = this.parseAddress(resp.data.address, latitude, longitude)
+        this.loading_gps = false
+      }).catch(this.locationError)
+    },
+    searchByAddress() {
+      axios.get('https://us1.locationiq.com/v1/search.php?key=81b80182fef784&q=' + encodeURI(this.address_input) + '&addressdetails=1&limit=10&countrycodes=BR&accept-language=pt-BR&normalizecity=1&format=json').then(resp => {
+        const data = resp.data
+        if (data.length === 1) {
+          const address = data[0]
+          this.address = this.parseAddress(address.address, address.lat, address.lon)
+        } else {
+          this.address = data.map(address => {
+            return this.parseAddress(address.address, address.lat, address.lon)
+          })
+        }
+      }).catch(this.showError)
+    },
+    updateMarker(location) {
+      location = location.target._latlng
+      this.searchByLocation(location.lat, location.lng)
+    },
+    parseAddress(address, latitude, longitude) {
+      const a = {}
+      a.street = address.road
+      a.neighborhood = address.neighbourhood || address.hamlet || address.suburb
+      a.city = address.city || address.city_district || address.village || address.town
+      a.uf = address.state || address.state_district
+      a.postal_code = address.postcode
+
+      a.description = [a.street, a.neighborhood, a.city, a.uf, a.postal_code].filter(i => i).join(', ')
+
+      a.location = {
+        type: 'Point',
+        coordinates: [Number(latitude), Number(longitude)]
+      }
+
+      // a.source = address
+      return a
+    },
+    setAddressForm(address) {
+      this.address = address
+      Object.keys(this.form).forEach(k => {
+        this.form[k] = this.address[k]
+      })
+      this.show_auto_complete = false
+    },
+    confirmAddress() {
+      this.form.description = [
+        this.form.street,
+        this.form.number,
+        this.form.complement,
+        this.form.neighborhood,
+        this.form.city,
+        this.form.uf,
+        this.form.postal_code
+      ].filter(i => i).join(', ')
+
+      this.show_modal = false
+
+      this.$emit('input', this.form)
+    },
+    showAutoComplete() {
+      this.address = null
+      this.form = emptyForm
+      this.show_auto_complete = true
+    },
+    locationError() {
+      this.notify('Não foi possível encontrar seu endereço automaticamente.', 'warn')
+      this.loading_gps = false
+    }
+  }
+}
+</script>
+<style lang="sass">
+  .address-form
+    .btn
+      color: #fff
+</style>

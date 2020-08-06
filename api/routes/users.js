@@ -92,9 +92,9 @@ router.put('/', auth.authenticated, function(req, res, next) {
     user.email = req.body.email
     user.name = req.body.name
 
-    if (req.payload.roles.includes('super')) {
-      user.roles = req.body.roles
-    }
+    // if (req.payload.roles.includes('super') && req.body.roles && req.body.roles.lenght > 0) {
+    //   user.roles = req.body.roles
+    // }
 
     if (req.body.password) {
       user.setPassword(req.body.password)

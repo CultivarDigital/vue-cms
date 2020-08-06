@@ -1,0 +1,145 @@
+<template>
+  <div v-if="page" class="about-page">
+    <section class="content pb-5">
+      <b-container fluid="lg" class="map">
+        <h6 class="pt-5 mb-4 text-center">
+          <nuxt-link to="/entrar?tab=register">
+            Entre com seus dados
+          </nuxt-link>
+          ou
+          <nuxt-link to="/entrar?tab=login">
+            cadastre-se
+          </nuxt-link>
+          para continuar.
+        </h6>
+        <div class="card">
+          <h3 class="mt-4">Mapa da Semeadura Direta</h3>
+          <b-row no-gutters>
+            <b-col>
+              <div class="legend">
+                <div class="pattern" />
+                <h4>Unidades de Aprendizagem</h4>
+                <p>
+                  Recuperar vegetação nativa com alta eficácia e baixo custo <b-button>+</b-button>
+                </p>
+              </div>
+            </b-col>
+            <b-col>
+              <div class="legend">
+                <div class="pattern" />
+                <h4>Prestadores de serviço</h4>
+                <p>
+                  Recuperar vegetação nativa com alta eficácia e baixo custo <b-button>+</b-button>
+                </p>
+              </div>
+            </b-col>
+            <b-col>
+              <div class="legend">
+                <div class="pattern" />
+                <h4>Redes de sementes</h4>
+                <p>
+                  Recuperar vegetação nativa com alta eficácia e baixo custo <b-button>+</b-button>
+                </p>
+              </div>
+            </b-col>
+          </b-row>
+          <div id="map-wrap" style="height: 100%; min-height: 300px">
+            <client-only>
+              <l-map :zoom="13" :center="[55.9464418,8.1277591]">
+                <l-tile-layer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png" />
+                <l-marker :lat-lng="[55.9464418,8.1277591]" />
+              </l-map>
+            </client-only>
+          </div>
+          <div class="legend">
+            <div class="pattern" />
+            <h4>Legenda</h4>
+            <p>teste</p>
+          </div>
+        </div>
+      </b-container>
+    </section>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      tab: 'login'
+    }
+  },
+  head() {
+    return {
+      title: (this.tab === 'login' ? 'Entrar - ' : 'Cadastrar - ') + this.site.name,
+      meta: [{
+        hid: 'description',
+        name: 'description',
+        content: this.page.description || this.site.description
+      }]
+    }
+  }
+}
+</script>
+<style lang="sass" scoped>
+  .about-page
+    .content
+      background-color: #f6a447
+      .map
+        h6
+          font-weight: 700
+        .card
+          border-radius: 15px
+          border: none
+          h3
+            font-weight: 700
+            color: #f6a447
+            font-size: 22px
+            text-align: center
+          .col
+            padding: 50px
+            h4
+              font-weight: 700
+              font-size: 18px
+            .legend
+              p
+                font-size: 12px
+                .btn
+                  background-color: #f6a447
+                  padding: 1px 3px
+                  border: none
+                  color: #384e3f
+                  line-height: 10px
+                  font-size: 10px
+                  margin-left: 6px
+              .pattern
+                width: 15px
+                height: 25px
+                background-color: #384e3f
+                position: absolute
+                left: 0
+            // padding: 30px
+        .col-md-2
+          padding: 30px
+          h4
+            margin-top: 30px
+            font-weight: 700
+            font-size: 16px
+          .legend
+            p
+              font-size: 12px
+              .btn
+                background-color: #f6a447
+                padding: 1px 3px
+                border: none
+                color: #384e3f
+                line-height: 10px
+                font-size: 10px
+                margin-left: 6px
+            .pattern
+              width: 15px
+              height: 25px
+              background-color: #384e3f
+              position: absolute
+              left: 0
+</style>

@@ -10,7 +10,6 @@
     </div>
     <section class="content pb-5">
       <b-container>
-        <img src="~assets/img/pattern-left.png" class="pattern-left">
         <b-row class="categories">
           <b-col lg="4">
             <h1 class="title">{{ project.name }}</h1>
@@ -112,7 +111,6 @@ export default {
           @media (max-width: 576px)
             display: none
     .content
-      background: transparent url('~assets/img/pattern2.png')
       background-position-x: center
       position: relative
       background-size: 1300px

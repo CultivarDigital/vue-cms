@@ -1,17 +1,22 @@
 <template>
   <div v-if="page" class="about-page">
-    <b-carousel :interval="7000" :indicators="page.pictures.length > 1">
-      <b-carousel-slide v-for="(picture, index) in page.pictures" :key="index" :caption="picture.title" :img-src="picture.url" />
-    </b-carousel>
-    <div class="page-title">
-      <b-container>
-        <h3>Quem somos</h3>
-      </b-container>
+    <div v-if="page.pictures.length">
+      <divisor variant="white-down" />
+      <b-carousel :interval="7000" :indicators="site.pictures.length > 1" class="banners">
+        <b-carousel-slide img-src="~assets/img/banner1.png">
+          <h2>Quem Somos</h2>
+          <p>Somos uma rede de pessoas e organizações que querem dar escala à restauração ecológica no Brasil com foco no método da semeadura direta</p>
+        </b-carousel-slide>
+        <b-carousel-slide img-src="~assets/img/banner2.png">
+          <h2>Mapa</h2>
+          <p>Você sabe onde tem projetos de restauração com semeadura direta no Brasil? Conheça o Mapa de Restauração ecológica da Iniciativa Caminhos da Semente</p>
+        </b-carousel-slide>
+      </b-carousel>
+      <divisor variant="orange-up" />
     </div>
     <section class="content pb-5">
       <b-container>
-        <img src="~assets/img/pattern-left.png" class="pattern-left">
-        <h1 v-if="page.title" class="title">{{ page.title }}</h1>
+        <h1 v-if="page.title" class="title pt-5">{{ page.title }}</h1>
         <p v-if="page.description">{{ page.description }}</p>
         <div class="quill-content mt-4" v-html="page.content" />
       </b-container>
@@ -40,25 +45,7 @@ export default {
 </script>
 <style lang="sass" scoped>
   .about-page
-    background-color: #ECDAB2
-    .carousel-item
-      max-height: 38vw
-    .page-title
-      background-color: #2A114B
-      color: #fff
-      padding: 5px 20px
-      h3
-        font-size: 28px
-        margin: 0
     .content
-      background: transparent url('~assets/img/pattern2.png')
-      background-position-x: center
-      position: relative
-      background-size: 1300px
-      color: #2A114B
-      .title
-        font-family: 'Amatic SC', cursive
-        font-weight: 700
-        font-size: 46px
-        margin-top: 40px
+      background-color: #f6a447
+
 </style>
