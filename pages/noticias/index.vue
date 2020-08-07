@@ -1,8 +1,19 @@
 <template>
   <div v-if="page" class="posts-page">
+    <div v-if="page.pictures.length">
+      <divisor variant="white-down" />
+      <b-carousel :interval="7000" :indicators="page.pictures.length > 1" class="banners">
+        <b-carousel-slide v-for="(picture, index) in page.pictures" :key="index" :img-src="picture.url">
+          <h2 v-if="picture.title">{{ picture.title }}</h2>
+        </b-carousel-slide>
+      </b-carousel>
+      <divisor variant="orange-up" />
+    </div>
     <section class="content pb-5">
-      <b-container fluid="lg" class="map">
-        <h6 class="pt-5 mb-4 text-center">Notícias</h6>
+      <b-container>
+        <h1 v-if="page.title" class="title pt-5">{{ page.title }}</h1>
+        <p v-if="page.description">{{ page.description }}</p>
+        <div v-if="page.content" class="quill-content mt-4" v-html="page.content" />
         <div>
           <b-row>
             <b-col md="9">

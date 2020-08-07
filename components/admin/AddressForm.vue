@@ -40,7 +40,7 @@
             <h3>Este é seu endereço?</h3>
             <h5>{{ address.description }}</h5>
             <div v-if="address && address.location">
-              <l-map :zoom="16" :center="address.location.coordinates" style="height: 250px">
+              <l-map :zoom="16" :center="address.location.coordinates" :options="{ scrollWheelZoom: false }" style="height: 250px">
                 <l-tile-layer :url="url" :attribution="attribution" />
                 <l-marker :lat-lng="address.location.coordinates" draggable @dragend="updateMarker">
                   <l-tooltip>Clique e arraste para refinar sua localização.</l-tooltip>

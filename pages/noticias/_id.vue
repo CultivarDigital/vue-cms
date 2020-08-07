@@ -70,7 +70,7 @@ export default {
     .carousel-item
       max-height: 38vw
     .page-title
-      background-color: #2A114B
+      background-color: #f6a447
       color: #fff
       padding: 5px 20px
       h3
@@ -88,9 +88,9 @@ export default {
       background-position-x: center
       position: relative
       background-size: 1300px
-      color: #2A114B
+      color: #f6a447
       h1
-        font-family: 'Amatic SC', cursive
+        font-family: 'Arvo', serif
         font-weight: 700
         font-size: 46px
         a

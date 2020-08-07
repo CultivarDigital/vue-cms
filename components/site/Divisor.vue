@@ -1,6 +1,6 @@
 <template>
   <div :class="'divisor ' + variant">
-    <b-img :src="require('~/assets/img/divisor-' + variant + '-line.svg')" />
+    <b-img :src="require('~/assets/img/divisor-' + variant + '.png')" />
   </div>
 </template>
 <script>
@@ -17,18 +17,20 @@ export default {
   .divisor
     background: transparent
     width: 100%
-    background-size: 100% 100px
     position: absolute
     z-index: 1
+    text-align: center
     img
       width: 100%
+      vertical-align: inherit
     &.white-down
-      background-image: url('~assets/img/divisor-white-down.png')
-      background-position: bottom
+      @media (max-width: 992px)
+        margin-top: -5px
     &.orange-up
-      background-image: url('~assets/img/divisor-orange-up.png')
-      background-position: top
-      margin-top: -24px
+      margin-top: -20px
+      @media (max-width: 992px)
+        margin-top: -16px
+
     @media (max-width: 576px)
       display: none
 </style>

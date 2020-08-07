@@ -7,38 +7,38 @@
           <h3 class="mt-4">Mapa da Semeadura Direta</h3>
           <b-row no-gutters>
             <b-col>
-              <div class="legend">
+              <div class="legend" @click="toggleLayer('learning_units')">
                 <div class="pattern" />
                 <h4>Unidades de Aprendizagem</h4>
-                <p>Recuperar vegetação nativa com alta eficácia e baixo custo <b-button>+</b-button></p>
+                <p>
+                  Recuperar vegetação nativa com alta eficácia e baixo custo
+                  <!-- <b-button>{{ map_layers['learning_units'] ? '-' : '+' }}</b-button> -->
+                </p>
               </div>
             </b-col>
             <b-col>
-              <div class="legend">
+              <div class="legend" @click="toggleLayer('service_providers')">
                 <div class="pattern" />
                 <h4>Prestadores de serviço</h4>
-                <p>Recuperar vegetação nativa com alta eficácia e baixo custo <b-button>+</b-button></p>
+                <p>
+                  Recuperar vegetação nativa com alta eficácia e baixo custo
+                  <!-- <b-button>{{ map_layers['service_providers'] ? '-' : '+' }}</b-button> -->
+                </p>
               </div>
             </b-col>
             <b-col>
-              <div class="legend">
+              <div class="legend" @click="toggleLayer('seeds_networks')">
                 <div class="pattern" />
                 <h4>Redes de sementes</h4>
-                <p>Recuperar vegetação nativa com alta eficácia e baixo custo <b-button>+</b-button></p>
+                <p>
+                  Recuperar vegetação nativa com alta eficácia e baixo custo
+                  <!-- <b-button>{{ map_layers['seeds_networks'] ? '-' : '+' }}</b-button> -->
+                </p>
               </div>
             </b-col>
           </b-row>
           <div id="map-wrap" style="height: 100vh">
-            <client-only>
-              <l-map :zoom="4" :center="[-17,-55]">
-                <l-tile-layer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png" />
-                <template v-for="learning_unit in site.learning_units">
-                  <l-marker v-if="learning_unit.address && learning_unit.address.location && learning_unit.address.location.coordinates" :lat-lng="learning_unit.address.location.coordinates" :key="learning_unit._id">
-                    <l-popup>{{ learning_unit.name }}</l-popup>
-                  </l-marker>
-                </template>
-              </l-map>
-            </client-only>
+            <Map :layers="map_layers" />
           </div>
         </div>
       </b-container>
@@ -48,16 +48,30 @@
 
 <script>
 import mixinPage from '@/mixins/page'
+import Map from '@/components/site/Map'
 export default {
+  components: {
+    Map
+  },
   mixins: [mixinPage],
   data () {
     return {
-      page_id: 'about'
+      page_id: 'about',
+      map_layers: {
+        learning_units: true,
+        service_providers: true,
+        seeds_networks: true
+      }
+    }
+  },
+  methods: {
+    toggleLayer (layer) {
+      this.map_layers[layer] = !this.map_layers[layer]
     }
   },
   head () {
     return {
-      title: 'Quem somos - ' + this.site.name,
+      title: 'Mapa da Semeadura Direta - ' + this.site.name,
       meta: [
         { hid: 'description', name: 'description', content: this.page.description || this.site.description }
       ]

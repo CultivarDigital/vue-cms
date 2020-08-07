@@ -48,14 +48,14 @@
                     </b-col>
                   </b-row>
                   <div v-if="validCoordinates">
-                    <!-- <br>
-                    <l-map :zoom="16" :center="form.address.location.coordinates" style="height: 30vw" :scrollWheelZoom="false">
+                    <br>
+                    <l-map :zoom="16" :center="form.address.location.coordinates" :options="{ scrollWheelZoom: false }" style="height: 30vw">
                       <l-tile-layer :url="url" :attribution="attribution" />
                       <l-marker :lat-lng="form.address.location.coordinates" />
                     </l-map>
                     <p>
                       <small>Coordenadas: {{ form.address.location.coordinates.join(',') }}</small>
-                    </p> -->
+                    </p>
                   </div>
                 </b-form-group>
                 <div class="text-right">

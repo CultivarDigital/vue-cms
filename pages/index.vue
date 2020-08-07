@@ -2,13 +2,8 @@
   <div v-if="site" class="home-page">
     <divisor variant="white-down" />
     <b-carousel :interval="7000" :indicators="site.pictures.length > 1" class="banners">
-      <b-carousel-slide img-src="~assets/img/banner1.png">
-        <h2>Quem Somos</h2>
-        <p>Somos uma rede de pessoas e organizações que querem dar escala à restauração ecológica no Brasil com foco no método da semeadura direta</p>
-      </b-carousel-slide>
-      <b-carousel-slide img-src="~assets/img/banner2.png">
-        <h2>Mapa</h2>
-        <p>Você sabe onde tem projetos de restauração com semeadura direta no Brasil? Conheça o Mapa de Restauração ecológica da Iniciativa Caminhos da Semente</p>
+      <b-carousel-slide v-for="(picture, index) in site.pictures" :key="index" :img-src="picture.url">
+        <h2 v-if="picture.title">{{ picture.title }}</h2>
       </b-carousel-slide>
     </b-carousel>
     <divisor variant="orange-up" />
@@ -43,7 +38,7 @@
             <b-col md="6">
               <div id="map-wrap" style="height: 100%">
                 <client-only>
-                  <l-map :zoom="4" :center="[-17,-55]">
+                  <l-map :zoom="4" :center="[-17,-55]" :options="{ scrollWheelZoom: false }">
                     <l-tile-layer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png" />
                     <template v-for="learning_unit in site.learning_units.filter(l => l.status === 'approved')">
                       <l-marker v-if="learning_unit.address && learning_unit.address.location && learning_unit.address.location.coordinates" :lat-lng="learning_unit.address.location.coordinates" :key="learning_unit._id">

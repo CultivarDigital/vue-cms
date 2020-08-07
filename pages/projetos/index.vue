@@ -128,7 +128,7 @@ export default {
       background-size: 1300px
       color: #2A114B
       h1
-        font-family: 'Amatic SC', cursive
+        font-family: 'Arvo', serif
         font-weight: 700
         font-size: 46px
         a
@@ -151,7 +151,7 @@ export default {
             border-right: 2px solid #2A114B
       .projects
         > h3
-          font-family: 'Amatic SC', cursive
+          font-family: 'Arvo', serif
           font-weight: 700
           font-size: 46px
           margin-top: 40px

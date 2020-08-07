@@ -2,14 +2,9 @@
   <div v-if="page" class="about-page">
     <div v-if="page.pictures.length">
       <divisor variant="white-down" />
-      <b-carousel :interval="7000" :indicators="site.pictures.length > 1" class="banners">
-        <b-carousel-slide img-src="~assets/img/banner1.png">
-          <h2>Quem Somos</h2>
-          <p>Somos uma rede de pessoas e organizações que querem dar escala à restauração ecológica no Brasil com foco no método da semeadura direta</p>
-        </b-carousel-slide>
-        <b-carousel-slide img-src="~assets/img/banner2.png">
-          <h2>Mapa</h2>
-          <p>Você sabe onde tem projetos de restauração com semeadura direta no Brasil? Conheça o Mapa de Restauração ecológica da Iniciativa Caminhos da Semente</p>
+      <b-carousel :interval="7000" :indicators="page.pictures.length > 1" class="banners">
+        <b-carousel-slide v-for="(picture, index) in page.pictures" :key="index" :img-src="picture.url">
+          <h2 v-if="picture.title">{{ picture.title }}</h2>
         </b-carousel-slide>
       </b-carousel>
       <divisor variant="orange-up" />
