@@ -1,74 +1,88 @@
 <template>
   <div v-if="site" class="home-page">
-    <divisor variant="white-down" />
-    <b-carousel :interval="7000" :indicators="site.pictures.length > 1" class="banners">
-      <b-carousel-slide v-for="(picture, index) in site.pictures" :key="index" :img-src="picture.url">
-        <h2 v-if="picture.title">{{ picture.title }}</h2>
-      </b-carousel-slide>
-    </b-carousel>
-    <divisor variant="orange-up" />
+    <banners :items="site.pictures" />
     <section class="content pb-4">
       <b-container class="text-center">
         <b-img src="~assets/img/pilares-de-acao.png" class="subtitle mt-5" />
       </b-container>
-      <b-container fluid="lg" class="map">
+      <b-container fluid="lg">
         <h6 class="mt-5 mb-4 text-center">Conheça o Mapa de Restauração ecológica da Iniciativa Caminhos da Semente</h6>
-        <div class="card">
-          <b-row no-gutters>
-            <b-col md="4">
-              <h3 class="mb-4">Semeadura Direta</h3>
-              <div class="legend">
+        <Map />
+        <b-row class="boxes">
+          <b-col sm="6">
+            <div class="box">
+              <n-link to="/noticias">
+                <b-img src="~assets/img/noticias.png" />
+              </n-link>
+              <div class="title">
                 <div class="pattern" />
-                <h4>Unidades de Aprendizagem</h4>
-                <p>Recuperar vegetação nativa com alta eficácia e baixo custo <b-button>+</b-button></p>
+                <h3>Notícias</h3>
               </div>
-              <hr>
-              <div class="legend">
+            </div>
+          </b-col>
+          <b-col sm="6">
+            <div class="box">
+              <n-link to="/imprensa">
+                <b-img src="~assets/img/imprensa.png" />
+              </n-link>
+              <div class="title">
                 <div class="pattern" />
-                <h4>Prestadores de serviço</h4>
-                <p>Recuperar vegetação nativa com alta eficácia e baixo custo <b-button>+</b-button></p>
+                <h3>Na imprensa</h3>
               </div>
-              <hr>
-              <div class="legend">
-                <div class="pattern" />
-                <h4>Redes de sementes</h4>
-                <p>Recuperar vegetação nativa com alta eficácia e baixo custo <b-button>+</b-button></p>
-              </div>
-            </b-col>
-            <b-col md="6">
-              <div id="map-wrap" style="height: 100%">
-                <client-only>
-                  <l-map :zoom="4" :center="[-17,-55]" :options="{ scrollWheelZoom: false }">
-                    <l-tile-layer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png" />
-                    <template v-for="learning_unit in site.learning_units.filter(l => l.status === 'approved')">
-                      <l-marker v-if="learning_unit.address && learning_unit.address.location && learning_unit.address.location.coordinates" :lat-lng="learning_unit.address.location.coordinates" :key="learning_unit._id">
-                        <l-popup>{{ learning_unit.name }}</l-popup>
-                      </l-marker>
-                    </template>
-                  </l-map>
-                </client-only>
-              </div>
-            </b-col>
-            <b-col md="2">
-              <div class="legend">
-                <div class="pattern" />
-                <h4>Legenda</h4>
-                <p>teste</p>
-              </div>
+            </div>
+          </b-col>
+        </b-row>
+        <section class="partners text-center card">
+          <h3>Coordenação e execução</h3>
+          <b-row>
+            <b-col md="4" offset-md="4">
+              <img src="~assets/img/parceiros/agroicone.png" alt="Coordenação e execução Agroicone">
             </b-col>
           </b-row>
-        </div>
+          <br>
+          <h3>Parceria</h3>
+          <b-row>
+            <b-col md="2">
+              <img src="~assets/img/parceiros/isa.png" alt="Parceria Instituto Socio Ambiental - ISA">
+            </b-col>
+            <b-col md="2">
+              <img src="~assets/img/parceiros/embrapa.png" alt="Parceria Embrapa">
+            </b-col>
+            <b-col md="2">
+              <img src="~assets/img/parceiros/amaggi.png" alt="Parceria Amaggi">
+            </b-col>
+            <b-col md="2">
+              <img src="~assets/img/parceiros/iniciativa-verde.png" alt="Parceria Iniciativa Verde">
+            </b-col>
+            <b-col md="2">
+              <img src="~assets/img/parceiros/sima.png" alt="Parceria SIMA">
+            </b-col>
+            <b-col md="2">
+              <img src="~assets/img/parceiros/wwf.png" alt="Parceria WWF">
+            </b-col>
+          </b-row>
+          <br>
+          <h3>Apoio técnico e financeiro</h3>
+          <b-row>
+            <b-col md="2" offset-md="5">
+              <img src="~assets/img/parceiros/p4f.png" alt="Apoio técnico e financeiro P4F">
+            </b-col>
+          </b-row>
+          <br>
+        </section>
       </b-container>
     </section>
   </div>
 </template>
 
 <script>
-import Divisor from '@/components/site/Divisor'
+import Banners from '@/components/site/Banners'
+import Map from '@/components/site/Map'
 import mixinPage from '@/mixins/page'
 export default {
   components: {
-    Divisor
+    Banners,
+    Map
   },
   mixins: [mixinPage],
   data() {
@@ -95,61 +109,35 @@ export default {
       .subtitle
         width: 100%
         max-width: 700px
-      .map
-        h6
-          font-weight: 700
-        .card
-          border-radius: 15px
-          border: none
-          .col-md-4
-            padding: 50px
-            h3
-              font-weight: 700
-              color: #f6a447
-              font-size: 22px
-            h4
-              font-weight: 700
-              font-size: 18px
-            .legend
-              p
-                font-size: 12px
-                .btn
-                  background-color: #f6a447
-                  padding: 1px 3px
-                  border: none
-                  color: #384e3f
-                  line-height: 10px
-                  font-size: 10px
-                  margin-left: 6px
-              .pattern
-                width: 15px
-                height: 25px
-                background-color: #384e3f
-                position: absolute
-                left: 0
-            // padding: 30px
-        .col-md-2
-          padding: 30px
-          h4
-            margin-top: 30px
-            font-weight: 700
-            font-size: 16px
-          .legend
-            p
-              font-size: 12px
-              .btn
-                background-color: #f6a447
-                padding: 1px 3px
-                border: none
-                color: #384e3f
-                line-height: 10px
-                font-size: 10px
-                margin-left: 6px
+      .boxes
+        margin-top: 50px
+        .box
+          margin-bottom: 70px
+          .title
+            margin-top: -50px
+            margin-left: 35px
             .pattern
               width: 15px
               height: 25px
-              background-color: #384e3f
+              background-color: #fff
               position: absolute
-              left: 0
-
+              left: 19px
+            h3
+              font-size: 22px
+              font-weight: 700
+              color: #fff
+          img
+            width: 100%
+      .partners
+        padding: 50px
+        img
+          max-width: 100%
+          max-height: 8vh
+        h3
+          color: #384e3f
+          font-weight: 700
+          font-size: 16px
+          margin-bottom: 20px
+        .row > div
+          margin-bottom: 30px
 </style>

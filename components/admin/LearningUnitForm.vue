@@ -67,7 +67,7 @@
               </b-col>
             </b-row>
           </b-tab>
-          <b-tab title="Disponibilidade de receber visitas">
+          <b-tab title="Disponibilidade de receber visitas" lazy>
             <b-row>
               <b-col md="12">
                 <b-form-group label="Gostaria de disponibilizar a área para visitas técnicas?">
@@ -86,7 +86,7 @@
               </b-col>
             </b-row>
           </b-tab>
-          <b-tab title="Diagnóstico e preparo da área">
+          <b-tab title="Diagnóstico e preparo da área" lazy>
             <h4>Histórico de Ocupação</h4>
             <br>
             <b-row>
@@ -252,7 +252,7 @@
               </b-col>
             </b-row>
           </b-tab>
-          <b-tab title="Plantio">
+          <b-tab title="Plantio" lazy>
             <b-row>
               <b-col md="6">
                 <b-form-group label="Estado">
@@ -260,7 +260,7 @@
                 </b-form-group>
               </b-col>
               <b-col md="6">
-                <b-form-group label="Cidade" v-if="form.state">
+                <b-form-group v-if="form.state" label="Cidade">
                   <b-form-select v-model="form.city" :options="cidades" />
                 </b-form-group>
               </b-col>
@@ -342,7 +342,9 @@
               </b-col>
             </b-row>
           </b-tab>
-          <b-tab title="Monitoramento e manejo"><p>I'm a disabled tab!</p></b-tab>
+          <b-tab title="Monitoramento e manejo" lazy>
+            <p>I'm a disabled tab!</p>
+          </b-tab>
         </b-tabs>
       </b-card>
       <br>
@@ -473,21 +475,21 @@ export default {
       if (this.learningUnit) {
         const learningUnit = await this.$axios.$put('/api/learning_units/' + this.learningUnit.slug, this.form).catch(this.showError)
         if (learningUnit) {
-          this.$toast.success('Unidade de aprendizado atualizada com sucesso!')
+          this.$toast.success('Unidade de aprendizagem atualizada com sucesso!')
           if (this.$auth.hasScope('super') || this.$auth.hasScope('admin')) {
             this.$router.push('/admin/learning_units')
           } else {
-            this.$router.push('/conta/unidades-de-aprendizado')
+            this.$router.push('/conta/unidades-de-aprendizagem')
           }
         }
       } else {
         const learningUnit = await this.$axios.$post('/api/learning_units', this.form).catch(this.showError)
         if (learningUnit) {
-          this.$toast.success('Unidade de aprendizado cadastrada com sucesso!')
+          this.$toast.success('Unidade de aprendizagem cadastrada com sucesso!')
           if (this.$auth.hasScope('super') || this.$auth.hasScope('admin')) {
             this.$router.push('/admin/learning_units')
           } else {
-            this.$router.push('/conta/unidades-de-aprendizado')
+            this.$router.push('/conta/unidades-de-aprendizagem')
           }
         }
       }

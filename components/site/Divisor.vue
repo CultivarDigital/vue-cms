@@ -23,11 +23,11 @@ export default {
     img
       width: 100%
       vertical-align: inherit
-    &.white-down
+    &.white-down, &.orange-down
       @media (max-width: 992px)
         margin-top: -5px
-    &.orange-up
-      margin-top: -20px
+    &.orange-up, &.green-up
+      margin-top: -19px
       @media (max-width: 992px)
         margin-top: -16px
 

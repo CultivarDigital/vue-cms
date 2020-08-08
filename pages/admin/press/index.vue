@@ -1,22 +1,22 @@
 <template>
-  <div class="create">
+  <div class="press">
     <b-breadcrumb :items="breadcrumb" />
-    <LearningUnitForm />
+    <PageForm slug="press" />
   </div>
 </template>
+
 <script>
-import LearningUnitForm from '@/components/admin/LearningUnitForm'
+import PageForm from '@/components/admin/PageForm'
 export default {
   layout: 'admin',
   components: {
-    LearningUnitForm
+    PageForm
   },
   data () {
     return {
       breadcrumb: [
         { text: 'Painel', to: '/admin' },
-        { text: 'Unidades de aprendizagem', to: '/admin/learning_units' },
-        { text: 'Cadastrar', active: true }
+        { text: 'Na imprensa', active: true }
       ]
     }
   }

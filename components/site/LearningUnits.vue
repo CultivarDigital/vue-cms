@@ -1,18 +1,17 @@
 <template>
-  <div class="posts-component pt-4">
-    <div v-for="post in posts" :key="post._id" md="4">
-      <nuxt-link :to="'/noticias/' + post.slug" tag="div" class="card">
+  <div class="learning-units-component pt-4">
+    <div v-for="learning_unit in learningUnits" :key="learning_unit._id" md="4">
+      <nuxt-link :to="'/unidades-de-aprendizagem/' + learning_unit.slug" tag="div" class="card">
         <div class="img">
-          <b-img :src="post.picture ? post.picture.average : null" :alt="post.title" class="card-img-top" />
+          <b-img :src="learning_unit.picture ? learning_unit.picture.average : null" :alt="learning_unit.title" class="card-img-top" />
         </div>
         <div class="card-body">
           <div class="pattern" />
           <div class="card-title">
-            <h3>{{ post.title }}</h3>
+            <h3>{{ learning_unit.title }}</h3>
           </div>
           <div class="card-text">
-            <p>{{ (post.description || stripHtml(post.content)) | truncate(1000) }}</p>
-            <tags :tags="post.tags" to="/noticias" :all-tags="false" />
+            <p>{{ (learning_unit.description || stripHtml(learning_unit.content)) | truncate(1000) }}</p>
           </div>
         </div>
       </nuxt-link>
@@ -21,13 +20,9 @@
 </template>
 
 <script>
-import Tags from '@/components/site/Tags'
 export default {
-  components: {
-    Tags
-  },
   props: {
-    posts: {
+    learningUnits: {
       type: Array,
       default: () => []
     }
@@ -43,7 +38,7 @@ export default {
 }
 </script>
 <style lang="sass">
-  .posts-component
+  .learning-units-component
     .card
       cursor: pointer
       border: none

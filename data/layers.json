@@ -1,0 +1,20 @@
+{
+   "learning_units": {
+      "status": true,
+      "title": "Unidades de Aprendizagem",
+      "description": "Recuperar vegetação nativa com alta eficácia e baixo custo",
+      "url": "/unidades-de-aprendizagem"
+   },
+   "service_providers": {
+      "status": true,
+      "title": "Prestadores de serviço",
+      "description": "Recuperar vegetação nativa com alta eficácia e baixo custo",
+      "url": "/prestadores-de-servico"
+   },
+   "seeds_networks": {
+      "status": true,
+      "title": "Redes de sementes",
+      "description": "Recuperar vegetação nativa com alta eficácia e baixo custo",
+      "url": "/redes-de-sementes"
+   }
+}

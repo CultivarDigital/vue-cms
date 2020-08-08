@@ -27,7 +27,7 @@ export default {
     this.learning_unit = await this.$axios.$get('/api/learning_units/' + this.$route.params.id).catch(this.showError)
     this.breadcrumb = [
       { text: 'Minha conta', to: '/conta' },
-      { text: 'Unidades de aprendizado', to: '/conta/unidades-de-aprendizado' },
+      { text: 'Unidades de aprendizagem', to: '/conta/unidades-de-aprendizagem' },
       { text: this.learning_unit.name, active: true }
     ]
   }

@@ -3,6 +3,14 @@
     <div v-show="show_content">
       <Header />
       <Nuxt />
+      <divisor variant="orange-down" />
+      <b-carousel class="banners-component">
+        <b-carousel-slide :img-src="require('~/assets/img/banner_biblioteca.png')">
+          <h2>Biblioteca</h2>
+          <p>O maior acervo online de semeadura direta no Brasil.</p>
+        </b-carousel-slide>
+      </b-carousel>
+      <divisor variant="green-up" />
       <Footer />
     </div>
   </div>
@@ -10,10 +18,12 @@
 <script>
 import Header from '@/components/site/Header'
 import Footer from '@/components/site/Footer'
+import Divisor from '@/components/site/Divisor'
 export default {
   components: {
     Header,
-    Footer
+    Footer,
+    Divisor
   },
   data () {
     return {

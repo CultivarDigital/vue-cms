@@ -5,10 +5,17 @@ pre
     vertical-align: middle !important
 a
   cursor: pointer
+  &:hover
+    text-decoration: none
 .default-layout
   font-family: 'Arvo', serif
   color: #384e3f
-
+  .content
+    background-color: #f6a447
+  .card
+    box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.2)
+    border: none
+    border-radius: 15px
   .navbar-dark .navbar-nav .nav-link
     color: #fff
   .btn-primary
@@ -18,45 +25,22 @@ a
     margin-top: 20px
     a, .active
       color: #fff
-  .banners
-    .carousel-caption
-      height: 100%
-      display: flex
-      align-content: center
-      align-items: center
-      margin-bottom: -20px
-      h2
-        font-weight: 700
-        font-size: 26px
-        @media (max-width: 768px)
-          font-size: 18px
-        @media (max-width: 576px)
-          font-size: 14px
-    .carousel-indicators
-      bottom: 10px
-      li
-        width: 6px
-        height: 6px
-        background-color: transparent
-        border: 1px solid #fff
-        border-radius: 100%
-
   .quill-content
     background-color: #fff
     border-radius: 20px
-    padding: 20px
+    padding: 50px
     p
       margin-bottom: 0
     p:first-child img
       border-bottom-left-radius: 0
       border-bottom-right-radius: 0
-      margin: -20px -20px 0 -20px
+      margin: -50px -50px 0 -50px
       width: calc(100% + 40px)
       max-width: calc(100% + 40px)
     p:last-child img
       border-top-left-radius: 0
       border-top-right-radius: 0
-      margin: 0 -20px -20px -20px
+      margin: 0 -50px -50px -50px
       width: calc(100% + 40px)
       max-width: calc(100% + 40px)
     img

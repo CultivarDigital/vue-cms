@@ -20,9 +20,9 @@
                     <b-dropdown-item to="/biblioteca">Biblioteca</b-dropdown-item>
                   </b-nav-item-dropdown> -->
             <b-nav-item @click="$scrollTo('footer')">Contato</b-nav-item>
-            <b-nav-item to="/conta" class="btn-login" v-if="!$auth.loggedIn">Login / Cadastro</b-nav-item>
-            <b-nav-item to="/conta" class="btn-login" v-else-if="$auth.hasScope('user')">Minha conta</b-nav-item>
-            <b-nav-item to="/admin" class="btn-login" v-else>Painel</b-nav-item>
+            <b-nav-item v-if="!$auth.loggedIn" to="/conta" class="btn-login">Login / Cadastro</b-nav-item>
+            <b-nav-item v-else-if="$auth.hasScope('user')" to="/conta" class="btn-login">Minha conta</b-nav-item>
+            <b-nav-item v-else to="/admin" class="btn-login">Painel</b-nav-item>
           </b-navbar-nav>
         </b-collapse>
       </b-container>

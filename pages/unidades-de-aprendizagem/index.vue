@@ -1,5 +1,5 @@
 <template>
-  <div v-if="page" class="posts-page">
+  <div v-if="page" class="unidades-de-aprendizagem-page">
     <banners :items="page.pictures" />
     <section class="content pb-5">
       <b-container>
@@ -9,8 +9,8 @@
         <div>
           <b-row>
             <b-col md="9">
-              <Posts :posts="posts" />
-              <h3 v-if="posts.length === 0" class="text-center">Nenhuma notícia encontrada</h3>
+              <LearningUnits :learning-units="learning_units" />
+              <h3 v-if="learning_units.length === 0" class="text-center">Nenhuma notícia encontrada</h3>
             </b-col>
             <b-col md="3">
               <h3 class="mt-3">Assuntos</h3>
@@ -26,30 +26,30 @@
 <script>
 import mixinGlobal from '@/mixins/global'
 import mixinPage from '@/mixins/page'
-import Posts from '@/components/site/Posts'
+import LearningUnits from '@/components/site/LearningUnits'
 import Tags from '@/components/site/Tags'
 import Banners from '@/components/site/Banners'
 export default {
   components: {
-    Posts,
+    LearningUnits,
     Tags,
     Banners
   },
   mixins: [mixinGlobal, mixinPage],
   data () {
     return {
-      page_id: 'posts'
+      page_id: 'learning_units'
     }
   },
   computed: {
-    posts () {
-      let posts = this.site.posts
+    learning_units () {
+      let learningUnits = this.site.learning_units
       if (this.$route.query.tag) {
-        posts = posts.filter(post => {
-          return post.tags.find(tag => tag.slug === this.$route.query.tag)
+        learningUnits = learningUnits.filter(learningUnit => {
+          return learningUnit.tags.find(tag => tag.slug === this.$route.query.tag)
         })
       }
-      return posts
+      return learningUnits
     }
   },
   head () {

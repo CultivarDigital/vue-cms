@@ -27,7 +27,7 @@ export default {
     this.learning_unit = await this.$axios.$get('/api/learning_units/' + this.$route.params.id).catch(this.showError)
     this.breadcrumb = [
       { text: 'Painel', to: '/admin' },
-      { text: 'Unidades de aprendizado', to: '/admin/learning_units' },
+      { text: 'Unidades de aprendizagem', to: '/admin/learning_units' },
       { text: this.learning_unit.name, active: true }
     ]
   }

@@ -73,6 +73,11 @@ router.get('/site', function(req, res) {
       options: { sort: 'name' },
     })
     .populate({
+      path: 'tags',
+      model: 'Tag',
+      options: { sort: 'name' },
+    })
+    .populate({
       path: 'posts',
       model: 'Post',
       options: { sort: { createdAt: -1 } },

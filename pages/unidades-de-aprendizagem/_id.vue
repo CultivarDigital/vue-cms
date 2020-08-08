@@ -1,19 +1,19 @@
 <template>
-  <div v-if="post" class="post-page">
-    <banners :items="[post.picture]" />
+  <div v-if="learning_unit" class="learning-unit-page">
+    <banners :items="[learning_unit.picture]" />
     <section class="content pb-5">
       <b-container>
-        <h1 class="title pt-5">{{ post.title }}</h1>
-        <p v-if="post.description">{{ post.description }}</p>
+        <h1 class="title pt-5">{{ learning_unit.title }}</h1>
+        <p v-if="learning_unit.description">{{ learning_unit.description }}</p>
         <b-row>
           <b-col md="9">
             <div class="quill-content mt-4">
-              <div v-if="post.content" v-html="post.content" />
+              <div v-if="learning_unit.content" v-html="learning_unit.content" />
             </div>
           </b-col>
           <b-col md="3">
             <h3 class="mt-3">Assuntos</h3>
-            <tags :tags="post.tags.length > 0 ? post.tags : site.tags" to="/noticias" />
+            <tags :tags="learning_unit.tags.length > 0 ? learning_unit.tags : site.tags" to="/noticias" />
           </b-col>
         </b-row>
       </b-container>
@@ -32,17 +32,17 @@ export default {
   mixins: [mixinGlobal, mixinPage],
   data () {
     return {
-      page_id: 'posts'
+      page_id: 'learning_units'
     }
   },
   computed: {
-    post () {
-      return this.site.posts.find(post => post.slug === this.$route.params.id)
+    learning_unit () {
+      return this.site.learning_units.find(learningUnit => learningUnit.slug === this.$route.params.id)
     }
   },
   head () {
     return {
-      title: this.post.title + ' - Unidades de Aprendizagem - ' + this.site.name,
+      title: this.post.title + ' - Notícias - ' + this.site.name,
       meta: [
         { hid: 'description', name: 'description', content: this.post.description || this.site.description }
       ]
@@ -51,7 +51,7 @@ export default {
 }
 </script>
 <style lang="sass">
-  .post-page
+  .learning-unit-page
     .content
       background-color: #f6a447
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="tags-component">
-    <b-button v-if="$route.query.tag" :to="linkTo()" @click="clicked(null)">
+    <b-button v-if="$route.query.tag && allTags" :to="linkTo()" @click="clicked(null)">
       Todas as tags
     </b-button>
     <b-button v-for="tag in tags" :key="tag._id" :to="linkTo(tag)" size="sm" :class="{ active: ($route.query.tag === tag.slug)}" @click="clicked(tag)">
@@ -18,6 +18,10 @@ export default {
     tags: {
       type: Array,
       default: () => []
+    },
+    allTags: {
+      type: Boolean,
+      default: true
     }
   },
   methods: {
@@ -40,13 +44,17 @@ export default {
 <style lang="sass">
   .tags-component
     .btn
-      background-color: transparent
-      border-color: #eed6b6
-      color: #eed6b6
-      margin: 10px
+      background-color: #fff
+      border-color: #fff
+      color: #384e3f
+      margin: 10px 0
       font-size: 12px
-      padding: 10px 30px
-      border-radius: 7px
-      font-family: 'Titillium Web', sans-serif
-      text-transform: uppercase
+      padding: 7px 10px
+      border-radius: 5px
+      font-weight: bold
+      width: 100%
+      &.active
+        background-color: #384e3f !important
+        border-color: #384e3f !important
+        color: #fff !important
 </style>

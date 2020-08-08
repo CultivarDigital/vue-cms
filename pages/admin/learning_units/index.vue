@@ -49,7 +49,7 @@ export default {
       learning_units: null,
       breadcrumb: [
         { text: 'Painel', to: '/admin' },
-        { text: 'Unidades de aprendizado', active: true }
+        { text: 'Unidades de aprendizagem', active: true }
       ],
       table: [
         { key: 'name', label: 'Nome' },
@@ -90,7 +90,7 @@ export default {
         if (confirmed) {
           await this.$axios.delete('/api/learning_units/' + learningUnit.slug).then(() => {
             this.list()
-            this.$toast.success('Unidade de aprendizado removida com sucesso!')
+            this.$toast.success('Unidade de aprendizagem removida com sucesso!')
           }).catch(this.showError)
         }
       })
@@ -98,7 +98,7 @@ export default {
     async approve (learningUnit) {
       await this.$axios.put('/api/learning_units/' + learningUnit.slug, { status: 'approved' }).then(() => {
         this.list()
-        this.$toast.success('Unidade de aprendizado aprovada com sucesso!')
+        this.$toast.success('Unidade de aprendizagem aprovada com sucesso!')
       }).catch(this.showError)
     }
   }
