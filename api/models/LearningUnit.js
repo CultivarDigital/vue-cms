@@ -91,6 +91,21 @@ const LearningUnitSchema = mongoose.Schema({
   seeds_planted: Number,
   seeds_investment: Number,
 
+  native_seeds_source: String,
+  green_adubation_planted: Number,
+  green_adubation_investment: Number,
+  seedlings_planted: Number,
+  seedlings_investment: Number,
+  total_planting_cost: Number,
+  planting_observations: String,
+
+  monitoring_date: Date,
+  trees_established_per_hectare: Number,
+  species_established_in_total_area: Number,
+  percentage_of_canopy_coverage: Number,
+  percentage_of_soil_coverage: Number,
+  monitoring_notes: String
+
 }, {
   timestamps: true,
   toJSON: { virtuals: true }

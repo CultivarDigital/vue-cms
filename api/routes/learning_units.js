@@ -38,9 +38,9 @@ router.post('/', auth.authenticated, (req, res) => {
   const newLearningUnit = new LearningUnit(req.body)
   newLearningUnit.site = req.payload.site
   newLearningUnit.slug = slugify(newLearningUnit.name).toLowerCase()
+  newLearningUnit.user = req.payload.id
 
   if (req.payload.roles.includes('user')) {
-    newLearningUnit.user = req.payload.id
     newLearningUnit.status = 'pending'
   } else {
     newLearningUnit.status = 'approved'
@@ -58,7 +58,7 @@ router.post('/', auth.authenticated, (req, res) => {
 router.put('/:id', auth.authenticated, (req, res) => {
   const params = req.body
   if (params.name) {
-    params.slug = slugify(params.name).toLowerCase()    
+    params.slug = slugify(params.name).toLowerCase()
   }
   LearningUnit.findOneAndUpdate({
     slug: req.params.id
