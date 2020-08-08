@@ -25,6 +25,10 @@ const LearningUnitSchema = mongoose.Schema({
     type: String,
     required: true
   },
+  description: {
+    type: String,
+    required: true
+  },
   planting_time: {
     type: String,
     required: true

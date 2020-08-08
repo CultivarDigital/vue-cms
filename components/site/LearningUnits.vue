@@ -1,22 +1,31 @@
 <template>
-  <div class="learning-units-component pt-4">
-    <div v-for="learning_unit in learningUnits" :key="learning_unit._id" md="4">
+  <b-row class="learning-units-component pt-4">
+    <b-col v-for="learning_unit in learningUnits" :key="learning_unit._id" md="4">
       <nuxt-link :to="'/unidades-de-aprendizagem/' + learning_unit.slug" tag="div" class="card">
         <div class="img">
-          <b-img :src="learning_unit.picture ? learning_unit.picture.average : null" :alt="learning_unit.title" class="card-img-top" />
+          <b-img :src="learning_unit.pictures && learning_unit.pictures.length ? learning_unit.pictures[0].average : null" :alt="learning_unit.name" class="card-img-top" />
         </div>
         <div class="card-body">
-          <div class="pattern" />
           <div class="card-title">
-            <h3>{{ learning_unit.title }}</h3>
+            <h3>Plantio</h3>
           </div>
           <div class="card-text">
+            <p v-if="learning_unit.planting_time"><strong>Data:</strong>{{ learning_unit.planting_time }}</p>
+            <p vplanting_timeif="learning_unit.area_size"><strong>Área:</strong> {{ learning_unit.area_size }} hectares</p>
+            <p v-if="learning_unit.address && learning_unit.address.location && learning_unit.address.location.coordinates">
+              <strong>Local:</strong>
+              {{ learning_unit.address.location.coordinates[0] }}, {{ learning_unit.address.location.coordinates[1] }}
+            </p>
+            <h4>{{ learning_unit.name }}</h4>
             <p>{{ (learning_unit.description || stripHtml(learning_unit.content)) | truncate(1000) }}</p>
+            <n-link class="btn btn-primary" :to="'/unidades-de-aprendizagem/' + learning_unit.slug">
+                Saiba mais
+            </n-link>
           </div>
         </div>
       </nuxt-link>
-    </div>
-  </div>
+    </b-col>
+  </b-row>
 </template>
 
 <script>
@@ -46,37 +55,38 @@ export default {
       background-color: #fff
       margin-bottom: 15px
       border-radius: 15px
+      min-height: calc(100% - 15px)
       .img
         overflow-y: hidden
       .card-img-top
         border-top-left-radius: 15px
         border-top-right-radius: 15px
       .card-body
-        padding: 50px
-        .pattern
-          width: 15px
-          height: 25px
-          background-color: #384e3f
-          position: absolute
-          left: 0
+        padding: 20px
         .card-title
-          padding: 10px 20px
-          margin: -20px
-          margin-bottom: 20px
           h3
-            color: #394e3f
-            font-size: 24px
+            color: #fff
+            background-color: #e0a15d
+            font-size: 14px
             font-weight: 700
+            border-radius: 5px
+            padding: 5px 15px
+            width: 100%
         .card-text
           font-size: 14px
           font-family: 'Titillium Web', sans-serif
-          .tags-component
-            .btn
-              background-color: #384e3f
-              border-color: #384e3f
-              color: #fff
-              width: auto
-              margin: 5px 5px 0 0
-              text-transform: none
-
+          padding: 10px
+          p
+            margin: 0
+            font-size: 12px
+          h4
+            color: #384e3f
+            font-size: 14px
+            font-weight: bold
+            margin: 15px 0
+          .btn-primary
+            background-color: #384e3f
+            font-size: 12px
+            text-transform: uppercase
+            padding: 10px 15px
 </style>

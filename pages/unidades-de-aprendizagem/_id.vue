@@ -1,21 +1,18 @@
 <template>
   <div v-if="learning_unit" class="learning-unit-page">
-    <banners :items="[learning_unit.picture]" />
+    <banners :items="learning_unit.pictures" />
     <section class="content pb-5">
       <b-container>
-        <h1 class="title pt-5">{{ learning_unit.title }}</h1>
+        <h1 class="title pt-5">{{ learning_unit.name }}</h1>
         <p v-if="learning_unit.description">{{ learning_unit.description }}</p>
-        <b-row>
-          <b-col md="9">
-            <div class="quill-content mt-4">
-              <div v-if="learning_unit.content" v-html="learning_unit.content" />
-            </div>
-          </b-col>
-          <b-col md="3">
-            <h3 class="mt-3">Assuntos</h3>
-            <tags :tags="learning_unit.tags.length > 0 ? learning_unit.tags : site.tags" to="/noticias" />
-          </b-col>
-        </b-row>
+        <div class="quill-content mt-4">
+          <p v-if="learning_unit.planting_time"><strong>Data:</strong>{{ learning_unit.planting_time }}</p>
+          <p vplanting_timeif="learning_unit.area_size"><strong>Área:</strong> {{ learning_unit.area_size }} hectares</p>
+          <p v-if="learning_unit.address && learning_unit.address.location && learning_unit.address.location.coordinates">
+            <strong>Local:</strong>
+            {{ learning_unit.address.location.coordinates[0] }}, {{ learning_unit.address.location.coordinates[1] }}
+          </p>
+        </div>
       </b-container>
     </section>
   </div>
@@ -42,16 +39,11 @@ export default {
   },
   head () {
     return {
-      title: this.post.title + ' - Notícias - ' + this.site.name,
+      title: this.learning_unit.name + ' - Notícias - ' + this.site.name,
       meta: [
-        { hid: 'description', name: 'description', content: this.post.description || this.site.description }
+        { hid: 'description', name: 'description', content: this.learning_unit.description || this.site.description }
       ]
     }
   }
 }
 </script>
-<style lang="sass">
-  .learning-unit-page
-    .content
-      background-color: #f6a447
-</style>

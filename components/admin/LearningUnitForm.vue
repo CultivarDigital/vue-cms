@@ -13,6 +13,14 @@
                   </validation-provider>
                 </b-form-group>
               </b-col>
+              <b-col md="12">
+                <b-form-group label="Descrição básica *">
+                  <validation-provider v-slot="{ errors }" name="descrição" rules="required">
+                    <b-form-textarea v-model="form.description" name="description" />
+                    <span class="text-danger">{{ errors[0] }}</span>
+                  </validation-provider>
+                </b-form-group>
+              </b-col>
               <b-col md="6">
                 <b-form-group label="Mês e Ano de plantio *">
                   <validation-provider v-slot="{ errors }" name="época de plantio" rules="required">
@@ -387,6 +395,7 @@ export default {
       estados,
       form: {
         name: '',
+        description: '',
         planting_time: '',
         area_size: null,
         address: {

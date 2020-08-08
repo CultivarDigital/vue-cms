@@ -4,6 +4,9 @@
     <PageForm v-if="show_page_form" slug="learning_units" @cancel="show_page_form = !show_page_form" />
     <div v-else>
       <div class="text-right mb-3">
+        <b-button @click="show_page_form = !show_page_form">
+          Configurar página
+        </b-button>
         <b-button variant="primary" to="/admin/learning_units/new">
           Cadastrar
         </b-button>
