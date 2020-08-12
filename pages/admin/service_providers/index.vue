@@ -1,20 +1,20 @@
 <template>
-  <div class="learning_units">
+  <div class="service_providers">
     <b-breadcrumb :items="breadcrumb" />
-    <PageForm v-if="show_page_form" slug="learning_units" @cancel="show_page_form = !show_page_form" />
+    <PageForm v-if="show_page_form" slug="service_providers" @cancel="show_page_form = !show_page_form" />
     <div v-else>
       <div class="text-right mb-3">
         <b-button @click="show_page_form = !show_page_form">
           Configurar página
         </b-button>
-        <b-button variant="primary" to="/admin/learning_units/new">
+        <b-button variant="primary" to="/admin/service_providers/new">
           Cadastrar
         </b-button>
       </div>
-      <div v-if="learning_units">
-        <b-table v-if="learning_units.length" :fields="table" :items="learning_units" responsive="sm">
+      <div v-if="service_providers">
+        <b-table v-if="service_providers.length" :fields="table" :items="service_providers" responsive="sm">
           <template v-slot:cell(actions)="data">
-            <n-link class="btn btn-info btn-sm" :to="'/admin/learning_units/' + data.item.slug + '/edit'">
+            <n-link class="btn btn-info btn-sm" :to="'/admin/service_providers/' + data.item.slug + '/edit'">
               <b-icon-pencil />
             </n-link>
             <b-button variant="danger" size="sm" @click="remove(data.item)">
@@ -23,9 +23,6 @@
             <b-button v-if="data.item.status !== 'approved'" variant="primary" size="sm" @click="approve(data.item)">
               Aprovar
             </b-button>
-          </template>
-          <template v-slot:cell(area_size)="data">
-            <span v-if="data.value">{{ data.value }} hectares</span>
           </template>
         </b-table>
         <b-alert v-else show variant="dark" class="text-center">Nenhum item encontrado</b-alert>
@@ -49,15 +46,14 @@ export default {
   data () {
     return {
       show_page_form: false,
-      learning_units: null,
+      service_providers: null,
       breadcrumb: [
         { text: 'Painel', to: '/admin' },
-        { text: 'Unidades de aprendizagem', active: true }
+        { text: 'Prestadores de serviço', active: true }
       ],
       table: [
         { key: 'name', label: 'Nome' },
-        { key: 'area_size', label: 'Tamanho da área' },
-        { key: 'planting_time', label: 'Mês/Ano do plantio' },
+        { key: 'description', label: 'Descrição' },
         { key: 'actions', label: '', class: 'text-right' }
       ]
     }
@@ -67,22 +63,22 @@ export default {
   },
   methods: {
     async list () {
-      this.learning_units = await this.$axios.$get('/api/learning_units').catch(this.showError)
+      this.service_providers = await this.$axios.$get('/api/service_providers').catch(this.showError)
     },
-    remove (learningUnit) {
+    remove (serviceProvider) {
       this.$bvModal.msgBoxConfirm('Tem certeza que deseja excluír este ítem?').then(async confirmed => {
         if (confirmed) {
-          await this.$axios.delete('/api/learning_units/' + learningUnit.slug).then(() => {
+          await this.$axios.delete('/api/service_providers/' + serviceProvider.slug).then(() => {
             this.list()
-            this.$toast.success('Unidade de aprendizagem removida com sucesso!')
+            this.$toast.success('Provedor de serviço removido com sucesso!')
           }).catch(this.showError)
         }
       })
     },
-    async approve (learningUnit) {
-      await this.$axios.put('/api/learning_units/' + learningUnit.slug, { status: 'approved' }).then(() => {
+    async approve (serviceProvider) {
+      await this.$axios.put('/api/service_providers/' + serviceProvider.slug, { status: 'approved' }).then(() => {
         this.list()
-        this.$toast.success('Unidade de aprendizagem aprovada com sucesso!')
+        this.$toast.success('Provedor de serviço aprovado com sucesso!')
       }).catch(this.showError)
     }
   }

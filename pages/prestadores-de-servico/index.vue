@@ -1,21 +1,14 @@
 <template>
-  <div v-if="page" class="posts-page">
+  <div v-if="page" class="prestadores-de-servico-page">
+    <banners :items="page.pictures" />
     <section class="content pb-5">
       <b-container>
         <h1 v-if="page.title" class="title pt-5">{{ page.title }}</h1>
         <p v-if="page.description">{{ page.description }}</p>
         <div v-if="page.content" class="quill-content mt-4" v-html="page.content" />
         <div>
-          <b-row>
-            <b-col md="9">
-              <Posts :posts="posts" />
-              <h3 v-if="posts.length === 0" class="text-center">Nenhuma notícia encontrada</h3>
-            </b-col>
-            <b-col md="3">
-              <h3 class="mt-3">Tags</h3>
-              <tags :to="$route.path" />
-            </b-col>
-          </b-row>
+          <ServiceProviders :service-providers="service_providers" />
+          <h3 v-if="service_providers.length === 0" class="text-center">Nenhuma notícia encontrada</h3>
         </div>
       </b-container>
     </section>
@@ -25,33 +18,33 @@
 <script>
 import mixinGlobal from '@/mixins/global'
 import mixinPage from '@/mixins/page'
-import Posts from '@/components/site/Posts'
-import Tags from '@/components/site/Tags'
+import ServiceProviders from '@/components/site/ServiceProviders'
+import Banners from '@/components/site/Banners'
 export default {
   components: {
-    Posts,
-    Tags
+    ServiceProviders,
+    Banners
   },
   mixins: [mixinGlobal, mixinPage],
   data () {
     return {
-      page_id: 'posts'
+      page_id: 'service_providers'
     }
   },
   computed: {
-    posts () {
-      let posts = this.site.posts
+    service_providers () {
+      let learningUnits = this.site.service_providers
       if (this.$route.query.tag) {
-        posts = posts.filter(post => {
-          return post.tags.find(tag => tag.slug === this.$route.query.tag)
+        learningUnits = learningUnits.filter(learningUnit => {
+          return learningUnit.tags.find(tag => tag.slug === this.$route.query.tag)
         })
       }
-      return posts
+      return learningUnits
     }
   },
   head () {
     return {
-      title: 'Notícias - ' + this.site.name,
+      title: 'Prestadores de serviço - ' + this.site.name,
       meta: [
         { hid: 'description', name: 'description', content: this.page.description || this.site.description }
       ]

@@ -2,15 +2,14 @@
   <footer v-if="site">
     <b-container fluid="lg">
       <b-row>
-        <b-col sm="3">
+        <b-col sm="2">
           <n-link to="/"><b-img src="~assets/img/logo-branca.png" /></n-link>
         </b-col>
-        <b-col sm="3">
+        <b-col sm="4">
           {{ site.contact }}
         </b-col>
         <b-col sm="6">
-          <a :href="'mailto:' + site.email">{{ site.email }}</a>
-          &nbsp;
+          <newsletter />
         </b-col>
       </b-row>
     </b-container>
@@ -29,15 +28,16 @@ export default {
   footer
     background-color: #394e3f
     color: #fff
-    padding: 20px 0
+    padding: 70px 0
     a
       color: #fff
     img
       height: 40px
     .row > div
-      display: flex
-      align-items: center
-      &.col-sm-3
+      // display: flex
+      // align-items: center
+      &.col-sm-4
         font-size: 11px
-      &.col-sm-6
+        white-space: pre-line
+        margin-top: -20px
 </style>

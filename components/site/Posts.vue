@@ -1,22 +1,24 @@
 <template>
   <div class="posts-component pt-4">
-    <div v-for="post in posts" :key="post._id" md="4">
-      <nuxt-link :to="'/noticias/' + post.slug" tag="div" class="card">
-        <div class="img">
-          <b-img :src="post.picture ? post.picture.average : null" :alt="post.title" class="card-img-top" />
-        </div>
-        <div class="card-body">
-          <div class="pattern" />
-          <div class="card-title">
-            <h3>{{ post.title }}</h3>
+    <b-row>
+      <b-col v-for="post in posts" :key="post._id" lg="6">
+        <nuxt-link :to="'/noticias/' + post.slug" tag="div" class="card">
+          <div class="img">
+            <b-img :src="post.picture ? post.picture.average : null" :alt="post.title" class="card-img-top" />
           </div>
-          <div class="card-text">
-            <p>{{ (post.description || stripHtml(post.content)) | truncate(1000) }}</p>
-            <tags :tags="post.tags" to="/noticias" :all-tags="false" />
+          <div class="card-body">
+            <div class="pattern" />
+            <div class="card-title">
+              <h3>{{ post.title }}</h3>
+            </div>
+            <div class="card-text">
+              <p>{{ (post.description || stripHtml(post.content)) | truncate(1000) }}</p>
+              <tags :tags="post.tags" to="/noticias" :all-tags="false" />
+            </div>
           </div>
-        </div>
-      </nuxt-link>
-    </div>
+        </nuxt-link>
+      </b-col>
+    </b-row>
   </div>
 </template>
 
@@ -35,9 +37,6 @@ export default {
   methods: {
     stripHtml: (html) => {
       return html ? html.replace(/<\/?[^>]+(>|$)/g, '') : ''
-    },
-    filter(tag) {
-      this.$router.push(this.$route.path + '?tag=' + tag.slug)
     }
   }
 }
@@ -51,6 +50,7 @@ export default {
       background-color: #fff
       margin-bottom: 15px
       border-radius: 15px
+      min-height: calc(100% - 15px)
       .img
         overflow-y: hidden
       .card-img-top

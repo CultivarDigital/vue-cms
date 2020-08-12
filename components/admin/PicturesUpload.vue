@@ -17,7 +17,7 @@
               <b-button v-if="(image.default || (index === 0 && !hasDefault))" class="btn btn-success btn-sm" @click="setDefault(index)"><b-icon-check /> Capa </b-button>
               <b-button v-else class="btn btn-default btn-sm" @click="setDefault(index)"> Capa</b-button>
             </span>
-            <b-button class="btn btn-sm" @click="deleteImage(index)"><b-icon-trash /> Remover</b-button>
+            <b-button class="btn btn-sm" @click="deleteImage(index)"><b-icon-trash /></b-button>
           </p>
         </b-col>
       </b-row>
@@ -28,7 +28,7 @@
           </div>
           <b-form-input v-model="form[field].title" placeholder="Título da imagem" />
           <br>
-          <b-button class="btn btn-sm" @click="deleteImage()"><b-icon-trash /> Remover</b-button>
+          <b-button class="btn btn-sm" @click="deleteImage()"><b-icon-trash /></b-button>
         </b-col>
       </b-row>
       <br>

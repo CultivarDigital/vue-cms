@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const router = express.Router()
 const slugify = require('slugify')
 const auth = require('../config/auth')
-const LearningUnit = mongoose.model('LearningUnit')
+const ServiceProvider = mongoose.model('ServiceProvider')
 
 router.get('/', (req, res) => {
   const query = {}
@@ -13,44 +13,44 @@ router.get('/', (req, res) => {
   if (req.query.status) {
     query.status = req.query.status
   }
-  LearningUnit.find(query).populate(req.query.populate).sort('order').exec((err, learningUnits) => {
+  ServiceProvider.find(query).populate(req.query.populate).sort('order').exec((err, serviceProviders) => {
     if (err) {
       res.status(422).send(err.message)
     } else {
-      res.json(learningUnits)
+      res.json(serviceProviders)
     }
   })
 })
 
 router.get('/:id', (req, res) => {
-  LearningUnit.findOne({
+  ServiceProvider.findOne({
     slug: req.params.id
-  }).exec((err, learningUnit) => {
+  }).exec((err, serviceProvider) => {
     if (err) {
       res.status(422).send(err.message)
     } else {
-      res.json(learningUnit)
+      res.json(serviceProvider)
     }
   })
 })
 
 router.post('/', auth.authenticated, (req, res) => {
-  const newLearningUnit = new LearningUnit(req.body)
-  newLearningUnit.site = req.payload.site
-  newLearningUnit.slug = slugify(newLearningUnit.name).toLowerCase()
-  newLearningUnit.user = req.payload.id
+  const newServiceProvider = new ServiceProvider(req.body)
+  newServiceProvider.site = req.payload.site
+  newServiceProvider.slug = slugify(newServiceProvider.name).toLowerCase()
+  newServiceProvider.user = req.payload.id
 
   if (req.payload.roles.includes('user')) {
-    newLearningUnit.status = 'pending'
+    newServiceProvider.status = 'pending'
   } else {
-    newLearningUnit.status = 'approved'
+    newServiceProvider.status = 'approved'
   }
 
-  newLearningUnit.save((err, learningUnit) => {
+  newServiceProvider.save((err, serviceProvider) => {
     if (err) {
       res.status(422).send(err.message)
     } else {
-      res.send(learningUnit)
+      res.send(serviceProvider)
     }
   })
 })
@@ -60,30 +60,30 @@ router.put('/:id', auth.authenticated, (req, res) => {
   if (params.name) {
     params.slug = slugify(params.name).toLowerCase()
   }
-  LearningUnit.findOneAndUpdate({
+  ServiceProvider.findOneAndUpdate({
     slug: req.params.id
   }, {
     $set: params
   }, {
     upsert: true
-  }, (err, learningUnit) => {
+  }, (err, serviceProvider) => {
     if (err) {
       res.status(422).send(err.message)
     } else {
-      res.send(learningUnit)
+      res.send(serviceProvider)
     }
   })
 })
 
 router.delete('/:id', auth.authenticated, (req, res) => {
-  LearningUnit.findOne({
+  ServiceProvider.findOne({
     slug: req.params.id
-  }).exec((err, learningUnit) => {
+  }).exec((err, serviceProvider) => {
     if (err) {
       res.status(422).send(err.message)
     } else {
-      learningUnit.remove()
-      res.send(learningUnit)
+      serviceProvider.remove()
+      res.send(serviceProvider)
     }
   })
 })

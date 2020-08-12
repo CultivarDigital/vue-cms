@@ -7,19 +7,19 @@
         </div>
         <div class="card-body">
           <div class="card-title">
-            <h3>Plantio</h3>
+            <h3>{{ learning_unit.name }}</h3>
           </div>
           <div class="card-text">
-            <p v-if="learning_unit.planting_time"><strong>Data:</strong>{{ learning_unit.planting_time }}</p>
-            <p vplanting_timeif="learning_unit.area_size"><strong>Área:</strong> {{ learning_unit.area_size }} hectares</p>
+            <p v-if="learning_unit.planting_time"><strong>Data do plantio:</strong>{{ learning_unit.planting_time }}</p>
+            <p v-if="learning_unit.area_size"><strong>Área:</strong> {{ learning_unit.area_size }} hectares</p>
             <p v-if="learning_unit.address && learning_unit.address.location && learning_unit.address.location.coordinates">
               <strong>Local:</strong>
               {{ learning_unit.address.location.coordinates[0] }}, {{ learning_unit.address.location.coordinates[1] }}
             </p>
-            <h4>{{ learning_unit.name }}</h4>
-            <p>{{ (learning_unit.description || stripHtml(learning_unit.content)) | truncate(1000) }}</p>
+            <p><br>{{ (learning_unit.description || stripHtml(learning_unit.content)) | truncate(1000) }}</p>
+            <br>
             <n-link class="btn btn-primary" :to="'/unidades-de-aprendizagem/' + learning_unit.slug">
-                Saiba mais
+              Saiba mais
             </n-link>
           </div>
         </div>
@@ -39,9 +39,6 @@ export default {
   methods: {
     stripHtml: (html) => {
       return html ? html.replace(/<\/?[^>]+(>|$)/g, '') : ''
-    },
-    filter(tag) {
-      this.$router.push(this.$route.path + '?tag=' + tag.slug)
     }
   }
 }
@@ -61,6 +58,9 @@ export default {
       .card-img-top
         border-top-left-radius: 15px
         border-top-right-radius: 15px
+        @media (min-width: 768px)
+          max-height: 17vw
+
       .card-body
         padding: 20px
         .card-title

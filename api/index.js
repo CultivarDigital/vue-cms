@@ -7,6 +7,8 @@ require('./models/Tag')
 require('./models/Village')
 require('./models/Page')
 require('./models/LearningUnit')
+require('./models/ServiceProvider')
+require('./models/Newsletter')
 require('./config/passport')
 
 const express = require('express')
@@ -17,6 +19,7 @@ const session = require('express-session')
 const mongoose = require('mongoose')
 const User = mongoose.model('User')
 const Site = mongoose.model('Site')
+const Newsletter = mongoose.model('Newsletter')
 const auth = require('./config/auth')
 
 const isProduction = process.env.NODE_ENV === 'production'
@@ -53,6 +56,7 @@ router.use('/tags', require('./routes/tags'))
 router.use('/villages', require('./routes/villages'))
 router.use('/pages', require('./routes/pages'))
 router.use('/learning_units', require('./routes/learning_units'))
+router.use('/service_providers', require('./routes/service_providers'))
 
 router.get('/profile', auth.authenticated, function(req, res) {
   User.findById(req.payload.id).populate('site').exec(function(err, user) {
@@ -64,18 +68,38 @@ router.get('/profile', auth.authenticated, function(req, res) {
   })
 })
 
+
+router.post('/newsletter', async (req, res) => {
+  const newsletter = new Newsletter()
+
+  newsletter.site = req.body.site
+  newsletter.name = req.body.name
+  newsletter.email = req.body.email
+
+  newsletter.save().then(() => {
+    res.json(newsletter)
+  }).catch(err => {
+    res.status(422).send(err.message)
+  })
+})
+
 router.get('/site', function(req, res) {
   Site.findOne({ domain_name: req.headers.host })
     .populate('pages')
     .populate({
       path: 'learning_units',
       model: 'LearningUnit',
-      options: { sort: 'name' },
+      options: { sort: 'name' }
+    })
+    .populate({
+      path: 'service_providers',
+      model: 'ServiceProvider',
+      options: { sort: 'name' }
     })
     .populate({
       path: 'tags',
       model: 'Tag',
-      options: { sort: 'name' },
+      options: { sort: 'name' }
     })
     .populate({
       path: 'posts',
@@ -83,7 +107,8 @@ router.get('/site', function(req, res) {
       options: { sort: { createdAt: -1 } },
       populate: [{
         path: 'tags',
-        model: 'Tag'
+        model: 'Tag',
+        select: 'slug name'
       }]
     })
     .exec(function(err, site) {

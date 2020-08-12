@@ -32,7 +32,7 @@
           </b-col>
           <b-col md="3">
             <h3 class="mt-3">Tags</h3>
-            <tags :tags="site.tags" :to="$route.path" />
+            <tags :to="$route.path" />
           </b-col>
         </b-row>
       </b-container>

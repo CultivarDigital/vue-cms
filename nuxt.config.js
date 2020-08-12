@@ -54,7 +54,7 @@ export default {
     ],
     'nuxt-vue-select',
     'vue-scrollto/nuxt',
-    'nuxt-leaflet',
+    'nuxt-leaflet'
   ],
   axios: {
     baseURL: 'https://caminhos-da-semente.encenar.tk' // Used as fallback if no runtime config is provided
@@ -86,10 +86,10 @@ export default {
   },
   googleFonts: {
     families: {
-      'Montserrat': {
+      Montserrat: {
         wght: ['300']
       },
-      'Arvo': {
+      Arvo: {
         wght: ['400', '700']
       }
     }

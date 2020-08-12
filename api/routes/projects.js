@@ -4,8 +4,6 @@ const router = express.Router()
 const slugify = require('slugify')
 const auth = require('../config/auth')
 const Project = mongoose.model('Project')
-const Tag = mongoose.model('Tag')
-const Category = mongoose.model('Category')
 
 router.get('/', (req, res) => {
   Project.find({}).populate(req.query.populate).sort('order').exec((err, projects) => {

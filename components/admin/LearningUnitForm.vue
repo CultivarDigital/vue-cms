@@ -41,7 +41,7 @@
                   </b-form-group>
                 </b-col>
                 <b-col md="12">
-                  <b-form-group label="Coordenadas Google Maps *" description="Inserir coordenadas da área ou do município que deseja cadastrar">
+                  <b-form-group label="Coordenadas Google Maps *" description="Insira as coordenadas do item que deseja cadastrar ou clique no botão abaixo para selecionar seu endereço">
                     <b-row>
                       <b-col>
                         <validation-provider v-slot="{ errors }" name="latitude" rules="required">
@@ -56,17 +56,8 @@
                         </validation-provider>
                       </b-col>
                     </b-row>
-                    <div v-if="validCoordinates">
-                      <br>
-                      <l-map :zoom="16" :center="form.address.location.coordinates" :options="{ scrollWheelZoom: false }" style="height: 30vw">
-                        <l-tile-layer :url="url" :attribution="attribution" />
-                        <l-marker :lat-lng="form.address.location.coordinates" />
-                      </l-map>
-                      <p>
-                        <small>Coordenadas: {{ form.address.location.coordinates.join(',') }}</small>
-                      </p>
-                    </div>
                   </b-form-group>
+                  <CoordinatesPreview :form="form" />
                   <div class="text-right">
                     <address-form :current_address="form.address" :autoload="false" @input="setAddress" />
                   </div>
@@ -394,7 +385,6 @@
                 <b-col md="12">
                   <pictures-upload :form="form" field="planting_pictures" url="/api/uploads/images" :multiple="true" />
                 </b-col>
-
               </b-row>
             </div>
           </b-tab>
@@ -417,6 +407,7 @@ import mixinGlobal from '@/mixins/global'
 import mixinForm from '@/mixins/form'
 import PicturesUpload from '@/components/admin/PicturesUpload'
 import AddressForm from '@/components/admin/AddressForm'
+import CoordinatesPreview from '@/components/admin/CoordinatesPreview'
 import estados from '@/data/estados.json'
 import cidades from '@/data/cidades.json'
 
@@ -425,7 +416,8 @@ export default {
     ValidationObserver,
     ValidationProvider,
     PicturesUpload,
-    AddressForm
+    AddressForm,
+    CoordinatesPreview
   },
   mixins: [mixinGlobal, mixinForm],
   props: {
@@ -518,22 +510,10 @@ export default {
         percentage_of_soil_coverage: null,
         monitoring_notes: ''
 
-      },
-      url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-      attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+      }
     }
   },
   computed: {
-    validCoordinates () {
-      if (this.form.address && this.form.address.location && this.form.address.location.coordinates && this.form.address.location.coordinates.length > 1) {
-        if (this.form.address.location.coordinates[0] > -90 && this.form.address.location.coordinates[0] < 90) {
-          if (this.form.address.location.coordinates[1] > -180 && this.form.address.location.coordinates[1] < 180) {
-            return true
-          }
-        }
-      }
-      return false
-    },
     cidades () {
       if (this.form.state) {
         return cidades[this.form.state]

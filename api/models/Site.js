@@ -43,12 +43,6 @@ SiteSchema.virtual('users', {
   foreignField: 'site'
 })
 
-SiteSchema.virtual('categories', {
-  ref: 'Category',
-  localField: '_id',
-  foreignField: 'site'
-})
-
 SiteSchema.virtual('pages', {
   ref: 'Page',
   localField: '_id',
@@ -61,26 +55,20 @@ SiteSchema.virtual('posts', {
   foreignField: 'site'
 })
 
-SiteSchema.virtual('projects', {
-  ref: 'Project',
-  localField: '_id',
-  foreignField: 'site'
-})
-
 SiteSchema.virtual('tags', {
   ref: 'Tag',
   localField: '_id',
   foreignField: 'site'
 })
 
-SiteSchema.virtual('villages', {
-  ref: 'Village',
+SiteSchema.virtual('learning_units', {
+  ref: 'LearningUnit',
   localField: '_id',
   foreignField: 'site'
 })
 
-SiteSchema.virtual('learning_units', {
-  ref: 'LearningUnit',
+SiteSchema.virtual('service_providers', {
+  ref: 'ServiceProvider',
   localField: '_id',
   foreignField: 'site'
 })

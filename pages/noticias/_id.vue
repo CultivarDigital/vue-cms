@@ -1,6 +1,5 @@
 <template>
   <div v-if="post" class="post-page">
-    <banners :items="[post.picture]" />
     <section class="content pb-5">
       <b-container>
         <h1 class="title pt-5">{{ post.title }}</h1>
@@ -8,11 +7,12 @@
         <b-row>
           <b-col md="9">
             <div class="quill-content mt-4">
+              <banners :items="[post.picture]" />
               <div v-if="post.content" v-html="post.content" />
             </div>
           </b-col>
           <b-col md="3">
-            <h3 class="mt-3">Assuntos</h3>
+            <h3 class="mt-3">Tags</h3>
             <tags :tags="post.tags.length > 0 ? post.tags : site.tags" to="/noticias" />
           </b-col>
         </b-row>

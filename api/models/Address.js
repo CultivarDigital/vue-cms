@@ -1,6 +1,6 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
-var AddressSchema = new mongoose.Schema({
+const AddressSchema = new mongoose.Schema({
   location: {
     type: {
       type: String
@@ -17,8 +17,8 @@ var AddressSchema = new mongoose.Schema({
   description: String,
   source: Object,
   address: String
-});
+})
 
-AddressSchema.index({ location: "2dsphere" });
+AddressSchema.index({ location: '2dsphere' })
 
-module.exports = AddressSchema;
+module.exports = AddressSchema

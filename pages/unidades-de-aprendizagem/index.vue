@@ -8,7 +8,7 @@
         <div v-if="page.content" class="quill-content mt-4" v-html="page.content" />
         <div>
           <LearningUnits :learning-units="learning_units" />
-          <h3 v-if="learning_units.length === 0" class="text-center">Nenhuma notícia encontrada</h3>
+          <h3 v-if="learning_units.length === 0" class="text-center">Nenhuma unidade encontrada</h3>
         </div>
       </b-container>
     </section>
@@ -44,7 +44,7 @@ export default {
   },
   head () {
     return {
-      title: 'Notícias - ' + this.site.name,
+      title: 'Unidades de aprendizagem - ' + this.site.name,
       meta: [
         { hid: 'description', name: 'description', content: this.page.description || this.site.description }
       ]

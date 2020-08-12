@@ -24,6 +24,11 @@ export default {
       default: true
     }
   },
+  created () {
+    if (!this.tags) {
+      this.tags = this.$store.state.site.tags
+    }
+  },
   methods: {
     linkTo (tag) {
       if (this.to) {

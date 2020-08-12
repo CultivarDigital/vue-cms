@@ -1,7 +1,9 @@
 <template>
   <div v-if="site" class="home-page">
+    <divisor variant="white-down" />
     <banners :items="site.pictures" />
-    <section class="content pb-4">
+    <divisor variant="orange-up" />
+    <section class="content">
       <b-container class="text-center">
         <b-img src="~assets/img/pilares-de-acao.png" class="subtitle mt-5" />
       </b-container>
