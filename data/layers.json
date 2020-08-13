@@ -2,19 +2,19 @@
    "learning_units": {
       "status": true,
       "title": "Unidades de Aprendizagem",
-      "description": "Recuperar vegetação nativa com alta eficácia e baixo custo",
+      "description": "Informações de contato dos responsáveis, dados completos do plantio e períodos de visitação",
       "url": "/unidades-de-aprendizagem"
    },
    "service_providers": {
       "status": true,
       "title": "Prestadores de serviço",
-      "description": "Recuperar vegetação nativa com alta eficácia e baixo custo",
+      "description": "Organizações e pessoas que prestam serviços relacionados com a semeadura direta",
       "url": "/prestadores-de-servico"
    },
    "seeds_networks": {
       "status": true,
-      "title": "Redes de sementes",
-      "description": "Recuperar vegetação nativa com alta eficácia e baixo custo",
+      "title": "Redes de sementes nativas",
+      "description": "Contatos e outras informações disponíveis para compra de sementes",
       "url": "/redes-de-sementes"
    }
 }

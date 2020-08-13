@@ -7,17 +7,10 @@
         </div>
         <div class="card-body">
           <div class="card-title">
-            <h3>Plantio</h3>
+            <h3>{{ service_provider.name }}</h3>
           </div>
           <div class="card-text">
-            <p v-if="service_provider.planting_time"><strong>Data:</strong>{{ service_provider.planting_time }}</p>
-            <p vplanting_timeif="service_provider.area_size"><strong>Área:</strong> {{ service_provider.area_size }} hectares</p>
-            <p v-if="service_provider.address && service_provider.address.location && service_provider.address.location.coordinates">
-              <strong>Local:</strong>
-              {{ service_provider.address.location.coordinates[0] }}, {{ service_provider.address.location.coordinates[1] }}
-            </p>
-            <h4>{{ service_provider.name }}</h4>
-            <p>{{ (service_provider.description || stripHtml(service_provider.content)) | truncate(1000) }}</p>
+            <p>{{ (service_provider.description || stripHtml(service_provider.content)) | truncate(1000) }}<br><br></p>
             <n-link class="btn btn-primary" :to="'/prestadores-de-servico/' + service_provider.slug">
               Saiba mais
             </n-link>
