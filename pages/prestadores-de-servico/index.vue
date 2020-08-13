@@ -8,7 +8,7 @@
         <div v-if="page.content" class="quill-content mt-4" v-html="page.content" />
         <div>
           <ServiceProviders :service-providers="service_providers" />
-          <h3 v-if="service_providers.length === 0" class="text-center">Nenhum prestador de serviço encontrada</h3>
+          <p v-if="service_providers.length === 0" class="text-center">Nenhum prestador de serviço encontrado</p>
         </div>
       </b-container>
     </section>
