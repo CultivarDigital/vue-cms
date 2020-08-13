@@ -34,7 +34,7 @@ const SiteSchema = mongoose.Schema({
 })
 
 SiteSchema.plugin(uniqueValidator, {
-  message: 'já está sendo usado'
+  message: 'Este nome já está sendo usado'
 })
 
 SiteSchema.virtual('users', {

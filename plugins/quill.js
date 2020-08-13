@@ -51,7 +51,7 @@ const options = [
   [{
     align: []
   }],
-  ['image', 'video'],
+  ['image', 'video', 'link'],
   ['clean'] // remove formatting button
 ]
 Vue.use(VueQuillEditor, {

@@ -31,7 +31,7 @@ const PostSchema = mongoose.Schema({
 })
 
 PostSchema.plugin(uniqueValidator, {
-  message: 'já está sendo usado'
+  message: 'Este nome já está sendo usado'
 })
 
 export const Post = mongoose.models.Post || mongoose.model('Post', PostSchema)

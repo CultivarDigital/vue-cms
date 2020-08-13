@@ -1,6 +1,11 @@
 <template>
   <div v-if="learning_unit" class="learning-unit-page">
     <section class="content pb-5">
+      <div class="page-header">
+        <b-container>
+          <b-breadcrumb :items="breadcrumb" />
+        </b-container>
+      </div>
       <b-container>
         <h1 class="title pt-5">{{ learning_unit.name }}</h1>
         <p><n-link to="/unidades-de-aprendizagem" class="badge learning_units">Unidades de aprendizagem</n-link></p>
@@ -375,6 +380,13 @@ export default {
     }
   },
   computed: {
+    breadcrumb () {
+      return [
+        { text: 'Mapa', to: '/mapa' },
+        { text: 'Unidades de aprendizagem', to: '/unidades-de-aprendizagem' },
+        { text: this.learning_unit ? this.learning_unit.name : '', active: true }
+      ]
+    },
     learning_unit() {
       return this.site.learning_units.find(learningUnit => learningUnit.slug === this.$route.params.id)
     }
@@ -417,4 +429,6 @@ export default {
         tr:first-child
           th, td
             border: none
+    .vue2leaflet-map
+      border-radius: 10px
 </style>

@@ -89,9 +89,7 @@ export default {
         favicon: null,
         pictures: [],
         url_facebook: '',
-        url_youtube: '',
-        url_twitter: '',
-        url_instagram: ''
+        url_twitter: ''
       }
     }
   },

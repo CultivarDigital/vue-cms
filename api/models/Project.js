@@ -40,7 +40,7 @@ const ProjectSchema = mongoose.Schema({
 })
 
 ProjectSchema.plugin(uniqueValidator, {
-  message: 'já está sendo usado'
+  message: 'Este nome já está sendo usado'
 })
 
 export const Project = mongoose.models.Project || mongoose.model('Project', ProjectSchema)

@@ -24,7 +24,7 @@ const PageSchema = mongoose.Schema({
 })
 
 PageSchema.plugin(uniqueValidator, {
-  message: 'já está sendo usado'
+  message: 'Este nome já está sendo usado'
 })
 
 export const Page = mongoose.models.Page || mongoose.model('Page', PageSchema)

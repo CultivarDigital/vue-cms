@@ -28,7 +28,7 @@ const CategorySchema = mongoose.Schema({
 })
 
 CategorySchema.plugin(uniqueValidator, {
-  message: 'já está sendo usado'
+  message: 'Este nome já está sendo usado'
 })
 
 CategorySchema.virtual('projects', {

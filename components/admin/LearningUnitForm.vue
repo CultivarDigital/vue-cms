@@ -90,22 +90,22 @@
               <b-row>
                 <b-col md="12">
                   <b-form-group label="Vegetação original">
-                    <b-form-radio-group v-model="form.original_vegetation" :options="['Cerrado', 'Floresta estacional', 'Floresta ombrófila', 'Floresta ripária', 'Mata de várzea', 'Mata de brejo', 'Campo úmido']" />
+                    <b-form-checkbox-group v-model="form.original_vegetation" :options="['Cerrado', 'Floresta estacional', 'Floresta ombrófila', 'Floresta ripária', 'Mata de várzea', 'Mata de brejo', 'Campo úmido']" />
                   </b-form-group>
                 </b-col>
                 <b-col md="12">
                   <b-form-group label="Ano do desmatamento">
-                    <b-form-radio-group v-model="form.year_of_deforestation" :options="['< 1 ano', '1 a 5 anos', '5 a 10 anos', '> 10 anos']" />
+                    <b-form-checkbox-group v-model="form.year_of_deforestation" :options="['< 1 ano', '1 a 5 anos', '5 a 10 anos', '> 10 anos']" />
                   </b-form-group>
                 </b-col>
                 <b-col md="12">
                   <b-form-group label="Tipo de uso anterior">
-                    <b-form-radio-group v-model="form.previous_use_type" :options="['Pastagem', 'Agricultura', 'Aterro', 'Cultura Perene', 'Retirada de terra/Mineração']" />
+                    <b-form-checkbox-group v-model="form.previous_use_type" :options="['Pastagem', 'Agricultura', 'Aterro', 'Cultura Perene', 'Retirada de terra/Mineração']" />
                   </b-form-group>
                 </b-col>
                 <b-col md="12">
                   <b-form-group label="Duração do uso anterior (último uso)">
-                    <b-form-radio-group v-model="form.duration_of_previous_use" :options="['< 1 ano', '1 a 5 anos', '5 a 10 anos', '> 10 anos']" />
+                    <b-form-checkbox-group v-model="form.duration_of_previous_use" :options="['< 1 ano', '1 a 5 anos', '5 a 10 anos', '> 10 anos']" />
                   </b-form-group>
                 </b-col>
               </b-row>
@@ -115,27 +115,27 @@
               <b-row>
                 <b-col md="12">
                   <b-form-group label="Tipo de Solo">
-                    <b-form-radio-group v-model="form.soil_type" :options="['Cascalho', 'Areno-argiloso', 'Arenoso', 'Argiloso']" />
+                    <b-form-checkbox-group v-model="form.soil_type" :options="['Cascalho', 'Areno-argiloso', 'Arenoso', 'Argiloso']" />
                   </b-form-group>
                 </b-col>
                 <b-col md="12">
                   <b-form-group label="Umidade do Solo">
-                    <b-form-radio-group v-model="form.soil_moisture" :options="['Seco', 'Encharcado', 'Inundado periodicamente']" />
+                    <b-form-checkbox-group v-model="form.soil_moisture" :options="['Seco', 'Encharcado', 'Inundado periodicamente']" />
                   </b-form-group>
                 </b-col>
                 <b-col md="12">
                   <b-form-group label="Declividade (a mais acentuada dentro da área do plantio)">
-                    <b-form-radio-group v-model="form.declivity" :options="['Plano', 'Suavemente inclinado', 'Inclinado', 'Muito inclinado']" />
+                    <b-form-checkbox-group v-model="form.declivity" :options="['Plano', 'Suavemente inclinado', 'Inclinado', 'Muito inclinado']" />
                   </b-form-group>
                 </b-col>
                 <b-col md="12">
                   <b-form-group label="Compactação do solo">
-                    <b-form-radio-group v-model="form.soil_compaction" :options="['Muito compactado', 'Pouco compactado', 'Terra fofa']" />
+                    <b-form-checkbox-group v-model="form.soil_compaction" :options="['Muito compactado', 'Pouco compactado', 'Terra fofa']" />
                   </b-form-group>
                 </b-col>
                 <b-col md="12">
                   <b-form-group label="Conservação do solo">
-                    <b-form-radio-group v-model="form.soil_conservation" :options="['Curvas de nível', 'Bacias de contenção', 'Aterramento', 'Drenagem', 'Nenhum', 'Outros']" />
+                    <b-form-checkbox-group v-model="form.soil_conservation" :options="['Curvas de nível', 'Bacias de contenção', 'Aterramento', 'Drenagem', 'Nenhum', 'Outros']" />
                     <b-form-input v-if="form.soil_conservation === 'Outros'" v-model="form.soil_conservation_other" placeholder="Especifique aqui" />
                   </b-form-group>
                 </b-col>
@@ -151,17 +151,17 @@
                 </b-col>
                 <b-col md="12">
                   <b-form-group label="Vegetação da mata mais próxima">
-                    <b-form-radio-group v-model="form.nearest_forest_vegetation" :options="['Igual a que vai ser recuperada', 'Diferente']" />
+                    <b-form-checkbox-group v-model="form.nearest_forest_vegetation" :options="['Igual a que vai ser recuperada', 'Diferente']" />
                   </b-form-group>
                 </b-col>
                 <b-col md="12">
                   <b-form-group label="Tamanho do fragmento">
-                    <b-form-radio-group v-model="form.fragment_size" :options="['< 10 ha ou estreita', 'Entre 10 e 50 ha', '> 100 ha']" />
+                    <b-form-checkbox-group v-model="form.fragment_size" :options="['< 10 ha ou estreita', 'Entre 10 e 50 ha', '> 100 ha']" />
                   </b-form-group>
                 </b-col>
                 <b-col md="12">
                   <b-form-group label="Regeneração Natural da área do plantio">
-                    <b-form-radio-group v-model="form.natural_regeneration" :options="['Rala e pobre', 'Densa e pobre', 'Rala e rica', 'Densa e rica']" />
+                    <b-form-checkbox-group v-model="form.natural_regeneration" :options="['Rala e pobre', 'Densa e pobre', 'Rala e rica', 'Densa e rica']" />
                   </b-form-group>
                 </b-col>
               </b-row>
@@ -171,18 +171,18 @@
               <b-row>
                 <b-col md="12">
                   <b-form-group label="Presença de gado e/ou outros animais">
-                    <b-form-radio-group v-model="form.presence_of_other_animals" :options="['Sim', 'Não']" />
+                    <b-form-checkbox-group v-model="form.presence_of_other_animals" :options="['Sim', 'Não']" />
                   </b-form-group>
                 </b-col>
                 <b-col md="12">
                   <b-form-group label="Frequência de queimadas">
-                    <b-form-radio-group v-model="form.firing_frequency" :options="['1 ano vez por ano', 'A cada 2 anos', 'Outros']" />
+                    <b-form-checkbox-group v-model="form.firing_frequency" :options="['1 ano vez por ano', 'A cada 2 anos', 'Outros']" />
                     <b-form-input v-if="form.firing_frequency === 'Outros'" v-model="form.firing_frequency_other" placeholder="Especifique aqui" />
                   </b-form-group>
                 </b-col>
                 <b-col md="12">
                   <b-form-group label="Data do último fogo">
-                    <b-form-radio-group v-model="form.last_fire" :options="['< 1 ano', 'entre 1 e 3 anos', '> 3 anos']" />
+                    <b-form-checkbox-group v-model="form.last_fire" :options="['< 1 ano', 'entre 1 e 3 anos', '> 3 anos']" />
                   </b-form-group>
                 </b-col>
               </b-row>
@@ -192,7 +192,7 @@
               <b-row>
                 <b-col md="12">
                   <b-form-group label="Uso de herbicida">
-                    <b-form-radio-group v-model="form.herbicide_use" :options="['Sim', 'Não']" />
+                    <b-form-checkbox-group v-model="form.herbicide_use" :options="['Sim', 'Não']" />
                   </b-form-group>
                 </b-col>
                 <b-col v-if="form.herbicide_use === 'Sim'" md="12">
@@ -207,7 +207,7 @@
                 </b-col>
                 <b-col md="12">
                   <b-form-group label="Sobrepastejo">
-                    <b-form-radio-group v-model="form.overgrazing" :options="['Sim', 'Não']" />
+                    <b-form-checkbox-group v-model="form.overgrazing" :options="['Sim', 'Não']" />
                   </b-form-group>
                 </b-col>
                 <b-col v-if="form.overgrazing === 'Sim'" md="12">
@@ -217,7 +217,7 @@
                 </b-col>
                 <b-col md="12">
                   <b-form-group label="Preparo do solo mecanizado ou manual?">
-                    <b-form-radio-group v-model="form.soil_preparation" :options="['Mecanizado', 'Manual']" />
+                    <b-form-checkbox-group v-model="form.soil_preparation" :options="['Mecanizado', 'Manual']" />
                   </b-form-group>
                 </b-col>
                 <b-col v-if="form.soil_preparation === 'Mecanizado'" md="12">
@@ -244,7 +244,7 @@
                 </b-col>
                 <b-col md="12">
                   <b-form-group label="Adubação">
-                    <b-form-radio-group v-model="form.fertilizing" :options="['Adubação química', 'Calagem', 'Adubação orgânica', 'Adubação verde', 'NA']" />
+                    <b-form-checkbox-group v-model="form.fertilizing" :options="['Adubação química', 'Calagem', 'Adubação orgânica', 'Adubação verde', 'NA']" />
                     <b-form-input v-if="form.fertilizing === 'NA'" v-model="form.fertilizing_other" placeholder="Especifique aqui" />
                   </b-form-group>
                 </b-col>
@@ -276,12 +276,12 @@
               <b-row>
                 <b-col md="12">
                   <b-form-group label="Bioma">
-                    <b-form-radio-group v-model="form.biome" :options="['Amazônia', 'Caatinga', 'Cerrado', 'Mata Atlântica', 'Pampa', ' Pantanal']" />
+                    <b-form-checkbox-group v-model="form.biome" :options="['Amazônia', 'Caatinga', 'Cerrado', 'Mata Atlântica', 'Pampa', ' Pantanal']" />
                   </b-form-group>
                 </b-col>
                 <b-col md="12">
                   <b-form-group label="Fitofisionomia">
-                    <b-form-radio-group v-model="form.vegetation_type" :options="['Cerrado', 'Floresta estacional', 'Floresta ombrófila', 'Floresta ripária', 'Mata de várzea', 'Mata de brejo', 'Campo úmido']" />
+                    <b-form-checkbox-group v-model="form.vegetation_type" :options="['Cerrado', 'Floresta estacional', 'Floresta ombrófila', 'Floresta ripária', 'Mata de várzea', 'Mata de brejo', 'Campo úmido']" />
                   </b-form-group>
                 </b-col>
                 <b-col md="12">
@@ -291,7 +291,7 @@
                 </b-col>
                 <b-col md="12">
                   <b-form-group label="Sistema de restauração/técnica utilizada">
-                    <b-form-radio-group v-model="form.restoration_system" :options="['Plantio total mecanizado a lanço', 'Mecanizado em linhas', 'Plantio total manual a lanço', 'Plantio manual e covetas/covas', 'Plantio manual em linhas', 'Plantio manual em covetas intercalado com mudas', 'Outros']" />
+                    <b-form-checkbox-group v-model="form.restoration_system" :options="['Plantio total mecanizado a lanço', 'Mecanizado em linhas', 'Plantio total manual a lanço', 'Plantio manual e covetas/covas', 'Plantio manual em linhas', 'Plantio manual em covetas intercalado com mudas', 'Outros']" />
                     <b-form-input v-if="form.restoration_system === 'Outros'" v-model="form.restoration_system_other" placeholder="Especifique aqui" />
                   </b-form-group>
                 </b-col>
@@ -450,34 +450,34 @@ export default {
         availability_for_technical_visits: '',
         responsible_for_technical_visits: '',
 
-        original_vegetation: '',
-        year_of_deforestation: '',
-        previous_use_type: '',
-        duration_of_previous_use: '',
+        original_vegetation: [],
+        year_of_deforestation: [],
+        previous_use_type: [],
+        duration_of_previous_use: [],
 
-        soil_type: '',
-        soil_moisture: '',
-        declivity: '',
-        soil_compaction: '',
-        soil_conservation: '',
+        soil_type: [],
+        soil_moisture: [],
+        declivity: [],
+        soil_compaction: [],
+        soil_conservation: [],
         soil_conservation_other: '',
 
         nearest_forest: null,
-        nearest_forest_vegetation: '',
-        fragment_size: '',
-        natural_regeneration: '',
+        nearest_forest_vegetation: [],
+        fragment_size: [],
+        natural_regeneration: [],
 
-        presence_of_other_animals: '',
-        firing_frequency: '',
+        presence_of_other_animals: [],
+        firing_frequency: [],
         firing_frequency_other: '',
-        last_fire: '',
+        last_fire: [],
 
-        herbicide_use: '',
+        herbicide_use: [],
         herbicide: '',
         herbicide_frequency: '',
-        overgrazing: '',
+        overgrazing: [],
         overgrazing_frequency: '',
-        soil_preparation: '',
+        soil_preparation: [],
         screenings_number: null,
         screenings_frequency: '',
         levels_number: null,
@@ -485,7 +485,7 @@ export default {
         semi_mechanized_mowing_number: null,
         manual_mowing_number: null,
         mowing_frequency: '',
-        fertilizing: '',
+        fertilizing: [],
         fertilizing_other: '',
         diagnosis_notes: '',
         diagnosis_pictures: [],
@@ -493,10 +493,10 @@ export default {
         city: '',
         state: '',
 
-        biome: '',
-        vegetation_type: '',
+        biome: [],
+        vegetation_type: [],
         property_features: '',
-        restoration_system: '',
+        restoration_system: [],
         restoration_system_other: '',
         restoration_system_implement: '',
         native_seeds_planted: null,

@@ -25,7 +25,7 @@ const VillageSchema = mongoose.Schema({
 })
 
 VillageSchema.plugin(uniqueValidator, {
-  message: 'já está sendo usado'
+  message: 'Este nome já está sendo usado'
 })
 
 export const Village = mongoose.models.Village || mongoose.model('Village', VillageSchema)

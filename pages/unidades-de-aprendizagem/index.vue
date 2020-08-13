@@ -2,6 +2,11 @@
   <div v-if="page" class="unidades-de-aprendizagem-page">
     <banners :items="page.pictures" />
     <section class="content pb-5">
+      <div class="page-header">
+        <b-container>
+          <b-breadcrumb :items="breadcrumb" />
+        </b-container>
+      </div>
       <b-container>
         <h1 v-if="page.title" class="title pt-5">{{ page.title }}</h1>
         <p v-if="page.description">{{ page.description }}</p>
@@ -28,7 +33,11 @@ export default {
   mixins: [mixinGlobal, mixinPage],
   data () {
     return {
-      page_id: 'learning_units'
+      page_id: 'learning_units',
+      breadcrumb: [
+        { text: 'Mapa', to: '/mapa' },
+        { text: 'Unidades de aprendizagem', active: true }
+      ]
     }
   },
   computed: {

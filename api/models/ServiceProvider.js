@@ -46,7 +46,7 @@ const ServiceProviderSchema = mongoose.Schema({
 })
 
 ServiceProviderSchema.plugin(uniqueValidator, {
-  message: 'já está sendo usado'
+  message: 'Este nome já está sendo usado'
 })
 
 export const ServiceProvider = mongoose.models.ServiceProvider || mongoose.model('ServiceProvider', ServiceProviderSchema)

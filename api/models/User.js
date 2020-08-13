@@ -35,7 +35,7 @@ const UserSchema = new mongoose.Schema({
 })
 
 UserSchema.plugin(uniqueValidator, {
-  message: 'já está sendo usado'
+  message: 'Este nome já está sendo usado'
 })
 
 UserSchema.methods.validPassword = function(password) {
