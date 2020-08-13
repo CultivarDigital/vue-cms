@@ -57,6 +57,7 @@ router.use('/villages', require('./routes/villages'))
 router.use('/pages', require('./routes/pages'))
 router.use('/learning_units', require('./routes/learning_units'))
 router.use('/service_providers', require('./routes/service_providers'))
+router.use('/newsletters', require('./routes/newsletters'))
 
 router.get('/profile', auth.authenticated, function(req, res) {
   User.findById(req.payload.id).populate('site').exec(function(err, user) {
@@ -65,21 +66,6 @@ router.get('/profile', auth.authenticated, function(req, res) {
     } else {
       res.status(422).send('Usuário não encontrado')
     }
-  })
-})
-
-
-router.post('/newsletter', async (req, res) => {
-  const newsletter = new Newsletter()
-
-  newsletter.site = req.body.site
-  newsletter.name = req.body.name
-  newsletter.email = req.body.email
-
-  newsletter.save().then(() => {
-    res.json(newsletter)
-  }).catch(err => {
-    res.status(422).send(err.message)
   })
 })
 

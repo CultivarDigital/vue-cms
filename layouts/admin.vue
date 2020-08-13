@@ -4,7 +4,6 @@
       <Header />
       <div class="mb-5" fluid>
         <b-navbar toggleable="lg" type="dark" variant="default">
-          <b-navbar-brand to="/admin">Administrador</b-navbar-brand>
           <b-navbar-toggle target="header-admin" />
           <b-collapse id="header-admin" is-nav>
             <b-navbar-nav>
@@ -15,8 +14,10 @@
               <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/posts">Notícias</b-nav-item>
               <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/about">Quem somos</b-nav-item>
               <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/press">Imprensa</b-nav-item>
+              <b-nav-item to="/admin/newsletters">Contatos</b-nav-item>
               <b-nav-item to="/admin/users">Usuários</b-nav-item>
               <b-nav-item v-if="$auth.hasScope('super')" to="/admin/sites">Sites</b-nav-item>
+              <b-nav-item v-if="$auth.hasScope('admin') && $store.state.site" :to="'/admin/sites/' + $store.state.site._id + '/edit'">Site</b-nav-item>
             </b-navbar-nav>
             <b-navbar-nav class="ml-auto">
               <b-nav-item-dropdown right>
@@ -52,7 +53,7 @@ export default {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"
     color: #222
   .form-group
-    margin-bottom: 2rem
+    margin-top: 1rem
     legend
       font-weight: bold
 

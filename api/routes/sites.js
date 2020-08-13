@@ -5,7 +5,7 @@ const slugify = require('slugify')
 const auth = require('../config/auth')
 const Site = mongoose.model('Site')
 
-router.get('/', (req, res) => {
+router.get('/', auth.super, (req, res) => {
   Site.find({}).exec((err, sites) => {
     if (err) {
       res.status(422).send(err.message)
@@ -15,9 +15,10 @@ router.get('/', (req, res) => {
   })
 })
 
-router.get('/:id', auth.super, (req, res) => {
+router.get('/:id', auth.admin, (req, res) => {
+  const id = req.payload.roles.includes('super') ? req.params.id : req.payload.site
   Site.findOne({
-    _id: req.params.id
+    _id: id
   }).exec((err, site) => {
     if (err) {
       res.status(422).send(err.message)
@@ -39,10 +40,11 @@ router.post('/', auth.super, (req, res) => {
   })
 })
 
-router.put('/:id', auth.super, (req, res) => {
+router.put('/:id', auth.admin, (req, res) => {
+  const id = req.payload.roles.includes('super') ? req.params.id : req.payload.site
   const params = req.body
   Site.findOneAndUpdate({
-    _id: req.params.id
+    _id: id
   }, {
     $set: params
   }, {

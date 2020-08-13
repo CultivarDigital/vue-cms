@@ -23,7 +23,7 @@ const SiteSchema = mongoose.Schema({
   email: String,
   url_facebook: String,
   url_youtube: String,
-  url_flickr: String,
+  url_twitter: String,
   url_instagram: String,
   logo: Object,
   favicon: Object,

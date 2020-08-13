@@ -52,7 +52,7 @@ export default {
   methods: {
     async save () {
       this.form.site = this.$store.state.site._id
-      const newsletter = await this.$axios.$post('/api/newsletter', this.form).catch(this.showError)
+      const newsletter = await this.$axios.$post('/api/newsletters', this.form).catch(this.showError)
       if (newsletter) {
         this.$toast.success('Obrigado por se cadastrar. Você reberá todas as nossas novidades no seu email.')
       }

@@ -1,18 +1,24 @@
 <template>
   <div class="mapa-page">
     <section class="content pb-5">
-      <b-container fluid>
+      <b-container>
         <br>
         <div class="mt-4 mb-5 text-center">
           <h1 class="title">Mapa de semeadura direta para restauração ecológica no Brasil</h1>
           <p>Confira onde o método já está presente no país e áreas de plantios que você pode visitar</p>
         </div>
+      </b-container>
+      <b-container fluid>
         <Map variant="vertical" />
-        <div class="text-left">
-          <br>
-          <br>
-          <h3>Saiba mais</h3>
-          <br>
+      </b-container>
+      <b-container>
+        <br>
+        <div class="mt-4 mb-5 text-center">
+          <b-button variant="primary" @click="showMore = !showMore">
+            Saiba mais
+          </b-button>
+        </div>
+        <div v-if="showMore" class="show-more">
           <p>Um dos principais objetivos da <strong>Iniciativa Caminhos da Semente</strong> é o de difundir informaçõe acerca do método  para público mais amplo e, por isso, criamos o <strong>Mapa da Semeadura Direta.</strong></p>
           <p>Essa ferramenta apresenta a distribuição geográfica do método por meio da localização dos plantios e, para as áreas que compõem a <strong>Rede de Unidades de Aprendizagem da Semeadura Direta</strong> – chamadas UAs, também disponibilizamos dados técnicos das diferentes etapas de sua implementação (mistura de sementes, diagnóstico, planejamento, plantio, manejo e monitoramento). Algumas de nossas UAs possibilitam o agendamento para visitas técnicas; basta clicar na UA mais próxima de sua região e conferir os contatos disponíveis.</p>
           <p>O Mapa também conta com outras informações essenciais para quem tem interesse em implantar áreas com o método, como redes de coleta e comercialização de sementes nativas e organizações prestadoras de serviços relacionados com o método de semeadura direta para a <strong>restauração ecológica</strong>.</p>
@@ -38,6 +44,11 @@ export default {
     Map
   },
   mixins: [mixinPage],
+  data () {
+    return {
+      showMore: false
+    }
+  },
   head () {
     return {
       title: 'Mapa de semeadura direta para restauração ecológica no Brasil - ' + this.site.name,

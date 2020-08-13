@@ -129,8 +129,9 @@ export default {
       p
         font-size: 11px
         cursor: pointer
+        margin-left: -20px
         img
-          margin-right: 3px
+          margin-right: 6px
           margin-top: -7px
       .pattern
         width: 15px

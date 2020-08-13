@@ -115,6 +115,9 @@ export default {
         margin-top: 50px
         .box
           margin-bottom: 70px
+          background: #fff
+          border-radius: 15px
+          padding-bottom: 20px
           .title
             margin-top: -50px
             margin-left: 35px

@@ -49,7 +49,7 @@ export default {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"
     color: #222
   .form-group
-    margin-bottom: 2rem
+    margin-top: 1rem
     legend
       font-weight: bold
 

@@ -9,8 +9,10 @@
       <b-list-group-item v-if="$auth.hasScope('admin')" to="/admin/posts">Notícias</b-list-group-item>
       <b-list-group-item v-if="$auth.hasScope('admin')" to="/admin/about">Quem somos</b-list-group-item>
       <b-list-group-item v-if="$auth.hasScope('admin')" to="/admin/press">Imprensa</b-list-group-item>
+      <b-list-group-item to="/admin/newsletters">Contatos</b-list-group-item>
       <b-list-group-item to="/admin/users">Usuários</b-list-group-item>
       <b-list-group-item v-if="$auth.hasScope('super')" to="/admin/sites">Sites</b-list-group-item>
+      <b-list-group-item v-if="$auth.hasScope('admin') && $store.state.site" :to="'/admin/sites/' + $store.state.site._id + '/edit'">Site</b-list-group-item>
     </b-list-group>
   </div>
 </template>

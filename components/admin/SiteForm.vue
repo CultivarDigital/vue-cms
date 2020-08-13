@@ -2,7 +2,7 @@
   <ValidationObserver v-slot="{ validate, invalid }">
     <b-form @submit.prevent="validate().then(save)">
       <b-row>
-        <b-col md="12">
+        <b-col md="6">
           <b-form-group label="Nome *">
             <validation-provider v-slot="{ errors }" name="nome" rules="required">
               <b-form-input v-model="form.name" name="name" />
@@ -10,7 +10,7 @@
             </validation-provider>
           </b-form-group>
         </b-col>
-        <b-col md="6">
+        <b-col md="6" v-if="$auth.hasScope('super')">
           <b-form-group label="Domínio *">
             <validation-provider v-slot="{ errors }" name="domínio" rules="required">
               <b-form-input v-model="form.domain_name" name="domain_name" />
@@ -23,12 +23,12 @@
             <b-form-input v-model="form.email" name="email" />
           </b-form-group>
         </b-col>
-        <b-col md="6">
+        <b-col md="12">
           <b-form-group label="Descrição curta">
             <b-form-textarea v-model="form.description" name="description" />
           </b-form-group>
         </b-col>
-        <b-col md="6">
+        <b-col md="12">
           <b-form-group label="Contatos">
             <b-form-textarea v-model="form.contact" name="contact" />
           </b-form-group>
@@ -39,24 +39,14 @@
           </b-form-group>
         </b-col>
         <b-col md="6">
-          <b-form-group label="Link do Youtube">
-            <b-form-input v-model="form.url_youtube" name="url_youtube" />
+          <b-form-group label="Link do Twitter">
+            <b-form-input v-model="form.url_twitter" name="url_twitter" />
           </b-form-group>
         </b-col>
-        <b-col md="6">
-          <b-form-group label="Link do Flickr">
-            <b-form-input v-model="form.url_flickr" name="url_flickr" />
-          </b-form-group>
-        </b-col>
-        <b-col md="6">
-          <b-form-group label="Link do Instagram">
-            <b-form-input v-model="form.url_instagram" name="url_instagram" />
-          </b-form-group>
-        </b-col>
-        <b-col md="12">
+        <b-col v-if="$auth.hasScope('super')" md="12">
           <pictures-upload :form="form" field="logo" url="/api/uploads/images" label="Logo do site" />
         </b-col>
-        <b-col md="12">
+        <b-col v-if="$auth.hasScope('super')" md="12">
           <pictures-upload :form="form" field="favicon" url="/api/uploads/images" label="Favicon do site" />
         </b-col>
         <b-col md="12">
@@ -100,7 +90,7 @@ export default {
         pictures: [],
         url_facebook: '',
         url_youtube: '',
-        url_flickr: '',
+        url_twitter: '',
         url_instagram: ''
       }
     }
@@ -111,16 +101,24 @@ export default {
   methods: {
     async save () {
       if (this.site) {
-        const site = await this.$axios.$put('/api/sites/' + this.site._id, this.form).catch(this.showError)
+        const site = await this.$axios.$put('/api/sites/' + this.site.slug, this.form).catch(this.showError)
         if (site) {
           this.$toast.success('Site atualizado com sucesso!')
-          this.$router.push('/admin/sites')
+          if (this.$auth.hasScope('super')) {
+            this.$router.push('/admin/sites')
+          } else {
+            this.$router.push('/admin')
+          }
         }
       } else {
         const site = await this.$axios.$post('/api/sites', this.form).catch(this.showError)
         if (site) {
           this.$toast.success('Site cadastrado com sucesso!')
-          this.$router.push('/admin/sites')
+          if (this.$auth.hasScope('super')) {
+            this.$router.push('/admin/sites')
+          } else {
+            this.$router.push('/admin')
+          }
         }
       }
     }
