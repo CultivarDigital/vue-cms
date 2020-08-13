@@ -38,36 +38,62 @@
           <h3>Coordenação e execução</h3>
           <b-row>
             <b-col md="4" offset-md="4">
-              <img src="~assets/img/parceiros/agroicone.png" alt="Coordenação e execução Agroicone">
+              <div class="partner">
+                <img src="~assets/img/parceiros/agroicone.png" alt="Coordenação e execução Agroicone">
+              </div>
             </b-col>
           </b-row>
           <br>
           <h3>Parceria</h3>
           <b-row>
-            <b-col md="2">
-              <img src="~assets/img/parceiros/isa.png" alt="Parceria Instituto Socio Ambiental - ISA">
+            <b-col md="2" offset-md="2">
+              <div class="partner">
+                <img src="~assets/img/parceiros/isa.png" alt="Parceria Instituto Socio Ambiental - ISA">
+              </div>
             </b-col>
             <b-col md="2">
-              <img src="~assets/img/parceiros/embrapa.png" alt="Parceria Embrapa">
+              <div class="partner">
+                <img src="~assets/img/parceiros/embrapa.png" alt="Parceria Embrapa">
+              </div>
             </b-col>
             <b-col md="2">
-              <img src="~assets/img/parceiros/amaggi.png" alt="Parceria Amaggi">
+              <div class="partner">
+                <img src="~assets/img/parceiros/amaggi.png" alt="Parceria Amaggi">
+              </div>
             </b-col>
             <b-col md="2">
-              <img src="~assets/img/parceiros/iniciativa-verde.png" alt="Parceria Iniciativa Verde">
+              <div class="partner">
+                <img src="~assets/img/parceiros/iniciativa-verde.png" alt="Parceria Iniciativa Verde">
+              </div>
+            </b-col>
+            <b-col md="2" offset-md="3">
+              <div class="partner">
+                <img src="~assets/img/parceiros/sima.png" alt="Parceria SIMA">
+              </div>
             </b-col>
             <b-col md="2">
-              <img src="~assets/img/parceiros/sima.png" alt="Parceria SIMA">
+              <div class="partner">
+                <img src="~assets/img/parceiros/wwf.png" alt="Parceria WWF">
+              </div>
             </b-col>
             <b-col md="2">
-              <img src="~assets/img/parceiros/wwf.png" alt="Parceria WWF">
+              <div class="partner">
+                <img src="~assets/img/parceiros/AESTiete.png" alt="Parceria AESTiete">
+              </div>
             </b-col>
           </b-row>
           <br>
           <h3>Apoio técnico e financeiro</h3>
           <b-row>
-            <b-col md="2" offset-md="5">
-              <img src="~assets/img/parceiros/p4f.png" alt="Apoio técnico e financeiro P4F">
+            <b-col md="2" offset-md="4">
+              <div class="partner">
+                <img src="~assets/img/parceiros/p4f.png" alt="Apoio técnico e financeiro P4F">
+              </div>
+            </b-col>
+            <b-col md="2">
+              <div class="partner">
+                <img src="~assets/img/parceiros/p4f2.png" alt="Apoio técnico e financeiro P4F">
+              </div>
             </b-col>
           </b-row>
           <br>
@@ -142,7 +168,15 @@ export default {
           color: #384e3f
           font-weight: 700
           font-size: 16px
+          margin-top: 20px
           margin-bottom: 20px
         .row > div
           margin-bottom: 30px
+          .partner
+            display: flex
+            align-items: center
+            justify-content: center
+            width: 100%
+            height: 100%
+
 </style>
