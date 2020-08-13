@@ -6,7 +6,7 @@ const auth = require('../config/auth')
 const Project = mongoose.model('Project')
 
 router.get('/', (req, res) => {
-  Project.find({}).populate(req.query.populate).sort('order').exec((err, projects) => {
+  Project.find({}).populate(req.query.populate).sort('name').exec((err, projects) => {
     if (err) {
       res.status(422).send(err.message)
     } else {

@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
   if (req.query.status) {
     query.status = req.query.status
   }
-  LearningUnit.find(query).populate(req.query.populate).sort('order').exec((err, learningUnits) => {
+  LearningUnit.find(query).populate(req.query.populate).sort('name').exec((err, learningUnits) => {
     if (err) {
       res.status(422).send(err.message)
     } else {

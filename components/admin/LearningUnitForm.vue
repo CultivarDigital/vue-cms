@@ -136,7 +136,7 @@
                 <b-col md="12">
                   <b-form-group label="Conservação do solo">
                     <b-form-checkbox-group v-model="form.soil_conservation" :options="['Curvas de nível', 'Bacias de contenção', 'Aterramento', 'Drenagem', 'Nenhum', 'Outros']" />
-                    <b-form-input v-if="form.soil_conservation === 'Outros'" v-model="form.soil_conservation_other" placeholder="Especifique aqui" />
+                    <b-form-input v-if="form.soil_conservation.includes('Outros')" v-model="form.soil_conservation_other" placeholder="Especifique aqui" />
                   </b-form-group>
                 </b-col>
               </b-row>
@@ -171,13 +171,13 @@
               <b-row>
                 <b-col md="12">
                   <b-form-group label="Presença de gado e/ou outros animais">
-                    <b-form-checkbox-group v-model="form.presence_of_other_animals" :options="['Sim', 'Não']" />
+                    <b-form-radio-group v-model="form.presence_of_other_animals" :options="['Sim', 'Não']" />
                   </b-form-group>
                 </b-col>
                 <b-col md="12">
                   <b-form-group label="Frequência de queimadas">
                     <b-form-checkbox-group v-model="form.firing_frequency" :options="['1 ano vez por ano', 'A cada 2 anos', 'Outros']" />
-                    <b-form-input v-if="form.firing_frequency === 'Outros'" v-model="form.firing_frequency_other" placeholder="Especifique aqui" />
+                    <b-form-input v-if="form.firing_frequency.includes('Outros')" v-model="form.firing_frequency_other" placeholder="Especifique aqui" />
                   </b-form-group>
                 </b-col>
                 <b-col md="12">
@@ -192,7 +192,7 @@
               <b-row>
                 <b-col md="12">
                   <b-form-group label="Uso de herbicida">
-                    <b-form-checkbox-group v-model="form.herbicide_use" :options="['Sim', 'Não']" />
+                    <b-form-radio-group v-model="form.herbicide_use" :options="['Sim', 'Não']" />
                   </b-form-group>
                 </b-col>
                 <b-col v-if="form.herbicide_use === 'Sim'" md="12">
@@ -207,7 +207,7 @@
                 </b-col>
                 <b-col md="12">
                   <b-form-group label="Sobrepastejo">
-                    <b-form-checkbox-group v-model="form.overgrazing" :options="['Sim', 'Não']" />
+                    <b-form-radio-group v-model="form.overgrazing" :options="['Sim', 'Não']" />
                   </b-form-group>
                 </b-col>
                 <b-col v-if="form.overgrazing === 'Sim'" md="12">
@@ -245,7 +245,7 @@
                 <b-col md="12">
                   <b-form-group label="Adubação">
                     <b-form-checkbox-group v-model="form.fertilizing" :options="['Adubação química', 'Calagem', 'Adubação orgânica', 'Adubação verde', 'NA']" />
-                    <b-form-input v-if="form.fertilizing === 'NA'" v-model="form.fertilizing_other" placeholder="Especifique aqui" />
+                    <b-form-input v-if="form.fertilizing.includes('NA')" v-model="form.fertilizing_other" placeholder="Especifique aqui" />
                   </b-form-group>
                 </b-col>
                 <b-col md="12">
@@ -292,7 +292,7 @@
                 <b-col md="12">
                   <b-form-group label="Sistema de restauração/técnica utilizada">
                     <b-form-checkbox-group v-model="form.restoration_system" :options="['Plantio total mecanizado a lanço', 'Mecanizado em linhas', 'Plantio total manual a lanço', 'Plantio manual e covetas/covas', 'Plantio manual em linhas', 'Plantio manual em covetas intercalado com mudas', 'Outros']" />
-                    <b-form-input v-if="form.restoration_system === 'Outros'" v-model="form.restoration_system_other" placeholder="Especifique aqui" />
+                    <b-form-input v-if="form.restoration_system.includes('Outros')" v-model="form.restoration_system_other" placeholder="Especifique aqui" />
                   </b-form-group>
                 </b-col>
                 <b-col md="12">
@@ -467,15 +467,15 @@ export default {
         fragment_size: [],
         natural_regeneration: [],
 
-        presence_of_other_animals: [],
+        presence_of_other_animals: '',
         firing_frequency: [],
         firing_frequency_other: '',
         last_fire: [],
 
-        herbicide_use: [],
+        herbicide_use: '',
         herbicide: '',
         herbicide_frequency: '',
-        overgrazing: [],
+        overgrazing: '',
         overgrazing_frequency: '',
         soil_preparation: [],
         screenings_number: null,

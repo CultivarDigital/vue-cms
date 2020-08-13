@@ -61,15 +61,15 @@ const LearningUnitSchema = mongoose.Schema({
   fragment_size: [String],
   natural_regeneration: [String],
 
-  presence_of_other_animals: [String],
+  presence_of_other_animals: String,
   firing_frequency: [String],
   firing_frequency_other: String,
   last_fire: [String],
 
-  herbicide_use: [String],
+  herbicide_use: String,
   herbicide: String,
   herbicide_frequency: String,
-  overgrazing: [String],
+  overgrazing:    String,
   overgrazing_frequency: String,
   soil_preparation: [String],
   screenings_number: Number,

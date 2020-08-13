@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
   if (req.query.status) {
     query.status = req.query.status
   }
-  ServiceProvider.find(query).populate(req.query.populate).sort('order').exec((err, serviceProviders) => {
+  ServiceProvider.find(query).populate(req.query.populate).sort('name').exec((err, serviceProviders) => {
     if (err) {
       res.status(422).send(err.message)
     } else {

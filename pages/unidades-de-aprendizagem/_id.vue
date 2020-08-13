@@ -50,21 +50,21 @@
                       <br>
                       <table class="table">
                         <tbody>
-                          <tr v-if="learning_unit.original_vegetation">
+                          <tr v-if="learning_unit.original_vegetation && learning_unit.original_vegetation.length > 0">
                             <th>Vegetação original</th>
                             <td>{{ learning_unit.original_vegetation }}</td>
                           </tr>
-                          <tr v-if="learning_unit.year_of_deforestation">
+                          <tr v-if="learning_unit.year_of_deforestation && learning_unit.year_of_deforestation.length">
                             <th>Ano do desmatamento</th>
-                            <td>{{ learning_unit.year_of_deforestation }}</td>
+                            <td>{{ learning_unit.year_of_deforestation.join(', ') }}</td>
                           </tr>
-                          <tr v-if="learning_unit.previous_use_type">
+                          <tr v-if="learning_unit.previous_use_type && learning_unit.previous_use_type.length">
                             <th>Tipo de uso anterior</th>
-                            <td>{{ learning_unit.previous_use_type }}</td>
+                            <td>{{ learning_unit.previous_use_type.join(', ') }}</td>
                           </tr>
-                          <tr v-if="learning_unit.duration_of_previous_use">
+                          <tr v-if="learning_unit.duration_of_previous_use && learning_unit.duration_of_previous_use.length">
                             <th>Duração do uso anterior (último uso)</th>
-                            <td>{{ learning_unit.duration_of_previous_use }}</td>
+                            <td>{{ learning_unit.duration_of_previous_use.join(', ') }}</td>
                           </tr>
                         </tbody>
                       </table>
@@ -75,25 +75,26 @@
                       <br>
                       <table class="table">
                         <tbody>
-                          <tr v-if="learning_unit.soil_type">
+                          <tr v-if="learning_unit.soil_type && learning_unit.soil_type.length">
                             <th>Tipo de Solo</th>
-                            <td>{{ learning_unit.soil_type }}</td>
+                            <td>{{ learning_unit.soil_type.join(', ') }}</td>
                           </tr>
-                          <tr v-if="learning_unit.soil_moisture">
+                          <tr v-if="learning_unit.soil_moisture && learning_unit.soil_moisture.length">
                             <th>Umidade do Solo</th>
-                            <td>{{ learning_unit.soil_moisture }}</td>
+                            <td>{{ learning_unit.soil_moisture.join(', ') }}</td>
                           </tr>
-                          <tr v-if="learning_unit.declivity">
+                          <tr v-if="learning_unit.declivity && learning_unit.declivity.length">
                             <th>Declividade (a mais acentuada dentro da área do plantio)</th>
-                            <td>{{ learning_unit.declivity }}</td>
+                            <td>{{ learning_unit.declivity.join(', ') }}</td>
                           </tr>
-                          <tr v-if="learning_unit.soil_compaction">
+                          <tr v-if="learning_unit.soil_compaction && learning_unit.soil_compaction.length">
                             <th>Compactação do solo</th>
-                            <td>{{ learning_unit.soil_compaction }}</td>
+                            <td>{{ learning_unit.soil_compaction.join(', ') }}</td>
                           </tr>
                           <tr v-if="learning_unit.soil_conservation">
                             <th>Conservação do solo</th>
-                            <td>{{ learning_unit.soil_conservation === 'Outros' ? learning_unit.soil_conservation_other : learning_unit.soil_conservation }}</td>
+                            <td v-if="learning_unit.soil_conservation.includes('Outros')">{{ learning_unit.soil_conservation.push(learning_unit.soil_conservation_other).filter(item => item != 'Outros').join(',') }}</td>
+                            <td v-else>{{ learning_unit.soil_conservation.join(', ') }}</td>
                           </tr>
                         </tbody>
                       </table>
@@ -108,17 +109,17 @@
                             <th>Mata nativa mais próxima (km)</th>
                             <td>{{ learning_unit.nearest_forest }}</td>
                           </tr>
-                          <tr v-if="learning_unit.nearest_forest_vegetation">
+                          <tr v-if="learning_unit.nearest_forest_vegetation && learning_unit.nearest_forest_vegetation.length">
                             <th>Vegetação da mata mais próxima</th>
-                            <td>{{ learning_unit.nearest_forest_vegetation }}</td>
+                            <td>{{ learning_unit.nearest_forest_vegetation.join(', ') }}</td>
                           </tr>
-                          <tr v-if="learning_unit.fragment_size">
+                          <tr v-if="learning_unit.fragment_size && learning_unit.fragment_size.length">
                             <th>Tamanho do fragmento</th>
-                            <td>{{ learning_unit.fragment_size }}</td>
+                            <td>{{ learning_unit.fragment_size.join(', ') }}</td>
                           </tr>
-                          <tr v-if="learning_unit.natural_regeneration">
+                          <tr v-if="learning_unit.natural_regeneration && learning_unit.natural_regeneration.length">
                             <th>Regeneração Natural da área do plantio</th>
-                            <td>{{ learning_unit.natural_regeneration }}</td>
+                            <td>{{ learning_unit.natural_regeneration.join(', ') }}</td>
                           </tr>
                         </tbody>
                       </table>
@@ -133,13 +134,14 @@
                             <th>Presença de gado e/ou outros animais</th>
                             <td>{{ learning_unit.presence_of_other_animals }}</td>
                           </tr>
-                          <tr v-if="learning_unit.firing_frequency">
+                          <tr v-if="learning_unit.firing_frequency && learning_unit.firing_frequency.length">
                             <th>Frequência de queimadas</th>
-                            <td>{{ learning_unit.firing_frequency === 'Outros' ? learning_unit.firing_frequency_other : learning_unit.firing_frequency }}</td>
+                            <td v-if="learning_unit.firing_frequency.includes('Outros')">{{ learning_unit.firing_frequency.push(learning_unit.firing_frequency_other).filter(item => item != 'Outros').join(',') }}</td>
+                            <td v-else>{{ learning_unit.firing_frequency.join(', ') }}</td>
                           </tr>
-                          <tr v-if="learning_unit.last_fire">
+                          <tr v-if="learning_unit.last_fire && learning_unit.last_fire.length">
                             <th>Data do último fogo</th>
-                            <td>{{ learning_unit.last_fire }}</td>
+                            <td>{{ learning_unit.last_fire.join(', ') }}</td>
                           </tr>
                         </tbody>
                       </table>
@@ -170,9 +172,9 @@
                             <th>Quantas cabeças e por quanto tempo?</th>
                             <td>{{ learning_unit.overgrazing_frequency }}</td>
                           </tr>
-                          <tr v-if="learning_unit.soil_preparation">
+                          <tr v-if="learning_unit.soil_preparation && learning_unit.soil_preparation.length">
                             <th>Preparo do solo mecanizado ou manual?</th>
-                            <td>{{ learning_unit.soil_preparation }}</td>
+                            <td>{{ learning_unit.soil_preparation.join(', ') }}</td>
                           </tr>
                           <tr v-if="learning_unit.screenings_number">
                             <th>Número de gradagens</th>
@@ -198,9 +200,10 @@
                             <th>Frequência das roçadas</th>
                             <td>{{ learning_unit.mowing_frequency }}</td>
                           </tr>
-                          <tr v-if="learning_unit.fertilizing">
+                          <tr v-if="learning_unit.fertilizing && learning_unit.fertilizing.length">
                             <th>Adubação</th>
-                            <td>{{ learning_unit.fertilizing === 'NA' ? learning_unit.fertilizing_other : learning_unit.fertilizing }}</td>
+                            <td v-if="learning_unit.fertilizing.includes('NA')">{{ learning_unit.fertilizing.push(learning_unit.fertilizing_other).filter(item => item != 'Outros').join(',') }}</td>
+                            <td v-else>{{ learning_unit.fertilizing.join(', ') }}</td>
                           </tr>
                           <tr v-if="learning_unit.diagnosis_notes">
                             <th>Observações gerais do diagnóstico</th>
@@ -237,17 +240,18 @@
                           <th>Bioma</th>
                           <td>{{ learning_unit.biome }}</td>
                         </tr>
-                        <tr v-if="learning_unit.vegetation_type">
+                        <tr v-if="learning_unit.vegetation_type && learning_unit.vegetation_type.length">
                           <th>Fitofisionomia</th>
-                          <td>{{ learning_unit.vegetation_type }}</td>
+                          <td>{{ learning_unit.vegetation_type.join(', ') }}</td>
                         </tr>
                         <tr v-if="learning_unit.property_features">
                           <th>Características da propriedade</th>
                           <td>{{ learning_unit.property_features }}</td>
                         </tr>
-                        <tr v-if="learning_unit.restoration_system">
+                        <tr v-if="learning_unit.restoration_system && learning_unit.restoration_system.length">
                           <th>Sistema de restauração/técnica utilizada</th>
-                          <td>{{ learning_unit.restoration_system === 'Outros' ? learning_unit.restoration_system_other : learning_unit.restoration_system }}</td>
+                          <td v-if="learning_unit.restoration_system.includes('Outros')">{{ learning_unit.restoration_system.push(learning_unit.restoration_system_other).filter(item => item != 'Outros').join(',') }}</td>
+                          <td v-else>{{ learning_unit.restoration_system.join(', ') }}</td>
                         </tr>
                         <tr v-if="learning_unit.restoration_system_implement">
                           <th>Implemento utilizado?</th>
