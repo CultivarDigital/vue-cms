@@ -18,6 +18,7 @@ export default {
   css: ['@/assets/css/main.scss'],
   pageTransition: 'page',
   plugins: [
+    '~plugins/vue2-filters.js',
     '~plugins/filters.js',
     '~plugins/url.js',
     '~plugins/bootstrap-vue.js',
@@ -28,7 +29,8 @@ export default {
   components: true,
   buildModules: [
     '@nuxtjs/eslint-module',
-    '@nuxtjs/google-fonts'
+    '@nuxtjs/google-fonts',
+    '@nuxtjs/moment'
   ],
   modules: [
     // Doc: https://bootstrap-vue.js.org
@@ -93,6 +95,10 @@ export default {
         wght: ['400', '700']
       }
     }
+  },
+  moment: {
+    defaultLocale: 'pt-br',
+    locales: ['pt-br']
   },
   build: {
   },

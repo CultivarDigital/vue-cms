@@ -51,12 +51,14 @@
     "v-money": "^0.8.1",
     "vue-quill-editor": "^3.0.6",
     "vue-scrollto": "^2.18.1",
-    "vue2-datepicker": "^3.6.1"
+    "vue2-datepicker": "^3.6.1",
+    "vue2-filters": "^0.11.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^3.0.0",
     "@nuxtjs/eslint-module": "^2.0.0",
     "@nuxtjs/google-fonts": "^1.0.0",
+    "@nuxtjs/moment": "^1.6.1",
     "@nuxtjs/stylelint-module": "^4.0.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.2.0",

@@ -17,7 +17,7 @@ export default {
     },
     tags: {
       type: Array,
-      default: () => []
+      default: null
     },
     allTags: {
       type: Boolean,

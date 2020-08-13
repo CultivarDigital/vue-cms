@@ -79,6 +79,10 @@ const LearningUnitSchema = mongoose.Schema({
   semi_mechanized_mowing_number: Number,
   manual_mowing_number: Number,
   mowing_frequency: String,
+  fertilizing: String,
+  fertilizing_other: String,
+  diagnosis_notes: String,
+  diagnosis_pictures: [Object],
 
   city: String,
   state: String,
@@ -88,23 +92,24 @@ const LearningUnitSchema = mongoose.Schema({
   restoration_system: String,
   restoration_system_other: String,
   restoration_system_implement: String,
-  seeds_planted: Number,
-  seeds_investment: Number,
-
+  native_seeds_planted: Number,
+  native_seeds_investment: Number,
   native_seeds_source: String,
   green_adubation_planted: Number,
   green_adubation_investment: Number,
   seedlings_planted: Number,
   seedlings_investment: Number,
-  total_planting_cost: Number,
-  planting_observations: String,
+  total_planting_cost: String,
+  planting_notes: String,
+  planting_pictures: [Object],
 
   monitoring_date: Date,
   trees_established_per_hectare: Number,
   species_established_in_total_area: Number,
   percentage_of_canopy_coverage: Number,
   percentage_of_soil_coverage: Number,
-  monitoring_notes: String
+  monitoring_notes: String,
+  monitoring_pictures: [Object]
 
 }, {
   timestamps: true,

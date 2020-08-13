@@ -92,13 +92,6 @@ export default {
         color: #fff
         margin: -15px -20px 7px -20px
         padding: 10px
-      .badge
-        &.learning_units
-          background-color: #f2385b
-        &.service_providers
-          background-color: #f0bd01
-        &.seeds_networks
-          background-color: #8bff57
     .col-md-4
       padding: 50px
       h3

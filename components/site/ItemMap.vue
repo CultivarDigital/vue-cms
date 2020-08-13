@@ -1,5 +1,5 @@
 <template>
-  <div class="item-map-component" v-if="address && address.location && address.location.coordinates">
+  <div v-if="address && address.location && address.location.coordinates" class="item-map-component">
     <client-only>
       <l-map :zoom="5" :center="address.location.coordinates" :options="{ scrollWheelZoom: false }">
         <l-tile-layer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png" />

@@ -6,3 +6,7 @@ Vue.filter('truncate', function(value, limit) {
   }
   return value
 })
+
+Vue.filter('moeda', value => {
+  return Vue.options.filters.currency(value, 'R$ ', 2, { decimalSeparator: ',', thousandsSeparator: '.' })
+})

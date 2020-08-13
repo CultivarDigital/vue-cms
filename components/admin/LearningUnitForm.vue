@@ -1,7 +1,7 @@
 <template>
   <ValidationObserver v-slot="{ validate, invalid }">
     <b-form @submit.prevent="validate().then(save)">
-      <b-card no-body>
+      <div>
         <b-tabs v-model="tab" content-class="mt-3" card pills>
           <b-tab title="Informações gerais" active>
             <div v-if="tab === 0">
@@ -41,6 +41,21 @@
                   </b-form-group>
                 </b-col>
                 <b-col md="12">
+                  <b-form-group label="Gostaria de disponibilizar a área para visitas técnicas?">
+                    <b-form-checkbox v-model="form.receive_technical_visits" />
+                  </b-form-group>
+                </b-col>
+                <b-col v-if="form.receive_technical_visits" md="12">
+                  <b-form-group label="Informe a periodicidade disponível para visitas">
+                    <b-form-textarea v-model="form.availability_for_technical_visits" />
+                  </b-form-group>
+                </b-col>
+                <b-col v-if="form.receive_technical_visits" md="12">
+                  <b-form-group label="Informe nome e contatos (email e telefone) do(a) responsável pelo agendamento das visitas">
+                    <b-form-textarea v-model="form.responsible_for_technical_visits" />
+                  </b-form-group>
+                </b-col>
+                <b-col md="12">
                   <b-form-group label="Coordenadas Google Maps *" description="Insira as coordenadas do item que deseja cadastrar ou clique no botão abaixo para selecionar seu endereço">
                     <b-row>
                       <b-col>
@@ -68,29 +83,8 @@
               </b-row>
             </div>
           </b-tab>
-          <b-tab title="Disponibilidade de receber visitas" lazy>
-            <div v-if="tab === 1">
-              <b-row>
-                <b-col md="12">
-                  <b-form-group label="Gostaria de disponibilizar a área para visitas técnicas?">
-                    <b-form-checkbox v-model="form.receive_technical_visits" />
-                  </b-form-group>
-                </b-col>
-                <b-col v-if="form.receive_technical_visits" md="12">
-                  <b-form-group label="Informe a periodicidade disponível para visitas">
-                    <b-form-textarea v-model="form.availability_for_technical_visits" />
-                  </b-form-group>
-                </b-col>
-                <b-col v-if="form.receive_technical_visits" md="12">
-                  <b-form-group label="Informe nome e contatos (email e telefone) do(a) responsável pelo agendamento das visitas">
-                    <b-form-textarea v-model="form.responsible_for_technical_visits" />
-                  </b-form-group>
-                </b-col>
-              </b-row>
-            </div>
-          </b-tab>
           <b-tab title="Diagnóstico e preparo da área" lazy>
-            <div v-if="tab === 2">
+            <div v-if="tab === 1">
               <h4>Histórico de Ocupação</h4>
               <br>
               <b-row>
@@ -254,11 +248,19 @@
                     <b-form-input v-if="form.fertilizing === 'NA'" v-model="form.fertilizing_other" placeholder="Especifique aqui" />
                   </b-form-group>
                 </b-col>
+                <b-col md="12">
+                  <b-form-group label="Observações gerais do diagnóstico">
+                    <b-form-textarea v-model="form.diagnosis_notes" />
+                  </b-form-group>
+                </b-col>
+                <b-col md="12">
+                  <pictures-upload :form="form" field="diagnosis_pictures" url="/api/uploads/images" :multiple="true" />
+                </b-col>
               </b-row>
             </div>
           </b-tab>
           <b-tab title="Plantio" lazy>
-            <div v-if="tab === 3">
+            <div v-if="tab === 2">
               <b-row>
                 <b-col md="6">
                   <b-form-group label="Estado">
@@ -339,18 +341,18 @@
                   </b-form-group>
                 </b-col>
                 <b-col md="12">
-                  <pictures-upload :form="form" field="planting_pictures" url="/api/uploads/images" :multiple="true" />
+                  <b-form-group label="Observações gerais do plantio">
+                    <b-form-textarea v-model="form.planting_notes" />
+                  </b-form-group>
                 </b-col>
                 <b-col md="12">
-                  <b-form-group label="Observações gerais do plantio">
-                    <b-form-textarea v-model="form.planting_observations" />
-                  </b-form-group>
+                  <pictures-upload :form="form" field="planting_pictures" url="/api/uploads/images" :multiple="true" />
                 </b-col>
               </b-row>
             </div>
           </b-tab>
           <b-tab title="Monitoramento e manejo" lazy>
-            <div v-if="tab === 4">
+            <div v-if="tab === 3">
               <b-row>
                 <b-col md="6">
                   <b-form-group label="Data do monitoramento">
@@ -383,13 +385,13 @@
                   </b-form-group>
                 </b-col>
                 <b-col md="12">
-                  <pictures-upload :form="form" field="planting_pictures" url="/api/uploads/images" :multiple="true" />
+                  <pictures-upload :form="form" field="monitoring_pictures" url="/api/uploads/images" :multiple="true" />
                 </b-col>
               </b-row>
             </div>
           </b-tab>
         </b-tabs>
-      </b-card>
+      </div>
       <br>
       <b-button type="submit" variant="primary" block :disabled="invalid">
         Salvar
@@ -483,6 +485,10 @@ export default {
         semi_mechanized_mowing_number: null,
         manual_mowing_number: null,
         mowing_frequency: '',
+        fertilizing: '',
+        fertilizing_other: '',
+        diagnosis_notes: '',
+        diagnosis_pictures: [],
 
         city: '',
         state: '',
@@ -494,21 +500,23 @@ export default {
         restoration_system_other: '',
         restoration_system_implement: '',
         native_seeds_planted: null,
-        native_seeds_investment: null,
+        native_seeds_investment: 0,
         native_seeds_source: '',
         green_adubation_planted: null,
-        green_adubation_investment: null,
+        green_adubation_investment: 0,
         seedlings_planted: null,
-        seedlings_investment: null,
+        seedlings_investment: 0,
         total_planting_cost: null,
-        planting_observations: '',
+        planting_notes: '',
+        planting_pictures: '',
 
         monitoring_date: null,
         trees_established_per_hectare: null,
         species_established_in_total_area: null,
         percentage_of_canopy_coverage: null,
         percentage_of_soil_coverage: null,
-        monitoring_notes: ''
+        monitoring_notes: '',
+        monitoring_pictures: ''
 
       }
     }
@@ -534,20 +542,30 @@ export default {
         const learningUnit = await this.$axios.$put('/api/learning_units/' + this.learningUnit.slug, this.form).catch(this.showError)
         if (learningUnit) {
           this.$toast.success('Unidade de aprendizagem atualizada com sucesso!')
-          if (this.$auth.hasScope('super') || this.$auth.hasScope('admin')) {
-            this.$router.push('/admin/learning_units')
+          if (this.tab === 3) {
+            if (this.$auth.hasScope('super') || this.$auth.hasScope('admin')) {
+              this.$router.push('/admin/learning_units')
+            } else {
+              this.$router.push('/conta/unidades-de-aprendizagem')
+            }
           } else {
-            this.$router.push('/conta/unidades-de-aprendizagem')
+            this.tab += 1
+            this.$scrollTo('.breadcrumb')
           }
         }
       } else {
         const learningUnit = await this.$axios.$post('/api/learning_units', this.form).catch(this.showError)
         if (learningUnit) {
           this.$toast.success('Unidade de aprendizagem cadastrada com sucesso!')
-          if (this.$auth.hasScope('super') || this.$auth.hasScope('admin')) {
-            this.$router.push('/admin/learning_units')
+          if (this.tab === 3) {
+            if (this.$auth.hasScope('super') || this.$auth.hasScope('admin')) {
+              this.$router.push('/admin/learning_units')
+            } else {
+              this.$router.push('/conta/unidades-de-aprendizagem')
+            }
           } else {
-            this.$router.push('/conta/unidades-de-aprendizagem')
+            this.tab += 1
+            this.$scrollTo('.breadcrumb')
           }
         }
       }
