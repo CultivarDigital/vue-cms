@@ -55,7 +55,7 @@
             </validation-provider>
           </b-form-group>
         </b-col>
-        <b-col v-if="form.roles && form.roles[0] == 'user'" md="6">
+        <b-col v-if="form.roles && form.roles[0] === 'user'" md="6">
           <b-form-group label="Organização *">
             <validation-provider v-slot="{ errors }" name="organização" rules="required">
               <b-form-input v-model="form.organization" />

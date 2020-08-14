@@ -17,7 +17,7 @@
             <span v-if="data.value">{{ data.value }} hectares</span>
           </template>
           <template v-slot:cell(status)="data">
-            <span v-if="data.value == 'approved'">Aprovada</span>
+            <span v-if="data.value === 'approved'">Aprovada</span>
             <span v-else>Aguardando aprovação</span>
           </template>
           <template v-slot:cell(actions)="data">

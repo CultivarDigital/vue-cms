@@ -7,6 +7,12 @@ require('./models/Tag')
 require('./models/Village')
 require('./models/Page')
 require('./models/LearningUnit')
+require('./models/Diagnosis')
+require('./models/Preparation')
+require('./models/Planting')
+require('./models/Monitoring')
+require('./models/Maintenance')
+require('./models/Harvest')
 require('./models/ServiceProvider')
 require('./models/Newsletter')
 require('./config/passport')
@@ -56,6 +62,12 @@ router.use('/tags', require('./routes/tags'))
 router.use('/villages', require('./routes/villages'))
 router.use('/pages', require('./routes/pages'))
 router.use('/learning_units', require('./routes/learning_units'))
+router.use('/diagnostics', require('./routes/diagnostics'))
+router.use('/preparations', require('./routes/preparations'))
+router.use('/plantings', require('./routes/plantings'))
+router.use('/monitorings', require('./routes/monitorings'))
+router.use('/maintenances', require('./routes/maintenances'))
+router.use('/harvests', require('./routes/harvests'))
 router.use('/service_providers', require('./routes/service_providers'))
 router.use('/newsletters', require('./routes/newsletters'))
 
@@ -75,7 +87,33 @@ router.get('/site', function(req, res) {
     .populate({
       path: 'learning_units',
       model: 'LearningUnit',
-      options: { sort: 'name' }
+      options: { sort: 'name' },
+      populate: [
+        {
+          path: 'diagnostics',
+          model: 'Diagnosis'
+        },
+        {
+          path: 'preparations',
+          model: 'Preparation'
+        },
+        {
+          path: 'plantings',
+          model: 'Planting'
+        },
+        {
+          path: 'monitorings',
+          model: 'Monitoring'
+        },
+        {
+          path: 'maintenances',
+          model: 'Maintenance'
+        },
+        {
+          path: 'harvests',
+          model: 'Harvest'
+        },
+      ]
     })
     .populate({
       path: 'service_providers',

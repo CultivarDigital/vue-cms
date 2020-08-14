@@ -10,11 +10,5 @@
       "title": "Prestadores de serviço",
       "description": "Organizações e pessoas que prestam serviços relacionados com a semeadura direta",
       "url": "/prestadores-de-servico"
-   },
-   "seeds_networks": {
-      "status": true,
-      "title": "Redes de sementes nativas",
-      "description": "Contatos e outras informações disponíveis para compra de sementes",
-      "url": "/redes-de-sementes"
    }
 }

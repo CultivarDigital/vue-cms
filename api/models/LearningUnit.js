@@ -103,7 +103,6 @@ const LearningUnitSchema = mongoose.Schema({
   planting_notes: String,
   planting_pictures: [Object],
 
-  monitoring_date: Date,
   trees_established_per_hectare: Number,
   species_established_in_total_area: Number,
   percentage_of_canopy_coverage: Number,
@@ -118,6 +117,12 @@ const LearningUnitSchema = mongoose.Schema({
 
 LearningUnitSchema.plugin(uniqueValidator, {
   message: 'Este nome já está sendo usado'
+})
+
+LearningUnitSchema.virtual('diagnostics', {
+  ref: 'Diagnosis',
+  localField: '_id',
+  foreignField: 'learning_unit'
 })
 
 export const LearningUnit = mongoose.models.LearningUnit || mongoose.model('LearningUnit', LearningUnitSchema)
