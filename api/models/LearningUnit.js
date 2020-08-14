@@ -125,4 +125,34 @@ LearningUnitSchema.virtual('diagnostics', {
   foreignField: 'learning_unit'
 })
 
+LearningUnitSchema.virtual('preparations', {
+  ref: 'Preparation',
+  localField: '_id',
+  foreignField: 'learning_unit'
+})
+
+LearningUnitSchema.virtual('plantings', {
+  ref: 'Planting',
+  localField: '_id',
+  foreignField: 'learning_unit'
+})
+
+LearningUnitSchema.virtual('monitorings', {
+  ref: 'Monitoring',
+  localField: '_id',
+  foreignField: 'learning_unit'
+})
+
+LearningUnitSchema.virtual('maintenances', {
+  ref: 'Maintenance',
+  localField: '_id',
+  foreignField: 'learning_unit'
+})
+
+LearningUnitSchema.virtual('harvests', {
+  ref: 'Harvest',
+  localField: '_id',
+  foreignField: 'learning_unit'
+})
+
 export const LearningUnit = mongoose.models.LearningUnit || mongoose.model('LearningUnit', LearningUnitSchema)
