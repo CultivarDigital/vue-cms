@@ -59,7 +59,7 @@ export default {
     'nuxt-leaflet'
   ],
   axios: {
-    baseURL: 'https://caminhos-da-semente.terrakrya.com' // Used as fallback if no runtime config is provided
+    baseURL: 'https://www.caminhosdasemente.org.br' // Used as fallback if no runtime config is provided
   },
   bootstrapVue: {
     bootstrapCSS: false, // Or `css: false`
