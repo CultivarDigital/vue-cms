@@ -84,7 +84,7 @@
               <b-form-group class="text-center">
                 <p>
                   Já possúi uma conta?
-                  <a @click="open('register')">
+                  <a @click="open('login')">
                     <strong>entre</strong>
                   </a>
                 </p>
@@ -97,7 +97,6 @@
         </div>
       </b-container>
     </section>
-    <pre>{{ register_form }}</pre>
   </div>
 </template>
 
