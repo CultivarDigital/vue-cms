@@ -1,7 +1,7 @@
 <template>
   <b-row class="learning-units-component pt-4">
     <b-col v-for="learning_unit in learningUnits" :key="learning_unit._id" md="4">
-      <nuxt-link :to="'/unidades-de-aprendizagem/' + learning_unit.slug" tag="div" class="card">
+      <n-link :to="'/unidades-de-aprendizagem/' + learning_unit.slug" tag="div" class="card">
         <div class="img">
           <b-img :src="learning_unit.pictures && learning_unit.pictures.length ? learning_unit.pictures[0].average : null" :alt="learning_unit.name" class="card-img-top" />
         </div>
@@ -18,12 +18,15 @@
             </p>
             <p><br>{{ (learning_unit.description || learning_unit.content) | truncate(1000) }}</p>
             <br>
-            <n-link class="btn btn-primary" :to="'/unidades-de-aprendizagem/' + learning_unit.slug">
+            <n-link :to="'/unidades-de-aprendizagem/' + learning_unit.slug" class="btn btn-primary btn-sm">
               Saiba mais
+            </n-link>
+            <n-link to="/mapa" class="btn btn-primary btn-sm">
+              Voltar ao mapa
             </n-link>
           </div>
         </div>
-      </nuxt-link>
+      </n-link>
     </b-col>
   </b-row>
 </template>
@@ -81,7 +84,7 @@ export default {
             margin: 15px 0
           .btn-primary
             background-color: #384e3f
-            font-size: 12px
+            font-size: 11px
             text-transform: uppercase
-            padding: 10px 15px
+            padding: 5px 10px
 </style>

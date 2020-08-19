@@ -18,14 +18,14 @@
                   <div class="card-header">
                     <ul class="nav nav-pills card-header-pills">
                       <li class="nav-item">
-                        <nuxt-link :to="'/unidades-de-aprendizagem/' + learning_unit.slug" :class="current_item ? 'nav-link' : 'nav-link active'">
+                        <n-link :to="'/unidades-de-aprendizagem/' + learning_unit.slug" :class="current_item ? 'nav-link' : 'nav-link active'">
                           Informações gerais
-                        </nuxt-link>
+                        </n-link>
                       </li>
                       <li v-if="current_item" class="nav-item">
-                        <nuxt-link :to="'/unidades-de-aprendizagem/' + learning_unit.slug" class="nav-link active">
+                        <n-link :to="'/unidades-de-aprendizagem/' + learning_unit.slug" class="nav-link active">
                           {{ types[current_item.type] }}
-                        </nuxt-link>
+                        </n-link>
                       </li>
                     </ul>
                   </div>
@@ -341,6 +341,11 @@
                     </tbody>
                   </table>
                 </div>
+                <div class="text-center">
+                  <n-link to="/mapa" class="btn btn-primary">
+                    Voltar ao mapa
+                  </n-link>
+                </div>
               </div>
             </div>
           </b-col>
@@ -353,7 +358,7 @@
                 </b-col>
                 <b-col class="cards">
                   <div v-for="item in timeline" :key="item._id" @click="$scrollTo('.tabs')">
-                    <nuxt-link :to="'/unidades-de-aprendizagem/' + learning_unit.slug + '?item=' + item._id" tag="div" class="card">
+                    <n-link :to="'/unidades-de-aprendizagem/' + learning_unit.slug + '?item=' + item._id" tag="div" class="card">
                       <b-img :src="item.pictures && item.pictures.length ? item.pictures[0].average : null" :alt="item.title" class="card-img-top" />
                       <div class="card-body">
                         <div class="date">
@@ -370,7 +375,7 @@
                           <p>{{ (item.description || item.content) | truncate(1000) }}</p>
                         </div>
                       </div>
-                    </nuxt-link>
+                    </n-link>
                   </div>
                 </b-col>
               </b-row>
@@ -507,11 +512,11 @@ export default {
                 position: absolute
                 margin-left: -36px
                 border-radius: 10px
-                margin-top: -25px
+                margin-top: 5px
               > div
                 position: absolute
                 margin-left: -78px
-                margin-top: -57px
+                margin-top: -27px
                 width: 40px
                 font-size: 16px
                 text-transform: capitalize

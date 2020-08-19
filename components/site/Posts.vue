@@ -2,7 +2,7 @@
   <div class="posts-component pt-4">
     <b-row>
       <b-col v-for="post in posts" :key="post._id" lg="6">
-        <nuxt-link :to="'/noticias/' + post.slug" tag="div" class="card">
+        <n-link :to="'/noticias/' + post.slug" tag="div" class="card">
           <div class="img">
             <b-img :src="post.picture ? post.picture.average : null" :alt="post.title" class="card-img-top" />
           </div>
@@ -16,7 +16,7 @@
               <tags :tags="post.tags" to="/noticias" :all-tags="false" />
             </div>
           </div>
-        </nuxt-link>
+        </n-link>
       </b-col>
     </b-row>
   </div>

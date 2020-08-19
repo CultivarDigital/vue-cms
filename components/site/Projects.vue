@@ -1,7 +1,7 @@
 <template>
   <div class="projects-component pt-4 row">
     <div v-for="project in projects" :key="project._id" md="4">
-      <nuxt-link :to="'/projetos/' + project.slug" tag="div" class="card">
+      <n-link :to="'/projetos/' + project.slug" tag="div" class="card">
         <div class="img">
           <b-img :src="project.pictures && project.pictures.length ? project.pictures[0].average : null" :alt="project.name" class="card-img-top" />
         </div>
@@ -16,7 +16,7 @@
             <tags :tags="project.tags" :to="$route.path" />
           </div>
         </div>
-      </nuxt-link>
+      </n-link>
     </div>
   </div>
 </template>

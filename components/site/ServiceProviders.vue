@@ -1,7 +1,7 @@
 <template>
   <b-row class="service-providers-component list-page">
     <b-col v-for="service_provider in serviceProviders" :key="service_provider._id" md="4">
-      <nuxt-link :to="'/prestadores-de-servico/' + service_provider.slug" tag="div" class="card">
+      <n-link :to="'/prestadores-de-servico/' + service_provider.slug" tag="div" class="card">
         <div class="img">
           <b-img :src="service_provider.pictures && service_provider.pictures.length ? service_provider.pictures[0].average : null" :alt="service_provider.name" class="card-img-top" />
         </div>
@@ -16,7 +16,7 @@
             </n-link>
           </div>
         </div>
-      </nuxt-link>
+      </n-link>
     </b-col>
   </b-row>
 </template>

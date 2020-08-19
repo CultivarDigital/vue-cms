@@ -6,12 +6,12 @@
         Caminhos da Semente
       </h1>
       <div class="links mt-5">
-        <nuxt-link to="/site" class="btn btn-success">
+        <n-link to="/site" class="btn btn-success">
           Site
-        </nuxt-link>
-        <nuxt-link to="/admin" class="btn btn-primary">
+        </n-link>
+        <n-link to="/admin" class="btn btn-primary">
           Painel
-        </nuxt-link>
+        </n-link>
         <b-button v-if="$auth.loggedIn">
           Sair
         </b-button>

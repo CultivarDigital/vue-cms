@@ -2,7 +2,7 @@
   <b-container class="categories-component">
     <b-row>
       <b-col v-for="category in categories" :key="category._id" lg="3" sm="6">
-        <nuxt-link :to="'/' + category.slug + '/projetos'" tag="div" class="card">
+        <n-link :to="'/' + category.slug + '/projetos'" tag="div" class="card">
           <b-img :src="category.picture ? category.picture.url : null" class="card-img-top" :alt="category.name" />
           <div class="card-body">
             <div class="card-text">
@@ -13,7 +13,7 @@
               <p>{{ category.description }}</p>
             </div>
           </div>
-        </nuxt-link>
+        </n-link>
       </b-col>
     </b-row>
   </b-container>
