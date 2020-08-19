@@ -16,6 +16,9 @@
           <pictures-upload :form="form" field="pictures" url="/api/uploads/images" :multiple="true" label="Banners" />
         </b-col>
         <b-col md="12">
+          <pdfs-upload :form="form" field="pdfs" url="/api/uploads/pdfs" :multiple="true" />
+        </b-col>
+        <b-col md="12">
           <b-form-group label="Contúdo da página">
             <quill-editor ref="quillEdit" v-model="form.content" />
             <input id="quillfile" type="file" hidden @change="quillUpload">
@@ -57,7 +60,8 @@ export default {
         title: '',
         description: '',
         content: '',
-        pictures: []
+        pictures: [],
+        pdfs: []
       }
     }
   },

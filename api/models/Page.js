@@ -17,7 +17,8 @@ const PageSchema = mongoose.Schema({
   title: String,
   description: String,
   content: String,
-  pictures: [Object]
+  pictures: [Object],
+  pdfs: [Object]
 }, {
   timestamps: true,
   toJSON: { virtuals: true }

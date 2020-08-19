@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
 const ObjectId = mongoose.Schema.Types.ObjectId
-const AddressSchema = require('./Address')
 
 const PreparationSchema = mongoose.Schema({
   site: {
@@ -30,7 +29,7 @@ const PreparationSchema = mongoose.Schema({
   herbicide_use: String,
   herbicide: String,
   herbicide_frequency: String,
-  overgrazing:    String,
+  overgrazing: String,
   overgrazing_frequency: String,
   soil_preparation: [String],
   screenings_number: Number,
@@ -40,8 +39,7 @@ const PreparationSchema = mongoose.Schema({
   manual_mowing_number: Number,
   mowing_frequency: String,
   fertilizing: [String],
-  fertilizing_other: String,
-
+  fertilizing_other: String
 
 }, {
   timestamps: true,

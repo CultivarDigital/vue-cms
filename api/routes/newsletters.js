@@ -1,12 +1,11 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const router = express.Router()
-const slugify = require('slugify')
 const auth = require('../config/auth')
 const Newsletter = mongoose.model('Newsletter')
 
 router.get('/', auth.admin, (req, res) => {
-  let query = {}
+  const query = {}
   if (!req.payload.roles.includes('super')) {
     query.site = req.payload.site
   }
@@ -19,7 +18,7 @@ router.get('/', auth.admin, (req, res) => {
   })
 })
 
-router.post('/newsletter', async (req, res) => {
+router.post('/newsletter', (req, res) => {
   const newsletter = new Newsletter()
 
   newsletter.site = req.body.site

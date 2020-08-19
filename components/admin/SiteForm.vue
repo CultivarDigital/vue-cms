@@ -10,7 +10,7 @@
             </validation-provider>
           </b-form-group>
         </b-col>
-        <b-col md="6" v-if="$auth.hasScope('super')">
+        <b-col v-if="$auth.hasScope('super')" md="6">
           <b-form-group label="Domínio *">
             <validation-provider v-slot="{ errors }" name="domínio" rules="required">
               <b-form-input v-model="form.domain_name" name="domain_name" />

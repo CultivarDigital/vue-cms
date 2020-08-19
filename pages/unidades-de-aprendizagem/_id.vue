@@ -301,6 +301,7 @@
                       <b-col v-for="(pdf, index) in current_item.pdfs" :key="index" md="4">
                         <a :href="pdf.url" target="_blank">
                           <b-img :src="pdf.thumb" class="thumbnail" />
+                          <p v-if="pdf.title" class="text-center">{{ pdf.title }}</p>
                         </a>
                       </b-col>
                     </b-row>

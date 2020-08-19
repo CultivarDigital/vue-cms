@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
 const ObjectId = mongoose.Schema.Types.ObjectId
-const AddressSchema = require('./Address')
 
 const HarvestSchema = mongoose.Schema({
   site: {
@@ -25,7 +24,7 @@ const HarvestSchema = mongoose.Schema({
   description: String,
   notes: String,
   pictures: [Object],
-  pdfs: [Object],
+  pdfs: [Object]
 
 }, {
   timestamps: true,

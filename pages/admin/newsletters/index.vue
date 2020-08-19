@@ -8,8 +8,8 @@
       </div>
       <div v-else class="text-center">
         <b-spinner label="Carregando..." />
+      </div>
     </div>
-  </div>
   </div>
 </template>
 

@@ -25,7 +25,6 @@ const session = require('express-session')
 const mongoose = require('mongoose')
 const User = mongoose.model('User')
 const Site = mongoose.model('Site')
-const Newsletter = mongoose.model('Newsletter')
 const auth = require('./config/auth')
 
 const isProduction = process.env.NODE_ENV === 'production'
@@ -112,7 +111,7 @@ router.get('/site', function(req, res) {
         {
           path: 'harvests',
           model: 'Harvest'
-        },
+        }
       ]
     })
     .populate({

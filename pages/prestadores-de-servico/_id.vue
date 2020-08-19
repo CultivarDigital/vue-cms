@@ -13,7 +13,7 @@
                 <b-tabs content-class="mt-3" card pills>
                   <b-tab title="Informações gerais" active>
                     <div v-if="service_provider.content" v-html="service_provider.content" />
-                    <div v-if="service_provider.contact" v-html="service_provider.contact" class="pre-line" />
+                    <div v-if="service_provider.contact" class="pre-line" v-html="service_provider.contact" />
                   </b-tab>
                 </b-tabs>
               </div>
