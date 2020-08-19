@@ -1,8 +1,12 @@
 import Vue from 'vue'
 
+const stripHtml = (html) => {
+  return html ? html.replace(/<\/?[^>]+(>|$)/g, '') : ''
+}
+
 Vue.filter('truncate', function(value, limit) {
-  if (value.length > limit) {
-    value = value.substring(0, (limit - 3)) + '...'
+  if (value && value.length > limit) {
+    value = stripHtml(value).substring(0, (limit - 3)) + '...'
   }
   return value
 })

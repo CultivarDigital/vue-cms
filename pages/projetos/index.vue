@@ -87,11 +87,6 @@ export default {
       return projects
     }
   },
-  methods: {
-    stripHtml: (html) => {
-      return html ? html.replace(/<\/?[^>]+(>|$)/g, '') : ''
-    }
-  },
   head () {
     return {
       title: (this.currentCategory ? this.currentCategory.name + ' - ' : 'Linhas de ação - ') + 'Projetos - ' + this.site.name,

@@ -12,7 +12,7 @@
               <h3>{{ post.title }}</h3>
             </div>
             <div class="card-text">
-              <p>{{ (post.description || stripHtml(post.content)) | truncate(1000) }}</p>
+              <p>{{ (post.description || post.content) | truncate(1000) }}</p>
               <tags :tags="post.tags" to="/noticias" :all-tags="false" />
             </div>
           </div>
@@ -32,11 +32,6 @@ export default {
     posts: {
       type: Array,
       default: () => []
-    }
-  },
-  methods: {
-    stripHtml: (html) => {
-      return html ? html.replace(/<\/?[^>]+(>|$)/g, '') : ''
     }
   }
 }

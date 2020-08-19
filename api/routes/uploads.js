@@ -71,11 +71,17 @@ router.post('/images', [auth.authenticated, imageUploader.single('image')], (req
   const average = averagesPath(req.payload.site_slug) + filename
 
   sharp(original, { failOnError: false })
-    .resize(400)
+    .resize({
+      width: 400,
+      withoutEnlargement: true
+    })
     .toFile(thumb, function(err) {
       if (!err) {
         sharp(original, { failOnError: false })
-          .resize(1600)
+          .resize({
+            width: 1600,
+            withoutEnlargement: true
+          })
           .toFile(average, function(err) {
             if (!err) {
               res.status(201).send({

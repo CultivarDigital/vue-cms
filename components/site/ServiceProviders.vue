@@ -10,7 +10,7 @@
             <h3>{{ service_provider.name }}</h3>
           </div>
           <div class="card-text">
-            <p>{{ (service_provider.description || stripHtml(service_provider.content)) | truncate(1000) }}<br><br></p>
+            <p>{{ (service_provider.description || service_provider.content) | truncate(1000) }}<br><br></p>
             <n-link class="btn btn-primary" :to="'/prestadores-de-servico/' + service_provider.slug">
               Saiba mais
             </n-link>
@@ -27,11 +27,6 @@ export default {
     serviceProviders: {
       type: Array,
       default: () => []
-    }
-  },
-  methods: {
-    stripHtml: (html) => {
-      return html ? html.replace(/<\/?[^>]+(>|$)/g, '') : ''
     }
   }
 }

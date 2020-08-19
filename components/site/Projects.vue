@@ -10,7 +10,7 @@
             <h3>{{ project.name }}</h3>
           </div>
           <div class="card-text">
-            {{ (project.description || stripHtml(project.content)) | truncate(1000) }}
+            {{ (project.description || project.content) | truncate(1000) }}
             <br>
             <br>
             <tags :tags="project.tags" :to="$route.path" />
@@ -31,11 +31,6 @@ export default {
     projects: {
       type: Array,
       default: () => []
-    }
-  },
-  methods: {
-    stripHtml: (html) => {
-      return html ? html.replace(/<\/?[^>]+(>|$)/g, '') : ''
     }
   }
 }

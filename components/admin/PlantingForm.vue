@@ -3,7 +3,7 @@
     <div v-if="!show_form">
       <div class="text-right mb-3">
         <b-button variant="primary" @click="show_form = true">
-          Cadastrar
+          Registrar plantio
         </b-button>
       </div>
       <div v-if="plantings">

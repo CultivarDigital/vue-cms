@@ -16,7 +16,7 @@
               <strong>Local:</strong>
               {{ learning_unit.address.location.coordinates[0] }}, {{ learning_unit.address.location.coordinates[1] }}
             </p>
-            <p><br>{{ (learning_unit.description || stripHtml(learning_unit.content)) | truncate(1000) }}</p>
+            <p><br>{{ (learning_unit.description || learning_unit.content) | truncate(1000) }}</p>
             <br>
             <n-link class="btn btn-primary" :to="'/unidades-de-aprendizagem/' + learning_unit.slug">
               Saiba mais
@@ -34,11 +34,6 @@ export default {
     learningUnits: {
       type: Array,
       default: () => []
-    }
-  },
-  methods: {
-    stripHtml: (html) => {
-      return html ? html.replace(/<\/?[^>]+(>|$)/g, '') : ''
     }
   }
 }

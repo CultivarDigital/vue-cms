@@ -3,7 +3,7 @@
     <b-navbar toggleable="md">
       <b-container class="mt-2" fluid="lg">
         <b-navbar-brand to="/">
-          <b-img v-if="site.logo" :src="site.logo.url" />
+          <b-img v-if="site && site.logo" :src="site.logo.url" />
         </b-navbar-brand>
         <b-navbar-toggle target="header-menu" />
         <b-collapse id="header-menu" is-nav>
