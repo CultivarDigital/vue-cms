@@ -454,7 +454,9 @@ export default {
         item.type = 'harvest'
         timeline.push(item)
       })
-      return timeline
+      return timeline.sort((a, b) => {
+        return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+      })
     }
   },
   methods: {
