@@ -36,6 +36,13 @@
                   </template>
                 </template>
               </template>
+              <l-marker v-for="state in states" :key="state.name" :lat-lng="state.location">
+                <l-icon :icon-size="[13, 15]" :icon-url="require('~/assets/img/marker_seeds_networks.png')" />
+                <l-popup>
+                  <h6>{{ state.name }}</h6>
+                  <p>{{ state.qtd }} plantios por Semeadura Direta</p>
+                </l-popup>
+              </l-marker>
             </l-map>
           </client-only>
         </div>
@@ -50,6 +57,10 @@
             <b-img v-else :src="require('~/assets/img/marker_inactive.png')" />
             {{ layers[layer].title }}
           </p>
+          <p>
+            <b-img :src="require('~/assets/img/marker_seeds_networks.png')" />
+            Plantios por Semeadura Direta
+          </p>
         </div>
       </b-col>
     </b-row>
@@ -62,7 +73,74 @@ export default {
   mixins: [mixinPage],
   data () {
     return {
-      layers
+      layers,
+      states: [
+        {
+          name: 'Distrito Federal',
+          location: [-15.791892, -47.965834],
+          qtd: 3
+        },
+        {
+          name: 'Espírito Santo',
+          location: [-19.647419, -40.494222],
+          qtd: 2
+        },
+        {
+          name: 'Goiás',
+          location: [-15.750669, -49.267045],
+          qtd: 34
+        },
+        {
+          name: 'Minas Gerais',
+          location: [-18.275893, -44.388995],
+          qtd: 52
+        },
+        {
+          name: 'Mato Grosso do Sul',
+          location: [-20.028867, -54.647905],
+          qtd: 2
+        },
+        {
+          name: 'Mato Grosso',
+          location: [-13.018335, -55.342865],
+          qtd: 438
+        },
+        {
+          name: 'Pará',
+          location: [-4.571791, -52.676406],
+          qtd: 4
+        },
+        {
+          name: 'Paraíba',
+          location: [-7.188685, -36.658128],
+          qtd: 1
+        },
+        {
+          name: 'Pernambuco',
+          location: [-8.441353, -37.694435],
+          qtd: 4
+        },
+        {
+          name: 'Rio de Janeiro',
+          location: [-22.923746, -43.437720],
+          qtd: 1
+        },
+        {
+          name: 'Rondônia',
+          location: [-10.877289, -62.927273],
+          qtd: 10
+        },
+        {
+          name: 'São Paulo',
+          location: [-22.318868, -48.429556],
+          qtd: 25
+        },
+        {
+          name: 'Tocantins',
+          location: [-10.240146, -48.183759],
+          qtd: 23
+        }
+      ]
     }
   },
   methods: {
