@@ -38,8 +38,6 @@ export default {
     meta.push({ hid: 'og:image', name: 'og:image', content: image })
     meta.push({ hid: 'description', name: 'description', content: description })
 
-    console.log(this.page_id)
-    console.log(meta)
     return {
       title,
       meta

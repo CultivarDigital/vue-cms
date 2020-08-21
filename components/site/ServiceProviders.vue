@@ -16,7 +16,7 @@
               {{ [service_provider.address.city, service_provider.address.uf].filter(i => i).join(' - ') }}
               <br>
               <br>
-              </p>
+            </p>
             <n-link class="btn btn-primary" :to="'/prestadores-de-servico/' + service_provider.slug">
               Saiba mais
             </n-link>
