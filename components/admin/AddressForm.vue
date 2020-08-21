@@ -104,16 +104,7 @@
 </template>
 <script>
 import axios from 'axios'
-// import {
-//   L
-// } from 'vue2-leaflet'
-//
-// delete L.Icon.Default.prototype._getIconUrl
-// L.Icon.Default.mergeOptions({
-//   iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
-//   iconUrl: require('leaflet/dist/images/marker-icon.png'),
-//   shadowUrl: require('leaflet/dist/images/marker-shadow.png')
-// })
+import estados from '@/data/estados.json'
 
 const emptyForm = {
   city: '',
@@ -208,6 +199,12 @@ export default {
       a.neighborhood = address.neighbourhood || address.hamlet || address.suburb
       a.city = address.city || address.city_district || address.village || address.town
       a.uf = address.state || address.state_district
+      if (a.uf.length !== 2) {
+        const estado = estados.find(e => e.text === a.uf)
+        if (estado) {
+          a.uf = estado.value
+        }
+      }
       a.postal_code = address.postcode
 
       a.description = [a.street, a.neighborhood, a.city, a.uf, a.postal_code].filter(i => i).join(', ')

@@ -80,12 +80,12 @@
                     <b-row>
                       <b-col md="6">
                         <b-form-group label="Estado">
-                          <b-form-select v-model="form.state" :options="estados" />
+                          <b-form-select v-model="form.address.uf" :options="estados" />
                         </b-form-group>
                       </b-col>
                       <b-col md="6">
-                        <b-form-group v-if="form.state" label="Cidade">
-                          <b-form-select v-model="form.city" :options="cidades" />
+                        <b-form-group v-if="form.address.uf" label="Cidade">
+                          <b-form-select v-model="form.address.city" :options="cidades" />
                         </b-form-group>
                       </b-col>
                     </b-row>
@@ -122,6 +122,7 @@
         </b-tab>
       </b-tabs>
     </div>
+    <pre>{{ form.address }}</pre>
   </div>
 </template>
 
@@ -169,13 +170,15 @@ export default {
   data() {
     return {
       estados,
-      tab: 1,
+      tab: 0,
       form: {
         name: '',
         description: '',
         planting_time: '',
         area_size: null,
         address: {
+          city: '',
+          uf: '',
           location: {
             type: 'Point',
             coordinates: []
@@ -185,17 +188,14 @@ export default {
 
         receive_technical_visits: false,
         availability_for_technical_visits: '',
-        responsible_for_technical_visits: '',
-
-        city: '',
-        state: ''
+        responsible_for_technical_visits: ''
       }
     }
   },
   computed: {
     cidades () {
-      if (this.form.state) {
-        return cidades[this.form.state]
+      if (this.form.address.uf) {
+        return cidades[this.form.address.uf]
       }
       return null
     }

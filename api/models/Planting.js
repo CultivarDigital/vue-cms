@@ -26,8 +26,6 @@ const PlantingSchema = mongoose.Schema({
   pictures: [Object],
   pdfs: [Object],
 
-  city: String,
-  state: String,
   vegetation_type: [String],
   property_features: String,
   restoration_system: [String],
