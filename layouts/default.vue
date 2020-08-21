@@ -42,7 +42,6 @@ export default {
   },
   head () {
     return {
-      title: 'Inicio - ' + this.site.name,
       link: [
         { rel: 'icon', type: 'image/x-icon', href: this.site.favicon ? this.site.favicon.url : '/favicon.ico' }
       ]

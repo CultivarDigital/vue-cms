@@ -1,6 +1,6 @@
-# caminhos-da-semente
+# Caminhos da Semente
 
-## Build Setup
+## A Iniciativa Caminhos da Semente é uma rede de pessoas e organizações com objetivo de dar escala à restauração ecológica no Brasil com foco no método da semeadura direta.
 
 ```bash
 # install dependencies

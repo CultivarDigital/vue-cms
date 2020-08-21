@@ -2,6 +2,11 @@
   <div v-if="page" class="prestadores-de-servico-page">
     <banners :items="page.pictures" />
     <section class="content pb-5">
+      <div class="page-header">
+        <b-container>
+          <b-breadcrumb :items="breadcrumb" />
+        </b-container>
+      </div>
       <b-container>
         <h1 v-if="page.title" class="title pt-5">{{ page.title }}</h1>
         <p v-if="page.description">{{ page.description }}</p>
@@ -28,7 +33,11 @@ export default {
   mixins: [mixinGlobal, mixinPage],
   data () {
     return {
-      page_id: 'service_providers'
+      page_id: 'service_providers',
+      breadcrumb: [
+        { text: 'Mapa', to: '/mapa' },
+        { text: 'Prestadores de serviço', active: true }
+      ]
     }
   },
   computed: {
@@ -40,14 +49,6 @@ export default {
         })
       }
       return learningUnits
-    }
-  },
-  head () {
-    return {
-      title: 'Prestadores de serviço - ' + this.site.name,
-      meta: [
-        { hid: 'description', name: 'description', content: this.page.description || this.site.description }
-      ]
     }
   }
 }

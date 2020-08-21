@@ -70,7 +70,7 @@ export default {
         if (confirmed) {
           await this.$axios.delete('/api/service_providers/' + serviceProvider.slug).then(() => {
             this.list()
-            this.$toast.success('Provedor de serviço removido com sucesso!')
+            this.$toast.success('Prestador de serviço removido com sucesso!')
           }).catch(this.showError)
         }
       })
@@ -78,7 +78,7 @@ export default {
     async approve (serviceProvider) {
       await this.$axios.put('/api/service_providers/' + serviceProvider.slug, { status: 'approved' }).then(() => {
         this.list()
-        this.$toast.success('Provedor de serviço aprovado com sucesso!')
+        this.$toast.success('Prestador de serviço aprovado com sucesso!')
       }).catch(this.showError)
     }
   }

@@ -311,10 +311,10 @@
                 <div v-else class="mt-5">
                   <div v-if="learning_unit.address && learning_unit.address.location && learning_unit.address.location.coordinates">
                     <ItemMap type="learning_units" :address="learning_unit.address" />
-                    <br>
                     <p class="text-center">
-                      {{ [learning_unit.city, learning_unit.state].filter(i => i).join(' - ') }}
+                      {{ [learning_unit.address.city, learning_unit.address.uf].filter(i => i).join(' - ') }}
                     </p>
+                    <br>
                   </div>
                   <table class="table">
                     <tbody>
@@ -401,6 +401,9 @@ export default {
   data() {
     return {
       page_id: 'learning_units',
+      page_title: this.learning_unit ? this.learning_unit.name + ' - Unidades de aprendizagem' : null,
+      page_description: this.learning_unit ? this.learning_unit.description : null,
+      page_image: (this.learning_unit && this.learning_unit.pictures && this.learning_unit.pictures.length > 0 ? this.learning_unit.pictures[0].url : null),
       types: {
         diagnosis: 'Diagnóstico',
         preparation: 'Preparo',
@@ -466,16 +469,6 @@ export default {
       } else {
         return false
       }
-    }
-  },
-  head() {
-    return {
-      title: this.learning_unit.name + ' - Unidades de aprendizado - ' + this.site.name,
-      meta: [{
-        hid: 'description',
-        name: 'description',
-        content: this.learning_unit.description || this.site.description
-      }]
     }
   }
 }

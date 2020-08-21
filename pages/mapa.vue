@@ -46,15 +46,9 @@ export default {
   mixins: [mixinPage],
   data () {
     return {
-      showMore: false
-    }
-  },
-  head () {
-    return {
-      title: 'Mapa de restauração ecológica com semeadura direta no Brasil - ' + this.site.name,
-      meta: [
-        { hid: 'description', name: 'description', content: 'Confira onde o método já está presente no país e áreas de plantios que você pode visitar' }
-      ]
+      showMore: false,
+      page_title: 'Mapa de restauração ecológica com semeadura direta no Brasil',
+      page_description: 'Confira onde o método já está presente no país e áreas de plantios que você pode visitar'
     }
   }
 }

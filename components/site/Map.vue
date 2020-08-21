@@ -67,10 +67,8 @@
   </div>
 </template>
 <script>
-import mixinPage from '@/mixins/page'
 import layers from '@/data/layers.json'
 export default {
-  mixins: [mixinPage],
   data () {
     return {
       layers,
@@ -141,6 +139,11 @@ export default {
           qtd: 23
         }
       ]
+    }
+  },
+  computed: {
+    site () {
+      return this.$store.state.site
     }
   },
   methods: {

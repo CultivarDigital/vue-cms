@@ -50,14 +50,6 @@ export default {
       }
       return learningUnits
     }
-  },
-  head () {
-    return {
-      title: 'Unidades de aprendizagem - ' + this.site.name,
-      meta: [
-        { hid: 'description', name: 'description', content: this.page.description || this.site.description }
-      ]
-    }
   }
 }
 </script>

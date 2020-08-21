@@ -1,5 +1,5 @@
 <template>
-  <b-row class="learning-units-component pt-4">
+  <b-row class="learning-units-component list-page">
     <b-col v-for="learning_unit in learningUnits" :key="learning_unit._id" md="4">
       <n-link :to="'/unidades-de-aprendizagem/' + learning_unit.slug" tag="div" class="card">
         <div class="img">
@@ -10,18 +10,18 @@
             <h3>{{ learning_unit.name }}</h3>
           </div>
           <div class="card-text">
+            <p v-if="learning_unit.description || learning_unit.content">{{ (learning_unit.description || learning_unit.content) | truncate(1000) }}<br><br></p>
             <p v-if="learning_unit.planting_time"><strong>Data do plantio:</strong>{{ learning_unit.planting_time }}</p>
             <p v-if="learning_unit.area_size"><strong>Área:</strong> {{ learning_unit.area_size }} hectares</p>
-            <p v-if="learning_unit.address && learning_unit.address.location && learning_unit.address.location.coordinates">
+            <p v-if="learning_unit.address && (learning_unit.address.city || learning_unit.address.uf)">
               <strong>Local:</strong>
-              {{ learning_unit.address.location.coordinates[0] }}, {{ learning_unit.address.location.coordinates[1] }}
+              {{ [learning_unit.address.city, learning_unit.address.uf].filter(i => i).join(' - ') }}
             </p>
-            <p><br>{{ (learning_unit.description || learning_unit.content) | truncate(1000) }}</p>
             <br>
-            <n-link :to="'/unidades-de-aprendizagem/' + learning_unit.slug" class="btn btn-primary btn-sm">
+            <n-link :to="'/unidades-de-aprendizagem/' + learning_unit.slug" class="btn btn-primary">
               Saiba mais
             </n-link>
-            <n-link to="/mapa" class="btn btn-primary btn-sm">
+            <n-link to="/mapa" class="btn btn-default">
               Voltar ao mapa
             </n-link>
           </div>
@@ -82,9 +82,4 @@ export default {
             font-size: 14px
             font-weight: bold
             margin: 15px 0
-          .btn-primary
-            background-color: #384e3f
-            font-size: 11px
-            text-transform: uppercase
-            padding: 5px 10px
 </style>

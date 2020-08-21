@@ -58,7 +58,7 @@
             </b-col>
             <b-col md="2">
               <div class="partner">
-                <img src="~assets/img/parceiros/amaggi.png" alt="Parceria Amaggi">
+                <img src="~assets/img/parceiros/wwf.png" alt="Parceria WWF" style="max-height: 10vh">
               </div>
             </b-col>
             <b-col md="2">
@@ -73,7 +73,7 @@
             </b-col>
             <b-col md="2">
               <div class="partner">
-                <img src="~assets/img/parceiros/wwf.png" alt="Parceria WWF">
+                <img src="~assets/img/parceiros/amaggi.png" alt="Parceria Amaggi">
               </div>
             </b-col>
             <b-col md="2">
@@ -116,16 +116,6 @@ export default {
   data() {
     return {
       page_id: 'home'
-    }
-  },
-  head() {
-    return {
-      title: this.site.name,
-      meta: [{
-        hid: 'description',
-        name: 'description',
-        content: this.site.description
-      }]
     }
   }
 }

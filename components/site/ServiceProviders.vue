@@ -11,8 +11,17 @@
           </div>
           <div class="card-text">
             <p>{{ (service_provider.description || service_provider.content) | truncate(1000) }}<br><br></p>
+            <p v-if="service_provider.address && (service_provider.address.city || service_provider.address.uf)">
+              <strong>Local:</strong>
+              {{ [service_provider.address.city, service_provider.address.uf].filter(i => i).join(' - ') }}
+              <br>
+              <br>
+              </p>
             <n-link class="btn btn-primary" :to="'/prestadores-de-servico/' + service_provider.slug">
               Saiba mais
+            </n-link>
+            <n-link to="/mapa" class="btn btn-default">
+              Voltar ao mapa
             </n-link>
           </div>
         </div>

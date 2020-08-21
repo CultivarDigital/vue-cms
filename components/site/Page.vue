@@ -39,14 +39,6 @@ export default {
     return {
       page_id: this.id
     }
-  },
-  head () {
-    return {
-      title: this.page.title + ' - ' + this.site.name,
-      meta: [
-        { hid: 'description', name: 'description', content: this.page.description || this.site.description }
-      ]
-    }
   }
 }
 </script>
