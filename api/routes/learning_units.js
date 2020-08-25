@@ -27,14 +27,14 @@ router.get('/fix_address', (req, res) => {
     if (err) {
       res.status(422).send(err.message)
     } else {
-      learningUnits.forEach(learning_unit => {
-        if (learning_unit.city) {
-          learning_unit.address.city = learning_unit.city
+      learningUnits.forEach(learningUnit => {
+        if (learningUnit.city) {
+          learningUnit.address.city = learningUnit.city
         }
-        if (learning_unit.state) {
-          learning_unit.address.uf = learning_unit.state
+        if (learningUnit.state) {
+          learningUnit.address.uf = learningUnit.state
         }
-        learning_unit.save()
+        learningUnit.save()
       })
       res.json(learningUnits)
     }

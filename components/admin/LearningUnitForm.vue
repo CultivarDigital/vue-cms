@@ -213,30 +213,21 @@ export default {
         const learningUnit = await this.$axios.$put('/api/learning_units/' + this.learningUnit.slug, this.form).catch(this.showError)
         if (learningUnit) {
           this.$toast.success('Unidade de aprendizagem atualizada com sucesso!')
-          if (this.tab === 3) {
-            if (this.$auth.hasScope('super') || this.$auth.hasScope('admin')) {
-              this.$router.push('/admin/learning_units')
-            } else {
-              this.$router.push('/conta/unidades-de-aprendizagem')
-            }
+          if (this.$auth.hasScope('super') || this.$auth.hasScope('admin')) {
+            this.$router.push('/admin/learning_units')
           } else {
-            this.tab += 1
-            this.$scrollTo('.breadcrumb')
+            this.$router.push('/conta/unidades-de-aprendizagem')
           }
         }
       } else {
         const learningUnit = await this.$axios.$post('/api/learning_units', this.form).catch(this.showError)
         if (learningUnit) {
-          this.$toast.success('Unidade de aprendizagem cadastrada com sucesso!')
-          if (this.tab === 3) {
-            if (this.$auth.hasScope('super') || this.$auth.hasScope('admin')) {
-              this.$router.push('/admin/learning_units')
-            } else {
-              this.$router.push('/conta/unidades-de-aprendizagem')
-            }
+          if (this.$auth.hasScope('super') || this.$auth.hasScope('admin')) {
+            this.$toast.success('Unidade de aprendizagem cadastrada com sucesso!')
+            this.$router.push('/admin/learning_units')
           } else {
-            this.tab += 1
-            this.$scrollTo('.breadcrumb')
+            this.$toast.success('Unidade de aprendizagem cadastrada com sucesso! Aguardando aprovação do administrador!')
+            this.$router.push('/conta/unidades-de-aprendizagem')
           }
         }
       }

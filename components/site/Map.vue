@@ -21,7 +21,7 @@
                 <template v-for="layer in Object.keys(layers)">
                   <template v-if="site[layer] && layers[layer].status">
                     <template v-for="item in site[layer]">
-                      <l-marker v-if="item.address && item.address.location && item.address.location.coordinates" :key="item._id" :lat-lng="item.address.location.coordinates">
+                      <l-marker v-if="item.status === 'approved' && item.address && item.address.location && item.address.location.coordinates" :key="item._id" :lat-lng="item.address.location.coordinates">
                         <l-icon :icon-size="[13, 15]" :icon-url="require('~/assets/img/marker_' + layer + '.png')" />
                         <l-popup>
                           <n-link :to="layers[layer].url + '/' + item.slug" class="text-center">
@@ -59,7 +59,7 @@
             <b-img v-else :src="require('~/assets/img/marker_inactive.png')" />
             {{ layers[layer].title }}
           </p>
-          <p @click="show_municipios = !show_municipios" class="pointer">
+          <p class="pointer" @click="show_municipios = !show_municipios">
             <b-img :src="require('~/assets/img/' + (show_municipios ? 'marker_municipios' : 'marker_inactive') + '.png')" />
             Plantios por Semeadura Direta
           </p>

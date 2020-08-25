@@ -39,7 +39,7 @@
           <div v-else class="text-center">
             <h3>Este é seu endereço?</h3>
             <h5>{{ address.description }}</h5>
-            <div v-if="address && address.location">
+            <div v-if="address && address.location && address.location.coordinates && address.location.coordinates.length === 2">
               <l-map :zoom="16" :center="address.location.coordinates" :options="{ scrollWheelZoom: false }" style="height: 250px">
                 <l-tile-layer :url="url" :attribution="attribution" />
                 <l-marker :lat-lng="address.location.coordinates" draggable @dragend="updateMarker">

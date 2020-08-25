@@ -149,10 +149,11 @@ export default {
       } else {
         const seedsNetwork = await this.$axios.$post('/api/seeds_networks', this.form).catch(this.showError)
         if (seedsNetwork) {
-          this.$toast.success('Rede de sementes cadastrada com sucesso!')
           if (this.$auth.hasScope('super') || this.$auth.hasScope('admin')) {
+            this.$toast.success('Rede de sementes cadastrada com sucesso!')
             this.$router.push('/admin/seeds_networks')
           } else {
+            this.$toast.success('Rede de sementes cadastrada com sucesso! Aguardando aprovação do administrador!')
             this.$router.push('/conta/redes-de-sementes')
           }
         }

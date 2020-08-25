@@ -4,12 +4,12 @@
       <Header />
       <div class="mb-5" fluid>
         <b-navbar toggleable="lg" type="dark" variant="default">
-          <b-navbar-brand to="/conta">Painel do usuário</b-navbar-brand>
           <b-navbar-toggle target="header-conta" />
           <b-collapse id="header-conta" is-nav>
             <b-navbar-nav>
               <b-nav-item to="/conta/unidades-de-aprendizagem">Unidades de aprendizagem</b-nav-item>
               <b-nav-item to="/conta/prestadores-de-servico">Prestadores de serviço</b-nav-item>
+              <b-nav-item to="/conta/redes-de-sementes">Redes de sementes</b-nav-item>
             </b-navbar-nav>
             <b-navbar-nav class="ml-auto">
               <b-nav-item-dropdown right>

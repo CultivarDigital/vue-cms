@@ -71,25 +71,6 @@ export default {
     async list () {
       this.learning_units = await this.$axios.$get('/api/learning_units', { params: { populate: 'tags categories', user: this.$auth.user._id } }).catch(this.showError)
     },
-    moveUp (data) {
-      this.learning_units[data.index].order -= 1.1
-      this.saveReorder()
-    },
-    moveDown (data) {
-      this.learning_units[data.index].order += 1.1
-      this.saveReorder()
-    },
-    async saveReorder () {
-      this.learning_units.sort((a, b) => a.order - b.order).forEach((learningUnit, index) => {
-        this.learning_units[index].order = index
-      })
-      const ids = this.learning_units.map(learningUnit => {
-        return { slug: learningUnit.slug, order: learningUnit.order }
-      })
-      await this.$axios.post('/api/learning_units/reorder', ids).then(() => {
-        this.list()
-      }).catch(this.showError)
-    },
     remove (learningUnit) {
       this.$bvModal.msgBoxConfirm('Tem certeza que deseja excluír este ítem?').then(async confirmed => {
         if (confirmed) {
