@@ -75,7 +75,7 @@
                     </b-form-group>
                     <CoordinatesPreview :form="form" />
                     <div class="text-right">
-                      <address-form :current_address="form.address" :autoload="false" @input="setAddress" />
+                      <address-form :current-address="form.address" :autoload="false" @input="setAddress" />
                     </div>
                     <b-row>
                       <b-col md="6">

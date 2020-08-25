@@ -1,5 +1,5 @@
 <template>
-  <div v-if="page" class="prestadores-de-servico-page">
+  <div v-if="page" class="redes-de-semente-page">
     <banners :items="page.pictures" />
     <section class="content pb-5">
       <div class="page-header">
@@ -12,8 +12,8 @@
         <p v-if="page.description">{{ page.description }}</p>
         <div v-if="page.content" class="quill-content mt-4" v-html="page.content" />
         <div>
-          <ServiceProviders :service-providers="service_providers" />
-          <p v-if="service_providers.length === 0" class="text-center">Nenhum prestador de serviço encontrado</p>
+          <SeedsNetworks :seeds-networks="seeds_networks" />
+          <p v-if="seeds_networks.length === 0" class="text-center">Nenhuma rede de sementes encontrada</p>
         </div>
       </b-container>
     </section>
@@ -23,32 +23,32 @@
 <script>
 import mixinGlobal from '@/mixins/global'
 import mixinPage from '@/mixins/page'
-import ServiceProviders from '@/components/site/ServiceProviders'
+import SeedsNetworks from '@/components/site/SeedsNetworks'
 import Banners from '@/components/site/Banners'
 export default {
   components: {
-    ServiceProviders,
+    SeedsNetworks,
     Banners
   },
   mixins: [mixinGlobal, mixinPage],
   data () {
     return {
-      page_id: 'service_providers',
+      page_id: 'seeds_networks',
       breadcrumb: [
         { text: 'Mapa', to: '/mapa' },
-        { text: 'Prestadores de serviço', active: true }
+        { text: 'Redes de sementes', active: true }
       ]
     }
   },
   computed: {
-    service_providers () {
-      let serviceProviders = this.site.service_providers
+    seeds_networks () {
+      let seedsNetworks = this.site.seeds_networks
       if (this.$route.query.tag) {
-        serviceProviders = serviceProviders.filter(serviceProvider => {
-          return serviceProvider.tags.find(tag => tag.slug === this.$route.query.tag)
+        seedsNetworks = seedsNetworks.filter(seedsNetwork => {
+          return seedsNetwork.tags.find(tag => tag.slug === this.$route.query.tag)
         })
       }
-      return serviceProviders
+      return seedsNetworks
     }
   }
 }

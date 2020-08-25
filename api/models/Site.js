@@ -73,4 +73,10 @@ SiteSchema.virtual('service_providers', {
   foreignField: 'site'
 })
 
+SiteSchema.virtual('seeds_networks', {
+  ref: 'SeedsNetwork',
+  localField: '_id',
+  foreignField: 'site'
+})
+
 export const Site = mongoose.models.Site || mongoose.model('Site', SiteSchema)

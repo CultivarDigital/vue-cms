@@ -24,7 +24,7 @@
           <ul>
             <!-- <li><strong>Áreas de restauração com semeadura direta</strong>: informações gerais contendo município, área, idade do plantio;</li> -->
             <li><strong>Unidades de Aprendizagem (UAs)</strong>: informações de contato dos responsáveis, dados completos do plantio e períodos de visitação;</li>
-            <!-- <li><strong>Redes de sementes nativas</strong>: contatos e outras informações disponíveis para compra de sementes;</li> -->
+            <li><strong>Redes de sementes nativas</strong>: contatos e outras informações disponíveis para compra de sementes;</li>
             <li><strong>Prestadores de serviços</strong>: organizações e pessoas que prestam serviços de restauração ecológica e com experiência com semeadura direta.</li>
           </ul>
           <p>

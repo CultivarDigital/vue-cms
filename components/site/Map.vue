@@ -36,13 +36,15 @@
                   </template>
                 </template>
               </template>
-              <l-marker v-for="municipio in municipios" :key="municipio.name" :lat-lng="municipio.location">
-                <l-icon :icon-size="[13, 15]" :icon-url="require('~/assets/img/marker_seeds_networks.png')" />
-                <l-popup>
-                  <h6>{{ municipio.name }} - {{ municipio.uf }}</h6>
-                  <p>{{ municipio.qtd }} plantios por Semeadura Direta</p>
-                </l-popup>
-              </l-marker>
+              <template v-if="show_municipios">
+                <l-marker v-for="municipio in municipios" :key="municipio.name" :lat-lng="municipio.location">
+                  <l-icon :icon-size="[13, 15]" :icon-url="require('~/assets/img/marker_municipios.png')" />
+                  <l-popup>
+                    <h6>{{ municipio.name }} - {{ municipio.uf }}</h6>
+                    <p>{{ municipio.qtd }} plantios por Semeadura Direta</p>
+                  </l-popup>
+                </l-marker>
+              </template>
             </l-map>
           </client-only>
         </div>
@@ -57,8 +59,8 @@
             <b-img v-else :src="require('~/assets/img/marker_inactive.png')" />
             {{ layers[layer].title }}
           </p>
-          <p>
-            <b-img :src="require('~/assets/img/marker_seeds_networks.png')" />
+          <p @click="show_municipios = !show_municipios" class="pointer">
+            <b-img :src="require('~/assets/img/' + (show_municipios ? 'marker_municipios' : 'marker_inactive') + '.png')" />
             Plantios por Semeadura Direta
           </p>
         </div>
@@ -73,7 +75,8 @@ export default {
   data () {
     return {
       layers,
-      municipios
+      municipios,
+      show_municipios: true
     }
   },
   computed: {

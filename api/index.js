@@ -14,6 +14,7 @@ require('./models/Monitoring')
 require('./models/Maintenance')
 require('./models/Harvest')
 require('./models/ServiceProvider')
+require('./models/SeedsNetwork')
 require('./models/Newsletter')
 require('./config/passport')
 
@@ -46,7 +47,7 @@ if (isProduction) {
     useUnifiedTopology: true
   })
 } else {
-  mongoose.set('debug', true)
+  // mongoose.set('debug', true)
   mongoose.connect('mongodb://localhost/caminhos-da-semente', { useNewUrlParser: true, useUnifiedTopology: true })
 }
 
@@ -68,6 +69,7 @@ router.use('/monitorings', require('./routes/monitorings'))
 router.use('/maintenances', require('./routes/maintenances'))
 router.use('/harvests', require('./routes/harvests'))
 router.use('/service_providers', require('./routes/service_providers'))
+router.use('/seeds_networks', require('./routes/seeds_networks'))
 router.use('/newsletters', require('./routes/newsletters'))
 
 router.get('/profile', auth.authenticated, function(req, res) {
@@ -117,6 +119,11 @@ router.get('/site', function(req, res) {
     .populate({
       path: 'service_providers',
       model: 'ServiceProvider',
+      options: { sort: 'name' }
+    })
+    .populate({
+      path: 'seeds_networks',
+      model: 'SeedsNetwork',
       options: { sort: 'name' }
     })
     .populate({

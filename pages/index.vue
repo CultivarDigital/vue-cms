@@ -6,6 +6,11 @@
     <section class="content">
       <b-container class="text-center">
         <b-img src="~assets/img/pilares-de-acao.png" class="subtitle mt-5" />
+        <div class="text-center">
+          <n-link class="btn btn-primary" to="/sobre">
+            Saiba mais
+          </n-link>
+        </div>
       </b-container>
       <b-container fluid="lg">
         <h6 class="mt-5 mb-4 text-center">Conheça o Mapa de Restauração ecológica da Iniciativa Caminhos da Semente</h6>

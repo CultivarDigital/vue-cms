@@ -5,6 +5,12 @@
       "description": "Informações de contato dos responsáveis, dados completos do plantio e períodos de visitação",
       "url": "/unidades-de-aprendizagem"
    },
+   "seeds_networks": {
+      "status": true,
+      "title": "Redes de sementes",
+      "description": "Contatos e outras informações disponíveis para compra de sementes",
+      "url": "/redes-de-sementes"
+   },
    "service_providers": {
       "status": true,
       "title": "Prestadores de serviço",

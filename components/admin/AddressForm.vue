@@ -10,11 +10,11 @@
             <br>
             <div class="text-right">
               <small>Ex: rua das nascentes, alto paraíso, goiás</small>
-              <b-button class="btn btn-default btn-sm pull-right" @click="getLocation()">Usar GPS</b-button>
+              <b-button class="btn btn-primary btn-sm pull-right" @click="getLocation()">Usar GPS</b-button>
             </div>
             <div class="clearfix" />
             <p class="text-center">
-              <button v-if="address_input" class="btn btn-rose btn-lg" @click="searchByAddress">Buscar endereço</button>
+              <button v-if="address_input" class="btn btn-primary" @click="searchByAddress">Buscar endereço</button>
             </p>
             <p v-if="loading_gps" class="text-center">
               <small><i class="fa fa-spinner fa-spin" /> Buscando dados do GPS...</small>
@@ -23,18 +23,18 @@
         </div>
         <div v-else class="text-center">
           <div v-if="Array.isArray(address)" class="text-center">
-            <h3>Algum desses é seu endereço?</h3>
+            <h4>Algum desses é seu endereço?</h4>
             <table class="table md-auto">
               <tr v-for="(a, index) in address" :key="index" class="table">
                 <td class="text-left">
-                  <strong>{{ a.description }}</strong>
+                  {{ a.description }}
                 </td>
                 <td class="text-right">
-                  <button class="btn btn-success btn-sm" @click="setAddressForm(a)">Selecionar</button>
+                  <button class="btn btn-primary btn-sm" @click="setAddressForm(a)">Selecionar</button>
                 </td>
               </tr>
             </table>
-            <button class="btn btn-warning btn-lg" @click="showAutoComplete()">Nenhum desses é meu endereço</button>
+            <button class="btn btn-default" @click="showAutoComplete()">Nenhum desses é meu endereço</button>
           </div>
           <div v-else class="text-center">
             <h3>Este é seu endereço?</h3>
@@ -50,8 +50,8 @@
                 <small>Coordenadas: {{ address.location.coordinates.join(',') }}</small>
               </p>
             </div>
-            <button class="btn btn-success btn-lg" @click="setAddressForm(address)">Sim</button>
-            <button class="btn btn-warning btn-lg" @click="showAutoComplete()">Não</button>
+            <button class="btn btn-primary" @click="setAddressForm(address)">Sim</button>
+            <button class="btn btn-default" @click="showAutoComplete()">Não</button>
           </div>
         </div>
       </div>
@@ -96,8 +96,8 @@
             </div>
           </div>
         </div>
-        <button class="btn btn-success btn-lg" @click="confirmAddress()">Confirmar endereço</button>
-        <button class="btn btn-warning btn-lg" @click="showAutoComplete()">Mudar localização</button>
+        <button class="btn btn-primary" @click="confirmAddress()">Confirmar endereço</button>
+        <button class="btn btn-default" @click="showAutoComplete()">Mudar localização</button>
       </div>
     </b-modal>
   </div>
