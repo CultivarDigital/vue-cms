@@ -83,7 +83,7 @@ router.get('/profile', auth.authenticated, function(req, res) {
 })
 
 router.get('/site', function(req, res) {
-  Site.findOne({ domain_name: req.headers.host })
+  Site.findOne({ domain_name: req.headers.host.replace('www.', '') })
     .populate('pages')
     .populate({
       path: 'learning_units',
