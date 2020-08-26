@@ -32,7 +32,7 @@ async function belongsToSite(req) {
 
 async function getSite(req) {
   let filters = {
-    domain_name: req.headers.host
+    domain_name: req.headers.host.replace('www.', '')
   }
   if (req.query.change_site) {
     filters = {
