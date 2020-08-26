@@ -1,10 +1,10 @@
 <template>
   <div class="address-form">
-    <b-button v-if="currentAddress" class="btn btn-default btn-sm" @click="show_modal = !show_modal">Mudar endereço</b-button>
+    <b-button v-if="currentAddressFilled" class="btn btn-default btn-sm" @click="show_modal = !show_modal">Mudar endereço</b-button>
     <b-button v-else class="btn btn-default btn-sm" @click="show_modal = !show_modal">Configurar endereço</b-button>
     <b-modal v-model="show_modal" title="Localização" hide-footer hide-header>
       <div v-if="show_auto_complete">
-        <div v-if="!address">
+        <div v-if="!addressFilled">
           <b-form-group label="Digite seu endereço para buscar a localização.">
             <b-form-input v-model="address_input" class="input-lg" @keyup.enter="searchByAddress" />
             <br>
@@ -147,7 +147,7 @@ export default {
     }
   },
   created() {
-    if (!this.currentAddress && this.autoload) {
+    if (!this.currentAddressFilled && this.autoload) {
       this.show_modal = true
       this.getLocation()
     } else {
@@ -157,6 +157,14 @@ export default {
           this.form[k] = this.currentAddress[k]
         })
       }
+    }
+  },
+  computed: {
+    currentAddressFilled () {
+      return this.currentAddress && this.currentAddress.location && this.currentAddress.location.coordinates && this.currentAddress.location.coordinates.length === 2
+    },
+    addressFilled () {
+      return Array.isArray(this.address) || (this.address && this.address.location && this.address.location.coordinates && this.address.location.coordinates.length === 2)
     }
   },
   methods: {
