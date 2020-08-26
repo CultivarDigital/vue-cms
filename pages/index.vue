@@ -16,7 +16,7 @@
         <h6 class="mt-5 mb-4 text-center">Conheça o Mapa de Restauração ecológica da Iniciativa Caminhos da Semente</h6>
         <Map />
         <b-row class="boxes">
-          <b-col sm="6">
+          <b-col sm="6" offset-sm="3">
             <div class="box">
               <n-link to="/noticias">
                 <b-img src="~assets/img/noticias.png" />
@@ -27,7 +27,7 @@
               </div>
             </div>
           </b-col>
-          <b-col sm="6">
+          <!-- <b-col sm="6">
             <div class="box">
               <n-link to="/imprensa">
                 <b-img src="~assets/img/imprensa.png" />
@@ -37,7 +37,7 @@
                 <h3>Na imprensa</h3>
               </div>
             </div>
-          </b-col>
+          </b-col> -->
         </b-row>
         <section class="partners text-center card">
           <h3>Coordenação e execução</h3>

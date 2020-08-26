@@ -22,25 +22,6 @@ router.get('/', (req, res) => {
   })
 })
 
-router.get('/fix_address', (req, res) => {
-  LearningUnit.find().exec((err, learningUnits) => {
-    if (err) {
-      res.status(422).send(err.message)
-    } else {
-      learningUnits.forEach(learningUnit => {
-        if (learningUnit.city) {
-          learningUnit.address.city = learningUnit.city
-        }
-        if (learningUnit.state) {
-          learningUnit.address.uf = learningUnit.state
-        }
-        learningUnit.save()
-      })
-      res.json(learningUnits)
-    }
-  })
-})
-
 router.get('/:id', (req, res) => {
   LearningUnit.findOne({
     slug: req.params.id

@@ -12,7 +12,7 @@
             <b-nav-item to="/sobre">Quem Somos</b-nav-item>
             <b-nav-item to="/mapa">Mapa</b-nav-item>
             <b-nav-item to="/noticias">Notícias</b-nav-item>
-            <b-nav-item to="/imprensa">Na imprensa</b-nav-item>
+            <!-- <b-nav-item to="/imprensa">Na imprensa</b-nav-item> -->
             <!-- <b-nav-item-dropdown>
                     <template v-slot:button-content>
                       <em>Sobre Sementes</em>
