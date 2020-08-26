@@ -146,6 +146,14 @@ export default {
       attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     }
   },
+  computed: {
+    currentAddressFilled () {
+      return this.currentAddress && this.currentAddress.location && this.currentAddress.location.coordinates && this.currentAddress.location.coordinates.length === 2
+    },
+    addressFilled () {
+      return Array.isArray(this.address) || (this.address && this.address.location && this.address.location.coordinates && this.address.location.coordinates.length === 2)
+    }
+  },
   created() {
     if (!this.currentAddressFilled && this.autoload) {
       this.show_modal = true
@@ -157,14 +165,6 @@ export default {
           this.form[k] = this.currentAddress[k]
         })
       }
-    }
-  },
-  computed: {
-    currentAddressFilled () {
-      return this.currentAddress && this.currentAddress.location && this.currentAddress.location.coordinates && this.currentAddress.location.coordinates.length === 2
-    },
-    addressFilled () {
-      return Array.isArray(this.address) || (this.address && this.address.location && this.address.location.coordinates && this.address.location.coordinates.length === 2)
     }
   },
   methods: {
