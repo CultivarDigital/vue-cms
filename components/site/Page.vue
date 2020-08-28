@@ -9,15 +9,14 @@
           <div v-html="page.content" />
           <div v-if="page.pdfs && page.pdfs.length > 0" class="gallery">
             <br>
-            <h5>Anexos</h5>
-            <b-row>
-              <b-col v-for="(pdf, index) in page.pdfs" :key="index" md="4">
-                <a :href="pdf.url" target="_blank">
-                  <b-img :src="pdf.thumb" class="thumbnail" />
-                  <p v-if="pdf.title" class="text-center">{{ pdf.title }}</p>
-                </a>
-              </b-col>
-            </b-row>
+            <h5>Documentos em anexo</h5>
+            <div v-for="(pdf, index) in page.pdfs" :key="index">
+              <a :href="pdf.url" target="_blank">
+                <!-- <b-img :src="pdf.thumb" class="thumbnail" /> -->
+                <strong v-if="pdf.title">{{ pdf.title }}<br></strong>
+                <span>{{ 'https://' + site.domain_name + pdf.url }}</span>
+              </a>
+            </div>
           </div>
         </div>
       </b-container>
