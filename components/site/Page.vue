@@ -7,17 +7,17 @@
         <div class="quill-content mt-4">
           <banners :items="page.pictures" />
           <div v-html="page.content" />
-          <div v-if="page.pdfs && page.pdfs.length > 0" class="gallery">
+          <!-- <div v-if="page.pdfs && page.pdfs.length > 0" class="gallery">
             <br>
             <h5>Documentos em anexo</h5>
             <div v-for="(pdf, index) in page.pdfs" :key="index">
               <a :href="pdf.url" target="_blank">
-                <!-- <b-img :src="pdf.thumb" class="thumbnail" /> -->
+                <b-img :src="pdf.thumb" class="thumbnail" />
                 <strong v-if="pdf.title">{{ pdf.title }}<br></strong>
                 <span>{{ 'https://' + site.domain_name + pdf.url }}</span>
               </a>
             </div>
-          </div>
+          </div> -->
         </div>
       </b-container>
     </section>

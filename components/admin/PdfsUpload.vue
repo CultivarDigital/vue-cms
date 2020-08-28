@@ -10,7 +10,7 @@
           <a :href="doc.url" target="_blank"><b-img :src="doc.average" fluid thumbnail /></a>
           <br>
           <b-form-input v-model="form[field][index].title" placeholder="Nome do documento" />
-          <br>
+          <p class="text-left"><small>{{ 'https://' + $store.state.site.domain_name + form[field][index].url }}</small></p>
           <b-button class="btn btn-sm" @click="deletePdf(index)"><b-icon-trash /> Remover</b-button>
         </b-col>
       </b-row>
