@@ -4,7 +4,7 @@
       <b-form-file id="files" ref="files" :multiple="multiple" accept="application/pdf" @change="uploadPdfs" />
       <span v-show="error" class="text-danger">{{ error }}</span>
     </b-form-group>
-    <div v-if="!isLoading">
+    <div v-if="!isLoading && showPreview">
       <b-row v-if="Array.isArray(form[field]) && form[field].length > 0">
         <b-col v-for="(doc, index) in form[field]" :key="index" cols="3" class="text-center">
           <a :href="doc.url" target="_blank"><b-img :src="doc.average" fluid thumbnail /></a>
@@ -25,8 +25,6 @@
       </b-row>
     </div>
     <b-spinner v-if="isLoading" label="Enviando foto..." />
-    <br>
-    <br>
   </div>
 </template>
 
@@ -48,6 +46,10 @@ export default {
     url: {
       type: String,
       default: null
+    },
+    showPreview: {
+      type: Boolean,
+      default: true
     }
   },
   data() {
@@ -76,6 +78,7 @@ export default {
             this.form[this.field] = data
           }
           this.isLoading = false
+          this.changed()
         }).catch((error) => {
           this.isLoading = false
           this.showError(error)
@@ -94,6 +97,9 @@ export default {
         const docUrl = doc.split('/')
         return docUrl[docUrl.length - 1]
       }
+    },
+    changed() {
+      this.$emit('changed', this.form[this.field])
     }
   }
 }

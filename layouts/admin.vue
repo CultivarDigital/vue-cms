@@ -9,19 +9,21 @@
             <b-navbar-nav>
               <b-nav-item v-if="$auth.hasScope('admin') && $store.state.site" :to="'/admin/sites/' + $store.state.site._id + '/edit'">Site</b-nav-item>
               <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/tags">Tags</b-nav-item>
+              <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/tags">Tags</b-nav-item>
               <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/posts">Notícias</b-nav-item>
               <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/about">Quem somos</b-nav-item>
               <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/press">Imprensa</b-nav-item>
+              <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/medias">Biblioteca</b-nav-item>
               <b-nav-item to="/admin/newsletters">Contatos</b-nav-item>
               <b-nav-item to="/admin/users">Usuários</b-nav-item>
               <b-nav-item v-if="$auth.hasScope('super')" to="/admin/sites">Sites</b-nav-item>
-              <b-nav-item-dropdown>
+              <b-nav-item-dropdown v-if="$auth.hasScope('admin')">
                 <template v-slot:button-content>
                   <em>Mapa</em>
                 </template>
-                <b-dropdown-item v-if="$auth.hasScope('admin')" to="/admin/learning_units">Unidades de aprendizagem</b-dropdown-item>
-                <b-dropdown-item v-if="$auth.hasScope('admin')" to="/admin/seeds_networks">Redes de sementes</b-dropdown-item>
-                <b-dropdown-item v-if="$auth.hasScope('admin')" to="/admin/service_providers">Prestadores de serviço</b-dropdown-item>
+                <b-dropdown-item to="/admin/learning_units">Unidades de aprendizagem</b-dropdown-item>
+                <b-dropdown-item to="/admin/seeds_networks">Redes de sementes</b-dropdown-item>
+                <b-dropdown-item to="/admin/service_providers">Prestadores de serviço</b-dropdown-item>
               </b-nav-item-dropdown>
             </b-navbar-nav>
             <b-navbar-nav class="ml-auto">

@@ -100,8 +100,6 @@ export default {
     defaultLocale: 'pt-br',
     locales: ['pt-br']
   },
-  build: {
-  },
   proxy: {
     pathRewrite: {
       '^/api/': '/'

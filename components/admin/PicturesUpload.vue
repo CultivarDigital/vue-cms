@@ -4,7 +4,7 @@
       <b-form-file id="files" ref="files" :multiple="multiple" accept="image/*" :placeholder="'Selecionar arquivo' + (multiple ? 's' : '')" drop-placeholder="Drop file here..." @change="uploadImages" />
       <span v-show="error" class="text-danger">{{ error }}</span>
     </b-form-group>
-    <div v-if="!isLoading" class="text-center">
+    <div v-if="!isLoading && showPreview" class="text-center">
       <b-row v-if="Array.isArray(form[field]) && form[field].length > 0" class="row images_preview">
         <b-col v-for="(image, index) in form[field]" :key="index" md="3">
           <div class="thumbnail">
@@ -61,6 +61,10 @@ export default {
     label: {
       type: String,
       default: null
+    },
+    showPreview: {
+      type: Boolean,
+      default: true
     }
   },
   inject: ['$validator'],

@@ -16,6 +16,7 @@ require('./models/Harvest')
 require('./models/ServiceProvider')
 require('./models/SeedsNetwork')
 require('./models/Newsletter')
+require('./models/Media')
 require('./config/passport')
 
 const express = require('express')
@@ -71,6 +72,7 @@ router.use('/harvests', require('./routes/harvests'))
 router.use('/service_providers', require('./routes/service_providers'))
 router.use('/seeds_networks', require('./routes/seeds_networks'))
 router.use('/newsletters', require('./routes/newsletters'))
+router.use('/medias', require('./routes/medias'))
 
 router.get('/profile', auth.authenticated, function(req, res) {
   User.findById(req.payload.id).populate('site').exec(function(err, user) {
@@ -140,6 +142,11 @@ router.get('/site', function(req, res) {
         model: 'Tag',
         select: 'slug name'
       }]
+    })
+    .populate({
+      path: 'medias',
+      model: 'Media',
+      options: { sort: { createdAt: -1 } }
     })
     .exec(function(err, site) {
       if (!err && site) {
