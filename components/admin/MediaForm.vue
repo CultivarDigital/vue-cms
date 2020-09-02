@@ -34,9 +34,10 @@
           <b-form-group label="Link do vídeo">
             <b-form-input v-model="form.url" @input="loadUrl" />
             <b-spinner v-if="loadingUrl" label="Carregando vídeo" />
+            <div v-if="form.oembed && !loadingUrl" class="mt-3" style="max-width: 80%" v-html="form.oembed" />
           </b-form-group>
         </div>
-        <div v-if="form.pdf || form.url || form.picture || form.oembed || noUrl || form.category === 'Fotografias'">
+        <div v-if="form.pdf || form.picture || form.oembed || isValidUrl(form.url) || noUrl || form.category === 'Fotografias'">
           <div v-if="form.pdf">
             <b-form-group v-if="form.picture" label="Foto de capa">
               <b-img :src="form.picture.thumb" thumbnail />
@@ -48,7 +49,7 @@
               <pictures-upload :form="form" field="picture" url="/api/uploads/images" label="Foto de capa" :show-preview="false" />
             </div>
           </div>
-          <div v-else>
+          <div v-else-if="form.category !== 'Filmes/Vídeos'">
             <pictures-upload :form="form" field="picture" url="/api/uploads/images" :label="form.category === 'Fotografias' ? 'Enviar fotografia' : 'Foto de capa'" />
           </div>
           <b-row>
@@ -122,7 +123,7 @@ export default {
       noUrl: false,
       loadingUrl: false,
       form: {
-        category: 'Publicações',
+        category: '',
         pdf: null,
         picture: null,
         title: '',
