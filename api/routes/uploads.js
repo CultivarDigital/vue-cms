@@ -4,6 +4,7 @@ const router = express.Router()
 const multer = require('multer')
 const sharp = require('sharp')
 const { PDFImage } = require('pdf-image')
+const axios = require('axios')
 const auth = require('../config/auth')
 
 const createPath = (path) => {
@@ -189,6 +190,15 @@ router.post('/pdfs', [auth.authenticated, pdfUploader.single('pdf')], (req, res)
         }
       })
   }).catch(() => {})
+})
+
+router.get('/oembed', async (req, res) => {
+  const rawData = await axios.get('http://open.iframe.ly/api/oembed?url=' + req.query.url + '&origin=diegomr86').catch(() => {})
+  if (rawData && rawData.data) {
+    res.json(rawData.data)
+  } else {
+    res.status(404).send('Não foi possível carregar o conteúdo do link')
+  }
 })
 
 module.exports = router

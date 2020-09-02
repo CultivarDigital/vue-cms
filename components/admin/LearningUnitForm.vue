@@ -122,7 +122,6 @@
         </b-tab>
       </b-tabs>
     </div>
-    <pre>{{ form.address }}</pre>
   </div>
 </template>
 

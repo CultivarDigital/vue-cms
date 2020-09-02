@@ -12,7 +12,7 @@
         </validation-provider>
       </b-form-group>
       <div v-if="form.category">
-        <div v-if="form.category == 'Publicações'">
+        <div v-if="form.category === 'Publicações' || form.category === 'Teses e dissertações' || form.category === 'Materiais Didáticos' || form.category === 'Documentos'">
           <p v-if="form.pdf">
             <b-form-group v-if="form.picture" label="Documento PDF">
               <a :href="'https://' + $store.state.site.domain_name + form.pdf.url">{{ 'https://' + $store.state.site.domain_name + form.pdf.url }}</a>
@@ -23,18 +23,34 @@
           </p>
           <pdfs-upload v-else :form="form" field="pdf" url="/api/uploads/pdfs" :show-preview="false" @changed="pdfSelected(pdf)" />
         </div>
-        <div v-if="form.pdf">
-          <b-form-group v-if="form.picture" label="Foto de capa">
-            <b-img :src="form.picture.thumb" thumbnail />
-            <br>
-            <br>
-            <b-button variant="primary" size="sm" @click="form.picture = null">Alterar foto de capa</b-button>
+        <div v-if="form.category === 'Notícias'">
+          <b-form-group label="Link da notícia">
+            <b-form-input v-model="form.url" @input="loadUrl" />
+            <b-spinner v-if="loadingUrl" label="Carregando conteúdo da notícia" />
           </b-form-group>
-          <div v-else>
-            <pictures-upload :form="form" field="picture" url="/api/uploads/images" label="Foto de capa" :show-preview="false" />
-          </div>
+          <b-button v-if="!noUrl && !form.url" variant="default" size="sm" @click="noUrl = true">Não tenho o link</b-button>
         </div>
-        <div v-if="form.pdf || form.url || form.picture || form.oembed">
+        <div v-if="form.category === 'Filmes/Vídeos'">
+          <b-form-group label="Link do vídeo">
+            <b-form-input v-model="form.url" @input="loadUrl" />
+            <b-spinner v-if="loadingUrl" label="Carregando vídeo" />
+          </b-form-group>
+        </div>
+        <div v-if="form.pdf || form.url || form.picture || form.oembed || noUrl || form.category === 'Fotografias'">
+          <div v-if="form.pdf">
+            <b-form-group v-if="form.picture" label="Foto de capa">
+              <b-img :src="form.picture.thumb" thumbnail />
+              <br>
+              <br>
+              <b-button variant="primary" size="sm" @click="form.picture = null">Alterar foto de capa</b-button>
+            </b-form-group>
+            <div v-else>
+              <pictures-upload :form="form" field="picture" url="/api/uploads/images" label="Foto de capa" :show-preview="false" />
+            </div>
+          </div>
+          <div v-else>
+            <pictures-upload :form="form" field="picture" url="/api/uploads/images" :label="form.category === 'Fotografias' ? 'Enviar fotografia' : 'Foto de capa'" />
+          </div>
           <b-row>
             <b-col md="12">
               <b-form-group label="Título *">
@@ -60,7 +76,7 @@
               </b-form-group>
             </b-col>
             <b-col md="6">
-              <b-form-group label="Editora" description="Veículo de comunicação onde foi publicado">
+              <b-form-group label="Editora/Fonte" description="Veículo de comunicação onde foi publicado">
                 <b-form-input v-model="form.publishing_house" />
               </b-form-group>
             </b-col>
@@ -70,13 +86,15 @@
           </b-button>
         </div>
       </div>
-      <pre>{{ form }}</pre>
     </b-form>
   </ValidationObserver>
 </template>
 
 <script>
-import { ValidationObserver, ValidationProvider } from 'vee-validate'
+import {
+  ValidationObserver,
+  ValidationProvider
+} from 'vee-validate'
 import mixinGlobal from '@/mixins/global'
 import mixinForm from '@/mixins/form'
 import PicturesUpload from '@/components/admin/PicturesUpload'
@@ -97,10 +115,12 @@ export default {
       default: null
     }
   },
-  data () {
+  data() {
     return {
       categories,
       changePicture: false,
+      noUrl: false,
+      loadingUrl: false,
       form: {
         category: 'Publicações',
         pdf: null,
@@ -115,11 +135,11 @@ export default {
       }
     }
   },
-  created () {
+  created() {
     this.toForm(this.form, this.media)
   },
   methods: {
-    async save () {
+    async save() {
       if (this.media) {
         const media = await this.$axios.$put('/api/medias/' + this.media._id, this.form).catch(this.showError)
         if (media) {
@@ -134,9 +154,57 @@ export default {
         }
       }
     },
-    pdfSelected () {
-      this.form.picture = { ...this.form.pdf }
+    pdfSelected() {
+      this.form.picture = {
+        ...this.form.pdf
+      }
       this.form.picture.url = this.form.picture.average
+    },
+    async loadUrl() {
+      if (this.isValidUrl(this.form.url)) {
+        this.loadingUrl = true
+        const res = await this.$axios.$get('/api/uploads/oembed?url=' + encodeURI(this.form.url)).catch((e) => {
+          this.loadingUrl = false
+          this.showError(e)
+        })
+        if (res) {
+          this.form.title = res.title
+          if (res.description) {
+            this.form.description = res.description
+            const tags = res.description.split(' ').filter(v => v.startsWith('#')).map(v => v.replace('#', ''))
+            if (tags && tags.length) {
+              this.form.tags = tags
+            }
+          } else {
+            this.form.description = ''
+          }
+          if (res.thumbnail_url) {
+            this.form.picture = {
+              url: res.thumbnail_url,
+              thumb: res.thumbnail_url,
+              average: res.thumbnail_url
+            }
+          } else {
+            this.form.picture = null
+          }
+          if (!res.html || res.html.includes('iframely-embed')) {
+            this.form.oembed = undefined
+          } else {
+            this.form.oembed = res.html
+          }
+          this.form.publishing_house = res.provider_name
+        }
+        this.loadingUrl = false
+      }
+    },
+    isValidUrl (string) {
+      let url = false
+      try {
+        url = new URL(string)
+      } catch (_) {
+        return url
+      }
+      return url
     }
   }
 }
