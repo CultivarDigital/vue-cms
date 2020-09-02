@@ -22,7 +22,7 @@
                   <template v-if="site[layer] && layers[layer].status">
                     <template v-for="item in site[layer]">
                       <l-marker v-if="item.status === 'approved' && item.address && item.address.location && item.address.location.coordinates" :key="item._id" :lat-lng="item.address.location.coordinates">
-                        <l-icon :icon-size="[16, 16]" :icon-url="require('~/assets/img/marker_' + layer + '.png')" />
+                        <l-icon :icon-size="[20, 20]" :icon-url="require('~/assets/img/marker_' + layer + '.png')" />
                         <l-popup>
                           <n-link :to="layers[layer].url + '/' + item.slug" class="text-center">
                             <b-img v-if="item.pictures && item.pictures.length" :src="item.pictures[0].thumb" />
@@ -38,7 +38,7 @@
               </template>
               <template v-if="show_municipios">
                 <l-marker v-for="municipio in municipios" :key="municipio.name" :lat-lng="municipio.location">
-                  <l-icon :icon-size="[16, 16]" :icon-url="require('~/assets/img/marker_municipios.png')" />
+                  <l-icon :icon-size="[20, 20]" :icon-url="require('~/assets/img/marker_municipios.png')" />
                   <l-popup>
                     <h6>{{ municipio.name }} - {{ municipio.uf }}</h6>
                     <p>{{ municipio.qtd }} plantios por Semeadura Direta</p>
@@ -52,7 +52,9 @@
       <b-col md="2">
         <div class="legend">
           <div class="pattern" />
-          <h4>Legenda</h4>
+          <h4>Legendas</h4>
+          <br>
+          <p>Clique para navegar no mapa</p>
           <br>
           <p v-for="layer in Object.keys(layers)" :key="layer" @click="toggleLayer(layer)">
             <b-img v-if="layers[layer].status" :src="require('~/assets/img/marker_' + layer + '.png')" />
@@ -152,7 +154,7 @@ export default {
         img
           margin-right: 6px
           margin-top: -7px
-          max-width: 18px
+          max-width: 22px
       .pattern
         width: 15px
         height: 25px
