@@ -3,13 +3,18 @@
     <b-row no-gutters>
       <b-col md="4">
         <h3 class="mb-4">Mapa da Semeadura Direta</h3>
-        <div v-for="(layer, index) in Object.keys(layers)" :key="layer">
+        <div v-for="layer in Object.keys(layers)" :key="layer">
           <div class="legend">
             <div class="pattern" />
             <h4><n-link :to="layers[layer].url">{{ layers[layer].title }}</n-link></h4>
             <p><n-link :to="layers[layer].url">{{ layers[layer].description }}</n-link></p>
           </div>
-          <hr v-if="index != Object.keys(layers).length - 1">
+          <hr>
+        </div>
+        <div class="legend">
+          <div class="pattern" />
+          <h4 style="color: #606060">Plantios com semeadura direta</h4>
+          <p>Mapeamento das áreas de plantios com semeadura direta por município. Esse mapeamento é o primeiro passo para engajar os proprietários a se cadastrarem como Unidades de Aprendizagem (UAs)</p>
         </div>
       </b-col>
       <b-col md="6">

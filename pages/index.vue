@@ -69,7 +69,7 @@
                 <img src="~assets/img/parceiros/iniciativa-verde.png" alt="Parceria Iniciativa Verde">
               </div>
             </b-col>
-            <b-col md="2" offset-md="3">
+            <b-col md="2" offset-md="2">
               <div class="partner">
                 <img src="~assets/img/parceiros/sima.png" alt="Parceria SIMA">
               </div>
@@ -82,6 +82,11 @@
             <b-col md="2">
               <div class="partner">
                 <img src="~assets/img/parceiros/AESTiete.png" alt="Parceria AESTiete">
+              </div>
+            </b-col>
+            <b-col md="2">
+              <div class="partner">
+                <img src="~assets/img/parceiros/asrx.jpg" alt="Parceiria Associação Rede de Sementes do Xingu" style="max-height: 18vh">
               </div>
             </b-col>
           </b-row>
