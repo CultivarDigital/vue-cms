@@ -48,7 +48,7 @@ if (isProduction) {
     useUnifiedTopology: true
   })
 } else {
-  // mongoose.set('debug', true)
+  mongoose.set('debug', true)
   mongoose.connect('mongodb://localhost/caminhos-da-semente', { useNewUrlParser: true, useUnifiedTopology: true })
 }
 

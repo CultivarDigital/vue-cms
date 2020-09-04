@@ -5,7 +5,14 @@ const auth = require('../config/auth')
 const Media = mongoose.model('Media')
 
 router.get('/', (req, res) => {
-  Media.find({}).populate(req.query.populate).sort({ createdAt: -1 }).exec((err, medias) => {
+  const query = {}
+  if (req.query.category) {
+    query.category = req.query.category
+  }
+  if (req.query.tag) {
+    query.tags = req.query.tag
+  }
+  Media.find(query, req.query.select).populate(req.query.populate).sort({ createdAt: -1 }).exec((err, medias) => {
     if (err) {
       res.status(422).send(err.message)
     } else {
