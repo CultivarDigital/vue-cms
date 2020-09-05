@@ -29,10 +29,12 @@
           </b-col>
           <b-col sm="6">
             <div class="box">
-              <b-img src="~assets/img/imprensa.png" />
+              <n-link to="/biblioteca?categoria=Notícias">
+                <b-img src="~assets/img/imprensa.png" />
+              </n-link>
               <div class="title">
                 <div class="pattern" />
-                <h3>Biblioteca / Em breve</h3>
+                <h3>Na imprensa</h3>
               </div>
             </div>
           </b-col>

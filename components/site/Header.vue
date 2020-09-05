@@ -11,6 +11,7 @@
           <b-navbar-nav class="ml-auto">
             <b-nav-item to="/sobre">Quem Somos</b-nav-item>
             <b-nav-item to="/mapa">Mapa</b-nav-item>
+            <b-nav-item to="/biblioteca">Biblioteca</b-nav-item>
             <b-nav-item to="/noticias">Notícias</b-nav-item>
             <!-- <b-nav-item to="/imprensa">Na imprensa</b-nav-item> -->
             <!-- <b-nav-item-dropdown>
