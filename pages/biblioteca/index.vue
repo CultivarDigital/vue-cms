@@ -30,13 +30,21 @@
                   <li v-if="filters.category"><n-link variant="primary" :to="'/biblioteca?tag=' + filters.tag + '&search=' + filters.search ">Todos os tipos</n-link></li>
                 </ul>
               </div>
+              <b-button v-if="filters.search || filters.category || filters.tag" class="mt-4" variant="primary" block to="/biblioteca">Limpar filtros</b-button>
             </b-col>
-            <b-col md="9">
-              <medias :medias="medias" />
-              <pre>{{ $route.query }}</pre>
-              <pre>{{ tags }}</pre>
-              <pre>{{ medias }}</pre>
-              <h3 v-if="medias && medias.length === 0" class="text-center">Nenhum item encontrado</h3>
+            <b-col md="9" class="medias">
+              <div v-if="medias">
+                <div class="pattern" />
+                <div class="title">
+                  <h3 v-if="filters.tag">{{ filters.tag }}</h3>
+                  <h3 v-else>BIBLIOTECA</h3>
+                  <p v-if="medias.length === 1"><strong>1</strong> ITEM ENCONTRADO <span v-if="filters.category">em <n-link :to="'/biblioteca?categoria=' + filters.category"><strong>{{ filters.category }}</strong></n-link></span></p>
+                  <p v-else><strong>{{ medias.length }}</strong> ITENS ENCONTRADOS <span v-if="filters.category">em <n-link :to="'/biblioteca?categoria=' + filters.category"><strong>{{ filters.category }}</strong></n-link></span></p>
+                  <h3 v-if="medias && medias.length === 0" class="text-center">Nenhum item encontrado</h3>
+                </div>
+                <medias :medias="medias" />
+              </div>
+              <media v-if="media" :media="media" />
             </b-col>
           </b-row>
         </div>
@@ -55,6 +63,7 @@ export default {
     return {
       page_id: 'medias',
       medias: null,
+      media: null,
       tags: [],
       categories,
       filters: {
@@ -65,7 +74,12 @@ export default {
     }
   },
   async created () {
-    this.list(this.$route.query)
+    if (this.$route.params.id) {
+      this.get(this.$route.params.id)
+    } else {
+      this.list(this.$route.query)
+    }
+
     const mediasTags = await this.$axios.$get('/api/medias', {
       params: {
         select: 'tags'
@@ -84,10 +98,12 @@ export default {
     async list (query) {
       this.filters.category = query.categoria || ''
       this.filters.tag = query.tag || ''
-      // this.filters.search = query.search || ''
       this.medias = await this.$axios.$get('/api/medias', {
         params: this.filters
       })
+    },
+    async get (id) {
+      this.media = await this.$axios.$get('/api/medias/' + id)
     },
     searchChanged () {
       if (this.filters.search === '') {
@@ -181,5 +197,23 @@ export default {
             font-weight: bold
           &:last-child
             border-bottom: 0
-
+    .medias
+      .pattern
+        width: 15px
+        height: 25px
+        background-color: #fff
+        position: absolute
+        left: 15px
+      .title
+        margin-left: 30px
+        margin-bottom: 20px
+        h3
+          color: #fff
+          font-size: 24px
+          font-weight: 700
+          text-transform: uppercase
+        p
+          color: #384e3f
+          font-size: 12px
+          text-transform: uppercase
 </style>

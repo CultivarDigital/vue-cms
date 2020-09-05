@@ -13,7 +13,6 @@
               <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/posts">Notícias</b-nav-item>
               <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/about">Quem somos</b-nav-item>
               <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/press">Imprensa</b-nav-item>
-              <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/medias">Biblioteca</b-nav-item>
               <b-nav-item to="/admin/newsletters">Contatos</b-nav-item>
               <b-nav-item to="/admin/users">Usuários</b-nav-item>
               <b-nav-item v-if="$auth.hasScope('super')" to="/admin/sites">Sites</b-nav-item>
@@ -25,6 +24,7 @@
                 <b-dropdown-item to="/admin/seeds_networks">Redes de sementes</b-dropdown-item>
                 <b-dropdown-item to="/admin/service_providers">Prestadores de serviço</b-dropdown-item>
               </b-nav-item-dropdown>
+              <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/medias">Biblioteca</b-nav-item>
             </b-navbar-nav>
             <b-navbar-nav class="ml-auto">
               <b-nav-item-dropdown right>

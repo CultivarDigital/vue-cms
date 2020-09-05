@@ -1,5 +1,5 @@
 <template>
-  <div class="medias-component pt-4">
+  <div class="medias-component">
     <b-row>
       <b-col v-for="media in medias" :key="media._id" lg="6">
         <n-link :to="'/biblioteca/' + media._id" tag="div" class="card">
