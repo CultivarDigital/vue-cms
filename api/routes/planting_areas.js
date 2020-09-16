@@ -2,7 +2,6 @@ const express = require('express')
 const mongoose = require('mongoose')
 const router = express.Router()
 const auth = require('../config/auth')
-const municipios = require('../../data/municipios.json')
 const PlantingArea = mongoose.model('PlantingArea')
 
 router.get('/', (req, res) => {
@@ -17,27 +16,6 @@ router.get('/', (req, res) => {
       res.json(plantingAreas)
     }
   })
-})
-
-router.get('/import', auth.authenticated, async (req, res) => {
-  const plantingAreas = []
-  for (const municipio of municipios) {
-    const newPlantingArea = new PlantingArea()
-    newPlantingArea.site = req.payload.site
-    newPlantingArea.user = req.payload.id
-    newPlantingArea.qtd = municipio.qtd
-    newPlantingArea.address = {
-      location: {
-        type: 'Point',
-        coordinates: municipio.location
-      },
-      uf: municipio.uf,
-      city: municipio.name
-    }
-    const plantingArea = await newPlantingArea.save()
-    plantingAreas.push(plantingArea)
-  }
-  res.json(plantingAreas)
 })
 
 router.get('/:id', (req, res) => {
