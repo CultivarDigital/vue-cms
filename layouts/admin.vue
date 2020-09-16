@@ -23,6 +23,7 @@
                 <b-dropdown-item to="/admin/learning_units">Unidades de aprendizagem</b-dropdown-item>
                 <b-dropdown-item to="/admin/seeds_networks">Redes de sementes</b-dropdown-item>
                 <b-dropdown-item to="/admin/service_providers">Prestadores de serviço</b-dropdown-item>
+                <b-dropdown-item to="/admin/planting_areas">Áreas de plantio</b-dropdown-item>
               </b-nav-item-dropdown>
               <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/medias">Biblioteca</b-nav-item>
             </b-navbar-nav>

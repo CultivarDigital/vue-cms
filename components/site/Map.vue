@@ -41,12 +41,12 @@
                   </template>
                 </template>
               </template>
-              <template v-if="show_municipios">
-                <l-marker v-for="municipio in municipios" :key="municipio.name" :lat-lng="municipio.location">
-                  <l-icon :icon-size="[16, 16]" :icon-url="require('~/assets/img/marker_municipios.png')" />
+              <template v-if="show_planting_areas">
+                <l-marker v-for="planting_area in site.planting_areas" :key="planting_area._id" :lat-lng="planting_area.address.location.coordinates">
+                  <l-icon :icon-size="[16, 16]" :icon-url="require('~/assets/img/marker_planting_areas.png')" />
                   <l-popup>
-                    <h6>{{ municipio.name }} - {{ municipio.uf }}</h6>
-                    <p>{{ municipio.qtd }} plantios por Semeadura Direta</p>
+                    <h6>{{ planting_area.address.city }} - {{ planting_area.address.uf }}</h6>
+                    <p>{{ planting_area.qtd }} plantios por Semeadura Direta</p>
                   </l-popup>
                 </l-marker>
               </template>
@@ -66,8 +66,8 @@
             <b-img v-else :src="require('~/assets/img/marker_inactive.png')" />
             {{ layers[layer].title }}
           </p>
-          <p class="pointer" @click="show_municipios = !show_municipios">
-            <b-img :src="require('~/assets/img/' + (show_municipios ? 'marker_municipios' : 'marker_inactive') + '.png')" />
+          <p class="pointer" @click="show_planting_areas = !show_planting_areas">
+            <b-img :src="require('~/assets/img/' + (show_planting_areas ? 'marker_planting_areas' : 'marker_inactive') + '.png')" />
             Plantios por Semeadura Direta
           </p>
         </div>
@@ -77,13 +77,11 @@
 </template>
 <script>
 import layers from '@/data/layers.json'
-import municipios from '@/data/municipios.json'
 export default {
   data () {
     return {
       layers,
-      municipios,
-      show_municipios: true
+      show_planting_areas: true
     }
   },
   computed: {

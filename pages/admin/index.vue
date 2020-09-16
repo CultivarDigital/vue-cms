@@ -5,6 +5,7 @@
       <b-list-group-item v-if="$auth.hasScope('admin')" to="/admin/learning_units">Unidades de aprendizagem</b-list-group-item>
       <b-list-group-item v-if="$auth.hasScope('admin')" to="/admin/service_providers">Prestadores de serviço</b-list-group-item>
       <b-list-group-item v-if="$auth.hasScope('admin')" to="/admin/seeds_networks">Redes de sementes</b-list-group-item>
+      <b-list-group-item v-if="$auth.hasScope('admin')" to="/admin/planting_areas">Áreas de plantio</b-list-group-item>
       <b-list-group-item v-if="$auth.hasScope('admin')" to="/admin/tags">Tags</b-list-group-item>
       <b-list-group-item v-if="$auth.hasScope('admin')" to="/admin/posts">Notícias</b-list-group-item>
       <b-list-group-item v-if="$auth.hasScope('admin')" to="/admin/about">Quem somos</b-list-group-item>

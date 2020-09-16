@@ -14,6 +14,7 @@ require('./models/Monitoring')
 require('./models/Maintenance')
 require('./models/Harvest')
 require('./models/ServiceProvider')
+require('./models/PlantingArea')
 require('./models/SeedsNetwork')
 require('./models/Newsletter')
 require('./models/Media')
@@ -70,6 +71,7 @@ router.use('/monitorings', require('./routes/monitorings'))
 router.use('/maintenances', require('./routes/maintenances'))
 router.use('/harvests', require('./routes/harvests'))
 router.use('/service_providers', require('./routes/service_providers'))
+router.use('/planting_areas', require('./routes/planting_areas'))
 router.use('/seeds_networks', require('./routes/seeds_networks'))
 router.use('/newsletters', require('./routes/newsletters'))
 router.use('/medias', require('./routes/medias'))
@@ -119,14 +121,19 @@ router.get('/site', function(req, res) {
       ]
     })
     .populate({
+      path: 'seeds_networks',
+      model: 'SeedsNetwork',
+      options: { sort: 'name' }
+    })
+    .populate({
       path: 'service_providers',
       model: 'ServiceProvider',
       options: { sort: 'name' }
     })
     .populate({
-      path: 'seeds_networks',
-      model: 'SeedsNetwork',
-      options: { sort: 'name' }
+      path: 'planting_areas',
+      model: 'PlantingArea',
+      options: { sort: 'address.city, address.uf' }
     })
     .populate({
       path: 'tags',

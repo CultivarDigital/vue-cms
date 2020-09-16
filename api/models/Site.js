@@ -67,14 +67,20 @@ SiteSchema.virtual('learning_units', {
   foreignField: 'site'
 })
 
+SiteSchema.virtual('seeds_networks', {
+  ref: 'SeedsNetwork',
+  localField: '_id',
+  foreignField: 'site'
+})
+
 SiteSchema.virtual('service_providers', {
   ref: 'ServiceProvider',
   localField: '_id',
   foreignField: 'site'
 })
 
-SiteSchema.virtual('seeds_networks', {
-  ref: 'SeedsNetwork',
+SiteSchema.virtual('planting_areas', {
+  ref: 'PlantingArea',
   localField: '_id',
   foreignField: 'site'
 })
