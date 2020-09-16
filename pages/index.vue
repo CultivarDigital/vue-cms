@@ -39,7 +39,20 @@
             </div>
           </b-col>
         </b-row>
-        <section class="partners text-center card">
+      </b-container>
+      <divisor variant="orange-down" />
+      <b-carousel class="banners-component banners">
+        <b-carousel-slide img-src="~assets/img/banner_biblioteca.png">
+          <n-link to="/biblioteca">
+            <h2>Biblioteca</h2>
+            <p>O maior acervo online de semeadura direta no Brasil.</p>
+          </n-link>
+        </b-carousel-slide>
+      </b-carousel>
+      <divisor variant="orange-up" />
+      <b-container fluid="lg">
+        <br>
+        <section class="partners text-center card mt-4">
           <h3>Coordenação e execução</h3>
           <b-row>
             <b-col md="4" offset-md="4">
@@ -106,7 +119,6 @@
               </div>
             </b-col>
           </b-row>
-          <br>
         </section>
       </b-container>
     </section>
@@ -137,10 +149,13 @@ export default {
       .subtitle
         width: 100%
         max-width: 700px
+      .banners
+        a
+          color: #fff
       .boxes
         margin-top: 50px
         .box
-          margin-bottom: 70px
+          margin-bottom: 50px
           background: #fff
           border-radius: 15px
           padding-bottom: 20px

@@ -3,15 +3,6 @@
     <div v-show="show_content">
       <Header />
       <Nuxt />
-      <divisor variant="orange-down" />
-      <b-carousel class="banners-component banners">
-        <b-carousel-slide :img-src="require('~/assets/img/banner_biblioteca.png')">
-          <n-link to="/biblioteca">
-            <h2>Biblioteca</h2>
-            <p>O maior acervo online de semeadura direta no Brasil.</p>
-          </n-link>
-        </b-carousel-slide>
-      </b-carousel>
       <divisor variant="green-up" />
       <Footer />
     </div>
@@ -51,8 +42,3 @@ export default {
   }
 }
 </script>
-<style lang="sass" scoped>
-  .banners-component
-    a
-      color: #fff
-</style>
