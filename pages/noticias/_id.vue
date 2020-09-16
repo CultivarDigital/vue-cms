@@ -9,6 +9,7 @@
             <div class="quill-content mt-4">
               <banners :items="[post.picture]" />
               <div v-if="post.content" v-html="post.content" />
+              <share />
             </div>
           </b-col>
           <b-col md="3">

@@ -24,6 +24,7 @@
                         Voltar ao mapa
                       </n-link>
                     </div>
+                    <share />
                   </b-tab>
                 </b-tabs>
               </div>

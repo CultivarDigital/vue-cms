@@ -18,11 +18,7 @@
               </a>
             </div>
           </div> -->
-          <br>
-          <br>
-          <client-only>
-            <vue-goodshare />
-          </client-only>
+          <share />
         </div>
       </b-container>
     </section>
@@ -30,10 +26,8 @@
 </template>
 
 <script>
-// import VueGoodshare from 'vue-goodshare'
 import mixinPage from '@/mixins/page'
 export default {
-  // components: [VueGoodshare],
   mixins: [mixinPage],
   props: {
     id: {

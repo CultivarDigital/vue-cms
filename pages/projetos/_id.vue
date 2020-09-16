@@ -42,6 +42,7 @@
                   </b-col>
                 </b-row>
               </div>
+              <share />
             </div>
           </b-col>
           <b-col md="3">

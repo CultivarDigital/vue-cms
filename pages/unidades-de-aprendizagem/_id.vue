@@ -346,6 +346,7 @@
                     Voltar ao mapa
                   </n-link>
                 </div>
+                <share />
               </div>
             </div>
           </b-col>

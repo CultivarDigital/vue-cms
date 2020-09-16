@@ -120,6 +120,7 @@
             </b-col>
           </b-row>
         </section>
+        <share />
       </b-container>
     </section>
   </div>

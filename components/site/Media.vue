@@ -20,6 +20,7 @@
               {{ tag }}
             </b-button>
           </div>
+          <share />
         </div>
       </div>
     </div>
