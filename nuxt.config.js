@@ -24,7 +24,8 @@ export default {
     { src: '~plugins/quill.js', ssr: false },
     { src: '~/plugins/datepicker', ssr: false },
     { src: '~/plugins/v-money.js', ssr: false },
-    { src: '~/plugins/vue-the-mask.js', ssr: false }
+    { src: '~/plugins/vue-the-mask.js', ssr: false },
+    { src: '~/plugins/vue-goodshare.js', ssr: false }
   ],
   components: true,
   buildModules: [
