@@ -12,7 +12,7 @@
         </validation-provider>
       </b-form-group>
       <div v-if="form.category">
-        <div v-if="form.category === 'Publicações' || form.category === 'Teses e dissertações' || form.category === 'Materiais Didáticos' || form.category === 'Documentos'">
+        <div v-if="form.category === 'Livros e Artigos Científicos' || form.category === 'Guias e Publicações Curtas' || form.category === 'Leis e Outras Normas'">
           <p v-if="form.pdf">
             <b-form-group v-if="form.picture" label="Documento PDF">
               <a :href="'https://' + $store.state.site.domain_name + form.pdf.url">{{ 'https://' + $store.state.site.domain_name + form.pdf.url }}</a>
@@ -30,7 +30,7 @@
           </b-form-group>
           <b-button v-if="!noUrl && !form.url" variant="default" size="sm" @click="noUrl = true">Não tenho o link</b-button>
         </div>
-        <div v-if="form.category === 'Filmes/Vídeos'">
+        <div v-if="form.category === 'Vídeos'">
           <b-form-group label="Link do vídeo">
             <b-form-input v-model="form.url" @input="loadUrl" />
             <b-spinner v-if="loadingUrl" label="Carregando vídeo" />
@@ -49,7 +49,7 @@
               <pictures-upload :form="form" field="picture" url="/api/uploads/images" label="Foto de capa" :show-preview="false" />
             </div>
           </div>
-          <div v-else-if="form.category !== 'Filmes/Vídeos'">
+          <div v-else-if="form.category !== 'Vídeos'">
             <pictures-upload :form="form" field="picture" url="/api/uploads/images" :label="form.category === 'Fotografias' ? 'Enviar fotografia' : 'Foto de capa'" />
           </div>
           <b-row>

@@ -2,7 +2,7 @@
   <div class="medias-component">
     <div class="card">
       <div class="img">
-        <div v-if="media.category === 'Filmes/Vídeos' && media.oembed" class="card-img-top" v-html="media.oembed" />
+        <div v-if="media.category === 'Vídeos' && media.oembed" class="card-img-top" v-html="media.oembed" />
         <b-img v-else :src="media.picture ? media.picture.average : null" :alt="media.title" class="card-img-top" />
       </div>
       <div class="card-body">
