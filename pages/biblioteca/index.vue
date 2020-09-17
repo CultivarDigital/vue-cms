@@ -17,10 +17,6 @@
                 <b-form-input v-model="filters.search" type="search" class="search" placeholder="O que você procura?" @input="searchChanged" />
                 <b-button v-if="filters.search" variant="primary" block :to="'/biblioteca?categoria=' + filters.category + '&tag=' + filters.tag + '&search=' + filters.search ">Buscar</b-button>
               </div>
-              <div class="tags">
-                <b-button v-for="tag in tags" :key="tag" variant="primary" :to="'/biblioteca?categoria=' + filters.category + '&tag=' + tag + '&search=' + filters.search" :class="{ active: (tag === filters.tag) }">{{ tag }}</b-button>
-                <b-button v-if="filters.tag" variant="primary" :to="'/biblioteca?categoria=' + filters.category + '&search=' + filters.search">Todos os temas</b-button>
-              </div>
               <div class="categories">
                 <div class="title">
                   <h4>Tipos de documentos</h4>
@@ -30,7 +26,11 @@
                   <li v-if="filters.category"><n-link variant="primary" :to="'/biblioteca?tag=' + filters.tag + '&search=' + filters.search ">Todos os tipos</n-link></li>
                 </ul>
               </div>
-              <b-button v-if="filters.search || filters.category || filters.tag" class="mt-4" variant="primary" block to="/biblioteca">Limpar filtros</b-button>
+              <div class="tags">
+                <b-button v-for="tag in tags" :key="tag" variant="primary" :to="'/biblioteca?categoria=' + filters.category + '&tag=' + tag + '&search=' + filters.search" :class="{ active: (tag === filters.tag) }">{{ tag }}</b-button>
+                <b-button v-if="filters.tag" variant="primary" :to="'/biblioteca?categoria=' + filters.category + '&search=' + filters.search">Todos os temas</b-button>
+              </div>
+              <b-button v-if="filters.search || filters.category || filters.tag" class="mt-4 mb-4" variant="primary" block to="/biblioteca">Limpar filtros</b-button>
             </b-col>
             <b-col md="9" class="medias">
               <div v-if="medias">
@@ -142,7 +142,6 @@ export default {
       button
         border-radius: 10px
     .tags
-      margin-bottom: 20px
       .btn
         background-color: transparent
         color: #384e3f
@@ -162,6 +161,7 @@ export default {
           border-color: #384e3f
           color: #f6a447
     .categories
+      margin-bottom: 30px
       .title
         background-color: #384e3f
         background-image: url('~assets/img/squares.png')
