@@ -21,6 +21,24 @@ router.get('/', (req, res) => {
   })
 })
 
+router.get('/current_tags', (req, res) => {
+  Media.find().select('tags').exec((err, medias) => {
+    if (err) {
+      res.status(422).send(err.message)
+    } else {
+      const tags = {}
+      medias.forEach(media => {
+        if (media.tags) {
+          media.tags.forEach(tag => {
+            tags[tag] = true
+          })
+        }
+      })
+      res.json(Object.keys(tags).sort((a, b) => a.localeCompare(b)))
+    }
+  })
+})
+
 router.get('/:id', (req, res) => {
   Media.findOne({
     _id: req.params.id

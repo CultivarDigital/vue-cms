@@ -69,6 +69,10 @@
             <b-col md="12">
               <b-form-group label="Temas">
                 <b-form-tags v-model="form.tags" placeholder="Insira aqui os temas..." />
+                <small>ou selecione abaixo para adicionar:</small>
+                <div>
+                  <b-badge v-for="tag in currentTags" :key="tag" :variant="form.tags.includes(tag) ? 'default' : 'secondary'" @click="addTag(tag)">{{ tag }}</b-badge>
+                </div>
               </b-form-group>
             </b-col>
             <b-col md="6">
@@ -122,6 +126,7 @@ export default {
       changePicture: false,
       noUrl: false,
       loadingUrl: false,
+      currentTags: [],
       form: {
         category: '',
         pdf: null,
@@ -136,8 +141,9 @@ export default {
       }
     }
   },
-  created() {
+  async created() {
     this.toForm(this.form, this.media)
+    this.currentTags = await this.$axios.$get('/api/medias/current_tags').catch(this.showError)
   },
   methods: {
     async save() {
@@ -206,7 +212,16 @@ export default {
         return url
       }
       return url
+    },
+    addTag (tag) {
+      if (!this.form.tags.includes(tag)) {
+        this.form.tags.push(tag)
+      }
     }
   }
 }
 </script>
+<style lang="sass" scoped>
+  .badge.badge-secondary
+      cursor: pointer
+</style>

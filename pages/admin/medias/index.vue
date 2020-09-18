@@ -17,7 +17,7 @@
             <b-img :src="data.value.thumb" thumbnail />
           </template>
           <template v-slot:cell(tags)="data">
-            {{ data.value.join(', ') }}
+            <b-badge v-for="tag in data.value" :key="tag" variant="primary">{{ tag }}</b-badge>
           </template>
           <template v-slot:cell(publishing_date)="data">
             {{ $moment(data.value).format("DD/MM/YYYY") }}
