@@ -28,7 +28,6 @@
             <b-form-input v-model="form.url" @input="loadUrl" />
             <b-spinner v-if="loadingUrl" label="Carregando conteúdo da notícia" />
           </b-form-group>
-          <b-button v-if="!noUrl && !form.url" variant="default" size="sm" @click="noUrl = true">Não tenho o link</b-button>
         </div>
         <div v-if="form.category === 'Vídeos'">
           <b-form-group label="Link do vídeo">
@@ -37,7 +36,7 @@
             <div v-if="form.oembed && !loadingUrl" class="mt-3" style="max-width: 80%" v-html="form.oembed" />
           </b-form-group>
         </div>
-        <div v-if="form.pdf || form.picture || form.oembed || isValidUrl(form.url) || noUrl || form.category === 'Fotografias'">
+        <div>
           <div v-if="form.pdf">
             <b-form-group v-if="form.picture" label="Foto de capa">
               <b-img :src="form.picture.thumb" thumbnail />
@@ -124,7 +123,6 @@ export default {
     return {
       categories,
       changePicture: false,
-      noUrl: false,
       loadingUrl: false,
       currentTags: [],
       form: {
