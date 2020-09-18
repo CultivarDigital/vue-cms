@@ -12,7 +12,6 @@
               <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/tags">Tags</b-nav-item>
               <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/posts">Notícias</b-nav-item>
               <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/about">Quem somos</b-nav-item>
-              <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/press">Imprensa</b-nav-item>
               <b-nav-item to="/admin/newsletters">Contatos</b-nav-item>
               <b-nav-item to="/admin/users">Usuários</b-nav-item>
               <b-nav-item v-if="$auth.hasScope('super')" to="/admin/sites">Sites</b-nav-item>

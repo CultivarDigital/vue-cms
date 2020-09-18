@@ -99,7 +99,9 @@ export default {
   },
   moment: {
     defaultLocale: 'pt-br',
-    locales: ['pt-br']
+    locales: ['pt-br'],
+    timezone: true,
+    defaultTimezone: 'utc'
   },
   proxy: {
     pathRewrite: {

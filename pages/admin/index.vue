@@ -9,7 +9,6 @@
       <b-list-group-item v-if="$auth.hasScope('admin')" to="/admin/tags">Tags</b-list-group-item>
       <b-list-group-item v-if="$auth.hasScope('admin')" to="/admin/posts">Notícias</b-list-group-item>
       <b-list-group-item v-if="$auth.hasScope('admin')" to="/admin/about">Quem somos</b-list-group-item>
-      <b-list-group-item v-if="$auth.hasScope('admin')" to="/admin/press">Imprensa</b-list-group-item>
       <b-list-group-item v-if="$auth.hasScope('admin')" to="/admin/medias">Biblioteca</b-list-group-item>
       <b-list-group-item to="/admin/newsletters">Contatos</b-list-group-item>
       <b-list-group-item to="/admin/users">Usuários</b-list-group-item>

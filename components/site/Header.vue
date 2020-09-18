@@ -13,7 +13,7 @@
             <b-nav-item to="/mapa">Mapa</b-nav-item>
             <b-nav-item to="/biblioteca">Biblioteca</b-nav-item>
             <b-nav-item to="/noticias">Notícias</b-nav-item>
-            <!-- <b-nav-item to="/imprensa">Na imprensa</b-nav-item> -->
+            <b-nav-item to="/biblioteca?categoria=Clipping">Imprensa</b-nav-item>
             <!-- <b-nav-item-dropdown>
                     <template v-slot:button-content>
                       <em>Sobre Sementes</em>
