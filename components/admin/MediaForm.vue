@@ -22,6 +22,9 @@
             </b-form-group>
           </p>
           <pdfs-upload v-else :form="form" field="pdf" url="/api/uploads/pdfs" :show-preview="false" @changed="pdfSelected(pdf)" />
+          <b-form-group label="Link do arquivo">
+            <b-form-input v-model="form.url" />
+          </b-form-group>
         </div>
         <div v-if="form.category === 'Notícias'">
           <b-form-group label="Link da notícia">

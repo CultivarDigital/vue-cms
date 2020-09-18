@@ -15,6 +15,7 @@
           <p v-if="media.description">{{ media.description }}</p>
           <small v-if="media.publishing_house">Editora/Fonte: {{ media.publishing_house }}<br><br></small>
           <small v-if="media.pdf"><b-button :to="media.pdf.url" target="_blank" variant="primary">Baixar arquivo</b-button><br><br></small>
+          <small v-else-if="media.category !== 'Notícias' && media.category !== 'Vídeos' && media.url"><b-button :href="media.url" target="_blank" variant="primary">Baixar arquivo</b-button><br><br></small>
           <div class="tags-component">
             <b-button v-for="tag in media.tags" :key="tag._id" :to="'/biblioteca?tag=' + tag" size="sm">
               {{ tag }}
