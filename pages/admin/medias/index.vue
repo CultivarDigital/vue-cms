@@ -20,7 +20,6 @@
             <b-badge v-for="tag in data.value" :key="tag" variant="primary">{{ tag }}</b-badge>
           </template>
           <template v-slot:cell(publishing_date)="data">
-            {{data.item.publishing_date_format}}
             {{ $moment(data.value).format(data.item.publishing_date_format || "DD/MM/YYYY") }}
           </template>
           <template v-slot:cell(actions)="data">
