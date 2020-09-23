@@ -83,6 +83,11 @@
               </b-form-group>
             </b-col>
             <b-col md="6">
+              <b-form-group label="Formato da data">
+                <b-form-select v-model="form.publishing_date_format" :options="dateFormatOptions" />
+              </b-form-group>
+            </b-col>
+            <b-col md="6">
               <b-form-group label="Editora/Fonte" description="Veículo de comunicação onde foi publicado">
                 <b-form-input v-model="form.publishing_house" />
               </b-form-group>
@@ -128,6 +133,11 @@ export default {
       changePicture: false,
       loadingUrl: false,
       currentTags: [],
+      dateFormatOptions: {
+        'DD/MM/YYYY': 'Dia/Mês/Ano',
+        'MM/YYYY': 'Mês/Ano',
+        YYYY: 'Ano'
+      },
       form: {
         category: '',
         pdf: null,
@@ -138,6 +148,7 @@ export default {
         url: '',
         oembed: '',
         publishing_date: null,
+        publishing_date_format: 'DD/MM/YYYY',
         publishing_house: ''
       }
     }
@@ -151,13 +162,13 @@ export default {
       if (this.media) {
         const media = await this.$axios.$put('/api/medias/' + this.media._id, this.form).catch(this.showError)
         if (media) {
-          this.$toast.success('Notícia atualizada com sucesso!')
+          this.$toast.success('Item atualizado com sucesso!')
           this.$router.push('/admin/medias')
         }
       } else {
         const media = await this.$axios.$post('/api/medias', this.form).catch(this.showError)
         if (media) {
-          this.$toast.success('Notícia cadastrada com sucesso!')
+          this.$toast.success('Item cadastrado com sucesso!')
           this.$router.push('/admin/medias')
         }
       }

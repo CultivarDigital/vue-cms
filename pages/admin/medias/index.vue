@@ -20,7 +20,8 @@
             <b-badge v-for="tag in data.value" :key="tag" variant="primary">{{ tag }}</b-badge>
           </template>
           <template v-slot:cell(publishing_date)="data">
-            {{ $moment(data.value).format("DD/MM/YYYY") }}
+            {{data.item.publishing_date_format}}
+            {{ $moment(data.value).format(data.item.publishing_date_format || "DD/MM/YYYY") }}
           </template>
           <template v-slot:cell(actions)="data">
             <n-link class="btn btn-info btn-sm" :to="'/admin/medias/' + data.item._id + '/edit'">

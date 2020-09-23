@@ -9,7 +9,7 @@
         <div class="pattern" />
         <div class="card-title">
           <h3>{{ media.title }}</h3>
-          <small>Publicado dia: {{ $moment(media.publishing_date).format("DD/MM/YYYY") }} em <n-link :to="'/biblioteca?categoria=' + media.categoria">{{ media.category }}</n-link></small>
+          <small>Publicado em: {{ $moment(media.publishing_date).format(media.publishing_date_format || "DD/MM/YYYY") }} em <n-link :to="'/biblioteca?categoria=' + media.categoria">{{ media.category }}</n-link></small>
         </div>
         <div class="card-text">
           <p v-if="media.description">{{ media.description }}</p>

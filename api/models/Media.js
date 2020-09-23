@@ -21,6 +21,10 @@ const MediaSchema = mongoose.Schema({
   url: String,
   oembed: String,
   publishing_date: Date,
+  publishing_date_format: {
+    type: String,
+    default: 'DD/MM/YYYY'
+  },
   publishing_house: String
 }, {
   timestamps: true,
