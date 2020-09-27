@@ -9,6 +9,20 @@
             <div class="quill-content mt-4">
               <banners :items="[post.picture]" />
               <div v-if="post.content" v-html="post.content" />
+              <div v-if="post.pdfs && post.pdfs.length > 0" class="pdfs">
+                <h3>Documentos</h3>
+                <b-row class="text-center">
+                  <b-col v-for="pdf in post.pdfs" :key="pdf._id" md="4">
+                    <a :href="pdf.url" target="_blank">
+                      <div class="img">
+                        <b-img :src="pdf.thumb" />
+                      </div>
+                      <p>{{ pdf.title || 'Baixar arquivo' }}</p>
+                      <br>
+                    </a>
+                  </b-col>
+                </b-row>
+              </div>
               <share />
             </div>
           </b-col>

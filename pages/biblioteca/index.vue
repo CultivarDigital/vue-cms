@@ -92,6 +92,7 @@ export default {
           this.tags.push(tag)
         }
       })
+      this.tags = this.tags.sort((a, b) => a.localeCompare(b))
     })
   },
   methods: {

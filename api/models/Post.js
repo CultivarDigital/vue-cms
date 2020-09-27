@@ -21,6 +21,7 @@ const PostSchema = mongoose.Schema({
   description: String,
   content: String,
   picture: Object,
+  pdfs: [Object],
   tags: [{
     type: ObjectId,
     ref: 'Tag'

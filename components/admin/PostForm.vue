@@ -25,6 +25,9 @@
           <pictures-upload :form="form" field="picture" url="/api/uploads/images" label="Foto de capa" />
         </b-col>
         <b-col md="12">
+          <pdfs-upload :form="form" field="pdfs" url="/api/uploads/pdfs" :multiple="true" />
+        </b-col>
+        <b-col md="12">
           <b-form-group label="Tags">
             <form-entities-select type="tags" :form="form" field="tags" />
           </b-form-group>
@@ -42,6 +45,7 @@ import { ValidationObserver, ValidationProvider } from 'vee-validate'
 import mixinGlobal from '@/mixins/global'
 import mixinForm from '@/mixins/form'
 import PicturesUpload from '@/components/admin/PicturesUpload'
+import PdfsUpload from '@/components/admin/PdfsUpload'
 import FormEntitiesSelect from '@/components/admin/FormEntitiesSelect'
 
 export default {
@@ -49,6 +53,7 @@ export default {
     ValidationObserver,
     ValidationProvider,
     PicturesUpload,
+    PdfsUpload,
     FormEntitiesSelect
   },
   mixins: [mixinGlobal, mixinForm],
@@ -65,7 +70,8 @@ export default {
         description: '',
         content: '',
         picture: null,
-        tags: []
+        tags: [],
+        pdfs: []
       }
     }
   },

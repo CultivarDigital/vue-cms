@@ -29,7 +29,7 @@
           </b-col>
           <b-col sm="6">
             <div class="box">
-              <n-link to="/biblioteca?categoria=Clipping">
+              <n-link to="/biblioteca?categoria=Imprensa">
                 <b-img src="~assets/img/imprensa.png" />
               </n-link>
               <div class="title">

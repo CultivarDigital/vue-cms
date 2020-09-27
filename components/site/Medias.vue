@@ -49,8 +49,8 @@ export default {
       min-height: calc(100% - 15px)
       .img
         overflow-y: hidden
-        max-height: 30vw
-        @media (max-width: 768px)
+        max-height: 17vw
+        @media (max-width: 992px)
           max-height: 100%
       .card-img-top
         border-top-left-radius: 15px
