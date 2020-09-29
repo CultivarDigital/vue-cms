@@ -3,7 +3,7 @@
     <b-breadcrumb :items="breadcrumb" />
     <LearningUnitForm v-if="learning_unit" :learning-unit="learning_unit" />
     <div v-else class="text-center">
-      <b-spinner label="Carregando..." />
+      <b-spinner small label="Carregando..." />
     </div>
   </div>
 </template>

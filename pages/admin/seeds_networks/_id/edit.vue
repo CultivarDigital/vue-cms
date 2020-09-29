@@ -3,7 +3,7 @@
     <b-breadcrumb :items="breadcrumb" />
     <SeedsNetworkForm v-if="seeds_network" :seeds-network="seeds_network" />
     <div v-else class="text-center">
-      <b-spinner label="Carregando..." />
+      <b-spinner small label="Carregando..." />
     </div>
   </div>
 </template>

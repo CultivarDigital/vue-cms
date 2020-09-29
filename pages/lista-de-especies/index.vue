@@ -11,15 +11,41 @@
     <section class="content pb-5">
       <b-container>
         <div class="pt-5">
-          <div v-if="species">
-            <div class="pattern" />
-            <div class="title">
-              <h3>Lista de espécies</h3>
-              <p v-if="species.length === 1"><strong>1</strong> ITEM ENCONTRADO <span v-if="filters.category">em <n-link :to="'/biblioteca?categoria=' + filters.category"><strong>{{ filters.category }}</strong></n-link></span></p>
-              <p v-else><strong>{{ species.length }}</strong> ITENS ENCONTRADOS <span v-if="filters.category">em <n-link :to="'/biblioteca?categoria=' + filters.category"><strong>{{ filters.category }}</strong></n-link></span></p>
-              <h3 v-if="species && species.length === 0" class="text-center">Nenhum item encontrado</h3>
+          <div class="pattern" />
+          <div class="title">
+            <h3>Lista de espécies</h3>
+            <div v-if="species">
+              <p v-if="species.length === 1"><strong>1</strong> ESPÉCIE ENCONTRADA <span v-if="filters.category">em <n-link :to="'/biblioteca?categoria=' + filters.category"><strong>{{ filters.category }}</strong></n-link></span></p>
+              <p v-else><strong>{{ species.length }}</strong> ESPÉCIES ENCONTRADAS <span v-if="filters.category">em <n-link :to="'/biblioteca?categoria=' + filters.category"><strong>{{ filters.category }}</strong></n-link></span></p>
+              <h3 v-if="species && species.length === 0" class="text-center">Nenhuma espécie encontrada</h3>
             </div>
-            <div>
+            <div v-else>
+              <p><b-spinner small label="Carregando lista de espécies..." /> Carregando lista de espécies...</p>
+            </div>
+          </div>
+          <div>
+            <div class="filters">
+              <b-row>
+                <b-col>
+                  <div class="search">
+                    <b-form-input v-model="filters.search" type="search" class="search" placeholder="O que você procura?" @keydown.enter.native="applyFilters" @input="filtersChanged"/>
+                  </div>
+                </b-col>
+                <b-col>
+                  <b-form-select v-model="filters.already_tested_in_direct_seedin" :options="[{ value: null, text: 'Ja testadas na Semeadura direta?' }, { value: true, text: 'Já testada' }, { value: false, text: 'Ainda não testada' }]" @input="filtersChanged" />
+                </b-col>
+                <b-col>
+                  <b-form-select v-model="filters.vegetation_type" :options="vegetationTypes" @input="filtersChanged" />
+                </b-col>
+                <b-col>
+                  <b-form-select v-model="filters.presence" :options="estados" @input="filtersChanged" />
+                </b-col>
+              </b-row>
+              <div v-if="showFilterButton" class="text-center pb-4">
+                <b-button variant="primary" block @click="applyFilters">Filtrar</b-button>
+              </div>
+            </div>
+            <div v-if="species">
               <div v-for="specie in species" :key="specie._id" class="specie">
                 <div class="name" @click="toggleSpecie(specie)">
                   {{ specie.scientific_name }}
@@ -252,26 +278,43 @@
 import https from 'https'
 import axios from 'axios'
 import mixinGlobal from '@/mixins/global'
+import estados from '@/data/estados.json'
 export default {
   mixins: [mixinGlobal],
   data() {
     return {
+      estados,
       species: null,
       currentSpecie: null,
+      vegetationTypes: [],
+      showFilterButton: false,
+      boolean_options: [
+        { value: true, text: 'Sim' },
+        { value: false, text: 'Não' }
+      ],
       filters: {
         search: '',
-        category: '',
-        tag: ''
+        already_tested_in_direct_seedin: null,
+        vegetation_type: null,
+        presence: ''
       }
     }
   },
-  created() {
-    if (this.$route.params.id) {
-      this.get(this.$route.params.id)
-    } else {
-      this.list(this.$route.query)
-    }
+  computed: {
 
+  },
+  watch: {
+    $route() {
+      this.list()
+    }
+  },
+  created() {
+    this.estados[0].text = 'Presença em todos os estados'
+    if (this.$route.query) {
+      Object.keys(this.$route.query).forEach(param => {
+        this.filters[param] = this.$route.query[param]
+      })
+    }
     this.list()
   },
   methods: {
@@ -280,9 +323,21 @@ export default {
         rejectUnauthorized: false
       })
       const species = await axios.get('https://xingu.sementesdoxingu.org.br/api/species', {
-        httpsAgent: agent
+        httpsAgent: agent,
+        params: this.$route.query
       })
       this.species = species.data
+
+      if (this.vegetationTypes.length === 0) {
+        this.loadVegetationTypes()
+      }
+    },
+    filtersChanged() {
+      this.showFilterButton = true
+    },
+    applyFilters() {
+      this.$router.push({ path: '/lista-de-especies', query: this.filters })
+      this.showFilterButton = false
     },
     toggleSpecie(specie) {
       if (this.currentSpecie === specie._id) {
@@ -290,6 +345,15 @@ export default {
       } else {
         this.currentSpecie = specie._id
       }
+    },
+    loadVegetationTypes () {
+      const vegetationTypes = {}
+      this.species.forEach(specie => {
+        specie.vegetation_types.forEach(vegetationType => {
+          vegetationTypes[vegetationType] = true
+        })
+      })
+      this.vegetationTypes = [{ value: null, text: 'Todos os tipos de vegetação' }].concat(Object.keys(vegetationTypes).sort((a, b) => a.localeCompare(b)))
     }
   },
   head() {
@@ -306,6 +370,48 @@ export default {
 </script>
 <style lang="sass">
   .species-page
+    .pattern
+      width: 15px
+      height: 25px
+      background-color: #fff
+      position: absolute
+    .title
+      margin-left: 30px
+      margin-bottom: 20px
+      h3
+        color: #fff
+        font-size: 24px
+        font-weight: 700
+        text-transform: uppercase
+      p
+        color: #384e3f
+        font-size: 12px
+        text-transform: uppercase
+    .filters
+        .search
+          margin-bottom: 30px
+          input
+            border-radius: 10px
+            border: none
+            font-weight: bold
+            color: #384e3f
+            font-size: 14px
+            background-image: url('~assets/img/lupa.png')
+            background-repeat: no-repeat
+            background-position: calc(100% - 10px)
+            &::placeholder
+              color: #384e3f
+          button
+            border-radius: 10px
+        select
+          margin-bottom: 30px
+          border-radius: 10px
+          border: none
+          font-weight: bold
+          color: #384e3f
+          font-size: 14px
+          &::placeholder
+            color: #384e3f
     .specie
       border: 1px solid #384e3f
       border-radius: 5px

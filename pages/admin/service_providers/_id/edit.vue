@@ -3,7 +3,7 @@
     <b-breadcrumb :items="breadcrumb" />
     <ServiceProviderForm v-if="service_provider" :service-provider="service_provider" />
     <div v-else class="text-center">
-      <b-spinner label="Carregando..." />
+      <b-spinner small label="Carregando..." />
     </div>
   </div>
 </template>

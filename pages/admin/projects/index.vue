@@ -37,7 +37,7 @@
         <b-alert v-else show variant="dark" class="text-center">Nenhum item encontrado</b-alert>
       </div>
       <div v-else class="text-center">
-        <b-spinner label="Carregando..." />
+        <b-spinner small label="Carregando..." />
       </div>
     </div>
   </div>

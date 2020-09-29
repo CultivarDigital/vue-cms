@@ -3,7 +3,7 @@
     <b-breadcrumb :items="breadcrumb" />
     <VillageForm v-if="village" :village="village" />
     <div v-else class="text-center">
-      <b-spinner label="Carregando..." />
+      <b-spinner small label="Carregando..." />
     </div>
   </div>
 </template>

@@ -29,13 +29,13 @@
         <div v-if="form.category === 'Notícias'">
           <b-form-group label="Link da notícia">
             <b-form-input v-model="form.url" @input="loadUrl" />
-            <b-spinner v-if="loadingUrl" label="Carregando conteúdo da notícia" />
+            <b-spinner small v-if="loadingUrl" label="Carregando conteúdo da notícia" />
           </b-form-group>
         </div>
         <div v-if="form.category === 'Vídeos'">
           <b-form-group label="Link do vídeo">
             <b-form-input v-model="form.url" @input="loadUrl" />
-            <b-spinner v-if="loadingUrl" label="Carregando vídeo" />
+            <b-spinner small v-if="loadingUrl" label="Carregando vídeo" />
             <div v-if="form.oembed && !loadingUrl" class="mt-3" style="max-width: 80%" v-html="form.oembed" />
           </b-form-group>
         </div>

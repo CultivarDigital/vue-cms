@@ -3,7 +3,7 @@
     <b-breadcrumb :items="breadcrumb" />
     <MediaForm v-if="media" :media="media" />
     <div v-else class="text-center">
-      <b-spinner label="Carregando..." />
+      <b-spinner small label="Carregando..." />
     </div>
   </div>
 </template>

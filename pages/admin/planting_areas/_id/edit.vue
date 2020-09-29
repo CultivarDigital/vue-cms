@@ -3,7 +3,7 @@
     <b-breadcrumb :items="breadcrumb" />
     <PlantingAreaForm v-if="planting_area" :planting-area="planting_area" />
     <div v-else class="text-center">
-      <b-spinner label="Carregando..." />
+      <b-spinner small label="Carregando..." />
     </div>
   </div>
 </template>
