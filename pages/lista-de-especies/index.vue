@@ -4,7 +4,7 @@
     <b-carousel :indicators="false" class="banners">
       <b-carousel-slide img-src="~assets/img/banner_biblioteca.png">
         <h2>Lista de espécies</h2>
-        <p>Maior acervo online de semeadura direta no Brasil</p>
+        <p>Espécies para semeadura direta na Amazônia, Cerrado e Mata Atlântica</p>
       </b-carousel-slide>
     </b-carousel>
     <divisor variant="orange-up" />
