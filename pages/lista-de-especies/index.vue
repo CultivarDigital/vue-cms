@@ -26,18 +26,18 @@
           <div>
             <div class="filters">
               <b-row>
-                <b-col>
+                <b-col md="3">
                   <div class="search">
                     <b-form-input v-model="filters.search" type="search" class="search" placeholder="O que você procura?" @keydown.enter.native="applyFilters" @input="filtersChanged"/>
                   </div>
                 </b-col>
-                <b-col>
+                <b-col md="3">
                   <b-form-select v-model="filters.already_tested_in_direct_seedin" :options="[{ value: null, text: 'Ja testadas na Semeadura direta?' }, { value: true, text: 'Já testada' }, { value: false, text: 'Ainda não testada' }]" @input="filtersChanged" />
                 </b-col>
-                <b-col>
+                <b-col md="3">
                   <b-form-select v-model="filters.vegetation_type" :options="vegetationTypes" @input="filtersChanged" />
                 </b-col>
-                <b-col>
+                <b-col md="3">
                   <b-form-select v-model="filters.presence" :options="estados" @input="filtersChanged" />
                 </b-col>
               </b-row>
@@ -47,7 +47,7 @@
             </div>
             <div v-if="species">
               <div v-for="specie in species" :key="specie._id" class="specie">
-                <div class="name" @click="toggleSpecie(specie)">
+                <div class="name" :class="{ active: currentSpecie == specie._id }" @click="toggleSpecie(specie)">
                   {{ specie.scientific_name }}
                 </div>
                 <div v-if="currentSpecie == specie._id" class="info">
@@ -57,7 +57,7 @@
                         <strong>Identificação</strong>
                       </div>
                       <b-row>
-                        <b-col>
+                        <b-col md="auto">
                           <dl v-if="specie.code">
                             <dt>Código</dt>
                             <dd>
@@ -65,7 +65,7 @@
                             </dd>
                           </dl>
                         </b-col>
-                        <b-col>
+                        <b-col md="auto">
                           <dl v-if="specie.scientific_name">
                             <dt>Nome científico</dt>
                             <dd>
@@ -73,7 +73,7 @@
                             </dd>
                           </dl>
                         </b-col>
-                        <b-col>
+                        <b-col md="auto">
                           <dl v-if="specie.local_name">
                             <dt>Nomes populares</dt>
                             <dd>
@@ -81,7 +81,7 @@
                             </dd>
                           </dl>
                         </b-col>
-                        <b-col>
+                        <b-col md="auto">
                           <dl v-if="specie.family">
                             <dt>Família</dt>
                             <dd>
@@ -96,7 +96,7 @@
                         <strong>Ocorrência / Indicação para plantio</strong>
                       </div>
                       <b-row>
-                        <b-col>
+                        <b-col md="auto">
                           <dl v-if="specie.biomes">
                             <dt>Bioma</dt>
                             <dd>
@@ -104,7 +104,7 @@
                             </dd>
                           </dl>
                         </b-col>
-                        <b-col>
+                        <b-col md="auto">
                           <dl v-if="specie.vegetation_types && specie.vegetation_types.length" class="ecosystem">
                             <dt>Tipos de Vegetação</dt>
                             <dd>
@@ -112,7 +112,7 @@
                             </dd>
                           </dl>
                         </b-col>
-                        <b-col>
+                        <b-col md="auto">
                           <dl v-if="specie.presence && specie.presence.length" class="ecosystem">
                             <dt>Presença nos estados</dt>
                             <dd>
@@ -127,7 +127,7 @@
                         <strong>Classe de Sucessão</strong>
                       </div>
                       <b-row>
-                        <b-col>
+                        <b-col md="auto">
                           <dl v-if="specie.habit">
                             <dt>Hábito</dt>
                             <dd>
@@ -135,7 +135,7 @@
                             </dd>
                           </dl>
                         </b-col>
-                        <b-col>
+                        <b-col md="auto">
                           <dl v-if="specie.origin">
                             <dt>Origem</dt>
                             <dd>
@@ -143,7 +143,7 @@
                             </dd>
                           </dl>
                         </b-col>
-                        <b-col>
+                        <b-col md="auto">
                           <dl v-if="specie.cycle">
                             <dt>Longevidade</dt>
                             <dd>
@@ -151,7 +151,7 @@
                             </dd>
                           </dl>
                         </b-col>
-                        <b-col>
+                        <b-col md="auto">
                           <dl v-if="specie.occupation_strategy">
                             <dt>Estratégia de ocupação</dt>
                             <dd>
@@ -166,7 +166,7 @@
                         <strong>Plantio das sementes</strong>
                       </div>
                       <b-row>
-                        <b-col>
+                        <b-col md="auto">
                           <dl v-if="specie.viability_rate">
                             <dt>Classe de % de estabelecimento em campo</dt>
                             <dd>
@@ -177,13 +177,13 @@
                             </dd>
                           </dl>
                         </b-col>
-                        <b-col>
+                        <b-col md="auto">
                           <dl v-if="specie.seeds_per_kg">
                             <dt>Número de sementes / Kg</dt>
                             <dd>{{ specie.seeds_per_kg }} sementes</dd>
                           </dl>
                         </b-col>
-                        <b-col>
+                        <b-col md="auto">
                           <dl v-if="specie.seed_conservations && specie.seed_conservations.length">
                             <dt>Conservação de Sementes - (Natureza das Sementes)</dt>
                             <dd v-for="seed_conservation in specie.seed_conservations" :key="seed_conservation._id">
@@ -198,7 +198,7 @@
                         <strong>Produção das Sementes</strong>
                       </div>
                       <b-row>
-                        <b-col>
+                        <b-col md="auto">
                           <dl v-if="specie.seed_processings && specie.seed_processings.length">
                             <dt>Beneficiamento de sementes</dt>
                             <dd v-for="seed_processing in specie.seed_processings" :key="seed_processing._id">
@@ -206,7 +206,7 @@
                             </dd>
                           </dl>
                         </b-col>
-                        <b-col>
+                        <b-col md="auto">
                           <dl v-if="specie.seed_storages && specie.seed_storages.length">
                             <dt>Armazenamento</dt>
                             <dd v-for="seed_storage in specie.seed_storages" :key="seed_storage._id">
@@ -214,7 +214,7 @@
                             </dd>
                           </dl>
                         </b-col>
-                        <b-col>
+                        <b-col md="auto">
                           <dl v-if="specie.seed_collectings && specie.seed_collectings.length">
                             <dt>Coleta</dt>
                             <dd v-for="seed_collecting in specie.seed_collectings" :key="seed_collecting._id">
@@ -222,7 +222,7 @@
                             </dd>
                           </dl>
                         </b-col>
-                        <b-col>
+                        <b-col md="auto">
                           <dl v-if="specie.planting_tips">
                             <dt>Dicas de plantio</dt>
                             <dd>
@@ -237,25 +237,25 @@
                         <strong>Informações gerais</strong>
                       </div>
                       <b-row>
-                        <b-col>
+                        <b-col md="auto">
                           <dl>
                             <dt>Espécie com dados quantificados sistematicamente?</dt>
                             <dd>{{ specie.systematically_quantified_data ? 'SIM' : 'NÃO' }}</dd>
                           </dl>
                         </b-col>
-                        <b-col>
+                        <b-col md="auto">
                           <dl>
                             <dt>Ja testadas na Semeadura direta?</dt>
                             <dd>{{ specie.already_tested_in_direct_seedin ? 'SIM' : 'NÃO' }}</dd>
                           </dl>
                         </b-col>
-                        <b-col>
+                        <b-col md="auto">
                           <dl>
                             <dt>Possui padrão de qualidade de análise (MAPA)?</dt>
                             <dd>{{ specie.mapa_standard_established ? 'SIM' : 'NÃO' }}</dd>
                           </dl>
                         </b-col>
-                        <b-col>
+                        <b-col md="auto">
                           <dl v-if="specie.lot_limit">
                             <dt>Limite de peso por lote</dt>
                             <dd>{{ specie.lot_limit | kg }} por lote</dd>
@@ -319,6 +319,7 @@ export default {
   },
   methods: {
     async list() {
+      this.species = null
       const agent = new https.Agent({
         rejectUnauthorized: false
       })
@@ -388,33 +389,36 @@ export default {
         font-size: 12px
         text-transform: uppercase
     .filters
-        .search
-          margin-bottom: 30px
-          input
-            border-radius: 10px
-            border: none
-            font-weight: bold
-            color: #384e3f
-            font-size: 14px
-            background-image: url('~assets/img/lupa.png')
-            background-repeat: no-repeat
-            background-position: calc(100% - 10px)
-            &::placeholder
-              color: #384e3f
-          button
-            border-radius: 10px
-        select
-          margin-bottom: 30px
+      button
+        border-radius: 10px
+      .search
+        margin-bottom: 30px
+        input
           border-radius: 10px
           border: none
           font-weight: bold
           color: #384e3f
           font-size: 14px
+          background-color: transparent
+          background-image: url('~assets/img/lupa-green.png')
+          background-repeat: no-repeat
+          background-position: calc(100% - 10px)
+          padding-right: 30px
+          border: 1px solid #384e3f
           &::placeholder
             color: #384e3f
+      select
+        margin-bottom: 30px
+        border-radius: 10px
+        border: none
+        font-weight: bold
+        color: #384e3f
+        font-size: 14px
+        &::placeholder
+          color: #384e3f
     .specie
       border: 1px solid #384e3f
-      border-radius: 5px
+      border-radius: 10px
       padding: 10px 15px
       font-size: 13px
       margin-bottom: 10px
@@ -422,9 +426,15 @@ export default {
         font-weight: bold
         font-size: 14px
         cursor: pointer
+        background-image: url('~assets/img/arrow-down-green.png')
+        background-repeat: no-repeat
+        background-position: calc(100% - 10px)
+        &.active
+          background-image: url('~assets/img/arrow-up-green.png')
       .title
         border-bottom: 1px solid #fff
         padding-bottom: 10px
+        margin: 0
         margin-top: 10px
       .info
         margin-top: 10px

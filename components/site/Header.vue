@@ -12,6 +12,7 @@
             <b-nav-item to="/sobre">Quem Somos</b-nav-item>
             <b-nav-item to="/mapa">Mapa</b-nav-item>
             <b-nav-item to="/biblioteca">Biblioteca</b-nav-item>
+            <b-nav-item to="/especies">Lista de espécies</b-nav-item>
             <b-nav-item to="/noticias">Notícias</b-nav-item>
             <b-nav-item to="/biblioteca?categoria=Imprensa">Imprensa</b-nav-item>
             <!-- <b-nav-item-dropdown>
