@@ -32,7 +32,7 @@
                   </div>
                 </b-col>
                 <b-col md="3">
-                  <b-form-select v-model="filters.already_tested_in_direct_seedin" :options="[{ value: null, text: 'Ja testadas na Semeadura direta?' }, { value: true, text: 'Já testada' }, { value: false, text: 'Ainda não testada' }]" @input="filtersChanged" />
+                  <b-form-select v-model="filters.already_tested_in_direct_seedin" :options="[{ value: null, text: 'Já testada na Semeadura direta?' }, { value: true, text: 'Já testada' }, { value: false, text: 'Ainda não testada' }]" @input="filtersChanged" />
                 </b-col>
                 <b-col md="3">
                   <b-form-select v-model="filters.vegetation_type" :options="vegetationTypes" @input="filtersChanged" />
@@ -245,7 +245,7 @@
                         </b-col>
                         <b-col md="auto">
                           <dl>
-                            <dt>Ja testadas na Semeadura direta?</dt>
+                            <dt>Já testada na Semeadura direta?</dt>
                             <dd>{{ specie.already_tested_in_direct_seedin ? 'SIM' : 'NÃO' }}</dd>
                           </dl>
                         </b-col>
