@@ -24,7 +24,7 @@
         </b-col>
       </b-row>
     </div>
-    <b-spinner small v-if="isLoading" label="Enviando foto..." />
+    <b-spinner v-if="isLoading" small label="Enviando foto..." />
   </div>
 </template>
 

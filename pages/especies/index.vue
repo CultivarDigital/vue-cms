@@ -17,6 +17,8 @@
             <p>Características de sementes e plantas, sugestões de coleta, processamento e plantio</p>
           </div>
           <div>
+            <b-button block variant="primary" to="/lista-de-especies" class="mb-3">Acessar a lista de espécies</b-button>
+
             <div class="specie-info">
               <div class="name" @click="toggleTabs(0)">
                 O QUE É A LISTA DE ESPÉCIES
@@ -102,8 +104,7 @@
                 </table>
                 <p><strong>Conservação das sementes:</strong> Indica a tolerância à secagem para o armazenamento das sementes:</p>
                 <p><i><u>Ortodoxas:</u></i> São sementes que toleram secagem forçada e que podem permanecer viáveis durante longos períodos de armazenamento em temperaturas muito baixas. Suportam armazenamento em recipientes de papelão, garrafas pets, sacos plásticos e de papel fechados em temperatura abaixo de 0oC, mantendo-se viáveis por mais de 1 ano. Exemplos: Jatobá (Hymenaea spp.), Angico (Anadenanthera spp.), Caju (Anacardium occidentale), Tamboril (Enterolobium spp.).</p>
-                <p><i><u>Recalcitrantes:</u></i> Sementes que não sobrevivem à secagem, nem ao congelamento, o que inviabiliza muitas vezes seu armazenamento, embora hajam exemplos promissores no armazenamento de sementes recalcitrantes. A coletora e pesquisadora Milene Alves, orientada pela Dra Beatriz Marimon na Unemat em Nova Xavantina, , as verificou que sementes do buriti (Mauritia flexuosa) armazenados por 6 meses em sacos de cebola (vazados) dentro de cursos de água corrente, mantiveram seu vigor. Este manejo já era utilizado por povos indígenas e agricultores familiares da região. Em geral, a semeadura dessas espécies deve ser realizada logo após a colheita. Na semeadura direta é possível utilizar espécies que frutificam durante a época de plantio. Para utilizar um número maior de espécies desse grupo, recomenda-se proceder à produção de mudas. Exemplos: Abiu (Pouteria spp.), Ingá (Inga spp.), Mangaba (Hancornia speciosa), Jaboticaba (Myrciaria spp.).<p>
-                <p><i><u>Intermediárias:</u></i> Sementes que podem ser armazenadas por pouco tempo, sendo uma classe intermediária entre as ortodoxas e recalcitrantes. Recomenda-se temperaturas amenas, entre 15 e 20oC, sem secagem forçada, para serem armazenadas apenas durante o período entre a coleta e a semeadura no mesmo ano. Para utilizar um número maior de espécies desse grupo, recomenda-se proceder à produção de mudas. Exemplos: Guanandi (Callophyllum brasiliense), Angelim-morcegueira (Andira spp.) e Bacupari (Garcinia gardneriana).</p>
+                <p><i><u>Recalcitrantes:</u></i> Sementes que não sobrevivem à secagem, nem ao congelamento, o que inviabiliza muitas vezes seu armazenamento, embora hajam exemplos promissores no armazenamento de sementes recalcitrantes. A coletora e pesquisadora Milene Alves, orientada pela Dra Beatriz Marimon na Unemat em Nova Xavantina, , as verificou que sementes do buriti (Mauritia flexuosa) armazenados por 6 meses em sacos de cebola (vazados) dentro de cursos de água corrente, mantiveram seu vigor. Este manejo já era utilizado por povos indígenas e agricultores familiares da região. Em geral, a semeadura dessas espécies deve ser realizada logo após a colheita. Na semeadura direta é possível utilizar espécies que frutificam durante a época de plantio. Para utilizar um número maior de espécies desse grupo, recomenda-se proceder à produção de mudas. Exemplos: Abiu (Pouteria spp.), Ingá (Inga spp.), Mangaba (Hancornia speciosa), Jaboticaba (Myrciaria spp.).</p><p /><p><i><u>Intermediárias:</u></i> Sementes que podem ser armazenadas por pouco tempo, sendo uma classe intermediária entre as ortodoxas e recalcitrantes. Recomenda-se temperaturas amenas, entre 15 e 20oC, sem secagem forçada, para serem armazenadas apenas durante o período entre a coleta e a semeadura no mesmo ano. Para utilizar um número maior de espécies desse grupo, recomenda-se proceder à produção de mudas. Exemplos: Guanandi (Callophyllum brasiliense), Angelim-morcegueira (Andira spp.) e Bacupari (Garcinia gardneriana).</p>
                 <p><strong>Tipo de vegetação:</strong> Fitofisionomia em que as espécies ocorrem naturalmente e/ou onde podem ser plantadas com a finalidade de restauração ecológica, tendo como base as informações disponíveis no site Flora do Brasil e WebAmbiente.</p>
                 <p>
                   <strong>Estratégia de ocupação:</strong> Classificação utilizada em projetos de restauração florestal, que ressalta as espécies arbóreas de Recobrimento em cada tipo de vegetação florestal: aquelas que possuem crescimento rápido e que formam uma boa cobertura (sombreamento do solo) reduzindo a luz para espécies invasoras heliófitas, como a braquiária e outros capins. Equivale a algumas espécies da terceira e quarta classes de “tempo de vida”, aqui também apresentadas. As espécies de recobrimento são substituídas pelas de Diversidade, que são todas as demais que possuem um crescimento mais lento ou sombra menos densa, mas que também devem ser plantadas com densidade e diversidade suficientes para a permanência da vegetação de maneira definitiva, após a morte das espécies de recobrimento. Para formações de campo nativo, espécies estão sendo classificadas como de Recobrimento tardio, como gramíneas nativas que cobrem o solo bastante, mas apenas após a primeiro ano pós plantio.
@@ -171,7 +172,7 @@ export default {
   mixins: [mixinGlobal],
   data() {
     return {
-      currentTab: 0
+      currentTab: null
     }
   },
   methods: {
@@ -197,6 +198,8 @@ export default {
 </script>
 <style lang="sass">
   .species-page
+    button
+      border-radius: 10px
     .pattern
       width: 15px
       height: 25px

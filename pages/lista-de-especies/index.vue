@@ -26,18 +26,21 @@
           <div>
             <div class="filters">
               <b-row>
-                <b-col md="3">
+                <b-col md="4">
                   <div class="search">
-                    <b-form-input v-model="filters.search" type="search" class="search" placeholder="O que você procura?" @keydown.enter.native="applyFilters" @input="filtersChanged"/>
+                    <b-form-input v-model="filters.search" type="search" class="search" placeholder="O que você procura?" @keydown.enter.native="applyFilters" @input="filtersChanged" />
                   </div>
                 </b-col>
-                <b-col md="3">
-                  <b-form-select v-model="filters.already_tested_in_direct_seedin" :options="[{ value: null, text: 'Já testada na Semeadura direta?' }, { value: true, text: 'Já testada' }, { value: false, text: 'Ainda não testada' }]" @input="filtersChanged" />
+                <b-col md="2">
+                  <b-form-select v-model="filters.already_tested_in_direct_seedin" :options="[{ value: null, text: 'Testadas e não testadas?' }, { value: true, text: 'Já testada' }, { value: false, text: 'Ainda não testada' }]" @input="filtersChanged" />
                 </b-col>
-                <b-col md="3">
+                <b-col md="2">
                   <b-form-select v-model="filters.vegetation_type" :options="vegetationTypes" @input="filtersChanged" />
                 </b-col>
-                <b-col md="3">
+                <b-col md="2">
+                  <b-form-select v-model="filters.cycle" :options="cycles" @input="filtersChanged" />
+                </b-col>
+                <b-col md="2">
                   <b-form-select v-model="filters.presence" :options="estados" @input="filtersChanged" />
                 </b-col>
               </b-row>
@@ -49,6 +52,8 @@
               <div v-for="specie in species" :key="specie._id" class="specie">
                 <div class="name" :class="{ active: currentSpecie == specie._id }" @click="toggleSpecie(specie)">
                   {{ specie.scientific_name }}
+                  <br>
+                  <small>{{ specie.local_name.join(', ') }}</small>
                 </div>
                 <div v-if="currentSpecie == specie._id" class="info">
                   <div class="row">
@@ -287,6 +292,15 @@ export default {
       species: null,
       currentSpecie: null,
       vegetationTypes: [],
+      cycles: [
+        { value: null, text: 'Todos os ciclos' },
+        '0 - 6 meses',
+        'até 3 anos',
+        '3 a 10 anos',
+        '10 a 20 anos',
+        '20 a 100 anos',
+        '>100 anos'
+      ],
       showFilterButton: false,
       boolean_options: [
         { value: true, text: 'Sim' },
@@ -296,12 +310,10 @@ export default {
         search: '',
         already_tested_in_direct_seedin: null,
         vegetation_type: null,
+        cycle: null,
         presence: ''
       }
     }
-  },
-  computed: {
-
   },
   watch: {
     $route() {
@@ -309,7 +321,7 @@ export default {
     }
   },
   created() {
-    this.estados[0].text = 'Presença em todos os estados'
+    this.estados[0].text = 'Todos os estados'
     if (this.$route.query) {
       Object.keys(this.$route.query).forEach(param => {
         this.filters[param] = this.$route.query[param]
@@ -413,7 +425,7 @@ export default {
         border: none
         font-weight: bold
         color: #384e3f
-        font-size: 14px
+        font-size: 12px
         &::placeholder
           color: #384e3f
     .specie
