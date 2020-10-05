@@ -1,5 +1,17 @@
 <template>
   <div class="address-form">
+    <b-row>
+      <b-col md="6">
+        <b-form-group label="Estado">
+          <b-form-select v-model="form.uf" :options="estados" />
+        </b-form-group>
+      </b-col>
+      <b-col md="6">
+        <b-form-group v-if="form.uf" label="Cidade">
+          <b-form-select v-model="form.city" :options="cidades" />
+        </b-form-group>
+      </b-col>
+    </b-row>
     <b-button v-if="currentAddressFilled" class="btn btn-default btn-sm" @click="show_modal = !show_modal">Mudar endereço</b-button>
     <b-button v-else class="btn btn-default btn-sm" @click="show_modal = !show_modal">Configurar endereço</b-button>
     <b-modal v-model="show_modal" title="Localização" hide-footer hide-header>
@@ -105,6 +117,7 @@
 <script>
 import axios from 'axios'
 import estados from '@/data/estados.json'
+import cidades from '@/data/cidades.json'
 
 const emptyForm = {
   city: '',
@@ -124,7 +137,7 @@ const emptyForm = {
 
 export default {
   props: {
-    currentAddress: {
+    value: {
       type: Object,
       default: null
     },
@@ -135,6 +148,7 @@ export default {
   },
   data() {
     return {
+      estados,
       loading_gps: false,
       show_modal: false,
       address: null,
@@ -148,21 +162,27 @@ export default {
   },
   computed: {
     currentAddressFilled () {
-      return this.currentAddress && this.currentAddress.location && this.currentAddress.location.coordinates && this.currentAddress.location.coordinates.length === 2
+      return this.input && this.input.location && this.input.location.coordinates && this.input.location.coordinates.length === 2
     },
     addressFilled () {
       return Array.isArray(this.address) || (this.address && this.address.location && this.address.location.coordinates && this.address.location.coordinates.length === 2)
+    },
+    cidades () {
+      if (this.form.uf) {
+        return cidades[this.form.uf]
+      }
+      return null
     }
   },
   created() {
-    if (!this.currentAddressFilled && this.autoload) {
+    if (!this.inputFilled && this.autoload) {
       this.show_modal = true
       this.getLocation()
     } else {
-      this.address = this.currentAddress
-      if (this.currentAddress) {
+      this.address = this.input
+      if (this.input) {
         Object.keys(this.form).forEach(k => {
-          this.form[k] = this.currentAddress[k]
+          this.form[k] = this.input[k]
         })
       }
     }

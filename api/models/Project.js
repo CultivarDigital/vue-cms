@@ -26,10 +26,7 @@ const ProjectSchema = mongoose.Schema({
     type: ObjectId,
     ref: 'Category'
   }],
-  tags: [{
-    type: ObjectId,
-    ref: 'Tag'
-  }],
+  tags: [String],
   order: {
     type: Number,
     default: 0

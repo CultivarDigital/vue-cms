@@ -19,7 +19,7 @@
           </b-button>
         </div>
         <div v-if="showMore" class="show-more">
-          <p>Um dos principais objetivos da <strong>Iniciativa Caminhos da Semente</strong> é o de difundir informações acerca do método para público mais amplo e, por isso, criamos o <strong>Mapa de restauração ecológica</strong> com <strong>Semeadura Direta.</strong></p>
+          <p>Um dos principais objetivos da <strong>Iniciativa Caminhos da Semente</strong> é o de difundir informações acerca do método para público mais amplo e, por isso, criamos o <strong>Mapa de restauração ecológica</strong> com <strong>Agroecologia.</strong></p>
           <p>O <strong>Mapa de restauração ecológica</strong> conta com informações essenciais para quem tem interesse em implantar áreas com o método da semeadura direta:</p>
           <ul>
             <!-- <li><strong>Áreas de restauração com semeadura direta</strong>: informações gerais contendo município, área, idade do plantio;</li> -->
@@ -28,9 +28,9 @@
             <li><strong>Prestadores de serviços</strong>: organizações e pessoas que prestam serviços de restauração ecológica e com experiência com semeadura direta.</li>
           </ul>
           <p>
-            A <strong>Rede de Unidades de Aprendizagem da Semeadura Direta - REUNASD</strong> - traz dados técnicos das diferentes etapas da implementação  de restauração com semeadura direta (mistura de sementes, diagnóstico, planejamento, plantio, manejo e monitoramento). Algumas de nossas UAs possibilitam o agendamento para visitas técnicas; basta clicar na UA mais próxima de sua região e conferir os contatos disponíveis. Todos os dados e informações são inseridos por organizações e atores parceiros da Iniciativa que visam favorecer as trocas de experiências para apoiar a expansão da restauração ecológica por meio do método de semeadura direta.
+            A <strong>Rede de Unidades de Aprendizagem da Agroecologia - REUNASD</strong> - traz dados técnicos das diferentes etapas da implementação  de restauração com semeadura direta (mistura de sementes, diagnóstico, planejamento, plantio, manejo e monitoramento). Algumas de nossas UAs possibilitam o agendamento para visitas técnicas; basta clicar na UA mais próxima de sua região e conferir os contatos disponíveis. Todos os dados e informações são inseridos por organizações e atores parceiros da Iniciativa que visam favorecer as trocas de experiências para apoiar a expansão da restauração ecológica por meio do método de semeadura direta.
           </p>
-          <p>Se você possui área restaurada com semeadura direta, vende sementes nativas ou presta serviços ambientais relacionados com o método, <n-link to="/conta"><strong>cadastre-se</strong></n-link> no nosso Mapa da Semeadura Direta e <n-link to="/conta"><strong>faça parte dessa rede!</strong></n-link></p>
+          <p>Se você possui área restaurada com semeadura direta, vende sementes nativas ou presta serviços ambientais relacionados com o método, <n-link to="/conta"><strong>cadastre-se</strong></n-link> no nosso Mapa da Agroecologia e <n-link to="/conta"><strong>faça parte dessa rede!</strong></n-link></p>
         </div>
       </b-container>
     </section>

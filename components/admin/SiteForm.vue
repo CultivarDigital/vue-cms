@@ -43,10 +43,10 @@
             <b-form-input v-model="form.url_twitter" name="url_twitter" />
           </b-form-group>
         </b-col>
-        <b-col v-if="$auth.hasScope('super')" md="12">
+        <b-col md="12">
           <pictures-upload :form="form" field="logo" url="/api/uploads/images" label="Logo do site" />
         </b-col>
-        <b-col v-if="$auth.hasScope('super')" md="12">
+        <b-col md="12">
           <pictures-upload :form="form" field="favicon" url="/api/uploads/images" label="Favicon do site" />
         </b-col>
         <b-col md="12">
@@ -101,7 +101,7 @@ export default {
       if (this.site) {
         const site = await this.$axios.$put('/api/sites/' + this.site.slug, this.form).catch(this.showError)
         if (site) {
-          this.$toast.success('Site atualizado com sucesso!')
+          this.$toast.success('Rede atualizada com sucesso!')
           if (this.$auth.hasScope('super')) {
             this.$router.push('/admin/sites')
           } else {
@@ -111,7 +111,7 @@ export default {
       } else {
         const site = await this.$axios.$post('/api/sites', this.form).catch(this.showError)
         if (site) {
-          this.$toast.success('Site cadastrado com sucesso!')
+          this.$toast.success('Rede cadastrada com sucesso!')
           if (this.$auth.hasScope('super')) {
             this.$router.push('/admin/sites')
           } else {

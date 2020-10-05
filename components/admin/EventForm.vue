@@ -3,15 +3,39 @@
     <b-form @submit.prevent="validate().then(save)">
       <b-row>
         <b-col md="12">
-          <b-form-group label="Título *">
+          <b-form-group label="Dê um nome para o evento *">
             <validation-provider v-slot="{ errors }" name="título" rules="required">
               <b-form-input v-model="form.title" name="title" />
               <span class="text-danger">{{ errors[0] }}</span>
             </validation-provider>
           </b-form-group>
         </b-col>
+        <b-col md="6">
+          <b-form-group label="Começa em">
+            <b-row>
+              <b-col md="6">
+                <b-form-datepicker v-model="form.start_date" locale="pt-BR" />
+              </b-col>
+              <b-col md="6">
+                <b-form-timepicker v-model="form.start_time" locale="pt-BR" />
+              </b-col>
+            </b-row>
+          </b-form-group>
+        </b-col>
+        <b-col md="6">
+          <b-form-group label="Termina em">
+            <b-row>
+              <b-col md="6">
+                <b-form-datepicker v-model="form.end_date" locale="pt-BR" />
+              </b-col>
+              <b-col md="6">
+                <b-form-timepicker v-model="form.end_time" locale="pt-BR" />
+              </b-col>
+            </b-row>
+          </b-form-group>
+        </b-col>
         <b-col md="12">
-          <b-form-group label="Introdução">
+          <b-form-group label="Introdução" description="Uma descrição curta de até 160 caracteres">
             <b-form-textarea v-model="form.description" name="description" />
           </b-form-group>
         </b-col>
@@ -35,6 +59,7 @@
         Salvar
       </b-button>
     </b-form>
+    <pre>{{ form }}</pre>
   </ValidationObserver>
 </template>
 
@@ -54,7 +79,7 @@ export default {
   },
   mixins: [mixinGlobal, mixinForm],
   props: {
-    post: {
+    event: {
       type: Object,
       default: null
     }
@@ -68,27 +93,31 @@ export default {
         content: '',
         picture: null,
         tags: [],
-        pdfs: []
+        pdfs: [],
+        start_date: null,
+        start_time: null,
+        end_date: null,
+        end_time: null
       }
     }
   },
   async created () {
-    this.toForm(this.form, this.post)
-    this.currentTags = await this.$axios.$get('/api/posts/current_tags').catch(this.showError)
+    this.toForm(this.form, this.event)
+    this.currentTags = await this.$axios.$get('/api/events/current_tags').catch(this.showError)
   },
   methods: {
     async save () {
-      if (this.post) {
-        const post = await this.$axios.$put('/api/posts/' + this.post.slug, this.form).catch(this.showError)
-        if (post) {
-          this.$toast.success('Notícia atualizada com sucesso!')
-          this.$router.push('/admin/posts')
+      if (this.event) {
+        const event = await this.$axios.$put('/api/events/' + this.event._id, this.form).catch(this.showError)
+        if (event) {
+          this.$toast.success('Evento atualizado com sucesso!')
+          this.$router.push('/admin/events')
         }
       } else {
-        const post = await this.$axios.$post('/api/posts', this.form).catch(this.showError)
-        if (post) {
-          this.$toast.success('Notícia cadastrada com sucesso!')
-          this.$router.push('/admin/posts')
+        const event = await this.$axios.$post('/api/events', this.form).catch(this.showError)
+        if (event) {
+          this.$toast.success('Evento cadastrado com sucesso!')
+          this.$router.push('/admin/events')
         }
       }
     }

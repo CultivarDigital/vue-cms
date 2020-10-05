@@ -484,7 +484,7 @@ export default {
         > div
           height: 100%
           width: 2px
-          background-color: #394e3f
+          background-color: #00794e
           border-radius: 2px
           float: right
           margin-right: 15px
@@ -525,11 +525,11 @@ export default {
               &.preparation
                 background-color: #dbb89f
               &.planting
-                background-color: #394e3f
+                background-color: #00794e
               &.monitoring
                 background-color: #4d526a
               &.maintenance
-                background-color: #f6a447
+                background-color: #51009c
               &.harvest
                 background-color: #e85e40
 
@@ -544,7 +544,7 @@ export default {
         max-width: 100% !important
         margin: 0 !important
       .card-header
-        background-color: #394e3f
+        background-color: #00794e
         border: none
         border-radius: 0
         .nav-pills .nav-link
@@ -552,7 +552,7 @@ export default {
           padding: 10px 10px
           font-size: 16px
           &.active
-            color: #394e3f
+            color: #00794e
             background-color: #fff
     .gallery
       img

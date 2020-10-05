@@ -69,13 +69,7 @@
               </b-form-group>
             </b-col>
             <b-col md="12">
-              <b-form-group label="Temas">
-                <b-form-tags v-model="form.tags" placeholder="Insira aqui os temas..." />
-                <small>ou selecione abaixo para adicionar:</small>
-                <div>
-                  <b-badge v-for="tag in currentTags" :key="tag" :variant="form.tags.includes(tag) ? 'default' : 'secondary'" @click="addTag(tag)">{{ tag }}</b-badge>
-                </div>
-              </b-form-group>
+              <tags-form v-model="form.tags" :current-tags="currentTags" />
             </b-col>
             <b-col md="6">
               <b-form-group label="Data da publicação">
@@ -224,16 +218,7 @@ export default {
         return url
       }
       return url
-    },
-    addTag (tag) {
-      if (!this.form.tags.includes(tag)) {
-        this.form.tags.push(tag)
-      }
     }
   }
 }
 </script>
-<style lang="sass" scoped>
-  .badge.badge-secondary
-      cursor: pointer
-</style>

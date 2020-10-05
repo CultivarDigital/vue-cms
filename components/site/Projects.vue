@@ -13,7 +13,7 @@
             {{ (project.description || project.content) | truncate(1000) }}
             <br>
             <br>
-            <tags :tags="project.tags" :to="$route.path" />
+            <tags :tags="project.tags" />
           </div>
         </div>
       </n-link>
@@ -22,11 +22,7 @@
 </template>
 
 <script>
-import Tags from '@/components/site/Tags'
 export default {
-  components: {
-    Tags
-  },
   props: {
     projects: {
       type: Array,

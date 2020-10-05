@@ -63,7 +63,7 @@ export default {
         .pattern
           width: 15px
           height: 25px
-          background-color: #384e3f
+          background-color: #00794e
           position: absolute
           left: 0
         .card-title
@@ -71,7 +71,7 @@ export default {
           margin: -20px
           margin-bottom: 20px
           h3
-            color: #394e3f
+            color: #00794e
             font-size: 24px
             font-weight: 700
         .card-text
@@ -79,8 +79,8 @@ export default {
           font-family: 'Titillium Web', sans-serif
           .tags-component
             .btn
-              background-color: #384e3f
-              border-color: #384e3f
+              background-color: #00794e
+              border-color: #00794e
               color: #fff
               width: auto
               margin: 5px 5px 0 0

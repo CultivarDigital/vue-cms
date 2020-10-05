@@ -1,5 +1,5 @@
 {
-  "name": "caminhos-da-semente",
+  "name": "redes-agroecologicas",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -48,17 +48,20 @@
     "pdf-image": "^2.0.0",
     "sharp": "^0.25.4",
     "slugify": "^1.4.4",
+    "v-calendar": "^1.0.8",
     "v-money": "^0.8.1",
     "vue-goodshare": "^1.5.1",
     "vue-quill-editor": "^3.0.6",
     "vue-scrollto": "^2.18.1",
     "vue-the-mask": "^0.11.1",
-    "vue2-datepicker": "^3.6.1",
     "vue2-filters": "^0.11.0"
   },
   "devDependencies": {
+    "@fortawesome/free-brands-svg-icons": "^5.15.0",
+    "@fortawesome/free-solid-svg-icons": "^5.15.0",
     "@nuxtjs/eslint-config": "^3.0.0",
     "@nuxtjs/eslint-module": "^2.0.0",
+    "@nuxtjs/fontawesome": "^1.1.2",
     "@nuxtjs/google-fonts": "^1.0.0",
     "@nuxtjs/moment": "^1.6.1",
     "@nuxtjs/stylelint-module": "^4.0.0",

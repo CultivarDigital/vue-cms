@@ -44,11 +44,9 @@
 import mixinGlobal from '@/mixins/global'
 import mixinPage from '@/mixins/page'
 import Projects from '@/components/site/Projects'
-import Tags from '@/components/site/Tags'
 export default {
   components: {
-    Projects,
-    Tags
+    Projects
   },
   mixins: [mixinGlobal, mixinPage],
   data () {

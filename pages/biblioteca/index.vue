@@ -1,13 +1,11 @@
 <template>
   <div v-if="page" class="medias-page">
-    <divisor variant="white-down" />
     <b-carousel :indicators="false" class="banners">
       <b-carousel-slide img-src="~assets/img/banner_biblioteca.png">
         <h2>Biblioteca</h2>
         <p>Maior acervo online de semeadura direta no Brasil</p>
       </b-carousel-slide>
     </b-carousel>
-    <divisor variant="orange-up" />
     <section class="content pb-5">
       <b-container>
         <div class="pt-5">
@@ -133,20 +131,20 @@ export default {
         border-radius: 10px
         border: none
         font-weight: bold
-        color: #384e3f
+        color: #00794e
         font-size: 14px
         background-image: url('~assets/img/lupa.png')
         background-repeat: no-repeat
         background-position: calc(100% - 10px)
         &::placeholder
-          color: #384e3f
+          color: #00794e
       button
         border-radius: 10px
     .tags
       .btn
         background-color: transparent
-        color: #384e3f
-        border-color: #384e3f
+        color: #00794e
+        border-color: #00794e
         border-radius: 10px
         margin-right: 10px
         margin-bottom: 10px
@@ -156,15 +154,15 @@ export default {
         &:hover
           background-color: #fff
           border-color: #fff
-          color: #384e3f
+          color: #00794e
         &.active
-          background-color: #384e3f
-          border-color: #384e3f
-          color: #f6a447
+          background-color: #00794e
+          border-color: #00794e
+          color: #51009c
     .categories
       margin-bottom: 30px
       .title
-        background-color: #384e3f
+        background-color: #00794e
         background-image: url('~assets/img/squares.png')
         background-repeat: no-repeat
         background-position: 10px
@@ -172,7 +170,7 @@ export default {
         border-radius: 10px
       h4
         font-size: 14px
-        color: #f6a447
+        color: #51009c
         padding: 7px 10px
         background-image: url('~assets/img/arrow-down.png')
         background-repeat: no-repeat
@@ -214,7 +212,7 @@ export default {
           font-weight: 700
           text-transform: uppercase
         p
-          color: #384e3f
+          color: #00794e
           font-size: 12px
           text-transform: uppercase
 </style>

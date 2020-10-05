@@ -57,7 +57,7 @@ export default {
   },
   methods: {
     async list () {
-      this.service_providers = await this.$axios.$get('/api/service_providers', { params: { populate: 'tags categories', user: this.$auth.user._id } }).catch(this.showError)
+      this.service_providers = await this.$axios.$get('/api/service_providers', { params: { populate: 'categories', user: this.$auth.user._id } }).catch(this.showError)
     },
     remove (serviceProvider) {
       this.$bvModal.msgBoxConfirm('Tem certeza que deseja excluír este ítem?').then(async confirmed => {

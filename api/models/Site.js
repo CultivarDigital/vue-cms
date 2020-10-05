@@ -55,8 +55,8 @@ SiteSchema.virtual('posts', {
   foreignField: 'site'
 })
 
-SiteSchema.virtual('tags', {
-  ref: 'Tag',
+SiteSchema.virtual('events', {
+  ref: 'Event',
   localField: '_id',
   foreignField: 'site'
 })

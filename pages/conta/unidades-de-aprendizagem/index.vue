@@ -69,7 +69,7 @@ export default {
   },
   methods: {
     async list () {
-      this.learning_units = await this.$axios.$get('/api/learning_units', { params: { populate: 'tags categories', user: this.$auth.user._id } }).catch(this.showError)
+      this.learning_units = await this.$axios.$get('/api/learning_units', { params: { populate: 'categories', user: this.$auth.user._id } }).catch(this.showError)
     },
     remove (learningUnit) {
       this.$bvModal.msgBoxConfirm('Tem certeza que deseja excluír este ítem?').then(async confirmed => {

@@ -1,18 +1,29 @@
-# Caminhos da Semente
+# Plataforma Redes Agroecológicas
 
-## A Iniciativa Caminhos da Semente é uma rede de pessoas e organizações com objetivo de dar escala à restauração ecológica no Brasil com foco no método da semeadura direta.
+## A Iniciativa Redes Agroecológicas é uma ferramenta tecnológica que tem como objetivo facilitar a comunicação e aumentar a visibilidade de redes agroecológicas. Esta é uma plataforma de código aberto e toda colaboração é bem vinda.
+
+### Abaixo as instruções para desenvolvedores
 
 ```bash
-# install dependencies
+# Clone este repositório
+git clone https://github.com/diegomr86/redes-agroecologicas.git
+
+# Entre no diretório que acabou de baixar
+cd redes-agroecologicas/
+
+# Instale as dependências
 $ yarn install
 
-# serve with hot reload at localhost:3000
+# Para rodar o a versão de desenvolvimento com hot reload no localhost:3000 execute:
 $ yarn dev
 
-# to generate the first super user:
+# Com o servidor de desenvolvimento rodando é necessario gerar o primeiro super usuário. Para isso acesse:
 http://localhost:3000/api/auth/init
 
-# build for production and launch server
+# o servidor gerará uma rede de teste e um super usuário e então retornará os dados do usuário gerado. Use esses dados para acessar o painel administrativo da plataforma:
+http://localhost:3000/admin
+
+# para compilar e a versão de produção:
 $ yarn build
 $ yarn start
 

@@ -5,7 +5,7 @@ export default {
     '~/api/index.js'
   ],
   head: {
-    title: 'Caminhos da Semente',
+    title: 'Plataforma Redes Agroecológicas',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' }
@@ -22,7 +22,7 @@ export default {
     '~plugins/url.js',
     '~plugins/bootstrap-vue.js',
     { src: '~plugins/quill.js', ssr: false },
-    { src: '~/plugins/datepicker', ssr: false },
+    { src: '~/plugins/v-calendar', ssr: false },
     { src: '~/plugins/v-money.js', ssr: false },
     { src: '~/plugins/vue-the-mask.js', ssr: false },
     { src: '~/plugins/vue-goodshare.js', ssr: false }
@@ -31,7 +31,8 @@ export default {
   buildModules: [
     '@nuxtjs/eslint-module',
     '@nuxtjs/google-fonts',
-    '@nuxtjs/moment'
+    '@nuxtjs/moment',
+    '@nuxtjs/fontawesome'
   ],
   modules: [
     // Doc: https://bootstrap-vue.js.org
@@ -60,7 +61,7 @@ export default {
     'nuxt-leaflet'
   ],
   axios: {
-    baseURL: 'https://www.caminhosdasemente.org.br' // Used as fallback if no runtime config is provided
+    baseURL: 'https://redes-agroecologicas.terrakrya.com' // Used as fallback if no runtime config is provided
   },
   bootstrapVue: {
     bootstrapCSS: false, // Or `css: false`
@@ -102,6 +103,12 @@ export default {
     locales: ['pt-br'],
     timezone: true,
     defaultTimezone: 'utc'
+  },
+  fontawesome: {
+    icons: {
+      solid: ['faHome'],
+      brands: ['faFacebookSquare', 'faTwitterSquare']
+    }
   },
   proxy: {
     pathRewrite: {

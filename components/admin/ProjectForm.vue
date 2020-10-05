@@ -27,9 +27,7 @@
           </b-form-group>
         </b-col>
         <b-col md="12">
-          <b-form-group label="Tags">
-            <form-entities-select type="tags" :form="form" field="tags" />
-          </b-form-group>
+          <tags-form v-model="form.tags" :current-tags="currentTags" />
         </b-col>
         <b-col md="12">
           <pictures-upload :form="form" field="pictures" url="/api/uploads/images" :multiple="true" />
@@ -70,6 +68,7 @@ export default {
   },
   data () {
     return {
+      currentTags: [],
       form: {
         name: '',
         description: '',
@@ -81,8 +80,9 @@ export default {
       }
     }
   },
-  created () {
+  async created () {
     this.toForm(this.form, this.project)
+    this.currentTags = await this.$axios.$get('/api/projects/current_tags').catch(this.showError)
   },
   methods: {
     async save () {

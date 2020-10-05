@@ -58,11 +58,7 @@
 <script>
 import mixinGlobal from '@/mixins/global'
 import mixinPage from '@/mixins/page'
-import Tags from '@/components/site/Tags'
 export default {
-  components: {
-    Tags
-  },
   mixins: [mixinGlobal, mixinPage],
   data () {
     return {

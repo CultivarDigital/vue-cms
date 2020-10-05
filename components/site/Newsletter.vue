@@ -68,7 +68,7 @@ export default {
       font-size: 12px
       border-radius: 5px
     .btn
-      color: #384e3f
+      color: #fff
       font-size: 10px
       border-radius: 5px
       padding: 10px 30px

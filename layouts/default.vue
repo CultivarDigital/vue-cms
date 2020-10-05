@@ -3,7 +3,6 @@
     <div v-show="show_content">
       <Header />
       <Nuxt />
-      <divisor variant="green-up" />
       <Footer />
     </div>
   </div>
@@ -11,12 +10,10 @@
 <script>
 import Header from '@/components/site/Header'
 import Footer from '@/components/site/Footer'
-import Divisor from '@/components/site/Divisor'
 export default {
   components: {
     Header,
-    Footer,
-    Divisor
+    Footer
   },
   data () {
     return {

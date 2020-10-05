@@ -2,17 +2,11 @@ const mongoose = require('mongoose')
 const uniqueValidator = require('mongoose-unique-validator')
 const ObjectId = mongoose.Schema.Types.ObjectId
 
-const PostSchema = mongoose.Schema({
+const EventSchema = mongoose.Schema({
   site: {
     type: ObjectId,
     ref: 'Site',
     required: true
-  },
-  slug: {
-    type: String,
-    required: true,
-    index: true,
-    unique: true
   },
   title: {
     type: String,
@@ -22,14 +16,18 @@ const PostSchema = mongoose.Schema({
   content: String,
   picture: Object,
   pdfs: [Object],
-  tags: [String]
+  tags: [String],
+  start_date: Date,
+  start_time: Date,
+  end_date: Date,
+  end_time: Date
 }, {
   timestamps: true,
   toJSON: { virtuals: true }
 })
 
-PostSchema.plugin(uniqueValidator, {
+EventSchema.plugin(uniqueValidator, {
   message: 'Este nome já está sendo usado'
 })
 
-export const Post = mongoose.models.Post || mongoose.model('Post', PostSchema)
+export const Event = mongoose.models.Event || mongoose.model('Event', EventSchema)

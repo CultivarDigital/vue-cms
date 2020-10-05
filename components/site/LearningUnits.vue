@@ -78,7 +78,7 @@ export default {
             margin: 0
             font-size: 12px
           h4
-            color: #384e3f
+            color: #00794e
             font-size: 14px
             font-weight: bold
             margin: 15px 0

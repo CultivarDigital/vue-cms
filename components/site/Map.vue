@@ -2,7 +2,7 @@
   <div class="card map-component">
     <b-row no-gutters>
       <b-col md="4">
-        <h3 class="mb-4">Mapa da Semeadura Direta</h3>
+        <h3 class="mb-4">Mapa da Agroecologia</h3>
         <div v-for="layer in Object.keys(layers)" :key="layer">
           <div class="legend">
             <div class="pattern" />
@@ -17,7 +17,7 @@
           <p>Mapeamento das áreas de plantios com semeadura direta por município. Esse mapeamento é o primeiro passo para engajar os proprietários a se cadastrarem como Unidades de Aprendizagem (UAs)</p>
         </div>
       </b-col>
-      <b-col md="6">
+      <b-col md="8">
         <div id="map-wrap">
           <client-only>
             <l-map v-if="site && layers" :zoom="4" :center="[-17,-55]" :options="{ scrollWheelZoom: false }">
@@ -46,7 +46,7 @@
                   <l-icon :icon-size="[16, 16]" :icon-url="require('~/assets/img/marker_planting_areas.png')" />
                   <l-popup>
                     <h6>{{ planting_area.address.city }} - {{ planting_area.address.uf }}</h6>
-                    <p>{{ planting_area.qtd }} plantios por Semeadura Direta</p>
+                    <p>{{ planting_area.qtd }} plantios por Agroecologia</p>
                   </l-popup>
                 </l-marker>
               </template>
@@ -54,7 +54,7 @@
           </client-only>
         </div>
       </b-col>
-      <b-col md="2">
+      <!-- <b-col md="2">
         <div class="legend">
           <div class="pattern" />
           <h4>Legendas</h4>
@@ -68,10 +68,10 @@
           </p>
           <p class="pointer" @click="show_planting_areas = !show_planting_areas">
             <b-img :src="require('~/assets/img/' + (show_planting_areas ? 'marker_planting_areas' : 'marker_inactive') + '.png')" />
-            Plantios por Semeadura Direta
+            Plantios por Agroecologia
           </p>
         </div>
-      </b-col>
+      </b-col> -->
     </b-row>
   </div>
 </template>
@@ -104,6 +104,9 @@ export default {
   .map-component
     border-radius: 15px
     border: none
+    .vue2leaflet-map
+      border-top-right-radius: 15px
+      border-bottom-right-radius: 15px
     .leaflet-popup-content
       img
         max-width: calc(100% + 40px)
@@ -112,7 +115,7 @@ export default {
         margin: -20px
         margin-bottom: 15px
       h6
-        background: #384e3f
+        background: #00794e
         color: #fff
         margin: -15px -20px 7px -20px
         padding: 10px
@@ -120,7 +123,7 @@ export default {
       padding: 50px
       h3
         font-weight: 700
-        color: #f6a447
+        color: #51009c
         font-size: 22px
       h4
         font-weight: 700
@@ -129,17 +132,17 @@ export default {
         p
           font-size: 12px
           .btn
-            background-color: #f6a447
+            background-color: #51009c
             padding: 1px 3px
             border: none
-            color: #384e3f
+            color: #00794e
             line-height: 10px
             font-size: 10px
             margin-left: 6px
         .pattern
           width: 15px
           height: 25px
-          background-color: #384e3f
+          background-color: #00794e
           position: absolute
           left: 0
       // padding: 30px
@@ -161,7 +164,7 @@ export default {
       .pattern
         width: 15px
         height: 25px
-        background-color: #384e3f
+        background-color: #00794e
         position: absolute
         left: 0
 </style>

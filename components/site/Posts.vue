@@ -13,7 +13,7 @@
             </div>
             <div class="card-text">
               <p>{{ (post.description || post.content) | truncate(1000) }}</p>
-              <tags :tags="post.tags" to="/noticias" :all-tags="false" />
+              <tags :tags="post.tags" />
             </div>
           </div>
         </n-link>
@@ -23,11 +23,7 @@
 </template>
 
 <script>
-import Tags from '@/components/site/Tags'
 export default {
-  components: {
-    Tags
-  },
   props: {
     posts: {
       type: Array,
@@ -56,7 +52,7 @@ export default {
         .pattern
           width: 15px
           height: 25px
-          background-color: #384e3f
+          background-color: #00794e
           position: absolute
           left: 0
         .card-title
@@ -64,7 +60,7 @@ export default {
           margin: -20px
           margin-bottom: 20px
           h3
-            color: #394e3f
+            color: #00794e
             font-size: 24px
             font-weight: 700
         .card-text
@@ -72,8 +68,8 @@ export default {
           font-family: 'Titillium Web', sans-serif
           .tags-component
             .btn
-              background-color: #384e3f
-              border-color: #384e3f
+              background-color: #00794e
+              border-color: #00794e
               color: #fff
               width: auto
               margin: 5px 5px 0 0

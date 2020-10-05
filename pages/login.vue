@@ -2,7 +2,7 @@
   <div v-if="site" class="login-page">
     <section class="content pb-5">
       <b-container>
-        <h6 class="pt-5 mb-4 text-center">
+        <h6 class="pb-5 pt-5 text-center subtitle">
           Para continuar você deve
           <a @click="open('login')">
             <strong>entrar</strong>
@@ -46,12 +46,18 @@
                   </b-form-group>
                 </b-col>
                 <b-col md="12">
-                  <b-form-group label="Organização">
+                  <b-form-group label="Você faz parte de alguma organização?">
                     <validation-provider v-slot="{ errors }" name="organização" rules="required">
                       <b-form-input v-model="register_form.organization" />
                       <span class="text-danger">{{ errors[0] }}</span>
                     </validation-provider>
                   </b-form-group>
+                </b-col>
+                <b-col md="12">
+                  <CoordinatesPreview :form="form" />
+                  <div>
+                    <address-form :v-model="form.address" :autoload="false" />
+                  </div>
                 </b-col>
                 <b-col md="12">
                   <b-form-group label="Email">
@@ -122,6 +128,14 @@ export default {
         name: '',
         email: '',
         organization: '',
+        address: {
+          city: '',
+          uf: '',
+          location: {
+            type: 'Point',
+            coordinates: []
+          }
+        },
         password: '',
         password_confirmation: ''
       }
@@ -166,13 +180,13 @@ export default {
 <style lang="sass" scoped>
   .login-page
     .content
-      background-color: #f6a447
+      background-color: #51009c
       .card
         border-radius: 15px
         border: none
         h3
           font-weight: 700
-          color: #f6a447
+          color: #51009c
           font-size: 22px
           text-align: center
         .col
@@ -184,17 +198,17 @@ export default {
             p
               font-size: 12px
               .btn
-                background-color: #f6a447
+                background-color: #51009c
                 padding: 1px 3px
                 border: none
-                color: #384e3f
+                color: #00794e
                 line-height: 10px
                 font-size: 10px
                 margin-left: 6px
             .pattern
               width: 15px
               height: 25px
-              background-color: #384e3f
+              background-color: #00794e
               position: absolute
               left: 0
           // padding: 30px
@@ -208,17 +222,17 @@ export default {
             p
               font-size: 12px
               .btn
-                background-color: #f6a447
+                background-color: #51009c
                 padding: 1px 3px
                 border: none
-                color: #384e3f
+                color: #00794e
                 line-height: 10px
                 font-size: 10px
                 margin-left: 6px
             .pattern
               width: 15px
               height: 25px
-              background-color: #384e3f
+              background-color: #00794e
               position: absolute
               left: 0
 </style>

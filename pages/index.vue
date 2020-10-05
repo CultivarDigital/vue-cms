@@ -1,19 +1,10 @@
 <template>
   <div v-if="site" class="home-page">
-    <divisor variant="white-down" />
     <banners :items="site.pictures" />
-    <divisor variant="orange-up" />
     <section class="content">
-      <b-container class="text-center">
-        <b-img src="~assets/img/pilares-de-acao.png" class="subtitle mt-5" />
-        <div class="text-center">
-          <n-link class="btn btn-primary" to="/sobre">
-            Saiba mais
-          </n-link>
-        </div>
-      </b-container>
       <b-container fluid="lg">
-        <h6 class="mt-5 mb-4 text-center">Conheça o Mapa de Restauração ecológica da Iniciativa Caminhos da Semente</h6>
+        <h2 class="pt-5 mb-4 text-center title">{{ site.name }}</h2>
+        <h6 class="mb-5 text-center subtitle">{{ site.description }}</h6>
         <Map />
         <b-row class="boxes">
           <b-col sm="6">
@@ -40,7 +31,6 @@
           </b-col>
         </b-row>
       </b-container>
-      <divisor variant="orange-down" />
       <b-carousel class="banners-component banners">
         <b-carousel-slide img-src="~assets/img/banner_biblioteca.png">
           <n-link to="/biblioteca">
@@ -49,7 +39,6 @@
           </n-link>
         </b-carousel-slide>
       </b-carousel>
-      <divisor variant="orange-up" />
       <b-container fluid="lg">
         <br>
         <section class="partners text-center card mt-4">
@@ -120,7 +109,6 @@
             </b-col>
           </b-row>
         </section>
-        <share />
       </b-container>
     </section>
   </div>
@@ -146,10 +134,7 @@ export default {
 <style lang="sass" scoped>
   .home-page
     .content
-      background-color: #f6a447
-      .subtitle
-        width: 100%
-        max-width: 700px
+      background-color: #51009c
       .banners
         a
           color: #fff
@@ -181,7 +166,7 @@ export default {
           max-width: 100%
           max-height: 8vh
         h3
-          color: #384e3f
+          color: #00794e
           font-weight: 700
           font-size: 16px
           margin-top: 20px

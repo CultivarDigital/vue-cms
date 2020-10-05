@@ -17,7 +17,7 @@
             {{ data.value.map(category => category.name).join(', ') }}
           </template>
           <template v-slot:cell(tags)="data">
-            {{ data.value.map(tag => tag.name).join(', ') }}
+            <tags :tags="data.value" />
           </template>
           <template v-slot:cell(actions)="data">
             <n-link class="btn btn-info btn-sm" :to="'/admin/projects/' + data.item.slug + '/edit'">
@@ -73,7 +73,7 @@ export default {
   },
   methods: {
     async list () {
-      this.projects = await this.$axios.$get('/api/projects', { params: { populate: 'tags categories' } }).catch(this.showError)
+      this.projects = await this.$axios.$get('/api/projects', { params: { populate: 'categories' } }).catch(this.showError)
     },
     moveUp (data) {
       this.projects[data.index].order -= 1.1

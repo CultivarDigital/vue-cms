@@ -1,34 +1,34 @@
 <template>
   <div class="create">
     <b-breadcrumb :items="breadcrumb" />
-    <TagForm v-if="tag" :tag="tag" />
+    <PageForm v-if="page" :page="page" />
     <div v-else class="text-center">
       <b-spinner small label="Carregando..." />
     </div>
   </div>
 </template>
 <script>
-import TagForm from '@/components/admin/TagForm'
+import PageForm from '@/components/admin/PageForm'
 import mixinGlobal from '@/mixins/global'
 
 export default {
   layout: 'admin',
   components: {
-    TagForm
+    PageForm
   },
   mixins: [mixinGlobal],
   data () {
     return {
-      tag: null,
+      page: null,
       breadcrumb: [
         { text: 'Painel', to: '/admin' },
-        { text: 'Tags', to: '/admin/tags' },
+        { text: 'Páginas', to: '/admin/pages' },
         { text: 'Editar', active: true }
       ]
     }
   },
   async created () {
-    this.tag = await this.$axios.$get('/api/tags/' + this.$route.params.id).catch(this.showError)
+    this.page = await this.$axios.$get('/api/pages/' + this.$route.params.id).catch(this.showError)
   }
 }
 </script>

@@ -26,11 +26,9 @@
 import mixinGlobal from '@/mixins/global'
 import mixinPage from '@/mixins/page'
 import Posts from '@/components/site/Posts'
-import Tags from '@/components/site/Tags'
 export default {
   components: {
-    Posts,
-    Tags
+    Posts
   },
   mixins: [mixinGlobal, mixinPage],
   data () {

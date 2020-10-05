@@ -28,7 +28,7 @@
           </b-col>
           <b-col md="3">
             <h3 class="mt-3">Tags</h3>
-            <tags :tags="post.tags.length > 0 ? post.tags : site.tags" to="/noticias" />
+            <tags :tags="post.tags" />
           </b-col>
         </b-row>
       </b-container>
@@ -68,5 +68,5 @@ export default {
 <style lang="sass">
   .post-page
     .content
-      background-color: #f6a447
+      background-color: #51009c
 </style>

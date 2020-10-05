@@ -95,7 +95,7 @@ export default {
     .tabs
       margin: -30px -50px 0 -50px
       .card-header
-        background-color: #394e3f
+        background-color: #00794e
         border: none
         border-radius: 0
         .nav-pills .nav-link
@@ -103,7 +103,7 @@ export default {
           padding: 10px 10px
           font-size: 16px
           &.active
-            color: #394e3f
+            color: #00794e
             background-color: #fff
       .table
         tr:first-child

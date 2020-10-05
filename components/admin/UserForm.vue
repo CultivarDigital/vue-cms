@@ -42,7 +42,7 @@
         </b-col>
       </b-row>
       <b-row v-if="$auth.hasScope('super') || $auth.hasScope('admin')">
-        <b-col v-if="$auth.hasScope('super') && sites" md="6">
+        <b-col v-if="$auth.hasScope('super') && sites && !user.roles.includes('super')" md="6">
           <b-form-group label="Site">
             <b-form-select v-model="form.site" :options="sites" />
           </b-form-group>
@@ -62,6 +62,40 @@
               <span class="text-danger">{{ errors[0] }}</span>
             </validation-provider>
           </b-form-group>
+        </b-col>
+        <b-col md="12">
+          <b-form-group label="Coordenadas Google Maps *" description="Insira as coordenadas do item que deseja cadastrar ou clique no botão abaixo para selecionar seu endereço">
+            <b-row>
+              <b-col>
+                <validation-provider v-slot="{ errors }" name="latitude" rules="required">
+                  <b-form-input v-model="form.address.location.coordinates[0]" name="latitude" placeholder="Latitude" type="number" min="-90.000000" max="90.000000" step="0.000000001" />
+                  <span class="text-danger">{{ errors[0] }}</span>
+                </validation-provider>
+              </b-col>
+              <b-col>
+                <validation-provider v-slot="{ errors }" name="longitude" rules="required">
+                  <b-form-input v-model="form.address.location.coordinates[1]" name="longitude" placeholder="Longitude" type="number" min="-180.000000" max="180.000000" step="0.000000001" />
+                  <span class="text-danger">{{ errors[0] }}</span>
+                </validation-provider>
+              </b-col>
+            </b-row>
+          </b-form-group>
+          <CoordinatesPreview :form="form" />
+          <div class="text-right">
+            <address-form :current-address="form.address" :autoload="false" @input="setAddress" />
+          </div>
+          <b-row>
+            <b-col md="6">
+              <b-form-group label="Estado">
+                <b-form-select v-model="form.address.uf" :options="estados" />
+              </b-form-group>
+            </b-col>
+            <b-col md="6">
+              <b-form-group v-if="form.address.uf" label="Cidade">
+                <b-form-select v-model="form.address.city" :options="cidades" />
+              </b-form-group>
+            </b-col>
+          </b-row>
         </b-col>
       </b-row>
       <b-button type="submit" variant="primary" block :disabled="invalid">
@@ -100,7 +134,15 @@ export default {
         organization: '',
         password: '',
         password_confirmation: '',
-        roles: []
+        roles: [],
+        address: {
+          city: '',
+          uf: '',
+          location: {
+            type: 'Point',
+            coordinates: []
+          }
+        }
       }
     }
   },
@@ -118,10 +160,12 @@ export default {
   },
   async created () {
     this.toForm(this.form, this.user)
-    const sites = await this.$axios.$get('/api/sites').catch(this.showError)
-    sites.forEach(site => {
-      this.sites.push({ value: site._id, text: site.name })
-    })
+    if (this.$auth.hasScope('super')) {
+      const sites = await this.$axios.$get('/api/sites').catch(this.showError)
+      sites.forEach(site => {
+        this.sites.push({ value: site._id, text: site.name })
+      })
+    }
   },
   methods: {
     async save () {

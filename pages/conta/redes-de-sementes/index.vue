@@ -57,7 +57,7 @@ export default {
   },
   methods: {
     async list () {
-      this.seeds_networks = await this.$axios.$get('/api/seeds_networks', { params: { populate: 'tags categories', user: this.$auth.user._id } }).catch(this.showError)
+      this.seeds_networks = await this.$axios.$get('/api/seeds_networks', { params: { populate: 'categories', user: this.$auth.user._id } }).catch(this.showError)
     },
     remove (seedsNetwork) {
       this.$bvModal.msgBoxConfirm('Tem certeza que deseja excluír este ítem?').then(async confirmed => {

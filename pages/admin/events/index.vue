@@ -1,23 +1,23 @@
 <template>
-  <div class="posts">
+  <div class="events">
     <b-breadcrumb :items="breadcrumb" />
-    <PageForm v-if="show_page_form" slug="posts" @cancel="show_page_form = !show_page_form" />
+    <PageForm v-if="show_page_form" slug="events" @cancel="show_page_form = !show_page_form" />
     <div v-else>
       <div class="text-right mb-3">
         <b-button @click="show_page_form = !show_page_form">
           Configurar página
         </b-button>
-        <b-button variant="primary" to="/admin/posts/new">
+        <b-button variant="primary" to="/admin/events/new">
           Cadastrar
         </b-button>
       </div>
-      <div v-if="posts">
-        <b-table v-if="posts.length" :fields="table" :items="posts" responsive="sm">
+      <div v-if="events">
+        <b-table v-if="events.length" :fields="table" :items="events" responsive="sm">
           <template v-slot:cell(tags)="data">
             <tags :tags="data.value" />
           </template>
           <template v-slot:cell(actions)="data">
-            <n-link class="btn btn-info btn-sm" :to="'/admin/posts/' + data.item.slug + '/edit'">
+            <n-link class="btn btn-info btn-sm" :to="'/admin/events/' + data.item._id + '/edit'">
               <b-icon-pencil />
             </n-link>
             <b-button variant="danger" size="sm" @click="remove(data.item)">
@@ -46,10 +46,10 @@ export default {
   data () {
     return {
       show_page_form: false,
-      posts: null,
+      events: null,
       breadcrumb: [
         { text: 'Painel', to: '/admin' },
-        { text: 'Notícias', active: true }
+        { text: 'Eventos', active: true }
       ],
       table: [
         { key: 'title', label: 'Título' },
@@ -63,14 +63,14 @@ export default {
   },
   methods: {
     async list () {
-      this.posts = await this.$axios.$get('/api/posts', { params: { populate: 'tags' } }).catch(this.showError)
+      this.events = await this.$axios.$get('/api/events').catch(this.showError)
     },
-    remove (post) {
+    remove (event) {
       this.$bvModal.msgBoxConfirm('Tem certeza que deseja excluír este ítem?').then(async confirmed => {
         if (confirmed) {
-          await this.$axios.delete('/api/posts/' + post.slug).then(() => {
+          await this.$axios.delete('/api/events/' + event._id).then(() => {
             this.list()
-            this.$toast.success('Notícia removida com sucesso!')
+            this.$toast.success('Evento removido com sucesso!')
           }).catch(this.showError)
         }
       })

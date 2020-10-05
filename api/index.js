@@ -3,7 +3,7 @@ require('./models/User')
 require('./models/Category')
 require('./models/Project')
 require('./models/Post')
-require('./models/Tag')
+require('./models/Event')
 require('./models/Village')
 require('./models/Page')
 require('./models/LearningUnit')
@@ -32,7 +32,7 @@ const auth = require('./config/auth')
 
 const isProduction = process.env.NODE_ENV === 'production'
 
-app.use(session({ secret: 'caminhos-da-semente', cookie: { maxAge: null }, resave: false, saveUninitialized: false }))
+app.use(session({ secret: 'redes-agroecologicas', cookie: { maxAge: null }, resave: false, saveUninitialized: false }))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 // eslint-disable-next-line
@@ -50,7 +50,7 @@ if (isProduction) {
   })
 } else {
   mongoose.set('debug', true)
-  mongoose.connect('mongodb://localhost/caminhos-da-semente', { useNewUrlParser: true, useUnifiedTopology: true })
+  mongoose.connect('mongodb://localhost/redes-agroecologicas', { useNewUrlParser: true, useUnifiedTopology: true })
 }
 
 router.use('/auth', require('./routes/auth'))
@@ -60,7 +60,7 @@ router.use('/sites', require('./routes/sites'))
 router.use('/categories', require('./routes/categories'))
 router.use('/projects', require('./routes/projects'))
 router.use('/posts', require('./routes/posts'))
-router.use('/tags', require('./routes/tags'))
+router.use('/events', require('./routes/events'))
 router.use('/villages', require('./routes/villages'))
 router.use('/pages', require('./routes/pages'))
 router.use('/learning_units', require('./routes/learning_units'))
@@ -136,19 +136,14 @@ router.get('/site', function(req, res) {
       options: { sort: 'address.city, address.uf' }
     })
     .populate({
-      path: 'tags',
-      model: 'Tag',
-      options: { sort: 'name' }
-    })
-    .populate({
       path: 'posts',
       model: 'Post',
-      options: { sort: { createdAt: -1 } },
-      populate: [{
-        path: 'tags',
-        model: 'Tag',
-        select: 'slug name'
-      }]
+      options: { sort: { createdAt: -1 } }
+    })
+    .populate({
+      path: 'events',
+      model: 'Event',
+      options: { sort: { createdAt: -1 } }
     })
     .populate({
       path: 'medias',

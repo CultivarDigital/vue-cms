@@ -7,14 +7,8 @@
           <b-navbar-toggle target="header-admin" />
           <b-collapse id="header-admin" is-nav>
             <b-navbar-nav>
-              <b-nav-item v-if="$auth.hasScope('admin') && $store.state.site" :to="'/admin/sites/' + $store.state.site._id + '/edit'">Site</b-nav-item>
-              <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/tags">Tags</b-nav-item>
-              <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/tags">Tags</b-nav-item>
-              <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/posts">Notícias</b-nav-item>
-              <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/about">Quem somos</b-nav-item>
-              <b-nav-item to="/admin/newsletters">Contatos</b-nav-item>
-              <b-nav-item to="/admin/users">Usuários</b-nav-item>
-              <b-nav-item v-if="$auth.hasScope('super')" to="/admin/sites">Sites</b-nav-item>
+              <b-nav-item v-if="$auth.hasScope('super')" to="/admin/sites">Redes</b-nav-item>
+              <b-nav-item v-if="$auth.hasScope('admin') && $store.state.site" :to="'/admin/sites/' + $store.state.site._id + '/edit'">Rede</b-nav-item>
               <b-nav-item-dropdown v-if="$auth.hasScope('admin')">
                 <template v-slot:button-content>
                   <em>Mapa</em>
@@ -25,6 +19,10 @@
                 <b-dropdown-item to="/admin/planting_areas">Áreas de plantio</b-dropdown-item>
               </b-nav-item-dropdown>
               <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/medias">Biblioteca</b-nav-item>
+              <b-nav-item to="/admin/users">Membros</b-nav-item>
+              <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/posts">Notícias</b-nav-item>
+              <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/events">Agenda</b-nav-item>
+              <b-nav-item to="/admin/newsletters">Contatos</b-nav-item>
             </b-navbar-nav>
             <b-navbar-nav class="ml-auto">
               <b-nav-item-dropdown right>

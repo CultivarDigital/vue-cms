@@ -1,21 +1,21 @@
 <template>
   <div class="create">
     <b-breadcrumb :items="breadcrumb" />
-    <TagForm />
+    <PageForm />
   </div>
 </template>
 <script>
-import TagForm from '@/components/admin/TagForm'
+import PageForm from '@/components/admin/PageForm'
 export default {
   layout: 'admin',
   components: {
-    TagForm
+    PageForm
   },
   data () {
     return {
       breadcrumb: [
         { text: 'Painel', to: '/admin' },
-        { text: 'Tags', to: '/admin/tags' },
+        { text: 'Páginas', to: '/admin/pages' },
         { text: 'Cadastrar', active: true }
       ]
     }

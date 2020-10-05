@@ -1,13 +1,11 @@
 <template>
   <div class="species-page">
-    <divisor variant="white-down" />
     <b-carousel :indicators="false" class="banners">
       <b-carousel-slide img-src="~assets/img/banner_biblioteca.png">
         <h2>Lista de espécies</h2>
         <p>Espécies para semeadura direta na Amazônia, Cerrado e Mata Atlântica</p>
       </b-carousel-slide>
     </b-carousel>
-    <divisor variant="orange-up" />
     <section class="content pb-5">
       <b-container>
         <div class="pt-5">
@@ -214,11 +212,11 @@ export default {
         font-weight: 700
         text-transform: uppercase
       p
-        color: #384e3f
+        color: #00794e
         font-size: 12px
         text-transform: uppercase
     .specie-info
-      border: 1px solid #384e3f
+      border: 1px solid #00794e
       border-radius: 10px
       padding: 10px 15px
       font-size: 14px

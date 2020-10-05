@@ -1,21 +1,21 @@
 <template>
   <div class="create">
     <b-breadcrumb :items="breadcrumb" />
-    <SiteForm />
+    <EventForm />
   </div>
 </template>
 <script>
-import SiteForm from '@/components/admin/SiteForm'
+import EventForm from '@/components/admin/EventForm'
 export default {
   layout: 'admin',
   components: {
-    SiteForm
+    EventForm
   },
   data () {
     return {
       breadcrumb: [
         { text: 'Painel', to: '/admin' },
-        { text: 'Redes', to: '/admin/sites' },
+        { text: 'Eventos', to: '/admin/events' },
         { text: 'Cadastrar', active: true }
       ]
     }

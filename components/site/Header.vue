@@ -9,19 +9,11 @@
         <b-collapse id="header-menu" is-nav>
           <b-navbar-nav />
           <b-navbar-nav class="ml-auto">
-            <b-nav-item to="/sobre">Quem Somos</b-nav-item>
+            <b-nav-item v-for="page in site.pages" :key="page.slug" :to="'/' + page.slug">{{ page.title }}</b-nav-item>
             <b-nav-item to="/mapa">Mapa</b-nav-item>
             <b-nav-item to="/biblioteca">Biblioteca</b-nav-item>
-            <b-nav-item to="/especies">Lista de espécies</b-nav-item>
             <b-nav-item to="/noticias">Notícias</b-nav-item>
-            <b-nav-item to="/biblioteca?categoria=Imprensa">Imprensa</b-nav-item>
-            <!-- <b-nav-item-dropdown>
-                    <template v-slot:button-content>
-                      <em>Sobre Sementes</em>
-                    </template>
-                    <b-dropdown-item to="/noticias">Notícias</b-dropdown-item>
-                    <b-dropdown-item to="/biblioteca">Biblioteca</b-dropdown-item>
-                  </b-nav-item-dropdown> -->
+            <b-nav-item to="/agenda">Agenda</b-nav-item>
             <b-nav-item @click="$scrollTo('footer')">Contato</b-nav-item>
             <b-nav-item v-if="!$auth.loggedIn" to="/conta" class="btn-login">Login / Cadastro</b-nav-item>
             <b-nav-item v-else-if="$auth.hasScope('user')" to="/conta" class="btn-login">Minha conta</b-nav-item>
@@ -49,7 +41,7 @@ export default {
     .nav-link
       font-weight: 700
       font-style: normal
-      color: #384e3f
+      color: #00794e
       font-size: 12px
       &.dropdown-toggle
         em
@@ -57,6 +49,11 @@ export default {
         &::after
           display: none
     .btn-login
-      border: 1px solid #f6a447
+      background-color: #51009c
       border-radius: 10px
+      margin-left: 5px
+      a
+        color: #fff
+        &:hover
+          color: #fdfdfd
 </style>
