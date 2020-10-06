@@ -143,7 +143,7 @@ router.get('/site', function(req, res) {
     .populate({
       path: 'events',
       model: 'Event',
-      options: { sort: { createdAt: -1 } }
+      options: { sort: { start_at: -1 } }
     })
     .populate({
       path: 'medias',

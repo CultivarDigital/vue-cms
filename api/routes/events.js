@@ -5,7 +5,7 @@ const auth = require('../config/auth')
 const Event = mongoose.model('Event')
 
 router.get('/', (req, res) => {
-  Event.find({}).populate(req.query.populate).sort({ createdAt: -1 }).exec((err, events) => {
+  Event.find({}).populate(req.query.populate).sort({ start_at: -1 }).exec((err, events) => {
     if (err) {
       res.status(422).send(err.message)
     } else {

@@ -9,6 +9,9 @@
             </n-link>
           </b-col>
           <b-col sm="4">
+            <p>
+              <strong>{{ site.name }}</strong>
+            </p>
             <p>{{ site.contact }}</p>
             <div class="social">
               <a v-if="site.url_facebook" :href="site.url_facebook" target="_blank">
@@ -25,9 +28,9 @@
         </b-row>
       </b-container>
     </footer>
-    <div class="pb-5">
+    <!-- <div class="pb-5">
       <share />
-    </div>
+    </div> -->
   </div>
 </template>
 <script>
@@ -51,10 +54,14 @@ export default {
     .logo
       img
         max-width: 100%
+        border-radius: 5px
     .row > div
       // display: flex
       // align-items: center
       &.col-sm-4
-        font-size: 11px
+        font-size: 12px
         white-space: pre-line
+        .social
+          a
+            font-size: 30px
 </style>

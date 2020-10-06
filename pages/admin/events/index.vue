@@ -13,6 +13,9 @@
       </div>
       <div v-if="events">
         <b-table v-if="events.length" :fields="table" :items="events" responsive="sm">
+          <template v-slot:cell(start_at)="data">
+            {{ $moment(data.value).format("DD/MM/YYYY") }}
+          </template>
           <template v-slot:cell(tags)="data">
             <tags :tags="data.value" />
           </template>
@@ -52,6 +55,7 @@ export default {
         { text: 'Eventos', active: true }
       ],
       table: [
+        { key: 'start_at', label: 'Data' },
         { key: 'title', label: 'Título' },
         { key: 'tags', label: 'Tags' },
         { key: 'actions', label: '', class: 'text-right' }

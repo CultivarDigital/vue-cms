@@ -11,28 +11,10 @@
           </b-form-group>
         </b-col>
         <b-col md="6">
-          <b-form-group label="Começa em">
-            <b-row>
-              <b-col md="6">
-                <b-form-datepicker v-model="form.start_date" locale="pt-BR" />
-              </b-col>
-              <b-col md="6">
-                <b-form-timepicker v-model="form.start_time" locale="pt-BR" />
-              </b-col>
-            </b-row>
-          </b-form-group>
+          <date-time-form v-model="form.start_at" label="Começa em" />
         </b-col>
         <b-col md="6">
-          <b-form-group label="Termina em">
-            <b-row>
-              <b-col md="6">
-                <b-form-datepicker v-model="form.end_date" locale="pt-BR" />
-              </b-col>
-              <b-col md="6">
-                <b-form-timepicker v-model="form.end_time" locale="pt-BR" />
-              </b-col>
-            </b-row>
-          </b-form-group>
+          <date-time-form v-model="form.end_at" label="Termina em" />
         </b-col>
         <b-col md="12">
           <b-form-group label="Introdução" description="Uma descrição curta de até 160 caracteres">
@@ -94,10 +76,8 @@ export default {
         picture: null,
         tags: [],
         pdfs: [],
-        start_date: null,
-        start_time: null,
-        end_date: null,
-        end_time: null
+        start_at: null,
+        end_at: null
       }
     }
   },
