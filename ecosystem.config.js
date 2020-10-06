@@ -10,7 +10,7 @@ module.exports = {
         BASE_URL: 'https://redes-agroecologicas.terrakrya.com',
         NODE_ENV: 'production',
         HOST: '0.0.0.0',
-        PORT: 3009,
+        PORT: 3010,
         MONGODB_URI: 'mongodb://localhost/redes-agroecologicas',
         SECRET: 'ee9fc1362652d72faba35fb72c0dc26e'
       }
