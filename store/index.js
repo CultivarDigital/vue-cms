@@ -5,6 +5,11 @@ export const state = () => ({
 export const mutations = {
   SET_SITE(state, site) {
     state.site = site
+  },
+  ADD_PAGE(state, page) {
+    const site = { ...state.site }
+    site.pages.push(page)
+    state.site = site
   }
 }
 

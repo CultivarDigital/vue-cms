@@ -40,7 +40,7 @@ export default {
       users: null,
       breadcrumb: [
         { text: 'Painel', to: '/admin' },
-        { text: 'Usuários', active: true }
+        { text: 'Membros', active: true }
       ],
       table: [
         { key: 'name', label: 'Nome' },

@@ -8,6 +8,11 @@
           </b-form-group>
         </b-col>
         <b-col md="12">
+          <b-form-group label="Código da página" description="Será usado para compor a URL da página.">
+            <b-form-input v-model="form.slug" name="title" />
+          </b-form-group>
+        </b-col>
+        <b-col md="12">
           <b-form-group label="Introdução">
             <b-form-textarea v-model="form.description" name="description" />
           </b-form-group>
@@ -25,11 +30,8 @@
           </b-form-group>
         </b-col>
       </b-row>
-      <b-button class="mb-4 mt-4" @click="$emit('cancel')">
-        Cancelar
-      </b-button>
-      <b-button class="mb-4 mt-4" type="submit" variant="primary" :disabled="invalid">
-        Salvar conteúdo da página
+      <b-button class="mb-4 mt-4" type="submit" variant="primary" :disabled="invalid" block>
+        Salvar
       </b-button>
     </b-form>
   </ValidationObserver>
@@ -72,18 +74,16 @@ export default {
   methods: {
     async save () {
       if (this.page) {
-        const page = await this.$axios.$put('/api/pages/' + this.slug, this.form).catch(this.showError)
+        const page = await this.$axios.$put('/api/pages/' + this.page.slug, this.form).catch(this.showError)
         if (page) {
-          this.page = page
-          this.$toast.success('Conteúdo da página atualizado com sucesso!')
-          this.$emit('cancel')
+          this.$toast.success('Página atualizada com sucesso!')
+          this.$router.push('/admin/pages')
         }
       } else {
         const page = await this.$axios.$post('/api/pages', this.form).catch(this.showError)
         if (page) {
-          this.page = page
-          this.$toast.success('Conteúdo da página cadastrado com sucesso!')
-          this.$emit('cancel')
+          this.$toast.success('Página cadastrada com sucesso!')
+          this.$router.push('/admin/pages')
         }
       }
     }

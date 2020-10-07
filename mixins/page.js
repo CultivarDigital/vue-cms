@@ -4,13 +4,23 @@ export default {
       return this.$store.state.site
     },
     page () {
-      return this.site.pages.find(page => page.slug === this.page_id)
+      const page = this.site.pages.find(page => page.slug === this.page_id)
+      if (!page) {
+        return {
+          slug: this.page_id,
+          title: this.page_title,
+          description: this.page_description
+        }
+      }
+      return page
     }
   },
   head () {
     const meta = []
 
     let title = this.site.name
+    console.log('this.page_title')
+    console.log(this.page_title)
     if (this.page_title) {
       title = this.page_title + ' - ' + this.site.name
     } else if (this.page) {

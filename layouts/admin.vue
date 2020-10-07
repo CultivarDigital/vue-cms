@@ -18,6 +18,7 @@
                 <b-dropdown-item to="/admin/service_providers">Prestadores de serviço</b-dropdown-item>
                 <b-dropdown-item to="/admin/planting_areas">Áreas de plantio</b-dropdown-item>
               </b-nav-item-dropdown>
+              <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/pages">Páginas</b-nav-item>
               <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/medias">Biblioteca</b-nav-item>
               <b-nav-item to="/admin/users">Membros</b-nav-item>
               <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/posts">Notícias</b-nav-item>

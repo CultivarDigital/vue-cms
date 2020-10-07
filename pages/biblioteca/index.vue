@@ -1,11 +1,5 @@
 <template>
-  <div v-if="page" class="medias-page">
-    <b-carousel :indicators="false" class="banners">
-      <b-carousel-slide img-src="~assets/img/banner_biblioteca.png">
-        <h2>Biblioteca</h2>
-        <p>Maior acervo online de semeadura direta no Brasil</p>
-      </b-carousel-slide>
-    </b-carousel>
+  <div class="medias-page">
     <section class="content pb-5">
       <b-container>
         <div class="pt-5">
@@ -59,7 +53,8 @@ export default {
   mixins: [mixinGlobal, mixinPage],
   data () {
     return {
-      page_id: 'medias',
+      page_id: 'biblioteca',
+      page_title: 'Biblioteca',
       medias: null,
       media: null,
       tags: [],
@@ -112,14 +107,6 @@ export default {
   },
   watchQuery(newQuery) {
     this.list(newQuery)
-  },
-  head () {
-    return {
-      title: 'Biblioteca - ' + this.site.name,
-      meta: [
-        { hid: 'description', name: 'description', content: this.page.description || this.site.description }
-      ]
-    }
   }
 }
 </script>

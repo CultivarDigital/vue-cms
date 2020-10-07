@@ -21,7 +21,7 @@ export default {
       user: null,
       breadcrumb: [
         { text: 'Painel', to: '/admin' },
-        { text: 'Usuários', to: '/admin/users' },
+        { text: 'Membros', to: '/admin/users' },
         { text: 'Editar', active: true }
       ]
     }

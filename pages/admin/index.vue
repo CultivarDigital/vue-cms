@@ -10,7 +10,7 @@
       <b-list-group-item v-if="$auth.hasScope('admin')" to="/admin/events">Eventos</b-list-group-item>
       <b-list-group-item v-if="$auth.hasScope('admin')" to="/admin/medias">Biblioteca</b-list-group-item>
       <b-list-group-item to="/admin/newsletters">Contatos</b-list-group-item>
-      <b-list-group-item to="/admin/users">Usuários</b-list-group-item>
+      <b-list-group-item to="/admin/users">Membros</b-list-group-item>
       <b-list-group-item v-if="$auth.hasScope('super')" to="/admin/sites">Redes</b-list-group-item>
       <b-list-group-item v-if="$auth.hasScope('admin') && $store.state.site" :to="'/admin/sites/' + $store.state.site._id + '/edit'">Configurações da rede</b-list-group-item>
     </b-list-group>

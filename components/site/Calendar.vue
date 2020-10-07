@@ -16,7 +16,7 @@
 export default {
   props: {
     events: {
-      type: String,
+      type: Array,
       default: null
     }
   },

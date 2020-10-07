@@ -15,7 +15,7 @@ export default {
     return {
       breadcrumb: [
         { text: 'Painel', to: '/admin' },
-        { text: 'Usuários', to: '/admin/users' },
+        { text: 'Membros', to: '/admin/users' },
         { text: 'Cadastrar', active: true }
       ]
     }

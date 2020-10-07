@@ -11,8 +11,7 @@ const PageSchema = mongoose.Schema({
   slug: {
     type: String,
     required: true,
-    index: true,
-    unique: true
+    index: true
   },
   title: String,
   description: String,
@@ -23,6 +22,8 @@ const PageSchema = mongoose.Schema({
   timestamps: true,
   toJSON: { virtuals: true }
 })
+
+PageSchema.index({ slug: 1, site: 1}, { unique: true });
 
 PageSchema.plugin(uniqueValidator, {
   message: 'Este nome já está sendo usado'

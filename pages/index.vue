@@ -12,18 +12,10 @@
 </template>
 
 <script>
-import Banners from '@/components/site/Banners'
-import Map from '@/components/site/Map'
-import mixinPage from '@/mixins/page'
 export default {
-  components: {
-    Banners,
-    Map
-  },
-  mixins: [mixinPage],
-  data() {
-    return {
-      page_id: 'home'
+  computed: {
+    site () {
+      return this.$store.state.site
     }
   }
 }

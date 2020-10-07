@@ -1,7 +1,7 @@
 <template>
   <div class="events-page">
     <section class="content pb-5">
-      <page-info id="events" />
+      <page-info :page="page" />
       <b-container>
         <br>
         <div v-if="events">
@@ -14,12 +14,13 @@
 
 <script>
 import mixinGlobal from '@/mixins/global'
-import estados from '@/data/estados.json'
+import mixinPage from '@/mixins/page'
 export default {
-  mixins: [mixinGlobal],
+  mixins: [mixinGlobal, mixinPage],
   data() {
     return {
-      estados,
+      page_id: 'agenda',
+      page_title: 'Agenda',
       events: null
     }
   },

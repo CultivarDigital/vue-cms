@@ -4,7 +4,7 @@
     <b-container>
       <h1 v-if="page.title" class="title pt-5">{{ page.title }}</h1>
       <p v-if="page.description">{{ page.description }}</p>
-      <b-button v-if="page.pictures.length || page.content || page.pdfs.length" variant="primary" @click="showMore = !showMore">
+      <b-button v-if="page.content || (page.pictures && page.pictures.length) || (page.pdfs && page.pdfs.length)" variant="primary" @click="showMore = !showMore">
         Saiba mais
       </b-button>
       <div v-if="showMore" class="quill-content mt-4">
@@ -27,26 +27,15 @@
   </div>
 </template>
 <script>
-import mixinPage from '@/mixins/page'
 export default {
-  mixins: [mixinPage],
   props: {
-    id: {
-      type: String,
-      default: null
-    },
-    title: {
-      type: String,
-      default: null
-    },
-    description: {
-      type: String,
-      default: null
+    page: {
+      type: Object,
+      defatul: null
     }
   },
   data () {
     return {
-      page_id: this.id,
       showMore: false
     }
   }
