@@ -40,6 +40,7 @@ router.post('/', auth.admin, async (req, res, next) => {
   user.email = req.body.email
   user.name = req.body.name
   user.organization = req.body.organization
+  user.address = req.body.address
 
   if (req.payload.roles.includes('super')) {
     user.site = req.body.site
@@ -68,6 +69,7 @@ router.post('/register', async (req, res, next) => {
   user.name = req.body.name
   user.organization = req.body.organization
   user.site = req.body.site
+  user.address = req.body.address
   user.roles = ['user']
 
   if (user.site) {
@@ -87,6 +89,7 @@ router.put('/:id', auth.admin, function(req, res, next) {
     user.email = req.body.email
     user.name = req.body.name
     user.organization = req.body.organization
+    user.address = req.body.address
 
     if (req.payload.roles.includes('super')) {
       user.site = req.body.site
@@ -118,6 +121,7 @@ router.put('/', auth.authenticated, function(req, res, next) {
     user.email = req.body.email
     user.name = req.body.name
     user.organization = req.body.organization
+    user.address = req.body.address
     if (req.body.password) {
       user.setPassword(req.body.password)
     }

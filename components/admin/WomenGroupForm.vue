@@ -3,7 +3,7 @@
     <b-form @submit.prevent="validate().then(save)">
       <b-row>
         <b-col md="12">
-          <b-form-group label="Nome da rede *">
+          <b-form-group label="Nome do grupo *">
             <validation-provider v-slot="{ errors }" name="nome" rules="required">
               <b-form-input v-model="form.name" name="name" />
               <span class="text-danger">{{ errors[0] }}</span>
@@ -11,12 +11,29 @@
           </b-form-group>
         </b-col>
         <b-col md="12">
-          <b-form-group label="Sede da rede" description="Município/Estado">
-            <b-form-input v-model="form.headquarters" name="headquarters" />
+          <b-form-group label="Descrição curta *">
+            <validation-provider v-slot="{ errors }" name="descrição" rules="required">
+              <b-form-textarea v-model="form.description" name="description" />
+              <span class="text-danger">{{ errors[0] }}</span>
+            </validation-provider>
           </b-form-group>
         </b-col>
         <b-col md="12">
-          <b-form-group label="Endereço *" description="Insira as coordenadas do item que deseja cadastrar ou clique no botão abaixo para selecionar seu endereço">
+          <b-form-group label="Contatos *">
+            <validation-provider v-slot="{ errors }" name="contatos" rules="required">
+              <b-form-textarea v-model="form.contact" name="contact" />
+              <span class="text-danger">{{ errors[0] }}</span>
+            </validation-provider>
+          </b-form-group>
+        </b-col>
+        <b-col md="12">
+          <b-form-group label="Descrição completa do grupo">
+            <quill-editor ref="quillEdit" v-model="form.content" />
+            <input id="quillfile" type="file" hidden @change="quillUpload">
+          </b-form-group>
+        </b-col>
+        <b-col md="12">
+          <b-form-group label="Localização *" description="Insira as coordenadas do item que deseja cadastrar ou clique no botão abaixo para selecionar seu endereço">
             <b-row>
               <b-col>
                 <validation-provider v-slot="{ errors }" name="latitude" rules="required">
@@ -36,24 +53,6 @@
           <div class="text-right">
             <address-form :current-address="form.address" :autoload="false" @input="setAddress" />
           </div>
-        </b-col>
-        <b-col md="12">
-          <form-phones v-model="form.phones" />
-        </b-col>
-        <b-col md="12">
-          <b-form-group label="Email">
-            <b-form-input v-model="form.email" type="email" />
-          </b-form-group>
-        </b-col>
-        <b-col md="12">
-          <b-form-group label="Link do Site">
-            <b-form-input v-model="form.site_url" />
-          </b-form-group>
-        </b-col>
-        <b-col md="12">
-          <b-form-group label="Outras informações">
-            <b-form-textarea v-model="form.notes" />
-          </b-form-group>
         </b-col>
         <b-col md="12">
           <pictures-upload :form="form" field="pictures" url="/api/uploads/images" :multiple="true" />
@@ -91,7 +90,7 @@ export default {
   mixins: [mixinGlobal, mixinForm],
   props: {
     // eslint-disable-next-line
-    seedsNetwork: {
+    womenGroup: {
       type: Object,
       default: null
     }
@@ -99,20 +98,17 @@ export default {
   data() {
     return {
       estados,
-      tab: null,
       form: {
         name: '',
-        headquarters: '',
+        description: '',
+        contact: '',
+        content: '',
         address: {
           location: {
             type: 'Point',
             coordinates: []
           }
         },
-        phones: [''],
-        email: '',
-        site_url: '',
-        notes: '',
         pictures: []
       },
       url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
@@ -128,7 +124,7 @@ export default {
     }
   },
   created() {
-    this.toForm(this.form, this.seedsNetwork)
+    this.toForm(this.form, this.womenGroup)
   },
   methods: {
     async save() {
@@ -136,25 +132,25 @@ export default {
         this.form.address.location.coordinates[0] = Number(this.form.address.location.coordinates[0])
         this.form.address.location.coordinates[1] = Number(this.form.address.location.coordinates[1])
       }
-      if (this.seedsNetwork) {
-        const seedsNetwork = await this.$axios.$put('/api/seeds_networks/' + this.seedsNetwork.slug, this.form).catch(this.showError)
-        if (seedsNetwork) {
-          this.$toast.success('Rede de sementes atualizada com sucesso!')
+      if (this.womenGroup) {
+        const womenGroup = await this.$axios.$put('/api/women_groups/' + this.womenGroup.slug, this.form).catch(this.showError)
+        if (womenGroup) {
+          this.$toast.success('Grupo de mulheres atualizado com sucesso!')
           if (this.$auth.hasScope('super') || this.$auth.hasScope('admin')) {
-            this.$router.push('/admin/seeds_networks')
+            this.$router.push('/admin/women_groups')
           } else {
-            this.$router.push('/conta/produtores-organicos')
+            this.$router.push('/conta/grupos-de-mulheres')
           }
         }
       } else {
-        const seedsNetwork = await this.$axios.$post('/api/seeds_networks', this.form).catch(this.showError)
-        if (seedsNetwork) {
+        const womenGroup = await this.$axios.$post('/api/women_groups', this.form).catch(this.showError)
+        if (womenGroup) {
           if (this.$auth.hasScope('super') || this.$auth.hasScope('admin')) {
-            this.$toast.success('Rede de sementes cadastrada com sucesso!')
-            this.$router.push('/admin/seeds_networks')
+            this.$toast.success('Grupo de mulheres cadastrado com sucesso!')
+            this.$router.push('/admin/women_groups')
           } else {
-            this.$toast.success('Rede de sementes cadastrada com sucesso! Aguardando aprovação do administrador!')
-            this.$router.push('/conta/produtores-organicos')
+            this.$toast.success('Grupo de mulheres cadastrado com sucesso! Aguardando aprovação do administrador!')
+            this.$router.push('/conta/grupos-de-mulheres')
           }
         }
       }

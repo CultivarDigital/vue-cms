@@ -3,12 +3,12 @@
     <b-row>
       <b-col md="6">
         <b-form-group label="Estado">
-          <b-form-select v-model="form.uf" :options="estados" />
+          <b-form-select v-model="form.uf" :options="estados" @input="cb" />
         </b-form-group>
       </b-col>
       <b-col md="6">
         <b-form-group v-if="form.uf" label="Cidade">
-          <b-form-select v-model="form.city" :options="cidades" />
+          <b-form-select v-model="form.city" :options="cidades" @input="cb" />
         </b-form-group>
       </b-col>
     </b-row>
@@ -264,8 +264,7 @@ export default {
       ].filter(i => i).join(', ')
 
       this.show_modal = false
-
-      this.$emit('input', this.form)
+      this.cb()
     },
     showAutoComplete() {
       this.address = null
@@ -275,6 +274,11 @@ export default {
     locationError() {
       this.notify('Não foi possível encontrar seu endereço automaticamente.', 'warn')
       this.loading_gps = false
+    },
+    cb () {
+      console.log('cb')
+      console.log(this.form)
+      this.$emit('input', this.form)
     }
   }
 }

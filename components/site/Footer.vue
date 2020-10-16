@@ -23,7 +23,7 @@
             </div>
           </b-col>
           <b-col sm="6">
-            <newsletter />
+            <contact />
           </b-col>
         </b-row>
       </b-container>

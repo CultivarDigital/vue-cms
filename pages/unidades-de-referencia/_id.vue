@@ -18,12 +18,12 @@
                   <div class="card-header">
                     <ul class="nav nav-pills card-header-pills">
                       <li class="nav-item">
-                        <n-link :to="'/unidades-de-aprendizagem/' + learning_unit.slug" :class="current_item ? 'nav-link' : 'nav-link active'">
+                        <n-link :to="'/unidades-de-referencia/' + learning_unit.slug" :class="current_item ? 'nav-link' : 'nav-link active'">
                           Informações gerais
                         </n-link>
                       </li>
                       <li v-if="current_item" class="nav-item">
-                        <n-link :to="'/unidades-de-aprendizagem/' + learning_unit.slug" class="nav-link active">
+                        <n-link :to="'/unidades-de-referencia/' + learning_unit.slug" class="nav-link active">
                           {{ types[current_item.type] }}
                         </n-link>
                       </li>
@@ -359,7 +359,7 @@
                 </b-col>
                 <b-col class="cards">
                   <div v-for="item in timeline" :key="item._id" @click="$scrollTo('.tabs')">
-                    <n-link :to="'/unidades-de-aprendizagem/' + learning_unit.slug + '?item=' + item._id" tag="div" class="card">
+                    <n-link :to="'/unidades-de-referencia/' + learning_unit.slug + '?item=' + item._id" tag="div" class="card">
                       <b-img :src="item.pictures && item.pictures.length ? item.pictures[0].average : null" :alt="item.title" class="card-img-top" />
                       <div class="card-body">
                         <div class="date">
@@ -402,7 +402,7 @@ export default {
   data() {
     return {
       page_id: 'learning_units',
-      page_title: this.learning_unit ? this.learning_unit.name + ' - Unidades de aprendizagem' : null,
+      page_title: this.learning_unit ? this.learning_unit.name + ' - Unidades de referência' : null,
       page_description: this.learning_unit ? this.learning_unit.description : null,
       page_image: (this.learning_unit && this.learning_unit.pictures && this.learning_unit.pictures.length > 0 ? this.learning_unit.pictures[0].url : null),
       types: {
@@ -419,7 +419,7 @@ export default {
     breadcrumb () {
       return [
         { text: 'Mapa', to: '/mapa' },
-        { text: 'Unidades de aprendizagem', to: '/unidades-de-aprendizagem' },
+        { text: 'Unidades de referência', to: '/unidades-de-referencia' },
         { text: this.learning_unit ? this.learning_unit.name : '', active: true }
       ]
     },

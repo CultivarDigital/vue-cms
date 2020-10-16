@@ -4,14 +4,14 @@
     <PageForm v-if="show_page_form" slug="seeds_networks" @cancel="show_page_form = !show_page_form" />
     <div v-else>
       <div class="text-right mb-3">
-        <b-button variant="primary" to="/conta/redes-de-sementes/new">
+        <b-button variant="primary" to="/conta/produtores-organicos/new">
           Cadastrar
         </b-button>
       </div>
       <div v-if="seeds_networks">
         <b-table v-if="seeds_networks.length" :fields="table" :items="seeds_networks" responsive="sm">
           <template v-slot:cell(actions)="data">
-            <n-link class="btn btn-info btn-sm" :to="'/conta/redes-de-sementes/' + data.item.slug + '/edit'">
+            <n-link class="btn btn-info btn-sm" :to="'/conta/produtores-organicos/' + data.item.slug + '/edit'">
               <b-icon-pencil />
             </n-link>
             <b-button variant="danger" size="sm" @click="remove(data.item)">
@@ -43,7 +43,7 @@ export default {
       seeds_networks: null,
       breadcrumb: [
         { text: 'Minha conta', to: '/conta' },
-        { text: 'Redes de sementes', active: true }
+        { text: 'Produtores orgânicos', active: true }
       ],
       table: [
         { key: 'name', label: 'Nome' },

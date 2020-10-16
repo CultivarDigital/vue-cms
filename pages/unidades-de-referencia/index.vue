@@ -1,19 +1,15 @@
 <template>
-  <div v-if="page" class="unidades-de-aprendizagem-page">
-    <banners :items="page.pictures" />
+  <div class="unidades-de-referencia-page">
     <section class="content pb-5">
       <div class="page-header">
         <b-container>
           <b-breadcrumb :items="breadcrumb" />
         </b-container>
       </div>
+      <page-info :page="page" />
       <b-container>
-        <h1 v-if="page.title" class="title pt-5">{{ page.title }}</h1>
-        <p v-if="page.description">{{ page.description }}</p>
-        <div v-if="page.content" class="quill-content mt-4" v-html="page.content" />
         <div>
           <LearningUnits :learning-units="learning_units" />
-          <h3 v-if="learning_units.length === 0" class="text-center">Nenhuma unidade encontrada</h3>
         </div>
       </b-container>
     </section>
@@ -23,20 +19,15 @@
 <script>
 import mixinGlobal from '@/mixins/global'
 import mixinPage from '@/mixins/page'
-import LearningUnits from '@/components/site/LearningUnits'
-import Banners from '@/components/site/Banners'
 export default {
-  components: {
-    LearningUnits,
-    Banners
-  },
   mixins: [mixinGlobal, mixinPage],
   data () {
     return {
       page_id: 'learning_units',
+      page_title: 'Unidades de referência',
       breadcrumb: [
         { text: 'Mapa', to: '/mapa' },
-        { text: 'Unidades de aprendizagem', active: true }
+        { text: 'Unidades de referência', active: true }
       ]
     }
   },

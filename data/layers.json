@@ -1,20 +1,30 @@
 {
    "learning_units": {
       "status": true,
-      "title": "Unidades de Aprendizagem",
+      "title": "Unidades de Referência",
       "description": "Informações de contato dos responsáveis, dados completos do plantio e períodos de visitação",
-      "url": "/unidades-de-aprendizagem"
+      "url": "/unidades-de-referencia",
+      "color": "#B164FA"
    },
    "seeds_networks": {
       "status": true,
-      "title": "Redes de sementes",
-      "description": "Contatos e outras informações disponíveis para compra de sementes",
-      "url": "/redes-de-sementes"
+      "title": "Produtores orgânicos",
+      "description": "Contatos e outras informações disponíveis para compra e venda de produtos orgânicos",
+      "url": "/produtores-organicos",
+      "color": "#AD5B2B"
    },
    "service_providers": {
       "status": true,
       "title": "Prestadores de serviço",
-      "description": "Organizações e pessoas que prestam serviços relacionados com a semeadura direta",
-      "url": "/prestadores-de-servico"
+      "description": "Organizações e pessoas que prestam serviços relacionados com a Agroecologia",
+      "url": "/prestadores-de-servico",
+      "color": "#FA8B4B"
+   },
+   "women_groups": {
+      "status": true,
+      "title": "Grupos de mulheres",
+      "description": "Grupos e coletivos de mulheres envolvidas na Agroecologia",
+      "url": "/grupos-de-mulheres",
+      "color": "#FA578B"
    }
 }

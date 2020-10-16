@@ -42,6 +42,12 @@
     </b-row>
     <b-row>
       <b-col md="12">
+        <CoordinatesPreview :form="form" />
+        <div>
+          <address-form v-model="form.address" :autoload="false" />
+        </div>
+      </b-col>
+      <b-col md="12">
         <b-form-group label="Organização *">
           <validation-provider v-slot="{ errors }" name="organização" rules="required">
             <b-form-input v-model="form.organization" />
@@ -53,6 +59,7 @@
     <b-button type="submit" variant="primary" block :disabled="invalid || !passwordConfirmed">
       Salvar
     </b-button>
+    <pre>{{ form }}</pre>
   </ValidationObserver>
 </template>
 
@@ -75,7 +82,15 @@ export default {
         email: '',
         password: '',
         password_confirmation: '',
-        organization: ''
+        organization: '',
+        address: {
+          city: '',
+          uf: '',
+          location: {
+            type: 'Point',
+            coordinates: []
+          }
+        }
       }
     }
   },

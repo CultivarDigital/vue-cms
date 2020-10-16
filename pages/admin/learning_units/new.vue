@@ -15,7 +15,7 @@ export default {
     return {
       breadcrumb: [
         { text: 'Painel', to: '/admin' },
-        { text: 'Unidades de aprendizagem', to: '/admin/learning_units' },
+        { text: 'Unidades de referência', to: '/admin/learning_units' },
         { text: 'Cadastrar', active: true }
       ]
     }

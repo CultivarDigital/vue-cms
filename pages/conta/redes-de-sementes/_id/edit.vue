@@ -27,7 +27,7 @@ export default {
     this.seeds_network = await this.$axios.$get('/api/seeds_networks/' + this.$route.params.id).catch(this.showError)
     this.breadcrumb = [
       { text: 'Minha conta', to: '/conta' },
-      { text: 'Redes de sementes', to: '/conta/redes-de-sementes' },
+      { text: 'Produtores orgânicos', to: '/conta/produtores-organicos' },
       { text: this.seeds_network.name, active: true }
     ]
   }

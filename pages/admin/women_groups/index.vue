@@ -1,20 +1,20 @@
 <template>
-  <div class="seeds_networks">
+  <div class="women_groups">
     <b-breadcrumb :items="breadcrumb" />
-    <PageForm v-if="show_page_form" slug="seeds_networks" @cancel="show_page_form = !show_page_form" />
+    <PageForm v-if="show_page_form" slug="women_groups" @cancel="show_page_form = !show_page_form" />
     <div v-else>
       <div class="text-right mb-3">
         <b-button @click="show_page_form = !show_page_form">
           Configurar página
         </b-button>
-        <b-button variant="primary" to="/admin/seeds_networks/new">
+        <b-button variant="primary" to="/admin/women_groups/new">
           Cadastrar
         </b-button>
       </div>
-      <div v-if="seeds_networks">
-        <b-table v-if="seeds_networks.length" :fields="table" :items="seeds_networks" responsive="sm">
+      <div v-if="women_groups">
+        <b-table v-if="women_groups.length" :fields="table" :items="women_groups" responsive="sm">
           <template v-slot:cell(actions)="data">
-            <n-link class="btn btn-info btn-sm" :to="'/admin/seeds_networks/' + data.item.slug + '/edit'">
+            <n-link class="btn btn-info btn-sm" :to="'/admin/women_groups/' + data.item.slug + '/edit'">
               <b-icon-pencil />
             </n-link>
             <b-button variant="danger" size="sm" @click="remove(data.item)">
@@ -46,14 +46,14 @@ export default {
   data () {
     return {
       show_page_form: false,
-      seeds_networks: null,
+      women_groups: null,
       breadcrumb: [
         { text: 'Painel', to: '/admin' },
-        { text: 'Produtores orgânicos', active: true }
+        { text: 'Grupos de mulheres', active: true }
       ],
       table: [
-        { key: 'name', label: 'Rede' },
-        { key: 'headquarters', label: 'Sede' },
+        { key: 'name', label: 'Nome' },
+        { key: 'description', label: 'Descrição' },
         { key: 'actions', label: '', class: 'text-right' }
       ]
     }
@@ -63,22 +63,22 @@ export default {
   },
   methods: {
     async list () {
-      this.seeds_networks = await this.$axios.$get('/api/seeds_networks').catch(this.showError)
+      this.women_groups = await this.$axios.$get('/api/women_groups').catch(this.showError)
     },
-    remove (seedsNetwork) {
+    remove (womenGroup) {
       this.$bvModal.msgBoxConfirm('Tem certeza que deseja excluír este ítem?').then(async confirmed => {
         if (confirmed) {
-          await this.$axios.delete('/api/seeds_networks/' + seedsNetwork.slug).then(() => {
+          await this.$axios.delete('/api/women_groups/' + womenGroup.slug).then(() => {
             this.list()
-            this.$toast.success('Rede de sementes removida com sucesso!')
+            this.$toast.success('Grupo removido com sucesso!')
           }).catch(this.showError)
         }
       })
     },
-    async approve (seedsNetwork) {
-      await this.$axios.put('/api/seeds_networks/' + seedsNetwork.slug, { status: 'approved' }).then(() => {
+    async approve (womenGroup) {
+      await this.$axios.put('/api/women_groups/' + womenGroup.slug, { status: 'approved' }).then(() => {
         this.list()
-        this.$toast.success('Rede de sementes aprovada com sucesso!')
+        this.$toast.success('Grupo aprovado com sucesso!')
       }).catch(this.showError)
     }
   }

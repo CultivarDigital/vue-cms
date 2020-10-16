@@ -5,16 +5,20 @@
         <h3 class="mb-4">Mapa da Agroecologia</h3>
         <div v-for="layer in Object.keys(layers)" :key="layer">
           <div class="legend">
-            <div class="pattern" />
-            <h4><n-link :to="layers[layer].url">{{ layers[layer].title }}</n-link></h4>
-            <p><n-link :to="layers[layer].url">{{ layers[layer].description }}</n-link></p>
+            <div class="pattern" :style="'background-color: ' + layers[layer].color" />
+            <h4>
+              <n-link :to="layers[layer].url">{{ layers[layer].title }}</n-link>
+            </h4>
+            <p>
+              <n-link :to="layers[layer].url">{{ layers[layer].description }}</n-link>
+            </p>
           </div>
           <hr>
         </div>
         <div class="legend">
           <div class="pattern" />
-          <h4 style="color: #606060">Plantios com semeadura direta</h4>
-          <p>Mapeamento das áreas de plantios com semeadura direta por município. Esse mapeamento é o primeiro passo para engajar os proprietários a se cadastrarem como Unidades de Aprendizagem (UAs)</p>
+          <h4>Membros da Rede</h4>
+          <p>Todos os membros que participam da {{ $store.state.site.name }}</p>
         </div>
       </b-col>
       <b-col md="8">
@@ -27,7 +31,7 @@
                   <template v-if="site[layer] && layers[layer].status">
                     <template v-for="item in site[layer]">
                       <l-marker v-if="item.status === 'approved' && item.address && item.address.location && item.address.location.coordinates" :key="item._id" :lat-lng="item.address.location.coordinates">
-                        <l-icon :icon-size="[16, 16]" :icon-url="require('~/assets/img/marker_' + layer + '.png')" />
+                        <l-icon :icon-size="[20, 32]" :icon-url="require('~/assets/img/markers/' + layer + '.png')" />
                         <l-popup>
                           <n-link :to="layers[layer].url + '/' + item.slug" class="text-center">
                             <b-img v-if="item.pictures && item.pictures.length" :src="item.pictures[0].thumb" />
@@ -41,56 +45,40 @@
                   </template>
                 </template>
               </template>
-              <template v-if="show_planting_areas">
-                <l-marker v-for="planting_area in site.planting_areas" :key="planting_area._id" :lat-lng="planting_area.address.location.coordinates">
-                  <l-icon :icon-size="[16, 16]" :icon-url="require('~/assets/img/marker_planting_areas.png')" />
-                  <l-popup>
-                    <h6>{{ planting_area.address.city }} - {{ planting_area.address.uf }}</h6>
-                    <p>{{ planting_area.qtd }} plantios por Agroecologia</p>
-                  </l-popup>
-                </l-marker>
+              <template v-if="show_users">
+                <template v-for="user in site.users">
+                  <l-marker v-if="user.address && user.address.location && user.address.location.coordinates && user.address.location.coordinates.length > 0" :key="user._id" :lat-lng="user.address.location.coordinates">
+                    <l-icon :icon-size="[20, 32]" :icon-url="require('~/assets/img/markers/default.png')" />
+                    <l-popup>
+                      <h6>{{ user.name }}</h6>
+                      <p>{{ user.address.city }} - {{ user.address.uf }}</p>
+                    </l-popup>
+                  </l-marker>
+                </template>
               </template>
             </l-map>
           </client-only>
         </div>
       </b-col>
-      <!-- <b-col md="2">
-        <div class="legend">
-          <div class="pattern" />
-          <h4>Legendas</h4>
-          <br>
-          <p>Clique para navegar no mapa</p>
-          <br>
-          <p v-for="layer in Object.keys(layers)" :key="layer" @click="toggleLayer(layer)">
-            <b-img v-if="layers[layer].status" :src="require('~/assets/img/marker_' + layer + '.png')" />
-            <b-img v-else :src="require('~/assets/img/marker_inactive.png')" />
-            {{ layers[layer].title }}
-          </p>
-          <p class="pointer" @click="show_planting_areas = !show_planting_areas">
-            <b-img :src="require('~/assets/img/' + (show_planting_areas ? 'marker_planting_areas' : 'marker_inactive') + '.png')" />
-            Plantios por Agroecologia
-          </p>
-        </div>
-      </b-col> -->
     </b-row>
   </div>
 </template>
 <script>
 import layers from '@/data/layers.json'
 export default {
-  data () {
+  data() {
     return {
       layers,
-      show_planting_areas: true
+      show_users: true
     }
   },
   computed: {
-    site () {
+    site() {
       return this.$store.state.site
     }
   },
   methods: {
-    toggleLayer (layer) {
+    toggleLayer(layer) {
       this.layers[layer].status = !this.layers[layer].status
     }
   }
@@ -129,8 +117,11 @@ export default {
         font-weight: 700
         font-size: 18px
       .legend
+        h4
+          color: #00794e
         p
           font-size: 12px
+          color: #00794e
           .btn
             background-color: #51009c
             padding: 1px 3px

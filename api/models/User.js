@@ -63,6 +63,7 @@ UserSchema.methods.generateJWT = function() {
     site_slug: this.site_slug,
     name: this.name,
     organization: this.organization,
+    address: this.address,
     exp: parseInt(exp.getTime() / 1000)
   }, (process.env.SECRET || 'secret'))
 }
@@ -76,7 +77,8 @@ UserSchema.methods.toAuthJSON = function() {
     token: this.generateJWT(),
     roles: this.roles,
     name: this.name,
-    organization: this.organization
+    organization: this.organization,
+    address: this.address
   }
 }
 
@@ -88,7 +90,8 @@ UserSchema.methods.data = function() {
     email: this.email,
     roles: this.roles,
     name: this.name,
-    organization: this.organization
+    organization: this.organization,
+    address: this.address
   }
 }
 

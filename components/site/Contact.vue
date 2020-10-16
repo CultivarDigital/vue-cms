@@ -1,8 +1,8 @@
 <template>
-  <div class="newsletter-component">
+  <div class="contact-component">
     <ValidationObserver v-slot="{ validate, invalid }">
       <b-form @submit.prevent="validate().then(save)">
-        <h6 class="mb-3">FIQUE POR DENTRO</h6>
+        <h6 class="mb-3">FALE CONOSCO</h6>
         <b-row>
           <b-col md="6">
             <b-form-group>
@@ -20,9 +20,17 @@
               </validation-provider>
             </b-form-group>
           </b-col>
+          <b-col md="12">
+            <b-form-group>
+              <validation-provider v-slot="{ errors }" name="message" rules="required">
+                <b-form-textarea v-model="form.message" name="message" placeholder="Sua sua mensagem" />
+                <span class="text-white">{{ errors[0] }}</span>
+              </validation-provider>
+            </b-form-group>
+          </b-col>
         </b-row>
         <b-button type="submit" variant="default" :disabled="invalid">
-          ASSINE
+          ENVIAR
         </b-button>
       </b-form>
     </ValidationObserver>
@@ -45,16 +53,17 @@ export default {
       form: {
         site: null,
         name: '',
-        email: ''
+        email: '',
+        message: ''
       }
     }
   },
   methods: {
     async save () {
       this.form.site = this.$store.state.site._id
-      const newsletter = await this.$axios.$post('/api/newsletters', this.form).catch(this.showError)
-      if (newsletter) {
-        this.$toast.success('Obrigado por se cadastrar. Você reberá todas as nossas novidades no seu email.')
+      const contact = await this.$axios.$post('/api/contacts/contact', this.form).catch(this.showError)
+      if (contact) {
+        this.$toast.success('Sua mensagem foi enviado. Em breve entraremos em contato. Obrigado!')
       }
     }
   }
@@ -62,11 +71,12 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-  .newsletter-component
-    input.form-control
+  .contact-component
+    .form-control
       border: none
       font-size: 12px
       border-radius: 5px
+    textarea
     .btn
       color: #fff
       font-size: 10px

@@ -14,9 +14,10 @@ require('./models/Monitoring')
 require('./models/Maintenance')
 require('./models/Harvest')
 require('./models/ServiceProvider')
+require('./models/WomenGroup')
 require('./models/PlantingArea')
 require('./models/SeedsNetwork')
-require('./models/Newsletter')
+require('./models/Contact')
 require('./models/Media')
 require('./config/passport')
 
@@ -71,9 +72,10 @@ router.use('/monitorings', require('./routes/monitorings'))
 router.use('/maintenances', require('./routes/maintenances'))
 router.use('/harvests', require('./routes/harvests'))
 router.use('/service_providers', require('./routes/service_providers'))
+router.use('/women_groups', require('./routes/women_groups'))
 router.use('/planting_areas', require('./routes/planting_areas'))
 router.use('/seeds_networks', require('./routes/seeds_networks'))
-router.use('/newsletters', require('./routes/newsletters'))
+router.use('/contacts', require('./routes/contacts'))
 router.use('/medias', require('./routes/medias'))
 
 router.get('/profile', auth.authenticated, function(req, res) {
@@ -131,6 +133,11 @@ router.get('/site', function(req, res) {
       options: { sort: 'name' }
     })
     .populate({
+      path: 'women_groups',
+      model: 'WomenGroup',
+      options: { sort: 'name' }
+    })
+    .populate({
       path: 'planting_areas',
       model: 'PlantingArea',
       options: { sort: 'address.city, address.uf' }
@@ -149,6 +156,12 @@ router.get('/site', function(req, res) {
       path: 'medias',
       model: 'Media',
       options: { sort: { createdAt: -1 } }
+    })
+    .populate({
+      path: 'users',
+      model: 'User',
+      select: 'name organization address',
+      options: { sort: 'name' }
     })
     .exec(function(err, site) {
       if (!err && site) {

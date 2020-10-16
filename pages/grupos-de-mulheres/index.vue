@@ -1,5 +1,5 @@
 <template>
-  <div v-if="page" class="prestadores-de-servico-page">
+  <div class="grupos-de-mulheres-page">
     <section class="content pb-5">
       <div class="page-header">
         <b-container>
@@ -8,7 +8,7 @@
       </div>
       <page-info :page="page" />
       <b-container>
-        <ServiceProviders :service-providers="service_providers" />
+        <WomenGroups :women-groups="women_groups" />
       </b-container>
     </section>
   </div>
@@ -21,23 +21,23 @@ export default {
   mixins: [mixinGlobal, mixinPage],
   data () {
     return {
-      page_id: 'service_providers',
-      page_title: 'Prestadores de serviço',
+      page_id: 'women_groups',
+      page_title: 'Grupos de mulheres',
       breadcrumb: [
         { text: 'Mapa', to: '/mapa' },
-        { text: 'Prestadores de serviço', active: true }
+        { text: 'Grupos de mulheres', active: true }
       ]
     }
   },
   computed: {
-    service_providers () {
-      let serviceProviders = this.site.service_providers
+    women_groups () {
+      let womenGroups = this.site.women_groups
       if (this.$route.query.tag) {
-        serviceProviders = serviceProviders.filter(serviceProvider => {
-          return serviceProvider.tags.find(tag => tag.slug === this.$route.query.tag)
+        womenGroups = womenGroups.filter(womenGroup => {
+          return womenGroup.tags.find(tag => tag.slug === this.$route.query.tag)
         })
       }
-      return serviceProviders
+      return womenGroups
     }
   }
 }

@@ -13,17 +13,18 @@
                 <template v-slot:button-content>
                   <em>Mapa</em>
                 </template>
-                <b-dropdown-item to="/admin/learning_units">Unidades de aprendizagem</b-dropdown-item>
-                <b-dropdown-item to="/admin/seeds_networks">Redes de sementes</b-dropdown-item>
+                <b-dropdown-item to="/admin/learning_units">Unidades de referência</b-dropdown-item>
+                <b-dropdown-item to="/admin/seeds_networks">Produtores orgânicos</b-dropdown-item>
+                <b-dropdown-item to="/admin/women_groups">Grupos de mulheres</b-dropdown-item>
                 <b-dropdown-item to="/admin/service_providers">Prestadores de serviço</b-dropdown-item>
-                <b-dropdown-item to="/admin/planting_areas">Áreas de plantio</b-dropdown-item>
+                <!-- <b-dropdown-item to="/admin/planting_areas">Áreas de plantio</b-dropdown-item> -->
               </b-nav-item-dropdown>
               <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/pages">Páginas</b-nav-item>
               <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/medias">Biblioteca</b-nav-item>
               <b-nav-item to="/admin/users">Membros</b-nav-item>
               <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/posts">Notícias</b-nav-item>
               <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/events">Agenda</b-nav-item>
-              <b-nav-item to="/admin/newsletters">Contatos</b-nav-item>
+              <b-nav-item to="/admin/contacts">Contatos</b-nav-item>
             </b-navbar-nav>
             <b-navbar-nav class="ml-auto">
               <b-nav-item-dropdown right>

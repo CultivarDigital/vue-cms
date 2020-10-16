@@ -32,7 +32,7 @@
                   <h3 v-else>BIBLIOTECA</h3>
                   <p v-if="medias.length === 1"><strong>1</strong> ITEM ENCONTRADO <span v-if="filters.category">em <n-link :to="'/biblioteca?categoria=' + filters.category"><strong>{{ filters.category }}</strong></n-link></span></p>
                   <p v-else><strong>{{ medias.length }}</strong> ITENS ENCONTRADOS <span v-if="filters.category">em <n-link :to="'/biblioteca?categoria=' + filters.category"><strong>{{ filters.category }}</strong></n-link></span></p>
-                  <h3 v-if="medias && medias.length === 0" class="text-center">Nenhum item encontrado</h3>
+                  <p v-if="medias && medias.length === 0" class="text-center">Nenhum item encontrado</p>
                 </div>
                 <medias :medias="medias" />
               </div>
@@ -130,44 +130,41 @@ export default {
     .tags
       .btn
         background-color: transparent
-        color: #00794e
-        border-color: #00794e
+        color: #fff
+        border-color: #fff
         border-radius: 10px
         margin-right: 10px
         margin-bottom: 10px
-        font-size: 13px
-        font-weight: bold
-        padding: 5px 10px
-        &:hover
+        font-size: 12px
+        font-weight: normal
+        padding: 3px 7px
+        &:hover, &.active
           background-color: #fff
           border-color: #fff
           color: #00794e
-        &.active
-          background-color: #00794e
-          border-color: #00794e
-          color: #51009c
     .categories
       margin-bottom: 30px
       .title
         background-color: #00794e
-        background-image: url('~assets/img/squares.png')
-        background-repeat: no-repeat
-        background-position: 10px
-        padding-left: 30px
-        border-radius: 10px
+        color: #fff
+        // background-image: url('~assets/img/squares.png')
+        // background-repeat: no-repeat
+        // background-position: 10px
+        border-top-left-radius: 10px
+        border-top-right-radius: 10px
       h4
         font-size: 14px
-        color: #51009c
-        padding: 7px 10px
-        background-image: url('~assets/img/arrow-down.png')
-        background-repeat: no-repeat
-        background-position: calc(100% - 10px)
+        color: #fff
+        padding: 10px 15px
+        // background-image: url('~assets/img/arrow-down.png')
+        // background-repeat: no-repeat
+        // background-position: calc(100% - 10px)
       ul
         background: #fff
         border-bottom-left-radius: 10px
         border-bottom-right-radius: 10px
         padding: 15px
-        width: calc(100% - 20px)
+        // width: calc(100% - 20px)
         margin: auto
         margin-top: -8px
         li
@@ -199,7 +196,10 @@ export default {
           font-weight: 700
           text-transform: uppercase
         p
-          color: #00794e
+          color: #fff
           font-size: 12px
           text-transform: uppercase
+          font-weight: normal
+          a
+            color: #fff
 </style>

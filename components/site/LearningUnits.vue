@@ -1,34 +1,42 @@
 <template>
-  <b-row class="learning-units-component list-page">
-    <b-col v-for="learning_unit in learningUnits" :key="learning_unit._id" md="4">
-      <n-link :to="'/unidades-de-aprendizagem/' + learning_unit.slug" tag="div" class="card">
-        <div class="img">
-          <b-img :src="learning_unit.pictures && learning_unit.pictures.length ? learning_unit.pictures[0].average : null" :alt="learning_unit.name" class="card-img-top" />
-        </div>
-        <div class="card-body">
-          <div class="card-title">
-            <h3>{{ learning_unit.name }}</h3>
-          </div>
-          <div class="card-text">
-            <p v-if="learning_unit.description || learning_unit.content">{{ (learning_unit.description || learning_unit.content) | truncate(1000) }}<br><br></p>
-            <p v-if="learning_unit.planting_time"><strong>Data do plantio:</strong>{{ learning_unit.planting_time }}</p>
-            <p v-if="learning_unit.area_size"><strong>Área:</strong> {{ learning_unit.area_size }} hectares</p>
-            <p v-if="learning_unit.address && (learning_unit.address.city || learning_unit.address.uf)">
-              <strong>Local:</strong>
-              {{ [learning_unit.address.city, learning_unit.address.uf].filter(i => i).join(' - ') }}
-            </p>
-            <br>
-            <n-link :to="'/unidades-de-aprendizagem/' + learning_unit.slug" class="btn btn-primary">
-              Saiba mais
+  <div>
+    <div v-if="learningUnits">
+      <div v-if="learningUnits.length > 0">
+        <b-row class="learning-units-component list-page">
+          <b-col v-for="learning_unit in learningUnits" :key="learning_unit._id" md="4">
+            <n-link :to="'/unidades-de-referencia/' + learning_unit.slug" tag="div" class="card">
+              <div class="img">
+                <b-img :src="learning_unit.pictures && learning_unit.pictures.length ? learning_unit.pictures[0].average : null" :alt="learning_unit.name" class="card-img-top" />
+              </div>
+              <div class="card-body">
+                <div class="card-title">
+                  <h3>{{ learning_unit.name }}</h3>
+                </div>
+                <div class="card-text">
+                  <p v-if="learning_unit.description || learning_unit.content">{{ (learning_unit.description || learning_unit.content) | truncate(1000) }}<br><br></p>
+                  <p v-if="learning_unit.planting_time"><strong>Data do plantio:</strong>{{ learning_unit.planting_time }}</p>
+                  <p v-if="learning_unit.area_size"><strong>Área:</strong> {{ learning_unit.area_size }} hectares</p>
+                  <p v-if="learning_unit.address && (learning_unit.address.city || learning_unit.address.uf)">
+                    <strong>Local:</strong>
+                    {{ [learning_unit.address.city, learning_unit.address.uf].filter(i => i).join(' - ') }}
+                  </p>
+                  <br>
+                  <n-link :to="'/unidades-de-referencia/' + learning_unit.slug" class="btn btn-primary">
+                    Saiba mais
+                  </n-link>
+                  <n-link to="/mapa" class="btn btn-default">
+                    Voltar ao mapa
+                  </n-link>
+                </div>
+              </div>
             </n-link>
-            <n-link to="/mapa" class="btn btn-default">
-              Voltar ao mapa
-            </n-link>
-          </div>
-        </div>
-      </n-link>
-    </b-col>
-  </b-row>
+          </b-col>
+        </b-row>
+      </div>
+      <p v-else class="subtitle">Nenhuma unidade de referência encontrada</p>
+    </div>
+    <p v-else class="subtitle"><b-spinner small /> Carregando...</p>
+  </div>
 </template>
 
 <script>

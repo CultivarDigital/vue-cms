@@ -1,9 +1,9 @@
 <template>
-  <div class="newsletters">
+  <div class="contacts">
     <b-breadcrumb :items="breadcrumb" />
     <div>
-      <div v-if="newsletters">
-        <b-table v-if="newsletters.length" :fields="table" :items="newsletters" responsive="sm" />
+      <div v-if="contacts">
+        <b-table v-if="contacts.length" :fields="table" :items="contacts" responsive="sm" />
         <b-alert v-else show variant="dark" class="text-center">Nenhum item encontrado</b-alert>
       </div>
       <div v-else class="text-center">
@@ -20,7 +20,7 @@ export default {
   mixins: [mixinGlobal],
   data () {
     return {
-      newsletters: null,
+      contacts: null,
       breadcrumb: [
         { text: 'Painel', to: '/admin' },
         { text: 'Contatos', active: true }
@@ -32,7 +32,7 @@ export default {
     }
   },
   async created () {
-    this.newsletters = await this.$axios.$get('/api/newsletters').catch(this.showError)
+    this.contacts = await this.$axios.$get('/api/contacts').catch(this.showError)
   }
 }
 </script>

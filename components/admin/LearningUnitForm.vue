@@ -8,7 +8,7 @@
               <b-form @submit.prevent="validate().then(save)">
                 <b-row>
                   <b-col md="12">
-                    <b-form-group label="Nome para a Unidade de Aprendizagem *">
+                    <b-form-group label="Nome para a Unidade de Referência *">
                       <validation-provider v-slot="{ errors }" name="nome" rules="required">
                         <b-form-input v-model="form.name" name="name" />
                         <span class="text-danger">{{ errors[0] }}</span>
@@ -211,22 +211,22 @@ export default {
       if (this.learningUnit) {
         const learningUnit = await this.$axios.$put('/api/learning_units/' + this.learningUnit.slug, this.form).catch(this.showError)
         if (learningUnit) {
-          this.$toast.success('Unidade de aprendizagem atualizada com sucesso!')
+          this.$toast.success('Unidade de referência atualizada com sucesso!')
           if (this.$auth.hasScope('super') || this.$auth.hasScope('admin')) {
             this.$router.push('/admin/learning_units')
           } else {
-            this.$router.push('/conta/unidades-de-aprendizagem')
+            this.$router.push('/conta/unidades-de-referencia')
           }
         }
       } else {
         const learningUnit = await this.$axios.$post('/api/learning_units', this.form).catch(this.showError)
         if (learningUnit) {
           if (this.$auth.hasScope('super') || this.$auth.hasScope('admin')) {
-            this.$toast.success('Unidade de aprendizagem cadastrada com sucesso!')
+            this.$toast.success('Unidade de referência cadastrada com sucesso!')
             this.$router.push('/admin/learning_units')
           } else {
-            this.$toast.success('Unidade de aprendizagem cadastrada com sucesso! Aguardando aprovação do administrador!')
-            this.$router.push('/conta/unidades-de-aprendizagem')
+            this.$toast.success('Unidade de referência cadastrada com sucesso! Aguardando aprovação do administrador!')
+            this.$router.push('/conta/unidades-de-referencia')
           }
         }
       }

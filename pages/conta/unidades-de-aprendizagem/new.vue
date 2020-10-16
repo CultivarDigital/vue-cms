@@ -15,7 +15,7 @@ export default {
     return {
       breadcrumb: [
         { text: 'Minha conta', to: '/conta' },
-        { text: 'Unidades de aprendizagem', to: '/conta/unidades-de-aprendizagem' },
+        { text: 'Unidades de referência', to: '/conta/unidades-de-referencia' },
         { text: 'Cadastrar', active: true }
       ]
     }

@@ -7,7 +7,7 @@
         <!-- <b-button @click="show_page_form = !show_page_form">
           Configurar página
         </b-button> -->
-        <b-button variant="primary" to="/conta/unidades-de-aprendizagem/new">
+        <b-button variant="primary" to="/conta/unidades-de-referencia/new">
           Cadastrar
         </b-button>
       </div>
@@ -21,7 +21,7 @@
             <span v-else>Aguardando aprovação</span>
           </template>
           <template v-slot:cell(actions)="data">
-            <n-link class="btn btn-info btn-sm" :to="'/conta/unidades-de-aprendizagem/' + data.item.slug + '/edit'">
+            <n-link class="btn btn-info btn-sm" :to="'/conta/unidades-de-referencia/' + data.item.slug + '/edit'">
               <b-icon-pencil />
             </n-link>
             <b-button variant="danger" size="sm" @click="remove(data.item)">
@@ -53,7 +53,7 @@ export default {
       learning_units: null,
       breadcrumb: [
         { text: 'Minha conta', to: '/conta' },
-        { text: 'Unidades de aprendizagem', active: true }
+        { text: 'Unidades de referência', active: true }
       ],
       table: [
         { key: 'name', label: 'Nome' },
@@ -76,7 +76,7 @@ export default {
         if (confirmed) {
           await this.$axios.delete('/api/learning_units/' + learningUnit.slug).then(() => {
             this.list()
-            this.$toast.success('Unidade de aprendizagem removida com sucesso!')
+            this.$toast.success('Unidade de referência removida com sucesso!')
           }).catch(this.showError)
         }
       })

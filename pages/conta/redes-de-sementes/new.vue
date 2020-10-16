@@ -15,7 +15,7 @@ export default {
     return {
       breadcrumb: [
         { text: 'Minha conta', to: '/conta' },
-        { text: 'Redes de sementes', to: '/conta/redes-de-sementes' },
+        { text: 'Produtores orgânicos', to: '/conta/produtores-organicos' },
         { text: 'Cadastrar', active: true }
       ]
     }

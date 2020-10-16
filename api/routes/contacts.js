@@ -2,31 +2,32 @@ const express = require('express')
 const mongoose = require('mongoose')
 const router = express.Router()
 const auth = require('../config/auth')
-const Newsletter = mongoose.model('Newsletter')
+const Contact = mongoose.model('Contact')
 
 router.get('/', auth.admin, (req, res) => {
   const query = {}
   if (!req.payload.roles.includes('super')) {
     query.site = req.payload.site
   }
-  Newsletter.find(query).sort('name').exec((err, newsletters) => {
+  Contact.find(query).sort('name').exec((err, contacts) => {
     if (err) {
       res.status(422).send(err.message)
     } else {
-      res.json(newsletters)
+      res.json(contacts)
     }
   })
 })
 
-router.post('/newsletter', (req, res) => {
-  const newsletter = new Newsletter()
+router.post('/contact', (req, res) => {
+  const contact = new Contact()
 
-  newsletter.site = req.body.site
-  newsletter.name = req.body.name
-  newsletter.email = req.body.email
+  contact.site = req.body.site
+  contact.name = req.body.name
+  contact.email = req.body.email
+  contact.message = req.body.message
 
-  newsletter.save().then(() => {
-    res.json(newsletter)
+  contact.save().then(() => {
+    res.json(contact)
   }).catch(err => {
     res.status(422).send(err.message)
   })

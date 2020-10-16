@@ -2,7 +2,7 @@
   <div v-if="page" class="page-info">
     <banners :items="page.pictures" />
     <b-container>
-      <h1 v-if="page.title" class="title pt-5">{{ page.title }}</h1>
+      <h1 v-if="page.title" class="title pt-5 pb-4">{{ page.title }}</h1>
       <p v-if="page.description">{{ page.description }}</p>
       <b-button v-if="page.content || (page.pictures && page.pictures.length) || (page.pdfs && page.pdfs.length)" variant="primary" @click="showMore = !showMore">
         Saiba mais
@@ -44,4 +44,6 @@ export default {
 <style lang="sass">
   .page-info
     color: #fff
+    .title
+      font-size: 2rem
 </style>

@@ -56,7 +56,7 @@
                 <b-col md="12">
                   <CoordinatesPreview :form="form" />
                   <div>
-                    <address-form :v-model="form.address" :autoload="false" />
+                    <address-form v-model="form.address" :autoload="false" />
                   </div>
                 </b-col>
                 <b-col md="12">

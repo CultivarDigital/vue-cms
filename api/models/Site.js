@@ -43,6 +43,12 @@ SiteSchema.virtual('users', {
   foreignField: 'site'
 })
 
+SiteSchema.virtual('users', {
+  ref: 'User',
+  localField: '_id',
+  foreignField: 'site'
+})
+
 SiteSchema.virtual('pages', {
   ref: 'Page',
   localField: '_id',
@@ -75,6 +81,12 @@ SiteSchema.virtual('seeds_networks', {
 
 SiteSchema.virtual('service_providers', {
   ref: 'ServiceProvider',
+  localField: '_id',
+  foreignField: 'site'
+})
+
+SiteSchema.virtual('women_groups', {
+  ref: 'WomenGroup',
   localField: '_id',
   foreignField: 'site'
 })

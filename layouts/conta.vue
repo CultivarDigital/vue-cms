@@ -7,9 +7,9 @@
           <b-navbar-toggle target="header-conta" />
           <b-collapse id="header-conta" is-nav>
             <b-navbar-nav>
-              <b-nav-item to="/conta/unidades-de-aprendizagem">Unidades de aprendizagem</b-nav-item>
+              <b-nav-item to="/conta/unidades-de-referencia">Unidades de referência</b-nav-item>
               <b-nav-item to="/conta/prestadores-de-servico">Prestadores de serviço</b-nav-item>
-              <b-nav-item to="/conta/redes-de-sementes">Redes de sementes</b-nav-item>
+              <b-nav-item to="/conta/produtores-organicos">Produtores orgânicos</b-nav-item>
             </b-navbar-nav>
             <b-navbar-nav class="ml-auto">
               <b-nav-item-dropdown right>

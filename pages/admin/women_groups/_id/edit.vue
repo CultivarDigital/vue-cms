@@ -1,34 +1,34 @@
 <template>
   <div class="create">
     <b-breadcrumb :items="breadcrumb" />
-    <SeedsNetworkForm v-if="seeds_network" :seeds-network="seeds_network" />
+    <WomenGroupForm v-if="women_group" :women-group="women_group" />
     <div v-else class="text-center">
       <b-spinner small label="Carregando..." />
     </div>
   </div>
 </template>
 <script>
-import SeedsNetworkForm from '@/components/admin/SeedsNetworkForm'
+import WomenGroupForm from '@/components/admin/WomenGroupForm'
 import mixinGlobal from '@/mixins/global'
 
 export default {
   layout: 'admin',
   components: {
-    SeedsNetworkForm
+    WomenGroupForm
   },
   mixins: [mixinGlobal],
   data () {
     return {
-      seeds_network: null,
+      women_group: null,
       breadcrumb: []
     }
   },
   async created () {
-    this.seeds_network = await this.$axios.$get('/api/seeds_networks/' + this.$route.params.id).catch(this.showError)
+    this.women_group = await this.$axios.$get('/api/women_groups/' + this.$route.params.id).catch(this.showError)
     this.breadcrumb = [
       { text: 'Painel', to: '/admin' },
-      { text: 'Produtores orgânicos', to: '/admin/seeds_networks' },
-      { text: this.seeds_network.name, active: true }
+      { text: 'Grupos de mulheres', to: '/admin/women_groups' },
+      { text: this.women_group.name, active: true }
     ]
   }
 }

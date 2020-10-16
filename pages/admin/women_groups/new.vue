@@ -1,21 +1,21 @@
 <template>
   <div class="create">
     <b-breadcrumb :items="breadcrumb" />
-    <SeedsNetworkForm />
+    <WomenGroupForm />
   </div>
 </template>
 <script>
-import SeedsNetworkForm from '@/components/admin/SeedsNetworkForm'
+import WomenGroupForm from '@/components/admin/WomenGroupForm'
 export default {
   layout: 'admin',
   components: {
-    SeedsNetworkForm
+    WomenGroupForm
   },
   data () {
     return {
       breadcrumb: [
         { text: 'Painel', to: '/admin' },
-        { text: 'Produtores orgânicos', to: '/admin/seeds_networks' },
+        { text: 'Grupos de mulheres', to: '/admin/women_groups' },
         { text: 'Cadastrar', active: true }
       ]
     }

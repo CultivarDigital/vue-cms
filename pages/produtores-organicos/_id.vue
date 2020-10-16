@@ -64,7 +64,7 @@ export default {
   data() {
     return {
       page_id: 'seeds_networks',
-      page_title: this.seeds_network ? this.seeds_network.name + ' - Redes de sementes' : null,
+      page_title: this.seeds_network ? this.seeds_network.name + ' - Produtores orgânicos' : null,
       page_description: this.seeds_network ? this.seeds_network.description : null,
       page_image: (this.seeds_network && this.seeds_network.pictures && this.seeds_network.pictures.length > 0 ? this.seeds_network.pictures[0].url : null)
     }
@@ -73,7 +73,7 @@ export default {
     breadcrumb () {
       return [
         { text: 'Mapa', to: '/mapa' },
-        { text: 'Redes de sementes', to: '/redes-de-sementes' },
+        { text: 'Produtores orgânicos', to: '/produtores-organicos' },
         { text: this.seeds_network ? this.seeds_network.name : '', active: true }
       ]
     },

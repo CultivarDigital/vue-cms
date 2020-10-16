@@ -57,7 +57,7 @@ export default {
   },
   head () {
     return {
-      title: this.post.title + ' - Unidades de Aprendizagem - ' + this.site.name,
+      title: this.post.title + ' - Unidades de Referência - ' + this.site.name,
       meta: [
         { hid: 'description', name: 'description', content: this.post.description || this.site.description }
       ]
