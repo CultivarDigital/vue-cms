@@ -1,7 +1,7 @@
 <template>
   <div class="posts">
     <b-breadcrumb :items="breadcrumb" />
-    <PageForm v-if="show_page_form" slug="posts" @cancel="show_page_form = !show_page_form" />
+    <PageForm v-if="show_page_form" slug="noticias" @cancel="show_page_form = !show_page_form" />
     <div v-else>
       <div class="text-right mb-3">
         <b-button @click="show_page_form = !show_page_form">

@@ -42,7 +42,7 @@
         </b-col>
       </b-row>
       <b-row v-if="$auth.hasScope('super') || $auth.hasScope('admin')">
-        <b-col v-if="$auth.hasScope('super') && sites && !user.roles.includes('super')" md="6">
+        <b-col v-if="$auth.hasScope('super') && sites && !form.roles.includes('super')" md="6">
           <b-form-group label="Site">
             <b-form-select v-model="form.site" :options="sites" />
           </b-form-group>
@@ -64,40 +64,13 @@
           </b-form-group>
         </b-col>
         <b-col md="12">
-          <b-form-group label="Coordenadas Google Maps *" description="Insira as coordenadas do item que deseja cadastrar ou clique no botão abaixo para selecionar seu endereço">
-            <b-row>
-              <b-col>
-                <validation-provider v-slot="{ errors }" name="latitude" rules="required">
-                  <b-form-input v-model="form.address.location.coordinates[0]" name="latitude" placeholder="Latitude" type="number" min="-90.000000" max="90.000000" step="0.000000001" />
-                  <span class="text-danger">{{ errors[0] }}</span>
-                </validation-provider>
-              </b-col>
-              <b-col>
-                <validation-provider v-slot="{ errors }" name="longitude" rules="required">
-                  <b-form-input v-model="form.address.location.coordinates[1]" name="longitude" placeholder="Longitude" type="number" min="-180.000000" max="180.000000" step="0.000000001" />
-                  <span class="text-danger">{{ errors[0] }}</span>
-                </validation-provider>
-              </b-col>
-            </b-row>
-          </b-form-group>
           <CoordinatesPreview :form="form" />
-          <div class="text-right">
-            <address-form :current-address="form.address" :autoload="false" @input="setAddress" />
+          <div>
+            <address-form v-model="form.address" :autoload="false" />
           </div>
-          <b-row>
-            <b-col md="6">
-              <b-form-group label="Estado">
-                <b-form-select v-model="form.address.uf" :options="estados" />
-              </b-form-group>
-            </b-col>
-            <b-col md="6">
-              <b-form-group v-if="form.address.uf" label="Cidade">
-                <b-form-select v-model="form.address.city" :options="cidades" />
-              </b-form-group>
-            </b-col>
-          </b-row>
         </b-col>
       </b-row>
+      <br>
       <b-button type="submit" variant="primary" block :disabled="invalid">
         Salvar
       </b-button>

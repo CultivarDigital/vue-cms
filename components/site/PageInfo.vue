@@ -17,7 +17,7 @@
             <a :href="pdf.url" target="_blank">
               <b-img :src="pdf.thumb" class="thumbnail" />
               <strong v-if="pdf.title">{{ pdf.title }}<br></strong>
-              <span>{{ 'https://' + site.domain_name + pdf.url }}</span>
+              <br><span>{{ 'https://' + $store.state.site.domain_name + pdf.url }}</span>
             </a>
           </div>
         </div>

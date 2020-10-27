@@ -1,7 +1,7 @@
 <template>
   <div class="learning_units">
     <b-breadcrumb :items="breadcrumb" />
-    <PageForm v-if="show_page_form" slug="learning_units" @cancel="show_page_form = !show_page_form" />
+    <PageForm v-if="show_page_form" slug="unidades-de-referencia" @cancel="show_page_form = !show_page_form" />
     <div v-else>
       <div class="text-right mb-3">
         <b-button @click="show_page_form = !show_page_form">
@@ -39,12 +39,8 @@
 
 <script>
 import mixinGlobal from '@/mixins/global'
-import PageForm from '@/components/admin/PageForm'
 export default {
   layout: 'admin',
-  components: {
-    PageForm
-  },
   mixins: [mixinGlobal],
   data () {
     return {

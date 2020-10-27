@@ -3,38 +3,10 @@
     <b-form @submit.prevent="validate().then(save)">
       <b-row>
         <b-col md="12">
-          <b-form-group label="Localização *" description="Insira as coordenadas do item que deseja cadastrar ou clique no botão abaixo para selecionar seu endereço">
-            <b-row>
-              <b-col>
-                <validation-provider v-slot="{ errors }" name="latitude" rules="required">
-                  <b-form-input v-model="form.address.location.coordinates[0]" name="latitude" placeholder="Latitude" type="number" min="-90.000000" max="90.000000" step="0.000000001" />
-                  <span class="text-danger">{{ errors[0] }}</span>
-                </validation-provider>
-              </b-col>
-              <b-col>
-                <validation-provider v-slot="{ errors }" name="longitude" rules="required">
-                  <b-form-input v-model="form.address.location.coordinates[1]" name="longitude" placeholder="Longitude" type="number" min="-180.000000" max="180.000000" step="0.000000001" />
-                  <span class="text-danger">{{ errors[0] }}</span>
-                </validation-provider>
-              </b-col>
-            </b-row>
-            <CoordinatesPreview :form="form" />
-          </b-form-group>
-          <div class="text-right">
-            <address-form :current-address="form.address" :autoload="false" @input="setAddress" />
+          <CoordinatesPreview :form="form" />
+          <div>
+            <address-form v-model="form.address" :autoload="false" />
           </div>
-          <b-row>
-            <b-col md="6">
-              <b-form-group label="Estado">
-                <b-form-input v-model="form.address.uf" />
-              </b-form-group>
-            </b-col>
-            <b-col md="6">
-              <b-form-group label="Cidade">
-                <b-form-input v-model="form.address.city" />
-              </b-form-group>
-            </b-col>
-          </b-row>
         </b-col>
         <b-col md="12">
           <b-form-group label="Quantidade de plantios *">

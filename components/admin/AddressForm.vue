@@ -12,8 +12,8 @@
         </b-form-group>
       </b-col>
     </b-row>
-    <b-button v-if="currentAddressFilled" class="btn btn-default btn-sm" @click="show_modal = !show_modal">Mudar endereço</b-button>
-    <b-button v-else class="btn btn-default btn-sm" @click="show_modal = !show_modal">Configurar endereço</b-button>
+    <b-button v-if="currentAddressFilled" class="btn btn-default btn-block" @click="show_modal = !show_modal">Mudar endereço</b-button>
+    <b-button v-else class="btn btn-default btn-block" @click="show_modal = !show_modal">Configurar endereço</b-button>
     <b-modal v-model="show_modal" title="Localização" hide-footer hide-header>
       <div v-if="show_auto_complete">
         <div v-if="!addressFilled">
@@ -162,7 +162,7 @@ export default {
   },
   computed: {
     currentAddressFilled () {
-      return this.input && this.input.location && this.input.location.coordinates && this.input.location.coordinates.length === 2
+      return this.value && this.value.location && this.value.location.coordinates && this.value.location.coordinates.length === 2
     },
     addressFilled () {
       return Array.isArray(this.address) || (this.address && this.address.location && this.address.location.coordinates && this.address.location.coordinates.length === 2)
@@ -179,10 +179,10 @@ export default {
       this.show_modal = true
       this.getLocation()
     } else {
-      this.address = this.input
-      if (this.input) {
+      this.address = this.value
+      if (this.value) {
         Object.keys(this.form).forEach(k => {
-          this.form[k] = this.input[k]
+          this.form[k] = this.value[k]
         })
       }
     }

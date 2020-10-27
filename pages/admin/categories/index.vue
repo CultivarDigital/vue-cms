@@ -32,13 +32,9 @@
 </template>
 
 <script>
-import PageForm from '@/components/admin/PageForm'
 import mixinGlobal from '@/mixins/global'
 export default {
   layout: 'admin',
-  components: {
-    PageForm
-  },
   mixins: [mixinGlobal],
   data () {
     return {
