@@ -23,7 +23,7 @@ const PageSchema = mongoose.Schema({
   toJSON: { virtuals: true }
 })
 
-PageSchema.index({ slug: 1, site: 1}, { unique: true });
+PageSchema.index({ slug: 1, site: 1 }, { unique: true })
 
 PageSchema.plugin(uniqueValidator, {
   message: 'Este nome já está sendo usado'

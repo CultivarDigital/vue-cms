@@ -1,7 +1,8 @@
-import { L } from "vue2-leaflet"
-x = {
+import { L } from 'vue2-leaflet'
+const x = () => {
+  /* eslint-disable */
   return L.divIcon({
-    className: "my-custom-pin",
+    className: 'my-custom-pin',
     html: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 34.892337" height="60" width="40">
       <g transform="translate(-814.59595,-274.38623)">
         <g transform="matrix(1.1855854,0,0,1.1855854,-151.17715,-57.3976)">
@@ -11,5 +12,6 @@ x = {
       </g>
     </svg>`
   })
+  /* eslint-enable */
 }
 export default x

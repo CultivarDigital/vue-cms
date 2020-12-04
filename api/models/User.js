@@ -28,6 +28,7 @@ const UserSchema = new mongoose.Schema({
   },
   organization: String,
   address: AddressSchema,
+  picture: Object,
   hash: String,
   salt: String,
   roles: [String]
@@ -62,6 +63,7 @@ UserSchema.methods.generateJWT = function() {
     site: this.site,
     site_slug: this.site_slug,
     name: this.name,
+    picture: this.picture,
     organization: this.organization,
     address: this.address,
     exp: parseInt(exp.getTime() / 1000)
@@ -77,6 +79,7 @@ UserSchema.methods.toAuthJSON = function() {
     token: this.generateJWT(),
     roles: this.roles,
     name: this.name,
+    picture: this.picture,
     organization: this.organization,
     address: this.address
   }
@@ -90,6 +93,7 @@ UserSchema.methods.data = function() {
     email: this.email,
     roles: this.roles,
     name: this.name,
+    picture: this.picture,
     organization: this.organization,
     address: this.address
   }

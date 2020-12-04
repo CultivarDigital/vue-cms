@@ -35,7 +35,7 @@
                         <l-popup>
                           <n-link :to="layers[layer].url + '/' + item.slug" class="text-center">
                             <b-img v-if="item.pictures && item.pictures.length" :src="item.pictures[0].thumb" />
-                            <h6>{{ item.name }}</h6>
+                            <h6 :class="{nopicture: (!item.pictures || !item.pictures.length)}">{{ item.name }}</h6>
                             <b-badge :class="layer" pills>{{ layers[layer].title }}</b-badge>
                             <p>{{ item.description }}</p>
                           </n-link>
@@ -50,7 +50,10 @@
                   <l-marker v-if="user.address && user.address.location && user.address.location.coordinates && user.address.location.coordinates.length > 0" :key="user._id" :lat-lng="user.address.location.coordinates">
                     <l-icon :icon-size="[20, 32]" :icon-url="require('~/assets/img/markers/default.png')" />
                     <l-popup>
-                      <h6>{{ user.name }}</h6>
+                      <b-img v-if="user.picture" :src="user.picture.thumb" />
+                      <h6 :class="{nopicture: !user.picture}">{{ user.name }}</h6>
+                      <b-badge class="members" pills>Membro da rede</b-badge>
+                      <p v-if="user.organization"><strong>{{ user.organization }}</strong></p>
                       <p>{{ user.address.city }} - {{ user.address.uf }}</p>
                     </l-popup>
                   </l-marker>
@@ -107,6 +110,9 @@ export default {
         color: #fff
         margin: -15px -20px 7px -20px
         padding: 10px
+        &.nopicture
+          border-top-left-radius: 10px
+          border-top-right-radius: 10px
     .col-md-4
       padding: 50px
       h3

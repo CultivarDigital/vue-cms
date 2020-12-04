@@ -30,7 +30,6 @@ export default {
     }
   },
   created () {
-    console.log(this.value)
     if (this.value) {
       const dateArr = this.value.split('T')
       this.date = dateArr[0]

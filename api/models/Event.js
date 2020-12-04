@@ -18,7 +18,7 @@ const EventSchema = mongoose.Schema({
   pdfs: [Object],
   tags: [String],
   start_at: Date,
-  end_at: Date,
+  end_at: Date
 }, {
   timestamps: true,
   toJSON: { virtuals: true }

@@ -13,7 +13,7 @@
           {{ event.start_at.endsWith('00:00:00.000Z') ? $moment(event.start_at).format("DD/MM/YYYY") : $moment(event.start_at).format("DD/MM/YYYY HH:mm") }}
         </p>
         <tags :tags="event.tags" />
-        <div class="quill-content mt-4" v-if="event.content || event.pdfs.length || event.picture">
+        <div v-if="event.content || event.pdfs.length || event.picture" class="quill-content mt-4">
           <banners :items="[event.picture]" />
           <div v-if="event.content" v-html="event.content" />
           <div v-if="event.pdfs && event.pdfs.length > 0" class="pdfs">

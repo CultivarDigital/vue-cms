@@ -41,6 +41,7 @@
           </b-form-group>
         </b-col>
       </b-row>
+      <pictures-upload :form="form" field="picture" url="/api/uploads/images" label="Foto do perfil" />
       <b-row v-if="$auth.hasScope('super') || $auth.hasScope('admin')">
         <b-col v-if="$auth.hasScope('super') && sites && !form.roles.includes('super')" md="6">
           <b-form-group label="Site">
@@ -103,6 +104,7 @@ export default {
       form: {
         site: null,
         name: '',
+        picture: null,
         email: '',
         organization: '',
         password: '',

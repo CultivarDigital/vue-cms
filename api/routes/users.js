@@ -39,6 +39,7 @@ router.post('/', auth.admin, async (req, res, next) => {
 
   user.email = req.body.email
   user.name = req.body.name
+  user.picture = req.body.picture
   user.organization = req.body.organization
   user.address = req.body.address
 
@@ -67,6 +68,7 @@ router.post('/register', async (req, res, next) => {
 
   user.email = req.body.email
   user.name = req.body.name
+  user.picture = req.body.picture
   user.organization = req.body.organization
   user.site = req.body.site
   user.address = req.body.address
@@ -88,6 +90,7 @@ router.put('/:id', auth.admin, function(req, res, next) {
   User.findById(req.params.id).then(async (user) => {
     user.email = req.body.email
     user.name = req.body.name
+    user.picture = req.body.picture
     user.organization = req.body.organization
     user.address = req.body.address
 
@@ -120,6 +123,7 @@ router.put('/', auth.authenticated, function(req, res, next) {
   User.findById(req.payload.id).then(function(user) {
     user.email = req.body.email
     user.name = req.body.name
+    user.picture = req.body.picture
     user.organization = req.body.organization
     user.address = req.body.address
     if (req.body.password) {

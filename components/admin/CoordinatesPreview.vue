@@ -7,7 +7,7 @@
     </l-map>
     <p>
       <small>Coordenadas: {{ form.address.location.coordinates.join(',') }}</small>
-      <small v-if="form.address && form.address.description"><br>Endereço: {{ form.address.description }}</small>
+      <span v-if="form.address && form.address.description"><br>Endereço: <strong>{{ form.address.description }}</strong></span>
     </p>
   </div>
 </template>

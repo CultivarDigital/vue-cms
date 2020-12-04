@@ -31,7 +31,7 @@ export default {
   props: {
     page: {
       type: Object,
-      defatul: null
+      default: null
     }
   },
   data () {

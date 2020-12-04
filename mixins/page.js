@@ -19,8 +19,6 @@ export default {
     const meta = []
 
     let title = this.site.name
-    console.log('this.page_title')
-    console.log(this.page_title)
     if (this.page_title) {
       title = this.page_title + ' - ' + this.site.name
     } else if (this.page) {

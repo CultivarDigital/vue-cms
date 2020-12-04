@@ -41,7 +41,6 @@
         Salvar
       </b-button>
     </b-form>
-    <pre>{{ form }}</pre>
   </ValidationObserver>
 </template>
 

@@ -40,6 +40,7 @@
         </b-form-group>
       </b-col>
     </b-row>
+    <pictures-upload :form="form" field="picture" url="/api/uploads/images" label="Foto do perfil" />
     <b-row>
       <b-col md="12">
         <CoordinatesPreview :form="form" />
@@ -59,7 +60,6 @@
     <b-button type="submit" variant="primary" block :disabled="invalid || !passwordConfirmed">
       Salvar
     </b-button>
-    <pre>{{ form }}</pre>
   </ValidationObserver>
 </template>
 
@@ -79,6 +79,7 @@ export default {
       show_password: false,
       form: {
         name: '',
+        picture: null,
         email: '',
         password: '',
         password_confirmation: '',

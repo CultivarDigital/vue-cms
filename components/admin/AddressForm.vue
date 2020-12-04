@@ -276,8 +276,6 @@ export default {
       this.loading_gps = false
     },
     cb () {
-      console.log('cb')
-      console.log(this.form)
       this.$emit('input', this.form)
     }
   }
