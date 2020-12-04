@@ -1,6 +1,6 @@
 <template>
   <div class="address-form">
-    <b-row>
+    <!-- <b-row>
       <b-col md="6">
         <b-form-group label="Estado">
           <b-form-select v-model="form.uf" :options="estados" @input="cb" />
@@ -11,7 +11,7 @@
           <b-form-select v-model="form.city" :options="cidades" @input="cb" />
         </b-form-group>
       </b-col>
-    </b-row>
+    </b-row> -->
     <b-button v-if="currentAddressFilled" class="btn btn-default btn-block" @click="show_modal = !show_modal">Mudar endereço</b-button>
     <b-button v-else class="btn btn-default btn-block" @click="show_modal = !show_modal">Configurar endereço</b-button>
     <b-modal v-model="show_modal" title="Localização" hide-footer hide-header>
