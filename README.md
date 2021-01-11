@@ -1,26 +1,59 @@
-# Plataforma Redes Agroecológicas
+# Terrakrya CMS
 
-## A Iniciativa Redes Agroecológicas é uma ferramenta tecnológica que tem como objetivo facilitar a comunicação e aumentar a visibilidade de redes agroecológicas. Esta é uma plataforma de código aberto e toda colaboração é bem vinda.
+A bunch of common features that allow the creation of sites in a simple and agile way. 
+The objective is not to be an wordpress but acts more like a dynamic boilerplate to create dynamic websites without having to deal with the basics.
 
-### Abaixo as instruções para desenvolvedores
+### Tecnologies used
+
+Embracing the entire project we are using Nuxt.js with some @nuxtjs modules like: 
+- auth for athentication
+- axios for api requests
+- pwa to allow the site to act as a Progressive Web App
+- toast to handle errors and present it
+ 
+To compose the client side we are using the Vue.js with some cool libraries like:
+- BootstrapVue to compose the layout structure and form controls
+- Leaflet to render maps
+- vue-goodshare to show share buttons
+
+The server site is composed inside on top of Node.js tecnologies like:
+- Mongodb database
+- Express to serve the node app
+- Mongoose to structure the database
+- Passport managing the authentication
+- multer for upload
+- sharp to thumbnail generation
+
+### Basic features
+
+- Authentication flow and user crud with authorization role
+- Front site
+- Admin panel
+- Pages management
+- Blog/Posts
+- Events
+- Contact form
+- Multisites
+
+### Developer instructions
 
 ```bash
-# Clone este repositório
-git clone https://github.com/diegomr86/redes-agroecologicas.git
+# Clone this repo
+git clone https://github.com/terrakrya/cms.git
 
-# Entre no diretório que acabou de baixar
-cd redes-agroecologicas/
+# Go inside downloaded directory
+cd cms/
 
-# Instale as dependências
+# Install NPM dependecies
 $ yarn install
 
-# Para rodar o a versão de desenvolvimento com hot reload no localhost:3000 execute:
+# To run the developer version with hotreload in localhost:3000 run:
 $ yarn dev
 
-# Com o servidor de desenvolvimento rodando é necessario gerar o primeiro super usuário. Para isso acesse:
-http://localhost:3000/api/auth/init
+# In first time you need to generate the first user to access the admin panel:
+$ yarn init
 
-# o servidor gerará uma rede de teste e um super usuário e então retornará os dados do usuário gerado. Use esses dados para acessar o painel administrativo da plataforma:
+# The previous command printed you the generated user credentials. Use this info to access the admin panel at:
 http://localhost:3000/admin
 
 # para compilar e a versão de produção:
@@ -32,4 +65,3 @@ $ yarn generate
 ```
 ## Aways run "yarn lint" before commit
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
