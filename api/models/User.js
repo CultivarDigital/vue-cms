@@ -3,7 +3,6 @@ const mongoose = require('mongoose')
 const uniqueValidator = require('mongoose-unique-validator')
 const jwt = require('jsonwebtoken')
 const ObjectId = mongoose.Schema.Types.ObjectId
-const AddressSchema = require('./Address')
 
 mongoose.set('useCreateIndex', true)
 
@@ -27,7 +26,6 @@ const UserSchema = new mongoose.Schema({
     default: null
   },
   organization: String,
-  address: AddressSchema,
   picture: Object,
   hash: String,
   salt: String,

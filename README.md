@@ -47,11 +47,11 @@ cd cms/
 # Install NPM dependecies
 $ yarn install
 
-# To run the developer version with hotreload in localhost:3000 run:
-$ yarn dev
-
 # In first time you need to generate the first user to access the admin panel:
 $ yarn seed
+
+# To run the developer version with hotreload in localhost:3000 run:
+$ yarn dev
 
 # The previous command printed you the generated user credentials. Use this info to access the admin panel at:
 http://localhost:3000/admin
