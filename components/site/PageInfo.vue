@@ -41,9 +41,3 @@ export default {
   }
 }
 </script>
-<style lang="sass">
-  .page-info
-    color: #fff
-    .title
-      font-size: 2rem
-</style>

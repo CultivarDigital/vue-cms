@@ -7,21 +7,11 @@
           <b-navbar-toggle target="header-admin" />
           <b-collapse id="header-admin" is-nav>
             <b-navbar-nav>
-              <b-nav-item v-if="$auth.hasScope('super')" to="/admin/sites">Redes</b-nav-item>
-              <b-nav-item v-if="$auth.hasScope('admin') && $store.state.site" :to="'/admin/sites/' + $store.state.site._id + '/edit'">Rede</b-nav-item>
-              <b-nav-item-dropdown v-if="$auth.hasScope('admin')">
-                <template v-slot:button-content>
-                  <em>Mapa</em>
-                </template>
-                <b-dropdown-item to="/admin/learning_units">Unidades de referência</b-dropdown-item>
-                <b-dropdown-item to="/admin/seeds_networks">Produtores orgânicos</b-dropdown-item>
-                <b-dropdown-item to="/admin/women_groups">Grupos de mulheres</b-dropdown-item>
-                <b-dropdown-item to="/admin/service_providers">Prestadores de serviço</b-dropdown-item>
-                <!-- <b-dropdown-item to="/admin/planting_areas">Áreas de plantio</b-dropdown-item> -->
-              </b-nav-item-dropdown>
+              <b-nav-item v-if="$auth.hasScope('super')" to="/admin/sites">Sites</b-nav-item>
+              <b-nav-item v-if="$auth.hasScope('admin') && $store.state.site" :to="'/admin/sites/' + $store.state.site._id + '/edit'">Site</b-nav-item>
               <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/pages">Páginas</b-nav-item>
               <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/medias">Biblioteca</b-nav-item>
-              <b-nav-item to="/admin/users">Membros</b-nav-item>
+              <b-nav-item to="/admin/users">Usuários</b-nav-item>
               <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/posts">Notícias</b-nav-item>
               <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/events">Agenda</b-nav-item>
               <b-nav-item to="/admin/contacts">Contatos</b-nav-item>
@@ -54,13 +44,3 @@ export default {
   }
 }
 </script>
-<style lang="sass">
-  .admin
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"
-    color: #222
-  .form-group
-    margin-top: 1rem
-    legend
-      font-weight: bold
-
-</style>

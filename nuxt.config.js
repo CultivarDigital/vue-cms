@@ -5,7 +5,7 @@ export default {
     '~/api/index.js'
   ],
   head: {
-    title: 'Plataforma Redes Agroecológicas',
+    title: 'Terrakrya CMS',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' }
@@ -62,11 +62,7 @@ export default {
     'nuxt-leaflet'
   ],
   axios: {
-    baseURL: 'https://redes-agroecologicas.terrakrya.com' // Used as fallback if no runtime config is provided
-  },
-  bootstrapVue: {
-    bootstrapCSS: false, // Or `css: false`
-    bootstrapVueCSS: false // Or `bvCSS: false`
+    baseURL: 'https://cms.terrakrya.com' // Used as fallback if no runtime config is provided
   },
   auth: {
     strategies: {

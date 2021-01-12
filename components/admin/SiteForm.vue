@@ -101,7 +101,7 @@ export default {
       if (this.site) {
         const site = await this.$axios.$put('/api/sites/' + this.site.slug, this.form).catch(this.showError)
         if (site) {
-          this.$toast.success('Rede atualizada com sucesso!')
+          this.$toast.success('Site atualizado com sucesso!')
           if (this.$auth.hasScope('super')) {
             this.$router.push('/admin/sites')
           } else {
@@ -111,7 +111,7 @@ export default {
       } else {
         const site = await this.$axios.$post('/api/sites', this.form).catch(this.showError)
         if (site) {
-          this.$toast.success('Rede cadastrada com sucesso!')
+          this.$toast.success('Site cadastrado com sucesso!')
           if (this.$auth.hasScope('super')) {
             this.$router.push('/admin/sites')
           } else {

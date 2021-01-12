@@ -15,7 +15,7 @@ export default {
     return {
       breadcrumb: [
         { text: 'Painel', to: '/admin' },
-        { text: 'Redes', to: '/admin/sites' },
+        { text: 'Sites', to: '/admin/sites' },
         { text: 'Cadastrar', active: true }
       ]
     }

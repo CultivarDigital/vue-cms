@@ -156,9 +156,6 @@ export default {
         font-size: 14px
         color: #fff
         padding: 10px 15px
-        // background-image: url('~assets/img/arrow-down.png')
-        // background-repeat: no-repeat
-        // background-position: calc(100% - 10px)
       ul
         background: #fff
         border-bottom-left-radius: 10px

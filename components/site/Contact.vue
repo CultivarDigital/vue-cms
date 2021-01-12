@@ -69,17 +69,3 @@ export default {
   }
 }
 </script>
-
-<style lang="sass" scoped>
-  .contact-component
-    .form-control
-      border: none
-      font-size: 12px
-      border-radius: 5px
-    textarea
-    .btn
-      color: #fff
-      font-size: 10px
-      border-radius: 5px
-      padding: 10px 30px
-</style>

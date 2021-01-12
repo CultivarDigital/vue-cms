@@ -51,7 +51,7 @@ $ yarn install
 $ yarn dev
 
 # In first time you need to generate the first user to access the admin panel:
-$ yarn init
+$ yarn seed
 
 # The previous command printed you the generated user credentials. Use this info to access the admin panel at:
 http://localhost:3000/admin

@@ -10,13 +10,11 @@
           <b-navbar-nav />
           <b-navbar-nav class="ml-auto">
             <!-- <b-nav-item v-for="page in site.pages" :key="page.slug" :to="'/' + page.slug">{{ page.title }}</b-nav-item> -->
-            <b-nav-item to="/mapa">Mapa</b-nav-item>
             <b-nav-item to="/biblioteca">Biblioteca</b-nav-item>
             <b-nav-item to="/noticias">Notícias</b-nav-item>
             <b-nav-item to="/agenda">Agenda</b-nav-item>
             <b-nav-item @click="$scrollTo('footer')">Contato</b-nav-item>
-            <b-nav-item v-if="!$auth.loggedIn" to="/conta" class="btn-login">Login / Cadastro</b-nav-item>
-            <b-nav-item v-else-if="$auth.hasScope('user')" to="/conta" class="btn-login">Minha conta</b-nav-item>
+            <b-nav-item v-if="!$auth.loggedIn" to="/admin" class="btn-login">Login / Cadastro</b-nav-item>
             <b-nav-item v-else to="/admin" class="btn-login">Painel administrativo</b-nav-item>
           </b-navbar-nav>
         </b-collapse>
@@ -33,27 +31,3 @@ export default {
   }
 }
 </script>
-<style lang="sass" scoped>
-  .navbar-brand
-    img
-      height: 55px
-  .navbar-nav
-    .nav-link
-      font-weight: 700
-      font-style: normal
-      color: #00794e
-      font-size: 12px
-      &.dropdown-toggle
-        em
-          font-style: normal
-        &::after
-          display: none
-    .btn-login
-      background-color: #51009c
-      border-radius: 10px
-      margin-left: 5px
-      a
-        color: #fff
-        &:hover
-          color: #fdfdfd
-</style>

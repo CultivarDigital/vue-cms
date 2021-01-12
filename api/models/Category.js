@@ -37,4 +37,5 @@ CategorySchema.virtual('projects', {
   foreignField: 'category'
 })
 
-export const Category = mongoose.models.Category || mongoose.model('Category', CategorySchema)
+const Category = mongoose.models.Category || mongoose.model('Category', CategorySchema)
+module.exports = Category

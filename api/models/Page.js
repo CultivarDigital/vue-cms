@@ -29,4 +29,5 @@ PageSchema.plugin(uniqueValidator, {
   message: 'Este nome já está sendo usado'
 })
 
-export const Page = mongoose.models.Page || mongoose.model('Page', PageSchema)
+const Page = mongoose.models.Page || mongoose.model('Page', PageSchema)
+module.exports = Page

@@ -32,4 +32,5 @@ PostSchema.plugin(uniqueValidator, {
   message: 'Este nome já está sendo usado'
 })
 
-export const Post = mongoose.models.Post || mongoose.model('Post', PostSchema)
+const Post = mongoose.models.Post || mongoose.model('Post', PostSchema)
+module.exports = Post

@@ -112,11 +112,7 @@ export default {
       if (profile) {
         this.$auth.setUser(profile)
         this.$toast.success('Seus dados foram atualizados com sucesso')
-        if (this.$auth.hasScope('super') || this.$auth.hasScope('admin')) {
-          this.$router.push('/admin')
-        } else {
-          this.$router.push('/conta')
-        }
+        this.$router.push('/admin')
       }
     },
     changePassword () {

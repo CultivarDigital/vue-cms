@@ -1,9 +1,13 @@
 <template>
   <div class="default-layout">
-    <div v-show="show_content">
+    <div v-show="site">
       <Header />
       <Nuxt />
       <Footer />
+    </div>
+    <div v-if="!site" class="text-center mt-5">
+      <p>No one site was created yet.</p>
+      <p><strong>Please run <i>yarn seed</i> to create it!</strong></p>
     </div>
   </div>
 </template>
@@ -15,25 +19,15 @@ export default {
     Header,
     Footer
   },
-  data () {
-    return {
-      show_content: false
-    }
-  },
   computed: {
     site () {
       return this.$store.state.site
     }
   },
-  mounted () {
-    if (this.site) {
-      this.show_content = true
-    }
-  },
   head () {
     return {
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: this.site.favicon ? this.site.favicon.url : '/favicon.ico' }
+        { rel: 'icon', type: 'image/x-icon', href: this.site?.favicon?.url || '/favicon.ico' }
       ]
     }
   }

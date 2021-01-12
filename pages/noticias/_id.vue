@@ -65,8 +65,3 @@ export default {
   }
 }
 </script>
-<style lang="sass">
-  .post-page
-    .content
-      background-color: #51009c
-</style>

@@ -35,7 +35,7 @@ export default {
       sites: null,
       breadcrumb: [
         { text: 'Painel', to: '/admin' },
-        { text: 'Redes', active: true }
+        { text: 'Sites', active: true }
       ],
       table: [
         { key: 'name', label: 'Nome' },

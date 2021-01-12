@@ -22,4 +22,5 @@ const ContactSchema = new mongoose.Schema({
   timestamps: true
 })
 
-export const Contact = mongoose.models.Contact || mongoose.model('Contact', ContactSchema)
+const Contact = mongoose.models.Contact || mongoose.model('Contact', ContactSchema)
+module.exports = Contact

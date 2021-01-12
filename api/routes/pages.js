@@ -17,7 +17,6 @@ router.get('/', (req, res) => {
 
 router.get('/generate_pages', (req, res) => {
   const pages = [
-    { slug: 'mapa', title: 'Mapa' },
     { slug: 'biblioteca', title: 'Biblioteca' },
     { slug: 'noticias', title: 'Notícias' },
     { slug: 'agenda', title: 'Agenda' }

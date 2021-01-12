@@ -104,15 +104,3 @@ export default {
   }
 }
 </script>
-
-<style lang="sass">
-.brand h1
-  margin-top: 10px
-  font-size: 31px
-  a
-  color: #fff
-  span
-  font-weight: 300
-  strong
-  font-weight: 900
-  </style>

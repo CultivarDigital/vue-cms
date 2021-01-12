@@ -43,12 +43,3 @@ export default {
   }
 }
 </script>
-<style lang="sass" scoped>
-  .medias-component
-    .card
-      cursor: auto
-      .card-body .card-title
-        margin-bottom: 5px
-      .img
-        max-height: none
-</style>

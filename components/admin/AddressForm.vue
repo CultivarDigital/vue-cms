@@ -281,8 +281,3 @@ export default {
   }
 }
 </script>
-<style lang="sass">
-  .address-form
-    .btn
-      color: #fff
-</style>

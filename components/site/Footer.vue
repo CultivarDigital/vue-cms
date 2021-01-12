@@ -42,26 +42,3 @@ export default {
   }
 }
 </script>
-<style lang="sass" scoped>
-  .footer
-    background-color: #fff
-  footer
-    background-color: #00794e
-    color: #fff
-    padding: 50px 0
-    a
-      color: #fff
-    .logo
-      img
-        max-width: 100%
-        border-radius: 5px
-    .row > div
-      // display: flex
-      // align-items: center
-      &.col-sm-4
-        font-size: 12px
-        white-space: pre-line
-        .social
-          a
-            font-size: 30px
-</style>

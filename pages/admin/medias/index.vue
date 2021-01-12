@@ -86,9 +86,3 @@ export default {
   }
 }
 </script>
-<style lang="sass" scoped>
-  .medias
-    table
-      img
-        max-width: 70px
-</style>

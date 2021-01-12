@@ -1,5 +1,5 @@
 {
-  "name": "redes-agroecologicas",
+  "name": "cms",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -7,10 +7,10 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "export": "nuxt export",
-    "serve": "nuxt serve",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint:style": "stylelint **/*.{vue,css} --ignore-path .gitignore",
-    "lint": "yarn lint:js"
+    "lint": "yarn lint:js",
+    "seed": "node ./scripts/seed.js"
   },
   "lint-staged": {
     "*.{js,vue}": "eslint",

@@ -31,4 +31,5 @@ const MediaSchema = mongoose.Schema({
   toJSON: { virtuals: true }
 })
 
-export const Media = mongoose.models.Media || mongoose.model('Media', MediaSchema)
+const Media = mongoose.models.Media || mongoose.model('Media', MediaSchema)
+module.exports = Media

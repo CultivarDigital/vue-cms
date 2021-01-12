@@ -40,4 +40,5 @@ ProjectSchema.plugin(uniqueValidator, {
   message: 'Este nome já está sendo usado'
 })
 
-export const Project = mongoose.models.Project || mongoose.model('Project', ProjectSchema)
+const Project = mongoose.models.Project || mongoose.model('Project', ProjectSchema)
+module.exports = Project

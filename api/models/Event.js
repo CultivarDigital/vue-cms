@@ -28,4 +28,5 @@ EventSchema.plugin(uniqueValidator, {
   message: 'Este nome já está sendo usado'
 })
 
-export const Event = mongoose.models.Event || mongoose.model('Event', EventSchema)
+const Event = mongoose.models.Event || mongoose.model('Event', EventSchema)
+module.exports = Event
