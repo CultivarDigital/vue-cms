@@ -5,7 +5,6 @@ const User = mongoose.model('User')
 const Site = mongoose.model('Site')
 
 const seed = async () => {
-
   let superUser = await User.findOne({ role: 'super' })
   if (superUser) {
     // eslint-disable-next-line no-console
