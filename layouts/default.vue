@@ -27,7 +27,7 @@ export default {
   head () {
     return {
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: this.site?.favicon?.url || '/favicon.ico' }
+        { rel: 'icon', type: 'image/x-icon', href: (this.site && this.site.favicon ? this.site.favicon.url : '/favicon.ico') }
       ]
     }
   }
