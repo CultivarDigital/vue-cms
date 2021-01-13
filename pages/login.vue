@@ -4,12 +4,12 @@
       <b-container>
         <h6 class="pb-5 pt-5 text-center subtitle">
           Para continuar você deve
-          <a @click="open('login')">
-            <strong>entrar</strong>
+          <a class="btn btn-primary" @click="open('login')">
+            entrar
           </a>
-          com seus dados ou se
-          <a @click="open('register')">
-            <strong>cadastrar</strong>
+          com seus dados ou
+          <a class="btn btn-primary" @click="open('register')">
+            cadastrar-se
           </a>
         </h6>
         <div v-show="tab === 'login'" class="card p-4">
@@ -24,7 +24,7 @@
               <p>
                 Ainda não possúi uma conta?
                 <a @click="open('register')">
-                  <strong>cadastre-se</strong>
+                  <strong>cadastre-se!</strong>
                 </a>
               </p>
               <b-button type="submit" variant="primary">
@@ -178,61 +178,4 @@ export default {
 }
 </script>
 <style lang="sass" scoped>
-  .login-page
-    .content
-      background-color: #51009c
-      .card
-        border-radius: 15px
-        border: none
-        h3
-          font-weight: 700
-          color: #51009c
-          font-size: 22px
-          text-align: center
-        .col
-          padding: 50px
-          h4
-            font-weight: 700
-            font-size: 18px
-          .legend
-            p
-              font-size: 12px
-              .btn
-                background-color: #51009c
-                padding: 1px 3px
-                border: none
-                color: #00794e
-                line-height: 10px
-                font-size: 10px
-                margin-left: 6px
-            .pattern
-              width: 15px
-              height: 25px
-              background-color: #00794e
-              position: absolute
-              left: 0
-          // padding: 30px
-        .col-md-2
-          padding: 30px
-          h4
-            margin-top: 30px
-            font-weight: 700
-            font-size: 16px
-          .legend
-            p
-              font-size: 12px
-              .btn
-                background-color: #51009c
-                padding: 1px 3px
-                border: none
-                color: #00794e
-                line-height: 10px
-                font-size: 10px
-                margin-left: 6px
-            .pattern
-              width: 15px
-              height: 25px
-              background-color: #00794e
-              position: absolute
-              left: 0
 </style>

@@ -23,6 +23,6 @@ if (isProduction) {
     useUnifiedTopology: true
   })
 } else {
-  mongoose.set('debug', true)
+  // mongoose.set('debug', true)
   mongoose.connect('mongodb://localhost/cms', { useNewUrlParser: true, useUnifiedTopology: true })
 }

@@ -29,7 +29,7 @@
             </b-form-group>
           </b-col>
         </b-row>
-        <b-button type="submit" variant="default" :disabled="invalid">
+        <b-button type="submit" variant="primary" :disabled="invalid">
           ENVIAR
         </b-button>
       </b-form>

@@ -3,7 +3,7 @@
     <div class="admin">
       <Header />
       <div class="mb-5" fluid>
-        <b-navbar toggleable="lg" type="dark" variant="dark">
+        <b-navbar toggleable="lg" variant="default">
           <b-navbar-toggle target="header-admin" />
           <b-collapse id="header-admin" is-nav>
             <b-navbar-nav>
@@ -27,7 +27,7 @@
             </b-navbar-nav>
           </b-collapse>
         </b-navbar>
-        <div class="container">
+        <div class="container pt-3">
           <Nuxt />
         </div>
       </div>

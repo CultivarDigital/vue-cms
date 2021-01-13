@@ -1,85 +1,154 @@
+$primary: #41b883
+$secondary: #3b8070
+$default: #35495e
+$success: #00c58e
+$white: #fff
+$black: #212529
+
 pre
-  background-color: #fff
-
-.bg-primary
-  background-color: $primary
-
+  background-color: $white
+a
+  cursor: pointer
+  color: $primary
+  &:hover
+    text-decoration: none
+    color: $secondary
+.bg-primary, .btn-primary
+  background-color: $primary !important
+  border-color: $primary !important
+  color: $white
+.bg-default, .btn-default
+  background-color: $default !important
+  border-color: $default !important
+  color: $white
+.btn-login
+  .nav-link
+    margin-left: 10px
+    background-color: $default !important
+    color: $white !important
+    border-radius: 5px
+    padding: 8px 15px
 .b-table
   tr > td, tr > th
     vertical-align: middle !important
-a
-  cursor: pointer
-  &:hover
-    text-decoration: none
+.pre-line
+  white-space: pre-line
+.breadcrumb
+  background-color: $secondary
+  .breadcrumb-item
+    &::before
+      color: $white
+    &.active
+      color: $white
+  a
+    color: $white
+    font-weight: 600
 
-.default-layout
-  .pre-line
-    white-space: pre-line
-  .banners
-    .carousel-caption
-      height: 100%
-      display: flex
-      align-content: center
-      align-items: center
-      justify-content: center
-      flex-flow: column
-      margin-bottom: -20px
-      h2
-        font-weight: 700
-        font-size: 26px
-        @media (max-width: 768px)
-          font-size: 18px
-        @media (max-width: 576px)
-          font-size: 14px
-      p
-        @media (max-width: 768px)
-          display: none
-    .carousel-indicators
-      bottom: 10px
-      li
-        width: 6px
-        height: 6px
-        background-color: transparent
-        border: 1px solid #fff
-        border-radius: 100%
-
-  .ql-video
-    width: 80%
-    margin: auto
-    display: block
-    height: 32vw
-    @media (max-width: 768px)
-      width: 100%
-  .ql-align-center
-    text-align: center
-  .quill-content
-    background-color: #fff
-    color: #303030
-    border-radius: 20px
-    padding: 50px
-    .banners
-      margin: -50px
-      margin-bottom: 30px
-      img
-        border-bottom-left-radius: 0
-        border-bottom-right-radius: 0
-    p
-      margin-bottom: 0
-    p:first-child > img
-      border-bottom-left-radius: 0
-      border-bottom-right-radius: 0
-      margin: -50px -50px 0 -50px
-      width: calc(100% + 40px)
-      max-width: calc(100% + 40px)
-    p:last-child > img
-      border-top-left-radius: 0
-      border-top-right-radius: 0
-      margin: 0 -50px -50px -50px
-      width: calc(100% + 40px)
-      max-width: calc(100% + 40px)
+header
+  .navbar-brand
+    img
+      max-height: 50px
+footer
+  .logo
     img
       max-width: 100%
-      border-radius: 20px
-    h1, h2, h3, h4, h5, h6
-      font-family: 'Arvo', serif
+.content
+  background-color: $default !important
+  color: $white
+  padding-top: 50px
+  padding-bottom: 50px
+  .card
+    color: $black
+  .page-info
+    .pattern
+      width: 15px
+      height: 25px
+      background-color: #fff
+      position: absolute
+      left: 15px
+    .title
+      margin-left: 30px
+      margin-bottom: 20px
+      h3
+        color: #fff
+        font-size: 24px
+        font-weight: 700
+        text-transform: uppercase
+      p
+        color: #fff
+        font-size: 12px
+        text-transform: uppercase
+        font-weight: normal
+        a
+          color: #fff
+
+.banners
+  .carousel-caption
+    height: 100%
+    display: flex
+    align-content: center
+    align-items: center
+    justify-content: center
+    flex-flow: column
+    margin-bottom: -20px
+    h2
       font-weight: 700
+      font-size: 26px
+      @media (max-width: 768px)
+        font-size: 18px
+      @media (max-width: 576px)
+        font-size: 14px
+    p
+      @media (max-width: 768px)
+        display: none
+  .carousel-indicators
+    bottom: 10px
+    li
+      width: 6px
+      height: 6px
+      background-color: transparent
+      border: 1px solid $white
+      border-radius: 100%
+.admin
+  .navbar-light .navbar-nav .nav-link
+    color: $white
+.ql-video
+  width: 80%
+  margin: auto
+  display: block
+  height: 32vw
+  @media (max-width: 768px)
+    width: 100%
+.ql-align-center
+  text-align: center
+.quill-content
+  background-color: $white
+  color: #303030
+  border-radius: 20px
+  padding: 50px
+  .banners
+    margin: -50px
+    margin-bottom: 30px
+    img
+      border-bottom-left-radius: 0
+      border-bottom-right-radius: 0
+  p
+    margin-bottom: 0
+  p:first-child > img
+    border-bottom-left-radius: 0
+    border-bottom-right-radius: 0
+    margin: -50px -50px 0 -50px
+    width: calc(100% + 40px)
+    max-width: calc(100% + 40px)
+  p:last-child > img
+    border-top-left-radius: 0
+    border-top-right-radius: 0
+    margin: 0 -50px -50px -50px
+    width: calc(100% + 40px)
+    max-width: calc(100% + 40px)
+  img
+    max-width: 100%
+    border-radius: 20px
+  h1, h2, h3, h4, h5, h6
+    font-family: 'Arvo', serif
+    font-weight: 700

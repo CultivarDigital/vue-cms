@@ -6,10 +6,9 @@
         <b-row>
           <b-col md="9">
             <Posts :posts="posts" />
-            <h3 v-if="posts.length === 0" class="text-center text-white">Nenhuma notícia encontrada</h3>
+            <p v-if="posts.length === 0" class="text-center">Nenhum item encontrado</p>
           </b-col>
           <b-col md="3">
-            <h3 class="mt-3 title">Tags</h3>
             <tags :to="$route.path" />
           </b-col>
         </b-row>

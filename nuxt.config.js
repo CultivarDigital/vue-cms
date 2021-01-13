@@ -14,7 +14,7 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
-  css: ['@/assets/css/main.scss'],
+  css: ['@/assets/css/custom.sass'],
   pageTransition: 'page',
   plugins: [
     '~plugins/vue2-filters.js',
@@ -103,7 +103,7 @@ export default {
   },
   fontawesome: {
     icons: {
-      solid: ['faHome'],
+      solid: ['faHome', 'faMapMarker'],
       brands: ['faFacebookSquare', 'faTwitterSquare']
     }
   },

@@ -1,9 +1,9 @@
 <template>
   <header>
     <b-navbar toggleable="md">
-      <b-container class="mt-2" fluid="lg">
+      <b-container fluid="lg">
         <b-navbar-brand to="/">
-          <b-img v-if="site && site.logo" :src="site.logo.url" />
+          <b-img :src="site.logo ? site.logo.url : require('~/assets/img/nuxt.png')" />
         </b-navbar-brand>
         <b-navbar-toggle target="header-menu" />
         <b-collapse id="header-menu" is-nav>

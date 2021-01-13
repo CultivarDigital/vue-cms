@@ -1,37 +1,33 @@
 <template>
   <div class="medias-page">
-    <section class="content pb-5">
+    <section class="content">
       <b-container>
-        <div class="pt-5">
+        <div>
           <b-row>
             <b-col md="3">
-              <div class="search">
+              <div class="search mb-4">
                 <b-form-input v-model="filters.search" type="search" class="search" placeholder="O que você procura?" @input="searchChanged" />
-                <b-button v-if="filters.search" variant="primary" block :to="'/biblioteca?categoria=' + filters.category + '&tag=' + filters.tag + '&search=' + filters.search ">Buscar</b-button>
+                <b-button v-if="filters.search" variant="primary" block :to="'/biblioteca?categoria=' + filters.category + '&tag=' + filters.tag + '&search=' + filters.search" class="mt-1">Buscar</b-button>
               </div>
-              <div class="categories">
-                <div class="title">
-                  <h4>Tipos de documentos</h4>
-                </div>
-                <ul>
-                  <li v-for="category in categories" :key="category"><n-link variant="primary" :to="'/biblioteca?categoria=' + category + '&tag=' + filters.tag + '&search=' + filters.search ">{{ category }}</n-link></li>
-                  <li v-if="filters.category"><n-link variant="primary" :to="'/biblioteca?tag=' + filters.tag + '&search=' + filters.search ">Todos os tipos</n-link></li>
-                </ul>
-              </div>
-              <div class="tags">
+              <b-card title="Categorias" no-body class="mb-4">
+                <b-list-group flush>
+                  <b-list-group-item v-for="category in categories" :key="category" :to="'/biblioteca?categoria=' + category + '&tag=' + filters.tag + '&search=' + filters.search">{{ category }}</b-list-group-item>
+                  <b-list-group-item v-if="filters.category" :to="'/biblioteca?tag=' + filters.tag + '&search=' + filters.search ">Todas as categorias</b-list-group-item>
+                </b-list-group>
+              </b-card>
+              <div class="tags mb-4">
                 <b-button v-for="tag in tags" :key="tag" variant="primary" :to="'/biblioteca?categoria=' + filters.category + '&tag=' + tag + '&search=' + filters.search" :class="{ active: (tag === filters.tag) }">{{ tag }}</b-button>
                 <b-button v-if="filters.tag" variant="primary" :to="'/biblioteca?categoria=' + filters.category + '&search=' + filters.search">Todos os temas</b-button>
               </div>
-              <b-button v-if="filters.search || filters.category || filters.tag" class="mt-4 mb-4" variant="primary" block to="/biblioteca">Limpar filtros</b-button>
+              <b-button v-if="filters.search || filters.category || filters.tag" class="mb-4" variant="primary" block to="/biblioteca">Limpar filtros</b-button>
             </b-col>
             <b-col md="9" class="medias">
               <div v-if="medias">
-                <div class="pattern" />
                 <div class="title">
                   <h3 v-if="filters.tag">{{ filters.tag }}</h3>
-                  <h3 v-else>BIBLIOTECA</h3>
-                  <p v-if="medias.length === 1"><strong>1</strong> ITEM ENCONTRADO <span v-if="filters.category">em <n-link :to="'/biblioteca?categoria=' + filters.category"><strong>{{ filters.category }}</strong></n-link></span></p>
-                  <p v-else><strong>{{ medias.length }}</strong> ITENS ENCONTRADOS <span v-if="filters.category">em <n-link :to="'/biblioteca?categoria=' + filters.category"><strong>{{ filters.category }}</strong></n-link></span></p>
+                  <h3 v-else>Biblioteca</h3>
+                  <p v-if="medias.length === 1"><strong>1</strong> Item encontrado <span v-if="filters.category">em <n-link :to="'/biblioteca?categoria=' + filters.category"><strong>{{ filters.category }}</strong></n-link></span></p>
+                  <p v-else><strong>{{ medias.length }}</strong> Items encontrados <span v-if="filters.category">em <n-link :to="'/biblioteca?categoria=' + filters.category"><strong>{{ filters.category }}</strong></n-link></span></p>
                   <p v-if="medias && medias.length === 0" class="text-center">Nenhum item encontrado</p>
                 </div>
                 <medias :medias="medias" />
@@ -110,93 +106,3 @@ export default {
   }
 }
 </script>
-<style lang="sass">
-  .medias-page
-    .search
-      margin-bottom: 30px
-      input
-        border-radius: 10px
-        border: none
-        font-weight: bold
-        color: #00794e
-        font-size: 14px
-        background-image: url('~assets/img/lupa.png')
-        background-repeat: no-repeat
-        background-position: calc(100% - 10px)
-        &::placeholder
-          color: #00794e
-      button
-        border-radius: 10px
-    .tags
-      .btn
-        background-color: transparent
-        color: #fff
-        border-color: #fff
-        border-radius: 10px
-        margin-right: 10px
-        margin-bottom: 10px
-        font-size: 12px
-        font-weight: normal
-        padding: 3px 7px
-        &:hover, &.active
-          background-color: #fff
-          border-color: #fff
-          color: #00794e
-    .categories
-      margin-bottom: 30px
-      .title
-        background-color: #00794e
-        color: #fff
-        // background-image: url('~assets/img/squares.png')
-        // background-repeat: no-repeat
-        // background-position: 10px
-        border-top-left-radius: 10px
-        border-top-right-radius: 10px
-      h4
-        font-size: 14px
-        color: #fff
-        padding: 10px 15px
-      ul
-        background: #fff
-        border-bottom-left-radius: 10px
-        border-bottom-right-radius: 10px
-        padding: 15px
-        // width: calc(100% - 20px)
-        margin: auto
-        margin-top: -8px
-        li
-          color: #a1a1a1
-          background-image: url('~assets/img/categories.png')
-          background-repeat: no-repeat
-          padding: 0px 0px 5px 27px
-          border-bottom: 1px solid #f6f6f6
-          font-size: 13px
-          list-style: none
-          margin-bottom: 5px
-          &.active
-            font-weight: bold
-          &:last-child
-            border-bottom: 0
-    .medias
-      .pattern
-        width: 15px
-        height: 25px
-        background-color: #fff
-        position: absolute
-        left: 15px
-      .title
-        margin-left: 30px
-        margin-bottom: 20px
-        h3
-          color: #fff
-          font-size: 24px
-          font-weight: 700
-          text-transform: uppercase
-        p
-          color: #fff
-          font-size: 12px
-          text-transform: uppercase
-          font-weight: normal
-          a
-            color: #fff
-</style>

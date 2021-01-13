@@ -13,7 +13,7 @@
       </b-col>
     </b-row> -->
     <b-button v-if="currentAddressFilled" class="btn btn-default btn-block" @click="show_modal = !show_modal">Mudar endereço</b-button>
-    <b-button v-else class="btn btn-default btn-block" @click="show_modal = !show_modal">Configurar endereço</b-button>
+    <b-button v-else class="btn btn-default btn-block" @click="show_modal = !show_modal"><client-only><font-awesome-icon :icon="['fas', 'map-marker']" /></client-only> Configurar endereço</b-button>
     <b-modal v-model="show_modal" title="Localização" hide-footer hide-header>
       <div v-if="show_auto_complete">
         <div v-if="!addressFilled">

@@ -1,17 +1,14 @@
 <template>
-  <div class="footer">
+  <div class="footer pt-5 pb-5">
     <footer v-if="site">
       <b-container fluid="lg">
         <b-row>
           <b-col sm="2" class="logo">
             <n-link to="/">
-              <b-img v-if="site && site.logo" :src="site.logo.url" />
+              <b-img :src="site.logo ? site.logo.url : require('~/assets/img/nuxt.png')" />
             </n-link>
           </b-col>
           <b-col sm="4">
-            <p>
-              <strong>{{ site.name }}</strong>
-            </p>
             <p>{{ site.contact }}</p>
             <div class="social">
               <a v-if="site.url_facebook" :href="site.url_facebook" target="_blank">
