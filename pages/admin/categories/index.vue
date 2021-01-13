@@ -42,7 +42,7 @@ export default {
       categories: null,
       breadcrumb: [
         { text: 'Painel', to: '/admin' },
-        { text: 'Linhas de ação', active: true }
+        { text: 'Categorias', active: true }
       ],
       table: [
         { key: 'name', label: 'Nome' },
@@ -62,7 +62,7 @@ export default {
         if (confirmed) {
           await this.$axios.delete('/api/categories/' + category.slug).then(() => {
             this.list()
-            this.$toast.success('Linha de ação removida com sucesso!')
+            this.$toast.success('Categoria removida com sucesso!')
           }).catch(this.showError)
         }
       })

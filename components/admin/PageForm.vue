@@ -13,6 +13,11 @@
           </b-form-group>
         </b-col>
         <b-col md="12">
+          <b-form-group label="Categorias">
+            <form-entities-select type="categories" :form="form" field="categories" />
+          </b-form-group>
+        </b-col>
+        <b-col md="12">
           <b-form-group label="Introdução">
             <b-form-textarea v-model="form.description" name="description" />
           </b-form-group>
@@ -61,6 +66,7 @@ export default {
         slug: this.slug,
         title: '',
         description: '',
+        categories: [],
         content: '',
         pictures: [],
         pdfs: []

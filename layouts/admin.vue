@@ -8,6 +8,7 @@
           <b-collapse id="header-admin" is-nav>
             <b-navbar-nav>
               <b-nav-item v-if="$auth.hasScope('super')" to="/admin/sites">Sites</b-nav-item>
+              <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/categories">Categorias</b-nav-item>
               <b-nav-item v-if="$auth.hasScope('admin') && $store.state.site" :to="'/admin/sites/' + $store.state.site._id + '/edit'">Site</b-nav-item>
               <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/pages">Páginas</b-nav-item>
               <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/medias">Biblioteca</b-nav-item>

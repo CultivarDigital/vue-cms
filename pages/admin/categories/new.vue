@@ -15,7 +15,7 @@ export default {
     return {
       breadcrumb: [
         { text: 'Painel', to: '/admin' },
-        { text: 'Linhas de ação', to: '/admin/categories' },
+        { text: 'Categorias', to: '/admin/categories' },
         { text: 'Cadastrar', active: true }
       ]
     }
