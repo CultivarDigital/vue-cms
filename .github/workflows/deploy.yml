@@ -14,8 +14,9 @@ jobs:
       - name: deploy_stage
         uses: garygrossgarten/github-action-ssh@release
         with:
-          command: source ~/.nvm/nvm.sh; cd ~/server/; ./update.sh; ./deploy.sh cms; exit
-          host: root@stage.terrakrya.com
+          command: "echo ${{ secrets.SSH_PRIVATE_KEY }}; source ~/.nvm/nvm.sh; cd ~/server/; ./update.sh; ./deploy.sh cms; exit"
+          host: stage.terrakrya.com
+          username: root
           privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
         env:
           CI: true
