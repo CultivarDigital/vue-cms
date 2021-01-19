@@ -9,7 +9,7 @@
         </b-col>
         <b-col md="12">
           <b-form-group label="Código da página" description="Será usado para compor a URL da página.">
-            <b-form-input v-model="form.slug" name="title" />
+            <b-form-input v-model="form.slug" name="slug" />
           </b-form-group>
         </b-col>
         <b-col md="12">
@@ -29,7 +29,10 @@
           <pdfs-upload :form="form" field="pdfs" url="/api/uploads/pdfs" :multiple="true" />
         </b-col>
         <b-col md="12">
-          <b-form-group label="Contúdo da página">
+          <documents-upload :form="form" field="documents" url="/api/uploads/documents" multiple label="Outros documentos/arquivos" />
+        </b-col>
+        <b-col md="12">
+          <b-form-group label="Conteúdo da página">
             <quill-editor ref="quillEdit" v-model="form.content" />
             <input id="quillfile" type="file" hidden @change="quillUpload">
           </b-form-group>
@@ -46,25 +49,30 @@
 import { ValidationObserver } from 'vee-validate'
 import mixinGlobal from '@/mixins/global'
 import mixinForm from '@/mixins/form'
+import PicturesUpload from '@/components/admin/PicturesUpload'
+import PdfsUpload from '@/components/admin/PdfsUpload'
+import DocumentsUpload from '@/components/admin/DocumentsUpload'
 
 export default {
   components: {
-    ValidationObserver
+    ValidationObserver,
+    PicturesUpload,
+    PdfsUpload,
+    DocumentsUpload
   },
   mixins: [mixinGlobal, mixinForm],
   props: {
-    slug: {
+    page: {
       type: String,
-      default: null,
-      required: true
+      default: null
     }
   },
   data () {
     return {
-      page: null,
       form: {
-        slug: this.slug,
+        slug: null,
         title: '',
+        documents: [],
         description: '',
         categories: [],
         content: '',
@@ -73,8 +81,7 @@ export default {
       }
     }
   },
-  async created () {
-    this.page = await this.$axios.$get('/api/pages/' + this.slug).catch(this.showError)
+  created () {
     this.toForm(this.form, this.page)
   },
   methods: {

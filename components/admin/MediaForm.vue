@@ -36,7 +36,7 @@
           <b-form-group label="Link do vídeo">
             <b-form-input v-model="form.url" @input="loadUrl" />
             <b-spinner v-if="loadingUrl" small label="Carregando vídeo" />
-            <div v-if="form.oembed && !loadingUrl" class="mt-3" style="max-width: 80%" v-html="form.oembed" />
+            <div v-if="form.oembed && !loadingUrl" class="mt-3" v-html="form.oembed" />
           </b-form-group>
         </div>
         <div>
@@ -135,6 +135,7 @@ export default {
       form: {
         category: '',
         pdf: null,
+        documents: [],
         picture: null,
         title: '',
         description: '',

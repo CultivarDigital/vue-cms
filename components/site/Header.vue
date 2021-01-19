@@ -10,6 +10,7 @@
           <b-navbar-nav />
           <b-navbar-nav class="ml-auto">
             <!-- <b-nav-item v-for="page in site.pages" :key="page.slug" :to="'/' + page.slug">{{ page.title }}</b-nav-item> -->
+            <b-nav-item to="/projetos">Páginas</b-nav-item>
             <b-nav-item to="/biblioteca">Biblioteca</b-nav-item>
             <b-nav-item to="/noticias">Notícias</b-nav-item>
             <b-nav-item to="/agenda">Agenda</b-nav-item>

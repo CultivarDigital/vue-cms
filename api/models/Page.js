@@ -13,6 +13,11 @@ const PageSchema = mongoose.Schema({
     required: true,
     index: true
   },
+  categories: [{
+    type: ObjectId,
+    ref: 'Category'
+  }],
+  documents: [Object],
   title: String,
   description: String,
   content: String,
