@@ -6,11 +6,11 @@ const auth = require('../config/auth')
 const Menu = mongoose.model('Menu')
 
 router.get('/', (req, res) => {
-  Menu.find({}).populate(req.query.populate).sort('name').exec((err, menu) => {
+  Menu.find({}).populate(req.query.populate).sort('name').exec((err, menus) => {
     if (err) {
       res.status(422).send(err.message)
     } else {
-      res.json(menu)
+      res.json(menus)
     }
   })
 })
@@ -31,6 +31,7 @@ router.post('/', auth.admin, (req, res) => {
   const newMenu = new Menu(req.body)
   newMenu.site = req.payload.site
   newMenu.slug = slugify(newMenu.name).toLowerCase()
+  newMenu.url = req.payload.url
   newMenu.save((err, menu) => {
     if (err) {
       res.status(422).send(err.message)

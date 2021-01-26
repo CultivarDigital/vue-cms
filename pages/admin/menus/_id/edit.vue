@@ -1,7 +1,7 @@
 <template>
   <div class="create">
     <b-breadcrumb :items="breadcrumb" />
-    <MenuForm v-if="menu" :category="menu" />
+    <MenuForm v-if="menu" :menu="menu" />
     <div v-else class="text-center">
       <b-spinner small label="Carregando..." />
     </div>
@@ -22,7 +22,7 @@ export default {
       menu: null,
       breadcrumb: [
         { text: 'Painel', to: '/admin' },
-        { text: 'Linhas de ação', to: '/admin/menus' },
+        { text: 'Menus', to: '/admin/menus' },
         { text: 'Editar', active: true }
       ]
     }

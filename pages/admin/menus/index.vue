@@ -5,10 +5,10 @@
     <div v-else>
       <div class="text-right mb-3">
         <b-button @click="show_page_form = !show_page_form">
-          Configurar página
+          <b-icon-gear /> Configurar página
         </b-button>
         <b-button variant="primary" to="/admin/menus/new">
-          Cadastrar
+          <b-icon-plus-circle /> Cadastrar
         </b-button>
       </div>
       <div v-if="menus">
@@ -22,7 +22,7 @@
             </b-button>
           </template>
         </b-table>
-        <b-alert v-else show variant="dark" class="text-center">Nenhum item encontrado</b-alert>
+        <b-alert v-else show variant="dark" class="text-center">Nenhum Menu encontrado</b-alert>
       </div>
       <div v-else class="text-center">
         <b-spinner small label="Carregando..." />
@@ -42,7 +42,7 @@ export default {
       menus: null,
       breadcrumb: [
         { text: 'Painel', to: '/admin' },
-        { text: 'Menu', active: true }
+        { text: 'Menus', active: true }
       ],
       table: [
         { key: 'name', label: 'Nome' },
