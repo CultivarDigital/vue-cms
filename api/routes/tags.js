@@ -4,42 +4,6 @@ const router = express.Router()
 const slugify = require('slugify')
 const auth = require('../config/auth')
 const Tag = mongoose.model('Tag')
-const tags = require('../../data/tags.json')
-const { downloadPicture, getAttrFromString, stripHtml } = require('../../utils/index')
-
-router.get('/import', auth.admin, (req, res) => {
-  Tag.deleteMany({}).then(async () => {
-    const list = []
-    for (const tag of tags) {
-      let images = []
-      if (tag.description) {
-        images = getAttrFromString(tag.description, 'img', 'src')
-      }
-      if (tag.media) {
-        images.push(tag.media)
-      }
-
-      images.forEach(image => {
-        downloadPicture(image, 'associacao-floresta-protegida')
-      })
-
-      const newTag = new Tag({
-        site: req.payload.site,
-        slug: tag.slug,
-        name: tag.name.split(':::').join('').trim(),
-        description: tag.intro ? stripHtml(tag.intro).split('&nbsp;').join(' ') : '',
-        content: tag.description ? tag.description.split('https://nyc3.digitaloceanspaces.com/terrakryadev/').join('/api/uploads/associacao-floresta-protegida/images/averages/') : null,
-        picture: {
-          url: tag.media ? tag.media.replace('https://nyc3.digitaloceanspaces.com/terrakryadev/', '/api/uploads/associacao-floresta-protegida/images/') : null,
-          average: tag.media ? tag.media.replace('https://nyc3.digitaloceanspaces.com/terrakryadev/', '/api/uploads/associacao-floresta-protegida/images/averages/') : null,
-          thumb: tag.media ? tag.media.replace('https://nyc3.digitaloceanspaces.com/terrakryadev/', '/api/uploads/associacao-floresta-protegida/images/thumbs/') : null
-        }
-      })
-      list.push(await newTag.save())
-    }
-    res.json(list)
-  })
-})
 
 router.get('/', (req, res) => {
   Tag.find({}).populate(req.query.populate).sort('name').exec((err, tags) => {

@@ -21,9 +21,9 @@
             <input id="quillfile" type="file" hidden @change="quillUpload">
           </b-form-group>
         </b-col>
-        <b-col md="12">
+        <!--<b-col md="12">
           <pictures-upload :form="form" field="picture" url="/api/uploads/images" label="Foto de capa" />
-        </b-col>
+        </b-col> -->
       </b-row>
       <b-button class="mb-4 mt-4" type="submit" variant="primary" block :disabled="invalid">
         Salvar
@@ -36,13 +36,11 @@
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
 import mixinGlobal from '@/mixins/global'
 import mixinForm from '@/mixins/form'
-import PicturesUpload from '@/components/admin/PicturesUpload'
 
 export default {
   components: {
     ValidationObserver,
-    ValidationProvider,
-    PicturesUpload
+    ValidationProvider
   },
   mixins: [mixinGlobal, mixinForm],
   props: {
@@ -67,7 +65,7 @@ export default {
   methods: {
     async save () {
       if (this.tag) {
-        const tag = await this.$axios.$put('/api/tags/' + this.tag._id, this.form).catch(this.showError)
+        const tag = await this.$axios.$put('/api/tags/' + this.tag.slug, this.form).catch(this.showError)
         if (tag) {
           this.$toast.success('Tag atualizada com sucesso!')
           this.$router.push('/admin/tags')
