@@ -30,6 +30,12 @@ TagSchema.plugin(uniqueValidator, {
   message: 'já está sendo usado'
 })
 
+TagSchema.virtual('projects', {
+  ref: 'Project',
+  localField: '_id',
+  foreignField: 'tags'
+})
+
 TagSchema.virtual('posts', {
   ref: 'Post',
   localField: '_id',
@@ -37,3 +43,4 @@ TagSchema.virtual('posts', {
 })
 
 export const Tag = mongoose.models.Tag || mongoose.model('Tag', TagSchema)
+module.exports = Tag
