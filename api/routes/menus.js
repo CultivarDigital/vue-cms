@@ -5,26 +5,53 @@ const slugify = require('slugify')
 const auth = require('../config/auth')
 const Menu = mongoose.model('Menu')
 
-router.get('/', (req, res) => {
-  Menu.find({}).populate(req.query.populate).sort('name').exec((err, menus) => {
-    if (err) {
-      res.status(422).send(err.message)
-    } else {
-      res.json(menus)
-    }
-  })
+router.get('/', async (req, res) => {
+  try {
+    const menus = await Menu.find({}).populate(req.query.populate).sort('name')
+    res.json(menus)
+  } catch (err) {
+    res.status(422).send(err.message)
+  }
 })
 
-router.get('/:id', (req, res) => {
-  Menu.findOne({
-    slug: req.params.id
-  }).exec((err, menu) => {
-    if (err) {
-      res.status(422).send(err.message)
-    } else {
-      res.json(menu)
+router.get('/submenus', async (req, res) => {
+  try {
+    const menus = (await Menu.find({ menu: null }).populate(req.query.populate).sort('name')).map(menu => {
+      return {
+        _id: menu._id.toString(),
+        name: menu.name,
+        slug: menu.slug,
+        url: menu.url || ''
+      }
+    })
+
+    for (let i = 0; i < menus.length; i++) {
+      const submenus = (await Menu.find({ menu: menus[i]._id }).populate(req.query.populate).sort('name')).map(menu => {
+        return {
+          _id: menu._id.toString(),
+          name: menu.name,
+          slug: menu.slug,
+          url: menu.url || ''
+        }
+      })
+
+      if (submenus) {
+        menus[i].submenus = submenus
+      }
     }
-  })
+    res.json(menus)
+  } catch (err) {
+    res.status(422).json(err.message)
+  }
+})
+
+router.get('/:id', async (req, res) => {
+  try {
+    const menu = await Menu.findOne({ slug: req.params.id })
+    res.json(menu)
+  } catch (err) {
+    res.status(422).send(err.message)
+  }
 })
 
 router.post('/', auth.admin, (req, res) => {
@@ -32,6 +59,7 @@ router.post('/', auth.admin, (req, res) => {
   newMenu.site = req.payload.site
   newMenu.slug = slugify(newMenu.name).toLowerCase()
   newMenu.url = req.payload.url
+
   newMenu.save((err, menu) => {
     if (err) {
       res.status(422).send(err.message)
@@ -44,6 +72,7 @@ router.post('/', auth.admin, (req, res) => {
 router.put('/:id', auth.admin, (req, res) => {
   const params = req.body
   params.slug = slugify(params.name).toLowerCase()
+
   Menu.findOneAndUpdate({
     slug: req.params.id
   }, {

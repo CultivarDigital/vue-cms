@@ -11,8 +11,8 @@
           </b-form-group>
         </b-col>
         <b-col md="8">
-          <b-form-group label="URL para a página *">
-            <validation-provider v-slot="{ errors }" name="url" rules="required">
+          <b-form-group label="URL para a página">
+            <validation-provider v-slot="{ errors }" name="url">
               <b-form-input v-model="form.url" name="url" />
               <span class="text-danger">{{ errors[0] }}</span>
             </validation-provider>
