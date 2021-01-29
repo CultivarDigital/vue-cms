@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-select v-model="entity" v-validate="validate" :options="list" label="title" :name="field" :placeholder="placeholder || 'Busque pelo nome clique para selecionar'">
+    <v-select v-model="entity" v-validate="validate" :options="list" label="title" :name="field" :placeholder="placeholder || 'Busque pelo nome e clique para selecionar'">
       <template v-slot:option="option">
         <div class="select-item">
           <img v-if="option.picture" :src="option.picture">
@@ -90,6 +90,12 @@ export default {
           this.list = (await this.$axios.$get('/api/categories')).map(category => ({
             id: category._id,
             title: category.name
+          }))
+          break
+        case 'menus':
+          this.list = (await this.$axios.$get('/api/menus')).map(menu => ({
+            id: menu._id,
+            title: menu.name
           }))
           break
       }

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-select v-model="entity" :options="list" label="title" placeholder="Busque pelo nome clique para adicionar à lista">
+    <v-select v-model="entity" :options="list" label="title" placeholder="Busque pelo nome e clique para adicionar à lista">
       <template v-slot:option="option">
         <div class="select-item">
           <img v-if="option.picture" :src="option.picture">
