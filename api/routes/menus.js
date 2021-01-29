@@ -59,6 +59,7 @@ router.post('/', auth.admin, (req, res) => {
   newMenu.site = req.payload.site
   newMenu.slug = slugify(newMenu.name).toLowerCase()
   newMenu.url = req.payload.url
+  newMenu.menu = req.payload.menu
 
   newMenu.save((err, menu) => {
     if (err) {

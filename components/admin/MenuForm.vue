@@ -16,6 +16,15 @@
               <b-form-input v-model="form.url" name="url" />
               <span class="text-danger">{{ errors[0] }}</span>
             </validation-provider>
+            <small tabindex="-1" class="form-text text-muted">Comece com / para página do próprio site.</small>
+          </b-form-group>
+        </b-col>
+      </b-row>
+      <b-row>
+        <b-col md="12">
+          <b-form-group label="Menu Principal">
+            <form-entity-select type="menus" :form="form" field="menu" />
+            <small tabindex="-1" class="form-text text-muted">Preenchendo, o menu deste cadastro será exibido dentro do Menu Principal, como um Sub-Menu.</small>
           </b-form-group>
         </b-col>
       </b-row>
@@ -49,14 +58,20 @@ export default {
   },
   data () {
     return {
+      mainMenus: [],
       form: {
         name: '',
-        url: ''
+        url: '',
+        menu: ''
       }
     }
   },
-  created () {
+  async created () {
     this.toForm(this.form, this.menu)
+    this.mainMenus = (await this.$axios.$get('/api/menus')).map(menu => ({
+      id: menu._id,
+      title: menu.name
+    }))
   },
   methods: {
     async save () {

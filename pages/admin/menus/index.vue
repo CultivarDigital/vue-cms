@@ -4,9 +4,6 @@
     <MenuForm v-if="show_page_form" slug="menus" @cancel="show_page_form = !show_page_form" />
     <div v-else>
       <div class="text-right mb-3">
-        <b-button @click="show_page_form = !show_page_form">
-          <b-icon-gear /> Configurar página
-        </b-button>
         <b-button variant="primary" to="/admin/menus/new">
           <b-icon-plus-circle /> Cadastrar
         </b-button>
