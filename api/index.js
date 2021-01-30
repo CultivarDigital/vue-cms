@@ -31,6 +31,7 @@ router.use('/events', require('./routes/events'))
 router.use('/pages', require('./routes/pages'))
 router.use('/contacts', require('./routes/contacts'))
 router.use('/medias', require('./routes/medias'))
+router.use('/menus', require('./routes/menus'))
 
 router.get('/profile', auth.authenticated, function(req, res) {
   User.findById(req.payload.id).populate('site').exec(function(err, user) {
