@@ -1,6 +1,7 @@
 require('./models/Site')
 require('./models/User')
 require('./models/Category')
+require('./models/Tag')
 require('./models/Project')
 require('./models/Post')
 require('./models/Event')

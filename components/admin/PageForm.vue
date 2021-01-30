@@ -18,6 +18,11 @@
           </b-form-group>
         </b-col>
         <b-col md="12">
+          <b-form-group label="Tags">
+            <form-entities-select type="tags" :form="form" field="tags" />
+          </b-form-group>
+        </b-col>
+        <b-col md="12">
           <b-form-group label="Introdução">
             <b-form-textarea v-model="form.description" name="description" />
           </b-form-group>
@@ -75,6 +80,7 @@ export default {
         documents: [],
         description: '',
         categories: [],
+        tags: [],
         content: '',
         pictures: [],
         pdfs: []

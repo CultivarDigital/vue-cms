@@ -98,6 +98,14 @@ export default {
           }))
           break
       }
+      switch (this.type) {
+        case 'tags':
+          this.list = (await this.$axios.$get('/api/tags')).map(tag => ({
+            id: tag._id,
+            title: tag.name
+          }))
+          break
+      }
     }
   },
   methods: {
