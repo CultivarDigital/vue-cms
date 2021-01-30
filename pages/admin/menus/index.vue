@@ -1,29 +1,26 @@
 <template>
   <div class="menus">
     <b-breadcrumb :items="breadcrumb" />
-    <MenuForm v-if="show_page_form" slug="menus" @cancel="show_page_form = !show_page_form" />
-    <div v-else>
-      <div class="text-right mb-3">
-        <b-button variant="primary" to="/admin/menus/new">
-          <b-icon-plus-circle /> Cadastrar
-        </b-button>
-      </div>
-      <div v-if="menus">
-        <b-table v-if="menus.length" :fields="table" :items="menus" responsive="sm">
-          <template v-slot:cell(actions)="data">
-            <n-link class="btn btn-info btn-sm" :to="'/admin/menus/' + data.item.slug + '/edit'">
-              <b-icon-pencil />
-            </n-link>
-            <b-button variant="danger" size="sm" @click="remove(data.item)">
-              <b-icon-trash />
-            </b-button>
-          </template>
-        </b-table>
-        <b-alert v-else show variant="dark" class="text-center">Nenhum Menu encontrado</b-alert>
-      </div>
-      <div v-else class="text-center">
-        <b-spinner small label="Carregando..." />
-      </div>
+    <div class="text-right mb-3">
+      <b-button variant="primary" to="/admin/menus/new">
+        <b-icon-plus-circle /> Cadastrar
+      </b-button>
+    </div>
+    <div v-if="menus">
+      <b-table v-if="menus.length" :fields="table" :items="menus" responsive="sm">
+        <template v-slot:cell(actions)="data">
+          <n-link class="btn btn-info btn-sm" :to="'/admin/menus/' + data.item.id + '/edit'">
+            <b-icon-pencil />
+          </n-link>
+          <b-button variant="danger" size="sm" @click="remove(data.item)">
+            <b-icon-trash />
+          </b-button>
+        </template>
+      </b-table>
+      <b-alert v-else show variant="dark" class="text-center">Nenhum Menu encontrado</b-alert>
+    </div>
+    <div v-else class="text-center">
+      <b-spinner small label="Carregando..." />
     </div>
   </div>
 </template>
@@ -57,7 +54,7 @@ export default {
     remove (menu) {
       this.$bvModal.msgBoxConfirm('Tem certeza que deseja excluír este ítem?').then(async confirmed => {
         if (confirmed) {
-          await this.$axios.delete('/api/menus/' + menu.slug).then(() => {
+          await this.$axios.delete('/api/menus/' + menu._id).then(() => {
             this.list()
             this.$toast.success('Menu removido com sucesso!')
           }).catch(this.showError)

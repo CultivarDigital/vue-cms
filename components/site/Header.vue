@@ -12,7 +12,6 @@
             <template v-if="menus !== null">
               <dynamic-menu-item v-for="menu in menus" :key="menu._id" :menu="menu" />
             </template>
-            <b-nav-item to="/projetos">Páginas</b-nav-item>
             <b-nav-item to="/biblioteca">Biblioteca</b-nav-item>
             <b-nav-item to="/noticias">Notícias</b-nav-item>
             <b-nav-item to="/agenda">Agenda</b-nav-item>

@@ -62,7 +62,7 @@ export default {
       form: {
         name: '',
         url: '',
-        menu: ''
+        menu: null
       }
     }
   },
@@ -76,7 +76,7 @@ export default {
   methods: {
     async save () {
       if (this.menu) {
-        const menu = await this.$axios.$put('/api/menus/' + this.menu.slug, this.form).catch(this.showError)
+        const menu = await this.$axios.$put('/api/menus/' + this.menu.id, this.form).catch(this.showError)
         if (menu) {
           this.$toast.success('Menu atualizado com sucesso.')
           this.$router.push('/admin/menus')

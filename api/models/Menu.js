@@ -7,12 +7,6 @@ const MenuSchema = mongoose.Schema({
     type: ObjectId,
     ref: 'Menu'
   },
-  slug: {
-    type: String,
-    required: true,
-    index: true,
-    unique: true
-  },
   name: {
     type: String,
     required: true

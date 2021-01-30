@@ -1,7 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const router = express.Router()
-const slugify = require('slugify')
 const auth = require('../config/auth')
 const Menu = mongoose.model('Menu')
 
@@ -20,7 +19,6 @@ router.get('/submenus', async (req, res) => {
       return {
         _id: menu._id.toString(),
         name: menu.name,
-        slug: menu.slug,
         url: menu.url || ''
       }
     })
@@ -30,7 +28,6 @@ router.get('/submenus', async (req, res) => {
         return {
           _id: menu._id.toString(),
           name: menu.name,
-          slug: menu.slug,
           url: menu.url || ''
         }
       })
@@ -47,7 +44,7 @@ router.get('/submenus', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
   try {
-    const menu = await Menu.findOne({ slug: req.params.id })
+    const menu = await Menu.findOne({ _id: req.params.id })
     res.json(menu)
   } catch (err) {
     res.status(422).send(err.message)
@@ -57,7 +54,6 @@ router.get('/:id', async (req, res) => {
 router.post('/', auth.admin, (req, res) => {
   const newMenu = new Menu(req.body)
   newMenu.site = req.payload.site
-  newMenu.slug = slugify(newMenu.name).toLowerCase()
   newMenu.url = req.payload.url
   newMenu.menu = req.payload.menu
 
@@ -72,10 +68,9 @@ router.post('/', auth.admin, (req, res) => {
 
 router.put('/:id', auth.admin, (req, res) => {
   const params = req.body
-  params.slug = slugify(params.name).toLowerCase()
 
   Menu.findOneAndUpdate({
-    slug: req.params.id
+    _id: req.params.id
   }, {
     $set: params
   }, {
@@ -91,7 +86,7 @@ router.put('/:id', auth.admin, (req, res) => {
 
 router.delete('/:id', auth.admin, (req, res) => {
   Menu.findOne({
-    slug: req.params.id
+    _id: req.params.id
   }).populate('projects').exec((err, menu) => {
     if (err) {
       res.status(422).send(err.message)
