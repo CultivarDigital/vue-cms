@@ -5,7 +5,7 @@ export default {
     '~/api/index.js'
   ],
   head: {
-    title: 'Terrakrya CMS',
+    title: 'Rede de Sementes do Xingu',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' }
@@ -62,7 +62,7 @@ export default {
     'nuxt-leaflet'
   ],
   axios: {
-    baseURL: 'https://cms.terrakrya.com' // Used as fallback if no runtime config is provided
+    baseURL: 'https://sementes-do-xingu.terrakrya.com' // Used as fallback if no runtime config is provided
   },
   auth: {
     strategies: {

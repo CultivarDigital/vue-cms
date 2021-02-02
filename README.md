@@ -1,9 +1,8 @@
-# Terrakrya CMS
+# Rede de Sementes do Xingu
 
-A bunch of common features that allow the creation of sites in a simple and agile way. 
-The objective is not to be an wordpress but acts more like a dynamic boilerplate to create dynamic websites without having to deal with the basics.
+Site da rede de sementes do xingu
 
-### Tecnologies used
+### Tecnologias usadas
 
 Embracing the entire project we are using Nuxt.js with some @nuxtjs modules like: 
 - auth for athentication
@@ -39,10 +38,10 @@ The server site is composed inside on top of Node.js tecnologies like:
 
 ```bash
 # Clone this repo
-git clone https://github.com/terrakrya/cms.git
+git clone https://github.com/terrakrya/sementes-do-xingu.git
 
 # Go inside downloaded directory
-cd cms/
+cd sementes-do-xingu/
 
 # Install NPM dependecies
 $ yarn install
@@ -56,12 +55,14 @@ $ yarn dev
 # The previous command printed you the generated user credentials. Use this info to access the admin panel at:
 http://localhost:3000/admin
 
-# para compilar e a versão de produção:
+# To compile and run the production version:
 $ yarn build
 $ yarn start
 
 # generate static project
 $ yarn generate
+
+# Aways run "yarn lint" before commit
+
 ```
-## Aways run "yarn lint" before commit
 

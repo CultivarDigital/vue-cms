@@ -11,7 +11,7 @@ const User = mongoose.model('User')
 const Site = mongoose.model('Site')
 const auth = require('./config/auth')
 
-const secret = process.env.SECRET || 'cms'
+const secret = process.env.SECRET || 'sementes-do-xingu'
 
 app.use(session({ secret, cookie: { maxAge: null }, resave: false, saveUninitialized: false }))
 app.use(bodyParser.urlencoded({ extended: false }))

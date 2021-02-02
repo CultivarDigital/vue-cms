@@ -26,5 +26,5 @@ if (isProduction) {
   })
 } else {
   // mongoose.set('debug', true)
-  mongoose.connect('mongodb://localhost/cms', { useNewUrlParser: true, useUnifiedTopology: true })
+  mongoose.connect('mongodb://localhost/sementes-do-xingu', { useNewUrlParser: true, useUnifiedTopology: true })
 }
