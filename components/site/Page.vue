@@ -37,8 +37,11 @@ export default {
   },
   data () {
     return {
-      page_id: this.id
+      page: null
     }
+  },
+  created() {
+    this.page = this.$axios.$get('pages/' + this.id)
   }
 }
 </script>

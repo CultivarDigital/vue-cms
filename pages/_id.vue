@@ -1,5 +1,5 @@
 <template>
-  <Page id="about" />
+  <Page :id="$route.params.id" />
 </template>
 <script>
 import Page from '@/components/site/Page'
