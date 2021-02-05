@@ -4,12 +4,16 @@
       <b-row>
         <b-col md="12">
           <b-form-group label="Título">
-            <b-form-input v-model="form.title" name="title" />
+            <b-form-input v-model="form.title" name="title" @input="generateSlug" />
           </b-form-group>
         </b-col>
         <b-col md="12">
-          <b-form-group label="Código da página" description="Será usado para compor a URL da página.">
-            <b-form-input v-model="form.slug" name="slug" />
+          <b-form-group label="Url da página" disabled>
+            <b-form-input :value="'/' + form.slug" name="slug" />
+            <small class="form-text text-muted">
+              {{ 'Link que será usado para acessar a página página:' }}
+              <n-link :to="'/' + form.slug" target="_blank">{{ '/' + form.slug }} </n-link>
+            </small>
           </b-form-group>
         </b-col>
         <b-col md="12">
@@ -52,6 +56,7 @@
 
 <script>
 import { ValidationObserver } from 'vee-validate'
+import slugify from 'slugify'
 import mixinGlobal from '@/mixins/global'
 import mixinForm from '@/mixins/form'
 import PicturesUpload from '@/components/admin/PicturesUpload'
@@ -104,6 +109,11 @@ export default {
           this.$toast.success('Página cadastrada com sucesso!')
           this.$router.push('/admin/pages')
         }
+      }
+    },
+    generateSlug() {
+      if (this.form.title) {
+        this.form.slug = slugify(this.form.title).toLowerCase()
       }
     }
   }

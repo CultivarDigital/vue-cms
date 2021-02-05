@@ -98,6 +98,12 @@ export default {
             title: menu.name
           }))
           break
+        case 'pages':
+          this.list = (await this.$axios.$get('/api/pages')).map(page => ({
+            id: page._id,
+            title: page.title
+          }))
+          break
       }
     }
     if (this.form[this.field] && this.form[this.field].length) {

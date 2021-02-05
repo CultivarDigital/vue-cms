@@ -7,6 +7,10 @@ const MenuSchema = mongoose.Schema({
     type: ObjectId,
     ref: 'Menu'
   },
+  page: {
+    type: ObjectId,
+    ref: 'Page'
+  },
   name: {
     type: String,
     required: true

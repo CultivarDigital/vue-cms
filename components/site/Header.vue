@@ -47,7 +47,9 @@ export default {
   },
   methods: {
     setUrls(menu) {
-      if (menu.url) {
+      if (menu.page && menu.page.slug) {
+        menu.internalUrl = '/' + menu.page.slug
+      } else if (menu.url) {
         menu.internalUrl = menu.url.startsWith('/') ? menu.url : ''
         menu.externalUrl = !menu.internalUrl ? menu.url : ''
         if (menu.externalUrl) {
@@ -59,7 +61,7 @@ export default {
       }
     },
     async list () {
-      this.menus = await this.$axios.$get('/api/menus/submenus').catch(this.showError)
+      this.menus = await this.$axios.$get('/api/menus/submenus', { params: { populate: 'page' } }).catch(this.showError)
       for (let i = 0; i < this.menus.length; i++) {
         const menu = this.menus[i]
         this.setUrls(menu)

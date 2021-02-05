@@ -1,16 +1,16 @@
 <template>
-  <div v-if="page" class="default-page">
+  <div v-if="pageInfo" class="default-page">
     <section class="content pb-5">
       <b-container>
-        <h1 v-if="page.title" class="title pt-5">{{ page.title }}</h1>
-        <p v-if="page.description">{{ page.description }}</p>
+        <h1 v-if="pageInfo.title" class="title pt-5">{{ pageInfo.title }}</h1>
+        <p v-if="pageInfo.description">{{ pageInfo.description }}</p>
         <div class="quill-content mt-4">
-          <banners :items="page.pictures" />
-          <div v-html="page.content" />
-          <div v-if="page.pdfs && page.pdfs.length > 0" class="gallery">
+          <banners :items="pageInfo.pictures" />
+          <div v-html="pageInfo.content" />
+          <div v-if="pageInfo.pdfs && pageInfo.pdfs.length > 0" class="gallery">
             <br>
             <h5>Documentos em anexo</h5>
-            <div v-for="(pdf, index) in page.pdfs" :key="index">
+            <div v-for="(pdf, index) in pageInfo.pdfs" :key="index">
               <a :href="pdf.url" target="_blank">
                 <b-img :src="pdf.thumb" class="thumbnail" />
                 <strong v-if="pdf.title">{{ pdf.title }}<br></strong>
@@ -37,11 +37,12 @@ export default {
   },
   data () {
     return {
-      page: null
+      pageInfo: null
     }
   },
-  created() {
-    this.page = this.$axios.$get('pages/' + this.id)
+  async created() {
+    this.pageInfo = await this.$axios.$get('/api/pages/' + this.id)
+    console.log(this.pageInfo)
   }
 }
 </script>

@@ -19,6 +19,7 @@ router.get('/submenus', async (req, res) => {
       return {
         _id: menu._id.toString(),
         name: menu.name,
+        page: menu.page,
         url: menu.url || ''
       }
     })
@@ -28,6 +29,7 @@ router.get('/submenus', async (req, res) => {
         return {
           _id: menu._id.toString(),
           name: menu.name,
+          page: menu.page,
           url: menu.url || ''
         }
       })
@@ -54,8 +56,6 @@ router.get('/:id', async (req, res) => {
 router.post('/', auth.admin, (req, res) => {
   const newMenu = new Menu(req.body)
   newMenu.site = req.payload.site
-  newMenu.url = req.payload.url
-  newMenu.menu = req.payload.menu
 
   newMenu.save((err, menu) => {
     if (err) {

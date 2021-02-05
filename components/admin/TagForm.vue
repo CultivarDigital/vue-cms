@@ -65,7 +65,7 @@ export default {
   methods: {
     async save () {
       if (this.tag) {
-        const tag = await this.$axios.$put('/api/tags/' + this.tag.slug, this.form).catch(this.showError)
+        const tag = await this.$axios.$put('/api/tags/' + this.tag._id, this.form).catch(this.showError)
         if (tag) {
           this.$toast.success('Tag atualizada com sucesso!')
           this.$router.push('/admin/tags')

@@ -8,6 +8,15 @@
     </div>
     <div v-if="menus">
       <b-table v-if="menus.length" :fields="table" :items="menus" responsive="sm">
+        <template v-slot:cell(page)="data">
+          <template v-if="data.value">
+            <n-link :to="'/' + data.value.slug">{{ '/' + data.value.slug }}</n-link>
+          </template>
+          <template v-else>
+            <a v-if="data.item.url.startsWith('http')" :href="data.item.url" target="_blank">{{ data.item.url }}</a>
+            <n-link v-else :to="data.item.url">{{ data.item.url }}</n-link>
+          </template>
+        </template>
         <template v-slot:cell(actions)="data">
           <n-link class="btn btn-info btn-sm" :to="'/admin/menus/' + data.item.id + '/edit'">
             <b-icon-pencil />
@@ -40,6 +49,7 @@ export default {
       ],
       table: [
         { key: 'name', label: 'Nome' },
+        { key: 'page', label: 'Página' },
         { key: 'actions', label: '', class: 'text-right' }
       ]
     }
@@ -49,7 +59,7 @@ export default {
   },
   methods: {
     async list () {
-      this.menus = await this.$axios.$get('/api/menus').catch(this.showError)
+      this.menus = await this.$axios.$get('/api/menus', { params: { populate: 'page' } }).catch(this.showError)
     },
     remove (menu) {
       this.$bvModal.msgBoxConfirm('Tem certeza que deseja excluír este ítem?').then(async confirmed => {
