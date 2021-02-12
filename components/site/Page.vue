@@ -42,7 +42,6 @@ export default {
   },
   async created() {
     this.pageInfo = await this.$axios.$get('/api/pages/' + this.id)
-    console.log(this.pageInfo)
   }
 }
 </script>

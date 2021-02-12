@@ -13,31 +13,39 @@ router.get('/', async (req, res) => {
   }
 })
 
+function setMenuItem(menu) {
+  return {
+    _id: menu._id.toString(),
+    name: menu.name,
+    page: menu.page,
+    url: menu.url || ''
+  }
+}
+
 router.get('/submenus', async (req, res) => {
   try {
-    const menus = (await Menu.find({ menu: null }).populate(req.query.populate).sort('name')).map(menu => {
-      return {
-        _id: menu._id.toString(),
-        name: menu.name,
-        page: menu.page,
-        url: menu.url || ''
-      }
-    })
+    // const menus = (await Menu.find({ menu: null }).populate('submenu').sort('name')).map(menu => {
+    //   let menuItem = setMenuItem(menu)
+    //   menuItem.submenus = menuItem.submenu ? [menuItem.submenu] : []
+    //   return menuItem
+    // })
+
+    const menus = (await Menu.find({ menu: null })
+      .populate(req.query.populate)
+      .sort('name'))
+      .map(menu => setMenuItem(menu))
 
     for (let i = 0; i < menus.length; i++) {
-      const submenus = (await Menu.find({ menu: menus[i]._id }).populate(req.query.populate).sort('name')).map(menu => {
-        return {
-          _id: menu._id.toString(),
-          name: menu.name,
-          page: menu.page,
-          url: menu.url || ''
-        }
-      })
+      const submenus = (await Menu.find({ menu: menus[i]._id })
+        .populate(req.query.populate)
+        .sort('name'))
+        .map(menu => setMenuItem(menu))
 
       if (submenus) {
         menus[i].submenus = submenus
       }
     }
+
     res.json(menus)
   } catch (err) {
     res.status(422).json(err.message)

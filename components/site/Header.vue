@@ -46,30 +46,8 @@ export default {
     this.list()
   },
   methods: {
-    setUrls(menu) {
-      if (menu.page && menu.page.slug) {
-        menu.internalUrl = '/' + menu.page.slug
-      } else if (menu.url) {
-        menu.internalUrl = menu.url.startsWith('/') ? menu.url : ''
-        menu.externalUrl = !menu.internalUrl ? menu.url : ''
-        if (menu.externalUrl) {
-          menu.externalUrl = (menu.url.startsWith('https://') ? '' : 'https://') + menu.url
-        }
-      } else {
-        menu.internalUrl = ''
-        menu.externalUrl = ''
-      }
-    },
     async list () {
-      this.menus = await this.$axios.$get('/api/menus/submenus', { params: { populate: 'page' } }).catch(this.showError)
-      for (let i = 0; i < this.menus.length; i++) {
-        const menu = this.menus[i]
-        this.setUrls(menu)
-        for (let submenuIndex = 0; submenuIndex < menu.submenus.length; submenuIndex++) {
-          const submenu = menu.submenus[submenuIndex]
-          this.setUrls(submenu)
-        }
-      }
+      this.menus = await this.$axios.$get('/api/menus/submenus', { params: { populate: 'page' } })
     }
   }
 }

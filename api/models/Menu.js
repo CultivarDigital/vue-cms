@@ -27,5 +27,12 @@ const MenuSchema = mongoose.Schema({
 MenuSchema.plugin(uniqueValidator, {
   message: 'Este nome já está sendo usado'
 })
+
+// MenuSchema.virtual('submenu', {
+//   ref: 'Menu',
+//   localField: 'menu',
+//   foreignField: '_id',
+// })
+
 const Menu = mongoose.models.Menu || mongoose.model('Menu', MenuSchema)
 module.exports = Menu
