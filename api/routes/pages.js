@@ -15,6 +15,24 @@ router.get('/', (req, res) => {
   })
 })
 
+router.get('/current_tags', (req, res) => {
+  Page.find().select('tags').exec((err, pages) => {
+    if (err) {
+      res.status(422).send(err.message)
+    } else {
+      const tags = {}
+      pages.forEach(page => {
+        if (page.tags) {
+          page.tags.forEach(tag => {
+            tags[tag] = true
+          })
+        }
+      })
+      res.json(Object.keys(tags).sort((a, b) => a.localeCompare(b)))
+    }
+  })
+})
+
 router.get('/generate_pages', (req, res) => {
   const pages = [
     { slug: 'biblioteca', title: 'Biblioteca' },

@@ -63,7 +63,7 @@ export default {
   },
   methods: {
     async list () {
-      this.posts = await this.$axios.$get('/api/posts', { params: { populate: 'tags' } }).catch(this.showError)
+      this.posts = await this.$axios.$get('/api/posts').catch(this.showError)
     },
     remove (post) {
       this.$bvModal.msgBoxConfirm('Tem certeza que deseja excluír este ítem?').then(async confirmed => {

@@ -8,7 +8,7 @@
           </b-form-group>
         </b-col>
         <b-col md="12">
-          <b-form-group label="Url da página" disabled>
+          <b-form-group v-if="form.title" label="Url da página" disabled>
             <b-form-input :value="'/' + form.slug" name="slug" />
             <small class="form-text text-muted">
               {{ 'Link que será usado para acessar a página página:' }}
@@ -22,9 +22,7 @@
           </b-form-group>
         </b-col>
         <b-col md="12">
-          <b-form-group label="Tags">
-            <form-entities-select type="tags" :form="form" field="tags" />
-          </b-form-group>
+          <tags-form v-model="form.tags" :current-tags="currentTags" />
         </b-col>
         <b-col md="12">
           <b-form-group label="Introdução">
@@ -79,21 +77,23 @@ export default {
   },
   data () {
     return {
+      currentTags: [],
       form: {
         slug: null,
         title: '',
         documents: [],
         description: '',
         categories: [],
-        tags: [],
         content: '',
         pictures: [],
-        pdfs: []
+        pdfs: [],
+        tags: []
       }
     }
   },
-  created () {
-    this.toForm(this.form, this.page)
+  async created () {
+    this.toForm(this.form, this.post)
+    this.currentTags = await this.$axios.$get('/api/pages/current_tags').catch(this.showError)
   },
   methods: {
     async save () {

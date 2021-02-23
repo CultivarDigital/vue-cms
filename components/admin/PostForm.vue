@@ -25,7 +25,7 @@
           <pictures-upload :form="form" field="picture" url="/api/uploads/images" label="Foto de capa" />
         </b-col>
         <b-col md="12">
-          <pdfs-upload :form="form" field="pdfs" url="/api/uploads/pdfs" :multiple="true" />
+          <documents-upload :form="form" field="documents" url="/api/uploads/documents" multiple label="Outros documentos/arquivos" />
         </b-col>
         <b-col md="12">
           <tags-form v-model="form.tags" :current-tags="currentTags" />
@@ -43,14 +43,14 @@ import { ValidationObserver, ValidationProvider } from 'vee-validate'
 import mixinGlobal from '@/mixins/global'
 import mixinForm from '@/mixins/form'
 import PicturesUpload from '@/components/admin/PicturesUpload'
-import PdfsUpload from '@/components/admin/PdfsUpload'
+import DocumentsUpload from '@/components/admin/DocumentsUpload'
 
 export default {
   components: {
     ValidationObserver,
     ValidationProvider,
     PicturesUpload,
-    PdfsUpload
+    DocumentsUpload
   },
   mixins: [mixinGlobal, mixinForm],
   props: {
@@ -65,10 +65,10 @@ export default {
       form: {
         title: '',
         description: '',
+        documents: [],
         content: '',
         picture: null,
-        tags: [],
-        pdfs: []
+        tags: []
       }
     }
   },

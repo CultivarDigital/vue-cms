@@ -15,6 +15,24 @@ router.get('/', (req, res) => {
   })
 })
 
+router.get('/current_tags', (req, res) => {
+  Post.find().select('tags').exec((err, posts) => {
+    if (err) {
+      res.status(422).send(err.message)
+    } else {
+      const tags = {}
+      posts.forEach(post => {
+        if (post.tags) {
+          post.tags.forEach(tag => {
+            tags[tag] = true
+          })
+        }
+      })
+      res.json(Object.keys(tags).sort((a, b) => a.localeCompare(b)))
+    }
+  })
+})
+
 router.get('/:id', (req, res) => {
   Post.findOne({
     slug: req.params.id

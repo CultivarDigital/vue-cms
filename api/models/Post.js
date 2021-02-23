@@ -21,7 +21,7 @@ const PostSchema = mongoose.Schema({
   description: String,
   content: String,
   picture: Object,
-  pdfs: [Object],
+  documents: [Object],
   tags: [String]
 }, {
   timestamps: true,

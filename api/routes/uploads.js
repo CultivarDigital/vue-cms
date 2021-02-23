@@ -128,7 +128,7 @@ const documentUploader = multer({
 router.post('/documents', [auth.authenticated, documentUploader.single('document')], (req, res) => {
   const url = req.file.filename
   const path = documentsPath(req.payload.site_slug)
-  res.status(201).send(path + url)
+  res.status(201).send({ title: url.split('.')[0], url: path + url })
 })
 
 const pdfsPath = (slug) => {

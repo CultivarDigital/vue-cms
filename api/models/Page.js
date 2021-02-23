@@ -17,10 +17,7 @@ const PageSchema = mongoose.Schema({
     type: ObjectId,
     ref: 'Category'
   }],
-  tags: [{
-    type: ObjectId,
-    ref: 'Tag'
-  }],
+  tags: [String],
   documents: [Object],
   title: String,
   description: String,
