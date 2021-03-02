@@ -17,6 +17,7 @@ export default {
   css: ['@/assets/css/custom.sass'],
   pageTransition: 'page',
   plugins: [
+    '~plugins/axios.js',
     '~plugins/vue2-filters.js',
     '~plugins/filters.js',
     '~plugins/url.js',
