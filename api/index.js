@@ -5,6 +5,7 @@ const app = express()
 const router = require('express').Router()
 const bodyParser = require('body-parser')
 const session = require('express-session')
+const cors = require('cors')
 
 const mongoose = require('mongoose')
 const User = mongoose.model('User')
@@ -13,6 +14,7 @@ const auth = require('./config/auth')
 
 const secret = process.env.SECRET || 'sementes-do-xingu'
 
+app.use(cors())
 app.use(session({ secret, cookie: { maxAge: null }, resave: false, saveUninitialized: false }))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
