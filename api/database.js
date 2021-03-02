@@ -16,6 +16,7 @@ const isProduction = process.env.NODE_ENV === 'production'
 
 mongoose.set('useFindAndModify', false)
 if (isProduction) {
+  mongoose.set('debug', true)
   mongoose.connect(process.env.MONGODB_URI, {
     keepAlive: 1,
     connectTimeoutMS: 30000,
