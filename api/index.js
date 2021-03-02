@@ -46,8 +46,7 @@ router.get('/profile', auth.authenticated, function(req, res) {
 })
 
 router.get('/site', function(req, res) {
-  console.log(req.headers.host.replace('www.', ''))
-  Site.findOne({ domain_name: req.headers.host.replace('www.', '') })
+  Site.findOne({})
     .populate('pages')
     .populate({
       path: 'posts',
