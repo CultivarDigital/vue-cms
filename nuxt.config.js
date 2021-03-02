@@ -62,7 +62,7 @@ export default {
     'nuxt-leaflet'
   ],
   axios: {
-    baseURL: 'https://sementes-do-xingu.terrakrya.com' // Used as fallback if no runtime config is provided
+    baseURL: process.env.BASE_URL || 'http://localhost:3000' // Used as fallback if no runtime config is provided
   },
   auth: {
     strategies: {
