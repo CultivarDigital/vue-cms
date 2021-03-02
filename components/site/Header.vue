@@ -2,7 +2,7 @@
   <header>
     <b-navbar toggleable="md">
       <b-container fluid="lg">
-        <b-navbar-brand to="/">
+        <b-navbar-brand v-if="site" to="/">
           <b-img :src="site.logo ? site.logo.url : require('~/assets/img/nuxt.png')" />
         </b-navbar-brand>
         <b-navbar-toggle target="header-menu" />
