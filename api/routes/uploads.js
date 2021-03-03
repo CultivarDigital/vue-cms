@@ -74,7 +74,9 @@ router.post('/images', [auth.authenticated, imageUploader.single('image')], (req
   sharp(original, { failOnError: false })
     .resize({
       width: 400,
-      withoutEnlargement: true
+      height: 400,
+      withoutEnlargement: true,
+      fit: sharp.fit.cover
     })
     .toFile(thumb, function(err) {
       if (!err) {

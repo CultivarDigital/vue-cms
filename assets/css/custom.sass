@@ -1,6 +1,7 @@
-$primary: #41b883
-$secondary: #3b8070
-$default: #35495e
+$primary: #ff846c
+$secondary: #563c37
+$default: #d1d0d0
+$gray: #ede8e8
 $success: #00c58e
 $white: #fff
 $black: #212529
@@ -13,21 +14,31 @@ a
   &:hover
     text-decoration: none
     color: $secondary
-.bg-primary, .btn-primary
+h1, h2, h3, h4, h5
+  letter-spacing: 3px
+  text-transform: uppercase
+.pointer
+  cursor: pointer
+.text-primary
+  color: $primary !important
+.text-secondary
+  color: $secondary !important
+.bg-primary, .btn-primary, .badge-primary
   background-color: $primary !important
   border-color: $primary !important
+  color: $white
+.bg-secondary, .btn-secondary, .badge-secondary
+  background-color: $secondary !important
+  border-color: $secondary !important
   color: $white
 .bg-default, .btn-default
   background-color: $default !important
   border-color: $default !important
-  color: $white
+  color: $black
 .btn-login
   .nav-link
-    margin-left: 10px
-    background-color: $default !important
-    color: $white !important
-    border-radius: 5px
-    padding: 8px 15px
+    color: $primary !important
+    font-size: 16px
 .b-table
   tr > td, tr > th
     vertical-align: middle !important
@@ -45,16 +56,25 @@ a
     font-weight: 600
 
 header
+  background: $secondary
   .navbar-brand
     img
       max-height: 50px
+  .navbar-light .navbar-nav .nav-link
+    color: $white
+    text-transform: uppercase
+    font-size: 14px
+    &:hover
+      color: $white
 footer
-  .logo
-    img
-      max-width: 100%
+  color: $secondary
+  a
+    font-weight: 200
+  .links
+    letter-spacing: 3px
 .content
-  background-color: $default !important
-  color: $white
+  background-color: $gray !important
+  color: $secondary
   padding-top: 50px
   padding-bottom: 50px
   .card
@@ -63,26 +83,33 @@ footer
     .pattern
       width: 15px
       height: 25px
-      background-color: #fff
+      background-color: $white
       position: absolute
       left: 15px
     .title
-      margin-left: 30px
-      margin-bottom: 20px
+      margin-bottom: 0px
+      text-align: center
       h3
-        color: #fff
+        color: $white
         font-size: 24px
         font-weight: 700
         text-transform: uppercase
       p
-        color: #fff
+        color: $white
         font-size: 12px
         text-transform: uppercase
         font-weight: normal
         a
-          color: #fff
-
+          color: $white
+    hr
+      width: 60px
+      height: 2px
+      background: $primary
+      margin-top: 10px
 .banners
+  margin-top: -50px
+  .carousel-inner
+    min-height: 300px
   .carousel-caption
     height: 100%
     display: flex

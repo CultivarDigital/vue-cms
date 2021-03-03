@@ -1,8 +1,7 @@
 <template>
-  <div class="contact-component">
+  <div class="contact-component text-left mt-3">
     <ValidationObserver v-slot="{ validate, invalid }">
       <b-form @submit.prevent="validate().then(save)">
-        <h6 class="mb-3">FALE CONOSCO</h6>
         <b-row>
           <b-col md="6">
             <b-form-group>
@@ -42,7 +41,6 @@ import { ValidationObserver, ValidationProvider } from 'vee-validate'
 import mixinGlobal from '@/mixins/global'
 import mixinForm from '@/mixins/form'
 export default {
-  layout: 'admin',
   components: {
     ValidationObserver,
     ValidationProvider

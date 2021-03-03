@@ -3,7 +3,7 @@
     <div class="admin">
       <Header />
       <div class="mb-5" fluid>
-        <b-navbar toggleable="lg" variant="default">
+        <b-navbar toggleable="lg" variant="primary">
           <b-navbar-toggle target="header-admin" />
           <b-collapse id="header-admin" is-nav>
             <b-navbar-nav>

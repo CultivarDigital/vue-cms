@@ -2,7 +2,8 @@
   <div v-if="page" class="page-info">
     <banners :items="page.pictures" />
     <b-container>
-      <h3 v-if="page.title" class="title">{{ page.title }}</h3>
+      <h4 v-if="page.title" class="title">{{ page.title }}</h4>
+      <hr>
       <p v-if="page.description">{{ page.description }}</p>
       <b-button v-if="page.content || (page.pictures && page.pictures.length) || (page.pdfs && page.pdfs.length)" variant="primary" @click="showMore = !showMore">
         Saiba mais

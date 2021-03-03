@@ -3,15 +3,9 @@
     <section class="content pb-5">
       <page-info :page="page" />
       <b-container>
-        <b-row>
-          <b-col md="9">
-            <Posts :posts="posts" />
-            <p v-if="posts.length === 0" class="text-center">Nenhum item encontrado</p>
-          </b-col>
-          <b-col md="3">
-            <tags :to="$route.path" />
-          </b-col>
-        </b-row>
+        <tags :to="$route.path" />
+        <Posts :posts="posts" />
+        <p v-if="posts.length === 0" class="text-center">Nenhum item encontrado</p>
       </b-container>
     </section>
   </div>
@@ -33,7 +27,7 @@ export default {
       let posts = this.site.posts
       if (this.$route.query.tag) {
         posts = posts.filter(post => {
-          return post.tags.find(tag => tag.slug === this.$route.query.tag)
+          return post.tags.find(tag => tag === this.$route.query.tag)
         })
       }
       return posts
