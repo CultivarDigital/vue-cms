@@ -1,12 +1,8 @@
 <template>
   <div class="projects">
     <b-breadcrumb :items="breadcrumb" />
-    <PageForm v-if="show_page_form" slug="projects" @cancel="show_page_form = !show_page_form" />
-    <div v-else>
+    <div>
       <div class="text-right mb-3">
-        <b-button @click="show_page_form = !show_page_form">
-          Configurar página
-        </b-button>
         <b-button variant="primary" to="/admin/projects/new">
           Cadastrar
         </b-button>
@@ -45,16 +41,11 @@
 
 <script>
 import mixinGlobal from '@/mixins/global'
-import PageForm from '@/components/admin/PageForm'
 export default {
   layout: 'admin',
-  components: {
-    PageForm
-  },
   mixins: [mixinGlobal],
   data () {
     return {
-      show_page_form: false,
       projects: null,
       breadcrumb: [
         { text: 'Painel', to: '/admin' },

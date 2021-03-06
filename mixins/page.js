@@ -33,7 +33,7 @@ export default {
     }
 
     const baseUrl = 'https://' + this.site.domain_name
-    let image = baseUrl + (this.site && this.site.logo ? this.site.logo.url : '/static/logo.png')
+    let image = baseUrl + (this.site && this.site.logo ? this.site.logo.url : '/static/icon.png')
     if (this.page_image) {
       image = baseUrl + this.page_image
     } else if (this.page && this.page.pictures && this.page.pictures.length > 0) {

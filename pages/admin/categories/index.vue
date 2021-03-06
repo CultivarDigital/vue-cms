@@ -1,12 +1,8 @@
 <template>
   <div class="categories">
     <b-breadcrumb :items="breadcrumb" />
-    <PageForm v-if="show_page_form" slug="categories" @cancel="show_page_form = !show_page_form" />
-    <div v-else>
+    <div>
       <div class="text-right mb-3">
-        <b-button @click="show_page_form = !show_page_form">
-          Configurar página
-        </b-button>
         <b-button variant="primary" to="/admin/categories/new">
           Cadastrar
         </b-button>
@@ -38,7 +34,6 @@ export default {
   mixins: [mixinGlobal],
   data () {
     return {
-      show_page_form: false,
       categories: null,
       breadcrumb: [
         { text: 'Painel', to: '/admin' },

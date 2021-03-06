@@ -1,11 +1,13 @@
-$primary: #ff846c
-$secondary: #563c37
-$default: #d1d0d0
-$gray: #ede8e8
+$primary: #E1846D
+$secondary: #523D38
+$default: #A7A7A7
+$gray: #F7F9FA
 $success: #00c58e
 $white: #fff
 $black: #212529
 
+body
+  font-family: 'Montserrat', sans-serif
 pre
   background-color: $white
 a
@@ -57,6 +59,7 @@ h1, h2, h3, h4, h5
 
 header
   background: $secondary
+  font-family: 'Raleway', sans-serif
   .navbar-brand
     img
       max-height: 50px
@@ -66,6 +69,10 @@ header
     font-size: 14px
     &:hover
       color: $white
+.sub-header
+  height: 17px
+  width: 100%
+  background-color: #A7A7A7
 footer
   color: $secondary
   a
@@ -73,7 +80,6 @@ footer
   .links
     letter-spacing: 3px
 .content
-  background-color: $gray !important
   color: $secondary
   padding-top: 50px
   padding-bottom: 50px
@@ -87,8 +93,15 @@ footer
       position: absolute
       left: 15px
     .title
-      margin-bottom: 0px
-      text-align: center
+      hr
+        width: 60px
+        height: 2px
+        background: $primary
+        margin-top: 10px
+
+      h4
+        margin-bottom: 0px
+        text-align: center
       h3
         color: $white
         font-size: 24px
@@ -101,23 +114,19 @@ footer
         font-weight: normal
         a
           color: $white
-    hr
-      width: 60px
-      height: 2px
-      background: $primary
-      margin-top: 10px
 .banners
   margin-top: -50px
+  margin-bottom: 50px
   .carousel-inner
     min-height: 300px
   .carousel-caption
     height: 100%
-    display: flex
-    align-content: center
-    align-items: center
-    justify-content: center
-    flex-flow: column
-    margin-bottom: -20px
+    width: 100%
+    position: relative
+    left: 0
+    background-color: $primary
+    padding: 0
+    bottom: 0
     h2
       font-weight: 700
       font-size: 26px
@@ -128,6 +137,23 @@ footer
     p
       @media (max-width: 768px)
         display: none
+    .card
+      border: none
+      .card-body
+        background-color: $primary
+        color: $secondary
+        display: flex
+        align-items: center
+        width: 50%
+        text-align: left
+        padding: 80px
+        .card-text
+          p
+            color: $white
+      img
+        width: 50%
+        border-radius: 0
+
   .carousel-indicators
     bottom: 10px
     li
@@ -151,31 +177,7 @@ footer
 .quill-content
   background-color: $white
   color: #303030
-  border-radius: 20px
-  padding: 50px
-  .banners
-    margin: -50px
-    margin-bottom: 30px
-    img
-      border-bottom-left-radius: 0
-      border-bottom-right-radius: 0
   p
     margin-bottom: 0
-  p:first-child > img
-    border-bottom-left-radius: 0
-    border-bottom-right-radius: 0
-    margin: -50px -50px 0 -50px
-    width: calc(100% + 40px)
-    max-width: calc(100% + 40px)
-  p:last-child > img
-    border-top-left-radius: 0
-    border-top-right-radius: 0
-    margin: 0 -50px -50px -50px
-    width: calc(100% + 40px)
-    max-width: calc(100% + 40px)
   img
     max-width: 100%
-    border-radius: 20px
-  h1, h2, h3, h4, h5, h6
-    font-family: 'Arvo', serif
-    font-weight: 700

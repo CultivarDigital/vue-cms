@@ -71,8 +71,8 @@ export default {
   mixins: [mixinGlobal, mixinForm],
   props: {
     page: {
-      type: String,
-      default: null
+      type: Object,
+      default: () => null
     }
   },
   data () {
@@ -92,7 +92,7 @@ export default {
     }
   },
   async created () {
-    this.toForm(this.form, this.post)
+    this.toForm(this.form, this.page)
     this.currentTags = await this.$axios.$get('/api/pages/current_tags').catch(this.showError)
   },
   methods: {

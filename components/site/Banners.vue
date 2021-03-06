@@ -5,8 +5,8 @@
         <b-carousel-slide v-if="item" :key="index">
           <b-card :img-src="item.url" :img-alt="item.title" img-left>
             <b-card-text>
-              <h5 class="text-primary">{{ item.title }}</h5>
-              <p>{{ (item.description || item.content) | truncate(60) }}</p>
+              <h4>{{ item.title }}</h4>
+              <p>{{ (item.description) | truncate(250) }}</p>
             </b-card-text>
           </b-card>
         </b-carousel-slide>

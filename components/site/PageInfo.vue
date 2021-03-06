@@ -2,29 +2,43 @@
   <div v-if="page" class="page-info">
     <banners :items="page.pictures" />
     <b-container>
-      <h4 v-if="page.title" class="title">{{ page.title }}</h4>
-      <hr>
+      <div class="title">
+        <h4 v-if="page.title">{{ page.title }}</h4>
+        <hr>
+      </div>
       <p v-if="page.description">{{ page.description }}</p>
-      <b-button v-if="page.content || (page.pictures && page.pictures.length) || (page.pdfs && page.pdfs.length)" variant="primary" @click="showMore = !showMore">
-        Saiba mais
-      </b-button>
-      <div v-if="showMore" class="quill-content mt-4">
-        <banners :items="page.pictures" />
+      <div v-if="!showContent" class="text-center mb-5">
+        <b-button v-if="page.content || (page.pictures && page.pictures.length) || (page.pdfs && page.pdfs.length)" variant="primary" @click="showMore = !showMore">
+          Saiba mais
+        </b-button>
+      </div>
+      <div v-if="showMore || showContent" class="quill-content mt-4">
         <div v-html="page.content" />
-        <div v-if="page.pdfs && page.pdfs.length > 0" class="gallery">
-          <br>
+        <div v-if="page.pdfs && page.pdfs.length > 0" class="gallery mt-5">
           <h5>Documentos em anexo</h5>
-          <div v-for="(pdf, index) in page.pdfs" :key="index">
-            <a :href="pdf.url" target="_blank">
-              <b-img :src="pdf.thumb" class="thumbnail" />
-              <strong v-if="pdf.title">{{ pdf.title }}<br></strong>
-              <br><span>{{ 'https://' + $store.state.site.domain_name + pdf.url }}</span>
-            </a>
-          </div>
+          <hr>
+          <b-row>
+            <b-col v-for="(pdf, index) in page.pdfs" :key="index" md="6">
+              <b-card :img-src="pdf.thumb" :img-alt="pdf.title" img-left class="mb-4">
+                <b-card-text>
+                  <p>{{ pdf.title }}</p>
+                  <br>
+                  <p>
+                    <a :href="pdf.url" target="_blank" class="btn btn-primary">Baixar</a>
+                  </p>
+                </b-card-text>
+              </b-card>
+              </a>
+            </b-col>
+          </b-row>
         </div>
+      </div>
+      <div class="pt-5">
         <share />
       </div>
     </b-container>
+  </div>
+  </b-container>
   </div>
 </template>
 <script>
@@ -33,6 +47,10 @@ export default {
     page: {
       type: Object,
       default: null
+    },
+    showContent: {
+      type: Boolean,
+      default: false
     }
   },
   data () {

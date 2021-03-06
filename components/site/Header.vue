@@ -3,7 +3,8 @@
     <b-navbar toggleable="md">
       <b-container fluid="lg">
         <b-navbar-brand v-if="site" to="/">
-          <b-img :src="site.logo ? site.logo.url : require('~/assets/img/logo.png')" />
+          <b-img :src="site.logo ? site.logo.url : require('~/assets/img/logo.svg')" />
+          <b-img :src="site.logo ? site.logo.url : require('~/assets/img/logo-nome.svg')" />
         </b-navbar-brand>
         <b-navbar-toggle target="header-menu" />
         <b-collapse id="header-menu" is-nav>

@@ -88,7 +88,7 @@ router.post('/images', [auth.authenticated, imageUploader.single('image')], (req
           .toFile(average, function(err) {
             if (!err) {
               res.status(201).send({
-                title: '',
+                title: filename.split('.')[0],
                 url: '/' + original,
                 thumb: '/' + thumb,
                 average: '/' + average
@@ -175,7 +175,12 @@ router.post('/pdfs', [auth.authenticated, pdfUploader.single('pdf')], (req, res)
 
   pdfImage.convertPage(0).then(function(original) {
     sharp(original, { failOnError: false })
-      .resize(400)
+      .resize({
+        width: 400,
+        height: 400,
+        withoutEnlargement: true,
+        fit: sharp.fit.cover
+      })
       .toFile(thumb, function(err) {
         if (!err) {
           sharp(original, { failOnError: false })
@@ -183,6 +188,7 @@ router.post('/pdfs', [auth.authenticated, pdfUploader.single('pdf')], (req, res)
             .toFile(average, function(err) {
               if (!err) {
                 res.status(201).send({
+                  title: filename.split('.')[0],
                   url: '/' + req.file.path,
                   average: '/' + average,
                   thumb: '/' + thumb

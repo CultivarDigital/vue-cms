@@ -2,6 +2,7 @@
   <div class="default-layout">
     <div v-show="site">
       <Header />
+      <div class="sub-header" />
       <Nuxt />
       <Footer />
     </div>
