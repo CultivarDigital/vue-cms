@@ -10,16 +10,15 @@
           <div class="thumbnail">
             <b-img :src="image.thumb" fluid thumbnail />
           </div>
-          <b-form-input v-model="form[field][index].title" placeholder="Título da imagem" class="mb-1 mt-1" />
-          <b-form-textarea v-model="form[field][index].description" placeholder="Descrição" />
-          <br>
-          <p>
+          <b-form-input v-model="form[field][index].title" placeholder="Título da imagem" class="mt-1" />
+          <b-form-textarea v-model="form[field][index].description" placeholder="Descrição" class="mt-1 mb-1" />
+          <div>
             <span v-if="multiple">
               <b-button v-if="(image.default || (index === 0 && !hasDefault))" class="btn btn-success btn-sm" @click="setDefault(index)"><b-icon-check /> Capa </b-button>
               <b-button v-else class="btn btn-default btn-sm" @click="setDefault(index)"> Capa</b-button>
             </span>
             <b-button class="btn btn-sm" @click="deleteImage(index)"><b-icon-trash /></b-button>
-          </p>
+          </div>
         </b-col>
       </b-row>
       <b-row v-if="!Array.isArray(form[field]) && form[field] && form[field].thumb">
@@ -27,10 +26,8 @@
           <div class="thumbnail">
             <b-img :src="form[field].thumb" fluid thumbnail />
           </div>
-          <b-form-input v-model="form[field].title" placeholder="Título da imagem" />
-          <br>
-          <b-form-textarea v-model="form[field].description" placeholder="Descrição" />
-          <br>
+          <b-form-input v-model="form[field].title" placeholder="Título da imagem" class="mt-1" />
+          <b-form-textarea v-model="form[field].description" placeholder="Descrição" class="mt-1 mb-1" />
           <b-button class="btn btn-sm" @click="deleteImage()"><b-icon-trash /></b-button>
         </b-col>
       </b-row>

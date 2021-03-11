@@ -2,16 +2,6 @@
   <div v-if="site" class="login-page">
     <section class="content pb-5">
       <b-container>
-        <h6 class="pb-5 pt-5 text-center subtitle">
-          Para continuar você deve
-          <a class="btn btn-primary" @click="open('login')">
-            entrar
-          </a>
-          com seus dados ou
-          <a class="btn btn-primary" @click="open('register')">
-            cadastrar-se
-          </a>
-        </h6>
         <div v-show="tab === 'login'" class="card p-4">
           <form class="mt-4" @submit.prevent="login">
             <b-form-group label="Digite seu email">
@@ -21,13 +11,7 @@
               <b-form-input v-model="form.password" type="password" />
             </b-form-group>
             <b-form-group class="text-center">
-              <p>
-                Ainda não possúi uma conta?
-                <a @click="open('register')">
-                  <strong>cadastre-se!</strong>
-                </a>
-              </p>
-              <b-button type="submit" variant="primary">
+              <b-button type="submit" variant="secondary">
                 Entrar
               </b-button>
             </b-form-group>

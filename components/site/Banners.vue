@@ -6,7 +6,7 @@
           <b-card :img-src="item.url" :img-alt="item.title" img-left>
             <b-card-text>
               <h4>{{ item.title }}</h4>
-              <p>{{ (item.description) | truncate(250) }}</p>
+              <p v-if="item.description" class="text-secondary">{{ (item.description) | truncate(250) }}</p>
             </b-card-text>
           </b-card>
         </b-carousel-slide>

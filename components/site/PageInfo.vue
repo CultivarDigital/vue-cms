@@ -24,21 +24,15 @@
                   <p>{{ pdf.title }}</p>
                   <br>
                   <p>
-                    <a :href="pdf.url" target="_blank" class="btn btn-primary">Baixar</a>
+                    <a :href="pdf.url" target="_blank" class="btn btn-secondary">Baixar</a>
                   </p>
                 </b-card-text>
               </b-card>
-              </a>
             </b-col>
           </b-row>
         </div>
       </div>
-      <div class="pt-5">
-        <share />
-      </div>
     </b-container>
-  </div>
-  </b-container>
   </div>
 </template>
 <script>
@@ -49,6 +43,10 @@ export default {
       default: null
     },
     showContent: {
+      type: Boolean,
+      default: false
+    },
+    noShare: {
       type: Boolean,
       default: false
     }

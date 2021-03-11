@@ -63,28 +63,28 @@ router.post('/', auth.admin, async (req, res, next) => {
   }).catch(next)
 })
 
-router.post('/register', async (req, res, next) => {
-  const user = new User()
+// router.post('/register', async (req, res, next) => {
+//   const user = new User()
 
-  user.email = req.body.email
-  user.name = req.body.name
-  user.picture = req.body.picture
-  user.organization = req.body.organization
-  user.site = req.body.site
-  user.address = req.body.address
-  user.roles = ['user']
+//   user.email = req.body.email
+//   user.name = req.body.name
+//   user.picture = req.body.picture
+//   user.organization = req.body.organization
+//   user.site = req.body.site
+//   user.address = req.body.address
+//   user.roles = ['user']
 
-  if (user.site) {
-    const site = await Site.findById(user.site)
-    user.site_slug = site.slug
-  }
+//   if (user.site) {
+//     const site = await Site.findById(user.site)
+//     user.site_slug = site.slug
+//   }
 
-  user.setPassword(req.body.password)
+//   user.setPassword(req.body.password)
 
-  user.save().then(function() {
-    return res.send(user.data())
-  }).catch(next)
-})
+//   user.save().then(function() {
+//     return res.send(user.data())
+//   }).catch(next)
+// })
 
 router.put('/:id', auth.admin, function(req, res, next) {
   User.findById(req.params.id).then(async (user) => {

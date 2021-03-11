@@ -1,27 +1,24 @@
 <template>
-  <div class="documents-upload">
+  <div class="documents-upload mb-4">
     <b-form-group v-show="!isLoading" label="Outros documentos/arquivos" :description="'Selecione um '+ (multiple ? 'ou mais arquivos' : 'arquivo') +' com no máximo 32 MB.'">
       <b-form-file id="files" ref="files" :multiple="multiple" @change="uploadDocuments" />
       <span v-show="error" class="text-danger">{{ error }}</span>
     </b-form-group>
     <div v-if="!isLoading && showPreview">
-      <b-row v-if="Array.isArray(form[field]) && form[field].length > 0">
-        <b-col v-for="(doc, index) in form[field]" :key="index" cols="3" class="text-center">
-          <a :href="doc.url" target="_blank">{{ doc.filename || doc.url }}</a>
-          <br>
-          <b-form-input v-model="form[field][index].title" placeholder="Nome do documento" />
-          <b-button class="btn btn-sm" @click="deleteDocument(index)"><b-icon-trash /> Remover</b-button>
-        </b-col>
-      </b-row>
-      <b-row v-if="!Array.isArray(form[field]) && form[field]">
-        <b-col cols="3" class="text-center">
-          <a :href="form[field].url" target="_blank">{{ form[field].filename || form[field].url }}</a>
-          <br>
-          <b-form-input v-model="form[field].title" placeholder="Nome do documento" />
-          <br>
-          <b-button class="btn btn-sm" @click="deleteDocument()"><b-icon-trash /> Remover</b-button>
-        </b-col>
-      </b-row>
+      <table v-if="Array.isArray(form[field]) && form[field].length > 0" class="table b-table">
+        <tr v-for="(doc, index) in form[field]" :key="index" class="text-center">
+          <td><a :href="doc.url" target="_blank"><b-icon-paperclip /> {{ doc.title }}</a></td>
+          <td><b-form-input v-model="form[field][index].title" placeholder="Nome do documento" /></td>
+          <td><b-button class="btn btn-sm" @click="deleteDocument(index)"><b-icon-trash /> Remover</b-button></td>
+        </tr>
+      </table>
+      <table v-if="!Array.isArray(form[field]) && form[field]" class="table b-table">
+        <tr cols="3" class="text-center">
+          <td><a :href="form[field].url" target="_blank"><b-icon-paperclip /> {{ form[field].title }}</a></td>
+          <td><b-form-input v-model="form[field].title" placeholder="Nome do documento" /></td>
+          <td><b-button class="btn btn-sm" @click="deleteDocument()"><b-icon-trash /> Remover</b-button></td>
+        </tr>
+      </table>
     </div>
     <b-spinner v-if="isLoading" small label="Enviando foto..." />
   </div>

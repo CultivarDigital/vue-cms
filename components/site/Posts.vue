@@ -4,8 +4,8 @@
       <b-col v-for="post in posts" :key="post._id" lg="6" class="mb-2">
         <b-card :img-src="post.picture ? post.picture.thumb : null" :img-alt="post.title" img-left>
           <b-card-text>
-            <h5 class="text-primary">{{ post.title }}</h5>
-            <p>{{ (post.description || post.content) | truncate(60) }}</p>
+            <h5>{{ post.title }}</h5>
+            <p class="text-secondary">{{ (post.description || post.content) | truncate(60) }}</p>
             <tags :tags="post.tags" @clicked="filterbyTag" />
           </b-card-text>
         </b-card>

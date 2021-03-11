@@ -6,6 +6,7 @@
         <tags :to="$route.path" />
         <Posts :posts="posts" />
         <p v-if="posts.length === 0" class="text-center">Nenhum item encontrado</p>
+        <share />
       </b-container>
     </section>
   </div>

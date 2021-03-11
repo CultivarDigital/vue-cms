@@ -1,5 +1,5 @@
 <template>
-  <div class="default-layout">
+  <div class="default-layout" :class="{ home: this.$route.path === '/' }">
     <div v-show="site">
       <Header />
       <div class="sub-header" />

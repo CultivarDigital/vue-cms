@@ -3,7 +3,7 @@
     <b-form-tags v-model="tags" placeholder="Insira aqui os palavras chave..." @input="changed" />
     <small>ou selecione abaixo para adicionar:</small>
     <div>
-      <b-badge v-for="tag in currentTags" :key="tag" :variant="tags.includes(tag) ? 'secondary' : 'primary'" @click="addTag(tag)">{{ tag }}</b-badge>
+      <b-badge v-for="tag in currentTags" :key="tag" class="pointer" :variant="tags.includes(tag) ? 'secondary' : 'primary'" @click="addTag(tag)">{{ tag }}</b-badge>
     </div>
   </b-form-group>
 </template>

@@ -1,34 +1,48 @@
 <template>
-  <span v-if="menu !== null">
-    <b-nav-item v-if="!menu.submenus || menu.submenus.length === 0" :to="menu.internalUrl" :href="menu.externalUrl" :target="menu.internalUrl ? '_self' : '_blank'">
-      {{ menu.name }}
-    </b-nav-item>
-    <b-nav-item-dropdown v-if="menu.submenus && menu.submenus.length > 0" :text="menu.name">
-      <b-dropdown-item v-for="submenu in menu.submenus" :key="submenu._id" :to="submenu.internalUrl" :href="submenu.externalUrl" :target="submenu.internalUrl ? '_self' : '_blank'">{{ submenu.name }}</b-dropdown-item>
-    </b-nav-item-dropdown>
-  </span>
+  <b-navbar-nav v-if="menuFormated !== null" class="ml-auto">
+    <template v-for="menu in menuFormated">
+      <b-nav-item v-if="!menu.submenus || menu.submenus.length === 0" :key="menu._id" :to="menu.internalUrl" :href="menu.externalUrl" :target="menu.internalUrl ? '_self' : '_blank'">
+        {{ menu.name }}
+      </b-nav-item>
+      <b-nav-item-dropdown v-if="menu.submenus && menu.submenus.length > 0" :key="`submenu-${menu._id}`" :text="menu.name">
+        <b-dropdown-item v-for="submenu in menu.submenus" :key="submenu._id" :to="submenu.internalUrl" :href="submenu.externalUrl" :target="submenu.internalUrl ? '_self' : '_blank'">{{ submenu.name }}</b-dropdown-item>
+      </b-nav-item-dropdown>
+    </template>
+    <b-nav-item to="/biblioteca">Biblioteca</b-nav-item>
+    <b-nav-item to="/noticias">Notícias</b-nav-item>
+    <b-nav-item to="/agenda">Agenda</b-nav-item>
+    <b-nav-item @click="$scrollTo('footer')">Contato</b-nav-item>
+    <!-- <b-nav-item v-if="!$auth.loggedIn" to="/admin" class="btn-login">Entrar</b-nav-item>
+    <b-nav-item v-else to="/admin" class="btn-login">Painel</b-nav-item> -->
+  </b-navbar-nav>
 </template>
 
 <script>
 export default {
   name: 'DynamicMenuItem',
   props: {
-    menu: {
-      type: Object,
+    menus: {
+      type: Array,
       default: null,
       required: true
     }
   },
-  created () {
-    this.setUrlMenuAndSubmenu()
+  computed: {
+    menuFormated () {
+      return this.menus.map(m => {
+        const menu = { ...m }
+        this.setUrl(menu)
+        for (let submenuIndex = 0; submenuIndex < menu.submenus.length; submenuIndex++) {
+          const submenu = menu.submenus[submenuIndex]
+          this.setUrl(submenu)
+        }
+        return menu
+      })
+    }
   },
   methods: {
     setUrlMenuAndSubmenu() {
-      this.setUrl(this.menu)
-      for (let submenuIndex = 0; submenuIndex < this.menu.submenus.length; submenuIndex++) {
-        const submenu = this.menu.submenus[submenuIndex]
-        this.setUrl(submenu)
-      }
+
     },
     setUrl(menu) {
       // cria a URL do item de menu, que pode ser: interna (link para dentro do site) ou externa (link para uma página fora do site)

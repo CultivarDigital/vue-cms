@@ -41,6 +41,9 @@ h1, h2, h3, h4, h5
   .nav-link
     color: $primary !important
     font-size: 16px
+.badge
+  padding: 5px 10px
+  font-weight: normal
 .b-table
   tr > td, tr > th
     vertical-align: middle !important
@@ -56,6 +59,17 @@ h1, h2, h3, h4, h5
   a
     color: $white
     font-weight: 600
+.form-group
+  margin-bottom: 1px solid #f0f0f0
+  legend
+    font-weight: bold
+.card
+  border: none
+  background-color: $primary
+  .card-body
+    display: flex
+    align-items: center
+    color: $white
 
 header
   background: $secondary
@@ -63,16 +77,43 @@ header
   .navbar-brand
     img
       max-height: 50px
-  .navbar-light .navbar-nav .nav-link
-    color: $white
-    text-transform: uppercase
-    font-size: 14px
-    &:hover
-      color: $white
+
+  .navbar-light
+    .navbar-nav
+      > li + li::before
+        padding: 0
+        color: $white
+        content: " \\ "
+        margin: 0
+        font-size: 11px
+      .nav-item
+        display: inline-block
+        .nav-link
+          color: $white
+          text-transform: uppercase
+          font-size: 11px
+          display: inline-block
+          letter-spacing: 2px
+          padding: 5px 15px
+          &.nuxt-link-active
+            background-size: 100% 100%
+            background-image: url(~assets/img/bg-menu.png)
+          &:hover
+            color: $white
+
 .sub-header
   height: 17px
   width: 100%
   background-color: #A7A7A7
+.home
+  header
+    background: transparent
+    position: relative
+    z-index: 11
+    margin-bottom: -106px
+    padding-top: 30px
+  .sub-header
+    display: none
 footer
   color: $secondary
   a
@@ -114,6 +155,43 @@ footer
         font-weight: normal
         a
           color: $white
+
+.home-banners
+  .carousel-inner
+    min-height: 300px
+
+  .carousel-caption
+    height: 100%
+    display: flex
+    align-content: center
+    align-items: center
+    justify-content: center
+    flex-flow: column
+    margin-bottom: -20px
+    h3
+      font-size: 36px
+      color: $primary
+      font-weight: normal
+    h2
+      font-weight: 700
+      font-size: 47px
+      color: $white
+    .btn
+      font-size: 11px
+      letter-spacing: 3px
+      padding: 15px 25px
+      border-radius: 1px
+    p
+      @media (max-width: 768px)
+        display: none
+  .carousel-indicators
+    bottom: 10px
+    li
+      width: 6px
+      height: 6px
+      background-color: transparent
+      border: 1px solid $white
+      border-radius: 100%
 .banners
   margin-top: -50px
   margin-bottom: 50px
@@ -138,18 +216,10 @@ footer
       @media (max-width: 768px)
         display: none
     .card
-      border: none
       .card-body
-        background-color: $primary
-        color: $secondary
-        display: flex
-        align-items: center
         width: 50%
         text-align: left
         padding: 80px
-        .card-text
-          p
-            color: $white
       img
         width: 50%
         border-radius: 0

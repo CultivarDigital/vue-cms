@@ -2,6 +2,7 @@
   <div v-if="page" class="default-page">
     <section class="content pb-5">
       <page-info :page="page" show-content />
+      <share />
     </section>
   </div>
 </template>

@@ -8,6 +8,7 @@
           <calendar :events="events" />
         </div>
       </b-container>
+      <share />
     </section>
   </div>
 </template>
