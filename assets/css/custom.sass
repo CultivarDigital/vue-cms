@@ -1,7 +1,7 @@
 $primary: #E1846D
 $secondary: #523D38
 $default: #A7A7A7
-$gray: #F7F9FA
+$gray: #e2e2e2
 $success: #00c58e
 $white: #fff
 $black: #212529
@@ -34,8 +34,8 @@ h1, h2, h3, h4, h5
   border-color: $secondary !important
   color: $white
 .bg-default, .btn-default
-  background-color: $default !important
-  border-color: $default !important
+  background-color: $gray !important
+  border-color: $gray !important
   color: $black
 .btn-login
   .nav-link
@@ -77,6 +77,8 @@ header
   .navbar-brand
     img
       max-height: 50px
+      @media (max-width: 768px)
+        max-height: 30px
 
   .navbar-light
     .navbar-nav
@@ -112,6 +114,9 @@ header
     z-index: 11
     margin-bottom: -106px
     padding-top: 30px
+    @media (max-width: 768px)
+      padding-top: 5px
+
   .sub-header
     display: none
 footer
@@ -126,6 +131,18 @@ footer
   padding-bottom: 50px
   .card
     color: $black
+
+  .title
+    hr
+      width: 60px
+      height: 2px
+      background: $primary
+      margin-top: 10px
+
+    h4
+      margin-bottom: 0px
+      text-align: center
+
   .page-info
     .pattern
       width: 15px
@@ -168,22 +185,39 @@ footer
     justify-content: center
     flex-flow: column
     margin-bottom: -20px
+    left: 0
+    right: 0
     h3
       font-size: 36px
       color: $primary
       font-weight: normal
+      @media (max-width: 768px)
+        font-size: 14px
+        margin-top: 50px
     h2
       font-weight: 700
       font-size: 47px
       color: $white
+      @media (max-width: 768px)
+        font-size: 20px
+
     .btn
       font-size: 11px
       letter-spacing: 3px
       padding: 15px 25px
       border-radius: 1px
+      @media (max-width: 768px)
+        font-size: 10px
+        padding: 5px 10px
+        letter-spacing: 1px
+        border-radius: 3px
+
     p
       @media (max-width: 768px)
         display: none
+    .divisor
+      bottom: 0
+      position: absolute
   .carousel-indicators
     bottom: 10px
     li
