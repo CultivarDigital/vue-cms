@@ -88,7 +88,6 @@ a.bg-secondary:focus
     color: $white
     font-weight: 600
 .form-group
-  margin-bottom: 1px solid #f0f0f0
   legend
     font-weight: bold
 .card
@@ -100,7 +99,6 @@ a.bg-secondary:focus
     color: $white
 
 header
-  background: $secondary
   font-family: 'Raleway', sans-serif
   .navbar-brand
     img
@@ -108,14 +106,23 @@ header
       @media (max-width: 768px)
         max-height: 30px
 
-  .navbar-light
-    .navbar-nav
-      > li + li::before
-        padding: 0
+  .navbar
+    background: $secondary
+    .navbar-toggler
+      color: $white
+      border: 1px solid $white
+      .navbar-toggler-icon
         color: $white
-        content: " \\ "
-        margin: 0
-        font-size: 11px
+    .navbar-nav
+      > li
+        font-size: 22px
+      @media (min-width: 992px)
+        > li + li::before
+          padding: 0
+          color: $white
+          content: " \\ "
+          margin: 0
+          font-size: 11px
       .nav-item
         display: inline-block
         .nav-link
@@ -132,22 +139,23 @@ header
             color: $white
 
 .sub-header
-  height: 17px
+  height: 10px
   width: 100%
   background-color: #A7A7A7
 .home
   header
-    background: transparent
-    position: relative
-    z-index: 11
-    margin-bottom: -106px
-    padding-top: 30px
-    @media (max-width: 768px)
-      padding-top: 5px
+    @media (min-width: 992px)
+      position: relative
+      z-index: 11
+      margin-bottom: -106px
+      .navbar
+        background: transparent
+        padding-top: 30px
 
   .sub-header
     display: none
 footer
+  margin-top: -1px
   a
     font-weight: 200
   .links

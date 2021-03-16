@@ -6,8 +6,10 @@
           <b-img :src="site.logo ? site.logo.url : require('~/assets/img/logo.svg')" />
           <b-img :src="site.logo ? site.logo.url : require('~/assets/img/logo-nome.svg')" />
         </b-navbar-brand>
-        <b-navbar-toggle target="header-menu" />
-        <b-collapse id="header-menu" is-nav>
+        <b-navbar-toggle target="header-menu">
+          <font-awesome-icon icon="bars" />
+        </b-navbar-toggle>
+        <b-collapse id="header-menu" is-nav class="my-3">
           <b-navbar-nav />
           <template v-if="menus !== null">
             <dynamic-menu-item :menus="menus" />

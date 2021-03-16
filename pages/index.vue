@@ -29,7 +29,7 @@
             </b-button>
           </div>
           <b-row class="mt-5">
-            <b-col>
+            <b-col md="6" class="mb-3">
               <b-card img-src="~/assets/img/noticias.png" img-alt="Notícias" img-left class="bg-white">
                 <b-card-text>
                   <h5>Notícias</h5>

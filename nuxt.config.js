@@ -36,7 +36,8 @@ export default {
     '@nuxtjs/eslint-module',
     '@nuxtjs/google-fonts',
     '@nuxtjs/moment',
-    '@nuxtjs/fontawesome'
+    '@nuxtjs/fontawesome',
+    '@nuxtjs/google-analytics'
   ],
   modules: [
     // Doc: https://bootstrap-vue.js.org
@@ -106,9 +107,12 @@ export default {
   },
   fontawesome: {
     icons: {
-      solid: ['faHome', 'faMapMarker'],
+      solid: ['faHome', 'faMapMarker', 'faBars'],
       brands: ['faFacebookSquare', 'faTwitterSquare']
     }
+  },
+  googleAnalytics: {
+    id: 'UA-185563105-2'
   },
   proxy: {
     pathRewrite: {
