@@ -28,9 +28,11 @@
             </b-form-group>
           </b-col>
         </b-row>
-        <b-button type="submit" variant="primary" :disabled="invalid">
-          ENVIAR
-        </b-button>
+        <div class="text-right">
+          <b-button type="submit" variant="primary" class="btn-home" :disabled="invalid">
+            ENVIAR
+          </b-button>
+        </div>
       </b-form>
     </ValidationObserver>
   </div>

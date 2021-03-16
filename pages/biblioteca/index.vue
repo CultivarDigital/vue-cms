@@ -11,21 +11,21 @@
               </div>
               <b-card title="Categorias" no-body class="mb-4">
                 <b-list-group flush>
-                  <b-list-group-item v-for="category in categories" :key="category" :to="'/biblioteca?categoria=' + category + '&tag=' + filters.tag + '&search=' + filters.search">{{ category }}</b-list-group-item>
-                  <b-list-group-item v-if="filters.category" :to="'/biblioteca?tag=' + filters.tag + '&search=' + filters.search ">Todas as categorias</b-list-group-item>
+                  <b-list-group-item v-for="category in categories" :key="category" :to="'/biblioteca?categoria=' + category + '&tag=' + filters.tag + '&search=' + filters.search" class="bg-secondary">{{ category }}</b-list-group-item>
+                  <b-list-group-item v-if="filters.category" :to="'/biblioteca?tag=' + filters.tag + '&search=' + filters.search " class="bg-secondary">Todas as categorias</b-list-group-item>
                 </b-list-group>
               </b-card>
               <div class="tags mb-4">
-                <b-button v-for="tag in tags" :key="tag" variant="primary" :to="'/biblioteca?categoria=' + filters.category + '&tag=' + tag + '&search=' + filters.search" :class="{ active: (tag === filters.tag) }">{{ tag }}</b-button>
+                <b-button v-for="tag in tags" :key="tag" size="sm" variant="primary" :to="'/biblioteca?categoria=' + filters.category + '&tag=' + tag + '&search=' + filters.search" :class="{ active: (tag === filters.tag) }" class="mb-1 mr-1">{{ tag }}</b-button>
                 <b-button v-if="filters.tag" variant="primary" :to="'/biblioteca?categoria=' + filters.category + '&search=' + filters.search">Todos os temas</b-button>
               </div>
-              <b-button v-if="filters.search || filters.category || filters.tag" class="mb-4" variant="primary" block to="/biblioteca">Limpar filtros</b-button>
+              <b-button v-if="filters.search || filters.category || filters.tag" class="mb-4" variant="secondary" block to="/biblioteca">Limpar filtros</b-button>
             </b-col>
             <b-col md="9" class="medias">
               <div v-if="medias">
-                <div class="title">
-                  <h3 v-if="filters.tag">{{ filters.tag }}</h3>
-                  <h3 v-else>Biblioteca</h3>
+                <div>
+                  <h3 v-if="filters.tag" class="title">{{ filters.tag }}</h3>
+                  <h3 v-else class="title">Biblioteca</h3>
                   <p v-if="medias.length === 1"><strong>1</strong> Item encontrado <span v-if="filters.category">em <n-link :to="'/biblioteca?categoria=' + filters.category"><strong>{{ filters.category }}</strong></n-link></span></p>
                   <p v-else><strong>{{ medias.length }}</strong> Items encontrados <span v-if="filters.category">em <n-link :to="'/biblioteca?categoria=' + filters.category"><strong>{{ filters.category }}</strong></n-link></span></p>
                   <p v-if="medias && medias.length === 0" class="text-center">Nenhum item encontrado</p>

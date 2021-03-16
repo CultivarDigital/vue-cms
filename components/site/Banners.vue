@@ -5,7 +5,7 @@
         <b-carousel-slide v-if="item" :key="index">
           <b-card :img-src="item.url" :img-alt="item.title" img-left>
             <b-card-text>
-              <h4>{{ item.title }}</h4>
+              <h4 class="title">{{ item.title }}</h4>
               <p v-if="item.description" class="text-secondary">{{ (item.description) | truncate(250) }}</p>
             </b-card-text>
           </b-card>

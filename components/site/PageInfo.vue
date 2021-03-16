@@ -3,7 +3,7 @@
     <banners :items="page.pictures" />
     <b-container>
       <div class="title">
-        <h4 v-if="page.title">{{ page.title }}</h4>
+        <h4 v-if="page.title" class="title">{{ page.title }}</h4>
         <hr>
       </div>
       <p v-if="page.description">{{ page.description }}</p>
