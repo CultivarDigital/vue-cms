@@ -27,7 +27,8 @@ export default {
       ],
       table: [
         { key: 'name', label: 'Nome' },
-        { key: 'email', label: 'Email' }
+        { key: 'email', label: 'Email' },
+        { key: 'message', label: 'Mensagem' }
       ]
     }
   },
