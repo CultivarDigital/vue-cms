@@ -17,6 +17,14 @@
               CONTATO
             </a>
             <contact />
+            <b-col sm="6">
+              <a href="mailto:contato@sementesdoxingu.org.br">contato@sementesdoxingu.org.br</a>
+              &nbsp;
+              <a v-if="site.url_facebook" :href="site.url_facebook" target="_blank"><b-img src="~/assets/img/facebook_icon.png" /></a>
+              <a v-if="site.url_youtube" :href="site.url_youtube" target="_blank"><b-img src="~/assets/img/youtube_icon.png" /></a>
+              <a v-if="site.url_flickr" :href="site.url_flickr" target="_blank"><b-img src="~/assets/img/flickr_icon.png" /></a>
+              <a v-if="site.url_instagram" :href="site.url_instagram" target="_blank"><b-img src="~/assets/img/instagram_icon.png" /></a>
+            </b-col>
           </b-col>
         </b-row>
       </b-container>

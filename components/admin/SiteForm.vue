@@ -43,6 +43,11 @@
             <b-form-input v-model="form.url_twitter" name="url_twitter" />
           </b-form-group>
         </b-col>
+        <b-col md="6">
+          <b-form-group label="Link do Instagram">
+            <b-form-input v-model="form.url_instagram" name="url_instagram" />
+          </b-form-group>
+        </b-col>
         <b-col md="12">
           <pictures-upload :form="form" field="logo" url="/api/uploads/images" label="Logo do site" />
         </b-col>
