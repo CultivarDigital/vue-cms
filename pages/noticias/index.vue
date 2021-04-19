@@ -1,7 +1,7 @@
 <template>
   <div v-if="page" class="posts-page">
     <section class="content pb-5">
-      <page-info :page="page" />
+      <page-info :info="page" />
       <b-container>
         <tags :to="$route.path" />
         <Posts :posts="posts" />

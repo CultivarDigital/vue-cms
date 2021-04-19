@@ -1,7 +1,7 @@
 <template>
   <div class="events-page">
     <section class="content pb-5">
-      <page-info :page="page" />
+      <page-info :info="page" />
       <b-container>
         <br>
         <div v-if="events">
