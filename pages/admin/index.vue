@@ -2,7 +2,7 @@
   <div class="dashboard">
     <b-breadcrumb :items="breadcrumb" />
     <b-list-group>
-      <b-list-group-item v-if="$auth.hasScope('admin')" to="/admin/categories">Categorias</b-list-group-item>
+      <!-- <b-list-group-item v-if="$auth.hasScope('admin')" to="/admin/categories">Categorias</b-list-group-item> -->
       <b-list-group-item v-if="$auth.hasScope('admin')" to="/admin/pages">Páginas</b-list-group-item>
       <b-list-group-item v-if="$auth.hasScope('admin')" to="/admin/menus">Menus</b-list-group-item>
       <b-list-group-item v-if="$auth.hasScope('admin')" to="/admin/posts">Notícias</b-list-group-item>

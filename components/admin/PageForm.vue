@@ -16,11 +16,11 @@
             </small>
           </b-form-group>
         </b-col>
-        <b-col md="12">
+        <!-- <b-col md="12">
           <b-form-group label="Categorias">
             <form-entities-select type="categories" :form="form" field="categories" />
           </b-form-group>
-        </b-col>
+        </b-col> -->
         <b-col md="12">
           <tags-form v-model="form.tags" :current-tags="currentTags" />
         </b-col>

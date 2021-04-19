@@ -53,7 +53,7 @@ export default {
       ],
       table: [
         { key: 'name', label: 'Nome' },
-        { key: 'categories', label: 'Categorias' },
+        // { key: 'categories', label: 'Categorias' },
         { key: 'tags', label: 'Tags' },
         { key: 'actions', label: '', class: 'text-right' }
       ]
