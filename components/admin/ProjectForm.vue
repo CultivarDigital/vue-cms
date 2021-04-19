@@ -49,15 +49,13 @@ import mixinGlobal from '@/mixins/global'
 import mixinForm from '@/mixins/form'
 import PicturesUpload from '@/components/admin/PicturesUpload'
 import PdfsUpload from '@/components/admin/PdfsUpload'
-import FormEntitiesSelect from '@/components/admin/FormEntitiesSelect'
 
 export default {
   components: {
     ValidationObserver,
     ValidationProvider,
     PicturesUpload,
-    PdfsUpload,
-    FormEntitiesSelect
+    PdfsUpload
   },
   mixins: [mixinGlobal, mixinForm],
   props: {
