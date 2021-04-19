@@ -5,7 +5,7 @@
       <b-container>
         <h1 class="title pt-5">{{ post.title }}</h1>
         <div class="mb-3">
-          <tags :tags="post.tags" />
+          <tags :tags="post.tags" @click="filterbyTag" />
         </div>
 
         <p v-if="post.description">{{ post.description }}</p>
@@ -41,6 +41,11 @@ export default {
   computed: {
     post () {
       return this.site.posts.find(post => post.slug === this.$route.params.id)
+    }
+  },
+  methods: {
+    filterbyTag(tag) {
+      this.$router.push('/noticias?tag=' + tag)
     }
   },
   head () {

@@ -6,7 +6,7 @@
           <b-card-text>
             <h5>{{ post.title }}</h5>
             <p class="text-secondary"><b-link :to="'/noticias/' + post.slug" class="stretched-link text-black">{{ (post.description || post.content) | truncate(60) }}</b-link></p>
-            <tags :tags="post.tags" @clicked="filterbyTag" />
+            <tags :tags="post.tags" @click="filterbyTag" />
           </b-card-text>
         </b-card>
       </b-col>
