@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <h1 v-if="error.statusCode === 404">Página não encontrada</h1>
-    <h1 v-else>Ocorreu um erro</h1>
-    <NuxtLink to="/">Voltar</NuxtLink>
+  <div class="m-5 text-center">
+    <h3 v-if="error.statusCode === 404">Página não encontrada</h3>
+    <h3 v-else>Ocorreu um erro</h3>
+    <b-btn to="/">Voltar</b-btn>
   </div>
 </template>
 

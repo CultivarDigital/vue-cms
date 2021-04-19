@@ -1,36 +1,24 @@
 <template>
   <div v-if="post" class="post-page">
     <section class="content pb-5">
+      <banners :items="[post.picture]" />
       <b-container>
         <h1 class="title pt-5">{{ post.title }}</h1>
+        <div class="mb-3">
+          <tags :tags="post.tags" />
+        </div>
+
         <p v-if="post.description">{{ post.description }}</p>
-        <b-row>
-          <b-col md="9">
-            <div class="quill-content mt-4">
-              <banners :items="[post.picture]" />
-              <div v-if="post.content" v-html="post.content" />
-              <div v-if="post.pdfs && post.pdfs.length > 0" class="pdfs">
-                <h3>Documentos</h3>
-                <b-row class="text-center">
-                  <b-col v-for="pdf in post.pdfs" :key="pdf._id" md="4">
-                    <a :href="pdf.url" target="_blank">
-                      <div class="img">
-                        <b-img :src="pdf.thumb" />
-                      </div>
-                      <p>{{ pdf.title || 'Baixar arquivo' }}</p>
-                      <br>
-                    </a>
-                  </b-col>
-                </b-row>
-              </div>
-              <share />
-            </div>
-          </b-col>
-          <b-col md="3">
-            <h3 class="mt-3">Tags</h3>
-            <tags :tags="post.tags" />
-          </b-col>
-        </b-row>
+        <div class="quill-content mt-4">
+          <div v-if="post.content" v-html="post.content" />
+          <div v-if="post.documents && post.documents.length > 0" class="documents mt-4">
+            <h3 class="mb-3">Documentos</h3>
+            <b-btn v-for="pdf in post.documents" :key="pdf._id" :href="pdf.url" target="_blank">
+              <b-icon-paperclip /> {{ pdf.title || 'Baixar arquivo' }}
+            </b-btn>
+          </div>
+          <share />
+        </div>
       </b-container>
     </section>
   </div>

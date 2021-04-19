@@ -21,7 +21,6 @@
           </div>
         </b-card>
       </b-card-group>
-      </b-row>
     </div>
   </div>
 </template>

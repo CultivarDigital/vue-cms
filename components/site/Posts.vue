@@ -5,7 +5,7 @@
         <b-card :img-src="post.picture ? post.picture.thumb : null" :img-alt="post.title" img-left>
           <b-card-text>
             <h5>{{ post.title }}</h5>
-            <p class="text-secondary">{{ (post.description || post.content) | truncate(60) }}</p>
+            <p class="text-secondary"><b-link :to="'/noticias/' + post.slug" class="stretched-link text-black">{{ (post.description || post.content) | truncate(60) }}</b-link></p>
             <tags :tags="post.tags" @clicked="filterbyTag" />
           </b-card-text>
         </b-card>
