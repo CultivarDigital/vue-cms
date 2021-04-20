@@ -63,7 +63,7 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', auth.admin, (req, res) => {
   const newMenu = new Menu(req.body)
-  newMenu.site = req.payload.site
+  newMenu.site = req.user.site
 
   newMenu.save((err, menu) => {
     if (err) {

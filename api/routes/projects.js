@@ -42,7 +42,7 @@ router.post('/reorder', auth.admin, async (req, res) => {
 
 router.post('/', auth.admin, (req, res) => {
   const newProject = new Project(req.body)
-  newProject.site = req.payload.site
+  newProject.site = req.user.site
   newProject.slug = slugify(newProject.name).toLowerCase()
   // newProject.order = 0
   newProject.save((err, project) => {

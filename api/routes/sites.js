@@ -16,7 +16,7 @@ router.get('/', auth.super, (req, res) => {
 })
 
 router.get('/:id', auth.admin, (req, res) => {
-  const id = req.payload.roles.includes('super') ? req.params.id : req.payload.site
+  const id = req.user.roles.includes('super') ? req.params.id : req.user.site
   Site.findOne({
     _id: id
   }).exec((err, site) => {
@@ -41,7 +41,7 @@ router.post('/', auth.super, (req, res) => {
 })
 
 router.put('/:id', auth.admin, (req, res) => {
-  const id = req.payload.roles.includes('super') ? req.params.id : req.payload.site
+  const id = req.user.roles.includes('super') ? req.params.id : req.user.site
   const params = req.body
   Site.findOneAndUpdate({
     _id: id

@@ -46,7 +46,7 @@ router.get('/:id', (req, res) => {
 
 router.post('/', auth.admin, (req, res) => {
   const newEvent = new Event(req.body)
-  newEvent.site = req.payload.site
+  newEvent.site = req.user.site
   newEvent.save((err, event) => {
     if (err) {
       res.status(422).send(err.message)

@@ -7,9 +7,9 @@ const Site = mongoose.model('Site')
 router.get('/', auth.admin, function(req, res) {
   let filters = {}
 
-  if (!req.payload.roles.includes('super')) {
+  if (!req.user.roles.includes('super')) {
     filters = {
-      site: req.payload.site
+      site: req.user.site
     }
   }
 
@@ -43,11 +43,11 @@ router.post('/', auth.admin, async (req, res, next) => {
   user.organization = req.body.organization
   user.address = req.body.address
 
-  if (req.payload.roles.includes('super')) {
+  if (req.user.roles.includes('super')) {
     user.site = req.body.site
     user.roles = req.body.roles
   } else {
-    user.site = req.payload.site
+    user.site = req.user.site
     user.roles = req.body.roles.filter(r => r === 'super')
   }
 
@@ -94,13 +94,13 @@ router.put('/:id', auth.admin, function(req, res, next) {
     user.organization = req.body.organization
     user.address = req.body.address
 
-    if (req.payload.roles.includes('super')) {
+    if (req.user.roles.includes('super')) {
       user.site = req.body.site
       if (req.body.roles && req.body.roles.length > 0) {
         user.roles = req.body.roles
       }
     } else {
-      user.site = req.payload.site
+      user.site = req.user.site
       user.roles = req.body.roles.filter(r => r !== 'super')
     }
 
@@ -120,7 +120,7 @@ router.put('/:id', auth.admin, function(req, res, next) {
 })
 
 router.put('/', auth.authenticated, function(req, res, next) {
-  User.findById(req.payload.id).then(function(user) {
+  User.findById(req.user.id).then(function(user) {
     user.email = req.body.email
     user.name = req.body.name
     user.picture = req.body.picture
@@ -141,11 +141,11 @@ router.delete('/:id', auth.admin, (req, res) => {
   }).exec((err, user) => {
     if (err) {
       res.status(422).send(err.message)
-    } else if (req.payload.roles.includes('super')) {
+    } else if (req.user.roles.includes('super')) {
       res.status(422).send('Super usuários não podem ser excluídos')
-    } else if (req.params.id === req.payload.id) {
+    } else if (req.params.id === req.user.id) {
       res.status(422).send('Você não pode excuír você mesmo')
-    } else if (req.payload.site !== user.site.toString()) {
+    } else if (req.user.site !== user.site.toString()) {
       res.status(422).send('Você não tem permissão para excluír este usuário')
     } else {
       user.remove()

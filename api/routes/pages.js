@@ -41,7 +41,7 @@ router.get('/generate_pages', (req, res) => {
   ]
   pages.forEach(p => {
     const page = new Page(p)
-    page.site = req.payload.site
+    page.site = req.user.site
     page.save()
   })
 })
@@ -60,7 +60,7 @@ router.get('/:id', (req, res) => {
 
 router.post('/', auth.admin, (req, res) => {
   const newPage = new Page(req.body)
-  newPage.site = req.payload.site
+  newPage.site = req.user.site
   if (!newPage.slug) {
     newPage.slug = slugify(newPage.title).toLowerCase()
   }

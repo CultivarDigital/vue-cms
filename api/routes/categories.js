@@ -29,7 +29,7 @@ router.get('/:id', (req, res) => {
 
 router.post('/', auth.admin, (req, res) => {
   const newCategory = new Category(req.body)
-  newCategory.site = req.payload.site
+  newCategory.site = req.user.site
   newCategory.slug = slugify(newCategory.name).toLowerCase()
   newCategory.save((err, category) => {
     if (err) {

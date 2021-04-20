@@ -53,7 +53,7 @@ router.get('/:id', (req, res) => {
 
 router.post('/', auth.admin, (req, res) => {
   const newMedia = new Media(req.body)
-  newMedia.site = req.payload.site
+  newMedia.site = req.user.site
   if (!newMedia.publishing_date) {
     newMedia.publishing_date = new Date()
   }

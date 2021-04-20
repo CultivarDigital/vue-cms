@@ -29,7 +29,7 @@ router.get('/:id', (req, res) => {
 
 router.post('/', auth.admin, (req, res) => {
   const newTag = new Tag(req.body)
-  newTag.site = req.payload.site
+  newTag.site = req.user.site
   newTag.slug = slugify(newTag.name).toLowerCase()
   newTag.save((err, tag) => {
     if (err) {

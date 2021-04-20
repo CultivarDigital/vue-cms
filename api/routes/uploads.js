@@ -44,11 +44,11 @@ const averagesPath = (slug) => {
 
 const imageStorage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, imagesPath(req.payload.site_slug))
+    cb(null, imagesPath(req.user.site_slug))
   },
   filename: (req, file, cb) => {
     let filename = file.originalname
-    const path = imagesPath(req.payload.site_slug)
+    const path = imagesPath(req.user.site_slug)
     if (fs.existsSync(path + filename)) {
       const nameArr = filename.split('.')
       nameArr[0] += '-' + Date.now()
@@ -67,9 +67,9 @@ const imageUploader = multer({
 router.post('/images', [auth.authenticated, imageUploader.single('image')], (req, res) => {
   const filename = req.file.filename
 
-  const original = imagesPath(req.payload.site_slug) + filename
-  const thumb = thumbsPath(req.payload.site_slug) + filename
-  const average = averagesPath(req.payload.site_slug) + filename
+  const original = imagesPath(req.user.site_slug) + filename
+  const thumb = thumbsPath(req.user.site_slug) + filename
+  const average = averagesPath(req.user.site_slug) + filename
 
   sharp(original, { failOnError: false })
     .resize({
@@ -108,11 +108,11 @@ const documentsPath = (slug) => {
 
 const documentStorage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, documentsPath(req.payload.site_slug))
+    cb(null, documentsPath(req.user.site_slug))
   },
   filename: (req, file, cb) => {
     let filename = file.originalname
-    const path = documentsPath(req.payload.site_slug)
+    const path = documentsPath(req.user.site_slug)
     if (fs.existsSync(path + filename)) {
       const nameArr = filename.split('.')
       nameArr[0] += '-' + Date.now()
@@ -129,7 +129,7 @@ const documentUploader = multer({
 })
 router.post('/documents', [auth.authenticated, documentUploader.single('document')], (req, res) => {
   const url = req.file.filename
-  const path = documentsPath(req.payload.site_slug)
+  const path = documentsPath(req.user.site_slug)
   res.status(201).send({ title: url.split('.')[0], url: path + url })
 })
 
@@ -142,11 +142,11 @@ const pdfsPath = (slug) => {
 
 const pdfStorage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, pdfsPath(req.payload.site_slug))
+    cb(null, pdfsPath(req.user.site_slug))
   },
   filename: (req, file, cb) => {
     let filename = file.originalname
-    const path = pdfsPath(req.payload.site_slug)
+    const path = pdfsPath(req.user.site_slug)
     if (fs.existsSync(path + filename)) {
       const nameArr = filename.split('.')
       nameArr[0] += '-' + Date.now()
@@ -165,11 +165,11 @@ const pdfUploader = multer({
 router.post('/pdfs', [auth.authenticated, pdfUploader.single('pdf')], (req, res) => {
   const filename = req.file.filename
 
-  // let path = pdfsPath(req.payload.site_slug)
+  // let path = pdfsPath(req.user.site_slug)
 
-  // const original = imagesPath(req.payload.site_slug) + filename
-  const thumb = thumbsPath(req.payload.site_slug) + filename.replace('.pdf', '.png')
-  const average = averagesPath(req.payload.site_slug) + filename.replace('.pdf', '.png')
+  // const original = imagesPath(req.user.site_slug) + filename
+  const thumb = thumbsPath(req.user.site_slug) + filename.replace('.pdf', '.png')
+  const average = averagesPath(req.user.site_slug) + filename.replace('.pdf', '.png')
 
   const pdfImage = new PDFImage(req.file.path)
 

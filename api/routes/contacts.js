@@ -6,8 +6,8 @@ const Contact = mongoose.model('Contact')
 
 router.get('/', auth.admin, (req, res) => {
   const query = {}
-  if (!req.payload.roles.includes('super')) {
-    query.site = req.payload.site
+  if (!req.user.roles.includes('super')) {
+    query.site = req.user.site
   }
   Contact.find(query).sort('name').exec((err, contacts) => {
     if (err) {

@@ -47,7 +47,7 @@ router.get('/:id', (req, res) => {
 
 router.post('/', auth.admin, (req, res) => {
   const newPost = new Post(req.body)
-  newPost.site = req.payload.site
+  newPost.site = req.user.site
   newPost.slug = slugify(newPost.title).toLowerCase()
   newPost.save((err, post) => {
     if (err) {

@@ -6,7 +6,8 @@ const PageSchema = mongoose.Schema({
   site: {
     type: ObjectId,
     ref: 'Site',
-    required: true
+    required: true,
+    index: true
   },
   slug: {
     type: String,

@@ -36,7 +36,7 @@ router.use('/medias', require('./routes/medias'))
 router.use('/menus', require('./routes/menus'))
 
 router.get('/profile', auth.authenticated, function(req, res) {
-  User.findById(req.payload.id).populate('site').exec(function(err, user) {
+  User.findById(req.user.id).populate('site').exec(function(err, user) {
     if (!err && user) {
       res.send(user.data())
     } else {

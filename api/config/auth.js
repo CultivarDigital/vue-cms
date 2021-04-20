@@ -11,7 +11,7 @@ async function applySite(req, res, query, type) {
       query.site = site._id
     }
     return site
-  } else if (!req.payload.roles.includes('super')) {
+  } else if (!req.user.roles.includes('super')) {
     res.status(401).send('Você não tem permissão para acessar este recurso')
     return false
   }
@@ -20,10 +20,10 @@ async function applySite(req, res, query, type) {
 
 async function belongsToSite(req) {
   const site = await getSite(req)
-  if (site && req.payload.sites) {
-    if (req.payload.sites.includes(site.id)) {
+  if (site && req.user.sites) {
+    if (req.user.sites.includes(site.id)) {
       return site
-    } else if (req.payload.sites && req.payload.sites.length) {
+    } else if (req.user.sites && req.user.sites.length) {
       return site[0]
     }
   }
@@ -52,15 +52,15 @@ function getTokenFromHeader(req) {
 }
 
 function isSuper(req) {
-  if (req.payload && req.payload.roles) {
-    return req.payload.roles.includes('super')
+  if (req.user && req.user.roles) {
+    return req.user.roles.includes('super')
   }
   return false
 }
 
 function isAdmin(req) {
-  if (req.payload && req.payload.roles) {
-    return req.payload.roles.includes('admin') || req.payload.roles.includes('super')
+  if (req.user && req.user.roles) {
+    return req.user.roles.includes('admin') || req.user.roles.includes('super')
   }
   return false
 }
@@ -102,25 +102,25 @@ const auth = {
   authenticated: jwt({
     secret: getSecret(),
     algorithms: ['HS256'],
-    userProperty: 'payload',
+    userProperty: 'user',
     getToken: getTokenFromHeader
   }),
   super: [jwt({
     secret: getSecret(),
     algorithms: ['HS256'],
-    userProperty: 'payload',
+    userProperty: 'user',
     getToken: getTokenFromHeader
   }), authenticatedSuper],
   admin: [jwt({
     secret: getSecret(),
     algorithms: ['HS256'],
-    userProperty: 'payload',
+    userProperty: 'user',
     getToken: getTokenFromHeader
   }), authenticatedAdmin],
   optional: jwt({
     secret: getSecret(),
     algorithms: ['HS256'],
-    userProperty: 'payload',
+    userProperty: 'user',
     credentialsRequired: false,
     getToken: getTokenFromHeader
   }),
