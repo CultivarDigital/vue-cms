@@ -16,6 +16,7 @@
               <b-nav-item to="/admin/users">Usuários</b-nav-item>
               <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/posts">Notícias</b-nav-item>
               <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/events">Agenda</b-nav-item>
+              <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/ecommerce">E-commerce</b-nav-item>
               <b-nav-item to="/admin/contacts">Contatos</b-nav-item>
             </b-navbar-nav>
             <b-navbar-nav class="ml-auto">

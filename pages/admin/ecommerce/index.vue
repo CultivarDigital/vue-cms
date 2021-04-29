@@ -1,0 +1,28 @@
+<template>
+  <div class="events">
+    <b-breadcrumb :items="breadcrumb" />
+    <div>
+      <div class="text-right mb-3">
+        <b-button variant="primary" block to="/admin/ecommerce/products">
+          Produtos
+        </b-button>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import mixinGlobal from '@/mixins/global'
+export default {
+  layout: 'admin',
+  mixins: [mixinGlobal],
+  data () {
+    return {
+      breadcrumb: [
+        { text: 'Painel', to: '/admin' },
+        { text: 'E-commerce', active: true }
+      ]
+    }
+  }
+}
+</script>

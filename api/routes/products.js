@@ -2,21 +2,37 @@ const express = require('express')
 const mongoose = require('mongoose')
 const router = express.Router()
 const slugify = require('slugify')
-const { admin } = require('../auth')
-const select = require('../utils').select
-const populate = require('../utils').populate
+const { admin } = require('../config/auth')
 const Product = mongoose.model('Product')
 
 router.get('/', admin, function(req, res) {
-  const query = { published: true }
+  const query = { deleted: { $ne: true } }
   if (req.query.search) {
     query.name = { $regex: req.query.search, $options: 'i' }
   }
-  Product.find(query, select(req)).exec(function(err, products) {
+  Product.find(query).populate('orders qtd_ordered').exec(function(err, products) {
     if (err) {
       res.status(422).send(err)
     } else {
       res.json(products)
+    }
+  })
+})
+
+router.get('/current_tags', (req, res) => {
+  Product.find().select('tags').exec((err, products) => {
+    if (err) {
+      res.status(422).send(err.message)
+    } else {
+      const tags = {}
+      products.forEach(product => {
+        if (product.tags) {
+          product.tags.forEach(tag => {
+            tags[tag] = true
+          })
+        }
+      })
+      res.json(Object.keys(tags).sort((a, b) => a.localeCompare(b)))
     }
   })
 })
@@ -26,7 +42,7 @@ router.get('/:id', admin, function(req, res) {
     $or: [
       { _id: req.params.id }, { slug: req.params.id }
     ]
-  }).populate(populate(req)).exec(function(err, product) {
+  }).exec(function(err, product) {
     if (err) {
       res.status(422).send(err)
     } else {
@@ -76,7 +92,7 @@ router.delete('/:id', admin, function(req, res) {
     if (err) {
       res.status(422).send(err)
     } else {
-      product.published = false
+      product.deleted = true
       product.save()
       res.send(product)
     }

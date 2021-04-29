@@ -1,5 +1,6 @@
 require('./models/Site')
 require('./models/User')
+require('./models/Menu')
 require('./models/Category')
 require('./models/Tag')
 require('./models/Project')
@@ -8,7 +9,8 @@ require('./models/Event')
 require('./models/Page')
 require('./models/Contact')
 require('./models/Media')
-require('./models/Menu')
+require('./models/Product')
+require('./models/Order')
 require('./config/passport')
 
 const mongoose = require('mongoose')
@@ -26,6 +28,6 @@ if (isProduction) {
     useUnifiedTopology: true
   })
 } else {
-  // mongoose.set('debug', true)
+  mongoose.set('debug', true)
   mongoose.connect('mongodb://localhost/sementes-do-xingu', { useNewUrlParser: true, useUnifiedTopology: true })
 }

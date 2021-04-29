@@ -65,6 +65,13 @@ function isAdmin(req) {
   return false
 }
 
+function isClientOrAbove(req) {
+  if (req.user && req.user.roles) {
+    return req.user.roles.includes('client') || req.user.roles.includes('admin') || req.user.roles.includes('super')
+  }
+  return false
+}
+
 function authenticatedSuper(req, res, next) {
   if (isSuper(req)) {
     next()
@@ -94,29 +101,41 @@ function authenticatedAdmin(req, res, next) {
   }
 }
 
+function authenticatedClient(req, res, next) {
+  if (isClientOrAbove(req)) {
+    if (belongsToSite(req)) {
+      next()
+    } else {
+      return res.status(403).json({
+        status: 403,
+        message: 'Você não tem permissão para acessar este recurso.'
+      })
+    }
+  } else {
+    return res.status(403).json({
+      status: 403,
+      message: 'A permissão de cliente é necessária para acessar este recurso.'
+    })
+  }
+}
+
 function getSecret() {
   return process.env.SECRET || 'secret'
 }
 
+const authenticatedJWT = () => {
+  return jwt({
+    secret: getSecret(),
+    algorithms: ['HS256'],
+    userProperty: 'user',
+    getToken: getTokenFromHeader
+  })
+}
 const auth = {
-  authenticated: jwt({
-    secret: getSecret(),
-    algorithms: ['HS256'],
-    userProperty: 'user',
-    getToken: getTokenFromHeader
-  }),
-  super: [jwt({
-    secret: getSecret(),
-    algorithms: ['HS256'],
-    userProperty: 'user',
-    getToken: getTokenFromHeader
-  }), authenticatedSuper],
-  admin: [jwt({
-    secret: getSecret(),
-    algorithms: ['HS256'],
-    userProperty: 'user',
-    getToken: getTokenFromHeader
-  }), authenticatedAdmin],
+  authenticated: authenticatedJWT(),
+  super: [authenticatedJWT(), authenticatedSuper],
+  admin: [authenticatedJWT(), authenticatedAdmin],
+  client: [authenticatedJWT(), authenticatedClient],
   optional: jwt({
     secret: getSecret(),
     algorithms: ['HS256'],
@@ -125,6 +144,7 @@ const auth = {
     getToken: getTokenFromHeader
   }),
   applySite,
+  isClientOrAbove,
   isAdmin,
   isSuper
 }

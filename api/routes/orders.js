@@ -1,8 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const router = express.Router()
-const { authenticated, admin } = require('../auth')
-const select = require('../utils').select
+const { authenticated, admin } = require('../config/auth')
 const Order = mongoose.model('Order')
 
 router.get('/', authenticated, function(req, res) {
@@ -12,7 +11,7 @@ router.get('/', authenticated, function(req, res) {
     query.client = req.user.id
   }
 
-  Order.find(query, select(req))
+  Order.find(query)
     .populate({
       path: 'items.product',
       model: 'Product'
@@ -61,7 +60,7 @@ router.put('/:id', admin, function(req, res) {
     _id: req.params.id
   }
 
-  Order.findOne(query, select(req)).exec(function(err, order) {
+  Order.findOne(query).exec(function(err, order) {
     if (err) {
       res
         .status(422)
