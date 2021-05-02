@@ -6,8 +6,9 @@
       <b-list-group-item v-if="$auth.hasScope('admin')" to="/admin/pages">Páginas</b-list-group-item>
       <b-list-group-item v-if="$auth.hasScope('admin')" to="/admin/menus">Menus</b-list-group-item>
       <b-list-group-item v-if="$auth.hasScope('admin')" to="/admin/posts">Notícias</b-list-group-item>
-      <b-list-group-item v-if="$auth.hasScope('admin')" to="/admin/events">Eventos</b-list-group-item>
       <b-list-group-item v-if="$auth.hasScope('admin')" to="/admin/medias">Biblioteca</b-list-group-item>
+      <b-list-group-item v-if="$auth.hasScope('admin')" to="/admin/events">Agenda</b-list-group-item>
+      <b-list-group-item v-if="$auth.hasScope('admin')" to="/admin/ecommerce">Loja</b-list-group-item>
       <b-list-group-item to="/admin/contacts">Contatos</b-list-group-item>
       <b-list-group-item to="/admin/users">Usuários</b-list-group-item>
       <b-list-group-item v-if="$auth.hasScope('super')" to="/admin/sites">Sites</b-list-group-item>

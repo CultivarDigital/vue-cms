@@ -12,7 +12,7 @@
           <b-media v-for="product in products" :key="product.id" tag="li" class="mb-4">
             <template #aside>
               <b-img v-if="product.pictures && product.pictures.length" :src="product.pictures[0].thumb" blank-color="#abc" width="100" alt="placeholder" />
-              <b-img v-else blank blank-color="#abc" width="100" alt="placeholder" />
+              <b-img v-else blank blank-color="#E1846D" width="100" alt="placeholder" />
             </template>
             <h5 class="mt-0 mb-1">
               {{ product.name }}
@@ -56,7 +56,7 @@ export default {
       products: null,
       breadcrumb: [
         { text: 'Painel', to: '/admin' },
-        { text: 'E-commerce', to: '/admin/ecommerce' },
+        { text: 'Loja', to: '/admin/ecommerce' },
         { text: 'Produtos', active: true }
       ]
     }

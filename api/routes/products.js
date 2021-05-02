@@ -10,7 +10,7 @@ router.get('/', admin, function(req, res) {
   if (req.query.search) {
     query.name = { $regex: req.query.search, $options: 'i' }
   }
-  Product.find(query).populate('orders qtd_ordered').exec(function(err, products) {
+  Product.find(query).populate('orders').exec(function(err, products) {
     if (err) {
       res.status(422).send(err)
     } else {
@@ -20,7 +20,8 @@ router.get('/', admin, function(req, res) {
 })
 
 router.get('/current_tags', (req, res) => {
-  Product.find().select('tags').exec((err, products) => {
+  const query = { deleted: { $ne: true } }
+  Product.find(query).select('tags').exec((err, products) => {
     if (err) {
       res.status(422).send(err.message)
     } else {

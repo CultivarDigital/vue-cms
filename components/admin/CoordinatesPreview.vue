@@ -1,7 +1,7 @@
 <template>
   <div v-if="validCoordinates">
     <br>
-    <l-map :zoom="16" :center="form.address.location.coordinates" :options="{ scrollWheelZoom: false }" style="height: 30vw">
+    <l-map :zoom="16" :center="form.address.location.coordinates" :options="{ scrollWheelZoom: false }" style="height: 30vw;">
       <l-tile-layer :url="url" :attribution="attribution" />
       <l-marker :lat-lng="form.address.location.coordinates" />
     </l-map>

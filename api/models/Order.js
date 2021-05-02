@@ -20,8 +20,6 @@ const OrderSchema = mongoose.Schema(
     email: String,
     phone: String,
     address: AddressSchema,
-    attachments: [Object],
-    shipping_price: Number,
     status: String
   },
   {

@@ -37,7 +37,7 @@ router.get('/:id', authenticated, function(req, res) {
     query.client = req.user.id
   }
 
-  Order.findOne(query, select(req))
+  Order.findOne(query)
     .populate([
       'client',
       {

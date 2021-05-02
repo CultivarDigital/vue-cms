@@ -136,9 +136,3 @@ export default {
   }
 }
 </script>
-
-<style lang="sass">
-.btn-success
-  color: #fff !important
-  cursor: initial !important
-</style>

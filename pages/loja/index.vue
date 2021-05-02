@@ -1,171 +1,98 @@
 <template>
-  <div class="container-fluid">
-    <div class="card">
-      <div class="row">
-        <div class="col-md-3">
-          <div v-if="organization" class="organization">
-            <img :src="defaultThumb(organization.images)" :alt="organization.name">
+  <b-container class="shop py-4">
+    <b-row>
+      <b-col lg="3">
+        <div class="filters">
+          <div class="search">
+            <input v-model="filters.search" type="search" placeholder="O que você procura?" class="form-control mb-3" @keyup.prevent.enter="list">
           </div>
-          <div class="filters">
-            <div class="search">
-              <input v-model="filters.search" type="search" placeholder="O que você procura?" class="form-control">
-            </div>
-            <br>
-            <b-dropdown :text="filters.category || 'Filtrar por Categoria'" variant="outline-default" size="sm">
-              <b-dropdown-item @click="filters.category = null">Todas as categorias</b-dropdown-item>
-              <b-dropdown-item v-for="(category, index) in categorias_de_produtos" :key="index" @click="filters.category = category">{{ category }}</b-dropdown-item>
-            </b-dropdown>
-            <br>
-            <div class="checkbox-list">
-              <h6>Filtrar por Tags</h6>
-              <div>
-                <div v-for="(tag, index) in tags" :key="index">
-                  <label :class="{ active: filters.tags.includes(tag) }">
-                    <input v-model="filters.tags" :value="tag" type="checkbox">
-                    {{ tag }}
-                  </label>
-                </div>
+          <b-btn v-if="filters.search" variant="primary" class="mb-3" @click="list">
+            <b-icon-search />
+            Buscar
+          </b-btn>
+          <b-btn v-if="filters.search" variant="default" class="mb-3" @click="filters.search = ''; list()">
+            Limpar busca
+          </b-btn>
+          <b-dropdown :text="'Ordenar por ' + sorts[filters.sort]" variant="outline-default" size="sm" class="mb-3">
+            <b-dropdown-item v-for="(v, k) in sorts" :key="k" @click="filters.sort = k; list()">{{ v }}</b-dropdown-item>
+          </b-dropdown>
+          <b-dropdown :text="filters.tag || 'Filtrar por categoria'" variant="outline-default" size="sm" class="mb-3">
+            <b-dropdown-item @click="filters.tag = null; list()">Todas as categorias</b-dropdown-item>
+            <b-dropdown-item v-for="(tag, index) in tags" :key="index" @click="filters.tag = tag; list()">{{ tag }}</b-dropdown-item>
+          </b-dropdown>
+        </div>
+      </b-col>
+      <b-col lg="9">
+        <div class="content-header">
+          <div class="text-lg-right">
+            <b-btn :to="'/loja/carrinho'" class="btn-cart" variant="secondary" size="lg">
+              <img src="~assets/img/icon-cart.svg" alt="Carrinho"> {{ cart.length > 0 ? cart.length + " itens no carrinho" : "Carrinho vazio" }}
+            </b-btn>
+          </div>
+          <div class="clearfix" />
+        </div>
+        <b-spinner v-if="isLoading" small label="Carregando ofertas" />
+        <div v-if="products" class="products mt-3">
+          <p class="list-counter">
+            <span v-if="products.length > 1"><strong>{{ products.length }}</strong> ofertas encontradas</span>
+            <span v-else-if="products.length == 1"><strong>Uma</strong> oferta encontrada</span>
+            <span v-if="filters.tag"> em <strong>{{ filters.tag }}</strong></span>
+          </p>
+          <b-card-group columns>
+            <div v-for="(product, index) in products" :key="index" class="card">
+              <router-link v-if="product.pictures && product.pictures.length" :to="'/oferta/'+product._id" class="card-img">
+                <b-img :src="product.pictures[0].thumb" width="100" alt="placeholder" class="card-img-top" />
+              </router-link>
+              <div class="card-body">
+                <router-link :to="'/oferta/'+product._id">
+                  <strong class="card-title text-secondary">{{ product.name }}</strong>
+                </router-link>
+              </div>
+              <div class="card-footer">
+                <AddToCart :product="product" />
               </div>
             </div>
-            <br>
-            <DemandModal />
-          </div>
+          </b-card-group>
         </div>
-        <div class="col-md-9">
-          <div class="content-header">
-            <span v-if="filtered_products" class="list-counter">
-              <span v-if="filtered_products.length > 1">{{ filtered_products.length }} ofertas encontradas</span>
-              <span v-else-if="filtered_products.length == 1">Uma oferta encontrada</span>
-            </span>
-            <div class="text-right pull-right">
-              <b-dropdown :text="'Ordenar por ' + tiposDeOrdenacao[filters.sort]" variant="outline-default" size="sm">
-                <b-dropdown-item v-for="(v, k) in tiposDeOrdenacao" :key="k" @click="filters.sort = k">{{ v }}</b-dropdown-item>
-              </b-dropdown>
-            </div>
-            <div class="clearfix" />
-          </div>
-          <loading :loading="isLoading" msg="Carregando ofertas" />
-          <div class="row products">
-            <template v-for="(product, index) in filtered_products">
-              <div v-if="showAll || index < 12" :key="index" class="col-lg-4 col-md-6">
-                <div class="card">
-                  <router-link :to="'/oferta/'+product._id" class="card-img">
-                    <product-image :product="product.product" :product_variation="product.product_variation" css_class="card-img-top" />
-                  </router-link>
-                  <div class="card-body">
-                    <router-link :to="'/oferta/'+product._id">
-                      <h2 class="card-title">{{ product.product_variation.name }}</h2>
-                    </router-link>
-                  </div>
-                  <div class="card-footer">
-                    <AddToCart :product="product" />
-                  </div>
-                </div>
-                <!-- end card -->
-              </div>
-            </template>
-          </div>
-          <div v-if="filtered_products && filtered_products.length >= 12 && !showAll" class="text-center" @click="showAll = true">
-            <b-button variant="primary">
-              + ver mais
-            </b-button>
-          </div>
-          <br>
-          <hr>
-          <div v-if="filtered_products && filtered_products.length == 0" class="alert alert-warning">
-            Nenhuma oferta encontrada.
-          </div>
-          <div>
-            <br>
-            <DemandModal />
-            <br>
-          </div>
+        <div v-if="products && products.length == 0" class="alert alert-warning">
+          Nenhuma oferta encontrada.
         </div>
-      </div>
-    </div>
-  </div>
+      </b-col>
+    </b-row>
+  </b-container>
 </template>
 <script>
-import slugify from 'slugify'
-import tiposDeOrdenacao from '@/data/tipos-de-ordenacao.json'
+import sorts from '@/data/sorts.json'
 
 export default {
 
   data() {
     return {
-      tiposDeOrdenacao,
+      sorts,
       qtds: [],
-      showAll: false,
       filters: {
-        tags: [],
+        tag: '',
         search: '',
-        category: '',
         sort: 'most_recent'
       },
       products: null,
-      filtered_products: null,
       tags: [],
       isLoading: false
     }
   },
+  computed: {
+    cart () {
+      return this.$store.state.cart
+    }
+  },
   async created() {
-    this.tags = await this.$axios.$get('shop/tags', params).catch(this.showError)
+    this.tags = await this.$axios.$get('/api/shop/tags').catch(this.showError)
     this.list()
   },
   methods: {
     async list() {
       this.isLoading = true
-      const params = {}
-      this.products = await this.$axios.$get('shop/products', params).catch(this.showError)
-    },
-    applyFilters() {
-      this.filtered_products = this.products
-      if (this.filters.search) {
-        this.filtered_products = this.filtered_products.filter(product => {
-          const name = slugify(product.product_variation.name).toLowerCase()
-          const search = slugify(this.filters.search).toLowerCase()
-          return name.search(search) >= 0
-        })
-      }
-
-      if (this.filters.tags && this.filters.tags.length) {
-        this.filters.tags.forEach(tag => {
-          this.filtered_products = this.filtered_products.filter(product => {
-            return product.product_variation.tags.find(product_tag => {
-              return product_tag.text == tag
-            })
-          })
-        })
-      }
-
-      if (this.filters.category && this.filters.category) {
-        this.filtered_products = this.filtered_products.filter(product => {
-          if (product.product_variation.product.categories) {
-            return product.product_variation.product.categories.find(category => {
-              return category == this.filters.category
-            })
-          }
-        })
-      }
-
-      switch (this.filters.sort) {
-        case 'most_recent':
-          this.filtered_products = this.filtered_products.sort((a, b) => {
-            return new Date(b.createdAt) - new Date(a.createdAt)
-          })
-          break
-        case 'best_sellers':
-          this.filtered_products = this.filtered_products.sort((a, b) => {
-            return b.qtd_ordered - a.qtd_ordered
-          })
-          break
-        case 'alphabetical_order':
-          this.filtered_products = this.filtered_products.sort((a, b) => {
-            return a.product_variation.name.localeCompare(b.product_variation.name)
-          })
-          break
-      }
-
+      this.products = await this.$axios.$get('/api/shop/products', { params: this.filters }).catch(this.showError)
       this.isLoading = false
     },
     clearFilters() {

@@ -20,7 +20,7 @@ export default {
     return {
       breadcrumb: [
         { text: 'Painel', to: '/admin' },
-        { text: 'E-commerce', active: true }
+        { text: 'Loja', active: true }
       ]
     }
   }

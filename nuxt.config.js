@@ -20,6 +20,7 @@ export default {
   pageTransition: 'page',
   plugins: [
     '~plugins/axios.js',
+    '~plugins/persisted-state.js',
     '~plugins/vue2-filters.js',
     '~plugins/filters.js',
     '~plugins/url.js',

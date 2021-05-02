@@ -1,10 +1,28 @@
 export const state = () => ({
-  site: null
+  site: null,
+  cart: []
 })
 
 export const mutations = {
   SET_SITE(state, site) {
     state.site = site
+  },
+  addToCart(state, cartItem) {
+    const i = state.cart.findIndex(
+      (item) => item.product._id === cartItem.product._id
+    )
+    if (i >= 0) {
+      state.cart[i].qtd += cartItem.qtd
+    } else {
+      state.cart.push(cartItem)
+    }
+  },
+  removeFromCart(state, index) {
+    delete state.cart[index]
+    state.cart.splice(index, 1)
+  },
+  clearCart(state) {
+    state.cart = []
   }
 }
 

@@ -10,12 +10,3 @@
 <script>
 export default {}
 </script>
-<style lang="sass">
-  .share-component
-    .button-social
-      padding: 3px 10px
-      &:hover
-        color: #fff
-      span[class^="counter-"]
-        display: none
-</style>

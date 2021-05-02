@@ -5,13 +5,13 @@ const auth = require('../config/auth')
 const Product = mongoose.model('Product')
 const Order = mongoose.model('Order')
 
-router.get('/products', function (req, res) {
+router.get('/products', (req, res) => {
   const query = { deleted: { $ne: true }, published: true, qtd: { $gt: 0 } }
   if (req.query.search) {
     query.name = { $regex: req.query.search, $options: 'i' }
   }
   if (req.query.tag) {
-    query.tag = req.query.tag
+    query.tags = req.query.tag
   }
   Product.find(query).populate('orders').exec(function(err, products) {
     if (err) {
@@ -39,21 +39,21 @@ router.get('/products', function (req, res) {
   })
 })
 
-router.get('/categories', function (req, res) {
-  const query = { published: true }
-  Product.find(query, 'categories').exec(function (err, products) {
+router.get('/tags', (req, res) => {
+  const query = { deleted: { $ne: true }, published: true, qtd: { $gt: 0 } }
+  Product.find(query, 'tags').exec(function (err, products) {
     if (err) {
       res.status(422).send(err)
     } else {
-      const categories = {}
+      const tags = {}
       products.forEach(product => {
-        if (product && product.categories) {
-          product.categories.forEach(tag => {
-            categories[tag.text] = true
+        if (product && product.tags) {
+          product.tags.forEach(tag => {
+            tags[tag] = true
           })
         }
       })
-      res.json(Object.keys(categories).sort(function (a, b) {
+      res.json(Object.keys(tags).sort(function (a, b) {
         return a.localeCompare(b)
       }))
     }

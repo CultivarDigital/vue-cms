@@ -29,6 +29,9 @@ a
   color: $secondary !important
 .text-black
   color: $black !important
+.alert-warning
+  background-color: #f58b37
+  color: #fff
 .bg-primary, .btn-primary, .badge-primary
   background-color: $primary !important
   border-color: $primary !important
@@ -102,6 +105,12 @@ a.bg-secondary:focus
     align-items: center
     color: $white
 
+.navbar-toggler
+  color: $white !important
+  border: 1px solid $white !important
+  .navbar-toggler-icon
+    color: $white !important
+
 header
   font-family: 'Raleway', sans-serif
   .navbar-brand
@@ -112,11 +121,6 @@ header
 
   .navbar
     background: $secondary
-    .navbar-toggler
-      color: $white
-      border: 1px solid $white
-      .navbar-toggler-icon
-        color: $white
     .navbar-nav
       > li
         font-size: 22px
@@ -296,6 +300,7 @@ footer
 .admin
   .navbar-light .navbar-nav .nav-link
     color: $white
+
 .ql-video
   width: 80%
   margin: auto
@@ -312,3 +317,187 @@ footer
     margin-bottom: 0
   img
     max-width: 100%
+
+.shop
+  color: $secondary
+  .card
+    background-color: $white
+    border: 1px solid $gray
+  .search
+    input
+      border: none
+      color: $secondary
+      border-bottom: 1px solid $secondary
+      border-radius: 0
+      padding: 10px 0
+      font-size: 16px
+      font-weight: bold
+      background-image: url("~assets/img/search.svg")
+      background-repeat: no-repeat
+      background-position: 100%
+      background-size: 20px
+      padding-right: 22px
+      margin-bottom: 10px
+      &::placeholder
+        color: $secondary
+  .offers
+    .card
+      margin-bottom: 30px
+      border-radius: 5px
+      .card-body
+        padding-bottom: 0
+        h2
+          margin-bottom: 0
+          font-size: 16px
+          font-weight: 100
+          color: #505050
+      .card-footer
+        background-color: transparent
+        border-top: none
+  .dropdown
+    border-radius: 5px
+    background-color: $secondary
+    color: $white
+    cursor: pointer
+    .dropdown-toggle
+      color: $white
+      text-align: left
+      flex: 0 1 auto
+      width: 100%
+      overflow-x: hidden
+      line-height: normal
+      padding: 15px
+      &:focus
+        box-shadow: none
+      &::after
+        margin-left: 10px
+        color: $white
+    .dropdown-menu
+      min-width: 100%
+      border-radius: 5px
+      .dropdown-item
+        color: $secondary
+        &:active
+          color: $white
+.add-to-cart
+  font-size: 18px
+  font-weight: 600
+  .cart-actions
+    display: inline-block
+    margin-bottom: 10px
+    .price
+      display: inline-block
+      margin-right: 5px
+      .currency, .decimal
+        font-size: 10px
+        top: -4px
+        position: relative
+    .qtd
+      width: 70px
+      display: inline-block
+      margin-right: 5px
+      .buttons
+        margin: auto
+        margin-top: -32px
+        font-size: 18px
+        font-weight: 200
+        .minus
+          cursor: pointer
+          margin-left: 10px
+          width: 18px
+        .plus
+          float: right
+          cursor: pointer
+          width: 18px
+          display: inline-block
+          position: relative
+          left: -2px
+      input
+        border-radius: 15px
+        text-align: center
+        width: 70px
+        color: $secondary
+        font-size: 15px
+        font-weight: 600
+        height: 32px
+    .btn
+      .b-icon
+        font-size: 12px
+      img
+        width: 18px
+    .btn-cart-counter
+      display: inline-block
+      text-align: center
+      font-size: 11px
+      font-weight: 400
+      background-color: $primary
+      color: $white
+      border-radius: 50%
+      width: 16px
+      height: 16px
+  .info
+    p
+      font-size: 12px
+      font-weight: 200
+      margin: 0
+  .alert
+    font-size: 14px
+.form-phones
+  .btn
+    float: right
+  input
+    margin-bottom: 10px
+.custom-calendar
+  $day-border: 1px solid #b8c2cc
+  $day-border-highlight: 1px solid #b8c2cc
+  $day-width: 90px
+  $day-height: 90px
+  $weekday-bg: #f8fafc
+  $weekday-border: 1px solid #eaeaea
+  width: 100%
+  border-radius: 15px
+  .vc-grid-container
+    border-radius: 15px
+  .vc-header
+    background-color: #f1f5f8
+    padding: 10px 0
+  .vc-weeks
+    padding: 0
+  .vc-weekday
+    background-color: $weekday-bg
+    border-bottom: $weekday-border
+    border-top: $weekday-border
+    padding: 5px 0
+  .vc-day
+    padding: 0 5px 3px 5px
+    text-align: left
+    height: $day-height
+    min-width: $day-width
+    background-color: white
+
+    &.weekday-1,
+    &.weekday-7
+      background-color: #eff8ff
+    &:not(.on-bottom)
+      border-bottom: $day-border
+      &.weekday-1
+        border-bottom: $day-border-highlight
+    &:not(.on-right)
+      border-right: $day-border
+    .badge
+      white-space: normal
+      border-radius: 5px
+      margin-top: 2px
+      text-align: left
+    .flex-grow
+      overflow-y: auto
+      max-height: 65px
+  .vc-day-dots
+    margin-bottom: 5px
+.share-component
+  .button-social
+    padding: 3px 10px
+    &:hover
+      color: #fff
+    span[class^="counter-"]
+      display: none

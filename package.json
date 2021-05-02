@@ -9,7 +9,7 @@
     "export": "nuxt export",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint:style": "stylelint **/*.{vue,css} --ignore-path .gitignore",
-    "lint": "yarn lint:js",
+    "lint": "yarn lint:js --fix && yarn lint:style --fix",
     "seed": "node ./scripts/seed.js"
   },
   "lint-staged": {
@@ -56,7 +56,8 @@
     "vue-scrollto": "^2.18.1",
     "vue-the-mask": "^0.11.1",
     "vue2-datepicker": "^3.8.1",
-    "vue2-filters": "^0.11.0"
+    "vue2-filters": "^0.11.0",
+    "vuex-persistedstate": "^4.0.0-beta.3"
   },
   "devDependencies": {
     "@fortawesome/free-brands-svg-icons": "^5.15.0",

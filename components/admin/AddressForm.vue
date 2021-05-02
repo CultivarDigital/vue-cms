@@ -52,7 +52,7 @@
             <h3>Este é seu endereço?</h3>
             <h5>{{ address.description }}</h5>
             <div v-if="address && address.location && address.location.coordinates && address.location.coordinates.length === 2">
-              <l-map :zoom="16" :center="address.location.coordinates" :options="{ scrollWheelZoom: false }" style="height: 250px">
+              <l-map :zoom="16" :center="address.location.coordinates" :options="{ scrollWheelZoom: false }" style="height: 250px;">
                 <l-tile-layer :url="url" :attribution="attribution" />
                 <l-marker :lat-lng="address.location.coordinates" draggable @dragend="updateMarker">
                   <l-tooltip>Clique e arraste para refinar sua localização.</l-tooltip>
@@ -272,7 +272,7 @@ export default {
       this.show_auto_complete = true
     },
     locationError() {
-      this.notify('Não foi possível encontrar seu endereço automaticamente.', 'warn')
+      this.$toast.error('Não foi possível encontrar seu endereço automaticamente.')
       this.loading_gps = false
     },
     cb () {

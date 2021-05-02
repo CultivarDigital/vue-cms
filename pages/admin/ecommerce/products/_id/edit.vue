@@ -22,7 +22,7 @@ export default {
       product: null,
       breadcrumb: [
         { text: 'Painel', to: '/admin' },
-        { text: 'E-commerce', to: '/admin/ecommerce' },
+        { text: 'Loja', to: '/admin/ecommerce' },
         { text: 'Produtos', to: '/admin/ecommerce/products' },
         { text: 'Editar', active: true }
       ]

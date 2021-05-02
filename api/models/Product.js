@@ -42,14 +42,6 @@ const ProductSchema = mongoose.Schema({
   timestamps: true
 })
 
-ProductSchema.virtual('qtd_ordered', {
-  ref: 'Order',
-  localField: '_id',
-  foreignField: 'items.product',
-  options: { match: { deleted: { $ne: true } } },
-  count: true
-})
-
 ProductSchema.virtual('orders', {
   ref: 'Order',
   localField: '_id',

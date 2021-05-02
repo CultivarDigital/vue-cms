@@ -43,7 +43,3 @@ export default {
   }
 }
 </script>
-  <style lang="sass" scoped>
-    .badge.badge-secondary
-      cursor: pointer
-  </style>

@@ -27,10 +27,3 @@ export default {
   }
 }
 </script>
-<style lang="sass" scoped>
-  .form-phones
-    .btn
-      float: right
-    input
-      margin-bottom: 10px
-</style>
