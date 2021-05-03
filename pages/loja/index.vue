@@ -63,11 +63,13 @@
 </template>
 <script>
 import sorts from '@/data/sorts.json'
+import mixinPage from '@/mixins/page'
 
 export default {
-
+  mixins: [mixinPage],
   data() {
     return {
+      page_title: 'Loja',
       sorts,
       qtds: [],
       filters: {

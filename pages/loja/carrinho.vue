@@ -1,9 +1,9 @@
 <template>
   <b-container class="shop py-4">
     <div v-if="cart && cart.length">
-      <div class="card-title navigation">
+      <div>
         <router-link to="/loja" class="text-secondary">
-          Loja
+          <strong>Loja</strong>
         </router-link>
         <i class="fa fa-angle-right" />
         <b-icon-chevron-right />
@@ -16,9 +16,9 @@
             <tr>
               <th class="text-center" />
               <th>Oferta</th>
-              <th class="text-center">Valor</th>
-              <th class="text-center">Qtd</th>
-              <th class="text-left">Total</th>
+              <th>Valor</th>
+              <th>Quantidade</th>
+              <th>Total</th>
               <th />
             </tr>
           </thead>
@@ -29,40 +29,42 @@
                 <b-img v-else blank blank-color="#E1846D" width="100" alt="placeholder" />
               </td>
               <td>
-                <router-link :to="'/loja/'+item.product._id">
-                  {{ item.product.name }}
+                <router-link :to="'/loja/'+item.product._id" class="text-black">
+                  <strong>{{ item.product.name }}</strong>
                 </router-link>
               </td>
-              <td class="text-center">
+              <td>
                 {{ item.product.price | moeda }}
               </td>
-              <td class="text-center">
+              <td>
                 {{ item.qtd }}
               </td>
               <td>
-                {{ item.product.price * item.qtd | moeda }}
+                <strong>{{ item.product.price * item.qtd | moeda }}</strong>
               </td>
-              <td class="td-actions">
-                <button type="button" size="sm" rel="tooltip" data-placement="left" title="Remover do carrinho" class="btn" @click="removeFromCart(index)">
-                  <i class="fa fa-close" />
-                </button>
+              <td class="text-center">
+                <b-button size="sm" variant="light" rel="tooltip" data-placement="left" title="Remover do carrinho" @click="removeFromCart(index)">
+                  <b-icon-trash />
+                </b-button>
               </td>
             </tr>
-            <tr>
+          </tbody>
+          <tfoot>
+            <tr class="text-lg">
               <td colspan="3" />
               <td>
-                Total
+                <strong>Total</strong>
               </td>
               <td colspan="1">
-                <strong>{{ total | moeda }}</strong>
+                <h4 class="mb-0">{{ total | moeda }}</h4>
               </td>
               <td colspan="1" />
             </tr>
-          </tbody>
+          </tfoot>
         </table>
       </div>
       <br>
-      <div v-if="client && isClient">
+      <div>
         <h4 class="text-center">Finalize pedido</h4>
         <br>
         <h6 class="text-center">Confirme os dados abaixo para finalizar o pedido</h6>
@@ -90,9 +92,6 @@
             <b-form-group label="Email *">
               <b-form-input v-model="form.email" v-validate="'email|required'" name="email" />
               <field-error :msg="veeErrors" field="email" />
-              <div v-if="isEditing()" class="text-right">
-                <a class="pointer" @click="changePassword">Alterar senha</a>
-              </div>
             </b-form-group>
           </div>
           <div class="col-sm-12">
@@ -104,12 +103,10 @@
         </div>
       </div>
       <br>
-      <button :disabled="isLink && form.assignedClient == null" type="button" class="btn btn-success pull-right" @click="saveOrder">Finalizar pedido <i class="fa fa-arrow-right" /></button>
-      <router-link :to="'/loja'">
-        <button type="button" class="btn btn-primary pull-right"><i class="fa fa-arrow-left" /> Continuar comprando</button>&nbsp;&nbsp;
-      </router-link>
-
-      <!-- <a @click="clearCart" class="btn btn-warning pull-right">Limpar carrinho</a> -->
+      <div class="text-right">
+        <b-button :to="'/loja'" variant="primary">Continuar comprando</b-button>
+        <b-button variant="secondary" size="lg" @click="saveOrder">Finalizar pedido</b-button>
+      </div>
     </div>
     <div v-else class="text-center">
       <h4>Seu carrinho está vazio</h4>
@@ -123,7 +120,9 @@
   </b-container>
 </template>
 <script>
+import mixinPage from '@/mixins/page'
 export default {
+  mixins: [mixinPage],
   data() {
     const form = {
       name: '',
@@ -132,7 +131,8 @@ export default {
       phone: ''
     }
     return {
-      form
+      form,
+      page_title: 'Carrinho de compras'
     }
   },
   computed: {

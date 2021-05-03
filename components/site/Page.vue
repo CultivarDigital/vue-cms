@@ -10,7 +10,7 @@
       <div>
         Página não encontrada
       </div>
-      <b-button class="mt-3" to="/">Voltar</b-button>
+      <b-button class="mt-3" @click="$router.go(-1)">Voltar</b-button>
     </div>
   </div>
 </template>

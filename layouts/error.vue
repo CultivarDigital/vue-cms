@@ -2,7 +2,7 @@
   <div class="m-5 text-center">
     <h3 v-if="error.statusCode === 404">Página não encontrada</h3>
     <h3 v-else>Ocorreu um erro</h3>
-    <b-btn to="/">Voltar</b-btn>
+    <b-btn @click="$router.go(-1)">Voltar</b-btn>
   </div>
 </template>
 
