@@ -345,7 +345,7 @@ footer
       margin-bottom: 10px
       &::placeholder
         color: $secondary
-  .offers
+  .products
     .card
       margin-bottom: 30px
       border-radius: 5px
@@ -384,6 +384,17 @@ footer
         color: $secondary
         &:active
           color: $white
+  .product_thumbs
+    padding: 10px
+    > div
+      padding: 5px
+    img
+      width: 100%
+      &.active
+        opacity: .5
+    @media (max-width: 576px)
+      display: none
+
 .add-to-cart
   font-size: 18px
   font-weight: 600

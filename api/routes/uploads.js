@@ -76,7 +76,7 @@ router.post('/images', [auth.authenticated, imageUploader.single('image')], (req
       width: 400,
       height: 400,
       withoutEnlargement: true,
-      fit: sharp.fit.cover
+      fit: sharp.fit.inside
     })
     .toFile(thumb, function(err) {
       if (!err) {

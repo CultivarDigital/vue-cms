@@ -25,9 +25,7 @@
       <b-col lg="9">
         <div class="content-header">
           <div class="text-lg-right">
-            <b-btn :to="'/loja/carrinho'" class="btn-cart" variant="secondary" size="lg">
-              <img src="~assets/img/icon-cart.svg" alt="Carrinho"> {{ cart.length > 0 ? cart.length + " itens no carrinho" : "Carrinho vazio" }}
-            </b-btn>
+            <CartButton />
           </div>
           <div class="clearfix" />
         </div>
@@ -39,19 +37,7 @@
             <span v-if="filters.tag"> em <strong>{{ filters.tag }}</strong></span>
           </p>
           <b-card-group columns>
-            <div v-for="(product, index) in products" :key="index" class="card">
-              <router-link v-if="product.pictures && product.pictures.length" :to="'/oferta/'+product._id" class="card-img">
-                <b-img :src="product.pictures[0].thumb" width="100" alt="placeholder" class="card-img-top" />
-              </router-link>
-              <div class="card-body">
-                <router-link :to="'/oferta/'+product._id">
-                  <strong class="card-title text-secondary">{{ product.name }}</strong>
-                </router-link>
-              </div>
-              <div class="card-footer">
-                <AddToCart :product="product" />
-              </div>
-            </div>
+            <Product v-for="product in products" :key="product._id" :product="product" />
           </b-card-group>
         </div>
         <div v-if="products && products.length == 0" class="alert alert-warning">
@@ -73,18 +59,13 @@ export default {
       sorts,
       qtds: [],
       filters: {
-        tag: '',
+        tag: this.$route.query.tag,
         search: '',
         sort: 'most_recent'
       },
       products: null,
       tags: [],
       isLoading: false
-    }
-  },
-  computed: {
-    cart () {
-      return this.$store.state.cart
     }
   },
   async created() {

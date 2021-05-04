@@ -90,7 +90,7 @@ export default {
         })
         this.$toast.success(this.qtd + ' ' + this.product.name + ' adicionado ao carrinho')
       } else {
-        this.$toast.error('A quantidade solicitada (' + this.qtd + ') excede a quantidade disponível em estoque (' + this.availableQtd + ')', 'error')
+        this.$toast.error('A quantidade solicitada (' + this.qtd + ') excede a quantidade disponível em estoque (' + this.availableQtd + ')')
       }
     }
   }

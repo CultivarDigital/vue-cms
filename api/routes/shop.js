@@ -13,7 +13,7 @@ router.get('/products', (req, res) => {
   if (req.query.tag) {
     query.tags = req.query.tag
   }
-  Product.find(query).populate('orders').exec(function(err, products) {
+  Product.find(query).populate('orders').exec((err, products) => {
     if (err) {
       res.status(422).send(err)
     } else {
@@ -41,7 +41,7 @@ router.get('/products', (req, res) => {
 
 router.get('/tags', (req, res) => {
   const query = { deleted: { $ne: true }, published: true, qtd: { $gt: 0 } }
-  Product.find(query, 'tags').exec(function (err, products) {
+  Product.find(query, 'tags').exec((err, products) => {
     if (err) {
       res.status(422).send(err)
     } else {
@@ -53,19 +53,19 @@ router.get('/tags', (req, res) => {
           })
         }
       })
-      res.json(Object.keys(tags).sort(function (a, b) {
+      res.json(Object.keys(tags).sort((a, b) => {
         return a.localeCompare(b)
       }))
     }
   })
 })
 
-router.get('/product/:id', function(req, res) {
+router.get('/product/:id', (req, res) => {
   Product.findOne({
     $or: [
       { _id: req.params.id }, { slug: req.params.id }
     ]
-  }).exec(function(err, product) {
+  }).exec((err, product) => {
     if (err) {
       res.status(422).send(err)
     } else {
@@ -74,7 +74,25 @@ router.get('/product/:id', function(req, res) {
   })
 })
 
-router.post('/order', auth.client, function(req, res) {
+router.get('/related/:id', (req, res) => {
+  Product.findOne({
+    $or: [
+      { _id: req.params.id }, { slug: req.params.id }
+    ]
+  }).exec(async (err, product) => {
+    let relatedProducts = []
+    if (product.tags) {
+      relatedProducts = await Product.find({ tags: { $in: product.tags }, deleted: { $ne: true }, published: true, qtd: { $gt: 0 }, _id: { $ne: req.params.id } })
+    }
+    if (err) {
+      res.status(422).send(err)
+    } else {
+      res.json(relatedProducts)
+    }
+  })
+})
+
+router.post('/order', auth.client, (req, res) => {
   Order.find().sort({
     code: -1
   }).limit(1).exec((err, latest) => {
@@ -96,7 +114,7 @@ router.post('/order', auth.client, function(req, res) {
         })
       })
 
-      newOrder.save(function (err, order) {
+      newOrder.save((err, order) => {
         if (err) {
           res.status(422).send(err)
         } else {
