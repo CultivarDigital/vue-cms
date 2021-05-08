@@ -2,7 +2,7 @@
   <div class="posts-component pt-4">
     <b-row>
       <b-col v-for="post in posts" :key="post._id" lg="6" class="mb-2">
-        <b-card :img-src="post.picture ? post.picture.thumb : null" :img-alt="post.title" img-left>
+        <b-card :img-src="post.picture ? post.picture.thumb : null" :img-alt="post.title">
           <b-card-text>
             <h5>{{ post.title }}</h5>
             <p class="text-secondary"><b-link :to="'/noticias/' + post.slug" class="stretched-link text-black">{{ (post.description || post.content) | truncate(60) }}</b-link></p>
