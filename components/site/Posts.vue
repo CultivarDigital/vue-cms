@@ -29,3 +29,25 @@ export default {
   }
 }
 </script>
+<style lang="sass">
+  .posts-component
+    .row
+      margin-left: -5px
+      margin-right: -5px
+      .col-lg-3, .col-sm-6
+        padding-left: 5px
+        padding-right: 5px
+    .card
+      height: 100%
+      border: none
+      color: #2A114B
+      background-color: #E1846D
+      margin-bottom: 15px
+      .img
+        max-height: 16vw
+        overflow-y: hidden
+        @media (max-width: 992px)
+          max-height: 14vw
+        @media (max-width: 768px)
+          max-height: none
+</style>
