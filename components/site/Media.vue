@@ -25,6 +25,7 @@
         </div>
       </div>
     </div>
+    <br>
     <div class="text-center">
       <b-button variant="primary" @click="$router.go(-1)">
         Voltar à biblioteca
