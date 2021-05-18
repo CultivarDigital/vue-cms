@@ -1,14 +1,8 @@
 const mongoose = require('mongoose')
-const ObjectId = mongoose.Schema.Types.ObjectId
 
 const ProductSchema = mongoose.Schema({
   deleted: Boolean,
   published: Boolean,
-  site: {
-    type: ObjectId,
-    ref: 'Site',
-    required: true
-  },
   slug: {
     type: String,
     required: true,

@@ -1,11 +1,6 @@
 const mongoose = require('mongoose')
-const ObjectId = mongoose.Schema.Types.ObjectId
 
 const ContactSchema = new mongoose.Schema({
-  site: {
-    type: ObjectId,
-    ref: 'Site'
-  },
   name: {
     type: String,
     required: true

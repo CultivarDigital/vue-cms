@@ -33,19 +33,6 @@ router.get('/current_tags', (req, res) => {
   })
 })
 
-router.get('/generate_pages', (req, res) => {
-  const pages = [
-    { slug: 'biblioteca', title: 'Biblioteca' },
-    { slug: 'noticias', title: 'Notícias' },
-    { slug: 'agenda', title: 'Agenda' }
-  ]
-  pages.forEach(p => {
-    const page = new Page(p)
-    page.site = req.user.site
-    page.save()
-  })
-})
-
 router.get('/:id', (req, res) => {
   Page.findOne({
     slug: req.params.id
@@ -60,7 +47,6 @@ router.get('/:id', (req, res) => {
 
 router.post('/', auth.admin, (req, res) => {
   const newPage = new Page(req.body)
-  newPage.site = req.user.site
   if (!newPage.slug) {
     newPage.slug = slugify(newPage.title).toLowerCase()
   }

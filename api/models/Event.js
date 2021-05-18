@@ -1,13 +1,7 @@
 const mongoose = require('mongoose')
 const uniqueValidator = require('mongoose-unique-validator')
-const ObjectId = mongoose.Schema.Types.ObjectId
 
 const EventSchema = mongoose.Schema({
-  site: {
-    type: ObjectId,
-    ref: 'Site',
-    required: true
-  },
   title: {
     type: String,
     required: true

@@ -1,5 +1,5 @@
 <template>
-  <div v-if="site" class="login-page">
+  <div class="login-page">
     <section class="content pb-5">
       <b-container>
         <div v-show="tab === 'login'" class="card p-4">
@@ -45,7 +45,7 @@
                 </b-col>
                 <b-col md="12">
                   <b-form-group label="Email">
-                    <validation-provider v-slot="{ errors }" name="domínio" rules="required|email">
+                    <validation-provider v-slot="{ errors }" name="email" rules="required|email">
                       <b-form-input v-model="register_form.email" name="email" />
                       <span class="text-danger">{{ errors[0] }}</span>
                     </validation-provider>
@@ -108,7 +108,6 @@ export default {
         password: ''
       },
       register_form: {
-        site: null,
         name: '',
         email: '',
         organization: '',
@@ -130,11 +129,6 @@ export default {
       return this.register_form.password === this.register_form.password_confirmation
     }
   },
-  created () {
-    if (this.site) {
-      this.register_form.site = this.site._id
-    }
-  },
   methods: {
     async login () {
       await this.$auth.loginWith('local', { data: this.form }).catch(this.showError)
@@ -151,12 +145,7 @@ export default {
   },
   head() {
     return {
-      title: (this.tab === 'login' ? 'Entrar - ' : 'Cadastrar - ') + this.site.name,
-      meta: [{
-        hid: 'description',
-        name: 'description',
-        content: this.site.description
-      }]
+      title: (this.tab === 'login' ? 'Entrar' : 'Cadastrar')
     }
   }
 }

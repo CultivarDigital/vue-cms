@@ -63,8 +63,6 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', auth.admin, (req, res) => {
   const newMenu = new Menu(req.body)
-  newMenu.site = req.user.site
-
   newMenu.save((err, menu) => {
     if (err) {
       res.status(422).send(err.message)
@@ -95,11 +93,9 @@ router.put('/:id', auth.admin, (req, res) => {
 router.delete('/:id', auth.admin, (req, res) => {
   Menu.findOne({
     _id: req.params.id
-  }).populate('projects').exec((err, menu) => {
+  }).exec((err, menu) => {
     if (err) {
       res.status(422).send(err.message)
-    } else if (menu.projects && menu.projects.length) {
-      res.status(422).send('Não é possível excluír! Existem projetos cadastrados nesta linha de ação')
     } else {
       menu.remove()
       res.send(menu)

@@ -10,9 +10,7 @@
             </b-navbar-brand>
             <b-collapse id="header-admin" is-nav>
               <b-navbar-nav>
-                <b-nav-item v-if="$auth.hasScope('super')" to="/admin/sites">Sites</b-nav-item>
-                <b-nav-item v-if="$auth.hasScope('admin') && $store.state.site" :to="'/admin/sites/' + $store.state.site._id + '/edit'">Site</b-nav-item>
-                <!-- <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/categories">Categorias</b-nav-item> -->
+                <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/settings">Configurações</b-nav-item>
                 <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/pages">Páginas</b-nav-item>
                 <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/menus">Menus</b-nav-item>
                 <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/medias">Biblioteca</b-nav-item>
@@ -58,10 +56,7 @@ export default {
     userRoleText() {
       let roleText = null
       if (this.$auth.user && this.$auth.user.roles && this.$auth.user.roles.length) {
-        console.log(this.roles)
         const role = this.roles.find(r => r.value[0] === this.$auth.user.roles[0])
-        console.log(role)
-        console.log(this.$auth.user.roles)
         if (role) {
           roleText = role.text
         }

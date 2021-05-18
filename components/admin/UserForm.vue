@@ -12,7 +12,7 @@
         </b-col>
         <b-col md="6">
           <b-form-group label="Email *">
-            <validation-provider v-slot="{ errors }" name="domínio" rules="required|email">
+            <validation-provider v-slot="{ errors }" name="email" rules="required|email">
               <b-form-input v-model="form.email" name="email" />
               <span class="text-danger">{{ errors[0] }}</span>
             </validation-provider>
@@ -43,11 +43,6 @@
       </b-row>
       <pictures-upload :form="form" field="picture" url="/api/uploads/images" label="Foto do perfil" />
       <b-row v-if="$auth.hasScope('super') || $auth.hasScope('admin')">
-        <b-col v-if="$auth.hasScope('super') && sites && !form.roles.includes('super')" md="6">
-          <b-form-group label="Site">
-            <b-form-select v-model="form.site" :options="sites" />
-          </b-form-group>
-        </b-col>
         <b-col md="6">
           <b-form-group label="Perfil *">
             <validation-provider v-slot="{ errors }" rules="required">
@@ -99,10 +94,8 @@ export default {
   },
   data () {
     return {
-      sites: [{ text: 'Selecione um site', value: null }],
       show_password: !this.user,
       form: {
-        site: null,
         name: '',
         picture: null,
         email: '',
@@ -133,14 +126,8 @@ export default {
       }
     }
   },
-  async created () {
+  created () {
     this.toForm(this.form, this.user)
-    if (this.$auth.hasScope('super')) {
-      const sites = await this.$axios.$get('/api/sites').catch(this.showError)
-      sites.forEach(site => {
-        this.sites.push({ value: site._id, text: site.name })
-      })
-    }
   },
   methods: {
     async save () {

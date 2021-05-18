@@ -40,29 +40,16 @@
 <script>
 import mixinGlobal from '@/mixins/global'
 import mixinPage from '@/mixins/page'
-import Banners from '@/components/site/Banners'
 export default {
-  components: {
-    Banners
-  },
   mixins: [mixinGlobal, mixinPage],
   data () {
     return {
-      page_id: 'events'
+      page_id: 'events',
+      event: null
     }
   },
-  computed: {
-    event () {
-      return this.site.events.find(event => event._id === this.$route.params.id)
-    }
-  },
-  head () {
-    return {
-      title: this.event.name + ' - Eventos - ' + this.site.name,
-      meta: [
-        { hid: 'description', name: 'description', content: this.event.description || this.site.description }
-      ]
-    }
+  async created () {
+    this.event = await this.$axios.$get('/api/events/' + this.$route.params.id)
   }
 }
 </script>

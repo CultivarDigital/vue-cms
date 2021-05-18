@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div v-if="site" class="home-page">
-      <div v-if="site.pictures && site.pictures.length">
-        <b-carousel :interval="7000" :indicators="site.pictures.length > 1" class="home-banners">
-          <template v-for="(item, index) in site.pictures">
+    <div v-if="settings" class="home-page">
+      <div v-if="settings.pictures && settings.pictures.length">
+        <b-carousel :interval="7000" :indicators="settings.pictures.length > 1" class="home-banners">
+          <template v-for="(item, index) in settings.pictures">
             <b-carousel-slide v-if="item" :key="index" :img-src="item.url" :img-alt="item.title">
               <h3 class="title">{{ item.title }}</h3>
               <h2 v-if="item.description" class="title">{{ (item.description) | truncate(250) }}</h2>
@@ -60,8 +60,8 @@
 <script>
 export default {
   computed: {
-    site () {
-      return this.$store.state.site
+    settings () {
+      return this.$store.state.settings
     }
   }
 }

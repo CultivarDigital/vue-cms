@@ -20,19 +20,12 @@ export default {
   data () {
     return {
       page_id: 'noticias',
-      page_title: 'Notícias'
+      page_title: 'Notícias',
+      posts: null
     }
   },
-  computed: {
-    posts () {
-      let posts = this.site.posts
-      if (this.$route.query.tag) {
-        posts = posts.filter(post => {
-          return post.tags.find(tag => tag === this.$route.query.tag)
-        })
-      }
-      return posts
-    }
+  async created() {
+    this.posts = await this.$axios.$get('/api/posts/' + this.$route.params.id, { params: this.$route.query })
   }
 }
 </script>

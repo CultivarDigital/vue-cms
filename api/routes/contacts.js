@@ -6,9 +6,6 @@ const Contact = mongoose.model('Contact')
 
 router.get('/', auth.admin, (req, res) => {
   const query = {}
-  if (!req.user.roles.includes('super')) {
-    query.site = req.user.site
-  }
   Contact.find(query).sort('name').exec((err, contacts) => {
     if (err) {
       res.status(422).send(err.message)
@@ -21,7 +18,6 @@ router.get('/', auth.admin, (req, res) => {
 router.post('/contact', (req, res) => {
   const contact = new Contact()
 
-  contact.site = req.body.site
   contact.name = req.body.name
   contact.email = req.body.email
   contact.message = req.body.message

@@ -1,34 +1,31 @@
 <template>
   <div class="default-layout" :class="{ home: this.$route.path === '/' }">
-    <div v-show="site">
+    <div v-show="settings">
       <Header />
       <div class="sub-header" />
       <Nuxt />
       <Footer />
     </div>
-    <div v-if="!site" class="text-center mt-5">
-      <p>No one site was created yet.</p>
-      <p><strong>Please run <i>yarn seed</i> to create it!</strong></p>
+    <div v-if="!settings" class="my-5">
+      <b-container>
+        <h4>Este site ainda não foi configurado.</h4>
+        <h5 class="mb-5">Vamos configurá-lo?</h5>
+        <SettingsForm />
+      </b-container>
     </div>
   </div>
 </template>
 <script>
-import Header from '@/components/site/Header'
-import Footer from '@/components/site/Footer'
 export default {
-  components: {
-    Header,
-    Footer
-  },
   computed: {
-    site () {
-      return this.$store.state.site
+    settings () {
+      return this.$store.state.settings
     }
   },
   head () {
     return {
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: (this.site && this.site.favicon ? this.site.favicon.url : '/favicon.ico') }
+        { rel: 'icon', type: 'image/x-icon', href: (this.settings && this.settings.favicon ? this.settings.favicon.url : '/favicon.ico') }
       ]
     }
   }

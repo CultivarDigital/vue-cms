@@ -14,29 +14,22 @@ const createPath = (path) => {
 const UPLOAD_PATH = 'api/uploads/'
 createPath(UPLOAD_PATH)
 
-const sitePath = (slug) => {
+const imagesPath = () => {
   let path = UPLOAD_PATH
-  path += (slug || 'global') + '/'
-  createPath(path)
-  return path
-}
-
-const imagesPath = (slug) => {
-  let path = sitePath(slug)
   path += 'images/'
   createPath(path)
   return path
 }
 
-const thumbsPath = (slug) => {
-  let path = imagesPath(slug)
+const thumbsPath = () => {
+  let path = imagesPath()
   path += 'thumbs/'
   createPath(path)
   return path
 }
 
-const averagesPath = (slug) => {
-  let path = imagesPath(slug)
+const averagesPath = () => {
+  let path = imagesPath()
   path += 'averages/'
   createPath(path)
   return path
@@ -44,11 +37,11 @@ const averagesPath = (slug) => {
 
 const imageStorage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, imagesPath(req.user.site_slug))
+    cb(null, imagesPath())
   },
   filename: (req, file, cb) => {
     let filename = file.originalname
-    const path = imagesPath(req.user.site_slug)
+    const path = imagesPath()
     if (fs.existsSync(path + filename)) {
       const nameArr = filename.split('.')
       nameArr[0] += '-' + Date.now()
@@ -67,9 +60,9 @@ const imageUploader = multer({
 router.post('/images', [auth.authenticated, imageUploader.single('image')], (req, res) => {
   const filename = req.file.filename
 
-  const original = imagesPath(req.user.site_slug) + filename
-  const thumb = thumbsPath(req.user.site_slug) + filename
-  const average = averagesPath(req.user.site_slug) + filename
+  const original = imagesPath() + filename
+  const thumb = thumbsPath() + filename
+  const average = averagesPath() + filename
 
   sharp(original, { failOnError: false })
     .resize({
@@ -99,8 +92,8 @@ router.post('/images', [auth.authenticated, imageUploader.single('image')], (req
     })
 })
 
-const documentsPath = (slug) => {
-  let path = sitePath(slug)
+const documentsPath = () => {
+  let path = UPLOAD_PATH
   path += 'documents/'
   createPath(path)
   return path
@@ -108,11 +101,11 @@ const documentsPath = (slug) => {
 
 const documentStorage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, documentsPath(req.user.site_slug))
+    cb(null, documentsPath())
   },
   filename: (req, file, cb) => {
     let filename = file.originalname
-    const path = documentsPath(req.user.site_slug)
+    const path = documentsPath()
     if (fs.existsSync(path + filename)) {
       const nameArr = filename.split('.')
       nameArr[0] += '-' + Date.now()
@@ -129,12 +122,12 @@ const documentUploader = multer({
 })
 router.post('/documents', [auth.authenticated, documentUploader.single('document')], (req, res) => {
   const url = req.file.filename
-  const path = documentsPath(req.user.site_slug)
+  const path = documentsPath()
   res.status(201).send({ title: url.split('.')[0], url: path + url })
 })
 
-const pdfsPath = (slug) => {
-  let path = sitePath(slug)
+const pdfsPath = () => {
+  let path = UPLOAD_PATH
   path += 'pdfs/'
   createPath(path)
   return path
@@ -142,11 +135,11 @@ const pdfsPath = (slug) => {
 
 const pdfStorage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, pdfsPath(req.user.site_slug))
+    cb(null, pdfsPath())
   },
   filename: (req, file, cb) => {
     let filename = file.originalname
-    const path = pdfsPath(req.user.site_slug)
+    const path = pdfsPath()
     if (fs.existsSync(path + filename)) {
       const nameArr = filename.split('.')
       nameArr[0] += '-' + Date.now()
@@ -165,11 +158,11 @@ const pdfUploader = multer({
 router.post('/pdfs', [auth.authenticated, pdfUploader.single('pdf')], (req, res) => {
   const filename = req.file.filename
 
-  // let path = pdfsPath(req.user.site_slug)
+  // let path = pdfsPath()
 
-  // const original = imagesPath(req.user.site_slug) + filename
-  const thumb = thumbsPath(req.user.site_slug) + filename.replace('.pdf', '.png')
-  const average = averagesPath(req.user.site_slug) + filename.replace('.pdf', '.png')
+  // const original = imagesPath() + filename
+  const thumb = thumbsPath() + filename.replace('.pdf', '.png')
+  const average = averagesPath() + filename.replace('.pdf', '.png')
 
   const pdfImage = new PDFImage(req.file.path)
 

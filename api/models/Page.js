@@ -1,23 +1,12 @@
 const mongoose = require('mongoose')
 const uniqueValidator = require('mongoose-unique-validator')
-const ObjectId = mongoose.Schema.Types.ObjectId
 
 const PageSchema = mongoose.Schema({
-  site: {
-    type: ObjectId,
-    ref: 'Site',
-    required: true,
-    index: true
-  },
   slug: {
     type: String,
     required: true,
     index: true
   },
-  categories: [{
-    type: ObjectId,
-    ref: 'Category'
-  }],
   tags: [String],
   documents: [Object],
   title: String,
@@ -30,7 +19,7 @@ const PageSchema = mongoose.Schema({
   toJSON: { virtuals: true }
 })
 
-PageSchema.index({ slug: 1, site: 1 }, { unique: true })
+PageSchema.index({ slug: 1 }, { unique: true })
 
 PageSchema.plugin(uniqueValidator, {
   message: 'Este nome já está sendo usado'

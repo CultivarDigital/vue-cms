@@ -84,28 +84,11 @@ export default {
       this.addItem()
     }
   },
-  async created() {
+  created() {
     if (this.items) {
       this.list = this.items.sort(function(a, b) {
         return a.title.localeCompare(b.title)
       })
-    } else {
-      switch (this.type) {
-        case 'categories':
-          this.list = (await this.$axios.$get('/api/categories')).map(category => ({
-            id: category._id,
-            title: category.name
-          }))
-          break
-      }
-      switch (this.type) {
-        case 'tags':
-          this.list = (await this.$axios.$get('/api/tags')).map(tag => ({
-            id: tag._id,
-            title: tag.name
-          }))
-          break
-      }
     }
   },
   methods: {

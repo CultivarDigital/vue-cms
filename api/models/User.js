@@ -2,16 +2,10 @@ const crypto = require('crypto')
 const mongoose = require('mongoose')
 const uniqueValidator = require('mongoose-unique-validator')
 const jwt = require('jsonwebtoken')
-const ObjectId = mongoose.Schema.Types.ObjectId
 
 mongoose.set('useCreateIndex', true)
 
 const UserSchema = new mongoose.Schema({
-  site: {
-    type: ObjectId,
-    ref: 'Site'
-  },
-  site_slug: String,
   name: String,
   email: {
     required: true,
@@ -58,8 +52,6 @@ UserSchema.methods.generateJWT = function() {
     id: this._id,
     email: this.email,
     roles: this.roles,
-    site: this.site,
-    site_slug: this.site_slug,
     name: this.name,
     picture: this.picture,
     organization: this.organization,
@@ -71,8 +63,6 @@ UserSchema.methods.generateJWT = function() {
 UserSchema.methods.toAuthJSON = function() {
   return {
     _id: this._id,
-    site: this.site,
-    site_slug: this.site_slug,
     email: this.email,
     token: this.generateJWT(),
     roles: this.roles,
@@ -86,8 +76,6 @@ UserSchema.methods.toAuthJSON = function() {
 UserSchema.methods.data = function() {
   return {
     _id: this._id,
-    site: this.site,
-    site_slug: this.site_slug,
     email: this.email,
     roles: this.roles,
     name: this.name,

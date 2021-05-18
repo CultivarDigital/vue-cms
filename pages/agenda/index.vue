@@ -25,8 +25,8 @@ export default {
       events: null
     }
   },
-  created() {
-    this.events = this.$store.state.site.events
+  async created() {
+    this.events = await this.$axios.$get('/api/events')
   }
 }
 </script>

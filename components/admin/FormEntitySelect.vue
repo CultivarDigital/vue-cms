@@ -86,12 +86,6 @@ export default {
       })
     } else {
       switch (this.type) {
-        case 'categories':
-          this.list = (await this.$axios.$get('/api/categories')).map(category => ({
-            id: category._id,
-            title: category.name
-          }))
-          break
         case 'menus':
           this.list = (await this.$axios.$get('/api/menus')).map(menu => ({
             id: menu._id,

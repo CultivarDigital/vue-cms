@@ -1,9 +1,6 @@
-require('./models/Site')
+require('./models/Settings')
 require('./models/User')
 require('./models/Menu')
-require('./models/Category')
-require('./models/Tag')
-require('./models/Project')
 require('./models/Post')
 require('./models/Event')
 require('./models/Page')
@@ -29,5 +26,5 @@ if (isProduction) {
   })
 } else {
   mongoose.set('debug', true)
-  mongoose.connect('mongodb://localhost/sementes-do-xingu', { useNewUrlParser: true, useUnifiedTopology: true })
+  mongoose.connect('mongodb://localhost/' + process.env.npm_package_name, { useNewUrlParser: true, useUnifiedTopology: true })
 }

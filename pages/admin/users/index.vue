@@ -50,7 +50,6 @@ export default {
   },
   created () {
     if (this.$auth.hasScope('super')) {
-      this.table.push({ key: 'site.name', label: 'Site' })
       this.table.push({ key: 'roles', label: 'Perfil' })
     } else if (this.$auth.hasScope('admin')) {
       this.table.push({ key: 'roles', label: 'Perfil' })

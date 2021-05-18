@@ -1,53 +1,10 @@
 const jwt = require('express-jwt')
-const mongoose = require('mongoose')
-const Site = mongoose.model('Site')
-
-async function applySite(req, res, query, type) {
-  const site = await belongsToSite(req)
-  if (site) {
-    if (type === 'user') {
-      query.sites = site._id
-    } else {
-      query.site = site._id
-    }
-    return site
-  } else if (!req.user.roles.includes('super')) {
-    res.status(401).send('Você não tem permissão para acessar este recurso')
-    return false
-  }
-  return false
-}
-
-async function belongsToSite(req) {
-  const site = await getSite(req)
-  if (site && req.user.sites) {
-    if (req.user.sites.includes(site.id)) {
-      return site
-    } else if (req.user.sites && req.user.sites.length) {
-      return site[0]
-    }
-  }
-  return false
-}
-
-async function getSite(req) {
-  let filters = {
-    // domain_name: req.headers.host.replace('www.', '')
-  }
-  if (req.query.change_site) {
-    filters = {
-      slug: req.query.change_site
-    }
-  }
-  return await Site.findOne(filters)
-}
 
 function getTokenFromHeader(req) {
   if ((req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Token') ||
     (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer')) {
     return req.headers.authorization.split(' ')[1]
   }
-
   return null
 }
 
@@ -85,14 +42,7 @@ function authenticatedSuper(req, res, next) {
 
 function authenticatedAdmin(req, res, next) {
   if (isAdmin(req)) {
-    if (belongsToSite(req)) {
-      next()
-    } else {
-      return res.status(403).json({
-        status: 403,
-        message: 'Você não tem permissão para acessar este recurso.'
-      })
-    }
+    next()
   } else {
     return res.status(403).json({
       status: 403,
@@ -103,14 +53,7 @@ function authenticatedAdmin(req, res, next) {
 
 function authenticatedClient(req, res, next) {
   if (isClientOrAbove(req)) {
-    if (belongsToSite(req)) {
-      next()
-    } else {
-      return res.status(403).json({
-        status: 403,
-        message: 'Você não tem permissão para acessar este recurso.'
-      })
-    }
+    next()
   } else {
     return res.status(403).json({
       status: 403,
@@ -143,7 +86,6 @@ const auth = {
     credentialsRequired: false,
     getToken: getTokenFromHeader
   }),
-  applySite,
   isClientOrAbove,
   isAdmin,
   isSuper

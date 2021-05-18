@@ -51,7 +51,6 @@ export default {
   data () {
     return {
       form: {
-        site: null,
         name: '',
         email: '',
         message: ''
@@ -60,7 +59,6 @@ export default {
   },
   methods: {
     async save () {
-      this.form.site = this.$store.state.site._id
       const contact = await this.$axios.$post('/api/contacts/contact', this.form).catch(this.showError)
       if (contact) {
         this.$toast.success('Sua mensagem foi enviado. Em breve entraremos em contato. Obrigado!')

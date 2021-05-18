@@ -1,13 +1,7 @@
 const mongoose = require('mongoose')
 const uniqueValidator = require('mongoose-unique-validator')
-const ObjectId = mongoose.Schema.Types.ObjectId
 
 const PostSchema = mongoose.Schema({
-  site: {
-    type: ObjectId,
-    ref: 'Site',
-    required: true
-  },
   slug: {
     type: String,
     required: true,

@@ -1,11 +1,11 @@
 export const state = () => ({
-  site: null,
+  settings: null,
   cart: []
 })
 
 export const mutations = {
-  SET_SITE(state, site) {
-    state.site = site
+  updateSettings(state, settings) {
+    state.settings = settings
   },
   addToCart(state, cartItem) {
     const i = state.cart.findIndex(
@@ -31,13 +31,13 @@ export const actions = {
     commit,
     state
   }, { $axios, req }) {
-    if (!state.site) {
-      const data = await $axios.$get('/api/site').catch(e => {
-        console.log('Não existe site com esse domínio: ', e.message) // eslint-disable-line
+    if (!state.settings) {
+      const data = await $axios.$get('/api/settings').catch(e => {
+        console.log('Não existe settings com esse domínio: ', e.message) // eslint-disable-line
         console.error(e) // eslint-disable-line
       })
       if (data) {
-        commit('SET_SITE', data)
+        commit('updateSettings', data)
       }
     }
   }

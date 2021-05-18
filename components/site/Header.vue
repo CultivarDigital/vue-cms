@@ -2,9 +2,9 @@
   <header>
     <b-navbar toggleable="lg">
       <b-container fluid="lg">
-        <b-navbar-brand v-if="site" to="/">
-          <b-img :src="site.logo ? site.logo.url : require('~/assets/img/logo.svg')" />
-          <b-img :src="site.logo ? site.logo.url : require('~/assets/img/logo-nome.svg')" />
+        <b-navbar-brand v-if="settings" to="/">
+          <b-img :src="settings.logo ? settings.logo.url : require('~/assets/img/logo.svg')" />
+          <b-img :src="settings.logo ? settings.logo.url : require('~/assets/img/logo-nome.svg')" />
         </b-navbar-brand>
         <b-navbar-toggle target="header-menu">
           <font-awesome-icon icon="bars" />
@@ -20,21 +20,15 @@
   </header>
 </template>
 <script>
-
-import DynamicMenuItem from '@/components/site/DynamicMenuItem.vue'
-
 export default {
-  components: {
-    DynamicMenuItem
-  },
   data () {
     return {
       menus: null
     }
   },
   computed: {
-    site() {
-      return this.$store.state.site
+    settings() {
+      return this.$store.state.settings
     }
   },
   created () {

@@ -1,13 +1,12 @@
 <template>
   <div v-if="post" class="post-page">
     <section class="content pb-5">
-      <banners :items="[post.picture]" />
+      <Banners :items="[post.picture]" />
       <b-container>
         <h1 class="title pt-5">{{ post.title }}</h1>
         <div class="mb-3">
           <tags :tags="post.tags" @click="filterbyTag" />
         </div>
-
         <p v-if="post.description">{{ post.description }}</p>
         <div class="quill-content mt-4">
           <div v-if="post.content" v-html="post.content" />
@@ -27,33 +26,20 @@
 <script>
 import mixinGlobal from '@/mixins/global'
 import mixinPage from '@/mixins/page'
-import Banners from '@/components/site/Banners'
 export default {
-  components: {
-    Banners
-  },
   mixins: [mixinGlobal, mixinPage],
   data () {
     return {
-      page_id: 'posts'
+      page_id: 'posts',
+      post: null
     }
   },
-  computed: {
-    post () {
-      return this.site.posts.find(post => post.slug === this.$route.params.id)
-    }
+  async created() {
+    this.post = await this.$axios.$get('/api/posts/' + this.$route.params.id)
   },
   methods: {
     filterbyTag(tag) {
       this.$router.push('/noticias?tag=' + tag)
-    }
-  },
-  head () {
-    return {
-      title: this.post.title + ' - Notícias - ' + this.site.name,
-      meta: [
-        { hid: 'description', name: 'description', content: this.post.description || this.site.description }
-      ]
     }
   }
 }

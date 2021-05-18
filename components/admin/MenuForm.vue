@@ -20,7 +20,7 @@
               <b-form-input v-model="form.url" name="url" />
               <span class="text-danger">{{ errors[0] }}</span>
             </validation-provider>
-            <small tabindex="-1" class="form-text text-muted">Comece com / para página do próprio site.</small>
+            <small tabindex="-1" class="form-text text-muted">Comece com / para páginas internas.</small>
           </b-form-group>
         </b-col>
       </b-row>

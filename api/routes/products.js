@@ -55,7 +55,6 @@ router.get('/:id', admin, function(req, res) {
 router.post('/', admin, function(req, res) {
   const newProduct = new Product(req.body)
   newProduct.slug = slugify(newProduct.name).toLowerCase()
-  newProduct.site = req.user.site
   newProduct.save(function(err, product) {
     if (err) {
       res.status(422).send('Ocorreu um erro ao salvar: ' + err.message)

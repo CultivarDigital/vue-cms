@@ -15,7 +15,7 @@
         <div v-if="form.category === 'Imprensa' || form.category === 'Livros e Artigos Científicos' || form.category === 'Guias e Publicações Curtas' || form.category === 'Leis e Outras Normas'">
           <p v-if="form.pdf">
             <b-form-group v-if="form.picture" label="Documento PDF">
-              <a :href="'https://' + $store.state.site.domain_name + form.pdf.url">{{ 'https://' + $store.state.site.domain_name + form.pdf.url }}</a>
+              <a :href="form.pdf.url">{{ form.pdf.url }}</a>
               <br>
               <br>
               <b-button variant="primary" size="sm" @click="form.picture = null; form.pdf = null">Alterar documento</b-button>

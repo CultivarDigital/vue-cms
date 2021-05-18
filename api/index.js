@@ -3,31 +3,27 @@ require('./database')
 const express = require('express')
 const app = express()
 const router = require('express').Router()
-const bodyParser = require('body-parser')
 const session = require('express-session')
 const cors = require('cors')
 
 const mongoose = require('mongoose')
 const User = mongoose.model('User')
-const Site = mongoose.model('Site')
+const Settings = mongoose.model('Settings')
 const auth = require('./config/auth')
 
-const secret = process.env.SECRET || 'sementes-do-xingu'
+const secret = process.env.SECRET || process.env.npm_package_name
 
 app.use(cors())
 app.use(session({ secret, cookie: { maxAge: null }, resave: false, saveUninitialized: false }))
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
+app.use(express.urlencoded({ extended: false }))
+app.use(express.json())
 // eslint-disable-next-line
 app.use('/uploads', express.static(__dirname + '/uploads'))
 
 router.use('/auth', require('./routes/auth'))
 router.use('/uploads', require('./routes/uploads'))
 router.use('/users', require('./routes/users'))
-router.use('/sites', require('./routes/sites'))
-router.use('/categories', require('./routes/categories'))
-router.use('/tags', require('./routes/tags'))
-router.use('/projects', require('./routes/projects'))
+router.use('/settings', require('./routes/settings'))
 router.use('/posts', require('./routes/posts'))
 router.use('/events', require('./routes/events'))
 router.use('/pages', require('./routes/pages'))
@@ -36,11 +32,10 @@ router.use('/medias', require('./routes/medias'))
 router.use('/menus', require('./routes/menus'))
 router.use('/products', require('./routes/products'))
 router.use('/orders', require('./routes/orders'))
-router.use('/orders', require('./routes/orders'))
 router.use('/shop', require('./routes/shop'))
 
 router.get('/profile', auth.authenticated, function(req, res) {
-  User.findById(req.user.id).populate('site').exec(function(err, user) {
+  User.findById(req.user.id).exec(function(err, user) {
     if (!err && user) {
       res.send(user.data())
     } else {
@@ -49,37 +44,9 @@ router.get('/profile', auth.authenticated, function(req, res) {
   })
 })
 
-router.get('/site', function(req, res) {
-  Site.findOne({})
-    .populate('pages')
-    .populate({
-      path: 'posts',
-      model: 'Post',
-      options: { sort: { createdAt: -1 } }
-    })
-    .populate({
-      path: 'events',
-      model: 'Event',
-      options: { sort: { start_at: -1 } }
-    })
-    .populate({
-      path: 'medias',
-      model: 'Media',
-      options: { sort: { createdAt: -1 } }
-    })
-    .populate({
-      path: 'users',
-      model: 'User',
-      select: 'name organization address',
-      options: { sort: 'name' }
-    })
-    .exec(function(err, site) {
-      if (!err && site) {
-        res.send(site)
-      } else {
-        res.status(422).send('Site não encontrado')
-      }
-    })
+router.get('/settings', async (req, res) => {
+  const settings = await Settings.findOne({})
+  res.send(settings)
 })
 
 app.use(router)

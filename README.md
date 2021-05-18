@@ -46,9 +46,6 @@ cd sementes-do-xingu/
 # Install NPM dependecies
 $ yarn install
 
-# In first time you need to generate the first user to access the admin panel:
-$ yarn seed
-
 # To run the developer version with hotreload in localhost:3000 run:
 $ yarn dev
 

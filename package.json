@@ -9,8 +9,7 @@
     "export": "nuxt export",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint:style": "stylelint **/*.{vue,css} --ignore-path .gitignore",
-    "lint": "yarn lint:js --fix && yarn lint:style --fix",
-    "seed": "node ./scripts/seed.js"
+    "lint": "yarn lint:js --fix && yarn lint:style --fix"
   },
   "lint-staged": {
     "*.{js,vue}": "eslint",

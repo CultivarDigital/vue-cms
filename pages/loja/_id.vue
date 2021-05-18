@@ -18,7 +18,7 @@
       <br>
       <div class="row">
         <div class="col-sm-5">
-          <b-carousel id="carousel-fade" v-model="slide" style="text-shadow: 0px 0px 2px #000" fade indicators img-width="1024" img-height="480">
+          <b-carousel id="carousel-fade" v-model="slide" style="text-shadow: 0 0 2px #000;" fade indicators img-width="1024" img-height="480">
             <b-carousel-slide v-for="(picture, index) in product.pictures" :key="index" :img-src="picture.url" />
           </b-carousel>
           <div v-if="product.pictures.length > 1" class="product_thumbs row">

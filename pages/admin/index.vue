@@ -11,8 +11,7 @@
       <b-list-group-item v-if="$auth.hasScope('admin')" to="/admin/ecommerce">Loja</b-list-group-item>
       <b-list-group-item to="/admin/contacts">Contatos</b-list-group-item>
       <b-list-group-item to="/admin/users">Usuários</b-list-group-item>
-      <b-list-group-item v-if="$auth.hasScope('super')" to="/admin/sites">Sites</b-list-group-item>
-      <b-list-group-item v-if="$auth.hasScope('admin') && $store.state.site" :to="'/admin/sites/' + $store.state.site._id + '/edit'">Configurações do site</b-list-group-item>
+      <b-list-group-item v-if="$auth.hasScope('admin')" to="/admin/settings">Configurações</b-list-group-item>
     </b-list-group>
   </div>
 </template>
