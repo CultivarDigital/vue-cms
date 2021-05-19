@@ -1,5 +1,7 @@
 const jwt = require('express-jwt')
 
+const secret = process.env.SECRET || process.env.npm_package_name
+
 function getTokenFromHeader(req) {
   if ((req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Token') ||
     (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer')) {
@@ -8,36 +10,18 @@ function getTokenFromHeader(req) {
   return null
 }
 
-function isSuper(req) {
-  if (req.user && req.user.roles) {
-    return req.user.roles.includes('super')
-  }
-  return false
-}
-
 function isAdmin(req) {
-  if (req.user && req.user.roles) {
-    return req.user.roles.includes('admin') || req.user.roles.includes('super')
+  if (req.user && req.user.role) {
+    return req.user.role === 'admin'
   }
   return false
 }
 
 function isClientOrAbove(req) {
-  if (req.user && req.user.roles) {
-    return req.user.roles.includes('client') || req.user.roles.includes('admin') || req.user.roles.includes('super')
+  if (req.user && req.user.role) {
+    return req.user.role === 'client' || req.user.role === 'admin'
   }
   return false
-}
-
-function authenticatedSuper(req, res, next) {
-  if (isSuper(req)) {
-    next()
-  } else {
-    return res.status(403).json({
-      status: 403,
-      message: 'A permissão de super usuário é necessária para acessar este recurso.'
-    })
-  }
 }
 
 function authenticatedAdmin(req, res, next) {
@@ -62,13 +46,9 @@ function authenticatedClient(req, res, next) {
   }
 }
 
-function getSecret() {
-  return process.env.SECRET || 'secret'
-}
-
 const authenticatedJWT = () => {
   return jwt({
-    secret: getSecret(),
+    secret,
     algorithms: ['HS256'],
     userProperty: 'user',
     getToken: getTokenFromHeader
@@ -76,19 +56,17 @@ const authenticatedJWT = () => {
 }
 const auth = {
   authenticated: authenticatedJWT(),
-  super: [authenticatedJWT(), authenticatedSuper],
   admin: [authenticatedJWT(), authenticatedAdmin],
   client: [authenticatedJWT(), authenticatedClient],
   optional: jwt({
-    secret: getSecret(),
+    secret,
     algorithms: ['HS256'],
     userProperty: 'user',
     credentialsRequired: false,
     getToken: getTokenFromHeader
   }),
   isClientOrAbove,
-  isAdmin,
-  isSuper
+  isAdmin
 }
 
 module.exports = auth

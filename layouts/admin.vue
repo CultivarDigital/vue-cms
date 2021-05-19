@@ -47,16 +47,11 @@
 import roles from '@/data/roles.json'
 export default {
   middleware: 'auth',
-  data() {
-    return {
-      roles
-    }
-  },
   computed: {
     userRoleText() {
       let roleText = null
-      if (this.$auth.user && this.$auth.user.roles && this.$auth.user.roles.length) {
-        const role = this.roles.find(r => r.value[0] === this.$auth.user.roles[0])
+      if (this.$auth.user) {
+        const role = roles.find(r => r.value === this.$auth.user.role)
         if (role) {
           roleText = role.text
         }

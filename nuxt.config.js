@@ -80,7 +80,7 @@ export default {
         tokenType: 'Token'
       }
     },
-    scopeKey: 'roles'
+    scopeKey: 'role'
   },
   toast: {
     duration: 7000,

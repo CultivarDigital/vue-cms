@@ -8,8 +8,8 @@
     </div>
     <div v-if="users">
       <b-table v-if="users.length" :fields="table" :items="users" responsive="sm">
-        <template v-slot:cell(roles)="data">
-          {{ role(data.value) }}
+        <template v-slot:cell(role)="data">
+          {{ roleText(data.value) }}
         </template>
         <template v-slot:cell(actions)="data">
           <n-link class="btn btn-info btn-sm" :to="'/admin/users/' + data.item._id + '/edit'">
@@ -44,18 +44,13 @@ export default {
       ],
       table: [
         { key: 'name', label: 'Nome' },
-        { key: 'email', label: 'Email' }
+        { key: 'email', label: 'Email' },
+        { key: 'roles', label: 'Perfil' },
+        { key: 'actions', label: '', class: 'text-right' }
       ]
     }
   },
   created () {
-    if (this.$auth.hasScope('super')) {
-      this.table.push({ key: 'roles', label: 'Perfil' })
-    } else if (this.$auth.hasScope('admin')) {
-      this.table.push({ key: 'roles', label: 'Perfil' })
-      this.table.push({ key: 'organization', label: 'Organização' })
-    }
-    this.table.push({ key: 'actions', label: '', class: 'text-right' })
     this.list()
   },
   methods: {
@@ -72,10 +67,8 @@ export default {
         }
       })
     },
-    role (userRoles) {
-      if (userRoles && userRoles.length > 0) {
-        return roles.find(r => r.value[0] === userRoles[0]).text
-      }
+    roleText (role) {
+      return roles.find(r => r.value === role).text
     }
   }
 }

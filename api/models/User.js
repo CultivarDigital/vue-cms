@@ -4,26 +4,34 @@ const uniqueValidator = require('mongoose-unique-validator')
 const jwt = require('jsonwebtoken')
 
 mongoose.set('useCreateIndex', true)
+const secret = process.env.SECRET || process.env.npm_package_name
 
 const UserSchema = new mongoose.Schema({
-  name: String,
+  name: {
+    type: String,
+    required: true
+  },
   email: {
+    type: String,
     required: true,
     unique: true,
-    type: String,
     lowercase: true,
-    match: [/\S+@\S+\.\S+/, 'inválido'],
-    index: {
-      unique: true,
-      partialFilterExpression: { email: { $type: 'string' } }
-    },
-    default: null
+    match: [/\S+@\S+\.\S+/, 'inválido']
+  },
+  role: {
+    type: String,
+    required: true
+  },
+  hash: {
+    type: String,
+    required: true
+  },
+  salt: {
+    type: String,
+    required: true
   },
   organization: String,
-  picture: Object,
-  hash: String,
-  salt: String,
-  roles: [String]
+  picture: Object
 }, {
   timestamps: true,
   toJSON: { virtuals: true }
@@ -43,29 +51,11 @@ UserSchema.methods.setPassword = function(password) {
   this.hash = crypto.pbkdf2Sync(password, this.salt, 10000, 512, 'sha512').toString('hex')
 }
 
-UserSchema.methods.generateJWT = function() {
-  const today = new Date()
-  const exp = new Date(today)
-  exp.setDate(today.getDate() + 60)
-
-  return jwt.sign({
-    id: this._id,
-    email: this.email,
-    roles: this.roles,
-    name: this.name,
-    picture: this.picture,
-    organization: this.organization,
-    address: this.address,
-    exp: parseInt(exp.getTime() / 1000)
-  }, (process.env.SECRET || 'secret'))
-}
-
-UserSchema.methods.toAuthJSON = function() {
+UserSchema.methods.data = function() {
   return {
     _id: this._id,
     email: this.email,
-    token: this.generateJWT(),
-    roles: this.roles,
+    role: this.role,
     name: this.name,
     picture: this.picture,
     organization: this.organization,
@@ -73,15 +63,24 @@ UserSchema.methods.toAuthJSON = function() {
   }
 }
 
-UserSchema.methods.data = function() {
+UserSchema.methods.generateJWT = function () {
+  const today = new Date()
+  const exp = new Date(today)
+  exp.setDate(today.getDate() + 60)
+
+  return jwt.sign(
+    {
+      ...this.data(),
+      exp: parseInt(exp.getTime() / 1000)
+    },
+    secret
+  )
+}
+
+UserSchema.methods.toAuthJSON = function () {
   return {
-    _id: this._id,
-    email: this.email,
-    roles: this.roles,
-    name: this.name,
-    picture: this.picture,
-    organization: this.organization,
-    address: this.address
+    ...this.data(),
+    token: this.generateJWT()
   }
 }
 

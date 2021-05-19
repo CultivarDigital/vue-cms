@@ -6,9 +6,9 @@ const User = mongoose.model('User')
 router.get('/', auth.admin, function(req, res) {
   let filters = {}
 
-  if (req.query.role && req.query.role !== 'user') {
+  if (req.query.role) {
     filters = {
-      roles: req.query.role
+      role: req.query.role
     }
   }
 
@@ -35,12 +35,7 @@ router.post('/', auth.admin, (req, res, next) => {
   user.picture = req.body.picture
   user.organization = req.body.organization
   user.address = req.body.address
-
-  if (req.user.roles.includes('super')) {
-    user.roles = req.body.roles
-  } else {
-    user.roles = req.body.roles.filter(r => r === 'super')
-  }
+  user.role = req.body.role
 
   user.setPassword(req.body.password)
 
@@ -57,7 +52,7 @@ router.post('/', auth.admin, (req, res, next) => {
 //   user.picture = req.body.picture
 //   user.organization = req.body.organization
 //   user.address = req.body.address
-//   user.roles = ['user']
+//   user.role = 'user'
 
 //   user.setPassword(req.body.password)
 
@@ -73,14 +68,7 @@ router.put('/:id', auth.admin, function(req, res, next) {
     user.picture = req.body.picture
     user.organization = req.body.organization
     user.address = req.body.address
-
-    if (req.user.roles.includes('super')) {
-      if (req.body.roles && req.body.roles.length > 0) {
-        user.roles = req.body.roles
-      }
-    } else {
-      user.roles = req.body.roles.filter(r => r !== 'super')
-    }
+    user.role = req.body.role
 
     if (req.body.password) {
       user.setPassword(req.body.password)
@@ -93,7 +81,7 @@ router.put('/:id', auth.admin, function(req, res, next) {
 })
 
 router.put('/', auth.authenticated, function(req, res, next) {
-  User.findById(req.user.id).then(function(user) {
+  User.findById(req.user._id).then(function(user) {
     user.email = req.body.email
     user.name = req.body.name
     user.picture = req.body.picture
@@ -114,9 +102,7 @@ router.delete('/:id', auth.admin, (req, res) => {
   }).exec((err, user) => {
     if (err) {
       res.status(422).send(err.message)
-    } else if (req.user.roles.includes('super')) {
-      res.status(422).send('Super usuários não podem ser excluídos')
-    } else if (req.params.id === req.user.id) {
+    } else if (req.params.id === req.user._id) {
       res.status(422).send('Você não pode excuír você mesmo')
     } else {
       user.remove()

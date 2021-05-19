@@ -155,7 +155,7 @@ export default {
       this.$router.replace('/loja')
     },
     saveAssignedClient(user) {
-      this.form.assignedClient = user.id
+      this.form.assignedClient = user._id
       this.setClient(user, this.form)
     },
     setClient(client, form) {

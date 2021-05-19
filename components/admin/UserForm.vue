@@ -42,16 +42,16 @@
         </b-col>
       </b-row>
       <pictures-upload :form="form" field="picture" url="/api/uploads/images" label="Foto do perfil" />
-      <b-row v-if="$auth.hasScope('super') || $auth.hasScope('admin')">
+      <b-row v-if="$auth.hasScope('admin')">
         <b-col md="6">
           <b-form-group label="Perfil *">
             <validation-provider v-slot="{ errors }" rules="required">
-              <b-form-select v-model="form.roles" :options="roles" />
+              <b-form-select v-model="form.role" :options="roles" />
               <span class="text-danger">{{ errors[0] }}</span>
             </validation-provider>
           </b-form-group>
         </b-col>
-        <b-col v-if="form.roles && form.roles[0] === 'user'" md="6">
+        <b-col v-if="form.role && form.role === 'user'" md="6">
           <b-form-group label="Organização *">
             <validation-provider v-slot="{ errors }" name="organização" rules="required">
               <b-form-input v-model="form.organization" />
@@ -95,6 +95,7 @@ export default {
   data () {
     return {
       show_password: !this.user,
+      roles,
       form: {
         name: '',
         picture: null,
@@ -102,7 +103,7 @@ export default {
         organization: '',
         password: '',
         password_confirmation: '',
-        roles: [],
+        role: null,
         address: {
           city: '',
           uf: '',
@@ -117,13 +118,6 @@ export default {
   computed: {
     passwordConfirmed () {
       return !this.show_password || this.form.password === this.form.password_confirmation
-    },
-    roles () {
-      if (this.$auth.hasScope('super')) {
-        return roles
-      } else {
-        return roles.filter(role => role.value[0] !== 'super')
-      }
     }
   },
   created () {

@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const router = express.Router()
 const auth = require('../config/auth')
 const Settings = mongoose.model('Settings')
+const User = mongoose.model('User')
 
 router.get('/', (req, res) => {
   Settings.findOne().exec((err, settings) => {
@@ -15,10 +16,7 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', auth.admin, async (req, res) => {
-  let settings = await Settings.findOne()
-  if (!settings) {
-    settings = new Settings(req.body)
-  }
+  const settings = await Settings.findOne()
   Object.keys(req.body).forEach(key => {
     settings[key] = req.body[key]
   })
@@ -29,6 +27,22 @@ router.post('/', auth.admin, async (req, res) => {
       res.send(settings)
     }
   })
+})
+
+router.post('/setup', async (req, res) => {
+  let settings = await Settings.findOne()
+  if (!settings) {
+    settings = new Settings({ name: req.body.name })
+    await settings.save()
+    const admin = new User({
+      name: req.body.admin_name,
+      email: req.body.email,
+      role: 'admin'
+    })
+    admin.setPassword(req.body.password)
+    await admin.save()
+    res.send({ settings, admin: admin.data() })
+  }
 })
 
 module.exports = router

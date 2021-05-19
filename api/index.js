@@ -35,7 +35,8 @@ router.use('/orders', require('./routes/orders'))
 router.use('/shop', require('./routes/shop'))
 
 router.get('/profile', auth.authenticated, function(req, res) {
-  User.findById(req.user.id).exec(function(err, user) {
+  console.log(req.user)
+  User.findById(req.user._id).exec(function(err, user) {
     if (!err && user) {
       res.send(user.data())
     } else {

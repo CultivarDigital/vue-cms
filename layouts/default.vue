@@ -10,7 +10,7 @@
       <b-container>
         <h4>Este site ainda não foi configurado.</h4>
         <h5 class="mb-5">Vamos configurá-lo?</h5>
-        <SettingsForm />
+        <SetupForm />
       </b-container>
     </div>
   </div>
