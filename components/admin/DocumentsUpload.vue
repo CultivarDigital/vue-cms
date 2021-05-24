@@ -77,7 +77,7 @@ export default {
           this.changed()
         }).catch((error) => {
           this.isLoading = false
-          this.showError(error)
+          this.$toast.error('Ocorreu um erro ao enviar o arquivo: ', error.message)
         })
       }
     },

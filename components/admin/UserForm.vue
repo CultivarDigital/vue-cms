@@ -41,8 +41,8 @@
           </b-form-group>
         </b-col>
       </b-row>
-      <pictures-upload :form="form" field="picture" url="/api/uploads/images" label="Foto do perfil" />
-      <b-row v-if="$auth.hasScope('admin')">
+      <Upload v-model="form.picture" type="images" label="Foto do perfil" />
+      <b-row v-if="$auth.user.role === 'admin'">
         <b-col md="6">
           <b-form-group label="Perfil *">
             <validation-provider v-slot="{ errors }" rules="required">
@@ -76,7 +76,7 @@
 
 <script>
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
-import mixinGlobal from '@/mixins/global'
+
 import mixinForm from '@/mixins/form'
 import roles from '@/data/roles.json'
 
@@ -85,7 +85,7 @@ export default {
     ValidationObserver,
     ValidationProvider
   },
-  mixins: [mixinGlobal, mixinForm],
+  mixins: [mixinForm],
   props: {
     user: {
       type: Object,
@@ -126,13 +126,13 @@ export default {
   methods: {
     async save () {
       if (this.user) {
-        const user = await this.$axios.$put('/api/users/' + this.user._id, this.form).catch(this.showError)
+        const user = await this.$axios.$put('/api/users/' + this.user._id, this.form)
         if (user) {
           this.$toast.success('Usuário atualizado com sucesso!')
           this.$router.push('/admin/users')
         }
       } else {
-        const user = await this.$axios.$post('/api/users', this.form).catch(this.showError)
+        const user = await this.$axios.$post('/api/users', this.form)
         if (user) {
           this.$toast.success('Usuário cadastrado com sucesso!')
           this.$router.push('/admin/users')

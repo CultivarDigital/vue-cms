@@ -6,16 +6,17 @@
         <b-img v-else :src="media.picture ? media.picture.average : null" :alt="media.title" class="card-img-top" />
       </div>
       <div class="card-body">
-        <div class="pattern" />
-        <div class="card-title">
+        <div>
           <h3>{{ media.title }}</h3>
-          <small>Publicado em: {{ $moment(media.publishing_date).format(media.publishing_date_format || "DD/MM/YYYY") }} em <n-link :to="'/biblioteca?categoria=' + media.categoria">{{ media.category }}</n-link></small>
-        </div>
-        <div class="card-text">
-          <p v-if="media.description">{{ media.description }}</p>
-          <small v-if="media.publishing_house">Editora/Fonte: {{ media.publishing_house }}<br><br></small>
-          <small v-if="media.pdf"><b-button :to="media.pdf.url" target="_blank" variant="primary">Baixar arquivo</b-button><br><br></small>
-          <small v-else-if="media.category !== 'Notícias' && media.category !== 'Vídeos' && media.url"><b-button :href="media.url" target="_blank" variant="primary">Baixar arquivo</b-button><br><br></small>
+          <small>Publicado em: {{ $moment(media.publishing_date).format(media.publishing_date_format || "DD/MM/YYYY") }} em <n-link :to="'/biblioteca?categoria=' + media.category">{{ media.category }}</n-link></small>
+          <p v-if="media.description" class="mt-3">{{ media.description }}</p>
+          <p v-if="media.publishing_house">
+            Editora/Fonte: {{ media.publishing_house }}
+          </p>
+          <p v-if="media.category !== 'Notícias' && media.category !== 'Vídeos'">
+            <b-button v-if="media.url" :href="media.url" target="_blank" variant="secondary">Baixar arquivo</b-button>
+            <Documents :documents="media.documents" label="Baixar documentos" />
+          </p>
           <div class="tags-component">
             <b-button v-for="tag in media.tags" :key="tag._id" :to="'/biblioteca?tag=' + tag" size="sm">
               {{ tag }}
@@ -25,6 +26,7 @@
         </div>
       </div>
     </div>
+
     <br>
     <div class="text-center">
       <b-button variant="primary" @click="$router.go(-1)">

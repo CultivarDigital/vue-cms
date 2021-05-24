@@ -40,17 +40,11 @@
     </section>
   </div>
 </template>
-
 <script>
-import mixinGlobal from '@/mixins/global'
-import mixinPage from '@/mixins/page'
 import categories from '@/data/categories'
 export default {
-  mixins: [mixinGlobal, mixinPage],
   data () {
     return {
-      page_id: 'biblioteca',
-      page_title: 'Biblioteca',
       medias: null,
       media: null,
       tags: [],

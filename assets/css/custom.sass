@@ -12,7 +12,7 @@ pre
   background-color: $white
 a
   cursor: pointer
-  color: $primary
+  color: $secondary
   &:hover
     text-decoration: none
     color: $secondary
@@ -154,7 +154,7 @@ header
   height: 10px
   width: 100%
   background-color: #A7A7A7
-.home
+.header-transparent
   header
     @media (min-width: 992px)
       position: relative
@@ -190,7 +190,7 @@ footer
       margin-bottom: 0px
       text-align: center
 
-  .page-info
+  .page
     .pattern
       width: 15px
       height: 25px
@@ -470,22 +470,20 @@ footer
   $day-height: 90px
   $weekday-bg: #f8fafc
   $weekday-border: 1px solid #eaeaea
-  width: 100%
-  border-radius: 15px
+  width: 100% !important
+  border-radius: 15px !important
   .vc-grid-container
     border-radius: 15px
   .vc-header
-    background-color: #f1f5f8
-    padding: 10px 0
-  .vc-weeks
-    padding: 0
+    background-color: $white !important
+    padding: 10px 0 !important
   .vc-weekday
     background-color: $weekday-bg
     border-bottom: $weekday-border
     border-top: $weekday-border
-    padding: 5px 0
+    padding: 10px 0
   .vc-day
-    padding: 0 5px 3px 5px
+    padding: 10px
     text-align: left
     height: $day-height
     min-width: $day-width

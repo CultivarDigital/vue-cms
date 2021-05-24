@@ -14,10 +14,10 @@
 </template>
 
 <script>
-import mixinGlobal from '@/mixins/global'
+
 export default {
   layout: 'admin',
-  mixins: [mixinGlobal],
+
   data () {
     return {
       contacts: null,
@@ -33,7 +33,7 @@ export default {
     }
   },
   async created () {
-    this.contacts = await this.$axios.$get('/api/contacts').catch(this.showError)
+    this.contacts = await this.$axios.$get('/api/contacts')
   }
 }
 </script>

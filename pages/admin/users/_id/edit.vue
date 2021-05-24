@@ -8,14 +8,9 @@
   </div>
 </template>
 <script>
-import mixinGlobal from '@/mixins/global'
-import UserForm from '@/components/admin/UserForm'
+
 export default {
   layout: 'admin',
-  components: {
-    UserForm
-  },
-  mixins: [mixinGlobal],
   data () {
     return {
       user: null,
@@ -27,7 +22,7 @@ export default {
     }
   },
   async created () {
-    this.user = await this.$axios.$get('/api/users/' + this.$route.params.id).catch(this.showError)
+    this.user = await this.$axios.$get('/api/users/' + this.$route.params.id)
   }
 }
 </script>

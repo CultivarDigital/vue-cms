@@ -1,9 +1,9 @@
 <template>
   <div>
     <div v-if="settings" class="home-page">
-      <div v-if="settings.pictures && settings.pictures.length">
-        <b-carousel :interval="7000" :indicators="settings.pictures.length > 1" class="home-banners">
-          <template v-for="(item, index) in settings.pictures">
+      <div v-if="settings.banners && settings.banners.length">
+        <b-carousel :interval="7000" :indicators="settings.banners.length > 1" class="home-banners">
+          <template v-for="(item, index) in settings.banners">
             <b-carousel-slide v-if="item" :key="index" :img-src="item.url" :img-alt="item.title">
               <h3 class="title">{{ item.title }}</h3>
               <h2 v-if="item.description" class="title">{{ (item.description) | truncate(250) }}</h2>

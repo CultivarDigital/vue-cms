@@ -8,15 +8,8 @@
   </div>
 </template>
 <script>
-import PageForm from '@/components/admin/PageForm'
-import mixinGlobal from '@/mixins/global'
-
 export default {
   layout: 'admin',
-  components: {
-    PageForm
-  },
-  mixins: [mixinGlobal],
   data () {
     return {
       page: null,
@@ -28,7 +21,7 @@ export default {
     }
   },
   async created () {
-    this.page = await this.$axios.$get('/api/pages/' + this.$route.params.id).catch(this.showError)
+    this.page = await this.$axios.$get('/api/pages/' + this.$route.params.id)
   }
 }
 </script>

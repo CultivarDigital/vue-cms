@@ -53,7 +53,7 @@
 
 <script>
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
-import mixinGlobal from '@/mixins/global'
+
 import mixinForm from '@/mixins/form'
 
 export default {
@@ -61,7 +61,7 @@ export default {
     ValidationObserver,
     ValidationProvider
   },
-  mixins: [mixinGlobal, mixinForm],
+  mixins: [mixinForm],
   props: {
     settings: {
       type: Object,
@@ -84,9 +84,9 @@ export default {
   },
   methods: {
     async save () {
-      const settings = await this.$axios.$post('/api/settings/setup', this.form).catch(this.showError)
+      const settings = await this.$axios.$post('/api/settings/setup', this.form)
       if (settings) {
-        await this.$auth.loginWith('local', { data: this.form }).catch(this.showError)
+        await this.$auth.loginWith('local', { data: this.form })
         this.$toast.success('Configurações cadastradas com sucesso!')
         this.$router.push('/admin/settings')
       }

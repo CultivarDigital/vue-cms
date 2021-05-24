@@ -92,14 +92,11 @@
 
 <script>
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
-import mixinGlobal from '@/mixins/global'
-import mixinPage from '@/mixins/page'
 export default {
   components: {
     ValidationObserver,
     ValidationProvider
   },
-  mixins: [mixinGlobal, mixinPage],
   data () {
     return {
       tab: this.$route.query.tab || 'login',
@@ -131,12 +128,12 @@ export default {
   },
   methods: {
     async login () {
-      await this.$auth.loginWith('local', { data: this.form }).catch(this.showError)
+      await this.$auth.loginWith('local', { data: this.form })
     },
     async register () {
-      const user = await this.$axios.$post('/api/users/register', this.register_form).catch(this.showError)
+      const user = await this.$axios.$post('/api/users/register', this.register_form)
       if (user && user._id) {
-        await this.$auth.loginWith('local', { data: this.register_form }).catch(this.showError)
+        await this.$auth.loginWith('local', { data: this.register_form })
       }
     },
     open (tab) {

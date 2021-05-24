@@ -49,13 +49,9 @@
 </template>
 <script>
 import sorts from '@/data/sorts.json'
-import mixinPage from '@/mixins/page'
-
 export default {
-  mixins: [mixinPage],
   data() {
     return {
-      page_title: 'Loja',
       sorts,
       qtds: [],
       filters: {
@@ -69,13 +65,13 @@ export default {
     }
   },
   async created() {
-    this.tags = await this.$axios.$get('/api/shop/tags').catch(this.showError)
+    this.tags = await this.$axios.$get('/api/shop/tags')
     this.list()
   },
   methods: {
     async list() {
       this.isLoading = true
-      this.products = await this.$axios.$get('/api/shop/products', { params: this.filters }).catch(this.showError)
+      this.products = await this.$axios.$get('/api/shop/products', { params: this.filters })
       this.isLoading = false
     },
     clearFilters() {

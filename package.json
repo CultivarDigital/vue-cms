@@ -1,9 +1,10 @@
 {
-  "name": "sementes-do-xingu",
+  "name": "cms",
   "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "nuxt",
+    "dev:docker": "docker-compose -f docker-compose.development.yml up --build",
     "build": "nuxt build",
     "start": "nuxt start",
     "export": "nuxt export",

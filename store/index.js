@@ -32,10 +32,7 @@ export const actions = {
     state
   }, { $axios, req }) {
     if (!state.settings) {
-      const data = await $axios.$get('/api/settings').catch(e => {
-        console.log('Não existe settings com esse domínio: ', e.message) // eslint-disable-line
-        console.error(e) // eslint-disable-line
-      })
+      const data = await $axios.$get('/api/settings')
       if (data) {
         commit('updateSettings', data)
       }

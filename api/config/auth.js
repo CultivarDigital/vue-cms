@@ -1,6 +1,6 @@
 const jwt = require('express-jwt')
 
-const secret = process.env.SECRET || process.env.npm_package_name
+const secret = process.env.SECRET || process.env.APP_NAME
 
 function getTokenFromHeader(req) {
   if ((req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Token') ||

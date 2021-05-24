@@ -14,7 +14,7 @@ const SettingsSchema = mongoose.Schema({
   url_instagram: String,
   logo: Object,
   favicon: Object,
-  pictures: [Object]
+  banners: [Object]
 }, {
   timestamps: true,
   toJSON: { virtuals: true }

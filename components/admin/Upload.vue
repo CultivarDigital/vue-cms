@@ -1,23 +1,27 @@
 <template>
-  <div class="documents-upload">
+  <div>
     <b-form-group
       :label="label"
+      :description="description"
     >
-      <div v-if="preview && preview.length">
-        <table class="table b-table b-table-stacked-sm mb-0">
+      <div v-if="showPreview && preview && preview.length">
+        <table class="table b-table b-table-stacked-sm mb-1">
           <tbody>
-            <tr v-for="(doc, index) in preview" :key="index">
-              <td>
-                <a :href="doc" target="_blank">
-                  <b-icon-download />
-                  {{ doc | filename }}
+            <tr v-for="(item, index) in preview" :key="index">
+              <td style="width: 100px">
+                <a :href="item.url" target="_blank">
+                  <b-img v-if="item.thumb" :src="item.thumb" fluid thumbnail width="100" />
+                  <b-icon-image v-else-if="type === 'images'" scale="2" />
+                  <b-icon-file-earmark-text v-else scale="2" />
                 </a>
               </td>
               <td>
-                <a
-                  class="btn btn-secondary btn-sm pull-right"
-                  @click="deleteDocument(index)"
-                ><b-icon-trash /></a>
+                <b-form-input v-model="item.title" placeholder="Título da imagem" class="mt-1" />
+              </td>
+              <td class="text-md-right">
+                <b-btn variant="default" size="sm" @click="deleteFile(index)">
+                  <b-icon-trash />
+                </b-btn>
               </td>
             </tr>
           </tbody>
@@ -25,18 +29,19 @@
       </div>
       <b-button v-if="is_loading" variant="primary" disabled>
         <b-spinner small />
-        Loading...
+        Enviando arquivos...
       </b-button>
-      <b-btn v-else variant="primary" @click="upload">
+      <b-btn v-else variant="secondary" @click="upload">
         <b-icon-upload />
-        Enviar arquivo{{ multiple ? 's' : '' }}
+        Enviar {{ type === 'images' ? 'image' + (multiple ? 'ns' : 'm') : 'arquivo' + (multiple ? 's' : '') }}
       </b-btn>
       <input
+        v-show="false"
         :ref="'uploads-input-' + inputId"
         :multiple="multiple"
         :accept="accept"
         type="file"
-        @change="uploadDocuments"
+        @change="uploadFiles"
       >
     </b-form-group>
   </div>
@@ -59,11 +64,19 @@ export default {
     },
     label: {
       type: String,
-      default: 'Documentos'
+      default: 'Arquivos'
+    },
+    description: {
+      type: String,
+      default: null
     },
     type: {
       type: String,
       required: true
+    },
+    showPreview: {
+      type: Boolean,
+      default: true
     }
   },
   data() {
@@ -93,31 +106,35 @@ export default {
     }
   },
   methods: {
-    uploadDocuments(e) {
+    uploadFiles(e) {
       this.is_loading = true
       const files = e.target.files || e.dataTransfer.files
       for (let i = 0; i < files.length; i++) {
         const file = files[i]
         const formData = new FormData()
-        formData.append('document', file, file.name)
+        formData.append('file', file, file.name)
         this.$axios
           .$post('/api/uploads/' + this.type, formData, {
             headers: {
               'Content-Type': 'multipart/form-data'
             }
           })
-          .then((response) => {
+          .then((uploaded) => {
             if (this.multiple) {
-              this.$emit('input', this.value.concat(response))
+              let ret = [uploaded]
+              if (this.value) {
+                ret = this.value.concat(uploaded)
+              }
+              this.$emit('input', ret)
             } else {
-              this.$emit('input', response)
+              this.$emit('input', uploaded)
             }
+            this.$emit('uploaded', uploaded)
             this.is_loading = false
           })
-          .catch(this.showError)
       }
     },
-    deleteDocument(index) {
+    deleteFile(index) {
       if (this.multiple) {
         this.$emit(
           'input',
@@ -125,12 +142,6 @@ export default {
         )
       } else {
         this.$emit('input', null)
-      }
-    },
-    fileName(doc) {
-      if (doc) {
-        const docUrl = doc.split('/')
-        return docUrl[docUrl.length - 1]
       }
     },
     upload() {

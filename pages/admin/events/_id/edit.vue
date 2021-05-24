@@ -8,15 +8,8 @@
   </div>
 </template>
 <script>
-import EventForm from '@/components/admin/EventForm'
-import mixinGlobal from '@/mixins/global'
-
 export default {
   layout: 'admin',
-  components: {
-    EventForm
-  },
-  mixins: [mixinGlobal],
   data () {
     return {
       event: null,
@@ -28,7 +21,7 @@ export default {
     }
   },
   async created () {
-    this.event = await this.$axios.$get('/api/events/' + this.$route.params.id).catch(this.showError)
+    this.event = await this.$axios.$get('/api/events/' + this.$route.params.id)
   }
 }
 </script>

@@ -31,10 +31,10 @@
 </template>
 
 <script>
-import mixinGlobal from '@/mixins/global'
+
 export default {
   layout: 'admin',
-  mixins: [mixinGlobal],
+
   data () {
     return {
       posts: null,
@@ -54,7 +54,7 @@ export default {
   },
   methods: {
     async list () {
-      this.posts = await this.$axios.$get('/api/posts').catch(this.showError)
+      this.posts = await this.$axios.$get('/api/posts')
     },
     remove (post) {
       this.$bvModal.msgBoxConfirm('Tem certeza que deseja excluír este ítem?').then(async confirmed => {
@@ -62,7 +62,7 @@ export default {
           await this.$axios.delete('/api/posts/' + post.slug).then(() => {
             this.list()
             this.$toast.success('Notícia removida com sucesso!')
-          }).catch(this.showError)
+          })
         }
       })
     }

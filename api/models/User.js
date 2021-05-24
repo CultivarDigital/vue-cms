@@ -4,7 +4,7 @@ const uniqueValidator = require('mongoose-unique-validator')
 const jwt = require('jsonwebtoken')
 
 mongoose.set('useCreateIndex', true)
-const secret = process.env.SECRET || process.env.npm_package_name
+const secret = process.env.SECRET || process.env.APP_NAME
 
 const UserSchema = new mongoose.Schema({
   name: {

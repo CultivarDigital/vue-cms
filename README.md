@@ -38,10 +38,10 @@ The server site is composed inside on top of Node.js tecnologies like:
 
 ```bash
 # Clone this repo
-git clone https://github.com/terrakrya/sementes-do-xingu.git
+git clone https://github.com/terrakrya/cms.git
 
 # Go inside downloaded directory
-cd sementes-do-xingu/
+cd cms/
 
 # Install NPM dependecies
 $ yarn install

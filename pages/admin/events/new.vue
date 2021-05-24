@@ -5,12 +5,8 @@
   </div>
 </template>
 <script>
-import EventForm from '@/components/admin/EventForm'
 export default {
   layout: 'admin',
-  components: {
-    EventForm
-  },
   data () {
     return {
       breadcrumb: [

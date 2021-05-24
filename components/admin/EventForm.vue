@@ -28,10 +28,10 @@
           </b-form-group>
         </b-col>
         <b-col md="12">
-          <pictures-upload :form="form" field="picture" url="/api/uploads/images" label="Foto de capa" />
+          <Upload v-model="form.picture" type="images" label="Foto de capa" />
         </b-col>
         <b-col md="12">
-          <pdfs-upload :form="form" field="pdfs" url="/api/uploads/pdfs" :multiple="true" />
+          <Upload v-model="form.documents" label="Documentos" type="documents" multiple />
         </b-col>
         <b-col md="12">
           <tags-form v-model="form.tags" :current-tags="currentTags" />
@@ -46,19 +46,15 @@
 
 <script>
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
-import mixinGlobal from '@/mixins/global'
+
 import mixinForm from '@/mixins/form'
-import PicturesUpload from '@/components/admin/PicturesUpload'
-import PdfsUpload from '@/components/admin/PdfsUpload'
 
 export default {
   components: {
     ValidationObserver,
-    ValidationProvider,
-    PicturesUpload,
-    PdfsUpload
+    ValidationProvider
   },
-  mixins: [mixinGlobal, mixinForm],
+  mixins: [mixinForm],
   props: {
     event: {
       type: Object,
@@ -74,7 +70,7 @@ export default {
         content: '',
         picture: null,
         tags: [],
-        pdfs: [],
+        documents: [],
         start_at: null,
         end_at: null
       }
@@ -82,18 +78,18 @@ export default {
   },
   async created () {
     this.toForm(this.form, this.event)
-    this.currentTags = await this.$axios.$get('/api/events/current_tags').catch(this.showError)
+    this.currentTags = await this.$axios.$get('/api/events/current_tags')
   },
   methods: {
     async save () {
       if (this.event) {
-        const event = await this.$axios.$put('/api/events/' + this.event._id, this.form).catch(this.showError)
+        const event = await this.$axios.$put('/api/events/' + this.event._id, this.form)
         if (event) {
           this.$toast.success('Evento atualizado com sucesso!')
           this.$router.push('/admin/events')
         }
       } else {
-        const event = await this.$axios.$post('/api/events', this.form).catch(this.showError)
+        const event = await this.$axios.$post('/api/events', this.form)
         if (event) {
           this.$toast.success('Evento cadastrado com sucesso!')
           this.$router.push('/admin/events')

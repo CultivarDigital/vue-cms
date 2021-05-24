@@ -40,14 +40,14 @@
 
 <script>
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
-import mixinGlobal from '@/mixins/global'
+
 import mixinForm from '@/mixins/form'
 export default {
   components: {
     ValidationObserver,
     ValidationProvider
   },
-  mixins: [mixinGlobal, mixinForm],
+  mixins: [mixinForm],
   data () {
     return {
       form: {
@@ -59,7 +59,7 @@ export default {
   },
   methods: {
     async save () {
-      const contact = await this.$axios.$post('/api/contacts/contact', this.form).catch(this.showError)
+      const contact = await this.$axios.$post('/api/contacts/contact', this.form)
       if (contact) {
         this.$toast.success('Sua mensagem foi enviado. Em breve entraremos em contato. Obrigado!')
       }

@@ -13,18 +13,10 @@
       </b-form-group>
       <div v-if="form.category">
         <div v-if="form.category === 'Imprensa' || form.category === 'Livros e Artigos Científicos' || form.category === 'Guias e Publicações Curtas' || form.category === 'Leis e Outras Normas'">
-          <p v-if="form.pdf">
-            <b-form-group v-if="form.picture" label="Documento PDF">
-              <a :href="form.pdf.url">{{ form.pdf.url }}</a>
-              <br>
-              <br>
-              <b-button variant="primary" size="sm" @click="form.picture = null; form.pdf = null">Alterar documento</b-button>
-            </b-form-group>
-          </p>
-          <pdfs-upload v-else :form="form" field="pdf" url="/api/uploads/pdfs" :show-preview="false" @changed="pdfSelected(pdf)" />
-          <b-form-group label="Link do arquivo">
+          <b-form-group label="Insira o link do arquivo">
             <b-form-input v-model="form.url" />
           </b-form-group>
+          <Upload v-model="form.documents" label="Ou envie os arquivos" type="documents" multiple @uploaded="fileUploaded" />
         </div>
         <div v-if="form.category === 'Notícias'">
           <b-form-group label="Link da notícia">
@@ -40,19 +32,8 @@
           </b-form-group>
         </div>
         <div>
-          <div v-if="form.pdf">
-            <b-form-group v-if="form.picture" label="Foto de capa">
-              <b-img :src="form.picture.thumb" thumbnail />
-              <br>
-              <br>
-              <b-button variant="primary" size="sm" @click="form.picture = null">Alterar foto de capa</b-button>
-            </b-form-group>
-            <div v-else>
-              <pictures-upload :form="form" field="picture" url="/api/uploads/images" label="Foto de capa" :show-preview="false" />
-            </div>
-          </div>
-          <div v-else-if="form.category !== 'Vídeos'">
-            <pictures-upload :form="form" field="picture" url="/api/uploads/images" :label="form.category === 'Fotografias' ? 'Enviar fotografia' : 'Foto de capa'" />
+          <div v-if="form.category !== 'Vídeos'">
+            <Upload v-model="form.picture" type="images" :label="form.category === 'Fotografias' ? 'Enviar fotografia' : 'Foto de capa'" />
           </div>
           <b-row>
             <b-col md="12">
@@ -101,20 +82,16 @@ import {
   ValidationObserver,
   ValidationProvider
 } from 'vee-validate'
-import mixinGlobal from '@/mixins/global'
+
 import mixinForm from '@/mixins/form'
-import PicturesUpload from '@/components/admin/PicturesUpload'
-import PdfsUpload from '@/components/admin/PdfsUpload'
 import categories from '@/data/categories.json'
 
 export default {
   components: {
     ValidationObserver,
-    ValidationProvider,
-    PicturesUpload,
-    PdfsUpload
+    ValidationProvider
   },
-  mixins: [mixinGlobal, mixinForm],
+  mixins: [mixinForm],
   props: {
     media: {
       type: Object,
@@ -134,7 +111,6 @@ export default {
       },
       form: {
         category: '',
-        pdf: null,
         documents: [],
         picture: null,
         title: '',
@@ -150,36 +126,38 @@ export default {
   },
   async created() {
     this.toForm(this.form, this.media)
-    this.currentTags = await this.$axios.$get('/api/medias/current_tags').catch(this.showError)
+    this.currentTags = await this.$axios.$get('/api/medias/current_tags')
   },
   methods: {
     async save() {
       if (this.media) {
-        const media = await this.$axios.$put('/api/medias/' + this.media._id, this.form).catch(this.showError)
+        const media = await this.$axios.$put('/api/medias/' + this.media._id, this.form)
         if (media) {
           this.$toast.success('Item atualizado com sucesso!')
           this.$router.push('/admin/medias')
         }
       } else {
-        const media = await this.$axios.$post('/api/medias', this.form).catch(this.showError)
+        const media = await this.$axios.$post('/api/medias', this.form)
         if (media) {
           this.$toast.success('Item cadastrado com sucesso!')
           this.$router.push('/admin/medias')
         }
       }
     },
-    pdfSelected() {
-      this.form.picture = {
-        ...this.form.pdf
+    fileUploaded(doc) {
+      if (doc.average) {
+        this.form.picture = {
+          url: doc.average,
+          average: doc.average,
+          thumb: doc.thumb
+        }
       }
-      this.form.picture.url = this.form.picture.average
     },
     async loadUrl() {
       if (this.isValidUrl(this.form.url)) {
         this.loadingUrl = true
         const res = await this.$axios.$get('/api/uploads/oembed?url=' + encodeURI(this.form.url)).catch((e) => {
           this.loadingUrl = false
-          this.showError(e)
         })
         if (res) {
           this.form.title = res.title

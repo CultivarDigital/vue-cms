@@ -35,13 +35,12 @@
 </template>
 
 <script>
-import mixinGlobal from '@/mixins/global'
+
 export default {
   layout: 'admin',
-  mixins: [mixinGlobal],
+
   data () {
     return {
-      show_page_form: false,
       menus: null,
       breadcrumb: [
         { text: 'Painel', to: '/admin' },
@@ -59,7 +58,7 @@ export default {
   },
   methods: {
     async list () {
-      this.menus = await this.$axios.$get('/api/menus', { params: { populate: 'page' } }).catch(this.showError)
+      this.menus = await this.$axios.$get('/api/menus', { params: { populate: 'page' } })
     },
     remove (menu) {
       this.$bvModal.msgBoxConfirm('Tem certeza que deseja excluír este ítem?').then(async confirmed => {
@@ -67,7 +66,7 @@ export default {
           await this.$axios.delete('/api/menus/' + menu._id).then(() => {
             this.list()
             this.$toast.success('Menu removido com sucesso!')
-          }).catch(this.showError)
+          })
         }
       })
     }

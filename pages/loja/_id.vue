@@ -54,17 +54,13 @@
   </b-container>
 </template>
 <script>
-import mixinPage from '@/mixins/page'
-
 export default {
-  mixins: [mixinPage],
   data() {
     return {
       product: null,
       slide: 0,
       qtd: 1,
-      related_products: [],
-      page_title: 'Loja'
+      related_products: []
     }
   },
   computed: {
@@ -102,13 +98,9 @@ export default {
     async get() {
       this.product = await this.$axios
         .$get('/api/shop/product/' + this.$route.params.id)
-        .catch(this.showError)
-      if (this.product) {
-        this.page_title = this.product.name
-      }
     },
     async getRelated() {
-      this.related_products = await this.$axios.$get('/api/shop/related/' + this.$route.params.id).catch(this.showError)
+      this.related_products = await this.$axios.$get('/api/shop/related/' + this.$route.params.id)
     },
     setSlide(slide) {
       this.slide = slide

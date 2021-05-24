@@ -8,15 +8,8 @@
   </div>
 </template>
 <script>
-import MenuForm from '@/components/admin/MenuForm'
-import mixinGlobal from '@/mixins/global'
-
 export default {
   layout: 'admin',
-  components: {
-    MenuForm
-  },
-  mixins: [mixinGlobal],
   data () {
     return {
       menu: null,
@@ -28,7 +21,7 @@ export default {
     }
   },
   async created () {
-    this.menu = await this.$axios.$get('/api/menus/' + this.$route.params.id).catch(this.showError)
+    this.menu = await this.$axios.$get('/api/menus/' + this.$route.params.id)
   }
 }
 </script>

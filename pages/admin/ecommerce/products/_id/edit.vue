@@ -8,15 +8,8 @@
   </div>
 </template>
 <script>
-import ProductForm from '@/components/admin/ProductForm'
-import mixinGlobal from '@/mixins/global'
-
 export default {
   layout: 'admin',
-  components: {
-    ProductForm
-  },
-  mixins: [mixinGlobal],
   data () {
     return {
       product: null,
@@ -29,7 +22,7 @@ export default {
     }
   },
   async created () {
-    this.product = await this.$axios.$get('/api/products/' + this.$route.params.id).catch(this.showError)
+    this.product = await this.$axios.$get('/api/products/' + this.$route.params.id)
   }
 }
 </script>

@@ -40,7 +40,7 @@
         </b-form-group>
       </b-col>
     </b-row>
-    <pictures-upload :form="form" field="picture" url="/api/uploads/images" label="Foto do perfil" />
+    <Upload v-model="form.picture" type="images" label="Foto do perfil" />
     <b-row>
       <b-col md="12">
         <CoordinatesPreview :form="form" />
@@ -65,7 +65,7 @@
 
 <script>
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
-import mixinGlobal from '@/mixins/global'
+
 import mixinForm from '@/mixins/form'
 export default {
   layout: 'admin',
@@ -73,7 +73,7 @@ export default {
     ValidationObserver,
     ValidationProvider
   },
-  mixins: [mixinGlobal, mixinForm],
+  mixins: [mixinForm],
   data () {
     return {
       show_password: false,
@@ -101,14 +101,14 @@ export default {
     }
   },
   async created () {
-    const profile = await this.$axios.$get('/api/profile').catch(this.showError)
+    const profile = await this.$axios.$get('/api/profile')
     if (profile) {
       this.toForm(this.form, profile)
     }
   },
   methods: {
     async save () {
-      const profile = await this.$axios.$put('/api/users', this.form).catch(this.showError)
+      const profile = await this.$axios.$put('/api/users', this.form)
       if (profile) {
         this.$auth.setUser(profile)
         this.$toast.success('Seus dados foram atualizados com sucesso')

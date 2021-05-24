@@ -8,15 +8,8 @@
   </div>
 </template>
 <script>
-import MediaForm from '@/components/admin/MediaForm'
-import mixinGlobal from '@/mixins/global'
-
 export default {
   layout: 'admin',
-  components: {
-    MediaForm
-  },
-  mixins: [mixinGlobal],
   data () {
     return {
       media: null,
@@ -28,7 +21,7 @@ export default {
     }
   },
   async created () {
-    this.media = await this.$axios.$get('/api/medias/' + this.$route.params.id).catch(this.showError)
+    this.media = await this.$axios.$get('/api/medias/' + this.$route.params.id)
   }
 }
 </script>

@@ -14,3 +14,14 @@ Vue.filter('truncate', function(value, limit) {
 Vue.filter('moeda', value => {
   return Vue.options.filters.currency(value, 'R$ ', 2, { decimalSeparator: ',', thousandsSeparator: '.' })
 })
+
+Vue.filter('filename', doc => {
+  if (doc) {
+    if (doc.title) {
+      return doc.title
+    } else {
+      const docUrl = doc.url.split('/')
+      return docUrl[docUrl.length - 1]
+    }
+  }
+})

@@ -45,7 +45,7 @@
 
 <script>
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
-import mixinGlobal from '@/mixins/global'
+
 import mixinForm from '@/mixins/form'
 
 export default {
@@ -53,7 +53,7 @@ export default {
     ValidationObserver,
     ValidationProvider
   },
-  mixins: [mixinGlobal, mixinForm],
+  mixins: [mixinForm],
   props: {
     menu: {
       type: Object,
@@ -81,13 +81,13 @@ export default {
   methods: {
     async save () {
       if (this.menu) {
-        const menu = await this.$axios.$put('/api/menus/' + this.menu.id, this.form).catch(this.showError)
+        const menu = await this.$axios.$put('/api/menus/' + this.menu.id, this.form)
         if (menu) {
           this.$toast.success('Menu atualizado com sucesso.')
           this.$router.push('/admin/menus')
         }
       } else {
-        const menu = await this.$axios.$post('/api/menus', this.form).catch(this.showError)
+        const menu = await this.$axios.$post('/api/menus', this.form)
         if (menu) {
           this.$toast.success('Menu cadastrado com sucesso.')
           this.$router.push('/admin/menus')

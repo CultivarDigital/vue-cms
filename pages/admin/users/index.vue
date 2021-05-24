@@ -29,12 +29,12 @@
 </template>
 
 <script>
-import mixinGlobal from '@/mixins/global'
+
 import roles from '@/data/roles.json'
 
 export default {
   layout: 'admin',
-  mixins: [mixinGlobal],
+
   data () {
     return {
       users: null,
@@ -55,7 +55,7 @@ export default {
   },
   methods: {
     async list () {
-      this.users = await this.$axios.$get('/api/users').catch(this.showError)
+      this.users = await this.$axios.$get('/api/users')
     },
     remove (user) {
       this.$bvModal.msgBoxConfirm('Tem certeza que deseja excluír este ítem?').then(confirmed => {
@@ -63,7 +63,7 @@ export default {
           this.$axios.$delete('/api/users/' + user._id).then(res => {
             this.list()
             this.$toast.success('Usuário removido com sucesso!')
-          }).catch(this.showError)
+          })
         }
       })
     },

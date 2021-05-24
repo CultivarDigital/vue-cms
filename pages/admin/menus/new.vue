@@ -5,12 +5,8 @@
   </div>
 </template>
 <script>
-import MenuForm from '@/components/admin/MenuForm'
 export default {
   layout: 'admin',
-  components: {
-    MenuForm
-  },
   data () {
     return {
       breadcrumb: [

@@ -11,7 +11,7 @@ const MediaSchema = mongoose.Schema({
   category: String,
   tags: [String],
   picture: Object,
-  pdf: Object,
+  documents: [Object],
   url: String,
   oembed: String,
   publishing_date: Date,

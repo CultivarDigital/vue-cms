@@ -36,10 +36,10 @@
   </div>
 </template>
 <script>
-import mixinGlobal from '@/mixins/global'
+
 export default {
   layout: 'admin',
-  mixins: [mixinGlobal],
+
   data () {
     return {
       medias: null,
@@ -62,7 +62,7 @@ export default {
   },
   methods: {
     async list () {
-      this.medias = await this.$axios.$get('/api/medias').catch(this.showError)
+      this.medias = await this.$axios.$get('/api/medias')
     },
     remove (media) {
       this.$bvModal.msgBoxConfirm('Tem certeza que deseja excluír este ítem?').then(async confirmed => {
@@ -70,7 +70,7 @@ export default {
           await this.$axios.delete('/api/medias/' + media._id).then(() => {
             this.list()
             this.$toast.success('Ítem removido com sucesso!')
-          }).catch(this.showError)
+          })
         }
       })
     }

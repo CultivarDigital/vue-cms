@@ -26,5 +26,5 @@ if (isProduction) {
   })
 } else {
   mongoose.set('debug', true)
-  mongoose.connect('mongodb://localhost/' + process.env.npm_package_name, { useNewUrlParser: true, useUnifiedTopology: true })
+  mongoose.connect('mongodb://localhost/' + process.env.APP_NAME, { useNewUrlParser: true, useUnifiedTopology: true })
 }

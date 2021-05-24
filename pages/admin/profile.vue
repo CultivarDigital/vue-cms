@@ -6,12 +6,8 @@
 </template>
 
 <script>
-import ProfileForm from '@/components/admin/ProfileForm'
 export default {
   layout: 'admin',
-  components: {
-    ProfileForm
-  },
   data () {
     return {
       breadcrumb: [

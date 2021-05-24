@@ -41,10 +41,10 @@
           </b-form-group>
         </b-col>
         <b-col md="12">
-          <pictures-upload :form="form" field="pictures" url="/api/uploads/images" multiple label="Fotos do produto" />
+          <Upload v-model="form.pictures" type="images" label="Fotos do produto" multiple />
         </b-col>
         <b-col md="12">
-          <documents-upload :form="form" field="documents" url="/api/uploads/documents" multiple label="Outros documentos/arquivos" />
+          <Upload v-model="form.documents" label="Documentos" type="documents" multiple />
         </b-col>
         <b-col md="12">
           <tags-form v-model="form.tags" :current-tags="currentTags" />
@@ -64,19 +64,15 @@
 
 <script>
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
-import mixinGlobal from '@/mixins/global'
+
 import mixinForm from '@/mixins/form'
-import PicturesUpload from '@/components/admin/PicturesUpload'
-import DocumentsUpload from '@/components/admin/DocumentsUpload'
 
 export default {
   components: {
     ValidationObserver,
-    ValidationProvider,
-    PicturesUpload,
-    DocumentsUpload
+    ValidationProvider
   },
-  mixins: [mixinGlobal, mixinForm],
+  mixins: [mixinForm],
   props: {
     product: {
       type: Object,
@@ -101,18 +97,18 @@ export default {
   },
   async created () {
     this.toForm(this.form, this.product)
-    this.currentTags = await this.$axios.$get('/api/products/current_tags').catch(this.showError)
+    this.currentTags = await this.$axios.$get('/api/products/current_tags')
   },
   methods: {
     async save () {
       if (this.product) {
-        const product = await this.$axios.$put('/api/products/' + this.product._id, this.form).catch(this.showError)
+        const product = await this.$axios.$put('/api/products/' + this.product._id, this.form)
         if (product) {
           this.$toast.success('Produto atualizado com sucesso!')
           this.$router.push('/admin/ecommerce/products')
         }
       } else {
-        const product = await this.$axios.$post('/api/products', this.form).catch(this.showError)
+        const product = await this.$axios.$post('/api/products', this.form)
         if (product) {
           this.$toast.success('Produto cadastrado com sucesso!')
           this.$router.push('/admin/ecommerce/products')

@@ -26,8 +26,8 @@
         <b-form-input v-model="form.url_instagram" name="url_instagram" />
       </b-form-group>
       <Upload v-model="form.logo" label="Logo do site" type="images" />
-      <pictures-upload :form="form" field="favicon" url="/api/uploads/images" label="Favicon do site" />
-      <pictures-upload :form="form" field="pictures" url="/api/uploads/images" label="Banners da home" description="Envie as imagens na ordem que aparecerão na tela de início" :multiple="true" />
+      <Upload v-model="form.favicon" label="Favicon do site" type="images" />
+      <Upload v-model="form.banners" label="Banners da home" type="images" description="Envie as imagens na ordem que aparecerão na tela de início" multiple />
       <b-button type="submit" variant="primary" block :disabled="invalid">
         Salvar
       </b-button>
@@ -37,7 +37,7 @@
 
 <script>
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
-import mixinGlobal from '@/mixins/global'
+
 import mixinForm from '@/mixins/form'
 
 export default {
@@ -45,7 +45,7 @@ export default {
     ValidationObserver,
     ValidationProvider
   },
-  mixins: [mixinGlobal, mixinForm],
+  mixins: [mixinForm],
   props: {
     settings: {
       type: Object,
@@ -61,7 +61,7 @@ export default {
         email: '',
         logo: null,
         favicon: null,
-        pictures: [],
+        banners: [],
         url_facebook: '',
         url_twitter: ''
       }
@@ -72,9 +72,10 @@ export default {
   },
   methods: {
     async save () {
-      const settings = await this.$axios.$post('/api/settings', this.form).catch(this.showError)
+      const settings = await this.$axios.$post('/api/settings', this.form)
       if (settings) {
-        this.$toast.success('Configurações cadastradas com sucesso!')
+        this.$store.commit('updateSettings', settings)
+        this.$toast.success('As configurações foram com sucesso!')
         this.$router.push('/admin')
       }
     }

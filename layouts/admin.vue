@@ -10,14 +10,14 @@
             </b-navbar-brand>
             <b-collapse id="header-admin" is-nav>
               <b-navbar-nav>
-                <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/settings">Configurações</b-nav-item>
-                <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/pages">Páginas</b-nav-item>
-                <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/menus">Menus</b-nav-item>
-                <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/medias">Biblioteca</b-nav-item>
+                <b-nav-item v-if="$auth.user.role === 'admin'" to="/admin/settings">Configurações</b-nav-item>
+                <b-nav-item v-if="$auth.user.role === 'admin'" to="/admin/pages">Páginas</b-nav-item>
+                <b-nav-item v-if="$auth.user.role === 'admin'" to="/admin/menus">Menus</b-nav-item>
+                <b-nav-item v-if="$auth.user.role === 'admin'" to="/admin/medias">Biblioteca</b-nav-item>
                 <b-nav-item to="/admin/users">Usuários</b-nav-item>
-                <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/posts">Notícias</b-nav-item>
-                <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/events">Agenda</b-nav-item>
-                <b-nav-item v-if="$auth.hasScope('admin')" to="/admin/ecommerce">Loja</b-nav-item>
+                <b-nav-item v-if="$auth.user.role === 'admin'" to="/admin/posts">Notícias</b-nav-item>
+                <b-nav-item v-if="$auth.user.role === 'admin'" to="/admin/events">Agenda</b-nav-item>
+                <b-nav-item v-if="$auth.user.role === 'admin'" to="/admin/ecommerce">Loja</b-nav-item>
                 <b-nav-item to="/admin/contacts">Contatos</b-nav-item>
               </b-navbar-nav>
               <b-navbar-nav class="ml-auto">
@@ -57,13 +57,23 @@ export default {
         }
       }
       return roleText
+    },
+    settings () {
+      return this.$store.state.settings
     }
   },
   methods: {
     logout () {
       this.$auth.logout()
     }
+  },
+  head () {
+    console.log('asdfasdf', this.settings)
+    return {
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: (this.settings && this.settings.favicon ? this.settings.favicon.url : '/favicon.ico') }
+      ]
+    }
   }
-
 }
 </script>

@@ -8,15 +8,8 @@
   </div>
 </template>
 <script>
-import PostForm from '@/components/admin/PostForm'
-import mixinGlobal from '@/mixins/global'
-
 export default {
   layout: 'admin',
-  components: {
-    PostForm
-  },
-  mixins: [mixinGlobal],
   data () {
     return {
       post: null,
@@ -28,7 +21,7 @@ export default {
     }
   },
   async created () {
-    this.post = await this.$axios.$get('/api/posts/' + this.$route.params.id).catch(this.showError)
+    this.post = await this.$axios.$get('/api/posts/' + this.$route.params.id)
   }
 }
 </script>

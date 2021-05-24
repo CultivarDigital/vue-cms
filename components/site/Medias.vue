@@ -9,13 +9,8 @@
           </div>
           <div class="card-body">
             <div class="card-text">
-              <h5>{{ media.title }}</h5>
-              <p class="text-secondary">{{ media.description | truncate(200) }}</p>
-              <div>
-                <b-button v-for="tag in media.tags" :key="tag._id" :to="'/biblioteca?tag=' + tag" size="sm" class="mb-1 mr-1">
-                  {{ tag }}
-                </b-button>
-              </div>
+              <h5 class="mb-0">{{ media.title }}</h5>
+              <p v-if="media.description" class="text-secondary mb-0 mt-2">{{ media.description | truncate(200) }}</p>
             </div>
             <n-link :to="'/biblioteca/' + media._id" class="stretched-link hidden" />
           </div>

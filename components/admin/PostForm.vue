@@ -22,10 +22,10 @@
           </b-form-group>
         </b-col>
         <b-col md="12">
-          <pictures-upload :form="form" field="picture" url="/api/uploads/images" label="Foto de capa" />
+          <Upload v-model="form.picture" type="images" label="Foto de capa" />
         </b-col>
         <b-col md="12">
-          <documents-upload :form="form" field="documents" url="/api/uploads/documents" multiple label="Outros documentos/arquivos" />
+          <Upload v-model="form.documents" label="Documentos" type="documents" multiple />
         </b-col>
         <b-col md="12">
           <tags-form v-model="form.tags" :current-tags="currentTags" />
@@ -40,19 +40,15 @@
 
 <script>
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
-import mixinGlobal from '@/mixins/global'
+
 import mixinForm from '@/mixins/form'
-import PicturesUpload from '@/components/admin/PicturesUpload'
-import DocumentsUpload from '@/components/admin/DocumentsUpload'
 
 export default {
   components: {
     ValidationObserver,
-    ValidationProvider,
-    PicturesUpload,
-    DocumentsUpload
+    ValidationProvider
   },
-  mixins: [mixinGlobal, mixinForm],
+  mixins: [mixinForm],
   props: {
     post: {
       type: Object,
@@ -74,18 +70,18 @@ export default {
   },
   async created () {
     this.toForm(this.form, this.post)
-    this.currentTags = await this.$axios.$get('/api/posts/current_tags').catch(this.showError)
+    this.currentTags = await this.$axios.$get('/api/posts/current_tags')
   },
   methods: {
     async save () {
       if (this.post) {
-        const post = await this.$axios.$put('/api/posts/' + this.post.slug, this.form).catch(this.showError)
+        const post = await this.$axios.$put('/api/posts/' + this.post.slug, this.form)
         if (post) {
           this.$toast.success('Notícia atualizada com sucesso!')
           this.$router.push('/admin/posts')
         }
       } else {
-        const post = await this.$axios.$post('/api/posts', this.form).catch(this.showError)
+        const post = await this.$axios.$post('/api/posts', this.form)
         if (post) {
           this.$toast.success('Notícia cadastrada com sucesso!')
           this.$router.push('/admin/posts')

@@ -1,7 +1,7 @@
 <template>
   <div class="events-page">
     <section class="content pb-5">
-      <page-info :info="page" />
+      <Page slug="agenda" />
       <b-container>
         <br>
         <div v-if="events">
@@ -14,14 +14,9 @@
 </template>
 
 <script>
-import mixinGlobal from '@/mixins/global'
-import mixinPage from '@/mixins/page'
 export default {
-  mixins: [mixinGlobal, mixinPage],
   data() {
     return {
-      page_id: 'agenda',
-      page_title: 'Agenda',
       events: null
     }
   },

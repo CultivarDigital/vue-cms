@@ -215,7 +215,7 @@ export default {
             return this.parseAddress(address.address, address.lat, address.lon)
           })
         }
-      }).catch(this.showError)
+      })
     },
     updateMarker(location) {
       location = location.target._latlng

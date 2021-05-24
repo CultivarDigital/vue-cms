@@ -1,37 +1,48 @@
 <template>
-  <div class="default-page">
-    <div v-if="info">
-      <section class="content pb-5">
-        <page-info :info="info" show-content />
-        <share />
-      </section>
-    </div>
-    <div v-else class="m-5 text-center">
-      <div>
-        Página não encontrada
+  <div v-if="page" class="page">
+    <banners :items="page.pictures" />
+    <b-container>
+      <div class="title">
+        <h4 v-if="page.title" class="title">{{ page.title }}</h4>
+        <hr>
       </div>
-      <b-button class="mt-3" @click="$router.go(-1)">Voltar</b-button>
-    </div>
+      <p v-if="page.description">{{ page.description }}</p>
+      <div v-if="!showContent" class="text-center mb-5">
+        <b-button v-if="page.content || (page.pictures && page.pictures.length) || (page.documents && page.documents.length)" variant="primary" @click="showMore = !showMore">
+          Saiba mais
+        </b-button>
+      </div>
+      <div v-if="showMore || showContent" class="quill-content mt-4">
+        <div v-html="page.content" />
+        <Documents :documents="page.documents" />
+      </div>
+    </b-container>
   </div>
 </template>
-
 <script>
-import mixinPage from '@/mixins/page'
 export default {
-  mixins: [mixinPage],
   props: {
-    id: {
+    slug: {
       type: String,
       default: null
+    },
+    showContent: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
     return {
-      info: null
+      page: null,
+      showMore: false
+
     }
   },
   async created() {
-    this.info = await this.$axios.$get('/api/pages/' + this.id)
+    this.page = await this.$axios.$get('/api/pages/' + this.slug)
+    if (!this.page) {
+      this.$emit('notFound')
+    }
   }
 }
 </script>

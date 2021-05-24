@@ -30,13 +30,10 @@
           </b-form-group>
         </b-col>
         <b-col md="12">
-          <pictures-upload :form="form" field="pictures" url="/api/uploads/images" :multiple="true" label="Banners" />
+          <Upload v-model="form.pictures" label="Banners" type="images" multiple />
         </b-col>
         <b-col md="12">
-          <pdfs-upload :form="form" field="pdfs" url="/api/uploads/pdfs" :multiple="true" />
-        </b-col>
-        <b-col md="12">
-          <documents-upload :form="form" field="documents" url="/api/uploads/documents" multiple label="Outros documentos/arquivos" />
+          <Upload v-model="form.documents" label="Documentos" type="documents" multiple />
         </b-col>
         <b-col md="12">
           <b-form-group label="Conteúdo da página">
@@ -55,20 +52,13 @@
 <script>
 import { ValidationObserver } from 'vee-validate'
 import slugify from 'slugify'
-import mixinGlobal from '@/mixins/global'
-import mixinForm from '@/mixins/form'
-import PicturesUpload from '@/components/admin/PicturesUpload'
-import PdfsUpload from '@/components/admin/PdfsUpload'
-import DocumentsUpload from '@/components/admin/DocumentsUpload'
 
+import mixinForm from '@/mixins/form'
 export default {
   components: {
-    ValidationObserver,
-    PicturesUpload,
-    PdfsUpload,
-    DocumentsUpload
+    ValidationObserver
   },
-  mixins: [mixinGlobal, mixinForm],
+  mixins: [mixinForm],
   props: {
     page: {
       type: Object,
@@ -86,25 +76,24 @@ export default {
         categories: [],
         content: '',
         pictures: [],
-        pdfs: [],
         tags: []
       }
     }
   },
   async created () {
     this.toForm(this.form, this.page)
-    this.currentTags = await this.$axios.$get('/api/pages/current_tags').catch(this.showError)
+    this.currentTags = await this.$axios.$get('/api/pages/current_tags')
   },
   methods: {
     async save () {
       if (this.page) {
-        const page = await this.$axios.$put('/api/pages/' + this.page.slug, this.form).catch(this.showError)
+        const page = await this.$axios.$put('/api/pages/' + this.page.slug, this.form)
         if (page) {
           this.$toast.success('Página atualizada com sucesso!')
           this.$router.push('/admin/pages')
         }
       } else {
-        const page = await this.$axios.$post('/api/pages', this.form).catch(this.showError)
+        const page = await this.$axios.$post('/api/pages', this.form)
         if (page) {
           this.$toast.success('Página cadastrada com sucesso!')
           this.$router.push('/admin/pages')

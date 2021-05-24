@@ -120,9 +120,7 @@
   </b-container>
 </template>
 <script>
-import mixinPage from '@/mixins/page'
 export default {
-  mixins: [mixinPage],
   data() {
     const form = {
       name: '',
@@ -131,8 +129,7 @@ export default {
       phone: ''
     }
     return {
-      form,
-      page_title: 'Carrinho de compras'
+      form
     }
   },
   computed: {

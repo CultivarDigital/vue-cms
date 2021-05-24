@@ -57,7 +57,7 @@ const imageUploader = multer({
   }
 })
 
-router.post('/images', [auth.authenticated, imageUploader.single('image')], (req, res) => {
+router.post('/images', [auth.authenticated, imageUploader.single('file')], (req, res) => {
   const filename = req.file.filename
 
   const original = imagesPath() + filename
@@ -81,13 +81,18 @@ router.post('/images', [auth.authenticated, imageUploader.single('image')], (req
           .toFile(average, function(err) {
             if (!err) {
               res.status(201).send({
-                title: filename.split('.')[0],
+                title: '',
                 url: '/' + original,
                 thumb: '/' + thumb,
                 average: '/' + average
               })
             }
           })
+      } else {
+        res.status(201).send({
+          title: '',
+          url: '/' + original
+        })
       }
     })
 })
@@ -120,77 +125,44 @@ const documentUploader = multer({
     fileSize: 32 * 1024 * 1024
   }
 })
-router.post('/documents', [auth.authenticated, documentUploader.single('document')], (req, res) => {
-  const url = req.file.filename
-  const path = documentsPath()
-  res.status(201).send({ title: url.split('.')[0], url: path + url })
-})
-
-const pdfsPath = () => {
-  let path = UPLOAD_PATH
-  path += 'pdfs/'
-  createPath(path)
-  return path
-}
-
-const pdfStorage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, pdfsPath())
-  },
-  filename: (req, file, cb) => {
-    let filename = file.originalname
-    const path = pdfsPath()
-    if (fs.existsSync(path + filename)) {
-      const nameArr = filename.split('.')
-      nameArr[0] += '-' + Date.now()
-      filename = nameArr.join('.')
-    }
-    cb(null, filename)
-  }
-})
-
-const pdfUploader = multer({
-  storage: pdfStorage,
-  limits: {
-    fileSize: 32 * 1024 * 1024
-  }
-})
-router.post('/pdfs', [auth.authenticated, pdfUploader.single('pdf')], (req, res) => {
+router.post('/documents', [auth.authenticated, documentUploader.single('file')], (req, res) => {
   const filename = req.file.filename
+  const path = documentsPath()
 
-  // let path = pdfsPath()
+  if (filename.endsWith('.pdf')) {
+    const thumb = thumbsPath() + filename.replace('.pdf', '.png')
+    const average = averagesPath() + filename.replace('.pdf', '.png')
 
-  // const original = imagesPath() + filename
-  const thumb = thumbsPath() + filename.replace('.pdf', '.png')
-  const average = averagesPath() + filename.replace('.pdf', '.png')
+    const pdfImage = new PDFImage(req.file.path)
 
-  const pdfImage = new PDFImage(req.file.path)
-
-  pdfImage.convertPage(0).then(function(original) {
-    sharp(original, { failOnError: false })
-      .resize({
-        width: 400,
-        height: 400,
-        withoutEnlargement: true,
-        fit: sharp.fit.cover
-      })
-      .toFile(thumb, function(err) {
-        if (!err) {
-          sharp(original, { failOnError: false })
-            .resize(1600)
-            .toFile(average, function(err) {
-              if (!err) {
-                res.status(201).send({
-                  title: filename.split('.')[0],
-                  url: '/' + req.file.path,
-                  average: '/' + average,
-                  thumb: '/' + thumb
-                })
-              }
-            })
-        }
-      })
-  }).catch(() => {})
+    pdfImage.convertPage(0).then(function(original) {
+      sharp(original, { failOnError: false })
+        .resize({
+          width: 400,
+          height: 400,
+          withoutEnlargement: true,
+          fit: sharp.fit.cover
+        })
+        .toFile(thumb, function(err) {
+          if (!err) {
+            sharp(original, { failOnError: false })
+              .resize(1600)
+              .toFile(average, function(err) {
+                if (!err) {
+                  res.status(201).send({
+                    title: filename,
+                    url: '/' + req.file.path,
+                    average: '/' + average,
+                    thumb: '/' + thumb
+                  })
+                }
+              })
+          }
+        })
+    }).catch(() => {})
+  } else {
+    res.status(201).send({ title: filename, url: path + filename })
+  }
 })
 
 router.get('/oembed', async (req, res) => {

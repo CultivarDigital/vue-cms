@@ -38,9 +38,9 @@
 </template>
 
 <script>
-import mixinGlobal from '@/mixins/global'
+
 export default {
-  mixins: [mixinGlobal],
+
   props: {
     form: {
       type: Object,
@@ -102,7 +102,7 @@ export default {
           this.isLoading = false
         }).catch((error) => {
           this.isLoading = false
-          this.showError(error)
+          this.$toast.error('Ocorreu um erro ao enviar o arquivo: ', error.message)
         })
       }
     },

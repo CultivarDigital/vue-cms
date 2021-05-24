@@ -47,10 +47,10 @@
 </template>
 
 <script>
-import mixinGlobal from '@/mixins/global'
+
 export default {
   layout: 'admin',
-  mixins: [mixinGlobal],
+
   data () {
     return {
       products: null,
@@ -66,7 +66,7 @@ export default {
   },
   methods: {
     async list () {
-      this.products = await this.$axios.$get('/api/products').catch(this.showError)
+      this.products = await this.$axios.$get('/api/products')
     },
     remove (product) {
       this.$bvModal.msgBoxConfirm('Tem certeza que deseja excluír este ítem?').then(async confirmed => {
@@ -74,7 +74,7 @@ export default {
           await this.$axios.delete('/api/products/' + product._id).then(() => {
             this.list()
             this.$toast.success('Produto removido com sucesso!')
-          }).catch(this.showError)
+          })
         }
       })
     }

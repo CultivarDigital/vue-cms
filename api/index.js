@@ -11,7 +11,7 @@ const User = mongoose.model('User')
 const Settings = mongoose.model('Settings')
 const auth = require('./config/auth')
 
-const secret = process.env.SECRET || process.env.npm_package_name
+const secret = process.env.SECRET || process.env.APP_NAME
 
 app.use(cors())
 app.use(session({ secret, cookie: { maxAge: null }, resave: false, saveUninitialized: false }))
@@ -35,7 +35,6 @@ router.use('/orders', require('./routes/orders'))
 router.use('/shop', require('./routes/shop'))
 
 router.get('/profile', auth.authenticated, function(req, res) {
-  console.log(req.user)
   User.findById(req.user._id).exec(function(err, user) {
     if (!err && user) {
       res.send(user.data())
