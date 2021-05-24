@@ -1,5 +1,8 @@
 <template>
   <div class="events-page">
+    <Breadcrumb
+      active="Agenda"
+    />
     <section class="content pb-5">
       <Page slug="agenda" />
       <b-container>

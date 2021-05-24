@@ -1,6 +1,6 @@
-# Rede de Sementes do Xingu
+# Terrakrya CMS
 
-Site da rede de sementes do xingu
+Projeto de CMS para criação de sites de forma rápida e dinâmica
 
 ### Tecnologias usadas
 

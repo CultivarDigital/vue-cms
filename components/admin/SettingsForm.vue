@@ -2,8 +2,8 @@
   <ValidationObserver v-slot="{ validate, invalid }">
     <b-form @submit.prevent="validate().then(save)">
       <b-form-group label="Nome/Título do site*">
-        <validation-provider v-slot="{ errors }" name="nome" rules="required">
-          <b-form-input v-model="form.name" name="name" />
+        <validation-provider v-slot="{ errors }" name="título do site" rules="required">
+          <b-form-input v-model="form.title" name="title" />
           <span class="text-danger">{{ errors[0] }}</span>
         </validation-provider>
       </b-form-group>
@@ -55,7 +55,7 @@ export default {
   data () {
     return {
       form: {
-        name: '',
+        title: '',
         description: '',
         contact: '',
         email: '',

@@ -1,7 +1,7 @@
 <template>
   <div class="default-page">
     <div>
-      <section class="content pb-5">
+      <section class="pb-5">
         <Page :slug="$route.params.id" show-content @notFound="not_found = true" />
         <share v-if="!not_found" />
         <div v-else class="m-5 text-center">

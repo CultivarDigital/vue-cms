@@ -68,8 +68,8 @@ export default {
     }
   },
   head () {
-    console.log('asdfasdf', this.settings)
     return {
+      title: this.settings.title,
       link: [
         { rel: 'icon', type: 'image/x-icon', href: (this.settings && this.settings.favicon ? this.settings.favicon.url : '/favicon.ico') }
       ]

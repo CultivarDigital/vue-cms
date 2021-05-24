@@ -1,5 +1,11 @@
 <template>
   <div class="medias-page">
+    <Breadcrumb
+      v-if="media"
+      :links="[['Biblioteca', '/biblioteca']]"
+      :active="media.title"
+    />
+    <Breadcrumb v-else active="Biblioteca" />
     <section class="content">
       <b-container>
         <div>

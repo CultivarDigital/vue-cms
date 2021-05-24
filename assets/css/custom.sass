@@ -87,16 +87,38 @@ a.bg-secondary:focus
     color: $white
 .pre-line
   white-space: pre-line
-.breadcrumb
-  background-color: $secondary
-  .breadcrumb-item
-    &::before
+
+.breadcrumb-wrapper
+  background-color: #d1d0d0
+  .breadcrumb
+    background-color: #d1d0d0
+    color: $secondary
+    border-radius: 0
+    margin: 0
+    .breadcrumb-item
+      &:not(:first-child)
+        &::before
+          color: $primary
+          content: '\\'
+          &:first-child
+            display: none
+      &.active
+        color: $secondary
+    a
+      color: $secondary
+      font-weight: 600
+.admin
+  .breadcrumb
+    background-color: $secondary
+    .breadcrumb-item
+      &::before
+        color: $white
+      &.active
+        color: $white
+    a
       color: $white
-    &.active
-      color: $white
-  a
-    color: $white
-    font-weight: 600
+      font-weight: 600
+
 .form-group
   margin-bottom: 2rem
   legend
@@ -262,8 +284,6 @@ footer
       border: 1px solid $white
       border-radius: 100%
 .banners
-  margin-top: -50px
-  margin-bottom: 50px
   .carousel-inner
     min-height: 300px
   .carousel-caption

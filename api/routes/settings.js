@@ -32,7 +32,7 @@ router.post('/', auth.admin, async (req, res) => {
 router.post('/setup', async (req, res) => {
   let settings = await Settings.findOne()
   if (!settings) {
-    settings = new Settings({ name: req.body.name })
+    settings = new Settings({ title: req.body.title })
     await settings.save()
     const admin = new User({
       name: req.body.admin_name,

@@ -1,5 +1,8 @@
 <template>
   <div>
+    <Breadcrumb
+      active="Notícias"
+    />
     <section class="content pb-5">
       <Page slug="noticias" />
       <b-container>

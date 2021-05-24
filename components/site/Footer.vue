@@ -9,7 +9,7 @@
             </a>
             <partners />
             <div class="mt-4">
-              <small>&copy; {{ settings.name }}. Todos os direitos reservados.</small>
+              <small>&copy; {{ settings.title }}. Todos os direitos reservados.</small>
             </div>
           </b-col>
           <b-col sm="6" class="">
