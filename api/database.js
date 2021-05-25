@@ -12,11 +12,13 @@ require('./config/passport')
 
 const mongoose = require('mongoose')
 const isProduction = process.env.NODE_ENV === 'production'
+const DATABASE_URI = 'mongodb://localhost/' + process.env.APP_NAME
 
 mongoose.set('useFindAndModify', false)
+
 if (isProduction) {
   mongoose.set('debug', true)
-  mongoose.connect(process.env.MONGODB_URI, {
+  mongoose.connect(DATABASE_URI, {
     keepAlive: 1,
     connectTimeoutMS: 30000,
     reconnectTries: Number.MAX_VALUE,
@@ -26,5 +28,5 @@ if (isProduction) {
   })
 } else {
   mongoose.set('debug', true)
-  mongoose.connect('mongodb://localhost/' + process.env.APP_NAME, { useNewUrlParser: true, useUnifiedTopology: true })
+  mongoose.connect(DATABASE_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 }
