@@ -8,9 +8,9 @@
         <b-dropdown-item v-for="submenu in menu.submenus" :key="submenu._id" :to="submenu.internalUrl" :href="submenu.externalUrl" :target="submenu.internalUrl ? '_self' : '_blank'">{{ submenu.name }}</b-dropdown-item>
       </b-nav-item-dropdown>
     </template>
-    <b-nav-item to="/biblioteca">Biblioteca</b-nav-item>
-    <b-nav-item to="/noticias">Notícias</b-nav-item>
-    <b-nav-item to="/agenda">Agenda</b-nav-item>
+    <b-nav-item to="/biblioteca">Midiateca</b-nav-item>
+    <!-- <b-nav-item to="/noticias">Notícias</b-nav-item> -->
+    <!-- <b-nav-item to="/agenda">Agenda</b-nav-item> -->
     <b-nav-item to="/loja">Loja</b-nav-item>
     <b-nav-item @click="$scrollTo('footer')">Contato</b-nav-item>
     <!-- <b-nav-item v-if="!$auth.loggedIn" to="/admin" class="btn-login">Entrar</b-nav-item>

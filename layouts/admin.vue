@@ -13,10 +13,10 @@
                 <b-nav-item v-if="$auth.user.role === 'admin'" to="/admin/settings">Configurações</b-nav-item>
                 <b-nav-item v-if="$auth.user.role === 'admin'" to="/admin/pages">Páginas</b-nav-item>
                 <b-nav-item v-if="$auth.user.role === 'admin'" to="/admin/menus">Menus</b-nav-item>
-                <b-nav-item v-if="$auth.user.role === 'admin'" to="/admin/medias">Biblioteca</b-nav-item>
+                <b-nav-item v-if="$auth.user.role === 'admin'" to="/admin/medias">Midiateca</b-nav-item>
                 <b-nav-item to="/admin/users">Usuários</b-nav-item>
-                <b-nav-item v-if="$auth.user.role === 'admin'" to="/admin/posts">Notícias</b-nav-item>
-                <b-nav-item v-if="$auth.user.role === 'admin'" to="/admin/events">Agenda</b-nav-item>
+                <!-- <b-nav-item v-if="$auth.user.role === 'admin'" to="/admin/posts">Notícias</b-nav-item> -->
+                <!-- <b-nav-item v-if="$auth.user.role === 'admin'" to="/admin/events">Agenda</b-nav-item> -->
                 <b-nav-item v-if="$auth.user.role === 'admin'" to="/admin/ecommerce">Loja</b-nav-item>
                 <b-nav-item to="/admin/contacts">Contatos</b-nav-item>
               </b-navbar-nav>
