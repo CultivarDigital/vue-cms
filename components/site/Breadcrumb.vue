@@ -3,7 +3,7 @@
     <div class="container">
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
-          <n-link to="/"><b-icon-house-fill class="mr-1" /> {{ settings.title }}</n-link>
+          <n-link to="/"><b-icon-house-fill class="mr-1" /> {{ settings ? settings.title : '' }}</n-link>
         </li>
         <li v-for="(link, index) in links" :key="index" class="breadcrumb-item">
           <n-link :to="link[1]">{{ link[0] }}</n-link>
@@ -47,7 +47,7 @@ export default {
     pageTitle() {
       const links = this.links || []
       const title = [
-        this.settings.title,
+        (this.settings ? this.settings.title : process.env.APP_NAME),
         ...links.map((link) => link[0]),
         this.active
       ]

@@ -23,33 +23,35 @@ export default {
     }
   },
   head () {
+    const title = (this.settings ? this.settings.title : process.env.APP_NAME)
+    const description = (this.settings ? this.settings.description : '')
     return {
-      title: this.settings.title,
+      title,
       meta: [
         {
           hid: 'og:title',
           name: 'og:title',
-          content: this.settings.title
+          content: title
         },
         {
           hid: 'og:site_name',
           name: 'og:site_name',
-          content: this.settings.title
+          content: title
         },
         {
           hid: 'apple-mobile-web-app-title',
           name: 'apple-mobile-web-app-title',
-          content: this.settings.title
+          content: title
         },
         {
           hid: 'description',
           name: 'description',
-          content: this.settings.description
+          content: description
         },
         {
           hid: 'og:description',
           name: 'og:description',
-          content: this.settings.description
+          content: description
         },
         {
           hid: 'og:url',
