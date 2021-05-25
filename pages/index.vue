@@ -17,8 +17,8 @@
       </div>
       <section class="content bg-default pb-4">
         <b-container fluid="lg">
-          <div class="text-center px-5">
-            <img src="~/assets/img/logo-laranja.svg" alt="Sobre">
+          <div v-if="settings.description" class="text-center px-5">
+            <!-- <img src="~/assets/img/logo-laranja.svg" alt="Sobre"> -->
             <div class="title mt-3">
               <h4 class="title">Sobre</h4>
               <hr>
