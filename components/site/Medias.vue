@@ -3,7 +3,7 @@
     <div>
       <b-card-group columns>
         <b-card v-for="media in medias" :key="media._id" no-body>
-          <div class="img">
+          <div v-if="media.category === 'Vídeos' && media.oembed && media.picture" class="img">
             <div v-if="media.category === 'Vídeos' && media.oembed" class="card-img-top" v-html="media.oembed" />
             <b-img v-else :src="media.picture ? media.picture.thumb : null" :alt="media.title" class="card-img-top" />
           </div>
