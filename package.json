@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "nuxt",
-    "dev:docker": "docker-compose -f docker-compose.development.yml up --build",
+    "dev:docker": "docker-compose -f development.docker-compose.yml up --build",
     "build": "nuxt build",
     "start": "nuxt start",
     "export": "nuxt export",
@@ -31,6 +31,7 @@
     "bootstrap": "^4.5.0",
     "bootstrap-vue": "^2.15.0",
     "cors": "^2.8.5",
+    "express": "^4.17.1",
     "express-jwt": "^6.0.0",
     "express-session": "^1.17.1",
     "jsonwebtoken": "^8.5.1",

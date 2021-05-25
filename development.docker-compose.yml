@@ -5,11 +5,11 @@ services:
       dockerfile: ./development.dockerfile
       context: .
     container_name: ${APP_NAME}_node
-    command: npm run dev
+    command: yarn dev
     ports:
       - "3000:${PORT}"
     volumes:
-      - ../api/uploads:/usr/app/api/uploads
+      - /api/uploads:/api/uploads
     networks:
       - cms
     depends_on:

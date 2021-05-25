@@ -1,16 +1,16 @@
 FROM node:14.17.0
 
-WORKDIR /usr/app
+RUN mkdir -p /usr/src/app
 
-COPY package.json .
+WORKDIR /usr/src/app
 
-RUN npm install
+COPY package.json ./
 
-COPY . .
+# RUN npm install -g yarn
 
-RUN ls
+RUN npm install node-sass --sass-binary-name=linux-x64-83
+RUN yarn
 
-EXPOSE 3000
+# COPY . .
 
-
-
+# EXPOSE 3000

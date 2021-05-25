@@ -3,8 +3,7 @@
     <b-navbar toggleable="lg">
       <b-container fluid="lg">
         <b-navbar-brand v-if="settings" to="/">
-          <b-img :src="settings.logo ? settings.logo.url : require('~/assets/img/logo.svg')" />
-          <b-img :src="settings.logo ? settings.logo.url : require('~/assets/img/logo-nome.svg')" />
+          <b-img :src="settings.logo ? settings.logo.url : require('~/assets/img/logo.png')" />
         </b-navbar-brand>
         <b-navbar-toggle target="header-menu">
           <font-awesome-icon icon="bars" />
