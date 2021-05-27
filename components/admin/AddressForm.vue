@@ -1,56 +1,41 @@
 <template>
   <div class="address-form">
-    <!-- <b-row>
-      <b-col md="6">
-        <b-form-group label="Estado">
-          <b-form-select v-model="form.uf" :options="estados" @input="cb" />
-        </b-form-group>
-      </b-col>
-      <b-col md="6">
-        <b-form-group v-if="form.uf" label="Cidade">
-          <b-form-select v-model="form.city" :options="cidades" @input="cb" />
-        </b-form-group>
-      </b-col>
-    </b-row> -->
-    <b-button v-if="currentAddressFilled" class="btn btn-default btn-block" @click="show_modal = !show_modal">Mudar endereço</b-button>
-    <b-button v-else class="btn btn-default btn-block" @click="show_modal = !show_modal"><client-only><font-awesome-icon :icon="['fas', 'map-marker']" /></client-only> Configurar endereço</b-button>
-    <b-modal v-model="show_modal" title="Localização" hide-footer hide-header>
+    <b-btn v-if="currentAddressFilled" variant="secondary" @click="show_modal = !show_modal">Mudar endereço</b-btn>
+    <b-btn v-else variant="secondary" @click="show_modal = !show_modal"><client-only><b-icon-map /></client-only> Configurar endereço</b-btn>
+    <b-modal v-model="show_modal" title="Localização" hide-footer hide-header size="lg">
       <div v-if="show_auto_complete">
         <div v-if="!addressFilled">
-          <b-form-group label="Digite seu endereço para buscar a localização.">
-            <b-form-input v-model="address_input" class="input-lg" @keyup.enter="searchByAddress" />
-            <br>
-            <div class="text-right">
-              <small>Ex: rua das nascentes, alto paraíso, goiás</small>
-              <b-button class="btn btn-primary btn-sm pull-right" @click="getLocation()">Usar GPS</b-button>
-            </div>
-            <div class="clearfix" />
-            <p class="text-center">
-              <button v-if="address_input" class="btn btn-primary" @click="searchByAddress">Buscar endereço</button>
-            </p>
-            <p v-if="loading_gps" class="text-center">
-              <small><i class="fa fa-spinner fa-spin" /> Buscando dados do GPS...</small>
-            </p>
-          </b-form-group>
+          <p><strong>Digite seu endereço para buscar a localização.</strong></p>
+          <b-form-input v-model="address_input" class="input-lg" @keyup.enter="searchByAddress" />
+          <div class="text-right">
+            <small>Ex: rua das nascentes, alto paraíso, goiás</small>
+          </div>
+          <p class="text-center">
+            <b-btn variant="secondary" @click="getLocation()">Buscar pelo GPS</b-btn>
+            <b-btn v-if="address_input" variant="secondary" @click="searchByAddress"><b-icon-search /> Buscar pelo endereço</b-btn>
+          </p>
+          <p v-if="loading_gps" class="text-center">
+            <small><i class="fa fa-spinner fa-spin" /> Buscando dados do GPS...</small>
+          </p>
         </div>
         <div v-else class="text-center">
           <div v-if="Array.isArray(address)" class="text-center">
-            <h4>Algum desses é seu endereço?</h4>
+            <p>Algum desses é seu endereço?</p>
             <table class="table md-auto">
               <tr v-for="(a, index) in address" :key="index" class="table">
                 <td class="text-left">
                   {{ a.description }}
                 </td>
                 <td class="text-right">
-                  <button class="btn btn-primary btn-sm" @click="setAddressForm(a)">Selecionar</button>
+                  <b-btn class="btn btn-secondary btn-sm" @click="setAddressForm(a)">Selecionar</b-btn>
                 </td>
               </tr>
             </table>
-            <button class="btn btn-default" @click="showAutoComplete()">Nenhum desses é meu endereço</button>
+            <b-btn variant="primary" @click="showAutoComplete()">Nenhum desses é meu endereço</b-btn>
           </div>
-          <div v-else class="text-center">
-            <h3>Este é seu endereço?</h3>
-            <h5>{{ address.description }}</h5>
+          <div v-else>
+            <p>Este é seu endereço?</p>
+            <p><strong>{{ address.description }}</strong></p>
             <div v-if="address && address.location && address.location.coordinates && address.location.coordinates.length === 2">
               <l-map :zoom="16" :center="address.location.coordinates" :options="{ scrollWheelZoom: false }" style="height: 250px;">
                 <l-tile-layer :url="url" :attribution="attribution" />
@@ -62,14 +47,14 @@
                 <small>Coordenadas: {{ address.location.coordinates.join(',') }}</small>
               </p>
             </div>
-            <button class="btn btn-primary" @click="setAddressForm(address)">Sim</button>
-            <button class="btn btn-default" @click="showAutoComplete()">Não</button>
+            <b-btn variant="primary" @click="showAutoComplete()">Não</b-btn>
+            <b-btn variant="secondary" @click="setAddressForm(address)">Sim</b-btn>
           </div>
         </div>
       </div>
       <div v-else>
         <div class="form-address">
-          <h5 class="text-center">Complete os dados e confirme o endereço</h5>
+          <p class="mb-4"><strong>Complete os dados e confirme o endereço</strong></p>
           <div class="row">
             <div class="col-sm-6">
               <b-form-group label="Estado">
@@ -108,8 +93,8 @@
             </div>
           </div>
         </div>
-        <button class="btn btn-primary" @click="confirmAddress()">Confirmar endereço</button>
-        <button class="btn btn-default" @click="showAutoComplete()">Mudar localização</button>
+        <b-btn variant="primary" @click="showAutoComplete()">Mudar localização</b-btn>
+        <b-btn variant="secondary" @click="confirmAddress()">Confirmar endereço</b-btn>
       </div>
     </b-modal>
   </div>

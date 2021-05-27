@@ -40,8 +40,8 @@ export default {
     }
   },
   created() {
-    this.$store.commit('setPageTitle', this.pageTitle())
-    this.$store.commit('setPageDescription', this.pageDescription())
+    // this.$store.commit('setPageTitle', this.pageTitle())
+    // this.$store.commit('setPageDescription', this.pageDescription())
   },
   methods: {
     pageTitle() {

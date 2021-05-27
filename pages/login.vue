@@ -1,8 +1,12 @@
 <template>
-  <div class="login-page">
+  <div class="">
+    <Breadcrumb
+      :active="tab === 'login' ? 'Entrar' : 'Cadastre-se'"
+    />
     <section class="content pb-5">
       <b-container>
-        <div v-show="tab === 'login'" class="card p-4">
+        <div v-show="tab === 'login'">
+          <p>Informe os dados da sua conta ou <b-btn size="sm" @click="tab = 'register'">cadastre-se</b-btn> para continuar.</p>
           <form class="mt-4" @submit.prevent="login">
             <b-form-group label="Digite seu email">
               <b-form-input v-model="form.email" type="text" />
@@ -11,18 +15,19 @@
               <b-form-input v-model="form.password" type="password" />
             </b-form-group>
             <b-form-group class="text-center">
-              <b-button type="submit" variant="secondary">
+              <b-button type="submit" variant="secondary" block size="lg">
                 Entrar
               </b-button>
             </b-form-group>
           </form>
         </div>
-        <div v-show="tab === 'register'" class="card p-4">
+        <div v-show="tab === 'register'">
+          <p>Informe seus dados para criar sua conta ou <b-btn size="sm" @click="tab = 'login'">entre</b-btn> se já possúi uma conta.</p>
           <ValidationObserver v-slot="{ validate, invalid }">
             <form @submit.prevent="validate().then(register)">
               <b-row>
                 <b-col md="12">
-                  <b-form-group label="Nome">
+                  <b-form-group label="Seu nome completo">
                     <validation-provider v-slot="{ errors }" name="nome" rules="required">
                       <b-form-input v-model="register_form.name" name="name" />
                       <span class="text-danger">{{ errors[0] }}</span>
@@ -38,13 +43,15 @@
                   </b-form-group>
                 </b-col>
                 <b-col md="12">
-                  <CoordinatesPreview :form="form" />
-                  <div>
-                    <address-form v-model="form.address" :autoload="false" />
-                  </div>
+                  <b-form-group label="Seu endereço">
+                    <CoordinatesPreview :form="form" />
+                    <div>
+                      <address-form v-model="form.address" :autoload="false" />
+                    </div>
+                  </b-form-group>
                 </b-col>
                 <b-col md="12">
-                  <b-form-group label="Email">
+                  <b-form-group label="Seu email">
                     <validation-provider v-slot="{ errors }" name="email" rules="required|email">
                       <b-form-input v-model="register_form.email" name="email" />
                       <span class="text-danger">{{ errors[0] }}</span>
@@ -74,9 +81,9 @@
               <b-form-group class="text-center">
                 <p>
                   Já possúi uma conta?
-                  <a @click="open('login')">
+                  <b-btn variant="secondary" size="sm" @click="open('login')">
                     <strong>entre</strong>
-                  </a>
+                  </b-btn>
                 </p>
                 <b-button type="submit" variant="primary" :disabled="invalid">
                   Cadastrar
@@ -128,7 +135,7 @@ export default {
   },
   methods: {
     async login () {
-      await this.$auth.loginWith('local', { data: this.form })
+      await this.$auth.loginWith('local', { data: this.form }).catch(e => {})
     },
     async register () {
       const user = await this.$axios.$post('/api/users/register', this.register_form)
