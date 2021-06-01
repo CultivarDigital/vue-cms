@@ -7,7 +7,7 @@
             <b-carousel-slide v-if="item" :key="index" :img-src="item.url" :img-alt="item.title">
               <h3 class="title">{{ item.title }}</h3>
               <h2 v-if="item.description" class="title">{{ (item.description) | truncate(250) }}</h2>
-              <b-btn variant="primary" class="mt-md-4 btn-home">CONHEÇA AS SEMENTES</b-btn>
+              <b-btn variant="secondary" class="mt-md-4 btn-home">CONHEÇA AS SEMENTES</b-btn>
               <div class="divisor">
                 <img src="~/assets/img/paisagem-cinza.png" class="w-100">
               </div>
@@ -24,7 +24,7 @@
               <hr>
             </div>
             <h5 class="text-center">{{ settings.description }}</h5>
-            <b-button to="/sobre" variant="primary" class="mt-3 btn-home">
+            <b-button to="/sobre" variant="secondary" class="mt-3 btn-home">
               Saiba mais
             </b-button>
           </div>
@@ -33,7 +33,7 @@
               <b-card img-src="~/assets/img/exposicoes.png" img-alt="Notícias" img-left class="bg-white">
                 <b-card-text>
                   <h5>Exposições</h5>
-                  <div class="text-secondary">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                  <div class="text-primary">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
                   <n-link to="/biblioteca?categoria=Exposições" class="stretched-link hidden" />
                 </b-card-text>
               </b-card>
@@ -42,7 +42,7 @@
               <b-card to img-src="~/assets/img/midiateca.png" img-alt="Acervo" img-left class="bg-white">
                 <b-card-text>
                   <h5>Midiateca</h5>
-                  <div class="text-secondary">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                  <div class="text-primary">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
                   <n-link to="/biblioteca" class="stretched-link hidden" />
                 </b-card-text>
               </b-card>

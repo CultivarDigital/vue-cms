@@ -7,8 +7,8 @@
     <b-container class="py-4">
       <Cart />
       <div v-if="cart && cart.length" class="text-right">
-        <b-button to="/loja" variant="primary">Continuar comprando</b-button>
-        <b-button variant="secondary" size="lg" to="/loja/finalizar-pedido">Finalizar pedido</b-button>
+        <b-button to="/loja" variant="secondary">Continuar comprando</b-button>
+        <b-button variant="primary" size="lg" to="/loja/finalizar-pedido">Finalizar pedido</b-button>
       </div>
     </b-container>
   </div>

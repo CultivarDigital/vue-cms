@@ -5,7 +5,7 @@
     </router-link>
     <div class="card-body">
       <router-link :to="'/loja/'+product._id">
-        <strong class="card-title text-secondary">{{ product.name }}</strong>
+        <strong class="card-title text-primary">{{ product.name }}</strong>
       </router-link>
     </div>
     <div class="card-footer">

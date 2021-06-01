@@ -100,8 +100,8 @@
         </div>
         <br>
         <div class="text-right">
-          <b-button :to="'/loja'" variant="primary">Continuar comprando</b-button>
-          <b-button variant="secondary" size="lg" @click="saveOrder">Finalizar pedido</b-button>
+          <b-button :to="'/loja'" variant="secondary">Continuar comprando</b-button>
+          <b-button variant="primary" size="lg" @click="saveOrder">Finalizar pedido</b-button>
         </div>
       </div>
       <div v-else class="text-center my-5">

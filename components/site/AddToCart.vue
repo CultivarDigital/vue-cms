@@ -12,7 +12,7 @@
             <span class="plus" @click="add()">+</span>
           </div>
         </div>
-        <b-button variant="secondary" size="sm" @click="addToCart(product)">
+        <b-button variant="primary" size="sm" @click="addToCart(product)">
           <img src="~assets/img/icon-cart.svg" alt="Adicionar ao carrinho"> <b-icon-chevron-right />
           <small v-if="alreadyOnCart > 0" class="btn-cart-counter">{{ alreadyOnCart }}</small>
         </b-button>

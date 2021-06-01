@@ -1,5 +1,5 @@
 <template>
-  <div class="footer pt-5 pb-5 bg-secondary">
+  <div class="footer pt-5 pb-5 bg-primary">
     <footer v-if="settings">
       <b-container fluid="lg">
         <b-row>

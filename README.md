@@ -50,7 +50,7 @@ $ yarn install
 $ yarn dev
 
 # The previous command printed you the generated user credentials. Use this info to access the admin panel at:
-http://localhost:3000/admin
+http://localhost:3000/conta
 
 # To compile and run the production version:
 $ yarn build

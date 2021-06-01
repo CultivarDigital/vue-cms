@@ -10,7 +10,7 @@
             <div class="search">
               <input v-model="filters.search" type="search" placeholder="O que você procura?" class="form-control mb-3" @keyup.prevent.enter="list">
             </div>
-            <b-btn v-if="filters.search" variant="primary" class="mb-3" @click="list">
+            <b-btn v-if="filters.search" variant="secondary" class="mb-3" @click="list">
               <b-icon-search />
               Buscar
             </b-btn>
@@ -30,6 +30,7 @@
           <div class="content-header">
             <div class="text-lg-right">
               <CartButton />
+              <ShopAccountButton />
             </div>
             <div class="clearfix" />
           </div>

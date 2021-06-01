@@ -55,10 +55,10 @@
     </div>
     <div v-else class="text-center my-5">
       <h4>Seu carrinho está vazio</h4>
-      <router-link to="/loja" class="btn btn-primary">
+      <router-link to="/loja" class="btn btn-secondary">
         Voltar para a loja
       </router-link>
-      <router-link to="/loja/meus-pedidos" class="btn btn-secondary">
+      <router-link to="/loja/meus-pedidos" class="btn btn-primary">
         Ver meus pedidos
       </router-link>
     </div>

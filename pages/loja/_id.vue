@@ -32,7 +32,7 @@
             <p v-if="product.description" class="pre-line">{{ product.description }}</p>
             <div v-if="product.content" v-html="product.content" />
           </div>
-          <div v-if="related_products.length" class="div mt-4 text-secondary">
+          <div v-if="related_products.length" class="div mt-4 text-primary">
             <div class="card-header">
               <strong>Produtos relacionados</strong>
             </div>

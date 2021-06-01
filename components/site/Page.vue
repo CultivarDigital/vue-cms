@@ -14,7 +14,7 @@
         </div>
         <p v-if="page.description">{{ page.description }}</p>
         <div v-if="!showContent" class="text-center mb-5">
-          <b-button v-if="page.content || (page.pictures && page.pictures.length) || (page.documents && page.documents.length)" variant="primary" @click="showMore = !showMore">
+          <b-button v-if="page.content || (page.pictures && page.pictures.length) || (page.documents && page.documents.length)" variant="secondary" @click="showMore = !showMore">
             Saiba mais
           </b-button>
         </div>

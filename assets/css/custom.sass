@@ -1,5 +1,5 @@
-$primary: #E1846D
-$secondary: #523D38
+$primary: #523D38
+$secondary: #E1846D
 $default: #A7A7A7
 $gray: #e2e2e2
 $success: #00c58e
@@ -12,21 +12,21 @@ pre
   background-color: $white
 a
   cursor: pointer
-  color: $secondary
+  color: $primary
   &:hover
     text-decoration: none
-    color: $secondary
+    color: $primary
 .title
   letter-spacing: 3px
   text-transform: uppercase
 .pointer
   cursor: pointer
+.text-secondary
+  color: $secondary !important
 .text-primary
   color: $primary !important
-.text-secondary
-  color: $secondary !important
-.text-secondary
-  color: $secondary !important
+.text-primary
+  color: $primary !important
 .text-black
   color: $black !important
 .alert-warning
@@ -36,17 +36,18 @@ a
   background-color: $primary !important
   border-color: $primary !important
   color: $white
+  &.nuxt-link-exact-active
+    background-color: $secondary !important
+    color: $white !important
+
+a.bg-primary:focus
+  background-color: $primary !important
+  color: $white !important
+
 .bg-secondary, .btn-secondary, .badge-secondary
   background-color: $secondary !important
   border-color: $secondary !important
   color: $white
-  &.nuxt-link-exact-active
-    background-color: $primary !important
-    color: $white !important
-
-a.bg-secondary:focus
-  background-color: $secondary !important
-  color: $white !important
 
 .bg-default, .btn-default
   background-color: $gray !important
@@ -57,11 +58,11 @@ a.bg-secondary:focus
   border-color: $white !important
   color: $black !important
   h5
-    color: $primary
+    color: $secondary
 
 .btn-login
   .nav-link
-    color: $primary !important
+    color: $secondary !important
     font-size: 16px
 .btn-home
   font-size: 11px
@@ -74,7 +75,6 @@ a.bg-secondary:focus
     padding: 5px 10px
     letter-spacing: 1px
     border-radius: 3px
-.title
 
 .badge
   padding: 5px 10px
@@ -82,8 +82,9 @@ a.bg-secondary:focus
 .b-table
   tr > td, tr > th
     vertical-align: middle !important
+    font-weight: normal
   thead, tfoot
-    background-color: $secondary
+    background-color: $primary
     color: $white
 .pre-line
   white-space: pre-line
@@ -92,24 +93,24 @@ a.bg-secondary:focus
   background-color: #d1d0d0
   .breadcrumb
     background-color: #d1d0d0
-    color: $secondary
+    color: $primary
     border-radius: 0
     margin: 0
     .breadcrumb-item
       &:not(:first-child)
         &::before
-          color: $primary
+          color: $secondary
           content: '\\'
           &:first-child
             display: none
       &.active
-        color: $secondary
+        color: $primary
     a
-      color: $secondary
+      color: $primary
       font-weight: 600
-.admin
+.conta
   .breadcrumb
-    background-color: $secondary
+    background-color: $primary
     .breadcrumb-item
       &::before
         color: $white
@@ -125,7 +126,7 @@ a.bg-secondary:focus
     font-weight: bold
 .card
   border: none
-  background-color: $primary
+  background-color: $secondary
   .card-body
     display: flex
     align-items: center
@@ -147,7 +148,7 @@ header
         max-height: 30px
 
   .navbar
-    background: $secondary
+    background: $primary
     .navbar-nav
       > li
         font-size: 22px
@@ -196,7 +197,7 @@ footer
   .links
     letter-spacing: 3px
 .content
-  color: $secondary
+  color: $primary
   padding-top: 50px
   padding-bottom: 50px
   .card
@@ -206,7 +207,7 @@ footer
     hr
       width: 60px
       height: 2px
-      background: $primary
+      background: $secondary
       margin-top: 10px
 
     h4
@@ -224,7 +225,7 @@ footer
       hr
         width: 60px
         height: 2px
-        background: $primary
+        background: $secondary
         margin-top: 10px
 
       h4
@@ -259,7 +260,7 @@ footer
     right: 0
     h3
       font-size: 36px
-      color: $primary
+      color: $secondary
       font-weight: normal
       @media (max-width: 768px)
         font-size: 14px
@@ -293,7 +294,7 @@ footer
     width: 100%
     position: relative
     left: 0
-    background-color: $primary
+    background-color: $secondary
     padding: 0
     bottom: 0
     h2
@@ -323,10 +324,18 @@ footer
       background-color: transparent
       border: 1px solid $white
       border-radius: 100%
-.admin
+.conta
   .navbar-light .navbar-nav .nav-link
     color: $white
-
+  .conta-menu
+    .navbar
+      .navbar-expand-lg .navbar-nav
+        flex-direction: column
+      // display: block
+      .container-lg
+        display: block
+      // .navbar-collapse
+      //   display: block
 .ql-video
   width: 80%
   margin: auto
@@ -345,7 +354,7 @@ footer
     max-width: 100%
 
 .shop
-  color: $secondary
+  color: $primary
   .btn-cart
     font-size: 1rem
   .card
@@ -354,8 +363,8 @@ footer
   .search
     input
       border: none
-      color: $secondary
-      border-bottom: 1px solid $secondary
+      color: $primary
+      border-bottom: 1px solid $primary
       border-radius: 0
       padding: 10px 0
       font-size: 16px
@@ -367,7 +376,7 @@ footer
       padding-right: 22px
       margin-bottom: 10px
       &::placeholder
-        color: $secondary
+        color: $primary
   .products
     .card
       margin-bottom: 30px
@@ -384,7 +393,7 @@ footer
         border-top: none
   .dropdown
     border-radius: 5px
-    background-color: $secondary
+    background-color: $primary
     color: $white
     cursor: pointer
     .dropdown-toggle
@@ -404,7 +413,7 @@ footer
       min-width: 100%
       border-radius: 5px
       .dropdown-item
-        color: $secondary
+        color: $primary
         &:active
           color: $white
   .product_thumbs
@@ -455,7 +464,7 @@ footer
         border-radius: 15px
         text-align: center
         width: 70px
-        color: $secondary
+        color: $primary
         font-size: 15px
         font-weight: 600
         height: 32px
@@ -469,7 +478,7 @@ footer
       text-align: center
       font-size: 11px
       font-weight: 400
-      background-color: $primary
+      background-color: $secondary
       color: $white
       border-radius: 3px
       padding: 0 5px

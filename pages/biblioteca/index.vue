@@ -13,19 +13,19 @@
             <b-col md="3">
               <div class="search mb-4">
                 <b-form-input v-model="filters.search" type="search" class="search" placeholder="O que você procura?" @input="searchChanged" />
-                <b-button v-if="filters.search" variant="primary" block :to="'/biblioteca?categoria=' + filters.category + '&tag=' + filters.tag + '&search=' + filters.search" class="mt-1">Buscar</b-button>
+                <b-button v-if="filters.search" variant="secondary" block :to="'/biblioteca?categoria=' + filters.category + '&tag=' + filters.tag + '&search=' + filters.search" class="mt-1">Buscar</b-button>
               </div>
               <b-card title="Categorias" no-body class="mb-4">
                 <b-list-group flush>
-                  <b-list-group-item v-for="category in categories" :key="category" :to="'/biblioteca?categoria=' + category + '&tag=' + filters.tag + '&search=' + filters.search" class="bg-secondary">{{ category }}</b-list-group-item>
-                  <b-list-group-item v-if="filters.category" :to="'/biblioteca?tag=' + filters.tag + '&search=' + filters.search " class="bg-secondary">Todas as categorias</b-list-group-item>
+                  <b-list-group-item v-for="category in categories" :key="category" :to="'/biblioteca?categoria=' + category + '&tag=' + filters.tag + '&search=' + filters.search" class="bg-primary">{{ category }}</b-list-group-item>
+                  <b-list-group-item v-if="filters.category" :to="'/biblioteca?tag=' + filters.tag + '&search=' + filters.search " class="bg-primary">Todas as categorias</b-list-group-item>
                 </b-list-group>
               </b-card>
               <div class="tags mb-4">
-                <b-button v-for="tag in tags" :key="tag" size="sm" variant="primary" :to="'/biblioteca?categoria=' + filters.category + '&tag=' + tag + '&search=' + filters.search" :class="{ active: (tag === filters.tag) }" class="mb-1 mr-1">{{ tag }}</b-button>
-                <b-button v-if="filters.tag" variant="primary" :to="'/biblioteca?categoria=' + filters.category + '&search=' + filters.search">Todos os temas</b-button>
+                <b-button v-for="tag in tags" :key="tag" size="sm" variant="secondary" :to="'/biblioteca?categoria=' + filters.category + '&tag=' + tag + '&search=' + filters.search" :class="{ active: (tag === filters.tag) }" class="mb-1 mr-1">{{ tag }}</b-button>
+                <b-button v-if="filters.tag" variant="secondary" :to="'/biblioteca?categoria=' + filters.category + '&search=' + filters.search">Todos os temas</b-button>
               </div>
-              <b-button v-if="filters.search || filters.category || filters.tag" class="mb-4" variant="secondary" block to="/biblioteca">Limpar filtros</b-button>
+              <b-button v-if="filters.search || filters.category || filters.tag" class="mb-4" variant="primary" block to="/biblioteca">Limpar filtros</b-button>
             </b-col>
             <b-col md="9" class="medias">
               <div v-if="medias">

@@ -29,7 +29,7 @@
           </b-col>
         </b-row>
         <div class="text-right">
-          <b-button type="submit" variant="primary" class="btn-home" :disabled="invalid">
+          <b-button type="submit" variant="secondary" class="btn-home" :disabled="invalid">
             ENVIAR
           </b-button>
         </div>

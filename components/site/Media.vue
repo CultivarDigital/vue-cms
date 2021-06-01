@@ -11,7 +11,7 @@
           Editora/Fonte: {{ media.publishing_house }}
         </p>
         <p v-if="media.category !== 'Notícias' && media.category !== 'Vídeos'">
-          <b-button v-if="media.url" :href="media.url" target="_blank" variant="secondary">Baixar arquivo</b-button>
+          <b-button v-if="media.url" :href="media.url" target="_blank" variant="primary">Baixar arquivo</b-button>
           <Documents :documents="media.documents" label="Baixar documentos" />
         </p>
         <div class="tags-component">
@@ -24,7 +24,7 @@
     </div>
     <br>
     <div class="text-center">
-      <b-button variant="primary" @click="$router.go(-1)">
+      <b-button variant="secondary" @click="$router.go(-1)">
         Voltar à biblioteca
       </b-button>
     </div>

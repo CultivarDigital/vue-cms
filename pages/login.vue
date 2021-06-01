@@ -15,7 +15,7 @@
               <b-form-input v-model="form.password" type="password" />
             </b-form-group>
             <b-form-group class="text-center">
-              <b-button type="submit" variant="secondary" block size="lg">
+              <b-button type="submit" variant="primary" block size="lg">
                 Entrar
               </b-button>
             </b-form-group>
@@ -81,11 +81,11 @@
               <b-form-group class="text-center">
                 <p>
                   Já possúi uma conta?
-                  <b-btn variant="secondary" size="sm" @click="open('login')">
+                  <b-btn variant="primary" size="sm" @click="open('login')">
                     <strong>entre</strong>
                   </b-btn>
                 </p>
-                <b-button type="submit" variant="primary" :disabled="invalid">
+                <b-button type="submit" variant="secondary" :disabled="invalid">
                   Cadastrar
                 </b-button>
               </b-form-group>
