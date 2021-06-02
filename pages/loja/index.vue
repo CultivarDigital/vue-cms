@@ -10,12 +10,12 @@
             <div class="search">
               <input v-model="filters.search" type="search" placeholder="O que você procura?" class="form-control mb-3" @keyup.prevent.enter="list">
             </div>
-            <b-btn v-if="filters.search" variant="secondary" class="mb-3" @click="list">
+            <b-btn v-if="filters.search" variant="light" class="mb-3" @click="filters.search = ''; list()">
+              Limpar busca
+            </b-btn>
+            <b-btn v-if="filters.search" variant="success" class="mb-3" @click="list">
               <b-icon-search />
               Buscar
-            </b-btn>
-            <b-btn v-if="filters.search" variant="default" class="mb-3" @click="filters.search = ''; list()">
-              Limpar busca
             </b-btn>
             <b-dropdown :text="'Ordenar por ' + sorts[filters.sort]" variant="outline-default" size="sm" class="mb-3">
               <b-dropdown-item v-for="(v, k) in sorts" :key="k" @click="filters.sort = k; list()">{{ v }}</b-dropdown-item>
@@ -28,24 +28,29 @@
         </b-col>
         <b-col lg="9">
           <div class="content-header">
-            <div class="text-lg-right">
-              <CartButton />
-            </div>
-            <div class="clearfix" />
+            <b-row>
+              <b-col md="9" class="d-flex align-items-center">
+                <div v-if="products">
+                  <div v-if="products && products.length" class="list-counter">
+                    <span v-if="products.length > 1"><strong>{{ products.length }}</strong> ofertas encontradas</span>
+                    <span v-else-if="products.length == 1"><strong>Uma</strong> oferta encontrada</span>
+                    <span v-if="filters.tag"> em <strong>{{ filters.tag }}</strong></span>
+                  </div>
+                  <div v-else>
+                    <strong>Nenhuma oferta encontrada.</strong>
+                  </div>
+                </div>
+                <b-spinner v-else small label="Carregando ofertas" />
+              </b-col>
+              <b-col md="3" class="text-lg-right">
+                <CartButton />
+              </b-col>
+            </b-row>
           </div>
-          <b-spinner v-if="isLoading" small label="Carregando ofertas" />
           <div v-if="products" class="products mt-3">
-            <p class="list-counter">
-              <span v-if="products.length > 1"><strong>{{ products.length }}</strong> ofertas encontradas</span>
-              <span v-else-if="products.length == 1"><strong>Uma</strong> oferta encontrada</span>
-              <span v-if="filters.tag"> em <strong>{{ filters.tag }}</strong></span>
-            </p>
             <b-card-group columns>
               <Product v-for="product in products" :key="product._id" :product="product" />
             </b-card-group>
-          </div>
-          <div v-if="products && products.length == 0" class="alert alert-warning">
-            Nenhuma oferta encontrada.
           </div>
         </b-col>
       </b-row>
@@ -65,8 +70,7 @@ export default {
         sort: 'most_recent'
       },
       products: null,
-      tags: [],
-      isLoading: false
+      tags: []
     }
   },
   async created() {
@@ -75,9 +79,8 @@ export default {
   },
   methods: {
     async list() {
-      this.isLoading = true
+      this.products = null
       this.products = await this.$axios.$get('/api/shop/products', { params: this.filters })
-      this.isLoading = false
     },
     clearFilters() {
       this.filters = {

@@ -55,10 +55,10 @@
     </div>
     <div v-else class="text-center my-5">
       <h4>Seu carrinho está vazio</h4>
-      <b-btn to="/loja">
+      <b-btn to="/loja" variant="light">
         Voltar para a loja
       </b-btn>
-      <b-btn to="/loja/meus-pedidos">
+      <b-btn to="/loja/meus-pedidos" variant="primary">
         Ver meus pedidos
       </b-btn>
     </div>

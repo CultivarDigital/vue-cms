@@ -19,7 +19,7 @@
                 <b-form-input v-model="item.title" placeholder="Título da imagem" class="mt-1" />
               </td>
               <td class="text-md-right">
-                <b-btn variant="default" size="sm" @click="deleteFile(index)">
+                <b-btn variant="light" size="sm" @click="deleteFile(index)">
                   <b-icon-trash />
                 </b-btn>
               </td>
