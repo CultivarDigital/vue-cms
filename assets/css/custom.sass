@@ -32,10 +32,10 @@ a
 .btn-secondary, .badge-secondary, .bg-secondary, .btn-primary, .badge-primary, .bg-primary
   color: $white
 .btn-light, .badge-light, .bg-light
-  color: $primary
+  color: $dark
 .bg-light
   .navbar-nav .nav-link
-    color: $primary
+    color: $dark
 
 .btn-home
   font-size: 11px
@@ -218,10 +218,7 @@ footer
         a
           color: $white
 
-.home-banners
-  .carousel-inner
-    min-height: 300px
-
+.banners
   .carousel-caption
     height: 100%
     display: flex
@@ -232,26 +229,12 @@ footer
     margin-bottom: -20px
     left: 0
     right: 0
-    h3
-      font-size: 36px
-      color: $secondary
-      font-weight: normal
+    .title
       @media (max-width: 768px)
         font-size: 14px
-        margin-top: 50px
-    h2
-      font-weight: 700
-      font-size: 47px
-      color: $white
-      @media (max-width: 768px)
-        font-size: 20px
     p
       @media (max-width: 768px)
         display: none
-    .divisor
-      display: none
-      bottom: 0
-      position: absolute
   .carousel-indicators
     bottom: 10px
     li
@@ -259,45 +242,9 @@ footer
       height: 6px
       background-color: transparent
       border: 1px solid $white
+      background-color: $white
       border-radius: 100%
-.banners
-  .carousel-inner
-    min-height: 300px
-  .carousel-caption
-    height: 100%
-    width: 100%
-    position: relative
-    left: 0
-    background-color: $secondary
-    padding: 0
-    bottom: 0
-    h2
-      font-weight: 700
-      font-size: 26px
-      @media (max-width: 768px)
-        font-size: 18px
-      @media (max-width: 576px)
-        font-size: 14px
-    p
-      @media (max-width: 768px)
-        display: none
-    .card
-      .card-body
-        width: 50%
-        text-align: left
-        padding: 80px
-      img
-        width: 50%
-        border-radius: 0
 
-  .carousel-indicators
-    bottom: 10px
-    li
-      width: 6px
-      height: 6px
-      background-color: transparent
-      border: 1px solid $white
-      border-radius: 100%
 .conta
   .conta-menu
     .navbar

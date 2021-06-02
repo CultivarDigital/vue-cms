@@ -16,7 +16,7 @@
           <b-form-group label="Insira o link do arquivo">
             <b-form-input v-model="form.url" />
           </b-form-group>
-          <Upload v-model="form.documents" label="Ou envie os arquivos" type="documents" multiple @uploaded="fileUploaded" />
+          <Upload v-model="form.documents" label="Ou envie os arquivos" type="documents" multiple edit-title @uploaded="fileUploaded" />
         </div>
         <div v-if="form.category === 'Notícias'">
           <b-form-group label="Link da notícia">

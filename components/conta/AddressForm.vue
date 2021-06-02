@@ -6,17 +6,15 @@
     <b-modal v-model="show_modal" title="Localização" hide-footer hide-header size="lg">
       <div v-if="show_auto_complete">
         <div v-if="!addressFilled">
-          <p><strong>Digite seu endereço para buscar a localização.</strong></p>
+          <p><strong>Digite seu endereço para buscar a localização:</strong></p>
           <b-form-input v-model="address_input" class="input-lg" @keyup.enter="searchByAddress" />
-          <div class="text-right">
-            <small>Ex: rua das nascentes, alto paraíso, goiás</small>
-          </div>
-          <p class="text-center">
+          <small>Ex: rua das nascentes, alto paraíso, goiás</small>
+          <p class="text-center mt-3">
             <b-btn variant="primary" @click="getLocation()">Buscar pelo GPS</b-btn>
             <b-btn v-if="address_input" variant="primary" @click="searchByAddress"><b-icon-search /> Buscar pelo endereço</b-btn>
           </p>
           <p v-if="loading_gps" class="text-center">
-            <small><i class="fa fa-spinner fa-spin" /> Buscando dados do GPS...</small>
+            <b-spinner small /> Buscando dados do GPS...
           </p>
         </div>
         <div v-else class="text-center">
@@ -39,6 +37,8 @@
               Este é seu endereço?
               <br>
               <strong>{{ address.description }}</strong>
+              <br>
+              <small>Você pode arrastar o ponto no mapa para ajustar sua localização</small>
             </p>
             <div v-if="address && address.location && address.location.coordinates && address.location.coordinates.length === 2">
               <l-map :zoom="16" :center="address.location.coordinates" :options="{ scrollWheelZoom: false }" style="height: 250px;">
@@ -58,7 +58,7 @@
       </div>
       <div v-else>
         <div class="form-address">
-          <p class="mb-4"><strong>Complete os dados e confirme o endereço</strong></p>
+          <p class="mb-4"><strong>Complete os dados e confirme o endereço:</strong></p>
           <div class="row">
             <div class="col-sm-6">
               <b-form-group label="Estado">
@@ -199,6 +199,8 @@ export default {
             return this.parseAddress(address.address, address.lat, address.lon)
           })
         }
+      }).catch(e => {
+        this.$toast.error('Não foi possível encontrar seu endereço. Verifique o que foi digitado e tente novamente.')
       })
     },
     updateMarker(location) {

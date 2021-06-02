@@ -15,9 +15,13 @@
                   <b-icon-file-earmark-text v-else scale="2" />
                 </a>
               </td>
-              <td>
-                <b-form-input v-model="item.title" placeholder="Título da imagem" class="mt-1" />
+              <td v-if="editTitle || editDescription || editLink">
+                <b-form-input v-if="editTitle" v-model="item.title" placeholder="Título" class="mt-1" />
+                <b-form-textarea v-if="editDescription" v-model="item.description" placeholder="Descrição" class="mt-1" />
+                <b-form-input v-if="editLink" v-model="item.link" placeholder="Link" class="mt-1" />
+                <b-form-input v-if="editLink" v-model="item.link_title" placeholder="Título do link" class="mt-1" />
               </td>
+              <td v-if="editDescription" />
               <td class="text-md-right">
                 <b-btn variant="light" size="sm" @click="deleteFile(index)">
                   <b-icon-trash />
@@ -87,6 +91,18 @@ export default {
       default: true
     },
     avatar: {
+      type: Boolean,
+      default: false
+    },
+    editTitle: {
+      type: Boolean,
+      default: false
+    },
+    editDescription: {
+      type: Boolean,
+      default: false
+    },
+    editLink: {
       type: Boolean,
       default: false
     }

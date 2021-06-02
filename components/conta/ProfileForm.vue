@@ -16,7 +16,7 @@
             <b-form-input v-model="form.email" name="email" />
             <span class="text-danger">{{ errors[0] }}</span>
           </validation-provider>
-          <b-button size="sm" class="float-right mt-1" @click="changePassword">
+          <b-button size="sm" variant="light" class="float-right mt-1" @click="changePassword">
             Alterar senha
           </b-button>
         </b-form-group>
@@ -43,7 +43,9 @@
     </b-row>
     <b-row>
       <b-col md="12">
-        <AddressForm v-model="form.address" />
+        <b-form-group label="Seu endereço">
+          <AddressForm v-model="form.address" />
+        </b-form-group>
       </b-col>
       <b-col md="12">
         <b-form-group label="Organização *">

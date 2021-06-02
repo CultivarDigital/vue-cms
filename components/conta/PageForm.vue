@@ -30,10 +30,10 @@
           </b-form-group>
         </b-col>
         <b-col md="12">
-          <Upload v-model="form.pictures" label="Banners" type="images" multiple />
+          <Upload v-model="form.pictures" label="Banners" type="images" multiple edit-title edit-description edit-link />
         </b-col>
         <b-col md="12">
-          <Upload v-model="form.documents" label="Documentos" type="documents" multiple />
+          <Upload v-model="form.documents" label="Documentos" type="documents" multiple edit-title />
         </b-col>
         <b-col md="12">
           <b-form-group label="Conteúdo da página">

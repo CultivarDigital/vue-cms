@@ -1,6 +1,7 @@
 <template>
   <ValidationObserver v-slot="{ validate, invalid }">
     <b-form @submit.prevent="validate().then(save)">
+      <Upload v-model="form.picture" type="images" label="Foto do perfil" avatar />
       <b-row>
         <b-col md="6">
           <b-form-group label="Nome *">
@@ -16,7 +17,7 @@
               <b-form-input v-model="form.email" name="email" />
               <span class="text-danger">{{ errors[0] }}</span>
             </validation-provider>
-            <b-button v-if="user" size="sm" class="float-right mt-1" @click="changePassword">
+            <b-button v-if="user" variant="light" size="sm" class="float-right mt-1" @click="changePassword">
               Alterar senha
             </b-button>
           </b-form-group>
@@ -41,7 +42,6 @@
           </b-form-group>
         </b-col>
       </b-row>
-      <Upload v-model="form.picture" type="images" label="Foto do perfil" />
       <b-row v-if="$auth.user.role === 'admin'">
         <b-col md="6">
           <b-form-group label="Perfil *">
@@ -60,7 +60,9 @@
           </b-form-group>
         </b-col>
         <b-col md="12">
-          <AddressForm v-model="form.address" />
+          <b-form-group label="Seu endereço">
+            <AddressForm v-model="form.address" />
+          </b-form-group>
         </b-col>
       </b-row>
       <br>

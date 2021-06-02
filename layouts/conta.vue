@@ -11,32 +11,28 @@
             <b-navbar-toggle target="conta-header">
               <font-awesome-icon icon="bars" />
             </b-navbar-toggle>
-
             <b-collapse id="conta-header" is-nav>
               <b-navbar-nav>
-                <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/settings">Configurações</b-nav-item>
+                <b-nav-item to="/conta">
+                  <strong>{{ $auth.user.name }}</strong>
+                  <br>
+                  <small>{{ userRoleText }}</small>
+                </b-nav-item>
                 <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/pages">Páginas</b-nav-item>
                 <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/menus">Menus</b-nav-item>
                 <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/medias">Midiateca</b-nav-item>
-                <b-nav-item to="/conta/users">Usuários</b-nav-item>
-                <!-- <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/posts">Notícias</b-nav-item> -->
-                <!-- <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/events">Agenda</b-nav-item> -->
+                <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/posts">Notícias</b-nav-item>
+                <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/events">Agenda</b-nav-item>
                 <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/ecommerce">Loja</b-nav-item>
                 <b-nav-item to="/conta/contacts">Contatos</b-nav-item>
-              </b-navbar-nav>
-              <b-navbar-nav class="ml-auto">
-                <b-nav-item-dropdown right>
-                  <template v-slot:button-content>
-                    <em>{{ $auth.user.name }}</em>
-                  </template>
-                  <b-dropdown-item to="/conta/profile">Meus dados</b-dropdown-item>
-                  <b-dropdown-item @click="logout">Sair</b-dropdown-item>
-                </b-nav-item-dropdown>
+                <b-nav-item to="/conta/users">Usuários</b-nav-item>
+                <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/settings">Configurações</b-nav-item>
+                <b-nav-item to="/conta/profile">Meus dados</b-nav-item>
+                <b-nav-item @click="logout"><small>Sair</small></b-nav-item>
               </b-navbar-nav>
             </b-collapse>
           </b-container>
         </b-navbar>
-
         <b-container fluid="lg" class="mt-3">
           <b-row>
             <b-col sm="3" class="d-none d-sm-block">
@@ -49,11 +45,11 @@
                 <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/pages">Páginas</b-nav-item>
                 <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/menus">Menus</b-nav-item>
                 <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/medias">Midiateca</b-nav-item>
-                <b-nav-item to="/conta/users">Usuários</b-nav-item>
-                <!-- <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/posts">Notícias</b-nav-item> -->
-                <!-- <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/events">Agenda</b-nav-item> -->
+                <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/posts">Notícias</b-nav-item>
+                <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/events">Agenda</b-nav-item>
                 <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/ecommerce">Loja</b-nav-item>
                 <b-nav-item to="/conta/contacts">Contatos</b-nav-item>
+                <b-nav-item to="/conta/users">Usuários</b-nav-item>
                 <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/settings">Configurações</b-nav-item>
                 <b-nav-item to="/conta/profile">Meus dados</b-nav-item>
                 <b-nav-item @click="logout"><small>Sair</small></b-nav-item>

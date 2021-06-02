@@ -6,7 +6,7 @@
       :description="page.description"
     />
     <div v-if="page" class="page">
-      <banners :items="page.pictures" />
+      <Banners :items="page.pictures" />
       <b-container>
         <div class="title mt-4">
           <h4 v-if="page.title" class="title">{{ page.title }}</h4>

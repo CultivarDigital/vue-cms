@@ -2,8 +2,8 @@
   <ValidationObserver v-slot="{ validate, invalid }">
     <b-form @submit.prevent="validate().then(save)">
       <b-row>
-        <b-col md="4">
-          <b-form-group label="Nome *">
+        <b-col md="12">
+          <b-form-group label="Nome que aparece no menu *">
             <validation-provider v-slot="{ errors }" name="nome" rules="required">
               <b-form-input v-model="form.name" name="name" />
               <span class="text-danger">{{ errors[0] }}</span>
@@ -11,8 +11,10 @@
           </b-form-group>
         </b-col>
         <b-col md="8">
-          <b-form-group label="Selecione a página relacionada">
-            <form-entity-select type="pages" :form="form" field="page" />
+          <b-form-group label="Relacione com uma página">
+            {{ form }}
+            <v-select :options="pages" label="title" />
+            <!-- <form-entity-select type="pages" :form="form" field="page" /> -->
           </b-form-group>
           <h4 class="text-center">OU</h4>
           <b-form-group label="Insira a URL para a página">
@@ -62,7 +64,7 @@ export default {
   },
   data () {
     return {
-      mainMenus: [],
+      parent_menus: [],
       form: {
         name: '',
         url: '',
@@ -73,10 +75,8 @@ export default {
   },
   async created () {
     this.toForm(this.form, this.menu)
-    this.mainMenus = (await this.$axios.$get('/api/menus')).map(menu => ({
-      id: menu._id,
-      title: menu.name
-    }))
+    this.parent_menus = await this.$axios.$get('/api/menus')
+    this.pages = await this.$axios.$get('/api/pages')
   },
   methods: {
     async save () {

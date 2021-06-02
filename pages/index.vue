@@ -1,20 +1,7 @@
 <template>
   <div>
     <div v-if="settings" class="home-page">
-      <div v-if="settings.banners && settings.banners.length">
-        <b-carousel :interval="7000" :indicators="settings.banners.length > 1" class="home-banners">
-          <template v-for="(item, index) in settings.banners">
-            <b-carousel-slide v-if="item" :key="index" :img-src="item.url" :img-alt="item.title">
-              <h3 class="title">{{ item.title }}</h3>
-              <h2 v-if="item.description" class="title">{{ (item.description) | truncate(250) }}</h2>
-              <b-btn variant="secondary" class="mt-md-4 btn-home">CONHEÇA AS SEMENTES</b-btn>
-              <div class="divisor">
-                <img src="~/assets/img/paisagem-cinza.png" class="w-100">
-              </div>
-            </b-carousel-slide>
-          </template>
-        </b-carousel>
-      </div>
+      <Banners :items="settings.banners" />
       <section class="content bg-light pb-4">
         <b-container fluid="lg">
           <div v-if="settings.description" class="text-center px-5">
@@ -49,9 +36,6 @@
             </b-col>
           </b-row>
         </b-container>
-        <div class="divisor mt-5 d-none">
-          <img src="~/assets/img/paisagem-marrom.svg" class="w-100">
-        </div>
       </section>
     </div>
   </div>

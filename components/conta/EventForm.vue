@@ -31,7 +31,7 @@
           <Upload v-model="form.picture" type="images" label="Foto de capa" />
         </b-col>
         <b-col md="12">
-          <Upload v-model="form.documents" label="Documentos" type="documents" multiple />
+          <Upload v-model="form.documents" label="Documentos" type="documents" multiple edit-title />
         </b-col>
         <b-col md="12">
           <tags-form v-model="form.tags" :current-tags="currentTags" />

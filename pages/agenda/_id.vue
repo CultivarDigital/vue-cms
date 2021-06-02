@@ -19,7 +19,7 @@
         </p>
         <tags :tags="event.tags" />
         <div v-if="event.content || event.documents.length || event.picture" class="quill-content mt-4">
-          <banners v-if="event.picture" :items="[event.picture]" />
+          <Banners v-if="event.picture" :items="[event.picture]" />
           <div v-if="event.content" class="mt-4" v-html="event.content" />
           <Documents :documents="event.documents" />
           <share />
