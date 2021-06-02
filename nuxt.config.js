@@ -82,6 +82,11 @@ export default {
     },
     scopeKey: 'role'
   },
+  bootstrapVue: {
+    css: false,
+    bvCSS: false,
+    icons: true
+  },
   toast: {
     duration: 7000,
     keepOnHover: true,

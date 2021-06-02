@@ -15,6 +15,9 @@
     <!-- <b-nav-item @click="$scrollTo('footer')">Contato</b-nav-item> -->
     <!-- <b-nav-item v-if="!$auth.loggedIn" to="/conta" class="btn-login">Entrar</b-nav-item>
     <b-nav-item v-else to="/conta" class="btn-login">Painel</b-nav-item> -->
+    <b-nav-item :to="'/conta'" variant="primary" size="lg" title="Minha conta">
+      <b-icon-person /> <span class="d-lg-none">Minha conta</span>
+    </b-nav-item>
   </b-navbar-nav>
 </template>
 

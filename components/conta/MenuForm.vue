@@ -34,7 +34,7 @@
       </b-row>
       <b-row>
         <b-col offset-md="10" md="2">
-          <b-button type="submit" variant="secondary" block :disabled="invalid">
+          <b-button type="submit" variant="success" block :disabled="invalid">
             <b-icon-check-circle /> Salvar
           </b-button>
         </b-col>

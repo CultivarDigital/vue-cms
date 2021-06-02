@@ -60,14 +60,11 @@
           </b-form-group>
         </b-col>
         <b-col md="12">
-          <CoordinatesPreview :form="form" />
-          <div>
-            <address-form v-model="form.address" :autoload="false" />
-          </div>
+          <AddressForm v-model="form.address" />
         </b-col>
       </b-row>
       <br>
-      <b-button type="submit" variant="secondary" block :disabled="invalid">
+      <b-button type="submit" variant="success" block :disabled="invalid">
         Salvar
       </b-button>
     </b-form>

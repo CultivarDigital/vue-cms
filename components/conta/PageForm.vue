@@ -42,7 +42,7 @@
           </b-form-group>
         </b-col>
       </b-row>
-      <b-button class="mb-4 mt-4" type="submit" variant="secondary" :disabled="invalid" block>
+      <b-button class="mb-4 mt-4" type="submit" variant="success" :disabled="invalid" block>
         Salvar
       </b-button>
     </b-form>

@@ -1,5 +1,6 @@
 <template>
   <ValidationObserver v-slot="{ invalid }" tag="form" @submit.prevent="save">
+    <Upload v-model="form.picture" type="images" label="Foto do perfil" avatar />
     <b-row>
       <b-col md="6">
         <b-form-group label="Nome *">
@@ -40,13 +41,9 @@
         </b-form-group>
       </b-col>
     </b-row>
-    <Upload v-model="form.picture" type="images" label="Foto do perfil" />
     <b-row>
       <b-col md="12">
-        <CoordinatesPreview :form="form" />
-        <div>
-          <address-form v-model="form.address" :autoload="false" />
-        </div>
+        <AddressForm v-model="form.address" />
       </b-col>
       <b-col md="12">
         <b-form-group label="Organização *">
@@ -57,7 +54,7 @@
         </b-form-group>
       </b-col>
     </b-row>
-    <b-button type="submit" variant="secondary" block :disabled="invalid || !passwordConfirmed">
+    <b-button type="submit" variant="success" block :disabled="invalid || !passwordConfirmed">
       Salvar
     </b-button>
   </ValidationObserver>

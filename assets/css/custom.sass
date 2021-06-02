@@ -1,13 +1,14 @@
 $primary: #523D38
 $secondary: #E1846D
-$default: #A7A7A7
-$gray: #e2e2e2
-$success: #00c58e
-$white: #fff
-$black: #212529
+$light: #e2e2e2
+$dark: #212529
+
+@import 'bootstrap/scss/bootstrap.scss'
+@import 'bootstrap-vue/src/index.scss'
 
 body
   font-family: 'Montserrat', sans-serif
+  color: $dark
 pre
   background-color: $white
 a
@@ -21,49 +22,21 @@ a
   text-transform: uppercase
 .pointer
   cursor: pointer
-.text-secondary
-  color: $secondary !important
-.text-primary
-  color: $primary !important
-.text-primary
-  color: $primary !important
-.text-black
-  color: $black !important
-.alert-warning
-  background-color: #f58b37
-  color: #fff
-.bg-primary, .btn-primary, .badge-primary
-  background-color: $primary !important
-  border-color: $primary !important
-  color: $white
-  &.nuxt-link-exact-active
-    background-color: $secondary !important
-    color: $white !important
 
-a.bg-primary:focus
-  background-color: $primary !important
-  color: $white !important
-
-.bg-secondary, .btn-secondary, .badge-secondary
-  background-color: $secondary !important
-  border-color: $secondary !important
-  color: $white
-
-.bg-default, .btn-default
-  background-color: $gray !important
-  border-color: $gray !important
-  color: $black
 .bg-white
   background-color: $white !important
   border-color: $white !important
-  color: $black !important
+  color: $dark !important
   h5
     color: $secondary
+.btn-secondary, .badge-secondary, .bg-secondary, .btn-primary, .badge-primary, .bg-primary
+  color: $white
+.btn-light, .badge-light, .bg-light
+  color: $primary
+.bg-light
+  .navbar-nav .nav-link
+    color: $primary
 
-.btn-login
-  .nav-link
-    color: $secondary !important
-    font-size: 16px
 .btn-home
   font-size: 11px
   letter-spacing: 3px
@@ -90,12 +63,13 @@ a.bg-primary:focus
   white-space: pre-line
 
 .breadcrumb-wrapper
-  background-color: #d1d0d0
+  background-color: $light
   .breadcrumb
-    background-color: #d1d0d0
+    background-color: $light
     color: $primary
     border-radius: 0
     margin: 0
+    padding: 15px 0
     .breadcrumb-item
       &:not(:first-child)
         &::before
@@ -121,6 +95,7 @@ a.bg-primary:focus
       font-weight: 600
 
 .form-group
+  color: $dark
   margin-bottom: 2rem
   legend
     font-weight: bold
@@ -132,52 +107,51 @@ a.bg-primary:focus
     align-items: center
     color: $white
 
-.navbar-toggler
-  color: $white !important
-  border: 1px solid $white !important
-  .navbar-toggler-icon
-    color: $white !important
-
 header
   font-family: 'Raleway', sans-serif
+
+  .navbar
+    padding: 15px
   .navbar-brand
     color: $white !important
     img
       max-height: 50px
       @media (max-width: 768px)
         max-height: 30px
-
-  .navbar
-    background: $primary
-    .navbar-nav
-      > li
-        font-size: 22px
-      @media (min-width: 992px)
-        > li + li::before
-          padding: 0
-          color: $white
-          content: " \\ "
-          margin: 0
-          font-size: 11px
-      .nav-item
+    .navbar-toggler
+      color: $white !important
+      border: 1px solid $white !important
+      .navbar-toggler-icon
+        color: $white !important
+  .navbar-nav
+    > li
+      font-size: 22px
+    @media (min-width: 992px)
+      > li + li::before
+        padding: 0
+        color: $white
+        content: " \\ "
+        margin: 0
+        font-size: 11px
+    .nav-item
+      display: inline-block
+      .nav-link
+        color: $white
+        text-transform: uppercase
+        font-size: 11px
         display: inline-block
-        .nav-link
+        letter-spacing: 2px
+        padding: 5px 15px
+        &.nuxt-link-active
+          background-size: 100% 100%
+          background-image: url(~assets/img/bg-menu.png)
+        &:hover
           color: $white
-          text-transform: uppercase
-          font-size: 11px
-          display: inline-block
-          letter-spacing: 2px
-          padding: 5px 15px
-          &.nuxt-link-active
-            background-size: 100% 100%
-            background-image: url(~assets/img/bg-menu.png)
-          &:hover
-            color: $white
 
 .sub-header
   height: 10px
   width: 100%
-  background-color: #A7A7A7
+  background-color: $light
 .header-transparent
   header
     @media (min-width: 992px)
@@ -185,8 +159,8 @@ header
       z-index: 11
       margin-bottom: -106px
       .navbar
-        background: transparent
-        padding-top: 30px
+        background: transparent !important
+        padding-top: 25px
 
   .sub-header
     display: none
@@ -201,7 +175,7 @@ footer
   padding-top: 50px
   padding-bottom: 50px
   .card
-    color: $black
+    color: $dark
 
   .title
     hr
@@ -325,8 +299,6 @@ footer
       border: 1px solid $white
       border-radius: 100%
 .conta
-  .navbar-light .navbar-nav .nav-link
-    color: $white
   .conta-menu
     .navbar
       .navbar-expand-lg .navbar-nav
@@ -359,7 +331,7 @@ footer
     font-size: 1rem
   .card
     background-color: $white
-    border: 1px solid $gray
+    border: 1px solid $gray-300
   .search
     input
       border: none

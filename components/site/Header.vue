@@ -1,6 +1,6 @@
 <template>
   <header>
-    <b-navbar toggleable="lg">
+    <b-navbar toggleable="lg" variant="primary" type="dark">
       <b-container fluid="lg">
         <b-navbar-brand v-if="settings" to="/">
           <b-img v-if="settings.logo && settings.logo.url" :src="settings.logo.url" />

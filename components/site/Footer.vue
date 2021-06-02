@@ -5,9 +5,11 @@
         <b-row>
           <b-col sm="6">
             <a>
-              PARCEIROS E APOIOS
+              {{ settings.title.toUpperCase() }}
             </a>
-            <partners />
+            <div v-if="settings.contact" class="mt-4 pre-line">
+              <small>{{ settings.contact }}</small>
+            </div>
             <div class="mt-4">
               <small>&copy; {{ settings.title }}. Todos os direitos reservados.</small>
             </div>
@@ -16,7 +18,7 @@
             <a>
               CONTATO
             </a>
-            <contact />
+            <Contact />
             <b-col sm="6">
               <a :href="'mailto:' + settings.email">{{ settings.email }}</a>
               &nbsp;

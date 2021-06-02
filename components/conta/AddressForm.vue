@@ -1,7 +1,8 @@
 <template>
   <div class="address-form">
-    <b-btn v-if="currentAddressFilled" variant="primary" @click="show_modal = !show_modal">Mudar endereço</b-btn>
-    <b-btn v-else variant="primary" @click="show_modal = !show_modal"><client-only><b-icon-map /></client-only> Configurar endereço</b-btn>
+    <CoordinatesPreview :address="value" />
+    <b-btn v-if="currentAddressFilled" variant="success" @click="show_modal = !show_modal">Mudar endereço</b-btn>
+    <b-btn v-else variant="success" @click="show_modal = !show_modal"><client-only><b-icon-map /></client-only> Configurar endereço</b-btn>
     <b-modal v-model="show_modal" title="Localização" hide-footer hide-header size="lg">
       <div v-if="show_auto_complete">
         <div v-if="!addressFilled">
@@ -20,22 +21,25 @@
         </div>
         <div v-else class="text-center">
           <div v-if="Array.isArray(address)" class="text-center">
-            <p>Algum desses é seu endereço?</p>
+            <p><strong>Algum desses é seu endereço?</strong></p>
             <table class="table md-auto">
               <tr v-for="(a, index) in address" :key="index" class="table">
                 <td class="text-left">
                   {{ a.description }}
                 </td>
                 <td class="text-right">
-                  <b-btn class="btn btn-primary btn-sm" @click="setAddressForm(a)">Selecionar</b-btn>
+                  <b-btn variant="success" size="sm" @click="setAddressForm(a)">Selecionar</b-btn>
                 </td>
               </tr>
             </table>
-            <b-btn variant="secondary" @click="showAutoComplete()">Nenhum desses é meu endereço</b-btn>
+            <b-btn variant="light" @click="showAutoComplete()">Nenhum desses é meu endereço</b-btn>
           </div>
           <div v-else>
-            <p>Este é seu endereço?</p>
-            <p><strong>{{ address.description }}</strong></p>
+            <p>
+              Este é seu endereço?
+              <br>
+              <strong>{{ address.description }}</strong>
+            </p>
             <div v-if="address && address.location && address.location.coordinates && address.location.coordinates.length === 2">
               <l-map :zoom="16" :center="address.location.coordinates" :options="{ scrollWheelZoom: false }" style="height: 250px;">
                 <l-tile-layer :url="url" :attribution="attribution" />
@@ -47,8 +51,8 @@
                 <small>Coordenadas: {{ address.location.coordinates.join(',') }}</small>
               </p>
             </div>
-            <b-btn variant="secondary" @click="showAutoComplete()">Não</b-btn>
-            <b-btn variant="primary" @click="setAddressForm(address)">Sim</b-btn>
+            <b-btn variant="light" size="lg" @click="showAutoComplete()">Não</b-btn>
+            <b-btn variant="success" size="lg" @click="setAddressForm(address)">Sim</b-btn>
           </div>
         </div>
       </div>
@@ -93,8 +97,8 @@
             </div>
           </div>
         </div>
-        <b-btn variant="secondary" @click="showAutoComplete()">Mudar localização</b-btn>
-        <b-btn variant="primary" @click="confirmAddress()">Confirmar endereço</b-btn>
+        <b-btn variant="light" @click="showAutoComplete()">Mudar localização</b-btn>
+        <b-btn variant="success" @click="confirmAddress()">Confirmar endereço</b-btn>
       </div>
     </b-modal>
   </div>
@@ -102,6 +106,7 @@
 <script>
 import axios from 'axios'
 import estados from '@/data/estados.json'
+import CoordinatesPreview from '@/components/conta/CoordinatesPreview'
 import cidades from '@/data/cidades.json'
 
 const emptyForm = {
@@ -121,14 +126,13 @@ const emptyForm = {
 }
 
 export default {
+  components: {
+    CoordinatesPreview
+  },
   props: {
     value: {
       type: Object,
       default: null
-    },
-    autoload: {
-      type: Boolean,
-      default: false
     }
   },
   data() {
@@ -160,16 +164,11 @@ export default {
     }
   },
   created() {
-    if (!this.inputFilled && this.autoload) {
-      this.show_modal = true
-      this.getLocation()
-    } else {
-      this.address = this.value
-      if (this.value) {
-        Object.keys(this.form).forEach(k => {
-          this.form[k] = this.value[k]
-        })
-      }
+    this.address = this.value
+    if (this.value) {
+      Object.keys(this.form).forEach(k => {
+        this.form[k] = this.value[k]
+      })
     }
   },
   methods: {

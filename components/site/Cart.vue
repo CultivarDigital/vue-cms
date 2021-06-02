@@ -19,7 +19,7 @@
               <b-img v-else blank blank-color="#E1846D" width="100" alt="placeholder" />
             </td>
             <td>
-              <router-link :to="'/loja/'+item.product._id" class="text-black">
+              <router-link :to="'/loja/'+item.product._id" class="text-dark">
                 <strong>{{ item.product.name }}</strong>
               </router-link>
             </td>
@@ -55,12 +55,12 @@
     </div>
     <div v-else class="text-center my-5">
       <h4>Seu carrinho está vazio</h4>
-      <router-link to="/loja" class="btn btn-secondary">
+      <b-btn to="/loja">
         Voltar para a loja
-      </router-link>
-      <router-link to="/loja/meus-pedidos" class="btn btn-primary">
+      </b-btn>
+      <b-btn to="/loja/meus-pedidos">
         Ver meus pedidos
-      </router-link>
+      </b-btn>
     </div>
   </div>
 </template>

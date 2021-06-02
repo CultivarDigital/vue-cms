@@ -4,7 +4,7 @@
       :label="label"
       :description="description"
     >
-      <div v-if="showPreview && preview && preview.length">
+      <div v-if="showPreview && !avatar && preview && preview.length">
         <table class="table b-table b-table-stacked-sm mb-1">
           <tbody>
             <tr v-for="(item, index) in preview" :key="index">
@@ -31,7 +31,15 @@
         <b-spinner small />
         Enviando arquivos...
       </b-button>
-      <b-btn v-else variant="primary" @click="upload">
+      <a v-else-if="avatar" @click="upload">
+        <b-avatar
+          size="6rem"
+          :src="preview && preview[0] && preview[0].thumb ? preview[0].thumb : null"
+        >
+          <template #badge><b-icon-camera /></template>
+        </b-avatar>
+      </a>
+      <b-btn v-else variant="success" @click="upload">
         <b-icon-upload />
         Enviar {{ type === 'images' ? 'image' + (multiple ? 'ns' : 'm') : 'arquivo' + (multiple ? 's' : '') }}
       </b-btn>
@@ -77,6 +85,10 @@ export default {
     showPreview: {
       type: Boolean,
       default: true
+    },
+    avatar: {
+      type: Boolean,
+      default: false
     }
   },
   data() {

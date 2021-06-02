@@ -6,8 +6,7 @@
     <section class="content pb-5">
       <b-container>
         <div v-show="tab === 'login'">
-          <p>Informe os dados da sua conta ou <b-btn size="sm" @click="tab = 'register'">cadastre-se</b-btn> para continuar.</p>
-          <form class="mt-4" @submit.prevent="login">
+          <form @submit.prevent="login">
             <b-form-group label="Digite seu email">
               <b-form-input v-model="form.email" type="text" />
             </b-form-group>
@@ -15,14 +14,19 @@
               <b-form-input v-model="form.password" type="password" />
             </b-form-group>
             <b-form-group class="text-center">
-              <b-button type="submit" variant="primary" block size="lg">
+              <p class="mb-4">
+                Ainda não possúi uma conta?
+                <b-btn variant="primary" size="sm" @click="open('register')">
+                  <strong>Cadastre-se</strong>
+                </b-btn>
+              </p>
+              <b-button type="submit" variant="success" block size="lg">
                 Entrar
               </b-button>
             </b-form-group>
           </form>
         </div>
         <div v-show="tab === 'register'">
-          <p>Informe seus dados para criar sua conta ou <b-btn size="sm" @click="tab = 'login'">entre</b-btn> se já possúi uma conta.</p>
           <ValidationObserver v-slot="{ validate, invalid }">
             <form @submit.prevent="validate().then(register)">
               <b-row>
@@ -44,10 +48,7 @@
                 </b-col>
                 <b-col md="12">
                   <b-form-group label="Seu endereço">
-                    <CoordinatesPreview :form="form" />
-                    <div>
-                      <address-form v-model="form.address" :autoload="false" />
-                    </div>
+                    <AddressForm v-model="form.address" />
                   </b-form-group>
                 </b-col>
                 <b-col md="12">
@@ -79,13 +80,13 @@
                 </b-col>
               </b-row>
               <b-form-group class="text-center">
-                <p>
+                <p class="mb-4">
                   Já possúi uma conta?
                   <b-btn variant="primary" size="sm" @click="open('login')">
-                    <strong>entre</strong>
+                    <strong>Entre</strong>
                   </b-btn>
                 </p>
-                <b-button type="submit" variant="secondary" :disabled="invalid">
+                <b-button type="submit" variant="success" block size="lg" :disabled="invalid">
                   Cadastrar
                 </b-button>
               </b-form-group>

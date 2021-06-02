@@ -2,12 +2,16 @@
   <div class="default-layout">
     <div class="conta">
       <Header />
-      <div class="mb-5" fluid>
-        <b-navbar toggleable="lg" variant="secondary" class="d-block d-sm-none">
+      <div class="mb-4" fluid>
+        <b-navbar toggleable="lg" variant="light" class="d-block d-sm-none">
           <b-container fluid="lg">
-            <b-navbar-brand to="/conta" class="text-white">
+            <b-navbar-brand to="/conta" class="text-primary">
               Minha conta
             </b-navbar-brand>
+            <b-navbar-toggle target="conta-header">
+              <font-awesome-icon icon="bars" />
+            </b-navbar-toggle>
+
             <b-collapse id="conta-header" is-nav>
               <b-navbar-nav>
                 <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/settings">Configurações</b-nav-item>
@@ -30,15 +34,12 @@
                 </b-nav-item-dropdown>
               </b-navbar-nav>
             </b-collapse>
-            <b-navbar-toggle target="conta-header">
-              <font-awesome-icon icon="bars" />
-            </b-navbar-toggle>
           </b-container>
         </b-navbar>
 
         <b-container fluid="lg" class="mt-3">
           <b-row>
-            <b-col md="3" class="d-none d-sm-block">
+            <b-col sm="3" class="d-none d-sm-block">
               <b-nav vertical>
                 <b-nav-item to="/conta">
                   <strong>{{ $auth.user.name }}</strong>
@@ -58,12 +59,13 @@
                 <b-nav-item @click="logout"><small>Sair</small></b-nav-item>
               </b-nav>
             </b-col>
-            <b-col md="9">
+            <b-col sm="9">
               <Nuxt />
             </b-col>
           </b-row>
         </b-container>
       </div>
+      <Footer />
     </div>
   </div>
 </template>

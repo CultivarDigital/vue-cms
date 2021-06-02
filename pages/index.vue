@@ -15,7 +15,7 @@
           </template>
         </b-carousel>
       </div>
-      <section class="content bg-default pb-4">
+      <section class="content bg-light pb-4">
         <b-container fluid="lg">
           <div v-if="settings.description" class="text-center px-5">
             <!-- <img src="~/assets/img/logo-laranja.svg" alt="Sobre"> -->

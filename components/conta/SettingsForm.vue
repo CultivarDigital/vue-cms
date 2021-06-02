@@ -28,7 +28,7 @@
       <Upload v-model="form.logo" label="Logo do site" type="images" />
       <Upload v-model="form.favicon" label="Favicon do site" type="images" />
       <Upload v-model="form.banners" label="Banners da home" type="images" description="Envie as imagens na ordem que aparecerão na tela de início" multiple />
-      <b-button type="submit" variant="secondary" block :disabled="invalid">
+      <b-button type="submit" variant="success" block :disabled="invalid">
         Salvar
       </b-button>
     </b-form>

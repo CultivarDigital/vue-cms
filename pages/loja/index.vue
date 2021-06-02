@@ -30,7 +30,6 @@
           <div class="content-header">
             <div class="text-lg-right">
               <CartButton />
-              <ShopAccountButton />
             </div>
             <div class="clearfix" />
           </div>
