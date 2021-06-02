@@ -5,6 +5,7 @@
       :links="[['Biblioteca', '/biblioteca']]"
       :active="media.title"
     />
+    <Breadcrumb v-else-if="filters.tag" :links="[['Biblioteca', '/biblioteca']]" :active="filters.tag" />
     <Breadcrumb v-else active="Biblioteca" />
     <section class="content">
       <b-container>
@@ -12,33 +13,33 @@
           <b-row>
             <b-col md="3">
               <div class="search mb-4">
-                <b-form-input v-model="filters.search" type="search" class="search" placeholder="O que você procura?" @input="searchChanged" />
-                <b-button v-if="filters.search" variant="secondary" block :to="'/biblioteca?categoria=' + filters.category + '&tag=' + filters.tag + '&search=' + filters.search" class="mt-1">Buscar</b-button>
+                <b-input-group>
+                  <b-form-input v-model="filters.search" type="search" placeholder="O que você busca?" @keyup.prevent.enter="list" />
+                  <b-input-group-append>
+                    <b-button variant="outline-primary" @click="list"><b-icon-search /></b-button>
+                  </b-input-group-append>
+                </b-input-group>
               </div>
               <b-card title="Categorias" no-body class="mb-4">
                 <b-list-group flush>
-                  <b-list-group-item v-for="category in categories" :key="category" :to="'/biblioteca?categoria=' + category + '&tag=' + filters.tag + '&search=' + filters.search" class="bg-primary">{{ category }}</b-list-group-item>
-                  <b-list-group-item v-if="filters.category" :to="'/biblioteca?tag=' + filters.tag + '&search=' + filters.search " class="bg-primary">Todas as categorias</b-list-group-item>
+                  <b-list-group-item v-for="category in categories" :key="category" class="bg-primary" @click="filters.category = category; list()">{{ category }}</b-list-group-item>
+                  <b-list-group-item v-if="filters.category" class="bg-primary" @click="filters.category = null; list()">Todas as categorias</b-list-group-item>
                 </b-list-group>
               </b-card>
               <div class="tags mb-4">
-                <b-button v-for="tag in tags" :key="tag" size="sm" variant="secondary" :to="'/biblioteca?categoria=' + filters.category + '&tag=' + tag + '&search=' + filters.search" :class="{ active: (tag === filters.tag) }" class="mb-1 mr-1">{{ tag }}</b-button>
-                <b-button v-if="filters.tag" variant="secondary" :to="'/biblioteca?categoria=' + filters.category + '&search=' + filters.search">Todos os temas</b-button>
+                <b-button v-for="tag in tags" :key="tag" size="sm" variant="secondary" :class="{ active: (tag === filters.tag) }" class="mb-1 mr-1" @click="filters.tag = tag; list()">{{ tag }}</b-button>
+                <b-button v-if="filters.tag" variant="primary" @click="filters.tag = null; list()">Todos os temas</b-button>
               </div>
-              <b-button v-if="filters.search || filters.category || filters.tag" class="mb-4" variant="primary" block to="/biblioteca">Limpar filtros</b-button>
+              <b-button v-if="filters.search || filters.category || filters.tag" class="mb-4" variant="primary" block @click="clearFilters">Limpar filtros</b-button>
             </b-col>
             <b-col md="9" class="medias">
               <div v-if="medias">
-                <div>
-                  <h3 v-if="filters.tag" class="title">{{ filters.tag }}</h3>
-                  <h3 v-else class="title">Biblioteca</h3>
-                  <p v-if="medias.length === 1"><strong>1</strong> Item encontrado <span v-if="filters.category">em <n-link :to="'/biblioteca?categoria=' + filters.category"><strong>{{ filters.category }}</strong></n-link></span></p>
-                  <p v-else><strong>{{ medias.length }}</strong> Items encontrados <span v-if="filters.category">em <n-link :to="'/biblioteca?categoria=' + filters.category"><strong>{{ filters.category }}</strong></n-link></span></p>
-                  <p v-if="medias && medias.length === 0" class="text-center">Nenhum item encontrado</p>
+                <div class="d-flex align-items-center mb-4">
+                  <Found :items="medias" />&nbsp;<span v-if="filters.category" class="text-primary"> em <strong>{{ filters.category }}</strong></span>
                 </div>
-                <medias :medias="medias" />
+                <Medias :medias="medias" />
               </div>
-              <media v-if="media" :media="media" />
+              <Media v-if="media" :media="media" />
             </b-col>
           </b-row>
         </div>
@@ -56,9 +57,9 @@ export default {
       tags: [],
       categories,
       filters: {
-        search: '',
-        category: '',
-        tag: ''
+        tag: this.$route.query.tag,
+        category: this.$route.query.category,
+        search: ''
       }
     }
   },
@@ -68,37 +69,22 @@ export default {
     } else {
       this.list(this.$route.query)
     }
-
-    const mediasTags = await this.$axios.$get('/api/medias', {
-      params: {
-        select: 'tags'
-      }
-    })
-    mediasTags.forEach(mediasTag => {
-      const tags = mediasTag.tags
-      tags.forEach(tag => {
-        if (!this.tags.includes(tag)) {
-          this.tags.push(tag)
-        }
-      })
-      this.tags = this.tags.sort((a, b) => a.localeCompare(b))
-    })
+    this.tags = await this.$axios.$get('/api/medias/tags')
   },
   methods: {
     async list (query) {
-      this.filters.category = query.categoria || ''
-      this.filters.tag = query.tag || ''
-      this.medias = await this.$axios.$get('/api/medias', {
-        params: this.filters
-      })
+      this.media = null
+      this.medias = await this.$axios.$get('/api/medias', { params: this.filters })
     },
     async get (id) {
+      this.medias = null
       this.media = await this.$axios.$get('/api/medias/' + id)
     },
-    searchChanged () {
-      if (this.filters.search === '') {
-        this.$router.push('/biblioteca?categoria=' + this.filters.category + '&tag=' + this.filters.tag)
-      }
+    clearFilters () {
+      this.filters.search = null
+      this.filters.tag = null
+      this.filters.category = null
+      this.list()
     }
   },
   watchQuery(newQuery) {

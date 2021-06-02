@@ -1,6 +1,6 @@
 <template>
   <b-btn :to="'/loja/carrinho'" class="btn-cart" variant="primary" size="lg">
-    <img src="~assets/img/icon-cart.svg" alt="Carrinho"> {{ cart.length > 0 ? cart.length + " itens no carrinho" : "Carrinho vazio" }}
+    <img src="~assets/img/icon-cart.svg" alt="Carrinho"> &nbsp; {{ cart.length }}
   </b-btn>
 </template>
 

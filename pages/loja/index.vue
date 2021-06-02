@@ -7,16 +7,14 @@
       <b-row>
         <b-col lg="3">
           <div class="filters">
-            <div class="search">
-              <input v-model="filters.search" type="search" placeholder="O que você procura?" class="form-control mb-3" @keyup.prevent.enter="list">
+            <div class="search mb-4">
+              <b-input-group>
+                <b-form-input v-model="filters.search" type="search" placeholder="O que você busca?" @keyup.prevent.enter="list" />
+                <b-input-group-append>
+                  <b-button variant="outline-primary" @click="list"><b-icon-search /></b-button>
+                </b-input-group-append>
+              </b-input-group>
             </div>
-            <b-btn v-if="filters.search" variant="light" class="mb-3" @click="filters.search = ''; list()">
-              Limpar busca
-            </b-btn>
-            <b-btn v-if="filters.search" variant="success" class="mb-3" @click="list">
-              <b-icon-search />
-              Buscar
-            </b-btn>
             <b-dropdown :text="'Ordenar por ' + sorts[filters.sort]" variant="outline-default" size="sm" class="mb-3">
               <b-dropdown-item v-for="(v, k) in sorts" :key="k" @click="filters.sort = k; list()">{{ v }}</b-dropdown-item>
             </b-dropdown>
@@ -27,20 +25,10 @@
           </div>
         </b-col>
         <b-col lg="9">
-          <div class="content-header">
+          <div>
             <b-row>
               <b-col md="9" class="d-flex align-items-center">
-                <div v-if="products">
-                  <div v-if="products && products.length" class="list-counter">
-                    <span v-if="products.length > 1"><strong>{{ products.length }}</strong> ofertas encontradas</span>
-                    <span v-else-if="products.length == 1"><strong>Uma</strong> oferta encontrada</span>
-                    <span v-if="filters.tag"> em <strong>{{ filters.tag }}</strong></span>
-                  </div>
-                  <div v-else>
-                    <strong>Nenhuma oferta encontrada.</strong>
-                  </div>
-                </div>
-                <b-spinner v-else small label="Carregando ofertas" />
+                <Found :items="products" />
               </b-col>
               <b-col md="3" class="text-lg-right">
                 <CartButton />

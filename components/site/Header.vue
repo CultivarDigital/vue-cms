@@ -2,7 +2,7 @@
   <header>
     <b-navbar toggleable="lg" variant="primary" type="dark">
       <b-container fluid="lg">
-        <b-navbar-brand v-if="settings" to="/">
+        <b-navbar-brand v-if="settings" to="/" class="p-0">
           <b-img v-if="settings.logo && settings.logo.url" :src="settings.logo.url" />
           <h5 v-else class="mb-0">{{ settings.title }}</h5>
         </b-navbar-brand>
@@ -10,7 +10,6 @@
           <font-awesome-icon icon="bars" />
         </b-navbar-toggle>
         <b-collapse id="header-menu" is-nav class="my-3">
-          <b-navbar-nav />
           <template v-if="menus !== null">
             <dynamic-menu-item :menus="menus" />
           </template>

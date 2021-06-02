@@ -9,8 +9,7 @@
           </div>
           <div class="card-body">
             <div class="card-text">
-              <h5 class="mb-0">{{ media.title }}</h5>
-              <p v-if="media.description" class="text-primary mb-0 mt-2">{{ media.description | truncate(200) }}</p>
+              {{ media.title }}
             </div>
             <n-link :to="'/biblioteca/' + media._id" class="stretched-link hidden" />
           </div>

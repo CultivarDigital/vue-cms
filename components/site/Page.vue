@@ -1,12 +1,12 @@
 <template>
   <div>
+    <Banners v-if="page" :items="page.pictures" />
     <Breadcrumb
       v-if="page"
       :active="page.title"
       :description="page.description"
     />
     <div v-if="page" class="page">
-      <Banners :items="page.pictures" />
       <b-container>
         <div class="title mt-4">
           <h4 v-if="page.title" class="title">{{ page.title }}</h4>

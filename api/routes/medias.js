@@ -6,13 +6,18 @@ const Media = mongoose.model('Media')
 
 router.get('/', (req, res) => {
   const query = {}
+
+  if (req.query.search) {
+    query.title = { $regex: req.query.search, $options: 'i' }
+  }
   if (req.query.category) {
     query.category = req.query.category
   }
   if (req.query.tag) {
     query.tags = req.query.tag
   }
-  Media.find(query, req.query.select).populate(req.query.populate).sort({ createdAt: -1 }).exec((err, medias) => {
+
+  Media.find(query).populate(req.query.populate).sort({ createdAt: -1 }).exec((err, medias) => {
     if (err) {
       res.status(422).send(err.message)
     } else {
@@ -21,20 +26,23 @@ router.get('/', (req, res) => {
   })
 })
 
-router.get('/current_tags', (req, res) => {
-  Media.find().select('tags').exec((err, medias) => {
+router.get('/tags', (req, res) => {
+  const query = { }
+  Media.find(query, 'tags').exec((err, medias) => {
     if (err) {
-      res.status(422).send(err.message)
+      res.status(422).send(err)
     } else {
       const tags = {}
       medias.forEach(media => {
-        if (media.tags) {
+        if (media && media.tags) {
           media.tags.forEach(tag => {
             tags[tag] = true
           })
         }
       })
-      res.json(Object.keys(tags).sort((a, b) => a.localeCompare(b)))
+      res.json(Object.keys(tags).sort((a, b) => {
+        return a.localeCompare(b)
+      }))
     }
   })
 })

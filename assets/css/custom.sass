@@ -101,7 +101,7 @@ a
     font-weight: bold
 .card
   border: none
-  background-color: $secondary
+  background-color: $primary
   .card-body
     display: flex
     align-items: center
@@ -109,7 +109,6 @@ a
 
 header
   font-family: 'Raleway', sans-serif
-
   .navbar
     padding: 15px
   .navbar-brand
@@ -118,11 +117,6 @@ header
       max-height: 50px
       @media (max-width: 768px)
         max-height: 30px
-    .navbar-toggler
-      color: $white !important
-      border: 1px solid $white !important
-      .navbar-toggler-icon
-        color: $white !important
   .navbar-nav
     > li
       font-size: 22px
@@ -170,23 +164,23 @@ footer
     font-weight: 200
   .links
     letter-spacing: 3px
+.title
+  hr
+    width: 60px
+    height: 2px
+    background: $secondary
+    margin-top: 10px
+
+  h4
+    margin-bottom: 0px
+    text-align: center
+    color: $primary
+
 .content
-  color: $primary
-  padding-top: 50px
-  padding-bottom: 50px
+  padding-top: 30px
+  padding-bottom: 30px
   .card
     color: $dark
-
-  .title
-    hr
-      width: 60px
-      height: 2px
-      background: $secondary
-      margin-top: 10px
-
-    h4
-      margin-bottom: 0px
-      text-align: center
 
   .page
     .pattern
@@ -272,30 +266,21 @@ footer
   img
     max-width: 100%
 
+.search
+  input
+    color: $primary !important
+    border-color: $primary
+    font-size: 16px
+    font-weight: bold
+    &::placeholder
+      color: $primary
+
 .shop
-  color: $primary
   .btn-cart
     font-size: 1rem
   .card
     background-color: $white
     border: 1px solid $gray-300
-  .search
-    input
-      border: none
-      color: $primary
-      border-bottom: 1px solid $primary
-      border-radius: 0
-      padding: 10px 0
-      font-size: 16px
-      font-weight: bold
-      background-image: url("~assets/img/search.svg")
-      background-repeat: no-repeat
-      background-position: 100%
-      background-size: 20px
-      padding-right: 22px
-      margin-bottom: 10px
-      &::placeholder
-        color: $primary
   .products
     .card
       margin-bottom: 30px
