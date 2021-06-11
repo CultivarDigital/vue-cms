@@ -92,13 +92,13 @@ router.get('/related/:id', (req, res) => {
   })
 })
 
-router.post('/order', auth.client, (req, res) => {
+router.post('/order', auth.authenticated, (req, res) => {
   Order.find().sort({
     code: -1
   }).limit(1).exec((err, latest) => {
     if (!err) {
       const newOrder = new Order(req.body)
-      newOrder.client = req.user._id
+      newOrder.user = req.user._id
       if (latest && latest.length) {
         newOrder.code = latest[0].code + 1
       } else {

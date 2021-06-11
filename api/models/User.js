@@ -33,7 +33,9 @@ const UserSchema = new mongoose.Schema({
   },
   organization: String,
   picture: Object,
-  address: AddressSchema
+  address: AddressSchema,
+  phone: String,
+  cpf_cnpj: String
 }, {
   timestamps: true,
   toJSON: { virtuals: true }
@@ -61,7 +63,9 @@ UserSchema.methods.data = function() {
     name: this.name,
     picture: this.picture,
     organization: this.organization,
-    address: this.address
+    address: this.address,
+    phone: this.phone,
+    cpf_cnpj: this.cpf_cnpj
   }
 }
 

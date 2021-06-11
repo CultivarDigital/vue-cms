@@ -45,7 +45,7 @@ export default {
       table: [
         { key: 'name', label: 'Nome' },
         { key: 'email', label: 'Email' },
-        { key: 'roles', label: 'Perfil' },
+        { key: 'role', label: 'Perfil' },
         { key: 'actions', label: '', class: 'text-right' }
       ]
     }

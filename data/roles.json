@@ -1,5 +1,4 @@
 [
-  { "text": "Usuário", "value": "user" },
-  { "text": "Consumidor", "value": "client" },
+  { "text": "Cliente", "value": "user" },
   { "text": "Administrador", "value": "admin" }
 ]

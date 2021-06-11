@@ -4,7 +4,7 @@
       :active="tab === 'login' ? 'Entrar' : 'Cadastre-se'"
     />
     <section class="content pb-5">
-      <b-container>
+      <b-container fluid="md">
         <div v-show="tab === 'login'">
           <form @submit.prevent="login">
             <b-form-group label="Digite seu email">
@@ -30,28 +30,41 @@
           <ValidationObserver v-slot="{ validate, invalid }">
             <form @submit.prevent="validate().then(register)">
               <b-row>
-                <b-col md="12">
-                  <b-form-group label="Seu nome completo">
+                <b-col md="6">
+                  <b-form-group label="Seu nome completo *">
                     <validation-provider v-slot="{ errors }" name="nome" rules="required">
                       <b-form-input v-model="register_form.name" name="name" />
                       <span class="text-danger">{{ errors[0] }}</span>
                     </validation-provider>
                   </b-form-group>
                 </b-col>
-                <b-col md="12">
+                <b-col md="6">
                   <b-form-group label="Você faz parte de alguma organização?">
-                    <validation-provider v-slot="{ errors }" name="organização" rules="required">
-                      <b-form-input v-model="register_form.organization" />
+                    <b-form-input v-model="register_form.organization" />
+                  </b-form-group>
+                </b-col>
+                <b-col md="6">
+                  <b-form-group label="CPF/CNPJ *">
+                    <validation-provider v-slot="{ errors }" name="CPF/CNPJ" rules="required">
+                      <b-form-input v-model="register_form.cpf_cnpj" v-mask="['###.###.###-##', '##.###.###/####-##']" name="cpf_cnpj" />
+                      <span class="text-danger">{{ errors[0] }}</span>
+                    </validation-provider>
+                  </b-form-group>
+                </b-col>
+                <b-col md="6">
+                  <b-form-group label="Telefone *">
+                    <validation-provider v-slot="{ errors }" name="telefone" rules="required">
+                      <b-form-input v-model="register_form.phone" v-validate="'required'" v-mask="['(##) ####-####', '(##) #####-####']" name="phone" placeholder="(99) 99999-9999" />
                       <span class="text-danger">{{ errors[0] }}</span>
                     </validation-provider>
                   </b-form-group>
                 </b-col>
                 <b-col md="12">
                   <b-form-group label="Seu endereço">
-                    <AddressForm v-model="form.address" />
+                    <AddressForm v-model="register_form.address" />
                   </b-form-group>
                 </b-col>
-                <b-col md="12">
+                <b-col md="6">
                   <b-form-group label="Seu email">
                     <validation-provider v-slot="{ errors }" name="email" rules="required|email">
                       <b-form-input v-model="register_form.email" name="email" />
@@ -61,16 +74,16 @@
                 </b-col>
               </b-row>
               <b-row>
-                <b-col md="12">
-                  <b-form-group label="Senha">
+                <b-col md="6">
+                  <b-form-group label="Sua senha">
                     <validation-provider v-slot="{ errors }" name="senha" rules="required|min:6">
                       <b-form-input v-model="register_form.password" type="password" name="pass" />
                       <span class="text-danger">{{ errors[0] }}</span>
                     </validation-provider>
                   </b-form-group>
                 </b-col>
-                <b-col md="12">
-                  <b-form-group label="Confirmar senha">
+                <b-col md="6">
+                  <b-form-group label="Confirme a sua senha">
                     <validation-provider v-slot="{ errors }" name="confirmar senha" rules="required">
                       <b-form-input v-model="register_form.password_confirmation" type="password" name="pass_confirmation" />
                       <span class="text-danger">{{ errors[0] }}</span>
@@ -116,6 +129,8 @@ export default {
         name: '',
         email: '',
         organization: '',
+        phone: '',
+        cpf_cnpj: '',
         address: {
           city: '',
           uf: '',

@@ -17,13 +17,6 @@ function isAdmin(req) {
   return false
 }
 
-function isClientOrAbove(req) {
-  if (req.user && req.user.role) {
-    return req.user.role === 'client' || req.user.role === 'admin'
-  }
-  return false
-}
-
 function authenticatedAdmin(req, res, next) {
   if (isAdmin(req)) {
     next()
@@ -31,17 +24,6 @@ function authenticatedAdmin(req, res, next) {
     return res.status(403).json({
       status: 403,
       message: 'A permissão de administrador é necessária para acessar este recurso.'
-    })
-  }
-}
-
-function authenticatedClient(req, res, next) {
-  if (isClientOrAbove(req)) {
-    next()
-  } else {
-    return res.status(403).json({
-      status: 403,
-      message: 'A permissão de cliente é necessária para acessar este recurso.'
     })
   }
 }
@@ -57,7 +39,6 @@ const authenticatedJWT = () => {
 const auth = {
   authenticated: authenticatedJWT(),
   admin: [authenticatedJWT(), authenticatedAdmin],
-  client: [authenticatedJWT(), authenticatedClient],
   optional: jwt({
     secret,
     algorithms: ['HS256'],
@@ -65,7 +46,6 @@ const auth = {
     credentialsRequired: false,
     getToken: getTokenFromHeader
   }),
-  isClientOrAbove,
   isAdmin
 }
 

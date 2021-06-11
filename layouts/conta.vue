@@ -24,8 +24,8 @@
                 <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/posts">Notícias</b-nav-item>
                 <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/events">Agenda</b-nav-item>
                 <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/ecommerce">Loja</b-nav-item>
-                <b-nav-item to="/conta/contacts">Contatos</b-nav-item>
-                <b-nav-item to="/conta/users">Usuários</b-nav-item>
+                <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/contacts">Contatos</b-nav-item>
+                <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/users">Usuários</b-nav-item>
                 <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/settings">Configurações</b-nav-item>
                 <b-nav-item to="/conta/profile">Meus dados</b-nav-item>
                 <b-nav-item @click="logout"><small>Sair</small></b-nav-item>
@@ -36,24 +36,26 @@
         <b-container fluid="lg" class="mt-3">
           <b-row>
             <b-col sm="3" class="d-none d-sm-block">
-              <b-nav vertical>
-                <b-nav-item to="/conta">
-                  <strong>{{ $auth.user.name }}</strong>
-                  <br>
-                  <small>{{ userRoleText }}</small>
-                </b-nav-item>
-                <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/pages">Páginas</b-nav-item>
-                <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/menus">Menus</b-nav-item>
-                <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/medias">Midiateca</b-nav-item>
-                <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/posts">Notícias</b-nav-item>
-                <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/events">Agenda</b-nav-item>
-                <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/ecommerce">Loja</b-nav-item>
-                <b-nav-item to="/conta/contacts">Contatos</b-nav-item>
-                <b-nav-item to="/conta/users">Usuários</b-nav-item>
-                <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/settings">Configurações</b-nav-item>
-                <b-nav-item to="/conta/profile">Meus dados</b-nav-item>
-                <b-nav-item @click="logout"><small>Sair</small></b-nav-item>
-              </b-nav>
+              <div class="sidebar py-2 px-1">
+                <b-nav vertical>
+                  <b-nav-item to="/conta" active-class="profile-info">
+                    <strong>{{ $auth.user.name }}</strong>
+                    <br>
+                    <small>({{ userRoleText }})</small>
+                  </b-nav-item>
+                  <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/pages">Páginas</b-nav-item>
+                  <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/menus">Menus</b-nav-item>
+                  <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/medias">Midiateca</b-nav-item>
+                  <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/posts">Notícias</b-nav-item>
+                  <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/events">Agenda</b-nav-item>
+                  <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/ecommerce">Loja</b-nav-item>
+                  <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/contacts">Contatos</b-nav-item>
+                  <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/users">Usuários</b-nav-item>
+                  <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/settings">Configurações</b-nav-item>
+                  <b-nav-item to="/conta/profile">Meus dados</b-nav-item>
+                  <b-nav-item @click="logout"><small>Sair</small></b-nav-item>
+                </b-nav>
+              </div>
             </b-col>
             <b-col sm="9">
               <Nuxt />

@@ -9,17 +9,18 @@ const OrderSchema = mongoose.Schema(
       type: Number,
       required: true
     },
-    client: {
+    user: {
       type: ObjectId,
       ref: 'User',
       required: true
     },
     items: [OrderItemSchema],
     name: String,
-    cpf: String,
     email: String,
-    phone: String,
+    organization: String,
     address: AddressSchema,
+    phone: String,
+    cpf_cnpj: String,
     status: String
   },
   {

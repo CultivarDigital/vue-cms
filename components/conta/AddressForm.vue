@@ -1,7 +1,7 @@
 <template>
   <div class="address-form">
     <CoordinatesPreview :address="value" />
-    <b-btn v-if="currentAddressFilled" variant="success" @click="show_modal = !show_modal">Mudar endereço</b-btn>
+    <b-btn v-if="currentAddressFilled" variant="light" @click="show_modal = !show_modal"><client-only><b-icon-map /></client-only> Mudar endereço</b-btn>
     <b-btn v-else variant="success" @click="show_modal = !show_modal"><client-only><b-icon-map /></client-only> Configurar endereço</b-btn>
     <b-modal v-model="show_modal" title="Localização" hide-footer hide-header size="lg">
       <div v-if="show_auto_complete">

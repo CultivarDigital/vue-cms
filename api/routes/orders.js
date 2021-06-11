@@ -7,8 +7,8 @@ const Order = mongoose.model('Order')
 router.get('/', authenticated, function(req, res) {
   const query = { }
 
-  if (req.user.role === 'client') {
-    query.client = req.user._id
+  if (req.user.role === 'user') {
+    query.user = req.user._id
   }
 
   Order.find(query)
@@ -33,13 +33,13 @@ router.get('/:id', authenticated, function(req, res) {
     _id: req.params.id
   }
 
-  if (req.user.role === 'client') {
-    query.client = req.user._id
+  if (req.user.role === 'user') {
+    query.user = req.user._id
   }
 
   Order.findOne(query)
     .populate([
-      'client',
+      'user',
       {
         path: 'items.product',
         model: 'Product'

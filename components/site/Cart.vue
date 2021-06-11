@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mb-5">
     <div v-if="cart && cart.length">
       <table class="table b-table b-table-stacked-lg">
         <thead>

@@ -3,6 +3,16 @@ const router = require('express').Router()
 const auth = require('../config/auth')
 const User = mongoose.model('User')
 
+const setData = (user, data) => {
+  user.email = data.email
+  user.name = data.name
+  user.picture = data.picture
+  user.organization = data.organization
+  user.address = data.address
+  user.phone = data.phone
+  user.cpf_cnpj = data.cpf_cnpj
+}
+
 router.get('/', auth.admin, function(req, res) {
   let filters = {}
 
@@ -30,11 +40,8 @@ router.get('/:id', auth.admin, function(req, res) {
 router.post('/', auth.admin, (req, res, next) => {
   const user = new User()
 
-  user.email = req.body.email
-  user.name = req.body.name
-  user.picture = req.body.picture
-  user.organization = req.body.organization
-  user.address = req.body.address
+  setData(user, req.body)
+
   user.role = req.body.role
 
   user.setPassword(req.body.password)
@@ -44,30 +51,24 @@ router.post('/', auth.admin, (req, res, next) => {
   }).catch(next)
 })
 
-// router.post('/register', async (req, res, next) => {
-//   const user = new User()
+router.post('/register', (req, res, next) => {
+  const user = new User()
 
-//   user.email = req.body.email
-//   user.name = req.body.name
-//   user.picture = req.body.picture
-//   user.organization = req.body.organization
-//   user.address = req.body.address
-//   user.role = 'user'
+  setData(user, req.body)
 
-//   user.setPassword(req.body.password)
+  user.role = 'user'
 
-//   user.save().then(function() {
-//     return res.send(user.data())
-//   }).catch(next)
-// })
+  user.setPassword(req.body.password)
+
+  user.save().then(function() {
+    return res.send(user.data())
+  }).catch(next)
+})
 
 router.put('/:id', auth.admin, function(req, res, next) {
   User.findById(req.params.id).then((user) => {
-    user.email = req.body.email
-    user.name = req.body.name
-    user.picture = req.body.picture
-    user.organization = req.body.organization
-    user.address = req.body.address
+    setData(user, req.body)
+
     user.role = req.body.role
 
     if (req.body.password) {
@@ -82,11 +83,7 @@ router.put('/:id', auth.admin, function(req, res, next) {
 
 router.put('/', auth.authenticated, function(req, res, next) {
   User.findById(req.user._id).then(function(user) {
-    user.email = req.body.email
-    user.name = req.body.name
-    user.picture = req.body.picture
-    user.organization = req.body.organization
-    user.address = req.body.address
+    setData(user, req.body)
     if (req.body.password) {
       user.setPassword(req.body.password)
     }

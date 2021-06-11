@@ -37,7 +37,6 @@
           </b-media>
         </ul>
         <b-alert v-else show variant="dark" class="text-center">Nenhum item encontrado</b-alert>
-        </ul>
       </div>
       <div v-else class="text-center">
         <b-spinner small label="Carregando..." />

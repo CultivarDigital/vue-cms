@@ -1,7 +1,7 @@
 <template>
   <div class="profile">
     <b-breadcrumb :items="breadcrumb" />
-    <ProfileForm />
+    <UserForm v-if="profile" :user="profile" />
   </div>
 </template>
 
@@ -13,8 +13,12 @@ export default {
       breadcrumb: [
         { text: 'Painel', to: '/conta' },
         { text: 'Perfil do usuário', active: true }
-      ]
+      ],
+      profile: null
     }
+  },
+  async created() {
+    this.profile = await this.$axios.$get('/api/profile')
   }
 }
 </script>

@@ -13,7 +13,7 @@
         </div>
         <br>
         <div class="row">
-          <div class="col-sm-5">
+          <div v-if="product.pictures && product.pictures.length" class="col-sm-5">
             <b-carousel id="carousel-fade" v-model="slide" style="text-shadow: 0 0 2px #000;" fade indicators img-width="1024" img-height="480" class="mb-3">
               <b-carousel-slide v-for="(picture, index) in product.pictures" :key="index" :img-src="picture.url" />
             </b-carousel>

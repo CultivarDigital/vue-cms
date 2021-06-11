@@ -12,6 +12,40 @@
           </b-form-group>
         </b-col>
         <b-col md="6">
+          <b-form-group label="Organização">
+            <b-form-input v-model="form.organization" />
+          </b-form-group>
+        </b-col>
+        <b-col md="6">
+          <b-form-group label="CPF/CNPJ *">
+            <validation-provider v-slot="{ errors }" name="CPF/CNPJ" rules="required">
+              <b-form-input v-model="form.cpf_cnpj" v-mask="['###.###.###-##', '##.###.###/####-##']" name="cpf_cnpj" />
+              <span class="text-danger">{{ errors[0] }}</span>
+            </validation-provider>
+          </b-form-group>
+        </b-col>
+        <b-col md="6">
+          <b-form-group label="Telefone *">
+            <validation-provider v-slot="{ errors }" name="telefone" rules="required">
+              <b-form-input v-model="form.phone" v-validate="'required'" v-mask="['(##) ####-####', '(##) #####-####']" name="phone" placeholder="(99) 99999-9999" />
+              <span class="text-danger">{{ errors[0] }}</span>
+            </validation-provider>
+          </b-form-group>
+        </b-col>
+        <b-col md="12">
+          <b-form-group label="Endereço *">
+            <AddressForm v-model="form.address" />
+          </b-form-group>
+        </b-col>
+        <b-col v-if="$auth.user.role === 'admin'" md="6">
+          <b-form-group label="Perfil *">
+            <validation-provider v-slot="{ errors }" rules="required">
+              <b-form-select v-model="form.role" :options="roles" />
+              <span class="text-danger">{{ errors[0] }}</span>
+            </validation-provider>
+          </b-form-group>
+        </b-col>
+        <b-col md="6">
           <b-form-group label="Email *">
             <validation-provider v-slot="{ errors }" name="email" rules="required|email">
               <b-form-input v-model="form.email" name="email" />
@@ -39,29 +73,6 @@
               <span class="text-danger">{{ errors[0] }}</span>
               <span v-if="!passwordConfirmed" class="text-danger">As senhas digitadas não conferem</span>
             </validation-provider>
-          </b-form-group>
-        </b-col>
-      </b-row>
-      <b-row v-if="$auth.user.role === 'admin'">
-        <b-col md="6">
-          <b-form-group label="Perfil *">
-            <validation-provider v-slot="{ errors }" rules="required">
-              <b-form-select v-model="form.role" :options="roles" />
-              <span class="text-danger">{{ errors[0] }}</span>
-            </validation-provider>
-          </b-form-group>
-        </b-col>
-        <b-col v-if="form.role && form.role === 'user'" md="6">
-          <b-form-group label="Organização *">
-            <validation-provider v-slot="{ errors }" name="organização" rules="required">
-              <b-form-input v-model="form.organization" />
-              <span class="text-danger">{{ errors[0] }}</span>
-            </validation-provider>
-          </b-form-group>
-        </b-col>
-        <b-col md="12">
-          <b-form-group label="Seu endereço">
-            <AddressForm v-model="form.address" />
           </b-form-group>
         </b-col>
       </b-row>
@@ -100,9 +111,8 @@ export default {
         picture: null,
         email: '',
         organization: '',
-        password: '',
-        password_confirmation: '',
-        role: null,
+        phone: '',
+        cpf_cnpj: '',
         address: {
           city: '',
           uf: '',
@@ -110,7 +120,10 @@ export default {
             type: 'Point',
             coordinates: []
           }
-        }
+        },
+        password: '',
+        password_confirmation: '',
+        role: null
       }
     }
   },
@@ -125,10 +138,19 @@ export default {
   methods: {
     async save () {
       if (this.user) {
-        const user = await this.$axios.$put('/api/users/' + this.user._id, this.form)
-        if (user) {
-          this.$toast.success('Usuário atualizado com sucesso!')
-          this.$router.push('/conta/users')
+        if (this.$auth.user.role === 'admin' && this.user._id !== this.$auth.user._id) {
+          const user = await this.$axios.$put('/api/users/' + this.user._id, this.form)
+          if (user) {
+            this.$toast.success('Usuário atualizado com sucesso!')
+            this.$router.push('/conta/users')
+          }
+        } else {
+          const user = await this.$axios.$put('/api/users', this.form)
+          if (user) {
+            this.$auth.setUser(user)
+            this.$toast.success('Seus dados foram atualizados com sucesso')
+            this.$router.push('/conta')
+          }
         }
       } else {
         const user = await this.$axios.$post('/api/users', this.form)

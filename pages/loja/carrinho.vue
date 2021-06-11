@@ -4,7 +4,7 @@
       :links="[['Loja', '/loja']]"
       active="Resumo do pedido"
     />
-    <b-container class="py-4">
+    <b-container class="pt-4 pb-5">
       <Cart />
       <div v-if="cart && cart.length" class="text-right">
         <b-button to="/loja" variant="secondary">Continuar comprando</b-button>

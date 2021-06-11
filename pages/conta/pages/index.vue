@@ -12,6 +12,9 @@
           <template v-slot:cell(tags)="data">
             <tags :tags="data.value" />
           </template>
+          <template v-slot:cell(slug)="data">
+            <a :href="'/' + data.value" target="_blank">{{ '/' + data.value }}</a>
+          </template>
           <template v-slot:cell(actions)="data">
             <n-link class="btn btn-info btn-sm" :to="'/conta/pages/' + data.item.slug + '/edit'">
               <b-icon-pencil />

@@ -4,120 +4,74 @@
       :links="[['Loja', '/loja']]"
       active="Finalizar do pedido"
     />
-    <b-container class="shop py-4">
+    <b-container class="pt-4 pb-5">
+      <Cart />
       <div v-if="cart && cart.length">
-        <div>
-          <table class="table b-table b-table-stacked-lg">
-            <thead>
-              <tr>
-                <th class="text-center" />
-                <th>Oferta</th>
-                <th>Valor</th>
-                <th>Quantidade</th>
-                <th>Total</th>
-                <th />
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="(item, index) in cart" :key="index">
-                <td>
-                  <b-img v-if="item.product.pictures && item.product.pictures.length" :src="item.product.pictures[0].thumb" width="100" alt="placeholder" />
-                  <b-img v-else blank blank-color="#E1846D" width="100" alt="placeholder" />
-                </td>
-                <td>
-                  <router-link :to="'/loja/'+item.product._id" class="text-dark">
-                    <strong>{{ item.product.name }}</strong>
-                  </router-link>
-                </td>
-                <td>
-                  {{ item.product.price | moeda }}
-                </td>
-                <td>
-                  {{ item.qtd }}
-                </td>
-                <td>
-                  <strong>{{ item.product.price * item.qtd | moeda }}</strong>
-                </td>
-                <td class="text-center">
-                  <b-button size="sm" variant="light" rel="tooltip" data-placement="left" title="Remover do carrinho" @click="removeFromCart(index)">
-                    <b-icon-trash />
-                  </b-button>
-                </td>
-              </tr>
-            </tbody>
-            <tfoot>
-              <tr class="text-lg">
-                <td colspan="3" />
-                <td>
-                  <strong>Total</strong>
-                </td>
-                <td colspan="1">
-                  <h5 class="mb-0"><strong>{{ total | moeda }}</strong></h5>
-                </td>
-                <td colspan="1" />
-              </tr>
-            </tfoot>
-          </table>
-        </div>
-        <br>
-        <div>
-          <h4 class="text-center">Finalize pedido</h4>
-          <br>
-          <h6 class="text-center">Confirme os dados abaixo para finalizar o pedido</h6>
-          <br>
-          <div class="row">
-            <div class="col-sm-6">
-              <b-form-group label="Nome *">
-                <b-form-input v-model="form.name" v-validate="'required'" name="name" />
-                <field-error :msg="veeErrors" field="name" />
-              </b-form-group>
-            </div>
-            <div class="col-sm-6">
-              <b-form-group label="CPF/CNPJ *">
-                <b-form-input v-model="form.cpf" v-validate="'required'" v-mask="['###.###.###-##', '##.###.###/####-##']" name="cpf" />
-                <field-error :msg="veeErrors" field="cpf" />
-              </b-form-group>
-            </div>
-            <div class="col-sm-6">
-              <b-form-group label="Telefone *">
-                <b-form-input v-model="form.phone" v-validate="'required'" v-mask="['(##) ####-####', '(##) #####-####']" name="phone" placeholder="(99) 99999-9999" />
-                <field-error :msg="veeErrors" field="phone" />
-              </b-form-group>
-            </div>
-            <div class="col-sm-6">
-              <b-form-group label="Email *">
-                <b-form-input v-model="form.email" v-validate="'email|required'" name="email" />
-                <field-error :msg="veeErrors" field="email" />
-              </b-form-group>
-            </div>
-            <div class="col-sm-12">
-              <b-form-group label="Endereço *">
-                <span v-if="form.address" class="text-dark">{{ form.address.description }}</span>
-                <location :cb="setAddress" :current_address="form.address" />
-              </b-form-group>
-            </div>
-          </div>
-        </div>
-        <br>
-        <div class="text-right">
-          <b-button :to="'/loja'" variant="secondary">Continuar comprando</b-button>
-          <b-button variant="primary" size="lg" @click="saveOrder">Finalizar pedido</b-button>
-        </div>
-      </div>
-      <div v-else class="text-center my-5">
-        <h4>Seu carrinho está vazio</h4>
-        <router-link :to="'/loja'" class="btn btn-light">
-          Voltar para a loja
-        </router-link>
-        <router-link :to="'/pedidos'" class="btn btn-light" if="isClient">
-          Ver meus pedidos
-        </router-link>
+        <h4 class="text-center">Finalize o pedido</h4>
+        <p class="text-center mb-4">Confirme os dados abaixo para finalizar o pedido</p>
+        <ValidationObserver v-slot="{ validate, invalid }">
+          <b-form @submit.prevent="validate().then(save)">
+            <b-row>
+              <b-col md="6">
+                <b-form-group label="Nome *">
+                  <validation-provider v-slot="{ errors }" name="nome" rules="required">
+                    <b-form-input v-model="form.name" name="name" />
+                    <span class="text-danger">{{ errors[0] }}</span>
+                  </validation-provider>
+                </b-form-group>
+              </b-col>
+              <b-col md="6">
+                <b-form-group label="Organização">
+                  <b-form-input v-model="form.organization" />
+                </b-form-group>
+              </b-col>
+              <b-col md="6">
+                <b-form-group label="CPF/CNPJ *">
+                  <validation-provider v-slot="{ errors }" name="CPF/CNPJ" rules="required">
+                    <b-form-input v-model="form.cpf_cnpj" v-mask="['###.###.###-##', '##.###.###/####-##']" name="cpf_cnpj" />
+                    <span class="text-danger">{{ errors[0] }}</span>
+                  </validation-provider>
+                </b-form-group>
+              </b-col>
+              <b-col md="6">
+                <b-form-group label="Telefone de contato *">
+                  <validation-provider v-slot="{ errors }" name="telefone" rules="required">
+                    <b-form-input v-model="form.phone" v-validate="'required'" v-mask="['(##) ####-####', '(##) #####-####']" name="phone" placeholder="(99) 99999-9999" />
+                    <span class="text-danger">{{ errors[0] }}</span>
+                  </validation-provider>
+                </b-form-group>
+              </b-col>
+              <b-col md="12">
+                <b-form-group label="Endereço de entrega *">
+                  <AddressForm v-model="form.address" />
+                </b-form-group>
+              </b-col>
+              <b-col md="6">
+                <b-form-group label="Email *">
+                  <validation-provider v-slot="{ errors }" name="email" rules="required|email">
+                    <b-form-input v-model="form.email" name="email" />
+                    <span class="text-danger">{{ errors[0] }}</span>
+                  </validation-provider>
+                </b-form-group>
+              </b-col>
+            </b-row>
+            <br>
+            <b-button type="submit" size="lg" variant="success" block :disabled="invalid">
+              FINALIZAR O PEDIDO
+            </b-button>
+          </b-form>
+        </ValidationObserver>
       </div>
     </b-container>
   </div>
 </template>
 <script>
+import { ValidationObserver, ValidationProvider } from 'vee-validate'
 export default {
+  components: {
+    ValidationObserver,
+    ValidationProvider
+  },
   middleware: 'auth',
   data() {
     const form = {
@@ -140,47 +94,29 @@ export default {
       }, 0)
     }
   },
+  created() {
+    this.setUser()
+  },
   methods: {
-    removeFromCart(index) {
-      this.$store.commit('removeFromCart', index)
+    setUser() {
+      this.form.name = this.$auth.user.name
+      this.form.email = this.$auth.user.email
+      this.form.organization = this.$auth.user.organization
+      this.form.address = this.$auth.user.address
+      this.form.phone = this.$auth.user.phone
+      this.form.cpf_cnpj = this.$auth.user.cpf_cnpj
+      this.form.supplier = this.$auth.user.supplier
     },
-    clearCart() {
-      this.$store.commit('clearCart')
-      this.notify('Carrinho limpo!')
-      this.$router.replace('/loja')
-    },
-    saveAssignedClient(user) {
-      this.form.assignedClient = user._id
-      this.setClient(user, this.form)
-    },
-    setClient(client, form) {
-      form.name = client.name
-      form.cpf = client.cpf
-      form.email = client.email
-      form.address = client.address
-      form.phone = client.phone
-      form.main_activity = client.main_activity
-      form.state_registration = client.state_registration
-      form.supplier = client.supplier
-      form.organization = client.organization
-    },
-    saveOrder() {
-      this.$validator.validate().then(isValid => {
-        if (isValid) {
-          this.isSending = true
-          this.form.cart = this.cart
-          this.$axios.$post('shop/order', this.form).then(order => {
-            if (order && order._id) {
-              this.notify('Seu pedido de compra foi realizado com o sucesso! Em breve entraremos em contato.')
-              this.$store.commit('clearCart')
-              this.$router.replace('/pedido/' + order._id)
-            }
-            this.isSending = false
-          }).catch(() => {
-            this.$router.replace('/entrar')
-          })
-        }
-      })
+    async save() {
+      this.isSending = true
+      this.form.cart = this.cart
+      const order = await this.$axios.$post('/api/shop/order', this.form)
+      if (order && order._id) {
+        this.$toast.success('Seu pedido de compra foi realizado com o sucesso! Em breve entraremos em contato.')
+        this.$store.commit('clearCart')
+        this.$router.replace('/conta/pedidos/' + order._id)
+      }
+      this.isSending = false
     },
     setAddress(address) {
       this.form.address = address

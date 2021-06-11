@@ -99,6 +99,7 @@ a
   margin-bottom: 2rem
   legend
     font-weight: bold
+
 .card
   border: none
   background-color: $primary
@@ -106,6 +107,15 @@ a
     display: flex
     align-items: center
     color: $white
+
+.sidebar
+  background-color: $primary
+  border-radius: 5px
+  a
+    color: $white
+    &.nuxt-link-active
+      border-radius: 5px
+      background-color: $secondary
 
 header
   font-family: 'Raleway', sans-serif
@@ -183,12 +193,6 @@ footer
     color: $dark
 
   .page
-    .pattern
-      width: 15px
-      height: 25px
-      background-color: $white
-      position: absolute
-      left: 15px
     .title
       hr
         width: 60px
