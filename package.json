@@ -30,6 +30,7 @@
     "@tui-nuxt/editor": "^1.0.0-beta.3",
     "bootstrap": "^4.5.0",
     "bootstrap-vue": "^2.15.0",
+    "correios-brasil": "^2.2.2",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-jwt": "^6.0.0",

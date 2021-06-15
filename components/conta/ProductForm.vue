@@ -105,13 +105,13 @@ export default {
         const product = await this.$axios.$put('/api/products/' + this.product._id, this.form)
         if (product) {
           this.$toast.success('Produto atualizado com sucesso!')
-          this.$router.push('/conta/ecommerce/products')
+          this.$router.push('/conta/produtos')
         }
       } else {
         const product = await this.$axios.$post('/api/products', this.form)
         if (product) {
           this.$toast.success('Produto cadastrado com sucesso!')
-          this.$router.push('/conta/ecommerce/products')
+          this.$router.push('/conta/produtos')
         }
       }
     }

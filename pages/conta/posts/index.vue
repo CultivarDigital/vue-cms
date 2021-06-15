@@ -57,7 +57,7 @@ export default {
       this.posts = await this.$axios.$get('/api/posts')
     },
     remove (post) {
-      this.$bvModal.msgBoxConfirm('Tem certeza que deseja excluír este ítem?').then(async confirmed => {
+      this.$bvModal.msgBoxConfirm('Tem certeza que deseja excluír este item?').then(async confirmed => {
         if (confirmed) {
           await this.$axios.delete('/api/posts/' + post.slug).then(() => {
             this.list()

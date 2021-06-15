@@ -14,14 +14,30 @@ const OrderSchema = mongoose.Schema(
       ref: 'User',
       required: true
     },
-    items: [OrderItemSchema],
-    name: String,
-    email: String,
-    organization: String,
     address: AddressSchema,
-    phone: String,
-    cpf_cnpj: String,
-    status: String
+    name: {
+      type: String,
+      required: true
+    },
+    organization: String,
+    email: {
+      type: String,
+      required: true
+    },
+    phone: {
+      type: String,
+      required: true
+    },
+    cpf_cnpj: {
+      type: String,
+      required: true
+    },
+    status: {
+      type: String,
+      required: true,
+      default: 'pending'
+    },
+    items: [OrderItemSchema]
   },
   {
     timestamps: true

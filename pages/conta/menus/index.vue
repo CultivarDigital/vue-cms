@@ -61,7 +61,7 @@ export default {
       this.menus = await this.$axios.$get('/api/menus', { params: { populate: 'page' } })
     },
     remove (menu) {
-      this.$bvModal.msgBoxConfirm('Tem certeza que deseja excluír este ítem?').then(async confirmed => {
+      this.$bvModal.msgBoxConfirm('Tem certeza que deseja excluír este item?').then(async confirmed => {
         if (confirmed) {
           await this.$axios.delete('/api/menus/' + menu._id).then(() => {
             this.list()

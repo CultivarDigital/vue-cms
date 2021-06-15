@@ -55,7 +55,6 @@ router.get('/:id', authenticated, function(req, res) {
 })
 
 router.put('/:id', admin, function(req, res) {
-  const params = req.body
   const query = {
     _id: req.params.id
   }
@@ -66,8 +65,9 @@ router.put('/:id', admin, function(req, res) {
         .status(422)
         .send(err)
     } else {
-      if (params.status) {
-        order.status = params.status
+      const status = req.body.status
+      if (status) {
+        order.status = status
       }
       order.save().then(function() {
         res.json(order)

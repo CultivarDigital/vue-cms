@@ -60,7 +60,7 @@ export default {
       this.pages = await this.$axios.$get('/api/pages')
     },
     remove (page) {
-      this.$bvModal.msgBoxConfirm('Tem certeza que deseja excluír este ítem?').then(async confirmed => {
+      this.$bvModal.msgBoxConfirm('Tem certeza que deseja excluír este item?').then(async confirmed => {
         if (confirmed) {
           await this.$axios.delete('/api/pages/' + page.slug).then(() => {
             this.list()

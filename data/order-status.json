@@ -1,0 +1,22 @@
+[
+  {
+    "code": "pending",
+    "label": "Pendente"
+  },
+  {
+    "code": "processing",
+    "label": "Em processamento"
+  },
+  {
+    "code": "sent",
+    "label": "Produto enviado"
+  },
+  {
+    "code": "received",
+    "label": "Produto recebido"
+  },
+  {
+    "code": "canceled",
+    "label": "Cancelado"
+  }
+]

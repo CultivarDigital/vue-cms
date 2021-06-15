@@ -43,6 +43,16 @@
           <tr class="text-lg">
             <td colspan="3" />
             <td>
+              Frete
+            </td>
+            <td colspan="1">
+              {{ shipping | moeda }}
+            </td>
+            <td colspan="1" />
+          </tr>
+          <tr class="text-lg">
+            <td colspan="3" />
+            <td>
               <strong>Total</strong>
             </td>
             <td colspan="1">
@@ -58,7 +68,7 @@
       <b-btn to="/loja" variant="light">
         Voltar para a loja
       </b-btn>
-      <b-btn to="/loja/meus-pedidos" variant="primary">
+      <b-btn to="/conta/pedidos" variant="primary">
         Ver meus pedidos
       </b-btn>
     </div>
@@ -66,7 +76,14 @@
 </template>
 
 <script>
+import { calcularPrecoPrazo } from 'correios-brasil'
 export default {
+  data () {
+    return {
+      postal_code: null,
+      shipping: 0
+    }
+  },
   computed: {
     cart() {
       return this.$store.state.cart
@@ -77,6 +94,12 @@ export default {
       }, 0)
     }
   },
+  created() {
+    console.log(this.$auth.user.address)
+    if (this.$auth.user && this.$auth.user.address && this.$auth.user.address.postal_code) {
+      this.calcShipping(this.$auth.user.address.postal_code)
+    }
+  },
   methods: {
     removeFromCart(index) {
       this.$store.commit('removeFromCart', index)
@@ -85,6 +108,25 @@ export default {
       this.$store.commit('clearCart')
       this.notify('Carrinho limpo!')
       this.$router.replace('/loja')
+    },
+    calcShipping() {
+      const args = {
+        // Não se preocupe com a formatação dos valores de entrada do cep, qualquer uma será válida (ex: 21770-200, 21770 200, 21asa!770@###200 e etc),
+        sCepOrigem: '73770000',
+        sCepDestino: this.$auth.user.address.postal_code,
+        nVlPeso: '1',
+        nCdFormato: '1',
+        nVlComprimento: '20',
+        nVlAltura: '20',
+        nVlLargura: '20',
+        nCdServico: ['04014', '04510'], // Array com os códigos de serviço
+        nVlDiametro: '0'
+      }
+
+      calcularPrecoPrazo(args).then((response) => {
+        console.log(response)
+        this.shipping = response.Valor
+      })
     }
   }
 }

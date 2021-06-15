@@ -65,11 +65,11 @@ export default {
       this.medias = await this.$axios.$get('/api/medias')
     },
     remove (media) {
-      this.$bvModal.msgBoxConfirm('Tem certeza que deseja excluír este ítem?').then(async confirmed => {
+      this.$bvModal.msgBoxConfirm('Tem certeza que deseja excluír este item?').then(async confirmed => {
         if (confirmed) {
           await this.$axios.delete('/api/medias/' + media._id).then(() => {
             this.list()
-            this.$toast.success('Ítem removido com sucesso!')
+            this.$toast.success('Item removido com sucesso!')
           })
         }
       })

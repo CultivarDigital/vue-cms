@@ -61,7 +61,7 @@ export default {
       this.events = await this.$axios.$get('/api/events')
     },
     remove (event) {
-      this.$bvModal.msgBoxConfirm('Tem certeza que deseja excluír este ítem?').then(async confirmed => {
+      this.$bvModal.msgBoxConfirm('Tem certeza que deseja excluír este item?').then(async confirmed => {
         if (confirmed) {
           await this.$axios.delete('/api/events/' + event._id).then(() => {
             this.list()

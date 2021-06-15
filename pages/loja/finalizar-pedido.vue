@@ -78,7 +78,8 @@ export default {
       name: '',
       email: '',
       address: null,
-      phone: ''
+      phone: '',
+      shipping: 0
     }
     return {
       form

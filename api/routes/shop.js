@@ -98,7 +98,10 @@ router.post('/order', auth.authenticated, (req, res) => {
   }).limit(1).exec((err, latest) => {
     if (!err) {
       const newOrder = new Order(req.body)
+
+      newOrder.status = 'pending'
       newOrder.user = req.user._id
+
       if (latest && latest.length) {
         newOrder.code = latest[0].code + 1
       } else {

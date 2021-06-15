@@ -11,8 +11,8 @@ export default {
   data () {
     return {
       breadcrumb: [
-        { text: 'Painel', to: '/conta' },
-        { text: 'Perfil do usuário', active: true }
+        { text: this.$auth.user.role === 'user' ? 'Minha conta' : 'Painel', to: '/conta' },
+        { text: 'Meu perfil', active: true }
       ],
       profile: null
     }

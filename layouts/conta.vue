@@ -23,10 +23,11 @@
                 <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/medias">Midiateca</b-nav-item>
                 <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/posts">Notícias</b-nav-item>
                 <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/events">Agenda</b-nav-item>
-                <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/ecommerce">Loja</b-nav-item>
+                <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/loja">Loja</b-nav-item>
                 <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/contacts">Contatos</b-nav-item>
                 <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/users">Usuários</b-nav-item>
                 <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/settings">Configurações</b-nav-item>
+                <b-nav-item v-if="$auth.user.role === 'user'" to="/conta/pedidos">Meus pedidos</b-nav-item>
                 <b-nav-item to="/conta/profile">Meus dados</b-nav-item>
                 <b-nav-item @click="logout"><small>Sair</small></b-nav-item>
               </b-navbar-nav>
@@ -48,10 +49,11 @@
                   <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/medias">Midiateca</b-nav-item>
                   <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/posts">Notícias</b-nav-item>
                   <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/events">Agenda</b-nav-item>
-                  <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/ecommerce">Loja</b-nav-item>
+                  <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/loja">Loja</b-nav-item>
                   <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/contacts">Contatos</b-nav-item>
                   <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/users">Usuários</b-nav-item>
                   <b-nav-item v-if="$auth.user.role === 'admin'" to="/conta/settings">Configurações</b-nav-item>
+                  <b-nav-item v-if="$auth.user.role === 'user'" to="/conta/pedidos">Meus pedidos</b-nav-item>
                   <b-nav-item to="/conta/profile">Meus dados</b-nav-item>
                   <b-nav-item @click="logout"><small>Sair</small></b-nav-item>
                 </b-nav>

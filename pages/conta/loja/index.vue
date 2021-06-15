@@ -3,8 +3,11 @@
     <b-breadcrumb :items="breadcrumb" />
     <div>
       <div class="text-right mb-3">
-        <b-button variant="secondary" block to="/conta/ecommerce/products">
+        <b-button variant="secondary" block to="/conta/produtos">
           Produtos
+        </b-button>
+        <b-button variant="secondary" block to="/conta/pedidos">
+          Pedidos
         </b-button>
       </div>
     </div>

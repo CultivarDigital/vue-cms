@@ -3,7 +3,7 @@
     <b-breadcrumb :items="breadcrumb" />
     <div>
       <div class="text-right mb-3">
-        <b-button variant="success" to="/conta/ecommerce/products/new">
+        <b-button variant="success" to="/conta/produtos/new">
           <b-icon-plus /> Cadastrar
         </b-button>
       </div>
@@ -27,7 +27,7 @@
               </small>
             </p>
             <p class="mb-1">
-              <n-link class="btn btn-info btn-sm" :to="'/conta/ecommerce/products/' + product._id + '/edit'">
+              <n-link class="btn btn-info btn-sm" :to="'/conta/produtos/' + product._id + '/edit'">
                 Editar
               </n-link>
               <b-button variant="danger" size="sm" @click="remove(product)">
@@ -55,7 +55,7 @@ export default {
       products: null,
       breadcrumb: [
         { text: 'Painel', to: '/conta' },
-        { text: 'Loja', to: '/conta/ecommerce' },
+        { text: 'Loja', to: '/conta/loja' },
         { text: 'Produtos', active: true }
       ]
     }
@@ -68,7 +68,7 @@ export default {
       this.products = await this.$axios.$get('/api/products')
     },
     remove (product) {
-      this.$bvModal.msgBoxConfirm('Tem certeza que deseja excluír este ítem?').then(async confirmed => {
+      this.$bvModal.msgBoxConfirm('Tem certeza que deseja excluír este item?').then(async confirmed => {
         if (confirmed) {
           await this.$axios.delete('/api/products/' + product._id).then(() => {
             this.list()
