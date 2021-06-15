@@ -9,7 +9,7 @@
     <div v-if="users">
       <b-table v-if="users.length" :fields="table" :items="users" responsive="sm">
         <template v-slot:cell(role)="data">
-          {{ roleText(data.value) }}
+          {{ optionText(data.value, 'roles') }}
         </template>
         <template v-slot:cell(actions)="data">
           <n-link class="btn btn-info btn-sm" :to="'/conta/users/' + data.item._id + '/edit'">
@@ -30,13 +30,14 @@
 
 <script>
 
-import roles from '@/data/roles.json'
+import { optionText } from '@/utils'
 
 export default {
   layout: 'conta',
 
   data () {
     return {
+      optionText,
       users: null,
       breadcrumb: [
         { text: 'Painel', to: '/conta' },
@@ -66,10 +67,8 @@ export default {
           })
         }
       })
-    },
-    roleText (role) {
-      return roles.find(r => r.value === role).text
     }
+
   }
 }
 </script>

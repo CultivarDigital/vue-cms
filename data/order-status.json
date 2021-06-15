@@ -1,22 +1,22 @@
 [
   {
-    "code": "pending",
-    "label": "Pendente"
+    "value": "pending",
+    "text": "Pendente"
   },
   {
-    "code": "processing",
-    "label": "Em processamento"
+    "value": "processing",
+    "text": "Em processamento"
   },
   {
-    "code": "sent",
-    "label": "Produto enviado"
+    "value": "sent",
+    "text": "Produto enviado"
   },
   {
-    "code": "received",
-    "label": "Produto recebido"
+    "value": "received",
+    "text": "Produto recebido"
   },
   {
-    "code": "canceled",
-    "label": "Cancelado"
+    "value": "canceled",
+    "text": "Cancelado"
   }
 ]

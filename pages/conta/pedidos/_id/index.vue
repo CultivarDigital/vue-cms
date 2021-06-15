@@ -6,42 +6,42 @@
       <table class="table b-table">
         <tbody>
           <tr v-if="$auth.user.role === 'admin'">
-            <td>Pedido</td>
+            <td class="font-weight-lighter">Pedido</td>
             <td>
-              <b-badge size="lg" :class="order.status"><strong>#{{ order.code }}</strong> ({{ translateStatus(order.status) }})</b-badge>
+              <b-badge size="lg" :class="order.status"><strong>#{{ order.code }}</strong> ({{ optionText(order.status, 'order-status') }})</b-badge>
             </td>
           </tr>
           <tr v-if="$auth.user.role === 'user'">
-            <td>Pedido</td>
+            <td class="font-weight-lighter">Pedido</td>
             <td>
-              <b-badge size="lg" :class="order.status"><strong>#{{ order.code }}</strong> ({{ translateStatus(order.status) }})</b-badge>
-              <v-select v-if="$auth.user.role === 'admin'" :class="order.status" :options="orderStatus" :reduce="item => item.code" @input="changeStatus" />
+              <b-badge size="lg" :class="order.status"><strong>#{{ order.code }}</strong> ({{ optionText(order.status, 'order-status') }})</b-badge>
+              <v-select v-if="$auth.user.role === 'admin'" :class="order.status" :options="orderStatus" :reduce="item => item.value" label="text" @input="changeStatus" />
             </td>
           </tr>
           <tr v-if="order.name">
-            <td>Comprador</td>
+            <td class="font-weight-lighter">Comprador</td>
             <th><strong>{{ order.name }}</strong></th>
           </tr>
           <tr v-if="order.organization">
-            <td>Organização</td>
+            <td class="font-weight-lighter">Organização</td>
             <th><strong>{{ order.organization }}</strong></th>
           </tr>
           <tr v-if="order.email">
-            <td>Email</td>
+            <td class="font-weight-lighter">Email</td>
             <th><strong>{{ order.email }}</strong></th>
           </tr>
           <tr v-if="order.phone">
-            <td>Telefone</td>
+            <td class="font-weight-lighter">Telefone</td>
             <th><strong>{{ order.phone }}</strong></th>
           </tr>
           <tr v-if="order.address">
-            <td>Endereço de entrega</td>
+            <td class="font-weight-lighter">Endereço de entrega</td>
             <th><strong>{{ order.address.description }}</strong></th>
           </tr>
           <tr v-if="$auth.user.role === 'admin'">
-            <td>Status</td>
+            <td class="font-weight-lighter">Status</td>
             <td>
-              <v-select :value="order.status" :class="order.status" :options="orderStatus" :reduce="item => item.code" @input="changeStatus" />
+              <v-select :value="order.status" :class="order.status" :options="orderStatus" :reduce="item => item.value" label="text" @input="changeStatus" />
             </td>
           </tr>
         </tbody>
@@ -58,22 +58,22 @@
         </thead>
         <tbody>
           <tr v-for="(item, index) in order.items" :key="index">
-            <td>
-              <b-img v-if="item.product.pictures && item.product.pictures.length" :src="item.product.pictures[0].thumb" width="100" alt="placeholder" />
-              <b-img v-else blank blank-color="#E1846D" width="100" alt="placeholder" />
+            <td class="text-center text-sm-left">
+              <b-img v-if="item.product.pictures && item.product.pictures.length" :src="item.product.pictures[0].thumb" width="80" alt="placeholder" />
+              <b-img v-else blank blank-color="#E1846D" width="80" alt="placeholder" />
             </td>
-            <td>
+            <td data-label="Produto">
               <router-link :to="'/loja/'+item.product._id" class="text-dark">
-                <strong>{{ item.product.name }}</strong>
+                {{ item.product.name }}
               </router-link>
             </td>
-            <td>
+            <td data-label="Preço">
               {{ item.product.price | moeda }}
             </td>
-            <td>
+            <td data-label="Quantidade">
               {{ item.qtd }}
             </td>
-            <td>
+            <td data-label="Total">
               <strong>{{ item.product.price * item.qtd | moeda }}</strong>
             </td>
           </tr>
@@ -98,10 +98,12 @@
 </template>
 <script>
 import orderStatus from '@/data/order-status.json'
+import { optionText } from '@/utils'
 export default {
   layout: 'conta',
   data () {
     return {
+      optionText,
       orderStatus,
       order: null,
       breadcrumb: [
@@ -119,16 +121,11 @@ export default {
     }
   },
   methods: {
-    translateStatus(status) {
-      if (status) {
-        return orderStatus.find(s => s.code === status).label
-      }
-    },
     async changeStatus(status) {
       const order = await this.$axios.$put('/api/orders/' + this.order._id, { status })
       if (order) {
         this.order.status = order.status
-        this.$toast.success('Status atualizado!')
+        this.$toast.success('Status atualizado! ')
       }
     }
   }

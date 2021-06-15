@@ -8,6 +8,7 @@
             <th>Oferta</th>
             <th>Valor</th>
             <th>Quantidade</th>
+            <th>Frete</th>
             <th>Total</th>
             <th />
           </tr>
@@ -30,6 +31,17 @@
               {{ item.qtd }}
             </td>
             <td>
+              <div v-if="shipping[item.product._id] && shipping[item.product._id].length">
+                <b-form-radio v-for="option in shipping[item.product._id]" :key="option.Codigo" class="mb-2" :name="item.product._id" :value="option.Codigo">
+                  <small>
+                    <strong>{{ optionText(option.Codigo, 'servicos-correios') }}</strong>
+                    <br>
+                    Até <strong>{{ option.PrazoEntrega }} dias</strong> por <strong>{{ option.Valor | moeda }}</strong>
+                  </small>
+                </b-form-radio>
+              </div>
+            </td>
+            <td>
               <strong>{{ item.product.price * item.qtd | moeda }}</strong>
             </td>
             <td class="text-center">
@@ -40,25 +52,24 @@
           </tr>
         </tbody>
         <tfoot>
-          <tr class="text-lg">
-            <td colspan="3" />
-            <td>
+          <tr>
+            <td colspan="4" class="text-right">
               Frete
             </td>
-            <td colspan="1">
-              {{ shipping | moeda }}
-            </td>
-            <td colspan="1" />
-          </tr>
-          <tr class="text-lg">
-            <td colspan="3" />
             <td>
-              <strong>Total</strong>
+              <b-form-input />
             </td>
-            <td colspan="1">
-              <h5 class="mb-0"><strong>{{ total | moeda }}</strong></h5>
+            <td><strong>{{ 0 | moeda }}</strong></td>
+            <td />
+          </tr>
+          <tr>
+            <td colspan="5" class="text-right">
+              <strong>Total da compra</strong>
             </td>
-            <td colspan="1" />
+            <td>
+              <strong>{{ total | moeda }}</strong>
+            </td>
+            <td />
           </tr>
         </tfoot>
       </table>
@@ -72,16 +83,18 @@
         Ver meus pedidos
       </b-btn>
     </div>
+    <pre>{{ shipping }}</pre>
   </div>
 </template>
 
 <script>
-import { calcularPrecoPrazo } from 'correios-brasil'
+import { optionText } from '@/utils'
 export default {
   data () {
     return {
+      optionText,
       postal_code: null,
-      shipping: 0
+      shipping: {}
     }
   },
   computed: {
@@ -109,24 +122,16 @@ export default {
       this.notify('Carrinho limpo!')
       this.$router.replace('/loja')
     },
-    calcShipping() {
-      const args = {
-        // Não se preocupe com a formatação dos valores de entrada do cep, qualquer uma será válida (ex: 21770-200, 21770 200, 21asa!770@###200 e etc),
-        sCepOrigem: '73770000',
-        sCepDestino: this.$auth.user.address.postal_code,
-        nVlPeso: '1',
-        nCdFormato: '1',
-        nVlComprimento: '20',
-        nVlAltura: '20',
-        nVlLargura: '20',
-        nCdServico: ['04014', '04510'], // Array com os códigos de serviço
-        nVlDiametro: '0'
+    async calcShipping() {
+      const shipping = {}
+      for (const item of this.cart) {
+        shipping[item.product._id] = await this.$axios.$post('/api/shop/calc_shipping', {
+          source: '74550000',
+          destination: this.$auth.user.address.postal_code,
+          product: item.product._id
+        })
       }
-
-      calcularPrecoPrazo(args).then((response) => {
-        console.log(response)
-        this.shipping = response.Valor
-      })
+      this.shipping = shipping
     }
   }
 }

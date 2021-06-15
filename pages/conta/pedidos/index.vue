@@ -13,7 +13,7 @@
           </thead>
           <tbody>
             <tr v-for="order in orders" :key="order._id">
-              <td><b-btn size="sm" :class="order.status" :to="'/conta/pedidos/' + order._id"><strong>#{{ order.code }}</strong> <small>({{ translateStatus(order.status) }})</small></b-btn></td>
+              <td><b-btn size="sm" :class="order.status" :to="'/conta/pedidos/' + order._id"><strong>#{{ order.code }}</strong> <small>({{ optionText(order.status, 'order-status') }})</small></b-btn></td>
               <td>{{ $moment(order.createdAt).format("DD/MM/YYYY") }}</td>
               <td>{{ order.items.reduce((a, b) => a + b.total, 0) | moeda }}</td>
             </tr>
@@ -28,7 +28,7 @@
   </div>
 </template>
 <script>
-import orderStatus from '@/data/order-status.json'
+import { optionText } from '@/utils'
 export default {
   layout: 'conta',
   data () {
@@ -46,6 +46,7 @@ export default {
       ]
     }
     return {
+      optionText,
       orders: null,
       breadcrumb,
       table: [
@@ -74,11 +75,6 @@ export default {
           })
         }
       })
-    },
-    translateStatus(status) {
-      if (status) {
-        return orderStatus.find(s => s.code === status).label
-      }
     }
   }
 

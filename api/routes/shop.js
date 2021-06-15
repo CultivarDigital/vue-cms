@@ -1,3 +1,4 @@
+const { calcularPrecoPrazo } = require('correios-brasil')
 const express = require('express')
 const mongoose = require('mongoose')
 const router = express.Router()
@@ -128,4 +129,40 @@ router.post('/order', auth.authenticated, (req, res) => {
   })
 })
 
+router.post('/calc_shipping', (req, res) => {
+  try {
+    Product.findOne({
+      $or: [
+        { _id: req.body.product }, { slug: req.body.product }
+      ]
+    }).exec(async (err, product) => {
+      if (err) {
+        res.status(422).send(err)
+      } else {
+        const args = {
+          // Não se preocupe com a formatação dos valores de entrada do cep, qualquer uma será válida (ex: 21770-200, 21770 200, 21asa!770@###200 e etc),
+          sCepOrigem: req.body.destination,
+          sCepDestino: req.body.source,
+          nVlPeso: product.weight,
+          nCdFormato: product.format,
+          nVlComprimento: product.length,
+          nVlAltura: product.height,
+          nVlLargura: product.width,
+          nCdServico: product.shipping_services, // Array com os códigos de serviço
+          nVlDiametro: product.diameter
+        }
+        const shipping = await calcularPrecoPrazo(args)
+        if (shipping && shipping.length) {
+          console.log(shipping)
+          console.log(typeof shipping)
+          console.log(typeof [])
+          res.send(shipping.filter(item => item.Erro === '0'))
+        }
+        res.status(422).send('Não foi possível calcular o frete')
+      }
+    })
+  } catch (e) {
+    res.status(422).send(e)
+  }
+})
 module.exports = router

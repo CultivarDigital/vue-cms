@@ -56,6 +56,9 @@ a
   tr > td, tr > th
     vertical-align: middle !important
     font-weight: normal
+    &[data-label]::before
+      font-weight: 100 !important
+      // font-size: 14px
   thead, tfoot
     background-color: $primary
     color: $white
@@ -479,20 +482,30 @@ footer
   &.pending
     background-color: $warning
     border-color: $warning
-    color: $white !important
+    color: $white
+    .vs__selected, input, .vs__actions, .vs__clear
+      color: $white
   &.processing
     background-color: $light
     border-color: $light
-    color: $dark !important
+    color: $dark
+    .vs__selected, input, .vs__actions, .vs__clear
+      color: $dark
   &.sent
     background-color: $info
     border-color: $info
-    color: $white !important
+    color: $white
+    .vs__selected, input, .vs__actions, .vs__clear
+      color: $white
   &.received
     background-color: $success
     border-color: $success
-    color: $white !important
+    color: $white
+    .vs__selected, input, .vs__actions, .vs__clear
+      color: $white
   &.canceled
     background-color: $danger
     border-color: $danger
-    color: $white !important
+    color: $white
+    .vs__selected, input, .vs__actions, .vs__clear
+      color: $white

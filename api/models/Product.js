@@ -31,7 +31,17 @@ const ProductSchema = mongoose.Schema({
   },
   tags: [String],
   pictures: [Object],
-  documents: [Object]
+  documents: [Object],
+
+  // shipping
+  weight: Number,
+  format: Number,
+  length: Number,
+  height: Number,
+  width: Number,
+  diameter: Number,
+  shipping_services: [String]
+
 }, {
   timestamps: true
 })

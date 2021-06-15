@@ -13,17 +13,17 @@
             <b-form-group label="Digite sua senha">
               <b-form-input v-model="form.password" type="password" />
             </b-form-group>
-            <b-form-group class="text-center">
-              <p class="mb-4">
+            <div class="text-center">
+              <b-button type="submit" variant="success" block size="lg">
+                Entrar
+              </b-button>
+              <p class="mt-4">
                 Ainda não possúi uma conta?
                 <b-btn variant="primary" size="sm" @click="open('register')">
                   <strong>Cadastre-se</strong>
                 </b-btn>
               </p>
-              <b-button type="submit" variant="success" block size="lg">
-                Entrar
-              </b-button>
-            </b-form-group>
+            </div>
           </form>
         </div>
         <div v-show="tab === 'register'">
@@ -92,17 +92,17 @@
                   </b-form-group>
                 </b-col>
               </b-row>
-              <b-form-group class="text-center">
-                <p class="mb-4">
+              <div class="text-center">
+                <b-button type="submit" variant="success" block size="lg" :disabled="invalid">
+                  Cadastrar
+                </b-button>
+                <p class="mt-4">
                   Já possúi uma conta?
                   <b-btn variant="primary" size="sm" @click="open('login')">
                     <strong>Entre</strong>
                   </b-btn>
                 </p>
-                <b-button type="submit" variant="success" block size="lg" :disabled="invalid">
-                  Cadastrar
-                </b-button>
-              </b-form-group>
+              </div>
             </form>
           </ValidationObserver>
         </div>

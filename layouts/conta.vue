@@ -70,17 +70,14 @@
   </div>
 </template>
 <script>
-import roles from '@/data/roles.json'
+import { optionText } from '@/utils'
 export default {
   middleware: 'auth',
   computed: {
     userRoleText() {
       let roleText = null
       if (this.$auth.user) {
-        const role = roles.find(r => r.value === this.$auth.user.role)
-        if (role) {
-          roleText = role.text
-        }
+        roleText = optionText(this.$auth.user.role, 'roles')
       }
       return roleText
     },
