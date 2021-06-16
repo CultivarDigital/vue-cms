@@ -1,7 +1,7 @@
 [
-  { "value": "04014", "text": "SEDEX à vista" },
-  { "value": "04510", "text": "PAC à vista" },
-  { "value": "04782", "text": "SEDEX12 ( à vista)" },
-  { "value": "04790", "text": "SEDEX 10 (à vista)" },
-  { "value": "04804", "text": "SEDEX Hoje à vista" }
+  { "value": "04510", "text": "PAC" },
+  { "value": "04014", "text": "SEDEX" },
+  { "value": "04782", "text": "SEDEX 12" },
+  { "value": "04790", "text": "SEDEX 10" },
+  { "value": "04804", "text": "SEDEX Hoje" }
 ]

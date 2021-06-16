@@ -31,12 +31,16 @@
               {{ item.qtd }}
             </td>
             <td>
-              <div v-if="shipping[item.product._id] && shipping[item.product._id].length">
-                <b-form-radio v-for="option in shipping[item.product._id]" :key="option.Codigo" class="mb-2" :name="item.product._id" :value="option.Codigo">
+              <div v-if="loading_shipping">
+                <b-spinner small /> Calculando frete...
+              </div>
+              <div v-else-if="shipping[item.product._id] && shipping[item.product._id].length">
+                <b-form-radio v-for="option in shipping[item.product._id]" :key="option.code" class="mb-2" :name="item.product._id" :value="option.code">
                   <small>
-                    <strong>{{ optionText(option.Codigo, 'servicos-correios') }}</strong>
+                    <strong>{{ option.description }}</strong>
+                    <span v-if="option.delivery_saturday">(Entrega sábado)</span>
                     <br>
-                    Até <strong>{{ option.PrazoEntrega }} dias</strong> por <strong>{{ option.Valor | moeda }}</strong>
+                    Até <strong>{{ option.delivery_time }} dias</strong> por <strong>{{ option.price * item.qtd | moeda }}</strong>
                   </small>
                 </b-form-radio>
               </div>
@@ -57,7 +61,7 @@
               Frete
             </td>
             <td>
-              <b-form-input />
+              <b-form-input v-model="postal_code" v-mask="'#####-###'" style="max-width: 130px" @input="calcShipping()" />
             </td>
             <td><strong>{{ 0 | moeda }}</strong></td>
             <td />
@@ -83,6 +87,7 @@
         Ver meus pedidos
       </b-btn>
     </div>
+    <pre>{{ postal_code }}</pre>
     <pre>{{ shipping }}</pre>
   </div>
 </template>
@@ -94,7 +99,8 @@ export default {
     return {
       optionText,
       postal_code: null,
-      shipping: {}
+      shipping: {},
+      loading_shipping: false
     }
   },
   computed: {
@@ -108,9 +114,9 @@ export default {
     }
   },
   created() {
-    console.log(this.$auth.user.address)
     if (this.$auth.user && this.$auth.user.address && this.$auth.user.address.postal_code) {
-      this.calcShipping(this.$auth.user.address.postal_code)
+      this.postal_code = this.$auth.user.address.postal_code
+      this.calcShipping()
     }
   },
   methods: {
@@ -123,15 +129,20 @@ export default {
       this.$router.replace('/loja')
     },
     async calcShipping() {
-      const shipping = {}
-      for (const item of this.cart) {
-        shipping[item.product._id] = await this.$axios.$post('/api/shop/calc_shipping', {
-          source: '74550000',
-          destination: this.$auth.user.address.postal_code,
-          product: item.product._id
-        })
+      if (this.postal_code && this.postal_code.length === 9) {
+        const shipping = {}
+        this.loading_shipping = true
+        for (const item of this.cart) {
+          shipping[item.product._id] = 'loading'
+          shipping[item.product._id] = await this.$axios.$post('/api/shop/calc_shipping', {
+            source: '74550000',
+            destination: this.postal_code,
+            product: item.product._id
+          })
+        }
+        this.shipping = shipping
+        this.loading_shipping = false
       }
-      this.shipping = shipping
     }
   }
 }

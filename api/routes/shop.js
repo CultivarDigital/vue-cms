@@ -5,6 +5,7 @@ const router = express.Router()
 const auth = require('../config/auth')
 const Product = mongoose.model('Product')
 const Order = mongoose.model('Order')
+const { optionText } = require('../../utils')
 
 router.get('/products', (req, res) => {
   const query = { deleted: { $ne: true }, published: true, qtd: { $gt: 0 } }
@@ -140,7 +141,6 @@ router.post('/calc_shipping', (req, res) => {
         res.status(422).send(err)
       } else {
         const args = {
-          // Não se preocupe com a formatação dos valores de entrada do cep, qualquer uma será válida (ex: 21770-200, 21770 200, 21asa!770@###200 e etc),
           sCepOrigem: req.body.destination,
           sCepDestino: req.body.source,
           nVlPeso: product.weight,
@@ -148,17 +148,28 @@ router.post('/calc_shipping', (req, res) => {
           nVlComprimento: product.length,
           nVlAltura: product.height,
           nVlLargura: product.width,
-          nCdServico: product.shipping_services, // Array com os códigos de serviço
+          nCdServico: product.shipping_services,
           nVlDiametro: product.diameter
         }
-        const shipping = await calcularPrecoPrazo(args)
+        let shipping = await calcularPrecoPrazo(args)
         if (shipping && shipping.length) {
-          console.log(shipping)
-          console.log(typeof shipping)
-          console.log(typeof [])
-          res.send(shipping.filter(item => item.Erro === '0'))
+          shipping = shipping
+            .filter(item => item.Erro === '0')
+            .map(option => {
+              return {
+                price: Number(option.Valor.replace('.', '').replace(',', '.')),
+                code: option.Codigo,
+                description: optionText(option.Codigo, 'servicos-correios'),
+                delivery_time: option.PrazoEntrega,
+                delivery_saturday: option.EntregaSabado === 'S'
+              }
+            }).sort((a, b) => {
+              return a.price - b.price
+            })
+          res.send(shipping)
+        } else {
+          res.status(422).send('Não foi possível calcular o frete')
         }
-        res.status(422).send('Não foi possível calcular o frete')
       }
     })
   } catch (e) {
