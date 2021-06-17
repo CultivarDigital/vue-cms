@@ -15,8 +15,9 @@
             </div>
             <div>
               <a v-if="settings.url_facebook" :href="settings.url_facebook" target="_blank"><font-awesome-icon :icon="['fab', 'facebook-square']" /></a>
-              <a v-if="settings.url_youtube" :href="settings.url_youtube" target="_blank"><font-awesome-icon :icon="['fab', 'twitter-square']" /></a>
               <a v-if="settings.url_instagram" :href="settings.url_instagram" target="_blank"><font-awesome-icon :icon="['fab', 'instagram-square']" /></a>
+              <a v-if="settings.url_twitter" :href="settings.url_twitter" target="_blank"><font-awesome-icon :icon="['fab', 'twitter-square']" /></a>
+              <a v-if="settings.url_youtube" :href="settings.url_youtube" target="_blank"><font-awesome-icon :icon="['fab', 'youtube-square']" /></a>
             </div>
             <div class="mt-4">
               <small>&copy; {{ settings.title }}. Todos os direitos reservados.</small>
