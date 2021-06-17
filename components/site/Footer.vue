@@ -10,6 +10,14 @@
             <div v-if="settings.contact" class="mt-4 pre-line">
               <small>{{ settings.contact }}</small>
             </div>
+            <div v-if="settings.email">
+              <a :href="'mailto:' + settings.email">{{ settings.email }}</a>
+            </div>
+            <div>
+              <a v-if="settings.url_facebook" :href="settings.url_facebook" target="_blank"><font-awesome-icon :icon="['fab', 'facebook-square']" /></a>
+              <a v-if="settings.url_youtube" :href="settings.url_youtube" target="_blank"><font-awesome-icon :icon="['fab', 'twitter-square']" /></a>
+              <a v-if="settings.url_instagram" :href="settings.url_instagram" target="_blank"><font-awesome-icon :icon="['fab', 'instagram-square']" /></a>
+            </div>
             <div class="mt-4">
               <small>&copy; {{ settings.title }}. Todos os direitos reservados.</small>
             </div>
@@ -19,14 +27,6 @@
               CONTATO
             </a>
             <Contact />
-            <b-col sm="6">
-              <a :href="'mailto:' + settings.email">{{ settings.email }}</a>
-              &nbsp;
-              <a v-if="settings.url_facebook" :href="settings.url_facebook" target="_blank"><b-img src="~/assets/img/facebook_icon.png" /></a>
-              <a v-if="settings.url_youtube" :href="settings.url_youtube" target="_blank"><b-img src="~/assets/img/youtube_icon.png" /></a>
-              <a v-if="settings.url_flickr" :href="settings.url_flickr" target="_blank"><b-img src="~/assets/img/flickr_icon.png" /></a>
-              <a v-if="settings.url_instagram" :href="settings.url_instagram" target="_blank"><b-img src="~/assets/img/instagram_icon.png" /></a>
-            </b-col>
           </b-col>
         </b-row>
       </b-container>

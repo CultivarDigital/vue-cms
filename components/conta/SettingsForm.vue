@@ -63,7 +63,8 @@ export default {
         favicon: null,
         banners: [],
         url_facebook: '',
-        url_twitter: ''
+        url_twitter: '',
+        url_instagram: ''
       }
     }
   },
