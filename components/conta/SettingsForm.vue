@@ -25,6 +25,9 @@
       <b-form-group label="Link do Instagram">
         <b-form-input v-model="form.url_instagram" name="url_instagram" />
       </b-form-group>
+      <b-form-group label="Link do Youtube">
+        <b-form-input v-model="form.url_youtube" name="url_youtube" />
+      </b-form-group>
       <Upload v-model="form.logo" label="Logo do site" type="images" />
       <Upload v-model="form.favicon" label="Favicon do site" type="images" />
       <Upload v-model="form.banners" label="Banners da home" type="images" description="Envie as imagens na ordem que aparecerão na tela de início" multiple edit-title edit-description edit-link />
@@ -64,7 +67,8 @@ export default {
         banners: [],
         url_facebook: '',
         url_twitter: '',
-        url_instagram: ''
+        url_instagram: '',
+        url_youtube: ''
       }
     }
   },

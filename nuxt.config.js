@@ -114,7 +114,7 @@ export default {
   fontawesome: {
     icons: {
       solid: ['faBars'],
-      brands: ['faFacebookSquare', 'faTwitterSquare', 'faInstagramSquare']
+      brands: ['faFacebookSquare', 'faTwitterSquare', 'faInstagramSquare', 'faYoutubeSquare']
     }
   },
   googleAnalytics: {
