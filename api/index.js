@@ -15,8 +15,9 @@ const secret = process.env.SECRET || process.env.APP_NAME
 
 app.use(cors())
 app.use(session({ secret, cookie: { maxAge: null }, resave: false, saveUninitialized: false }))
-app.use(express.urlencoded({ extended: false }))
-app.use(express.json())
+app.use(express.urlencoded({ extended: false, limit: '100mb' }))
+app.use(express.json({ limit: '100mb' }))
+
 // eslint-disable-next-line
 app.use('/uploads', express.static(__dirname + '/uploads'))
 
