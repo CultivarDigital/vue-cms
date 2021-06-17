@@ -113,8 +113,8 @@ export default {
   },
   fontawesome: {
     icons: {
-      solid: ['faHome', 'faMapMarker', 'faBars'],
-      brands: ['faFacebookSquare', 'faTwitterSquare']
+      solid: ['faBars'],
+      brands: ['faFacebookSquare', 'faTwitterSquare', 'faInstagramSquare']
     }
   },
   googleAnalytics: {
