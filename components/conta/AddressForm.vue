@@ -1,8 +1,8 @@
 <template>
   <div class="address-form">
-    <CoordinatesPreview :address="value" />
-    <b-btn v-if="currentAddressFilled" variant="light" @click="show_modal = !show_modal"><client-only><b-icon-map /></client-only> Mudar endereço</b-btn>
-    <b-btn v-else variant="success" @click="show_modal = !show_modal"><client-only><b-icon-map /></client-only> Configurar endereço</b-btn>
+    <AddressPreview :address="value" />
+    <b-btn v-if="currentAddressFilled" variant="light" @click="show_modal = !show_modal"><client-only><b-icon-pencil /></client-only> Mudar endereço</b-btn>
+    <b-btn v-else variant="success" @click="show_modal = !show_modal"><client-only><b-icon-plus /></client-only> Adicionar endereço</b-btn>
     <b-modal v-model="show_modal" title="Localização" hide-footer hide-header size="lg">
       <div v-if="show_auto_complete">
         <div v-if="!addressFilled">
@@ -57,56 +57,77 @@
         </div>
       </div>
       <div v-else>
-        <div class="form-address">
-          <p class="mb-4"><strong>Complete os dados e confirme o endereço:</strong></p>
-          <div class="row">
-            <div class="col-sm-6">
-              <b-form-group label="Estado">
-                <b-form-input v-model="form.uf" class="form-control" />
-              </b-form-group>
+        <ValidationObserver v-slot="{ validate, invalid }">
+          <b-form @submit.prevent="validate().then(confirmAddress)">
+            <div class="form-address">
+              <p class="mb-4"><strong>Complete os dados e confirme o endereço:</strong></p>
+              <b-row>
+                <b-col sm="3">
+                  <b-form-group label="CEP *">
+                    <validation-provider v-slot="{ errors }" name="CEP" rules="required|max:9|min:9">
+                      <b-form-input v-model="form.postal_code" v-mask="'#####-###'" />
+                      <span class="text-danger">{{ errors[0] }}</span>
+                    </validation-provider>
+                  </b-form-group>
+                </b-col>
+              </b-row>
+              <b-row>
+                <b-col sm="6">
+                  <b-form-group label="Estado *">
+                    <validation-provider v-slot="{ errors }" name="estado" rules="required">
+                      <b-form-input v-model="form.uf" class="form-control" />
+                      <span class="text-danger">{{ errors[0] }}</span>
+                    </validation-provider>
+                  </b-form-group>
+                </b-col>
+                <b-col sm="6">
+                  <b-form-group label="Cidade *">
+                    <validation-provider v-slot="{ errors }" name="cidade" rules="required">
+                      <b-form-input v-model="form.city" class="form-control" />
+                      <span class="text-danger">{{ errors[0] }}</span>
+                    </validation-provider>
+                  </b-form-group>
+                </b-col>
+                <b-col sm="12">
+                  <b-form-group label="Endereço/Rua/Av *">
+                    <validation-provider v-slot="{ errors }" name="endereço" rules="required">
+                      <b-form-input v-model="form.street" name="street" />
+                      <span class="text-danger">{{ errors[0] }}</span>
+                    </validation-provider>
+                  </b-form-group>
+                </b-col>
+                <b-col sm="9">
+                  <b-form-group label="Bairro">
+                    <b-form-input v-model="form.neighborhood" name="neighborhood" />
+                  </b-form-group>
+                </b-col>
+                <b-col sm="3">
+                  <b-form-group label="Número">
+                    <b-form-input v-model="form.number" name="number" />
+                  </b-form-group>
+                </b-col>
+                <b-col sm="9">
+                  <b-form-group label="Complemento">
+                    <b-form-input v-model="form.complement" name="complement" />
+                  </b-form-group>
+                </b-col>
+              </b-row>
             </div>
-            <div class="col-sm-6">
-              <b-form-group label="Cidade">
-                <b-form-input v-model="form.city" class="form-control" />
-              </b-form-group>
-            </div>
-            <div class="col-sm-12">
-              <b-form-group label="Endereço/Rua/Av">
-                <b-form-input v-model="form.street" name="street" />
-              </b-form-group>
-            </div>
-            <div class="col-sm-9">
-              <b-form-group label="Bairro">
-                <b-form-input v-model="form.neighborhood" name="neighborhood" />
-              </b-form-group>
-            </div>
-            <div class="col-sm-3">
-              <b-form-group label="Número">
-                <b-form-input v-model="form.number" name="number" />
-              </b-form-group>
-            </div>
-            <div class="col-sm-9">
-              <b-form-group label="Complemento">
-                <b-form-input v-model="form.complement" name="complement" />
-              </b-form-group>
-            </div>
-            <div class="col-sm-3">
-              <b-form-group label="CEP">
-                <b-form-input v-model="form.postal_code" />
-              </b-form-group>
-            </div>
-          </div>
-        </div>
-        <b-btn variant="light" @click="showAutoComplete()">Mudar localização</b-btn>
-        <b-btn variant="success" @click="confirmAddress()">Confirmar endereço</b-btn>
+            <b-btn variant="light" @click="showAutoComplete()">Mudar localização</b-btn>
+            <b-btn type="submit" variant="success" size="lg" :disabled="invalid">
+              Confirmar endereço
+            </b-btn>
+          </b-form>
+        </ValidationObserver>
       </div>
     </b-modal>
   </div>
 </template>
 <script>
 import axios from 'axios'
+import { ValidationObserver, ValidationProvider } from 'vee-validate'
 import estados from '@/data/estados.json'
-import CoordinatesPreview from '@/components/conta/CoordinatesPreview'
+import AddressPreview from '@/components/conta/AddressPreview'
 import cidades from '@/data/cidades.json'
 
 const emptyForm = {
@@ -127,7 +148,9 @@ const emptyForm = {
 
 export default {
   components: {
-    CoordinatesPreview
+    ValidationObserver,
+    ValidationProvider,
+    AddressPreview
   },
   props: {
     value: {
@@ -151,7 +174,7 @@ export default {
   },
   computed: {
     currentAddressFilled () {
-      return this.value && this.value.location && this.value.location.coordinates && this.value.location.coordinates.length === 2
+      return this.value && this.value.postal_code && this.value.uf && this.value.city && this.value.street
     },
     addressFilled () {
       return Array.isArray(this.address) || (this.address && this.address.location && this.address.location.coordinates && this.address.location.coordinates.length === 2)
@@ -164,7 +187,10 @@ export default {
     }
   },
   created() {
-    this.address = this.value
+    console.log('created')
+    console.log(this.address)
+    console.log(this.value)
+    this.address = { ...this.value }
     if (this.value) {
       Object.keys(this.form).forEach(k => {
         this.form[k] = this.value[k]
@@ -254,7 +280,7 @@ export default {
     },
     showAutoComplete() {
       this.address = null
-      this.form = emptyForm
+      this.form = { ...emptyForm }
       this.show_auto_complete = true
     },
     locationError() {
@@ -262,7 +288,7 @@ export default {
       this.loading_gps = false
     },
     cb () {
-      this.$emit('input', this.form)
+      this.$emit('input', { ...this.form })
     }
   }
 }

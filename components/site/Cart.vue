@@ -21,7 +21,7 @@
             </td>
             <td>
               <router-link :to="'/loja/'+item.product._id" class="text-dark">
-                <strong>{{ item.product.name }}</strong>
+                {{ item.product.name }}
               </router-link>
             </td>
             <td>
@@ -31,11 +31,11 @@
               {{ item.qtd }}
             </td>
             <td>
-              <div v-if="loading_shipping">
+              <small v-if="loading_shipping">
                 <b-spinner small /> Calculando frete...
-              </div>
+              </small>
               <div v-else-if="shipping[item.product._id] && shipping[item.product._id].length">
-                <b-form-radio v-for="option in shipping[item.product._id]" :key="option.code" class="mb-2" :name="item.product._id" :value="option.code">
+                <b-form-radio v-for="option in shipping[item.product._id]" :key="option.code" class="mb-2" :name="item.product._id" :value="option" :checked="item.shipping" @input="(selected) => setShipping(item.product._id, selected)">
                   <small>
                     <strong>{{ option.description }}</strong>
                     <span v-if="option.delivery_saturday">(Entrega sábado)</span>
@@ -46,7 +46,7 @@
               </div>
             </td>
             <td>
-              <strong>{{ item.product.price * item.qtd | moeda }}</strong>
+              <strong v-if="!loading_shipping">{{ (item.product.price * item.qtd) + (item.shipping ? item.shipping.price * item.qtd : 0) | moeda }}</strong>
             </td>
             <td class="text-center">
               <b-button size="sm" variant="light" rel="tooltip" data-placement="left" title="Remover do carrinho" @click="removeFromCart(index)">
@@ -61,9 +61,12 @@
               Frete
             </td>
             <td>
-              <b-form-input v-model="postal_code" v-mask="'#####-###'" style="max-width: 130px" @input="calcShipping()" />
+              <b-form-input v-model="postal_code" v-mask="'#####-###'" style="max-width: 130px;" @input="updatePostalCode()" />
             </td>
-            <td><strong>{{ 0 | moeda }}</strong></td>
+            <td>
+              <strong v-if="!loading_shipping">{{ shippingTotal | moeda }}</strong>
+              <b-spinner v-else small />
+            </td>
             <td />
           </tr>
           <tr>
@@ -71,7 +74,7 @@
               <strong>Total da compra</strong>
             </td>
             <td>
-              <strong>{{ total | moeda }}</strong>
+              <strong v-if="!loading_shipping">{{ total + shippingTotal | moeda }}</strong>
             </td>
             <td />
           </tr>
@@ -87,8 +90,6 @@
         Ver meus pedidos
       </b-btn>
     </div>
-    <pre>{{ postal_code }}</pre>
-    <pre>{{ shipping }}</pre>
   </div>
 </template>
 
@@ -104,6 +105,9 @@ export default {
     }
   },
   computed: {
+    currentPostalCode() {
+      return this.$store.state.postal_code
+    },
     cart() {
       return this.$store.state.cart
     },
@@ -111,11 +115,25 @@ export default {
       return this.cart.reduce(function(a, item) {
         return a + (Number(item.qtd) * Number(item.product.price))
       }, 0)
+    },
+    shippingTotal() {
+      return this.cart.map(i => (i.shipping ? i.shipping.price * i.qtd : 0)).reduce(function(a, b) {
+        return a + b
+      }, 0)
+    }
+  },
+  watch: {
+    currentPostalCode() {
+      this.postal_code = this.currentPostalCode
+      this.calcShipping()
     }
   },
   created() {
-    if (this.$auth.user && this.$auth.user.address && this.$auth.user.address.postal_code) {
-      this.postal_code = this.$auth.user.address.postal_code
+    this.postal_code = this.currentPostalCode
+    if (!this.postal_code && this.$auth.user && this.$auth.user.addresses && this.$auth.user.addresses.length && this.$auth.user.addresses[0].postal_code) {
+      this.postal_code = this.$auth.user.addresses[0].postal_code
+      this.updatePostalCode()
+    } else {
       this.calcShipping()
     }
   },
@@ -128,17 +146,41 @@ export default {
       this.notify('Carrinho limpo!')
       this.$router.replace('/loja')
     },
-    async calcShipping() {
+    setShipping(product, shipping) {
+      this.$store.commit('setCartShipping', { product, shipping })
+    },
+    updatePostalCode() {
       if (this.postal_code && this.postal_code.length === 9) {
+        this.$store.commit('setPostalCode', this.postal_code)
+        this.calcShipping()
+      }
+    },
+    async calcShipping() {
+      if (this.currentPostalCode && this.currentPostalCode.length === 9) {
         const shipping = {}
         this.loading_shipping = true
         for (const item of this.cart) {
-          shipping[item.product._id] = 'loading'
-          shipping[item.product._id] = await this.$axios.$post('/api/shop/calc_shipping', {
+          const selected = item.shipping
+          if (selected) {
+            this.$store.commit('setCartShipping', { product: item.product._id, shipping: null })
+          }
+          const shippingOptions = await this.$axios.$post('/api/shop/calc_shipping', {
             source: '74550000',
-            destination: this.postal_code,
+            destination: this.currentPostalCode,
             product: item.product._id
           })
+          shipping[item.product._id] = shippingOptions
+
+          if (shippingOptions && shippingOptions.length) {
+            let shippingOption = null
+            if (selected) {
+              shippingOption = shippingOptions.find(option => option.code === selected.code)
+            }
+            if (!shippingOption) {
+              shippingOption = shippingOptions[0]
+            }
+            this.$store.commit('setCartShipping', { product: item.product._id, shipping: shippingOption })
+          }
         }
         this.shipping = shipping
         this.loading_shipping = false

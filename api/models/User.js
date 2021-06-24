@@ -33,7 +33,7 @@ const UserSchema = new mongoose.Schema({
   },
   organization: String,
   picture: Object,
-  address: AddressSchema,
+  addresses: [AddressSchema],
   phone: String,
   cpf_cnpj: String
 }, {
@@ -63,7 +63,7 @@ UserSchema.methods.data = function() {
     name: this.name,
     picture: this.picture,
     organization: this.organization,
-    address: this.address,
+    addresses: this.addresses,
     phone: this.phone,
     cpf_cnpj: this.cpf_cnpj
   }

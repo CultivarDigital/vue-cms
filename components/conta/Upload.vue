@@ -8,7 +8,7 @@
         <table class="table b-table b-table-stacked-sm mb-1">
           <tbody>
             <tr v-for="(item, index) in preview" :key="index">
-              <td style="width: 100px">
+              <td style="width: 100px;">
                 <a :href="item.url" target="_blank">
                   <b-img v-if="item.thumb" :src="item.thumb" fluid thumbnail width="100" />
                   <b-icon-image v-else-if="type === 'images'" scale="2" />

@@ -5,7 +5,6 @@
       active="Finalizar do pedido"
     />
     <b-container class="pt-4 pb-5">
-      <Cart />
       <div v-if="cart && cart.length">
         <h4 class="text-center">Finalize o pedido</h4>
         <p class="text-center mb-4">Confirme os dados abaixo para finalizar o pedido</p>
@@ -41,11 +40,6 @@
                   </validation-provider>
                 </b-form-group>
               </b-col>
-              <b-col md="12">
-                <b-form-group label="Endereço de entrega *">
-                  <AddressForm v-model="form.address" />
-                </b-form-group>
-              </b-col>
               <b-col md="6">
                 <b-form-group label="Email *">
                   <validation-provider v-slot="{ errors }" name="email" rules="required|email">
@@ -54,13 +48,28 @@
                   </validation-provider>
                 </b-form-group>
               </b-col>
+              <b-col md="12">
+                <b-form-group label="Endereço de entrega *">
+                  <AddressForm v-model="form.address" @input="setPostalCode" />
+                </b-form-group>
+              </b-col>
             </b-row>
             <br>
+            <Cart />
             <b-button type="submit" size="lg" variant="success" block :disabled="invalid">
               FINALIZAR O PEDIDO
             </b-button>
           </b-form>
         </ValidationObserver>
+      </div>
+      <div v-else class="text-center my-5">
+        <h4>Seu carrinho está vazio</h4>
+        <b-btn to="/loja" variant="light">
+          Voltar para a loja
+        </b-btn>
+        <b-btn to="/conta/pedidos" variant="primary">
+          Ver meus pedidos
+        </b-btn>
       </div>
     </b-container>
   </div>
@@ -103,7 +112,7 @@ export default {
       this.form.name = this.$auth.user.name
       this.form.email = this.$auth.user.email
       this.form.organization = this.$auth.user.organization
-      this.form.address = this.$auth.user.address
+      this.form.address = this.$auth.user.addresses[0]
       this.form.phone = this.$auth.user.phone
       this.form.cpf_cnpj = this.$auth.user.cpf_cnpj
       this.form.supplier = this.$auth.user.supplier
@@ -119,10 +128,11 @@ export default {
       }
       this.isSending = false
     },
-    setAddress(address) {
-      this.form.address = address
+    setPostalCode(address) {
+      if (address.postal_code) {
+        this.$store.commit('setPostalCode', address.postal_code)
+      }
     }
-
   }
 }
 </script>

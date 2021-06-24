@@ -126,7 +126,6 @@
       <b-button class="mb-4 mt-4" type="submit" variant="success" block :disabled="invalid">
         Salvar
       </b-button>
-      <pre>{{ form }}</pre>
     </b-form>
   </ValidationObserver>
 </template>

@@ -33,8 +33,8 @@
           </b-form-group>
         </b-col>
         <b-col md="12">
-          <b-form-group label="Endereço *">
-            <AddressForm v-model="form.address" />
+          <b-form-group label="Endereços *">
+            <AddressesForm v-model="form.addresses" />
           </b-form-group>
         </b-col>
         <b-col v-if="$auth.user.role === 'admin'" md="6">
@@ -113,14 +113,7 @@ export default {
         organization: '',
         phone: '',
         cpf_cnpj: '',
-        address: {
-          city: '',
-          uf: '',
-          location: {
-            type: 'Point',
-            coordinates: []
-          }
-        },
+        addresses: [],
         password: '',
         password_confirmation: '',
         role: null
