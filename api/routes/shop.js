@@ -155,6 +155,7 @@ router.post('/calc_shipping', (req, res) => {
           // eslint-disable-next-line no-console
           console.log(e)
         })
+        console.log(shipping)
         if (shipping && shipping.length) {
           shipping = shipping
             .filter(item => item.Erro === '0')
