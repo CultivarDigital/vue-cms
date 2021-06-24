@@ -155,6 +155,7 @@ router.post('/calc_shipping', (req, res) => {
           // eslint-disable-next-line no-console
           console.log(e)
         })
+        // eslint-disable-next-line no-console
         console.log(shipping)
         if (shipping && shipping.length) {
           shipping = shipping
