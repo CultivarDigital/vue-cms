@@ -64,7 +64,7 @@
               <b-row>
                 <b-col sm="3">
                   <b-form-group label="CEP *">
-                    <validation-provider v-slot="{ errors }" name="CEP" rules="required|max:9|min:9">
+                    <validation-provider v-slot="{ errors }" name="CEP" rules="required|min:9|max:9">
                       <b-form-input v-model="form.postal_code" v-mask="'#####-###'" />
                       <span class="text-danger">{{ errors[0] }}</span>
                     </validation-provider>

@@ -111,6 +111,9 @@ export default {
     cart() {
       return this.$store.state.cart
     },
+    sourcePostalCode() {
+      return this.$store.state.settings.postal_code
+    },
     total() {
       return this.cart.reduce(function(a, item) {
         return a + (Number(item.qtd) * Number(item.product.price))
@@ -156,34 +159,38 @@ export default {
       }
     },
     async calcShipping() {
-      if (this.currentPostalCode && this.currentPostalCode.length === 9) {
-        const shipping = {}
-        this.loading_shipping = true
-        for (const item of this.cart) {
-          const selected = item.shipping
-          if (selected) {
-            this.$store.commit('setCartShipping', { product: item.product._id, shipping: null })
-          }
-          const shippingOptions = await this.$axios.$post('/api/shop/calc_shipping', {
-            source: '74550000',
-            destination: this.currentPostalCode,
-            product: item.product._id
-          })
-          shipping[item.product._id] = shippingOptions
-
-          if (shippingOptions && shippingOptions.length) {
-            let shippingOption = null
+      if (this.sourcePostalCode && this.sourcePostalCode.length === 9) {
+        if (this.currentPostalCode && this.currentPostalCode.length === 9) {
+          const shipping = {}
+          this.loading_shipping = true
+          for (const item of this.cart) {
+            const selected = item.shipping
             if (selected) {
-              shippingOption = shippingOptions.find(option => option.code === selected.code)
+              this.$store.commit('setCartShipping', { product: item.product._id, shipping: null })
             }
-            if (!shippingOption) {
-              shippingOption = shippingOptions[0]
+            const shippingOptions = await this.$axios.$post('/api/shop/calc_shipping', {
+              source: this.sourcePostalCode,
+              destination: this.currentPostalCode,
+              product: item.product._id
+            })
+            shipping[item.product._id] = shippingOptions
+
+            if (shippingOptions && shippingOptions.length) {
+              let shippingOption = null
+              if (selected) {
+                shippingOption = shippingOptions.find(option => option.code === selected.code)
+              }
+              if (!shippingOption) {
+                shippingOption = shippingOptions[0]
+              }
+              this.$store.commit('setCartShipping', { product: item.product._id, shipping: shippingOption })
             }
-            this.$store.commit('setCartShipping', { product: item.product._id, shipping: shippingOption })
           }
+          this.shipping = shipping
+          this.loading_shipping = false
         }
-        this.shipping = shipping
-        this.loading_shipping = false
+      } else {
+        this.$toast.error('Não foi possível calcular o frete pois o CEP de origem não está configurado!')
       }
     }
   }
