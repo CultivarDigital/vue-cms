@@ -16,7 +16,7 @@ export default {
       this.selectedFile = e.target.files[0]
 
       const form = new FormData()
-      form.append('image', this.selectedFile)
+      form.append('file', this.selectedFile)
       this.$axios.$post('/api/uploads/images', form, {
         headers: {
           'Content-Type': 'multipart/form-data'
