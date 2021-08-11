@@ -4,15 +4,23 @@
       <b-row>
         <b-col md="12">
           <b-form-group label="Título">
-            <b-form-input v-model="form.title" name="title" @input="generateSlug" />
+            <validation-provider v-slot="{ errors }" name="título" rules="required">
+              <b-form-input v-model="form.title" name="title" @input="generateSlug" />
+              <span class="text-danger">{{ errors[0] }}</span>
+            </validation-provider>
           </b-form-group>
         </b-col>
         <b-col md="12">
-          <b-form-group v-if="form.title" label="Url da página" disabled>
-            <b-form-input :value="'/' + form.slug" name="slug" />
+          <b-form-group v-if="form.title" label="Url da página">
+            <validation-provider v-slot="{ errors }" name="URL da notícia" rules="required">
+              <b-input-group :prepend="baseURL">
+                <b-form-input v-model="form.slug" name="slug" />
+              </b-input-group>
+              <span class="text-danger">{{ errors[0] }}</span>
+            </validation-provider>
             <small class="form-text text-muted">
-              {{ 'Link que será usado para acessar a página página:' }}
-              <n-link :to="'/' + form.slug" target="_blank">{{ '/' + form.slug }} </n-link>
+              {{ 'Link que será usado para acessar a página:' }}
+              <n-link :to="baseURL + form.slug" target="_blank">{{ baseURL + form.slug }} </n-link>
             </small>
           </b-form-group>
         </b-col>
@@ -45,13 +53,15 @@
 </template>
 
 <script>
-import { ValidationObserver } from 'vee-validate'
+import { ValidationObserver, ValidationProvider } from 'vee-validate'
+
 import slugify from 'slugify'
 
 import mixinForm from '@/mixins/form'
 export default {
   components: {
-    ValidationObserver
+    ValidationObserver,
+    ValidationProvider
   },
   mixins: [mixinForm],
   props: {
@@ -75,6 +85,11 @@ export default {
       }
     }
   },
+  computed: {
+    baseURL() {
+      return (this.$axios.defaults.baseURL || '') + '/'
+    }
+  },
   async created () {
     this.toForm(this.form, this.page)
     this.currentTags = await this.$axios.$get('/api/pages/current_tags')
@@ -82,7 +97,7 @@ export default {
   methods: {
     async save () {
       if (this.page) {
-        const page = await this.$axios.$put('/api/pages/' + this.page.slug, this.form)
+        const page = await this.$axios.$put('/api/pages/' + this.page._id, this.form)
         if (page) {
           this.$toast.success('Página atualizada com sucesso!')
           this.$router.push('/conta/pages')

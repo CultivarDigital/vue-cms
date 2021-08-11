@@ -5,9 +5,23 @@
         <b-col md="12">
           <b-form-group label="Título *">
             <validation-provider v-slot="{ errors }" name="título" rules="required">
-              <b-form-input v-model="form.title" name="title" />
+              <b-form-input v-model="form.title" name="title" @input="generateSlug" />
               <span class="text-danger">{{ errors[0] }}</span>
             </validation-provider>
+          </b-form-group>
+        </b-col>
+        <b-col md="12">
+          <b-form-group v-if="form.title" label="URL da notícia">
+            <validation-provider v-slot="{ errors }" name="URL da notícia" rules="required">
+              <b-input-group :prepend="baseURL">
+                <b-form-input v-model="form.slug" name="slug" />
+              </b-input-group>
+              <span class="text-danger">{{ errors[0] }}</span>
+            </validation-provider>
+            <small class="form-text text-muted">
+              {{ 'Link que será usado para acessar a notícia:' }}
+              <a :href="baseURL + form.slug" target="_blank">{{ baseURL + form.slug }} </a>
+            </small>
           </b-form-group>
         </b-col>
         <b-col md="12">
@@ -40,6 +54,7 @@
 
 <script>
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
+import slugify from 'slugify'
 
 import mixinForm from '@/mixins/form'
 
@@ -60,12 +75,18 @@ export default {
       currentTags: [],
       form: {
         title: '',
+        slug: '',
         description: '',
         documents: [],
         content: '',
         picture: null,
         tags: []
       }
+    }
+  },
+  computed: {
+    baseURL() {
+      return (this.$axios.defaults.baseURL || '') + '/'
     }
   },
   async created () {
@@ -75,7 +96,7 @@ export default {
   methods: {
     async save () {
       if (this.post) {
-        const post = await this.$axios.$put('/api/posts/' + this.post.slug, this.form)
+        const post = await this.$axios.$put('/api/posts/' + this.post._id, this.form)
         if (post) {
           this.$toast.success('Notícia atualizada com sucesso!')
           this.$router.push('/conta/posts')
@@ -86,6 +107,11 @@ export default {
           this.$toast.success('Notícia cadastrada com sucesso!')
           this.$router.push('/conta/posts')
         }
+      }
+    },
+    generateSlug() {
+      if (this.form.title) {
+        this.form.slug = slugify(this.form.title).toLowerCase()
       }
     }
   }

@@ -5,7 +5,9 @@ const PageSchema = mongoose.Schema({
   slug: {
     type: String,
     required: true,
-    index: true
+    index: true,
+    unique: true,
+    min: 1
   },
   tags: [String],
   documents: [Object],
@@ -18,10 +20,8 @@ const PageSchema = mongoose.Schema({
   toJSON: { virtuals: true }
 })
 
-PageSchema.index({ slug: 1 }, { unique: true })
-
 PageSchema.plugin(uniqueValidator, {
-  message: 'Este nome já está sendo usado'
+  message: 'Esta URL já está sendo usada'
 })
 
 const Page = mongoose.models.Page || mongoose.model('Page', PageSchema)

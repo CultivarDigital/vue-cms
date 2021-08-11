@@ -59,20 +59,16 @@ router.post('/', auth.admin, (req, res) => {
   })
 })
 
-router.put('/:id', auth.admin, (req, res) => {
+router.put('/:id', auth.admin, async (req, res) => {
   const params = req.body
-  Page.findOneAndUpdate({
-    slug: req.params.id
-  }, {
-    $set: params
-  }, {
-    upsert: true
-  }, (err, page) => {
-    if (err) {
-      res.status(422).send(err.message)
-    } else {
-      res.send(page)
-    }
+  const page = await Page.findOne({ _id: req.params.id })
+  Object.keys(params).forEach(key => {
+    page[key] = params[key]
+  })
+  await page.save().then(page => {
+    res.send(page)
+  }).catch(err => {
+    res.status(422).send(err.message)
   })
 })
 

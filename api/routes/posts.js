@@ -7,7 +7,6 @@ const Post = mongoose.model('Post')
 
 router.get('/', (req, res) => {
   Post.find({}).populate(req.query.populate).sort({ createdAt: -1 }).exec((err, posts) => {
-    console.log('asdfasdf', posts)
     if (err) {
       res.status(422).send(err.message)
     } else {
@@ -48,7 +47,9 @@ router.get('/:id', (req, res) => {
 
 router.post('/', auth.admin, (req, res) => {
   const newPost = new Post(req.body)
-  newPost.slug = slugify(newPost.title).toLowerCase()
+  if (!newPost.slug) {
+    newPost.slug = slugify(newPost.title).toLowerCase()
+  }
   newPost.save((err, post) => {
     if (err) {
       res.status(422).send(err.message)
@@ -58,21 +59,16 @@ router.post('/', auth.admin, (req, res) => {
   })
 })
 
-router.put('/:id', auth.admin, (req, res) => {
+router.put('/:id', auth.admin, async (req, res) => {
   const params = req.body
-  params.slug = slugify(params.title).toLowerCase()
-  Post.findOneAndUpdate({
-    slug: req.params.id
-  }, {
-    $set: params
-  }, {
-    upsert: true
-  }, (err, post) => {
-    if (err) {
-      res.status(422).send(err.message)
-    } else {
-      res.send(post)
-    }
+  const post = await Post.findOne({ _id: req.params.id })
+  Object.keys(params).forEach(key => {
+    post[key] = params[key]
+  })
+  await post.save().then(post => {
+    res.send(post)
+  }).catch(err => {
+    res.status(422).send(err.message)
   })
 })
 
