@@ -20,7 +20,7 @@
             </validation-provider>
             <small class="form-text text-muted">
               {{ 'Link que será usado para acessar a página:' }}
-              <n-link :to="baseURL + form.slug" target="_blank">{{ baseURL + form.slug }} </n-link>
+              <a :href="baseURL + form.slug" target="_blank">{{ baseURL + form.slug }} </a>
             </small>
           </b-form-group>
         </b-col>
