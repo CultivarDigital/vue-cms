@@ -11,9 +11,7 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'preconnect', href: 'https://fonts.gstatic.com' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Raleway:wght@400;500;600&display=swap' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
   css: ['@/assets/css/custom.sass'],
@@ -35,7 +33,6 @@ export default {
   components: true,
   buildModules: [
     '@nuxtjs/eslint-module',
-    '@nuxtjs/google-fonts',
     '@nuxtjs/moment',
     '@nuxtjs/fontawesome',
     '@nuxtjs/google-analytics'
@@ -94,16 +91,6 @@ export default {
   },
   tui: {
     editor: {}
-  },
-  googleFonts: {
-    families: {
-      Montserrat: {
-        wght: ['300']
-      },
-      Arvo: {
-        wght: ['400', '700']
-      }
-    }
   },
   moment: {
     defaultLocale: 'pt-br',
