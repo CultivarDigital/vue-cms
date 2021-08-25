@@ -12,6 +12,11 @@
           <template v-slot:cell(tags)="data">
             <tags :tags="data.value" />
           </template>
+          <template v-slot:cell(title)="data">
+            <n-link class="btn btn-info btn-sm" :to="'/noticias/' + data.item.slug + '/edit'">
+              {{ data.value }}
+            </n-link>
+          </template>
           <template v-slot:cell(actions)="data">
             <n-link class="btn btn-info btn-sm" :to="'/conta/posts/' + data.item.slug + '/edit'">
               <b-icon-pencil />
