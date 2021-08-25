@@ -8,7 +8,7 @@
     <section class="mb-5">
       <Banners v-if="post.picture" :items="[post.picture]" />
       <b-container>
-        <h1 class="title pt-5">{{ post.title }}</h1>
+        <h1 class="title pt-5 text-primary">{{ post.title }}</h1>
         <div class="mb-3">
           <tags :tags="post.tags" @click="filterbyTag" />
         </div>
