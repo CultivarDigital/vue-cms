@@ -13,7 +13,7 @@
             <tags :tags="data.value" />
           </template>
           <template v-slot:cell(title)="data">
-            <n-link class="btn btn-info btn-sm" :to="'/noticias/' + data.item.slug + '/edit'">
+            <n-link :to="'/noticias/' + data.item.slug">
               {{ data.value }}
             </n-link>
           </template>
