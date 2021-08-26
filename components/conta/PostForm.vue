@@ -13,14 +13,14 @@
         <b-col md="12">
           <b-form-group v-if="form.title" label="URL da notícia">
             <validation-provider v-slot="{ errors }" name="URL da notícia" rules="required">
-              <b-input-group :prepend="baseURL">
+              <b-input-group prepend="noticias/">
                 <b-form-input v-model="form.slug" name="slug" />
               </b-input-group>
               <span class="text-danger">{{ errors[0] }}</span>
             </validation-provider>
             <small class="form-text text-muted">
               {{ 'Link que será usado para acessar a notícia:' }}
-              <a :href="$axios.defaults.baseURL + baseURL + form.slug" target="_blank">{{ baseURL + form.slug }} </a>
+              <a :href="baseURL + 'noticias/' + form.slug" target="_blank">{{ baseURL + 'noticias/' + form.slug }} </a>
             </small>
           </b-form-group>
         </b-col>
@@ -86,7 +86,7 @@ export default {
   },
   computed: {
     baseURL() {
-      return '/noticias/'
+      return (this.$axios.defaults.baseURL || '') + '/'
     }
   },
   async created () {
