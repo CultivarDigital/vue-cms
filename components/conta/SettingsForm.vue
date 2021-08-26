@@ -32,7 +32,7 @@
           </b-form-group>
           <Upload v-model="form.logo" label="Logo do site" type="images" />
           <Upload v-model="form.favicon" label="Favicon do site" type="images" />
-          <Upload v-model="form.banners" label="Banners da home" type="images" description="Envie as imagens na ordem que aparecerão na tela de início" multiple edit-title edit-description edit-link />
+          <Upload v-model="form.banners" label="Banners da home" type="images" description="Envie as imagens na ordem que aparecerão na tela de início. Tamanho recomendado: 1920x1200 pixels" multiple edit-title edit-description edit-link />
         </b-tab>
         <b-tab title="Loja">
           <b-form-group label="CEP de origem" description="Será usado como base para cálculo do frete na loja">

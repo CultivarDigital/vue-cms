@@ -28,7 +28,7 @@
           <tags-form v-model="form.tags" :current-tags="currentTags" />
         </b-col>
         <b-col md="12">
-          <b-form-group label="Descrição curta" description="Escreva um texto curto resumindo conteúdo com até 160 caractéres.">
+          <b-form-group label="Descrição curta" description="Escreva um texto curto resumindo o conteúdo com até 160 caractéres">
             <b-form-textarea v-model="form.description" name="description" />
           </b-form-group>
         </b-col>
