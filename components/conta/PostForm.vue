@@ -20,7 +20,7 @@
             </validation-provider>
             <small class="form-text text-muted">
               {{ 'Link que será usado para acessar a notícia:' }}
-              <a :href="baseURL + form.slug" target="_blank">{{ baseURL + form.slug }} </a>
+              <a :href="$axios.defaults.baseURL + baseURL + form.slug" target="_blank">{{ baseURL + form.slug }} </a>
             </small>
           </b-form-group>
         </b-col>
