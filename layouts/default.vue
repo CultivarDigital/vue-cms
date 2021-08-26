@@ -1,5 +1,9 @@
 <template>
-  <div class="default-layout" :class="{ 'header-transparent': $route.path === '/' && settings && settings.banners && settings.banners.length > 0 }">
+  <div class="default-layout" :class="{
+    'header-transparent': $route.path === '/' && settings && settings.banners && settings.banners.length > 0,
+    'home': $route.path === '/'
+  }"
+  >
     <div v-show="settings">
       <Header />
       <!-- <div class="sub-header" /> -->
