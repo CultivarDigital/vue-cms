@@ -4,7 +4,7 @@
       active="Notícias"
     />
     <section class="content pb-5">
-      <Page slug="noticias" />
+      <Page slug="noticias" :breadcrumb="false" />
       <b-container>
         <tags :to="$route.path" />
         <div v-if="posts">

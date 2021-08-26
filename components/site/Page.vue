@@ -2,7 +2,7 @@
   <div>
     <Banners v-if="page" :items="page.pictures" />
     <Breadcrumb
-      v-if="page"
+      v-if="page && breadcrumb"
       :active="page.title"
       :description="page.description"
     />
@@ -36,6 +36,10 @@ export default {
     showContent: {
       type: Boolean,
       default: false
+    },
+    breadcrumb: {
+      type: Boolean,
+      default: true
     }
   },
   data () {

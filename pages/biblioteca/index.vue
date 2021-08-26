@@ -7,7 +7,7 @@
     />
     <Breadcrumb v-else-if="filters.tag" :links="[['Biblioteca', '/biblioteca']]" :active="filters.tag" />
     <Breadcrumb v-else active="Biblioteca" />
-    <section class="content">
+    <section class="content pt-4">
       <b-container>
         <div>
           <b-row>

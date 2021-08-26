@@ -4,7 +4,7 @@
       active="Agenda"
     />
     <section class="content pb-5">
-      <Page slug="agenda" />
+      <Page slug="agenda" :breadcrumb="false" />
       <b-container>
         <br>
         <div v-if="events">
