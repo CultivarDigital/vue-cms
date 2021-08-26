@@ -9,7 +9,7 @@
               <span class="text-danger">{{ errors[0] }}</span>
             </validation-provider>
           </b-form-group>
-          <b-form-group label="Descrição curta do site" description="Um resumo do conteúdo com até 153 caracteres.">
+          <b-form-group label="Descrição curta do site" description="Um resumo do conteúdo do site com até 160 caracteres.">
             <b-form-textarea v-model="form.description" name="description" />
           </b-form-group>
           <b-form-group label="Email de contato">

@@ -11,7 +11,7 @@
           </b-form-group>
         </b-col>
         <b-col md="12">
-          <b-form-group label="Resumo do produto *">
+          <b-form-group label="Resumo do produto *" description="Escreva um texto curto resumindo o produto com até 160 caractéres.">
             <validation-provider v-slot="{ errors }" name="resumo do produto" rules="required">
               <b-form-textarea v-model="form.description" name="description" />
               <span class="text-danger">{{ errors[0] }}</span>

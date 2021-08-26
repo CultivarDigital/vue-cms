@@ -17,7 +17,7 @@
           <date-time-form v-model="form.end_at" label="Termina em" />
         </b-col>
         <b-col md="12">
-          <b-form-group label="Introdução" description="Uma descrição curta de até 160 caracteres">
+          <b-form-group label="Descrição curta" description="Escreva um texto curto resumindo conteúdo com até 160 caractéres.">
             <b-form-textarea v-model="form.description" name="description" />
           </b-form-group>
         </b-col>
