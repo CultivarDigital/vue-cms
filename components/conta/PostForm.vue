@@ -86,7 +86,7 @@ export default {
   },
   computed: {
     baseURL() {
-      return (this.$axios.defaults.baseURL || '') + '/noticias/'
+      return '/noticias/'
     }
   },
   async created () {
