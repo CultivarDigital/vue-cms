@@ -8,7 +8,7 @@
     />
     <div v-if="page" class="page">
       <b-container>
-        <div class="title mt-4">
+        <div class="title mt-5">
           <h4 v-if="page.title" class="title">{{ page.title }}</h4>
           <hr>
         </div>
