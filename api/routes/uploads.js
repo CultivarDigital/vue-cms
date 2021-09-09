@@ -6,6 +6,7 @@ const sharp = require('sharp')
 const { PDFImage } = require('pdf-image')
 const axios = require('axios')
 const auth = require('../config/auth')
+const Attachment = require('../models/Attachment')
 
 const createPath = (path) => {
   !fs.existsSync(path) && fs.mkdirSync(path)
@@ -71,28 +72,30 @@ router.post('/images', [auth.authenticated, imageUploader.single('file')], (req,
       withoutEnlargement: true,
       fit: sharp.fit.inside
     })
-    .toFile(thumb, function(err) {
+    .toFile(thumb, async (err) => {
       if (!err) {
         sharp(original, { failOnError: false })
           .resize({
-            width: 1600,
+            width: 1920,
             withoutEnlargement: true
           })
-          .toFile(average, function(err) {
+          .toFile(average, async (err) => {
             if (!err) {
-              res.status(201).send({
-                title: '',
+              const attachment = new Attachment({
                 url: '/' + original,
                 thumb: '/' + thumb,
                 average: '/' + average
               })
+              await attachment.save()
+              res.status(201).send(attachment)
             }
           })
       } else {
-        res.status(201).send({
-          title: '',
+        const attachment = new Attachment({
           url: '/' + original
         })
+        await attachment.save()
+        res.status(201).send(attachment)
       }
     })
 })
@@ -125,7 +128,7 @@ const documentUploader = multer({
     fileSize: 32 * 1024 * 1024
   }
 })
-router.post('/documents', [auth.authenticated, documentUploader.single('file')], (req, res) => {
+router.post('/documents', [auth.authenticated, documentUploader.single('file')], async (req, res) => {
   const filename = req.file.filename
   const path = documentsPath()
 
@@ -143,25 +146,29 @@ router.post('/documents', [auth.authenticated, documentUploader.single('file')],
           withoutEnlargement: true,
           fit: sharp.fit.cover
         })
-        .toFile(thumb, function(err) {
+        .toFile(thumb, (err) => {
           if (!err) {
             sharp(original, { failOnError: false })
-              .resize(1600)
-              .toFile(average, function(err) {
+              .resize(1920)
+              .toFile(average, async (err) => {
                 if (!err) {
-                  res.status(201).send({
+                  const attachment = new Attachment({
                     title: filename,
                     url: '/' + req.file.path,
                     average: '/' + average,
                     thumb: '/' + thumb
                   })
+                  await attachment.save()
+                  res.status(201).send(attachment)
                 }
               })
           }
         })
     }).catch(() => {})
   } else {
-    res.status(201).send({ title: filename, url: path + filename })
+    const attachment = new Attachment({ title: filename, url: path + filename })
+    await attachment.save()
+    res.status(201).send(attachment)
   }
 })
 

@@ -36,7 +36,10 @@
           </b-form-group>
         </b-col>
         <b-col md="12">
-          <Upload v-model="form.picture" type="images" label="Foto de capa" description="Tamanho recomendado: 1920x1200 pixels" edit-title edit-description edit-link />
+          <Upload v-model="form.image" type="images" label="Foto de capa" description="Tamanho recomendado: 1920x1200 pixels" edit-title edit-description edit-link />
+        </b-col>
+        <b-col md="12">
+          <!-- <Upload v-model="form.picture" type="images" label="Foto de capa" description="Tamanho recomendado: 1920x1200 pixels" edit-title edit-description edit-link /> -->
         </b-col>
         <b-col md="12">
           <Upload v-model="form.documents" label="Documentos" type="documents" multiple edit-title />
@@ -49,6 +52,7 @@
         Salvar
       </b-button>
     </b-form>
+    <pre>{{ form }}</pre>
   </ValidationObserver>
 </template>
 
@@ -80,6 +84,7 @@ export default {
         documents: [],
         content: '',
         picture: null,
+        image: null,
         tags: []
       }
     }

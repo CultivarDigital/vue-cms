@@ -6,7 +6,7 @@ const auth = require('../config/auth')
 const Post = mongoose.model('Post')
 
 router.get('/', (req, res) => {
-  Post.find({}).populate(req.query.populate).sort({ createdAt: -1 }).exec((err, posts) => {
+  Post.find().populate('image').populate(req.query.populate).sort({ createdAt: -1 }).exec((err, posts) => {
     if (err) {
       res.status(422).send(err.message)
     } else {
@@ -36,7 +36,7 @@ router.get('/current_tags', (req, res) => {
 router.get('/:id', (req, res) => {
   Post.findOne({
     slug: req.params.id
-  }).exec((err, post) => {
+  }).populate('image').exec((err, post) => {
     if (err) {
       res.status(422).send(err.message)
     } else {
@@ -50,11 +50,11 @@ router.post('/', auth.admin, (req, res) => {
   if (!newPost.slug) {
     newPost.slug = slugify(newPost.title).toLowerCase()
   }
-  newPost.save((err, post) => {
+  newPost.save(async (err, post) => {
     if (err) {
       res.status(422).send(err.message)
     } else {
-      res.send(post)
+      res.send(await Post.findById(post._id).populate('image'))
     }
   })
 })
@@ -65,8 +65,8 @@ router.put('/:id', auth.admin, async (req, res) => {
   Object.keys(params).forEach(key => {
     post[key] = params[key]
   })
-  await post.save().then(post => {
-    res.send(post)
+  await post.save().then(async post => {
+    res.send(await Post.findById(post._id).populate('image'))
   }).catch(err => {
     res.status(422).send(err.message)
   })

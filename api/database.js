@@ -1,4 +1,5 @@
 require('./models/Settings')
+require('./models/Attachment')
 require('./models/User')
 require('./models/Menu')
 require('./models/Post')

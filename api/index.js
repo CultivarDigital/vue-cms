@@ -23,6 +23,7 @@ app.use('/uploads', express.static(__dirname + '/uploads'))
 
 router.use('/auth', require('./routes/auth'))
 router.use('/uploads', require('./routes/uploads'))
+router.use('/attachments', require('./routes/attachments'))
 router.use('/users', require('./routes/users'))
 router.use('/settings', require('./routes/settings'))
 router.use('/posts', require('./routes/posts'))
