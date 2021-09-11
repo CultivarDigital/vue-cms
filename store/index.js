@@ -9,7 +9,6 @@ export const mutations = {
     state.settings = settings
   },
   setPostalCode(state, postalCode) {
-    console.log('set postal code', postalCode, postalCode.length)
     state.postal_code = postalCode
   },
   addToCart(state, cartItem) {

@@ -13,7 +13,7 @@
           <tags :tags="post.tags" @click="filterbyTag" />
         </div>
         <p v-if="post.description">{{ post.description }}</p>
-        <div class="quill-content mt-4">
+        <div class="dynamic-content mt-4">
           <div v-if="post.content" v-html="post.content" />
           <Documents :documents="post.docs" />
           <share />

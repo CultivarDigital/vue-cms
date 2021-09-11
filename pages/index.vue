@@ -4,7 +4,7 @@
       <Banners :items="settings.site_banners" />
       <section class="content bg-light pb-5">
         <b-container fluid="lg">
-          <div v-if="settings.description" class="text-center px-5">
+          <div v-if="settings.description" class="text-center px-5 pt-3">
             <!-- <img src="~/assets/img/logo-laranja.svg" alt="Sobre"> -->
             <div class="title mt-3">
               <h4>Sobre</h4>

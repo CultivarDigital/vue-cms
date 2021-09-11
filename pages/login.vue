@@ -3,7 +3,7 @@
     <Breadcrumb
       :active="tab === 'login' ? 'Entrar' : 'Cadastre-se'"
     />
-    <section class="content pb-5">
+    <section class="content pb-5 pt-5">
       <b-container fluid="md">
         <div v-show="tab === 'login'">
           <form @submit.prevent="login">

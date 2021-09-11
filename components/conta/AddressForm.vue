@@ -187,9 +187,6 @@ export default {
     }
   },
   created() {
-    console.log('created')
-    console.log(this.address)
-    console.log(this.value)
     this.address = { ...this.value }
     if (this.value) {
       Object.keys(this.form).forEach(k => {

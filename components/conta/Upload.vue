@@ -36,7 +36,7 @@
               <tr v-for="(attachment, index) in preview" :key="index">
                 <td class="img-td">
                   <b-img v-if="attachment.thumb" :src="attachment.thumb || attachment.url" width="100" thumbnail />
-                  <div v-else style="width: 100px; height: 100px" class="text-center m-auto">
+                  <div v-else style="width: 100px; height: 100px;" class="text-center m-auto">
                     <b-icon-image v-if="attachment.type === 'images'" class="thumb-icon" />
                     <b-icon-file-earmark-text v-else class="thumb-icon" />
                   </div>

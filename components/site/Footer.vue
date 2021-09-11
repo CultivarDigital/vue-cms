@@ -13,7 +13,7 @@
             <div v-if="settings.email">
               <a :href="'mailto:' + settings.email">{{ settings.email }}</a>
             </div>
-            <div>
+            <div class="social">
               <a v-if="settings.url_facebook" :href="settings.url_facebook" target="_blank"><font-awesome-icon :icon="['fab', 'facebook-square']" /></a>
               <a v-if="settings.url_instagram" :href="settings.url_instagram" target="_blank"><font-awesome-icon :icon="['fab', 'instagram-square']" /></a>
               <a v-if="settings.url_twitter" :href="settings.url_twitter" target="_blank"><font-awesome-icon :icon="['fab', 'twitter-square']" /></a>
@@ -23,7 +23,7 @@
               <small>&copy; {{ settings.title }}. Todos os direitos reservados.</small>
             </div>
           </b-col>
-          <b-col sm="6" class="">
+          <b-col sm="6" class="contact">
             <a>
               CONTATO
             </a>

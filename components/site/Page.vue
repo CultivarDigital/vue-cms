@@ -18,7 +18,7 @@
             Saiba mais
           </b-button>
         </div>
-        <div v-if="showMore || showContent" class="quill-content mt-4">
+        <div v-if="showMore || showContent" class="dynamic-content mt-4">
           <div v-html="page.content" />
           <Documents :documents="page.docs" />
         </div>

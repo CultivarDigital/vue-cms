@@ -130,8 +130,6 @@ header
     color: $white !important
     img
       max-height: 50px
-      @media (max-width: 768px)
-        max-height: 30px
   .navbar-nav
     > li
       font-size: 22px
@@ -180,6 +178,9 @@ footer
     color: #fff
   .links
     letter-spacing: 3px
+  .social
+    font-size: 30px
+
 .title
   hr
     width: 60px
@@ -268,13 +269,15 @@ footer
     width: 100%
 .ql-align-center
   text-align: center
-.quill-content
+.dynamic-content
   background-color: $white
   // color: #303030
   p
     margin-bottom: 0
-  img
+  img, iframe
     max-width: 100%
+    margin-top: 30px
+    margin-bottom: 30px
 
 .search
   input
