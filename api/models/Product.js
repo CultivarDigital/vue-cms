@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const ObjectId = mongoose.Schema.Types.ObjectId
 
 const ProductSchema = mongoose.Schema({
   deleted: Boolean,
@@ -31,7 +32,17 @@ const ProductSchema = mongoose.Schema({
   },
   tags: [String],
   pictures: [Object],
+  images: [{
+    type: ObjectId,
+    ref: 'Attachment',
+    autopopulate: true
+  }],
   documents: [Object],
+  docs: [{
+    type: ObjectId,
+    ref: 'Attachment',
+    autopopulate: true
+  }],
 
   // shipping
   weight: Number,
@@ -45,6 +56,8 @@ const ProductSchema = mongoose.Schema({
 }, {
   timestamps: true
 })
+
+ProductSchema.plugin(require('mongoose-autopopulate'))
 
 ProductSchema.virtual('orders', {
   ref: 'Order',

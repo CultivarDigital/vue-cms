@@ -1,6 +1,6 @@
 <template>
   <div class="default-layout" :class="{
-    'header-transparent': $route.path === '/' && settings && settings.banners && settings.banners.length > 0,
+    'header-transparent': $route.path === '/' && settings && settings.site_banners && settings.site_banners.length > 0,
     'home': $route.path === '/'
   }"
   >
@@ -64,7 +64,7 @@ export default {
         }
       ],
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: (this.settings && this.settings.favicon ? this.settings.favicon.url : '/favicon.ico') }
+        { rel: 'icon', type: 'image/x-icon', href: (this.settings && this.settings.site_favicon ? this.settings.site_favicon.url : '/favicon.ico') }
       ]
     }
   }

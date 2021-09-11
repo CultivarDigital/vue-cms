@@ -50,7 +50,7 @@ export default {
       orders: null,
       breadcrumb,
       table: [
-        { key: 'picture', label: '' },
+        { key: 'image', label: '' },
         { key: 'title', label: 'Título' },
         { key: 'category', label: 'Categoria' },
         { key: 'tags', label: 'Tags' },

@@ -16,7 +16,7 @@
           <b-form-group label="Insira o link do arquivo">
             <b-form-input v-model="form.url" />
           </b-form-group>
-          <Upload v-model="form.documents" label="Ou envie os arquivos" type="documents" multiple edit-title @uploaded="fileUploaded" />
+          <Upload v-model="form.docs" label="Ou envie os arquivos" type="documents" multiple edit-title @uploaded="fileUploaded" />
         </div>
         <div v-if="form.category === 'Notícias'">
           <b-form-group label="Link da notícia">
@@ -33,7 +33,7 @@
         </div>
         <div>
           <div v-if="form.category !== 'Vídeos'">
-            <Upload v-model="form.picture" type="images" :label="form.category === 'Fotografias' ? 'Enviar fotografia' : 'Foto de capa'" />
+            <Upload v-model="form.image" type="images" :label="form.category === 'Fotografias' ? 'Enviar fotografia' : 'Foto de capa'" />
           </div>
           <b-row>
             <b-col md="12">
@@ -101,7 +101,6 @@ export default {
   data() {
     return {
       categories,
-      changePicture: false,
       loadingUrl: false,
       currentTags: [],
       dateFormatOptions: {
@@ -111,8 +110,8 @@ export default {
       },
       form: {
         category: '',
-        documents: [],
-        picture: null,
+        docs: [],
+        image: null,
         title: '',
         description: '',
         tags: [],
@@ -146,7 +145,7 @@ export default {
     },
     fileUploaded(doc) {
       if (doc.average) {
-        this.form.picture = {
+        this.form.image = {
           url: doc.average,
           average: doc.average,
           thumb: doc.thumb
@@ -171,13 +170,13 @@ export default {
             this.form.description = ''
           }
           if (res.thumbnail_url) {
-            this.form.picture = {
+            this.form.image = {
               url: res.thumbnail_url,
               thumb: res.thumbnail_url,
               average: res.thumbnail_url
             }
           } else {
-            this.form.picture = null
+            this.form.image = null
           }
           if (!res.html || res.html.includes('iframely-embed')) {
             this.form.oembed = undefined

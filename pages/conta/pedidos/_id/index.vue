@@ -59,7 +59,7 @@
         <tbody>
           <tr v-for="(item, index) in order.items" :key="index">
             <td class="text-center text-sm-left">
-              <b-img v-if="item.product.pictures && item.product.pictures.length" :src="item.product.pictures[0].thumb" width="80" alt="placeholder" />
+              <b-img v-if="item.product.images && item.product.images.length" :src="item.product.images[0].thumb" width="80" alt="placeholder" />
               <b-img v-else blank blank-color="#E1846D" width="80" alt="placeholder" />
             </td>
             <td data-label="Produto">

@@ -41,10 +41,10 @@
           </b-form-group>
         </b-col>
         <b-col md="12">
-          <Upload v-model="form.pictures" type="images" label="Fotos do produto" multiple />
+          <Upload v-model="form.images" type="images" label="Fotos do produto" multiple />
         </b-col>
         <b-col md="12">
-          <Upload v-model="form.documents" label="Documentos" type="documents" multiple edit-title />
+          <Upload v-model="form.docs" label="Documentos" type="documents" multiple edit-title />
         </b-col>
         <b-col md="12">
           <tags-form v-model="form.tags" :current-tags="currentTags" />
@@ -160,8 +160,8 @@ export default {
         content: '',
         price: 0,
         qtd: 0,
-        documents: [],
-        pictures: [],
+        docs: [],
+        images: [],
         tags: [],
         weight: 0,
         format: 1,

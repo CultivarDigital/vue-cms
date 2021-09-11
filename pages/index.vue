@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="settings" class="home-page">
-      <Banners :items="settings.banners" />
+      <Banners :items="settings.site_banners" />
       <section class="content bg-light pb-5">
         <b-container fluid="lg">
           <div v-if="settings.description" class="text-center px-5">

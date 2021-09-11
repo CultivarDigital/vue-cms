@@ -13,7 +13,7 @@
         <b-col md="12">
           <b-form-group v-if="form.title" label="URL da notícia">
             <validation-provider v-slot="{ errors }" name="URL da notícia" rules="required">
-              <b-input-group prepend="noticias/">
+              <b-input-group prepend="/noticias/">
                 <b-form-input v-model="form.slug" name="slug" />
               </b-input-group>
               <span class="text-danger">{{ errors[0] }}</span>
@@ -36,16 +36,13 @@
           </b-form-group>
         </b-col>
         <b-col md="12">
+          <TagsForm v-model="form.tags" :current-tags="currentTags" />
+        </b-col>
+        <b-col md="12">
           <Upload v-model="form.image" type="images" label="Foto de capa" description="Tamanho recomendado: 1920x1200 pixels" edit-title edit-description edit-link />
         </b-col>
         <b-col md="12">
-          <!-- <Upload v-model="form.picture" type="images" label="Foto de capa" description="Tamanho recomendado: 1920x1200 pixels" edit-title edit-description edit-link /> -->
-        </b-col>
-        <b-col md="12">
-          <Upload v-model="form.documents" label="Documentos" type="documents" multiple edit-title />
-        </b-col>
-        <b-col md="12">
-          <tags-form v-model="form.tags" :current-tags="currentTags" />
+          <Upload v-model="form.docs" label="Documentos" type="documents" multiple edit-title />
         </b-col>
       </b-row>
       <b-button class="mb-4 mt-4" type="submit" variant="success" block :disabled="invalid">
@@ -81,9 +78,8 @@ export default {
         title: '',
         slug: '',
         description: '',
-        documents: [],
+        docs: [],
         content: '',
-        picture: null,
         image: null,
         tags: []
       }

@@ -1,7 +1,7 @@
 <template>
   <ValidationObserver v-slot="{ validate, invalid }">
     <b-form @submit.prevent="validate().then(save)">
-      <Upload v-model="form.picture" type="images" label="Foto do perfil" avatar />
+      <Upload v-model="form.image" type="images" label="Foto do perfil" avatar />
       <b-row>
         <b-col md="6">
           <b-form-group label="Nome *">
@@ -108,7 +108,7 @@ export default {
       roles,
       form: {
         name: '',
-        picture: null,
+        image: null,
         email: '',
         organization: '',
         phone: '',

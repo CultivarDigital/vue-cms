@@ -4,53 +4,57 @@
       :label="label"
       :description="description"
     >
-      <b-modal v-if="type === 'images'" id="new-attachment-modal" title="Selecione ou envie uma nova imagem" hide-footer size="lg">
+      <b-modal :id="'new-attachment-modal-' + inputId" title="Selecione ou envie" hide-footer size="lg">
         <div class="text-center">
-          <b-btn variant="success" @click="uploadClick">
+          <b-btn variant="success" class="mb-3" @click="uploadClick">
             <b-icon-upload />
-            Envie uma nova imagem
+            Envie um arquivo
           </b-btn>
-          <hr>
-          <div>
-            <p>Selecione uma imagem da galeria:</p>
-            <Gallery :images="gallery" select @select="callbackUploaded" />
+          <div v-if="attachments">
+            <div v-if="attachments.length">
+              <p>Ou selecione da galeria:</p>
+              <b-input-group class="mb-4">
+                <b-input v-model="search" placeholder="Buscar" />
+                <template #append>
+                  <b-input-group-text>
+                    <b-icon-search />
+                  </b-input-group-text>
+                </template>
+              </b-input-group>
+              <Gallery :attachments="gallery" select @select="callbackUploaded" />
+            </div>
+          </div>
+          <div v-else class="text-center mt-3">
+            <b-spinner small />
           </div>
         </div>
       </b-modal>
       <div v-if="showPreview && !avatar && preview && preview.length">
-        <table class="table b-table b-table-stacked-sm mb-1">
-          <tbody>
-            <tr v-for="(attachment, index) in preview" :key="index">
-              <td style="width: 100px;">
-                <b-modal :id="'attachment-modal-' + index" title="Dados da imagem" hide-footer size="lg">
-                  <AttachmentForm v-if="attachment" :value="preview[index]" @input="(updated) => attachmentUpdated(updated, index)" />
-                </b-modal>
-                <a @click="$bvModal.show('attachment-modal-' + index)">
-                  <b-img v-if="attachment.thumb" :src="attachment.thumb" fluid thumbnail width="100" />
-                  <b-icon-image v-else-if="type === 'images'" scale="2" />
-                  <b-icon-file-earmark-text v-else scale="2" />
-                </a>
-              </td>
-              <td v-if="type === 'images'">
-                <p v-if="attachment.title" class="mb-1"><strong>{{ attachment.title }}</strong></p>
-                <p v-if="attachment.description" class="mb-1">{{ attachment.description }}</p>
-                <p v-if="attachment.link" class="mb-1">Link: <small><a :href="attachment.link">{{ attachment.link_title || attachment.link }}</a></small></p>
-              </td>
-              <td v-else-if="editTitle || editDescription || editLink">
-                <b-form-input v-if="editTitle" v-model="attachment.title" placeholder="Título" class="mt-1" />
-                <b-form-textarea v-if="editDescription" v-model="attachment.description" placeholder="Descrição" class="mt-1" />
-                <b-form-input v-if="editLink" v-model="attachment.link" placeholder="Link" class="mt-1" />
-                <b-form-input v-if="editLink" v-model="attachment.link_title" placeholder="Título do link" class="mt-1" />
-              </td>
-              <td v-if="type !== 'images' && editDescription" />
-              <td class="text-md-right">
-                <b-btn variant="light" size="sm" @click="deleteFile(index)">
-                  <b-icon-trash />
-                </b-btn>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div>
+          <table class="table b-table b-table-stacked-sm">
+            <tbody>
+              <tr v-for="(attachment, index) in preview" :key="index">
+                <td class="img-td">
+                  <b-img v-if="attachment.thumb" :src="attachment.thumb || attachment.url" width="100" thumbnail />
+                  <div v-else style="width: 100px; height: 100px" class="text-center m-auto">
+                    <b-icon-image v-if="attachment.type === 'images'" class="thumb-icon" />
+                    <b-icon-file-earmark-text v-else class="thumb-icon" />
+                  </div>
+                </td>
+                <td>
+                  <b-modal :id="'attachment-modal-' + inputId + '-' + index" title="Editar" hide-footer size="lg">
+                    <AttachmentForm v-if="attachment" :type="type" :value="preview[index]" @input="(updated) => attachmentUpdated(updated, index)" @remove="() => deleteFile(index)" />
+                  </b-modal>
+                  <p v-if="attachment.title" class="mb-2"><strong>{{ attachment.title }}</strong></p>
+                  <p v-if="attachment.description" class="mb-3">{{ attachment.description }}</p>
+                  <b-btn variant="secondary" size="sm" @click="$bvModal.show('attachment-modal-' + inputId + '-' + index)">
+                    <b-icon-pencil /> Editar
+                  </b-btn>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
       <b-button v-if="is_loading" variant="secondary" disabled>
         <b-spinner small />
@@ -81,6 +85,7 @@
 </template>
 
 <script>
+import slugify from 'slugify'
 export default {
   props: {
     value: {
@@ -131,10 +136,24 @@ export default {
   data() {
     return {
       is_loading: false,
-      gallery: []
+      attachments: null,
+      search: ''
     }
   },
   computed: {
+    gallery() {
+      if (this.attachments && this.search) {
+        return this.attachments.filter((attachment) => {
+          const search = slugify(this.search).toLowerCase()
+          const text = slugify(
+            (attachment.title + attachment.description + attachment.url) || ''
+          ).toLowerCase()
+          return text.includes(search)
+        })
+      } else {
+        return this.attachments
+      }
+    },
     inputId() {
       return Math.random().toString(36).substring(2, 15)
     },
@@ -155,9 +174,6 @@ export default {
       return []
     }
   },
-  async created() {
-    this.gallery = await this.$axios.$get('/api/attachments')
-  },
   methods: {
     openImage(attachment, index) {
       if (this.multiple) {
@@ -167,7 +183,7 @@ export default {
       } else {
         this.$emit('input', attachment)
       }
-      this.$bvModal.hide('attachment-modal-' + index)
+      this.$bvModal.hide('attachment-modal-' + this.inputId + '-' + index)
     },
     attachmentUpdated(attachment, index) {
       if (this.multiple) {
@@ -177,10 +193,10 @@ export default {
       } else {
         this.$emit('input', attachment)
       }
-      this.$bvModal.hide('attachment-modal-' + index)
+      this.$bvModal.hide('attachment-modal-' + this.inputId + '-' + index)
     },
     uploadFiles(e) {
-      this.$bvModal.hide('new-attachment-modal')
+      this.$bvModal.hide('new-attachment-modal-' + this.inputId)
       this.is_loading = true
       const files = e.target.files || e.dataTransfer.files
       for (let i = 0; i < files.length; i++) {
@@ -210,10 +226,7 @@ export default {
         this.$emit('input', uploaded)
       }
       this.$emit('uploaded', uploaded)
-      if (this.type === 'images') {
-        this.$bvModal.hide('new-attachment-modal')
-        this.$bvModal.show('attachment-modal-' + (this.preview.length - 1))
-      }
+      this.$bvModal.hide('new-attachment-modal-' + this.inputId)
     },
     deleteFile(index) {
       if (this.multiple) {
@@ -224,14 +237,12 @@ export default {
       } else {
         this.$emit('input', null)
       }
+      this.$bvModal.hide('attachment-modal-' + this.inputId + '-' + index)
     },
-    upload() {
-      // eslint-disable-next-line dot-notation
-      if (this.type === 'images') {
-        this.$bvModal.show('new-attachment-modal')
-      } else {
-        this.uploadClick()
-      }
+    async upload() {
+      this.attachments = null
+      this.attachments = await this.$axios.$get('/api/attachments', { params: { type: this.type } })
+      this.$bvModal.show('new-attachment-modal-' + this.inputId)
     },
     uploadClick() {
       // eslint-disable-next-line dot-notation

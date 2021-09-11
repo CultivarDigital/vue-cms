@@ -94,7 +94,7 @@ export default {
     return {
       title: (this.settings ? this.settings.title : process.env.APP_NAME),
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: (this.settings && this.settings.favicon ? this.settings.favicon.url : '/favicon.ico') }
+        { rel: 'icon', type: 'image/x-icon', href: (this.settings && this.settings.site_favicon ? this.settings.site_favicon.url : '/favicon.ico') }
       ]
     }
   }

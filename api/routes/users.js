@@ -6,7 +6,7 @@ const User = mongoose.model('User')
 const setData = (user, data) => {
   user.email = data.email
   user.name = data.name
-  user.picture = data.picture
+  user.image = data.image
   user.organization = data.organization
   user.addresses = data.addresses
   user.phone = data.phone

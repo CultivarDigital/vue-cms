@@ -1,6 +1,6 @@
 <template>
   <ValidationObserver v-slot="{ invalid }" tag="form" @submit.prevent="save">
-    <Upload v-model="form.picture" type="images" label="Foto do perfil" avatar />
+    <Upload v-model="form.image" type="images" label="Foto do perfil" avatar />
     <b-row>
       <b-col md="6">
         <b-form-group label="Nome *">
@@ -78,7 +78,7 @@ export default {
       show_password: false,
       form: {
         name: '',
-        picture: null,
+        image: null,
         email: '',
         password: '',
         password_confirmation: '',

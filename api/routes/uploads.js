@@ -70,7 +70,7 @@ router.post('/images', [auth.authenticated, imageUploader.single('file')], (req,
       width: 400,
       height: 400,
       withoutEnlargement: true,
-      fit: sharp.fit.inside
+      fit: sharp.fit.cover
     })
     .toFile(thumb, async (err) => {
       if (!err) {
@@ -82,6 +82,7 @@ router.post('/images', [auth.authenticated, imageUploader.single('file')], (req,
           .toFile(average, async (err) => {
             if (!err) {
               const attachment = new Attachment({
+                type: 'images',
                 url: '/' + original,
                 thumb: '/' + thumb,
                 average: '/' + average
@@ -92,6 +93,7 @@ router.post('/images', [auth.authenticated, imageUploader.single('file')], (req,
           })
       } else {
         const attachment = new Attachment({
+          type: 'images',
           url: '/' + original
         })
         await attachment.save()
@@ -128,6 +130,7 @@ const documentUploader = multer({
     fileSize: 32 * 1024 * 1024
   }
 })
+
 router.post('/documents', [auth.authenticated, documentUploader.single('file')], async (req, res) => {
   const filename = req.file.filename
   const path = documentsPath()
@@ -153,7 +156,8 @@ router.post('/documents', [auth.authenticated, documentUploader.single('file')],
               .toFile(average, async (err) => {
                 if (!err) {
                   const attachment = new Attachment({
-                    title: filename,
+                    type: 'documents',
+                    title: filename.replace(/\.[^/.]+$/, ''),
                     url: '/' + req.file.path,
                     average: '/' + average,
                     thumb: '/' + thumb
@@ -166,7 +170,7 @@ router.post('/documents', [auth.authenticated, documentUploader.single('file')],
         })
     }).catch(() => {})
   } else {
-    const attachment = new Attachment({ title: filename, url: path + filename })
+    const attachment = new Attachment({ type: 'documents', title: filename.replace(/\.[^/.]+$/, ''), url: path + filename })
     await attachment.save()
     res.status(201).send(attachment)
   }

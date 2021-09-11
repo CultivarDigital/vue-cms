@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 require('./models/Settings')
 require('./models/Attachment')
 require('./models/User')

@@ -2,7 +2,7 @@
   <div class="posts-component pt-4">
     <b-row>
       <b-col v-for="post in posts" :key="post._id" lg="4" md="6" class="mb-4">
-        <b-card :img-src="post.picture ? post.picture.thumb : null" :img-alt="post.title">
+        <b-card :img-src="post.image ? post.image.thumb : null" :img-alt="post.title">
           <b-card-text>
             <h5 class="mb-0">
               <b-link :to="'/noticias/' + post.slug" class="stretched-link">{{ post.title }}</b-link>

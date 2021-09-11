@@ -6,7 +6,7 @@ const auth = require('../config/auth')
 const Post = mongoose.model('Post')
 
 router.get('/', (req, res) => {
-  Post.find().populate('image').populate(req.query.populate).sort({ createdAt: -1 }).exec((err, posts) => {
+  Post.find().populate(req.query.populate).sort({ createdAt: -1 }).exec((err, posts) => {
     if (err) {
       res.status(422).send(err.message)
     } else {
@@ -36,7 +36,7 @@ router.get('/current_tags', (req, res) => {
 router.get('/:id', (req, res) => {
   Post.findOne({
     slug: req.params.id
-  }).populate('image').exec((err, post) => {
+  }).exec((err, post) => {
     if (err) {
       res.status(422).send(err.message)
     } else {
@@ -54,7 +54,7 @@ router.post('/', auth.admin, (req, res) => {
     if (err) {
       res.status(422).send(err.message)
     } else {
-      res.send(await Post.findById(post._id).populate('image'))
+      res.send(await Post.findById(post._id))
     }
   })
 })
@@ -66,7 +66,7 @@ router.put('/:id', auth.admin, async (req, res) => {
     post[key] = params[key]
   })
   await post.save().then(async post => {
-    res.send(await Post.findById(post._id).populate('image'))
+    res.send(await Post.findById(post._id))
   }).catch(err => {
     res.status(422).send(err.message)
   })

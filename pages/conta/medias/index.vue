@@ -9,7 +9,7 @@
       </div>
       <div v-if="medias">
         <b-table v-if="medias.length" :fields="table" :items="medias" responsive="sm">
-          <template v-slot:cell(picture)="data">
+          <template v-slot:cell(image)="data">
             <b-img :src="data.value.thumb" width="100" rounded />
           </template>
           <template v-slot:cell(tags)="data">
@@ -48,7 +48,7 @@ export default {
         { text: 'Biblioteca', active: true }
       ],
       table: [
-        { key: 'picture', label: '' },
+        { key: 'image', label: '' },
         { key: 'title', label: 'Título' },
         { key: 'category', label: 'Categoria' },
         { key: 'tags', label: 'Tags' },

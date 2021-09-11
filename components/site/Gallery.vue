@@ -1,21 +1,24 @@
 <template>
   <div>
     <div>
-      <div>
-        <div
-          v-for="(image, i) in images"
+      <b-row>
+        <b-col
+          v-for="(attachment, i) in attachments"
           :key="i"
-          class="mr-2 mb-1 d-inline-block text-center"
+          md="3"
+          class="text-center mb-3"
         >
-          <b-img v-b-tooltip class="pointer" :src="image.thumb || image.url" thumb width="100" :title="image.title" @click="() => showImg(i)" />
+          <b-img v-if="attachment.thumb" v-b-tooltip class="pointer" :src="attachment.thumb || attachment.url" thumbnail fluid :title="attachment.title" @click="() => showImg(i)" />
+          <b-icon-image v-else-if="attachment.type === 'images'" scale="2" />
+          <b-icon-file-earmark-text v-else scale="2" />
           <div v-if="select" class="mt-2">
-            <b-btn size="sm" variant="default" @click="$emit('select', image)">Selecionar</b-btn>
+            <b-btn size="sm" variant="primary" @click="$emit('select', attachment)">Selecionar</b-btn>
           </div>
-        </div>
-      </div>
+        </b-col>
+      </b-row>
       <vue-easy-lightbox
         :visible="visible"
-        :imgs="images.map((image) => image.url)"
+        :imgs="attachments.map((attachment) => { return { src: attachment.url, title: attachment.title } })"
         :index="index"
         @hide="handleHide"
       />
@@ -30,7 +33,7 @@ export default {
     VueEasyLightbox
   },
   props: {
-    images: {
+    attachments: {
       type: Array,
       default: () => [],
       required: true

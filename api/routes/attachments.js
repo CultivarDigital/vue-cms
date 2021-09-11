@@ -5,7 +5,13 @@ const auth = require('../config/auth')
 const Attachment = mongoose.model('Attachment')
 
 router.get('/', (req, res) => {
-  Attachment.find().populate(req.query.populate).sort({ createdAt: -1 }).exec((err, attachments) => {
+  const query = {
+  }
+  if (req.query.type) {
+    query.type = req.query.type
+  }
+
+  Attachment.find(query).populate(req.query.populate).sort({ createdAt: -1 }).exec((err, attachments) => {
     if (err) {
       res.status(422).send(err.message)
     } else {

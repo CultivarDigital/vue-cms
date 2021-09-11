@@ -30,9 +30,9 @@
           <b-form-group label="Link do Youtube">
             <b-form-input v-model="form.url_youtube" name="url_youtube" />
           </b-form-group>
-          <Upload v-model="form.logo" label="Logo do site" type="images" />
-          <Upload v-model="form.favicon" label="Favicon do site" type="images" />
-          <Upload v-model="form.banners" label="Banners da home" type="images" description="Envie as imagens na ordem que aparecerão na tela de início. Tamanho recomendado: 1920x1200 pixels" multiple edit-title edit-description edit-link />
+          <Upload v-model="form.site_logo" label="Logo do site" type="images" />
+          <Upload v-model="form.site_favicon" label="Favicon do site" type="images" />
+          <Upload v-model="form.site_banners" label="Banners da home" type="images" description="Envie as imagens na ordem que aparecerão na tela de início. Tamanho recomendado: 1920x1200 pixels" multiple edit-title edit-description edit-link />
         </b-tab>
         <b-tab title="Loja">
           <b-form-group label="CEP de origem" description="Será usado como base para cálculo do frete na loja">
@@ -74,9 +74,9 @@ export default {
         description: '',
         contact: '',
         email: '',
-        logo: null,
-        favicon: null,
-        banners: [],
+        site_logo: null,
+        site_favicon: null,
+        site_banners: [],
         url_facebook: '',
         url_twitter: '',
         url_instagram: '',

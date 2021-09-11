@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Banners v-if="page" :items="page.pictures" />
+    <Banners v-if="page" :items="page.images" />
     <Breadcrumb
       v-if="page && breadcrumb"
       :active="page.title"
@@ -14,13 +14,13 @@
         </div>
         <p v-if="page.description">{{ page.description }}</p>
         <div v-if="!showContent" class="text-center mb-5">
-          <b-button v-if="page.content || (page.pictures && page.pictures.length) || (page.documents && page.documents.length)" variant="secondary" @click="showMore = !showMore">
+          <b-button v-if="page.content || (page.images && page.images.length) || (page.docs && page.docs.length)" variant="secondary" @click="showMore = !showMore">
             Saiba mais
           </b-button>
         </div>
         <div v-if="showMore || showContent" class="quill-content mt-4">
           <div v-html="page.content" />
-          <Documents :documents="page.documents" />
+          <Documents :documents="page.docs" />
         </div>
       </b-container>
     </div>

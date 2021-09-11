@@ -19,9 +19,15 @@ const PostSchema = mongoose.Schema({
   picture: Object,
   image: {
     type: ObjectId,
-    ref: 'Attachment'
+    ref: 'Attachment',
+    autopopulate: true
   },
   documents: [Object],
+  docs: [{
+    type: ObjectId,
+    ref: 'Attachment',
+    autopopulate: true
+  }],
   tags: [String]
 }, {
   timestamps: true,
@@ -31,6 +37,8 @@ const PostSchema = mongoose.Schema({
 PostSchema.plugin(uniqueValidator, {
   message: 'Este nome já está sendo usado'
 })
+
+PostSchema.plugin(require('mongoose-autopopulate'))
 
 const Post = mongoose.models.Post || mongoose.model('Post', PostSchema)
 module.exports = Post

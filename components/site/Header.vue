@@ -3,7 +3,7 @@
     <b-navbar toggleable="lg" variant="primary" type="dark">
       <b-container fluid="lg">
         <b-navbar-brand v-if="settings" to="/" class="p-0">
-          <b-img v-if="settings.logo && settings.logo.url" :src="settings.logo.url" />
+          <b-img v-if="settings.site_logo && settings.site_logo.url" :src="settings.site_logo.url" />
           <h5 v-else class="mb-0">{{ settings.title }}</h5>
         </b-navbar-brand>
         <b-navbar-toggle target="header-menu">

@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const uniqueValidator = require('mongoose-unique-validator')
 const jwt = require('jsonwebtoken')
 const AddressSchema = require('./Address')
+const ObjectId = mongoose.Schema.Types.ObjectId
 
 mongoose.set('useCreateIndex', true)
 const secret = process.env.SECRET || process.env.APP_NAME
@@ -33,6 +34,11 @@ const UserSchema = new mongoose.Schema({
   },
   organization: String,
   picture: Object,
+  image: {
+    type: ObjectId,
+    ref: 'Attachment',
+    autopopulate: true
+  },
   addresses: [AddressSchema],
   phone: String,
   cpf_cnpj: String
@@ -44,6 +50,8 @@ const UserSchema = new mongoose.Schema({
 UserSchema.plugin(uniqueValidator, {
   message: 'Este nome já está sendo usado'
 })
+
+UserSchema.plugin(require('mongoose-autopopulate'))
 
 UserSchema.methods.validPassword = function(password) {
   const hash = crypto.pbkdf2Sync(password, this.salt, 10000, 512, 'sha512').toString('hex')
@@ -61,7 +69,7 @@ UserSchema.methods.data = function() {
     email: this.email,
     role: this.role,
     name: this.name,
-    picture: this.picture,
+    image: this.image,
     organization: this.organization,
     addresses: this.addresses,
     phone: this.phone,

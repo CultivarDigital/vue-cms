@@ -6,7 +6,7 @@
       :description="post.description"
     />
     <section class="mb-5">
-      <Banners v-if="post.picture" :items="[post.picture]" />
+      <Banners v-if="post.image" :items="[post.image]" />
       <b-container>
         <h1 class="title pt-5 text-primary">{{ post.title }}</h1>
         <div class="mb-3">
@@ -15,7 +15,7 @@
         <p v-if="post.description">{{ post.description }}</p>
         <div class="quill-content mt-4">
           <div v-if="post.content" v-html="post.content" />
-          <Documents :documents="post.documents" />
+          <Documents :documents="post.docs" />
           <share />
         </div>
       </b-container>
