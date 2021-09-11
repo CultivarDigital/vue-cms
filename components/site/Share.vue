@@ -1,5 +1,5 @@
 <template>
-  <div class="share-component text-center mt-5">
+  <div class="share-component text-center mt-5 mb-5">
     <h6>Compartilhe</h6>
     <client-only>
       <vue-goodshare />
