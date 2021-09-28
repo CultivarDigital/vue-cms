@@ -154,7 +154,15 @@ header
           background-image: url(~assets/img/bg-menu.png)
         &:hover
           color: $white
-
+  #header-menu
+    .dropdown-menu
+      background-color: $primary
+      a
+        color: $white
+        &:hover
+          background-color: $secondary
+        &.nuxt-link-exact-active
+          background-color: $secondary
 .sub-header
   height: 10px
   width: 100%
@@ -188,7 +196,7 @@ footer
     background: $secondary
     margin-top: 10px
 
-  h4
+  h1, h2, h3, h4
     margin-bottom: 0px
     text-align: center
     color: $primary

@@ -9,7 +9,7 @@
     <div v-if="page" class="page">
       <b-container>
         <div class="title mt-5">
-          <h4 v-if="page.title" class="title">{{ page.title }}</h4>
+          <h1 v-if="page.title" class="title">{{ page.title }}</h1>
           <hr>
         </div>
         <p v-if="page.description">{{ page.description }}</p>

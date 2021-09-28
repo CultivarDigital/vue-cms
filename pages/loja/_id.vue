@@ -24,7 +24,7 @@
             </div>
           </div>
           <div class="col-md-7 col-sm-7">
-            <h2 class="title"> {{ product.name }} </h2>
+            <h1 class="title"> {{ product.name }} </h1>
             <tags :tags="product.tags" @click="(tag) => $router.push('/loja?tag=' + tag)" />
             <br>
             <AddToCart :product="product" />

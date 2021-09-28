@@ -1,8 +1,8 @@
 <template>
-  <ValidationObserver v-slot="{ validate, invalid }">
-    <b-form @submit.prevent="validate().then(save)">
-      <b-tabs content-class="mt-3">
-        <b-tab title="Configurações gerais" active>
+  <b-tabs content-class="mt-3">
+    <b-tab title="Configurações gerais" active>
+      <ValidationObserver v-slot="{ validate, invalid }">
+        <b-form @submit.prevent="validate().then(save)">
           <b-form-group label="Nome/Título do site*">
             <validation-provider v-slot="{ errors }" name="título do site" rules="required">
               <b-form-input v-model="form.title" name="title" />
@@ -33,21 +33,28 @@
           <Upload v-model="form.site_logo" label="Logo do site" type="images" />
           <Upload v-model="form.site_favicon" label="Favicon do site" type="images" />
           <Upload v-model="form.site_banners" label="Banners da home" type="images" description="Envie as imagens na ordem que aparecerão na tela de início. Tamanho recomendado: 1920x1200 pixels" multiple edit-title edit-description edit-link />
-        </b-tab>
-        <b-tab title="Loja">
+          <b-button type="submit" variant="success" block :disabled="invalid">
+            Salvar
+          </b-button>
+        </b-form>
+      </ValidationObserver>
+    </b-tab>
+    <b-tab title="Loja">
+      <ValidationObserver v-slot="{ validate, invalid }">
+        <b-form @submit.prevent="validate().then(save)">
           <b-form-group label="CEP de origem" description="Será usado como base para cálculo do frete na loja">
             <validation-provider v-slot="{ errors }" name="CEP de origem" rules="required|min:9|max:9">
               <b-form-input v-model="form.postal_code" v-mask="'#####-###'" />
               <span class="text-danger">{{ errors[0] }}</span>
             </validation-provider>
           </b-form-group>
-        </b-tab>
-      </b-tabs>
-      <b-button type="submit" variant="success" block :disabled="invalid">
-        Salvar
-      </b-button>
-    </b-form>
-  </ValidationObserver>
+          <b-button type="submit" variant="success" block :disabled="invalid">
+            Salvar
+          </b-button>
+        </b-form>
+      </ValidationObserver>
+    </b-tab>
+  </b-tabs>
 </template>
 
 <script>
