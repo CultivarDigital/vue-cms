@@ -15,22 +15,22 @@
         </thead>
         <tbody>
           <tr v-for="(item, index) in cart" :key="index">
-            <td>
+            <td class="text-center text-lg-left">
               <b-img v-if="item.product.images && item.product.images.length" :src="item.product.images[0].thumb" width="100" alt="placeholder" />
               <b-img v-else blank blank-color="#E1846D" width="100" alt="placeholder" />
             </td>
-            <td>
+            <td data-label="Oferta">
               <router-link :to="'/loja/'+item.product._id" class="text-dark">
                 {{ item.product.name }}
               </router-link>
             </td>
-            <td>
+            <td data-label="Valor">
               {{ item.product.price | moeda }}
             </td>
-            <td>
+            <td data-label="Quantidade">
               {{ item.qtd }}
             </td>
-            <td>
+            <td data-label="Frete">
               <small v-if="loading_shipping">
                 <b-spinner small /> Calculando frete...
               </small>
@@ -45,7 +45,7 @@
                 </b-form-radio>
               </div>
             </td>
-            <td>
+            <td data-label="Total">
               <strong v-if="!loading_shipping">{{ (item.product.price * item.qtd) + (item.shipping ? item.shipping.price * item.qtd : 0) | moeda }}</strong>
             </td>
             <td class="text-center">
@@ -56,12 +56,12 @@
           </tr>
         </tbody>
         <tfoot>
-          <tr>
+          <tr class="b-table-bottom-row">
             <td colspan="4" class="text-right">
-              Frete
+              <strong>Frete</strong>
             </td>
-            <td>
-              <b-form-input v-model="postal_code" v-mask="'#####-###'" style="max-width: 130px;" @input="updatePostalCode()" />
+            <td class="text-center">
+              <b-form-input v-model="postal_code" v-mask="'#####-###'" style="max-width: 130px;" class="m-auto" @input="updatePostalCode()" />
             </td>
             <td>
               <strong v-if="!loading_shipping">{{ shippingTotal | moeda }}</strong>
@@ -69,7 +69,7 @@
             </td>
             <td />
           </tr>
-          <tr>
+          <tr class="b-table-bottom-row">
             <td colspan="5" class="text-right">
               <strong>Total da compra</strong>
             </td>

@@ -59,6 +59,19 @@ a
   thead, tfoot
     background-color: $primary
     color: $white
+  @media (max-width: 768px)
+    tfoot, .b-table-bottom-row
+      display: block !important
+      td
+        text-align: center !important
+    .b-table-bottom-row
+      display: block !important
+      text-align: center
+      > th, > td
+        display: block
+      td:empty
+        display: none !important
+
 .pre-line
   white-space: pre-line
 

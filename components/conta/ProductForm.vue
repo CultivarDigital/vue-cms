@@ -169,7 +169,7 @@ export default {
         height: 0,
         width: 0,
         diameter: 0,
-        shipping_services: [String],
+        shipping_services: [],
         published: true
       }
     }
@@ -177,9 +177,9 @@ export default {
   computed: {
     weightValidation() {
       if (this.form.format === 3) {
-        return 'required|max_value:1'
+        return 'required|max_value:1|min_value:0.001'
       } else {
-        return 'required'
+        return 'required|min_value:0.001'
       }
     },
     lengthValidation() {
