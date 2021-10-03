@@ -53,29 +53,30 @@ O lado servidor está construido em cima do Node.js e algumas de suas biblioteca
 ### Instruções de desenvolvimento
 
 ```bash
-# Clone this repo
-git clone https://github.com/terrakrya/cms.git
+# Clone esse repositório
+git clone git@github.com:squad-on/tekoa.git
 
-# Go inside downloaded directory
-cd cms/
+# Entre na pasta criada
+cd tekoa/
 
-# Install NPM dependecies
+# Instale as dependências
 $ yarn install
 
-# To run the developer version with hotreload in localhost:3000 run:
+# Crie e personalize o arquivo de variáveis de ambiente (.env) baseado no arquivo de exemplo que está na raiz do projeto (env.sample)
+$ cp env.sample .env
+
+# Para rodar em ambiente de desenvolvimento execute:
 $ yarn dev
 
-# The previous command printed you the generated user credentials. Use this info to access the admin panel at:
-http://localhost:3000/conta
+# O comando anterior sobe o projeto com hot-reload na seguinte url:
+http://localhost:3000
 
-# To compile and run the production version:
+# Para compilar e rodar a versão de produção:
 $ yarn build
 $ yarn start
 
-# generate static project
+# Para gerar uma versão estática do frontend
 $ yarn generate
-
-# Aways run "yarn lint" before commit
 
 ```
 
