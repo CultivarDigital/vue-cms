@@ -37,7 +37,7 @@
             <AddressesForm v-model="form.addresses" />
           </b-form-group>
         </b-col>
-        <b-col v-if="$auth.user.role === 'admin'" md="6">
+        <b-col v-if="$auth.user.role === 'admin' || $auth.user.role === 'super'" md="6">
           <b-form-group label="Perfil *">
             <validation-provider v-slot="{ errors }" rules="required">
               <b-form-select v-model="form.role" :options="roles" />
@@ -105,7 +105,7 @@ export default {
   data () {
     return {
       show_password: !this.user,
-      roles,
+      roles: roles.filter(role => role.value !== 'super'),
       form: {
         name: '',
         image: null,
@@ -131,7 +131,7 @@ export default {
   methods: {
     async save () {
       if (this.user) {
-        if (this.$auth.user.role === 'admin' && this.user._id !== this.$auth.user._id) {
+        if ((this.$auth.user.role === 'super' || this.$auth.user.role === 'admin') && this.user._id !== this.$auth.user._id) {
           const user = await this.$axios.$put('/api/users/' + this.user._id, this.form)
           if (user) {
             this.$toast.success('Usuário atualizado com sucesso!')

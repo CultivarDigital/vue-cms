@@ -1,7 +1,7 @@
 <template>
   <div class="dashboard">
     <b-breadcrumb :items="breadcrumb" />
-    <b-list-group v-if="$auth.user.role === 'admin'">
+    <b-list-group v-if="$auth.user.role === 'admin' || $auth.user.role === 'super'">
       <b-list-group-item to="/conta/pages">Páginas</b-list-group-item>
       <b-list-group-item to="/conta/menus">Menus</b-list-group-item>
       <b-list-group-item to="/conta/posts">Notícias</b-list-group-item>

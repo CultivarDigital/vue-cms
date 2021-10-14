@@ -1,0 +1,19 @@
+
+{ 
+  "medias": {
+    "title": "Biblioteca",
+    "enabled": false
+  }, 
+  "posts": {
+    "title": "Notícias" ,
+    "enabled": false
+  },
+  "events": {
+    "title": "Agenda" ,
+    "enabled": false
+  },
+  "shop": {
+    "title": "Loja" ,
+    "enabled": false
+  }
+}

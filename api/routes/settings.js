@@ -37,7 +37,7 @@ router.post('/setup', async (req, res) => {
     const admin = new User({
       name: req.body.admin_name,
       email: req.body.email,
-      role: 'admin'
+      role: 'super'
     })
     admin.setPassword(req.body.password)
     await admin.save()

@@ -5,7 +5,7 @@
       <h4 class="mb-3">Detalhes do pedido</h4>
       <table class="table b-table">
         <tbody>
-          <tr v-if="$auth.user.role === 'admin'">
+          <tr v-if="$auth.user.role === 'admin' || $auth.user.role === 'super'">
             <td class="font-weight-lighter">Pedido</td>
             <td>
               <b-badge size="lg" :class="order.status"><strong>#{{ order.code }}</strong> ({{ optionText(order.status, 'order-status') }})</b-badge>
@@ -15,7 +15,7 @@
             <td class="font-weight-lighter">Pedido</td>
             <td>
               <b-badge size="lg" :class="order.status"><strong>#{{ order.code }}</strong> ({{ optionText(order.status, 'order-status') }})</b-badge>
-              <v-select v-if="$auth.user.role === 'admin'" :class="order.status" :options="orderStatus" :reduce="item => item.value" label="text" @input="changeStatus" />
+              <v-select v-if="$auth.user.role === 'admin' || $auth.user.role === 'super'" :class="order.status" :options="orderStatus" :reduce="item => item.value" label="text" @input="changeStatus" />
             </td>
           </tr>
           <tr v-if="order.name">
@@ -38,7 +38,7 @@
             <td class="font-weight-lighter">Endereço de entrega</td>
             <th><strong>{{ order.address.description }}</strong></th>
           </tr>
-          <tr v-if="$auth.user.role === 'admin'">
+          <tr v-if="$auth.user.role === 'admin' || $auth.user.role === 'super'">
             <td class="font-weight-lighter">Status</td>
             <td>
               <v-select :value="order.status" :class="order.status" :options="orderStatus" :reduce="item => item.value" label="text" @input="changeStatus" />

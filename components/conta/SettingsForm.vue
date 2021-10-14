@@ -1,6 +1,6 @@
 <template>
   <b-tabs content-class="mt-3">
-    <b-tab title="Configurações gerais" active>
+    <b-tab title="Configurações gerais">
       <ValidationObserver v-slot="{ validate, invalid }">
         <b-form @submit.prevent="validate().then(save)">
           <b-form-group label="Nome/Título do site*">
@@ -39,7 +39,8 @@
         </b-form>
       </ValidationObserver>
     </b-tab>
-    <b-tab title="Loja">
+    {{ settings }}
+    <b-tab v-if="settings.features && settings.features.shop && settings.features.shop.enabled" title="Loja">
       <ValidationObserver v-slot="{ validate, invalid }">
         <b-form @submit.prevent="validate().then(save)">
           <b-form-group label="CEP de origem" description="Será usado como base para cálculo do frete na loja">
@@ -54,6 +55,19 @@
         </b-form>
       </ValidationObserver>
     </b-tab>
+    <b-tab v-if="$auth.user.role === 'super'" title="Funcionalidades">
+      <b-form @submit.prevent="save">
+        <b-list-group>
+          <b-list-group-item v-for="key in Object.keys(features)" :key="key" class="d-flex justify-content-between align-items-center">
+            {{ features[key].title }}
+            <b-form-checkbox v-model="form.features[key].enabled" switch />
+          </b-list-group-item>
+        </b-list-group>
+        <b-button type="submit" variant="success" block>
+          Salvar
+        </b-button>
+      </b-form>
+    </b-tab>
   </b-tabs>
 </template>
 
@@ -61,6 +75,7 @@
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
 
 import mixinForm from '@/mixins/form'
+import features from '@/data/features.json'
 
 export default {
   components: {
@@ -76,6 +91,7 @@ export default {
   },
   data () {
     return {
+      features,
       form: {
         title: '',
         description: '',
@@ -88,7 +104,8 @@ export default {
         url_twitter: '',
         url_instagram: '',
         url_youtube: '',
-        postal_code: ''
+        postal_code: '',
+        features
       }
     }
   },
@@ -101,7 +118,7 @@ export default {
       if (settings) {
         this.$store.commit('updateSettings', settings)
         this.$toast.success('As configurações foram salvas!')
-        this.$router.push('/conta')
+        // this.$router.push('/conta')
       }
     }
   }

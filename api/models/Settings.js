@@ -31,7 +31,8 @@ const SettingsSchema = mongoose.Schema({
     ref: 'Attachment',
     autopopulate: true
   }],
-  postal_code: String
+  postal_code: String,
+  features: Object
 }, {
   timestamps: true,
   toJSON: { virtuals: true }
