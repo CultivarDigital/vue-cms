@@ -51,7 +51,7 @@ const options = [
   [{
     align: []
   }],
-  ['image', 'video', 'link'],
+  ['image', 'video', 'link', 'iframe'],
   ['clean'] // remove formatting button
 ]
 Vue.use(VueQuillEditor, {
@@ -61,6 +61,11 @@ Vue.use(VueQuillEditor, {
       handlers: {
         image: () => {
           document.getElementById('quillfile').click()
+        },
+        iframe() {
+          const html = prompt('Insira o código para embedar:')
+          const range = this.quill.getSelection()
+          this.quill.clipboard.dangerouslyPasteHTML(range.index, html)
         }
       }
     }
