@@ -3,7 +3,7 @@
     <div class="container">
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
-          <n-link to="/"><b-icon-house-fill class="mr-1" /> {{ settings ? settings.title : '' }}</n-link>
+          <n-link to="/"><b-icon-house-fill class="mr-1" /></n-link>
         </li>
         <li v-for="(link, index) in links" :key="index" class="breadcrumb-item">
           <n-link :to="link[1]">{{ link[0] }}</n-link>

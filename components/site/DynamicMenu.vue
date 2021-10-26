@@ -8,13 +8,11 @@
         {{ menu.name }}
       </b-nav-item>
     </template>
-
-    <b-nav-item to="/noticias">Notícias</b-nav-item>
-    <b-nav-item to="/agenda">Agenda</b-nav-item>
-    <b-nav-item to="/biblioteca">Midiateca</b-nav-item>
-    <b-nav-item to="/loja">Loja</b-nav-item>
+    <template v-for="key in Object.keys(settings.features)">
+      <b-nav-item v-if="settings.features[key].enabled" :key="key" :to="settings.features[key].url">{{ settings.features[key].title }}</b-nav-item>
+    </template>
     <b-nav-item :to="'/conta'" variant="primary" size="lg" title="Minha conta">
-      <b-icon-person /> <span class="d-lg-none">Minha conta</span>
+      <b-icon-person-fill /> <span class="d-lg-none">Minha conta</span>
     </b-nav-item>
   </b-navbar-nav>
 </template>
@@ -26,6 +24,11 @@ export default {
       type: Array,
       default: () => [],
       required: true
+    }
+  },
+  computed: {
+    settings() {
+      return this.$store.state.settings
     }
   },
   methods: {

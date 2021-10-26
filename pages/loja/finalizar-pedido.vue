@@ -1,7 +1,7 @@
 <template>
   <div>
     <Breadcrumb
-      :links="[['Loja', '/loja']]"
+      :links="[[title, '/loja']]"
       active="Finalizar do pedido"
     />
     <b-container class="pt-4 pb-5">
@@ -76,6 +76,7 @@
 </template>
 <script>
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
+import features from '@/data/features'
 export default {
   components: {
     ValidationObserver,
@@ -102,7 +103,17 @@ export default {
       return this.$store.state.cart.reduce(function(a, item) {
         return a + (Number(item.qtd) * Number(item.product.price))
       }, 0)
+    },
+    settings() {
+      return this.$store.state.settings
+    },
+    title() {
+      if (this.settings && this.settings.features && this.settings.features.shop && this.settings.features.shop.title) {
+        return this.settings.features.shop.title
+      }
+      return features.shop.title
     }
+
   },
   created() {
     this.setUser()

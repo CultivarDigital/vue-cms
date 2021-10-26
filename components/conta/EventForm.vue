@@ -11,7 +11,10 @@
           </b-form-group>
         </b-col>
         <b-col md="6">
-          <date-time-form v-model="form.start_at" label="Começa em" />
+          <validation-provider v-slot="{ errors }" name="começa em" rules="required">
+            <date-time-form v-model="form.start_at" label="Começa em" />
+            <span class="text-danger">{{ errors[0] }}</span>
+          </validation-provider>
         </b-col>
         <b-col md="6">
           <date-time-form v-model="form.end_at" label="Termina em" />

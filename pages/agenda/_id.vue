@@ -1,7 +1,7 @@
 <template>
   <div v-if="event" class="event-page">
     <Breadcrumb
-      :links="[['Agenda', '/agenda']]"
+      :links="[[title, '/agenda']]"
       :active="event.title"
       :description="event.description"
     />
@@ -30,10 +30,22 @@
 </template>
 
 <script>
+import features from '@/data/features'
 export default {
   data () {
     return {
       event: null
+    }
+  },
+  computed: {
+    settings() {
+      return this.$store.state.settings
+    },
+    title() {
+      if (this.settings && this.settings.features && this.settings.features.events && this.settings.features.events.title) {
+        return this.settings.features.events.title
+      }
+      return features.events.title
     }
   },
   async created () {

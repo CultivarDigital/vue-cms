@@ -2,11 +2,11 @@
   <div class="medias-page">
     <Breadcrumb
       v-if="media"
-      :links="[['Biblioteca', '/biblioteca']]"
+      :links="[[title, '/biblioteca']]"
       :active="media.title"
     />
-    <Breadcrumb v-else-if="filters.tag" :links="[['Biblioteca', '/biblioteca']]" :active="filters.tag" />
-    <Breadcrumb v-else active="Biblioteca" />
+    <Breadcrumb v-else-if="filters.tag" :links="[[title, '/biblioteca']]" :active="filters.tag" />
+    <Breadcrumb v-else :active="title" />
     <section class="content pt-4">
       <b-container>
         <div>
@@ -49,6 +49,7 @@
 </template>
 <script>
 import categories from '@/data/categories'
+import features from '@/data/features'
 export default {
   data () {
     return {
@@ -63,6 +64,18 @@ export default {
       }
     }
   },
+  computed: {
+    settings() {
+      return this.$store.state.settings
+    },
+    title() {
+      if (this.settings && this.settings.features && this.settings.features.medias && this.settings.features.medias.title) {
+        return this.settings.features.medias.title
+      }
+      return features.medias.title
+    }
+  },
+
   async created () {
     if (this.$route.params.id) {
       this.get(this.$route.params.id)

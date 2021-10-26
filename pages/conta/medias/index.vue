@@ -36,17 +36,12 @@
   </div>
 </template>
 <script>
-
+import features from '@/data/features'
 export default {
   layout: 'conta',
-
   data () {
     return {
       medias: null,
-      breadcrumb: [
-        { text: 'Painel', to: '/conta' },
-        { text: 'Biblioteca', active: true }
-      ],
       table: [
         { key: 'image', label: '' },
         { key: 'title', label: 'Título' },
@@ -54,6 +49,21 @@ export default {
         { key: 'tags', label: 'Tags' },
         { key: 'publishing_date', label: 'Publicação' },
         { key: 'actions', label: '', class: 'text-right' }
+      ]
+    }
+  },
+  computed: {
+    settings() {
+      return this.$store.state.settings
+    },
+    breadcrumb() {
+      let title = features.medias.title
+      if (this.settings && this.settings.features && this.settings.features.medias && this.settings.features.medias.title) {
+        title = this.settings.features.medias.title
+      }
+      return [
+        { text: 'Painel', to: '/conta' },
+        { text: title, active: true }
       ]
     }
   },

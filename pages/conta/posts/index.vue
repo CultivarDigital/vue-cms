@@ -36,21 +36,31 @@
 </template>
 
 <script>
-
+import features from '@/data/features'
 export default {
   layout: 'conta',
-
   data () {
     return {
       posts: null,
-      breadcrumb: [
-        { text: 'Painel', to: '/conta' },
-        { text: 'Notícias', active: true }
-      ],
       table: [
         { key: 'title', label: 'Título' },
         { key: 'tags', label: 'Tags' },
         { key: 'actions', label: '', class: 'text-right' }
+      ]
+    }
+  },
+  computed: {
+    settings() {
+      return this.$store.state.settings
+    },
+    breadcrumb() {
+      let title = features.posts.title
+      if (this.settings && this.settings.features && this.settings.features.posts && this.settings.features.posts.title) {
+        title = this.settings.features.posts.title
+      }
+      return [
+        { text: 'Painel', to: '/conta' },
+        { text: title, active: true }
       ]
     }
   },

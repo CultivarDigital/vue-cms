@@ -1,7 +1,7 @@
 <template>
   <div>
     <Breadcrumb
-      active="Loja"
+      :active="title"
     />
     <b-container class="shop py-4">
       <b-row>
@@ -47,6 +47,7 @@
 </template>
 <script>
 import sorts from '@/data/sorts.json'
+import features from '@/data/features'
 export default {
   data() {
     return {
@@ -59,6 +60,17 @@ export default {
       },
       products: null,
       tags: []
+    }
+  },
+  computed: {
+    settings() {
+      return this.$store.state.settings
+    },
+    title() {
+      if (this.settings && this.settings.features && this.settings.features.shop && this.settings.features.shop.title) {
+        return this.settings.features.shop.title
+      }
+      return features.shop.title
     }
   },
   async created() {
