@@ -99,16 +99,28 @@
 <script>
 import orderStatus from '@/data/order-status.json'
 import { optionText } from '@/utils'
+import features from '@/data/features'
 export default {
   layout: 'conta',
   data () {
     return {
       optionText,
       orderStatus,
-      order: null,
-      breadcrumb: [
+      order: null
+    }
+  },
+  computed: {
+    settings() {
+      return this.$store.state.settings
+    },
+    breadcrumb() {
+      let title = features.shop.title
+      if (this.settings && this.settings.features && this.settings.features.shop && this.settings.features.shop.title) {
+        title = this.settings.features.shop.title
+      }
+      return [
         { text: this.$auth.user.role === 'user' ? 'Minha conta' : 'Painel', to: '/conta' },
-        { text: 'Loja', to: this.$auth.user.role === 'user' ? '/loja' : '/conta/loja' },
+        { text: title, to: this.$auth.user.role === 'user' ? '/loja' : '/conta/shop' },
         { text: this.$auth.user.role === 'user' ? 'Meus pedidos' : 'Pedidos', to: '/conta/pedidos' },
         { text: 'Pedido', active: true }
       ]
@@ -120,6 +132,7 @@ export default {
       this.breadcrumb.find(item => item.active).text = 'Pedido #' + this.order.code
     }
   },
+
   methods: {
     async changeStatus(status) {
       const order = await this.$axios.$put('/api/orders/' + this.order._id, { status })
