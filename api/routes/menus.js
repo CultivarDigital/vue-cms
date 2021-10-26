@@ -6,7 +6,19 @@ const Menu = mongoose.model('Menu')
 
 router.get('/', async (req, res) => {
   try {
-    const menus = await Menu.find({}).populate(req.query.populate).sort('name')
+    const menus = await Menu.find({ menu: null })
+      .populate({
+        path: 'submenus',
+        populate: {
+          path: 'page',
+          select: 'slug'
+        }
+      })
+      .populate({
+        path: 'page',
+        select: 'slug'
+      })
+      .sort('order')
     res.json(menus)
   } catch (err) {
     res.status(422).send(err.message)
@@ -70,6 +82,25 @@ router.post('/', auth.admin, (req, res) => {
       res.send(menu)
     }
   })
+})
+
+router.put('/reorder', auth.admin, async (req, res) => {
+  if (req.body.menus) {
+    for (const item of req.body.menus) {
+      await Menu.findOneAndUpdate(
+        {
+          _id: item.id
+        },
+        {
+          $set: { order: item.order, menu: item.menu }
+        },
+        {
+          upsert: true
+        }
+      )
+    }
+  }
+  res.json('ok')
 })
 
 router.put('/:id', auth.admin, (req, res) => {

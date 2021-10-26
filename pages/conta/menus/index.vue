@@ -7,25 +7,9 @@
       </b-button>
     </div>
     <div v-if="menus">
-      <b-table v-if="menus.length" :fields="table" :items="menus" responsive="sm">
-        <template v-slot:cell(page)="data">
-          <template v-if="data.value">
-            <n-link :to="'/' + data.value.slug">{{ '/' + data.value.slug }}</n-link>
-          </template>
-          <template v-else>
-            <a v-if="data.item.url.startsWith('http')" :href="data.item.url" target="_blank">{{ data.item.url }}</a>
-            <n-link v-else :to="data.item.url">{{ data.item.url }}</n-link>
-          </template>
-        </template>
-        <template v-slot:cell(actions)="data">
-          <n-link class="btn btn-info btn-sm" :to="'/conta/menus/' + data.item.id + '/edit'">
-            <b-icon-pencil />
-          </n-link>
-          <b-button variant="danger" size="sm" @click="remove(data.item)">
-            <b-icon-trash />
-          </b-button>
-        </template>
-      </b-table>
+      <div v-if="menus.length">
+        <draggable-menu :menus="menus" @change="reorder" />
+      </div>
       <b-alert v-else show variant="dark" class="text-center">Nenhum Menu encontrado</b-alert>
     </div>
     <div v-else class="text-center">
@@ -35,10 +19,8 @@
 </template>
 
 <script>
-
 export default {
   layout: 'conta',
-
   data () {
     return {
       menus: null,
@@ -57,6 +39,24 @@ export default {
     this.list()
   },
   methods: {
+    async reorder (event) {
+      const menusToReorder = []
+      let order = 0
+      this.menus.forEach(menu => {
+        menusToReorder.push({ id: menu._id, order })
+        order += 1
+        menu.submenus.forEach(submenu => {
+          menusToReorder.push({ id: submenu._id, order, menu: menu._id })
+          order += 1
+        })
+      })
+      // passa a lista de id + order de cada card pra ser reordenado na api
+      await this.$axios
+        .$put('/api/menus/reorder', {
+          menus: menusToReorder
+        })
+        .catch(this.showError)
+    },
     async list () {
       this.menus = await this.$axios.$get('/api/menus', { params: { populate: 'page' } })
     },

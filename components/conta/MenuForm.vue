@@ -53,7 +53,7 @@ export default {
         name: '',
         url: '',
         page: null,
-        menu: null
+        menu: this.$route.query.menu
       }
     }
   },

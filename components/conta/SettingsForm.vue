@@ -39,7 +39,7 @@
         </b-form>
       </ValidationObserver>
     </b-tab>
-    {{ settings }}
+    <!-- {{ settings }} -->
     <b-tab v-if="settings.features && settings.features.shop && settings.features.shop.enabled" title="Loja">
       <ValidationObserver v-slot="{ validate, invalid }">
         <b-form @submit.prevent="validate().then(save)">

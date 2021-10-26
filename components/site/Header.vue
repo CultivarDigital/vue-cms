@@ -10,9 +10,7 @@
           <font-awesome-icon icon="bars" />
         </b-navbar-toggle>
         <b-collapse id="header-menu" is-nav class="my-3">
-          <template v-if="menus !== null">
-            <dynamic-menu-item :menus="menus" />
-          </template>
+          <dynamic-menu :menus="menus" />
         </b-collapse>
       </b-container>
     </b-navbar>
@@ -35,7 +33,7 @@ export default {
   },
   methods: {
     async list () {
-      this.menus = await this.$axios.$get('/api/menus/submenus', { params: { populate: 'page' } })
+      this.menus = await this.$axios.$get('/api/menus')
     }
   }
 }

@@ -18,6 +18,10 @@ const MenuSchema = mongoose.Schema({
   url: {
     type: String,
     required: false
+  },
+  order: {
+    type: Number,
+    default: 0
   }
 }, {
   timestamps: true,
@@ -28,11 +32,12 @@ MenuSchema.plugin(uniqueValidator, {
   message: 'Este nome já está sendo usado'
 })
 
-// MenuSchema.virtual('submenu', {
-//   ref: 'Menu',
-//   localField: 'menu',
-//   foreignField: '_id',
-// })
+MenuSchema.virtual('submenus', {
+  ref: 'Menu',
+  localField: '_id',
+  foreignField: 'menu',
+  options: { sort: { order: 1 } }
+})
 
 const Menu = mongoose.models.Menu || mongoose.model('Menu', MenuSchema)
 module.exports = Menu
