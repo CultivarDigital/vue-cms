@@ -1,7 +1,7 @@
 <template>
   <div v-if="post" class="post-page">
     <Breadcrumb
-      :links="[['Notícias', '/noticias']]"
+      :links="[[title, '/noticias']]"
       :active="post.title"
       :description="post.description"
     />
@@ -24,10 +24,22 @@
 </template>
 
 <script>
+import features from '@/data/features'
 export default {
   data () {
     return {
       post: null
+    }
+  },
+  computed: {
+    settings() {
+      return this.$store.state.settings
+    },
+    title() {
+      if (this.settings && this.settings.features && this.settings.features.posts && this.settings.features.posts.title) {
+        return this.settings.features.posts.title
+      }
+      return features.posts.title
     }
   },
   async created() {

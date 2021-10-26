@@ -5,13 +5,21 @@
   </div>
 </template>
 <script>
+import features from '@/data/features'
 export default {
   layout: 'conta',
-  data () {
-    return {
-      breadcrumb: [
+  computed: {
+    settings() {
+      return this.$store.state.settings
+    },
+    breadcrumb() {
+      let title = features.shop.title
+      if (this.settings && this.settings.features && this.settings.features.shop && this.settings.features.shop.title) {
+        title = this.settings.features.shop.title
+      }
+      return [
         { text: 'Painel', to: '/conta' },
-        { text: 'Loja', to: '/conta/loja' },
+        { text: title, to: '/conta/shop' },
         { text: 'Produtos', to: '/conta/produtos' },
         { text: 'Cadastrar', active: true }
       ]

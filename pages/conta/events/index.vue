@@ -34,17 +34,13 @@
 </template>
 
 <script>
-
+import features from '@/data/features'
 export default {
   layout: 'conta',
 
   data () {
     return {
       events: null,
-      breadcrumb: [
-        { text: 'Painel', to: '/conta' },
-        { text: 'Eventos', active: true }
-      ],
       table: [
         { key: 'start_at', label: 'Data' },
         { key: 'title', label: 'Título' },
@@ -53,9 +49,25 @@ export default {
       ]
     }
   },
+  computed: {
+    settings() {
+      return this.$store.state.settings
+    },
+    breadcrumb() {
+      let title = features.events.title
+      if (this.settings && this.settings.features && this.settings.features.events && this.settings.features.events.title) {
+        title = this.settings.features.events.title
+      }
+      return [
+        { text: 'Painel', to: '/conta' },
+        { text: title, active: true }
+      ]
+    }
+  },
   created () {
     this.list()
   },
+
   methods: {
     async list () {
       this.events = await this.$axios.$get('/api/events')
