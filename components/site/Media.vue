@@ -1,7 +1,7 @@
 <template>
   <div class="medias-component">
     <div>
-      <div v-if="media.category === 'Vídeos' && media.oembed" v-html="media.oembed" />
+      <div v-if="media.category === 'Vídeos' || media.category === 'Áudios' && media.oembed" v-html="media.oembed" />
       <Banners v-else-if="media.image" :items="[media.image]" />
       <div>
         <h3 class="mt-3">{{ media.title }}</h3>

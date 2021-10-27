@@ -3,9 +3,8 @@
     <div>
       <b-card-group columns>
         <b-card v-for="media in medias" :key="media._id" no-body>
-          <div v-if="media.image" class="img">
-            <!-- <div v-if="media.category === 'Vídeos' && media.oembed" class="card-img-top" v-html="media.oembed" /> -->
-            <b-img :src="media.image ? media.image.thumb : null" :alt="media.title" class="card-img-top" />
+          <div v-if="media.image || media.oembed_thumb" class="img">
+            <b-img :src="media.image ? media.image.thumb : media.oembed_thumb" :alt="media.title" class="card-img-top" />
           </div>
           <div class="card-body">
             <div class="card-text">
