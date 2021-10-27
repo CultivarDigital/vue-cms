@@ -24,11 +24,18 @@
             <b-spinner v-if="loadingUrl" small label="Carregando conteúdo da notícia" />
           </b-form-group>
         </div>
+        <div v-if="form.category === 'Áudios'">
+          <b-form-group label="Link do áudio">
+            <b-form-input v-model="form.url" @input="loadUrl" />
+            <b-spinner v-if="loadingUrl" small label="Carregando conteúdo da áudio" />
+            <div v-if="form.oembed && !loadingUrl" class="pt-3" v-html="form.oembed" />
+          </b-form-group>
+        </div>
         <div v-if="form.category === 'Vídeos'">
           <b-form-group label="Link do vídeo">
             <b-form-input v-model="form.url" @input="loadUrl" />
             <b-spinner v-if="loadingUrl" small label="Carregando vídeo" />
-            <div v-if="form.oembed && !loadingUrl" class="mt-3" v-html="form.oembed" />
+            <div v-if="form.oembed && !loadingUrl" class="pt-3" v-html="form.oembed" />
           </b-form-group>
         </div>
         <div>
@@ -117,6 +124,7 @@ export default {
         tags: [],
         url: '',
         oembed: '',
+        oembed_thumb: null,
         publishing_date: null,
         publishing_date_format: 'DD/MM/YYYY',
         publishing_house: ''
@@ -169,15 +177,11 @@ export default {
           } else {
             this.form.description = ''
           }
+
           if (res.thumbnail_url) {
-            this.form.image = {
-              url: res.thumbnail_url,
-              thumb: res.thumbnail_url,
-              average: res.thumbnail_url
-            }
-          } else {
-            this.form.image = null
+            this.form.oembed_thumb = res.thumbnail_url
           }
+
           if (!res.html || res.html.includes('iframely-embed')) {
             this.form.oembed = undefined
           } else {

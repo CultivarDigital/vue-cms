@@ -10,7 +10,8 @@
       <div v-if="medias">
         <b-table v-if="medias.length" :fields="table" :items="medias" responsive="sm">
           <template v-slot:cell(image)="data">
-            <b-img :src="data.value.thumb" width="100" rounded />
+            <b-img v-if="data.value" :src="data.value.thumb" width="100" rounded />
+            <b-img v-else-if="data.item.oembed_thumb" :src="data.item.oembed_thumb" width="100" rounded />
           </template>
           <template v-slot:cell(tags)="data">
             <tags :tags="data.value" />
