@@ -25,6 +25,7 @@ const MediaSchema = mongoose.Schema({
   }],
   url: String,
   oembed: String,
+  oembed_thumb: String,
   publishing_date: Date,
   publishing_date_format: {
     type: String,

@@ -10,7 +10,8 @@
       <div v-if="medias">
         <b-table v-if="medias.length" :fields="table" :items="medias" responsive="sm">
           <template v-slot:cell(image)="data">
-            <b-img :src="data.value.thumb" width="100" rounded />
+            <b-img v-if="data.value" :src="data.value.thumb" width="100" rounded />
+            <b-img v-else-if="data.item.oembed_thumb" :src="data.item.oembed_thumb" width="100" rounded />
           </template>
           <template v-slot:cell(tags)="data">
             <tags :tags="data.value" />
@@ -36,17 +37,12 @@
   </div>
 </template>
 <script>
-
+import features from '@/data/features'
 export default {
   layout: 'conta',
-
   data () {
     return {
       medias: null,
-      breadcrumb: [
-        { text: 'Painel', to: '/conta' },
-        { text: 'Biblioteca', active: true }
-      ],
       table: [
         { key: 'image', label: '' },
         { key: 'title', label: 'Título' },
@@ -54,6 +50,21 @@ export default {
         { key: 'tags', label: 'Tags' },
         { key: 'publishing_date', label: 'Publicação' },
         { key: 'actions', label: '', class: 'text-right' }
+      ]
+    }
+  },
+  computed: {
+    settings() {
+      return this.$store.state.settings
+    },
+    breadcrumb() {
+      let title = features.medias.title
+      if (this.settings && this.settings.features && this.settings.features.medias && this.settings.features.medias.title) {
+        title = this.settings.features.medias.title
+      }
+      return [
+        { text: 'Painel', to: '/conta' },
+        { text: title, active: true }
       ]
     }
   },

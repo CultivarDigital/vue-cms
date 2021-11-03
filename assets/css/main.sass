@@ -281,6 +281,12 @@ footer
         display: block
       // .navbar-collapse
       //   display: block
+
+.ql-iframe
+  background-image: url(~assets/img/ql-code.png) !important
+  background-size: 20px !important
+  background-repeat: no-repeat !important
+  background-position: center !important
 .ql-video
   width: 80%
   margin: auto
@@ -288,6 +294,10 @@ footer
   height: 32vw
   @media (max-width: 768px)
     width: 100%
+  &[height]
+    height: auto
+    overflow: hidden
+    min-height: 232px
 .ql-align-center
   text-align: center
 .dynamic-content

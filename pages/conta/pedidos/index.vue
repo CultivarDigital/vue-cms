@@ -29,26 +29,13 @@
 </template>
 <script>
 import { optionText } from '@/utils'
+import features from '@/data/features'
 export default {
   layout: 'conta',
   data () {
-    let breadcrumb = [
-      { text: 'Painel', to: '/conta' },
-      { text: 'Loja', to: '/conta/loja' },
-      { text: 'Pedidos', active: true }
-    ]
-
-    if (this.$auth.user.role === 'user') {
-      breadcrumb = [
-        { text: 'Minha conta', to: '/conta' },
-        { text: 'Loja', to: '/loja' },
-        { text: 'Meus pedidos', active: true }
-      ]
-    }
     return {
       optionText,
       orders: null,
-      breadcrumb,
       table: [
         { key: 'image', label: '' },
         { key: 'title', label: 'Título' },
@@ -57,6 +44,31 @@ export default {
         { key: 'publishing_date', label: 'Publicação' },
         { key: 'actions', label: '', class: 'text-right' }
       ]
+    }
+  },
+  computed: {
+    settings() {
+      return this.$store.state.settings
+    },
+    breadcrumb() {
+      let title = features.shop.title
+      if (this.settings && this.settings.features && this.settings.features.shop && this.settings.features.shop.title) {
+        title = this.settings.features.shop.title
+      }
+      let breadcrumb = [
+        { text: 'Painel', to: '/conta' },
+        { text: title, to: '/conta/shop' },
+        { text: 'Pedidos', active: true }
+      ]
+
+      if (this.$auth.user.role === 'user') {
+        breadcrumb = [
+          { text: 'Minha conta', to: '/conta' },
+          { text: title, to: '/loja' },
+          { text: 'Meus pedidos', active: true }
+        ]
+      }
+      return breadcrumb
     }
   },
   created () {

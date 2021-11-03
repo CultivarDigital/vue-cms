@@ -39,34 +39,40 @@
         </b-form>
       </ValidationObserver>
     </b-tab>
-    <!-- {{ settings }} -->
-    <b-tab v-if="settings.features && settings.features.shop && settings.features.shop.enabled" title="Loja">
+    <b-tab v-if="$auth.user.role === 'super'" title="Funcionalidades">
       <ValidationObserver v-slot="{ validate, invalid }">
         <b-form @submit.prevent="validate().then(save)">
-          <b-form-group label="CEP de origem" description="Será usado como base para cálculo do frete na loja">
-            <validation-provider v-slot="{ errors }" name="CEP de origem" rules="required|min:9|max:9">
-              <b-form-input v-model="form.postal_code" v-mask="'#####-###'" />
-              <span class="text-danger">{{ errors[0] }}</span>
-            </validation-provider>
-          </b-form-group>
+          <b-list-group>
+            <b-list-group-item v-for="key in Object.keys(form.features)" :key="key">
+              <div class="d-flex justify-content-between align-items-center">
+                <strong>{{ features[key].title }}</strong>
+                <span>
+                  <b-btn v-if="form.features[key].enabled" variant="default" @click="edit(key)"><b-icon-tools /></b-btn>
+                  <b-form-checkbox v-model="form.features[key].enabled" switch class="d-inline-block" />
+                </span>
+              </div>
+              <div v-if="editing === key && form.features[key].enabled">
+                <hr>
+                <b-form-group label="Título da funcionalidade: ">
+                  <b-form-input v-model="form.features[key].title" />
+                </b-form-group>
+                <b-form-group v-if="key === 'shop'" label="CEP de origem" description="Será usado como base para cálculo do frete na loja">
+                  <validation-provider v-slot="{ errors }" name="CEP de origem" rules="required|min:9|max:9">
+                    <b-form-input v-model="form.features[key].postal_code" v-mask="'#####-###'" />
+                    <span class="text-danger">{{ errors[0] }}</span>
+                  </validation-provider>
+                </b-form-group>
+              </div>
+            </b-list-group-item>
+          </b-list-group>
+          <br>
           <b-button type="submit" variant="success" block :disabled="invalid">
             Salvar
           </b-button>
+          <pre>{{ form.features }}</pre>
+          <pre>{{ features }}</pre>
         </b-form>
       </ValidationObserver>
-    </b-tab>
-    <b-tab v-if="$auth.user.role === 'super'" title="Funcionalidades">
-      <b-form @submit.prevent="save">
-        <b-list-group>
-          <b-list-group-item v-for="key in Object.keys(features)" :key="key" class="d-flex justify-content-between align-items-center">
-            {{ features[key].title }}
-            <b-form-checkbox v-model="form.features[key].enabled" switch />
-          </b-list-group-item>
-        </b-list-group>
-        <b-button type="submit" variant="success" block>
-          Salvar
-        </b-button>
-      </b-form>
     </b-tab>
   </b-tabs>
 </template>
@@ -75,7 +81,7 @@
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
 
 import mixinForm from '@/mixins/form'
-import features from '@/data/features.json'
+import features from '@/data/features.js'
 
 export default {
   components: {
@@ -92,6 +98,7 @@ export default {
   data () {
     return {
       features,
+      editing: null,
       form: {
         title: '',
         description: '',
@@ -104,15 +111,31 @@ export default {
         url_twitter: '',
         url_instagram: '',
         url_youtube: '',
-        postal_code: '',
-        features
+        features: JSON.parse(JSON.stringify(features))
       }
     }
   },
   created () {
     this.toForm(this.form, this.settings)
+    this.form.features = JSON.parse(JSON.stringify(features))
+    if (this.settings.features) {
+      Object.keys(this.form.features).forEach(key => {
+        if (this.settings.features[key]) {
+          Object.keys(this.settings.features[key]).forEach(setting => {
+            this.form.features[key][setting] = this.settings.features[key][setting]
+          })
+        }
+      })
+    }
   },
   methods: {
+    edit(item) {
+      if (this.editing === item) {
+        this.editing = null
+      } else {
+        this.editing = item
+      }
+    },
     async save () {
       const settings = await this.$axios.$post('/api/settings', this.form)
       if (settings) {

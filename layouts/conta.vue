@@ -20,10 +20,9 @@
                 </b-nav-item>
                 <b-nav-item v-if="$auth.user.role === 'admin' || $auth.user.role === 'super'" to="/conta/pages">Páginas</b-nav-item>
                 <b-nav-item v-if="$auth.user.role === 'admin' || $auth.user.role === 'super'" to="/conta/menus">Menus</b-nav-item>
-                <b-nav-item v-if="$auth.user.role === 'admin' || $auth.user.role === 'super'" to="/conta/medias">Midiateca</b-nav-item>
-                <b-nav-item v-if="$auth.user.role === 'admin' || $auth.user.role === 'super'" to="/conta/posts">Notícias</b-nav-item>
-                <b-nav-item v-if="$auth.user.role === 'admin' || $auth.user.role === 'super'" to="/conta/events">Agenda</b-nav-item>
-                <b-nav-item v-if="$auth.user.role === 'admin' || $auth.user.role === 'super'" to="/conta/loja">Loja</b-nav-item>
+                <template v-for="key in Object.keys(settings.features)">
+                  <b-nav-item v-if="$auth.user.role === 'admin' || $auth.user.role === 'super' && settings.features[key].enabled" :key="key" :to="'/conta/' + key">{{ settings.features[key].title }}</b-nav-item>
+                </template>
                 <b-nav-item v-if="$auth.user.role === 'admin' || $auth.user.role === 'super'" to="/conta/contacts">Contatos</b-nav-item>
                 <b-nav-item v-if="$auth.user.role === 'admin' || $auth.user.role === 'super'" to="/conta/users">Usuários</b-nav-item>
                 <b-nav-item v-if="$auth.user.role === 'admin' || $auth.user.role === 'super'" to="/conta/settings">Configurações</b-nav-item>
@@ -46,10 +45,9 @@
                   </b-nav-item>
                   <b-nav-item v-if="$auth.user.role === 'admin' || $auth.user.role === 'super'" to="/conta/pages">Páginas</b-nav-item>
                   <b-nav-item v-if="$auth.user.role === 'admin' || $auth.user.role === 'super'" to="/conta/menus">Menus</b-nav-item>
-                  <b-nav-item v-if="$auth.user.role === 'admin' || $auth.user.role === 'super'" to="/conta/medias">Midiateca</b-nav-item>
-                  <b-nav-item v-if="$auth.user.role === 'admin' || $auth.user.role === 'super'" to="/conta/posts">Notícias</b-nav-item>
-                  <b-nav-item v-if="$auth.user.role === 'admin' || $auth.user.role === 'super'" to="/conta/events">Agenda</b-nav-item>
-                  <b-nav-item v-if="$auth.user.role === 'admin' || $auth.user.role === 'super'" to="/conta/loja">Loja</b-nav-item>
+                  <template v-for="key in Object.keys(settings.features)">
+                    <b-nav-item v-if="$auth.user.role === 'admin' || $auth.user.role === 'super' && settings.features[key].enabled" :key="key" :to="'/conta/' + key">{{ settings.features[key].title }}</b-nav-item>
+                  </template>
                   <b-nav-item v-if="$auth.user.role === 'admin' || $auth.user.role === 'super'" to="/conta/contacts">Contatos</b-nav-item>
                   <b-nav-item v-if="$auth.user.role === 'admin' || $auth.user.role === 'super'" to="/conta/users">Usuários</b-nav-item>
                   <b-nav-item v-if="$auth.user.role === 'admin' || $auth.user.role === 'super'" to="/conta/settings">Configurações</b-nav-item>

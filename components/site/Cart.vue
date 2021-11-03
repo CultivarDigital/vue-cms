@@ -112,7 +112,7 @@ export default {
       return this.$store.state.cart
     },
     sourcePostalCode() {
-      return this.$store.state.settings.postal_code
+      return this.$store.state.settings.features.shop.postal_code
     },
     total() {
       return this.cart.reduce(function(a, item) {
