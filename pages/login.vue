@@ -17,7 +17,7 @@
               <b-button type="submit" variant="success" block size="lg">
                 Entrar
               </b-button>
-              <p class="mt-4">
+              <p v-if="settings.features['shop'].enabled" class="mt-4">
                 Ainda não possúi uma conta?
                 <b-btn variant="primary" size="sm" @click="open('register')">
                   <strong>Cadastre-se</strong>
@@ -147,6 +147,9 @@ export default {
   computed: {
     passwordConfirmed () {
       return this.register_form.password === this.register_form.password_confirmation
+    },
+    settings() {
+      return this.$store.state.settings
     }
   },
   methods: {

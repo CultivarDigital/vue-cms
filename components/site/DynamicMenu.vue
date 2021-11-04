@@ -11,7 +11,7 @@
     <template v-for="key in Object.keys(settings.features)">
       <b-nav-item v-if="settings.features[key].enabled" :key="key" :to="settings.features[key].url">{{ settings.features[key].title }}</b-nav-item>
     </template>
-    <b-nav-item :to="'/conta'" variant="primary" size="lg" title="Minha conta">
+    <b-nav-item v-if="settings.features['shop'].enabled" :to="'/conta'" variant="primary" size="lg" title="Minha conta">
       <b-icon-person-fill /> <span class="d-lg-none">Minha conta</span>
     </b-nav-item>
   </b-navbar-nav>
