@@ -69,8 +69,6 @@
           <b-button type="submit" variant="success" block :disabled="invalid">
             Salvar
           </b-button>
-          <pre>{{ form.features }}</pre>
-          <pre>{{ features }}</pre>
         </b-form>
       </ValidationObserver>
     </b-tab>
