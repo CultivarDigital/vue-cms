@@ -25,7 +25,8 @@ const PageSchema = mongoose.Schema({
     type: ObjectId,
     ref: 'Attachment',
     autopopulate: true
-  }]
+  }],
+  components: [Object]
 }, {
   timestamps: true,
   toJSON: { virtuals: true }

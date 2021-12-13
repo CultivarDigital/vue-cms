@@ -559,3 +559,12 @@ footer
 .img-td
   @media (min-width: 768px)
     width: 100px
+
+.edit-page
+  .dynamic-component
+    &:hover
+      cursor: pointer
+      // border: 1px dotted $light
+      outline: 1px dotted $light
+    &.active-component
+      border: 1px dotted $secondary
