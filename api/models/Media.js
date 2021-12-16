@@ -2,6 +2,10 @@ const mongoose = require('mongoose')
 const ObjectId = mongoose.Schema.Types.ObjectId
 
 const MediaSchema = mongoose.Schema({
+
+  category: String, // TODO criar rotina para transferir este valor para categories e excluir este campo
+  categories: [String],
+  tags: [String],
   title: {
     type: String,
     required: true
@@ -9,8 +13,6 @@ const MediaSchema = mongoose.Schema({
   description: {
     type: String
   },
-  category: String,
-  tags: [String],
   picture: Object,
   image: {
     type: ObjectId,
@@ -31,7 +33,22 @@ const MediaSchema = mongoose.Schema({
     type: String,
     default: 'DD/MM/YYYY'
   },
-  publishing_house: String
+  publishing_house: String, // Editora
+
+  aditional_infos: [Object], // Informações adicionais
+  type: String, // Tipo de documento
+  authors: [Object], // Autores
+  city: String, // Cidade
+  organizers: [Object], // Organizadores
+  doi: String, // Identificador de Objeto Digital
+  institution: String, // Instituição
+  number: String, // Número da publicação
+  languages: [String], // Idiomas
+  notes: String, // Anotações
+  pages: String, // Páginas
+  patent_legal_status: String, // Disponibilidade
+  source: String, // Fonte
+  volume: String // Volume
 }, {
   timestamps: true,
   toJSON: { virtuals: true }

@@ -1,0 +1,19 @@
+{
+  "bill": "Leis e normas",
+  "book": "Livro",
+  "book_section": "Capítulo de livro",
+  "computer_program": "Programa de computador/Aplicativo",
+  "conference_proceedings": "Apresentação em evento",
+  "film": "Vídeo",
+  "generic": "Outros",
+  "hearing": "Áudio/Podcast",
+  "journal": "Artigo de periódico",
+  "magazine_article": "Notícia",
+  "newspaper_article": "Notícia",
+  "patent": "Patente",
+  "report": "Relatório",
+  "statute": "Leis e normas",
+  "thesis": "Tese",
+  "web_page": "Página da internet",
+  "working_paper": "Texto de trabalho/Rascunho"
+}
