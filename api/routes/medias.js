@@ -26,7 +26,7 @@ const fieldArrayOptions = (docs, column) => {
   return Object.keys(values).sort((a, b) => a.localeCompare(b))
 }
 
-router.get('/import', (req, res) => {
+router.get('/import', async (req, res) => {
   const medias = {
     langs: [],
     languages: [],
@@ -36,7 +36,7 @@ router.get('/import', (req, res) => {
   }
   const fields = {}
 
-  mendeley.forEach(d => {
+  for (const d of mendeley) {
     const m = new Media()
     m.aditional_infos = []
     m.title = d.title
@@ -99,8 +99,9 @@ router.get('/import', (req, res) => {
       fields[k] = true
     })
 
+    await m.save()
     medias.list.push(m)
-  })
+  }
 
   medias.langs = fieldOptions(mendeley, 'language')
   medias.languages = fieldArrayOptions(medias.list, 'languages')
@@ -116,7 +117,7 @@ router.get('/', (req, res) => {
     query.title = { $regex: req.query.search, $options: 'i' }
   }
   if (req.query.category) {
-    query.category = req.query.category
+    query.categories = req.query.category
   }
   if (req.query.tag) {
     query.tags = req.query.tag
@@ -148,6 +149,39 @@ router.get('/tags', (req, res) => {
       res.json(Object.keys(tags).sort((a, b) => {
         return a.localeCompare(b)
       }))
+    }
+  })
+})
+
+router.get('/filters', (req, res) => {
+  const query = { }
+  Media.find(query, 'tags categories').exec((err, medias) => {
+    if (err) {
+      res.status(422).send(err)
+    } else {
+      const tags = {}
+      const categories = {}
+      medias.forEach(media => {
+        if (media && media.tags) {
+          media.tags.forEach(tag => {
+            tags[tag] = true
+          })
+        }
+        if (media && media.categories) {
+          media.categories.forEach(category => {
+            categories[category] = true
+          })
+        }
+      })
+
+      res.json({
+        tags: Object.keys(tags).sort((a, b) => {
+          return a.localeCompare(b)
+        }),
+        categories: Object.keys(categories).sort((a, b) => {
+          return a.localeCompare(b)
+        })
+      })
     }
   })
 })

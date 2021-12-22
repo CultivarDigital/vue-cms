@@ -1,7 +1,8 @@
 export const state = () => ({
   settings: null,
   cart: [],
-  postal_code: null
+  postal_code: null,
+  media_filters: null
 })
 
 export const mutations = {
@@ -32,6 +33,9 @@ export const mutations = {
   removeFromCart(state, index) {
     delete state.cart[index]
     state.cart.splice(index, 1)
+  },
+  setMediaFilters(state, filters) {
+    state.media_filters = filters
   },
   clearCart(state) {
     state.cart = []

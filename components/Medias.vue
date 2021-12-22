@@ -1,19 +1,20 @@
 <template>
   <div class="medias-component">
     <div>
-      <b-card-group columns>
-        <b-card v-for="media in medias" :key="media._id" no-body>
-          <div v-if="media.image || media.oembed_thumb" class="img">
-            <b-img :src="media.image ? media.image.thumb : media.oembed_thumb" :alt="media.title" class="card-img-top" />
-          </div>
-          <div class="card-body">
-            <div class="card-text">
-              {{ media.title }}
-            </div>
-            <n-link :to="'/biblioteca/' + media._id" class="stretched-link hidden" />
-          </div>
-        </b-card>
-      </b-card-group>
+      <ul class="list-unstyled">
+        <b-media v-for="media in medias" :key="media._id" tag="li" class="border-top py-3">
+          <template #aside>
+            <b-img v-if="media.image || media.oembed_thumb" :src="media.image ? media.image.thumb : media.oembed_thumb" :alt="media.title" />
+            <b-img v-else blank blank-color="#abc" width="64" alt="placeholder" />
+          </template>
+          <h5 class="mt-0 mb-1">
+            <n-link :to="'/biblioteca/' + media._id">{{ media.title }}</n-link>
+          </h5>
+          <p class="mb-0">
+            {{ media.description | truncate(100) }}
+          </p>
+        </b-media>
+      </ul>
     </div>
   </div>
 </template>
