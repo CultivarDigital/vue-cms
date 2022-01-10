@@ -1,0 +1,2468 @@
+[
+  {
+      "id": "4ae9399a-a3af-851b-7a48-19dc1d496b3a",
+      "document_id": "63e924ca-63b3-313c-b495-0f4951c633be",
+      "mime_type": "application/pdf",
+      "file_name": "Wadt_DesafiosEOportunidades.pdf",
+      "size": 959454,
+      "created": "2021-08-18T18:50:34.817Z",
+      "filehash": "6b24f33e11d8fb191505a33a4be71f5654f19b4e"
+  },
+  {
+      "id": "27a1aa65-21b0-c79b-444a-697498d975c6",
+      "document_id": "601359d0-336c-36a1-ac66-980e7b4e1236",
+      "mime_type": "application/pdf",
+      "file_name": "Senra_AhcewaXaKi.pdf",
+      "size": 2031642,
+      "created": "2021-08-18T18:50:43.260Z",
+      "filehash": "65fc4849fdb49147f1bd0b01f112f9f84ed70599"
+  },
+  {
+      "id": "633494b5-9168-5afb-7a14-173a7779817e",
+      "document_id": "045ace88-de3e-320b-b109-c5b14b89cb8f",
+      "mime_type": "application/pdf",
+      "file_name": "Freitas_VisitantesFloraisE.pdf",
+      "size": 581243,
+      "created": "2021-08-18T18:50:54.470Z",
+      "filehash": "11a569e74c5d6cc426d84023dcc85fa5823c9a3b"
+  },
+  {
+      "id": "1089bd83-f130-dc3b-584f-08a58ff98ade",
+      "document_id": "ab9f6fbf-1e3d-3208-95b0-b47db3d25af3",
+      "mime_type": "application/pdf",
+      "file_name": "Maues_BrazilNutIn.pdf",
+      "size": 1813756,
+      "created": "2021-08-18T18:51:06.115Z",
+      "filehash": "427ab92f2720ac1b90e25c0bf945f839525e8f76"
+  },
+  {
+      "id": "31b2324b-dc53-292d-72ff-dce6d979a6fe",
+      "document_id": "53dd433d-bf05-3c82-9f80-44769f003636",
+      "mime_type": "application/pdf",
+      "file_name": "Duchelle_MeasuringTheResilience.pdf",
+      "size": 584477,
+      "created": "2021-08-18T18:51:20.819Z",
+      "filehash": "c19f49fe12791a800a1e0e089934a37cd5c5c691"
+  },
+  {
+      "id": "37575900-3b78-f9e1-79ac-11f72bd9ae06",
+      "document_id": "71758e95-09ae-3f5d-bbe5-318984355128",
+      "mime_type": "application/pdf",
+      "file_name": "Cornejo_HistoriaNaturalDe.pdf",
+      "size": 3124111,
+      "created": "2021-08-18T18:51:43.402Z",
+      "filehash": "573a6c0d2ce75410f2424ce3fb0a1642ea38ef36"
+  },
+  {
+      "id": "7957cf51-edc8-fbfd-2f75-bfbd0a79b9be",
+      "document_id": "8ffc5d10-e203-39ec-a372-e70188d7a0f5",
+      "mime_type": "application/pdf",
+      "file_name": "MDS_SituacaoDaCadeia.pdf",
+      "size": 6010525,
+      "created": "2021-08-18T18:51:46.119Z",
+      "filehash": "1d0e21e18a8dcbd7ee28983e6c18386b4a24e072"
+  },
+  {
+      "id": "7d3ebaa4-7f81-0b57-1428-e396cf89e06a",
+      "document_id": "ffc9bbab-10b4-34e5-8655-198eae6a95e8",
+      "mime_type": "application/pdf",
+      "file_name": "Bavaresco_RelatorioFinal.pdf",
+      "size": 3496582,
+      "created": "2021-08-18T18:52:06.856Z",
+      "filehash": "7d68b6b57c2963c410d1cad2e3f03d791c6a2ef7"
+  },
+  {
+      "id": "64021da7-11b3-8fab-3c66-249a6399f456",
+      "document_id": "6957a711-48f3-30b9-b531-c1c05e9b86d9",
+      "mime_type": "application/pdf",
+      "file_name": "2021_Staudhammer_ComparativeModelDisentangle.pdf",
+      "size": 2657334,
+      "created": "2021-08-18T18:52:30.771Z",
+      "filehash": "1aacc1dcb8a640dc1191f0eba62a6cbbf8a4284f"
+  },
+  {
+      "id": "55ef1894-16b1-255b-7fbc-3f228cc9f7da",
+      "document_id": "7b65d3a1-b7e6-3b3c-a971-2104c27a6a3d",
+      "mime_type": "application/pdf",
+      "file_name": "2019_Willen_LasConcessionesFlorestales.pdf",
+      "size": 294267,
+      "created": "2021-08-18T18:52:43.483Z",
+      "filehash": "c82b1b7de4ea939b5cae5b5d12f663b03ee9b83f"
+  },
+  {
+      "id": "76bb53db-9e68-8355-0668-7432df29fee2",
+      "document_id": "f0025ab9-df11-3df6-b14c-55adb5641a8a",
+      "mime_type": "application/pdf",
+      "file_name": "2020_CONAB_BoletimDaSociobiodiversidade.pdf",
+      "size": 2078232,
+      "created": "2021-08-18T18:52:47.777Z",
+      "filehash": "4517196b9f425dc592e72df246b197f910d6344b"
+  },
+  {
+      "id": "49705c94-0017-3317-0ce0-a6a18bba1c2e",
+      "document_id": "e058d13e-1738-3d28-bc88-367bc30836cb",
+      "mime_type": "application/pdf",
+      "file_name": "2019_Tonini_EstruturaERegeneracao.pdf",
+      "size": 1036502,
+      "created": "2021-08-18T18:53:06.154Z",
+      "filehash": "f1fa346b67c06c93c1d75781a283b11e946e2dfa"
+  },
+  {
+      "id": "3bf7e0a4-52a1-4d6f-351d-e7a51fca301a",
+      "document_id": "e652d290-38ab-35bc-886f-e7038deb6624",
+      "mime_type": "application/pdf",
+      "file_name": "2019_Machado_PosicionamentoEstrategico.pdf",
+      "size": 1596439,
+      "created": "2021-08-18T18:53:34.458Z",
+      "filehash": "6b667e2e296eee6c80f0901d9102e1a698223b1a"
+  },
+  {
+      "id": "451b5b7f-ecf1-6d8b-0564-670aa21a6e36",
+      "document_id": "27e17e67-b207-388c-8283-7d555fcc169b",
+      "mime_type": "application/pdf",
+      "file_name": "2018_Simmons_DisciplineAndDevelop.pdf",
+      "size": 1969942,
+      "created": "2021-08-18T18:54:22.564Z",
+      "filehash": "9b21bc65667db293a455a6930576d97b5f8abac6"
+  },
+  {
+      "id": "486d54a5-9c69-85cb-3419-da7ce2ba9f6e",
+      "document_id": "34d82d6d-e4bf-34f4-98ef-9e0e1cbd72e3",
+      "mime_type": "application/pdf",
+      "file_name": "2018_Lorini_InfluenceOnPackaging.pdf",
+      "size": 387292,
+      "created": "2021-08-18T18:55:11.115Z",
+      "filehash": "232b7a7d87784fb7a8447ffcb762640c863ddd83"
+  },
+  {
+      "id": "2435084f-8f68-1a9d-6f23-aae78b0b4e0a",
+      "document_id": "572dc346-1b7b-3585-8044-32213486a2f6",
+      "mime_type": "application/pdf",
+      "file_name": "2018_Gama_BiocarvaoEAdubacao.pdf",
+      "size": 1507866,
+      "created": "2021-08-18T18:57:52.406Z",
+      "filehash": "f3b746fc717d98fb64a9169139fa90c043e97632"
+  },
+  {
+      "id": "75008141-e725-1bb7-3279-c56fb43b518e",
+      "document_id": "c94768f9-920a-3fe8-be9a-64bc4d630029",
+      "mime_type": "application/pdf",
+      "file_name": "2018_Fisher_ConservingTropicalForests.pdf",
+      "size": 2563666,
+      "created": "2021-08-18T18:58:10.462Z",
+      "filehash": "ceccc976b9382373e6fde4645730d1c7d434b825"
+  },
+  {
+      "id": "03f215ec-5412-36a3-53a2-cc1faa4b8afa",
+      "document_id": "719f5e1a-777c-336a-9d5a-65f9a14c5e34",
+      "mime_type": "application/pdf",
+      "file_name": "2018_Carneiro_OsCastanhaisDo.pdf",
+      "size": 9092954,
+      "created": "2021-08-18T18:59:23.046Z",
+      "filehash": "4288b9940ab922c7da0a3090d5ee03964a9284c1"
+  },
+  {
+      "id": "4390f4ed-5443-75d7-2afd-85d8ca9ba396",
+      "document_id": "87661a65-6bff-3de2-9fd6-7d6649d1a93c",
+      "mime_type": "application/pdf",
+      "file_name": "2017_Vieira_PatronEspacialY.pdf",
+      "size": 825555,
+      "created": "2021-08-18T18:59:58.319Z",
+      "filehash": "322c613052b4f26547d101dd1eb558e4d66fb187"
+  },
+  {
+      "id": "0c58ebd8-a5f7-d7ef-0904-74a23d4bc33a",
+      "document_id": "aeeeb486-3c21-3fdb-b3f9-87e231e99362",
+      "mime_type": "application/pdf",
+      "file_name": "2017_MMA_Castanha_do_Brasil.pdf",
+      "size": 1675152,
+      "created": "2021-08-18T19:00:29.611Z",
+      "filehash": "3bd0e7590b677dc1a6945bbccd95055ef2863fca"
+  },
+  {
+      "id": "71c8b4a1-b372-7d6b-5306-c43ab8dbcdc6",
+      "document_id": "8a2ee3d9-95a0-3390-9251-2dbad0aad2a6",
+      "mime_type": "application/pdf",
+      "file_name": "2017_Herraiz_FloodImpactOn.pdf",
+      "size": 2445029,
+      "created": "2021-08-18T19:00:59.026Z",
+      "filehash": "0748fca168b67fb0b9c171ab3833dc60a28407f6"
+  },
+  {
+      "id": "4a2c1927-efcb-0957-2a95-80957efbd01e",
+      "document_id": "45c8c932-d3ea-3b79-a915-67d8748a714e",
+      "mime_type": "application/pdf",
+      "file_name": "2017_Guerreiro_SpatialVariabilityOf.pdf",
+      "size": 1047976,
+      "created": "2021-08-18T19:01:05.469Z",
+      "filehash": "9bc47a91ff03a8177bf5de1343e2da106811bbaa"
+  },
+  {
+      "id": "4a9313e2-1d8a-8c4d-597e-f6a9656beb12",
+      "document_id": "4d1acdeb-1a4e-3dc0-b104-aab616511220",
+      "mime_type": "application/pdf",
+      "file_name": "2017_EMBRAPA_MonitoramentoEPlanejamento.pdf",
+      "size": 1300791,
+      "created": "2021-08-18T19:01:26.163Z",
+      "filehash": "0642aebab80f729d6ae8f67b6b326157b735ff57"
+  },
+  {
+      "id": "54136c4e-af5e-fd33-3785-e572d81c0ab6",
+      "document_id": "84ead928-6376-3afc-9940-a81155f237cb",
+      "mime_type": "application/pdf",
+      "file_name": "2016_USDA_UnitedStatesStandard.pdf",
+      "size": 376000,
+      "created": "2021-08-18T19:01:58.202Z",
+      "filehash": "ac7345f47f4db54cbb971953ef984de1ad545e6e"
+  },
+  {
+      "id": "3f37363c-2710-0897-30a5-adc0dfec19f2",
+      "document_id": "43bc3af3-f716-3961-bc95-c05b90edc9f0",
+      "mime_type": "application/pdf",
+      "file_name": "2016_Schirigatti_MarketBehaviorFor.pdf",
+      "size": 1022605,
+      "created": "2021-08-18T19:02:28.347Z",
+      "filehash": "605351815dbd160a42bb4890ab15cb27c890c464"
+  },
+  {
+      "id": "07da04ff-9610-9b5f-4b8a-84a3cf3c1fce",
+      "document_id": "84cdc939-eebb-3ede-9524-477eb299ad7c",
+      "mime_type": "application/pdf",
+      "file_name": "2016_Santana_OCustoSocioambiental.pdf",
+      "size": 970763,
+      "created": "2021-09-11T20:43:21.440Z",
+      "filehash": "ae97e35f586ef2af79841a24064782caac5596e7"
+  },
+  {
+      "id": "1eb20f89-72a7-bb91-288d-664504dcaec6",
+      "document_id": "7e044c2e-3816-36b7-8efb-de1a29e4eca3",
+      "mime_type": "application/pdf",
+      "file_name": "2016_Neves_EstruturaPopulacionalE.pdf",
+      "size": 1648761,
+      "created": "2021-08-18T19:03:36.382Z",
+      "filehash": "5efe4b0dbb4462baff8276c35745ab5d9cf08a88"
+  },
+  {
+      "id": "5aef0112-c5bb-9c09-2111-26ae1b3d00ce",
+      "document_id": "88462fd8-6bb7-3ea0-bfed-fcebae024390",
+      "mime_type": "application/pdf",
+      "file_name": "2016_Galeão_PotencialidadesELimites.pdf",
+      "size": 7818359,
+      "created": "2021-08-18T19:04:26.959Z",
+      "filehash": "a58772d3be927ebaafee3f2e5429df7778bc7a6d"
+  },
+  {
+      "id": "0e491d45-a148-d2eb-6467-4136446d0452",
+      "document_id": "e6db756f-d080-3573-b188-a8d85f5f83cb",
+      "mime_type": "application/pdf",
+      "file_name": "2016_Barbosa_ProducaoEComercializacao.pdf",
+      "size": 646140,
+      "created": "2021-08-18T19:04:32.484Z",
+      "filehash": "27c100aaf1f7110969520f265689a25891781f19"
+  },
+  {
+      "id": "2c6a7fc9-1023-588f-0590-47e63a7d3dbe",
+      "document_id": "d8411981-df10-387d-81d8-07be626215fb",
+      "mime_type": "application/pdf",
+      "file_name": "2015_USDA_TheVisualAids.pdf",
+      "size": 14213420,
+      "created": "2021-08-18T19:06:08.520Z",
+      "filehash": "1b2ae6637a95a4018d9b9604c3b363ba0913bfe0"
+  },
+  {
+      "id": "0ebbf65a-042c-9261-76ff-cdfbb2ddb546",
+      "document_id": "516f5550-ea36-3e1c-a7c7-1757721d7100",
+      "mime_type": "application/pdf",
+      "file_name": "2015_Scaramuzzi_OExtrativismoDa.pdf",
+      "size": 10110224,
+      "created": "2021-08-18T19:07:35.177Z",
+      "filehash": "59f2ac577f00136cc49c0d34226ca3c42b2535d2"
+  },
+  {
+      "id": "4c1ba500-edd7-35e7-4e5a-87b4d32dcde2",
+      "document_id": "6396ae17-e224-386b-a975-f48872ba7e5a",
+      "mime_type": "application/pdf",
+      "file_name": "2015_Neves_RelacaoDaProducao.pdf",
+      "size": 281821,
+      "created": "2021-08-18T19:08:02.856Z",
+      "filehash": "a8947779d517860dfbc03e344e3101a558b1686a"
+  },
+  {
+      "id": "40c0b608-4113-de63-5332-a516513e9d4e",
+      "document_id": "93c2d023-f751-3093-9bba-6a48747b81b0",
+      "mime_type": "application/pdf",
+      "file_name": "2015_Begiato_OportunidadeDeInvestimento.pdf",
+      "size": 547145,
+      "created": "2021-08-18T19:08:48.488Z",
+      "filehash": "f1b841fd84bee8905f266f527e6edb50179fc32c"
+  },
+  {
+      "id": "31aaa26d-d9d3-fb73-4572-35b260debbc6",
+      "document_id": "2db6a330-f2a3-3292-a8a4-c48b19532dde",
+      "mime_type": "application/pdf",
+      "file_name": "2014_Zenteno_LearningFromThe.pdf",
+      "size": 944722,
+      "created": "2021-08-18T19:09:39.767Z",
+      "filehash": "002d98f89e41684cffeb8cafa7ab1a5a3746e3ce"
+  },
+  {
+      "id": "664ab74e-3377-d781-37e5-c8f0164ec3fa",
+      "document_id": "c113f9f0-7f58-32c7-bf44-3ee0ac431a9c",
+      "mime_type": "application/pdf",
+      "file_name": "2014_Thomas_TheDistributionOf.pdf",
+      "size": 2460054,
+      "created": "2021-08-18T19:09:55.369Z",
+      "filehash": "cb30d8e943e6176db330fc96b1557d2cb882562f"
+  },
+  {
+      "id": "2aa51cbc-5108-8967-0f74-854adc6ec652",
+      "document_id": "85900473-6a82-30f6-b199-215ea010f6a8",
+      "mime_type": "application/pdf",
+      "file_name": "2014_SouzaFilho_SustentabilidadeSocioambientalE.pdf",
+      "size": 329846,
+      "created": "2021-08-18T19:09:59.007Z",
+      "filehash": "ebcebfd4cbedf187ffb342b446537f7b0c5d0dd1"
+  },
+  {
+      "id": "416e834d-36d7-2aa7-6703-41a5a28ec8aa",
+      "document_id": "a6440acc-bbb3-3641-90e3-1f0863bfa7f2",
+      "mime_type": "application/pdf",
+      "file_name": "2014_Sousa_EstruturaDeUma.pdf",
+      "size": 1719673,
+      "created": "2021-08-18T19:10:08.993Z",
+      "filehash": "4a3b4e5ac8010b928c455fd28b6397f6d433041c"
+  },
+  {
+      "id": "267b7a26-044c-27dd-3105-913e1e1ed336",
+      "document_id": "abc5a1e6-9b31-3200-83f7-74371c58dba9",
+      "mime_type": "application/pdf",
+      "file_name": "2014_SEMADS_DiagnosticoTecnicoDas.pdf",
+      "size": 3604747,
+      "created": "2021-08-18T19:10:28.714Z",
+      "filehash": "981ecd7fa0d823c7e41690e90ef67a8038c031df"
+  },
+  {
+      "id": "6fc7c088-bb84-8057-2171-0a2b596fba12",
+      "document_id": "5c7ddd4a-3e7e-3713-970e-747d46ac8c7b",
+      "mime_type": "application/pdf",
+      "file_name": "2014_Guedes_CastanhaNaRoca.pdf",
+      "size": 1704732,
+      "created": "2021-08-18T19:12:35.258Z",
+      "filehash": "ee5fa303d4eace78eb9807eb6af83710d548e295"
+  },
+  {
+      "id": "6bae1a59-2553-0861-281d-3f3babcfc11a",
+      "document_id": "7dd28ecc-1ed7-38fa-b740-36e3969972ec",
+      "mime_type": "application/pdf",
+      "file_name": "2014_Duchelle_SmallholderSpecializationStrategies.pdf",
+      "size": 843344,
+      "created": "2021-08-18T19:12:40.438Z",
+      "filehash": "67806d2d530e5c381a6b76f355a5940c6b07fd43"
+  },
+  {
+      "id": "3e902b28-cf4d-6a91-573a-b7f1380fc5ca",
+      "document_id": "e0b6fec5-a6af-349c-91d5-a6bf8344f212",
+      "mime_type": "application/pdf",
+      "file_name": "2014_DeJong_TheLegallyAllowable.pdf",
+      "size": 694115,
+      "created": "2021-08-18T19:12:45.854Z",
+      "filehash": "8e5101f742d36f3ec45c58a092d3b17326faeb91"
+  },
+  {
+      "id": "7984d9ba-2d18-5d45-1a90-d279613fc94e",
+      "document_id": "d965cdee-1fc1-3564-a252-e644d61b1563",
+      "mime_type": "application/pdf",
+      "file_name": "2014_Bayma_AspectosDaCadeia.pdf",
+      "size": 1253250,
+      "created": "2021-08-18T19:12:52.677Z",
+      "filehash": "3a9dec90b77914c6a11f49844d1f6cf6dd1925f0"
+  },
+  {
+      "id": "46525d79-91b2-cdc7-49ae-4b2eed7fcdfe",
+      "document_id": "9d3fd837-52fd-3c31-a1f7-229672b22ef7",
+      "mime_type": "application/pdf",
+      "file_name": "2014_Baraloto_Trade_offsAmong.pdf",
+      "size": 1109495,
+      "created": "2021-08-18T19:12:58.940Z",
+      "filehash": "7d47b7ae70e2a17d47a15062fc8649aea5407e8c"
+  },
+  {
+      "id": "041f1c43-5bb3-1361-71eb-8c32818fe1ea",
+      "document_id": "c89fdea2-d812-3e39-8b07-9c8f5e2fabc9",
+      "mime_type": "application/pdf",
+      "file_name": "2013_Zeidemann_HeterogeneityInNTFP.pdf",
+      "size": 314934,
+      "created": "2021-08-18T19:13:17.753Z",
+      "filehash": "4c290f86fab3c63f310c3ec02ee0fc766835c84c"
+  },
+  {
+      "id": "0b8855e1-5dc7-4609-497a-488d47afe442",
+      "document_id": "3485a03d-942d-3b00-8019-a480e8f7a83a",
+      "mime_type": "application/pdf",
+      "file_name": "2013_Tonini_AmostragemParaA.pdf",
+      "size": 596449,
+      "created": "2021-08-18T19:13:23.248Z",
+      "filehash": "7336fd6814e11c14925fc66c166d9e96225f8804"
+  },
+  {
+      "id": "110ac889-847c-aea1-3541-a6baaabfe56e",
+      "document_id": "1235de1a-be5d-3386-8ee2-e05ae6968b36",
+      "mime_type": "application/pdf",
+      "file_name": "2013_Staudhammer_TradeoffsInBasal.pdf",
+      "size": 854929,
+      "created": "2021-08-18T19:13:31.209Z",
+      "filehash": "f41d1e62baccd4638cd0e9613a9c539eb430476e"
+  },
+  {
+      "id": "27410bfe-328d-35e3-05f0-2b6378aff702",
+      "document_id": "441564b2-9ccc-3bf5-b046-77c5c0420b0f",
+      "mime_type": "application/pdf",
+      "file_name": "2013_MAPA_ManualDeColeta.pdf",
+      "size": 2889305,
+      "created": "2021-08-18T19:13:53.240Z",
+      "filehash": "2ef6950820cb4e892390e5af90fd0b0aa4fa9592"
+  },
+  {
+      "id": "6464959f-402c-c305-1348-95841d700512",
+      "document_id": "56dc8243-2b32-327d-a54f-a56eee51d075",
+      "mime_type": "application/pdf",
+      "file_name": "2013_Duchelle_IsCertificationAssociated1.pdf",
+      "size": 753828,
+      "created": "2021-08-18T19:14:00.043Z",
+      "filehash": "c15059a217bd24102f0522ca5812c208ed0193eb"
+  },
+  {
+      "id": "189f7b6a-7c85-ef47-0c68-5dd22540144e",
+      "document_id": "2bd50e82-ae15-3f2f-9fee-7efb1bf54352",
+      "mime_type": "application/pdf",
+      "file_name": "2013_Angelo_OCustoSocial.pdf",
+      "size": 404235,
+      "created": "2021-08-18T19:14:24.498Z",
+      "filehash": "5c2409bc527b2ce2c8d72500dc56881dd7c15e27"
+  },
+  {
+      "id": "65b18bff-14ac-e91f-48de-40a85640270e",
+      "document_id": "b68af530-f272-3988-b472-dc4720eecdbf",
+      "mime_type": "application/pdf",
+      "file_name": "cap05.pdf",
+      "size": 513860,
+      "created": "2021-09-08T23:05:42.550Z",
+      "filehash": "1a36e952fffddad9f4bf149033ebe50fc5334454"
+  },
+  {
+      "id": "0aa9e80a-6473-f1b5-1820-b2e59b80d47e",
+      "document_id": "36e7cbfe-b50f-30ee-982b-072ac3c974b6",
+      "mime_type": "application/pdf",
+      "file_name": "2012_CoimbraJr_DefoliatorPestTo.pdf",
+      "size": 875393,
+      "created": "2021-08-18T19:15:10.222Z",
+      "filehash": "cb99aa8949cf14b05fce4b200443a5c801f4f151"
+  },
+  {
+      "id": "780c15eb-53d2-96b9-32d1-8726e500f09e",
+      "document_id": "6a7bfd03-543a-3c5b-944a-a6e22c02e7cf",
+      "mime_type": "application/pdf",
+      "file_name": "2012_Amaral_OrganizacaoDaProducao.pdf",
+      "size": 3025192,
+      "created": "2021-08-18T19:15:28.865Z",
+      "filehash": "a2d00700ff973d14af01f99c0f7fa514af39ff02"
+  },
+  {
+      "id": "292b3e57-650e-aae9-5ada-c588d3411ace",
+      "document_id": "a9c19c41-98b9-38dd-87cb-b9c761d9ebe5",
+      "mime_type": "application/pdf",
+      "file_name": "2011_Sujii_GeneticDiversityOf.pdf",
+      "size": 161511,
+      "created": "2021-08-18T19:16:06.418Z",
+      "filehash": "b5e9052c20694b4fd020944567653ab5ff0ce395"
+  },
+  {
+      "id": "253f9cce-4fb1-016f-53c6-8b353541404e",
+      "document_id": "671f5a41-8464-3dbd-8dd0-3847e3ccd3a0",
+      "mime_type": "application/pdf",
+      "file_name": "2011_SouzaFilho_ProdutosFlorestaisNao_Madeiraveis.pdf",
+      "size": 233226,
+      "created": "2021-08-18T19:16:09.808Z",
+      "filehash": "17db26664baebb3d99de468fe906583476c023d3"
+  },
+  {
+      "id": "29833fff-9402-2d7d-5392-88938f715692",
+      "document_id": "70dce233-ae51-3e51-a051-ecc7defd7523",
+      "mime_type": "application/pdf",
+      "file_name": "2011_Scoles_Crescimento_ESobrevivencia.pdf",
+      "size": 865738,
+      "created": "2021-08-18T19:16:27.116Z",
+      "filehash": "be5717e8c2da64df29e5825e47755da4da954b78"
+  },
+  {
+      "id": "6bdab407-60bf-3c9d-45d2-192f9f11750a",
+      "document_id": "5e284f03-5ab1-3575-a4e2-e107b170f013",
+      "mime_type": "application/pdf",
+      "file_name": "2011_Nunes_ValorandoAFloresta.pdf",
+      "size": 886137,
+      "created": "2021-08-18T19:16:41.673Z",
+      "filehash": "05bb67f1120ab155fe8ac4d659c3c686c2e8b7a5"
+  },
+  {
+      "id": "368e3bfd-429a-7b61-532a-835043d1831a",
+      "document_id": "2c962da6-b7b5-380c-a350-418a3ae6fa34",
+      "mime_type": "application/pdf",
+      "file_name": "2011_Duchelle_ResourceTheftIn.pdf",
+      "size": 438058,
+      "created": "2021-08-18T19:16:48.972Z",
+      "filehash": "d811f7961f773eefb9fb6b2af7021bf44b4f0763"
+  },
+  {
+      "id": "5aa23e85-02e0-283f-23a5-05576bf1aaf2",
+      "document_id": "4c4dae80-1c5b-30f5-8dc2-485054aca1bb",
+      "mime_type": "application/pdf",
+      "file_name": "2011_Cossio_Solano_ElAprovechamientoDe.pdf",
+      "size": 1096983,
+      "created": "2021-08-18T19:17:02.093Z",
+      "filehash": "4c49526e22455fbfb3ed60468a59485426f57203"
+  },
+  {
+      "id": "15949bb5-dea9-64ff-7b33-c1b23211ad4a",
+      "document_id": "9da78a92-f14b-3230-af86-88b0c1abb646",
+      "mime_type": "application/pdf",
+      "file_name": "2010_MAPA_DocumentoBaseDiretrizes.pdf",
+      "size": 337403,
+      "created": "2021-08-18T19:17:05.472Z",
+      "filehash": "2c5fcd469771a2c807f626430af6b677e1960f02"
+  },
+  {
+      "id": "72b104ee-fc72-a02d-4536-114aada1b7d6",
+      "document_id": "73bc1ab7-ec4d-3a3e-adfc-6484011ace5d",
+      "mime_type": "application/pdf",
+      "file_name": "2010_JOUE_RegulamentoUEN.pdf",
+      "size": 758196,
+      "created": "2021-08-18T19:17:11.285Z",
+      "filehash": "ab5e469c5f3ec02c3cc4078e4a7ee8344e86ebee"
+  },
+  {
+      "id": "1fec027d-ea1d-5199-51be-70e4bb221ef6",
+      "document_id": "b46c1b94-fc97-3dd7-bd18-7b6ef2bac60d",
+      "mime_type": "application/pdf",
+      "file_name": "2010_Guariguata_CompatibilityOfTimber.pdf",
+      "size": 211400,
+      "created": "2021-08-18T19:18:20.721Z",
+      "filehash": "8a47d19a4446377fe4de6529ca885a3f695c79a8"
+  },
+  {
+      "id": "1947caa9-75bd-c511-00db-e99a476223a6",
+      "document_id": "d58f7c21-e51e-3aa7-8ab3-1bd6ddbe93a7",
+      "mime_type": "application/pdf",
+      "file_name": "2010_Cronkleton_SocialGeomaticsParticipatory.pdf",
+      "size": 457105,
+      "created": "2021-08-18T19:18:25.990Z",
+      "filehash": "6fb4b8ee50a30851240fa32be59ac620b7d3cbb5"
+  },
+  {
+      "id": "280fda51-6445-c967-4432-04227092272a",
+      "document_id": "98528f55-d439-3d75-90c5-67b80413af3e",
+      "mime_type": "application/pdf",
+      "file_name": "2010_CodesOfPratice.pdf",
+      "size": 165940,
+      "created": "2021-08-18T19:18:30.118Z",
+      "filehash": "c2d77060db951254dc3b81c51a5031938b49a5b1"
+  },
+  {
+      "id": "6b5ab8e3-a3db-8061-3d51-cc7078623666",
+      "document_id": "5efae6bb-1c54-36d1-8279-e638f97f1833",
+      "mime_type": "application/pdf",
+      "file_name": "2009_Velho_MarabaDaCastanha.pdf",
+      "size": 391507,
+      "created": "2021-08-18T19:19:00.111Z",
+      "filehash": "73a28e423792b7845c08853a5c9529a58e6d70fa"
+  },
+  {
+      "id": "73058d6c-ca5c-fa83-14e0-88cb3e8238be",
+      "document_id": "d1bcf553-f8b8-3917-a9c0-3614a6ca70ca",
+      "mime_type": "application/pdf",
+      "file_name": "2009_Salomao_DensidadeEstruturaDistribuicao.pdf",
+      "size": 656611,
+      "created": "2021-08-18T19:19:04.904Z",
+      "filehash": "12ff7ec5fc6b97793ab5464b95e0e4d309f61730"
+  },
+  {
+      "id": "686ca87a-26fd-eb81-6b6b-37fdc792aa6a",
+      "document_id": "b92ef456-5741-39b8-9644-e79513f2858a",
+      "mime_type": "application/pdf",
+      "file_name": "2009_Parry_AllocationOfHunting.pdf",
+      "size": 725130,
+      "created": "2021-08-18T19:19:11.747Z",
+      "filehash": "046a86fd8b8134e15f3c337410348b671d0af9c5"
+  },
+  {
+      "id": "42779763-c44d-0b85-13a8-79015ba2be56",
+      "document_id": "34c76c97-43f5-3cb6-b76d-7f31a32a9562",
+      "mime_type": "application/pdf",
+      "file_name": "2008_Wadt_ManejoSustentavelDe.pdf",
+      "size": 6636388,
+      "created": "2021-08-18T19:20:24.074Z",
+      "filehash": "d41cd43a10a0a4426777547f060d8c87be0b18c9"
+  },
+  {
+      "id": "66295588-93c1-84cb-2100-e3220062cc66",
+      "document_id": "9cb96738-ccf4-317c-a56d-c09d7a960035",
+      "mime_type": "application/pdf",
+      "file_name": "2008_Schwartz_EstruturaPopulacionalDe.pdf",
+      "size": 404543,
+      "created": "2021-08-18T19:20:45.351Z",
+      "filehash": "c767a365c55fc5c9acb07355c4adda411bc212c3"
+  },
+  {
+      "id": "0df5beee-60ab-0f53-788f-9f7cc682cebe",
+      "document_id": "f87041a1-5c1e-3f4f-8c58-e0364bdfdbe5",
+      "mime_type": "application/pdf",
+      "file_name": "2008_Sa_CoeficientesTecnicosCusto.pdf",
+      "size": 209591,
+      "created": "2021-08-18T19:20:49.275Z",
+      "filehash": "1a2f492875d66e122a18b6d12841d2f4f9be312f"
+  },
+  {
+      "id": "7e7b4f5b-efae-0653-501e-5bd78ca2d116",
+      "document_id": "43c931df-ce67-33f4-875f-4541df44f112",
+      "mime_type": "application/pdf",
+      "file_name": "2008_Martins_ProducaoEComercializacao.pdf",
+      "size": 211752,
+      "created": "2021-08-18T19:20:53.196Z",
+      "filehash": "b732c60f6c5becab9df09988c95047fc5a3fd0b2"
+  },
+  {
+      "id": "5ddd1b33-03fe-6741-6a9b-2d773053037a",
+      "document_id": "40820ddb-aede-3b1d-849c-ac4e46bf2d2f",
+      "mime_type": "application/pdf",
+      "file_name": "2008_Candido_DesenvolvimentoEImplantacao.pdf",
+      "size": 236521,
+      "created": "2021-08-18T19:21:35.696Z",
+      "filehash": "21f70f3ffb0f0f915361f8227308ad1aeffed43b"
+  },
+  {
+      "id": "78c6561e-0852-0cf3-7147-628782b30a82",
+      "document_id": "8435cb06-ffce-301e-b272-3fcf155b907a",
+      "mime_type": "application/pdf",
+      "file_name": "2007_Pimentel_EstimativaDeViabilidade.pdf",
+      "size": 205299,
+      "created": "2021-08-18T19:22:00.504Z",
+      "filehash": "9da832db59f4efe8bd218d0419247d4fb72d6ea0"
+  },
+  {
+      "id": "1a1efb67-8f2e-9045-7e6b-ca0681a32ed6",
+      "document_id": "42b8a2ab-d277-3831-a36e-d8978efbccbb",
+      "mime_type": "application/pdf",
+      "file_name": "2006_Kainer_LianaLoadAnd.pdf",
+      "size": 117945,
+      "created": "2021-08-18T19:22:45.833Z",
+      "filehash": "4a21d203f3d05fb8d4281389fc284d40acf8f935"
+  },
+  {
+      "id": "73e49bf0-a5f2-a101-6352-f081ec833f3e",
+      "document_id": "7503672e-424e-345a-95f6-c2c3c0d023bf",
+      "mime_type": "application/pdf",
+      "file_name": "2006_Coslovsky_HowBoliviasBrazil_Nut.pdf",
+      "size": 169785,
+      "created": "2021-08-18T19:23:02.511Z",
+      "filehash": "781b0d06a3e82f192e7944323e1214e90c75d88d"
+  },
+  {
+      "id": "0fba2ab0-d70a-89b5-55c6-83bfa1f34772",
+      "document_id": "b7a62d7f-0348-3070-b014-a6bf8a0d0ecb",
+      "mime_type": "application/pdf",
+      "file_name": "2006_CBCFV_EstandardesBolivianosPara.pdf",
+      "size": 391208,
+      "created": "2021-08-18T19:23:10.638Z",
+      "filehash": "3d0673fed9297f2a7b8998d73c0d0063fda8b519"
+  },
+  {
+      "id": "1fb9c92c-e757-04cd-13a0-573b4e35a422",
+      "document_id": "b7825941-0e75-3ed6-abfc-65c1768ecdbd",
+      "mime_type": "application/pdf",
+      "file_name": "2004_Silvertown_SustainabilityInA.pdf",
+      "size": 446921,
+      "created": "2021-08-18T19:24:38.022Z",
+      "filehash": "6864d81f0e76b1247ecd8bcfd889ccefa1d9a29a"
+  },
+  {
+      "id": "37d11248-d41b-5603-197c-81c50956043a",
+      "document_id": "71716d75-408f-384c-8db3-18e992f5f31c",
+      "mime_type": "application/pdf",
+      "file_name": "2003_Silva_AspectoEconomicoDe.pdf",
+      "size": 221875,
+      "created": "2021-08-18T19:24:49.828Z",
+      "filehash": "bff74c4d05dc79e7ad2844c1a537ec806c3bd6a6"
+  },
+  {
+      "id": "33672fd8-a486-5715-41b9-c2c89d661826",
+      "document_id": "d9add42f-0cf4-30f7-a3ce-9428ecf5210f",
+      "mime_type": "application/pdf",
+      "file_name": "2002_Schroth_ConversionOfSecondary.pdf",
+      "size": 262044,
+      "created": "2021-08-18T19:25:21.172Z",
+      "filehash": "4cb040d838db0e4c3b88bd8bba74437e2a627f57"
+  },
+  {
+      "id": "3fdf0b40-01ad-a8a1-050f-dd50c6961baa",
+      "document_id": "e9ce7b98-9a15-319b-a470-fe921172c657",
+      "mime_type": "application/pdf",
+      "file_name": "2002_Pena_Claros_EnrichmentPlantingOf.pdf",
+      "size": 163840,
+      "created": "2021-08-18T19:25:25.057Z",
+      "filehash": "3bfbcea3e5c877042e5dce96606b15ac024193e7"
+  },
+  {
+      "id": "0708f851-6b05-332b-4f12-2ce942262636",
+      "document_id": "22a09e8c-2cbc-3f84-b300-597046adcc70",
+      "mime_type": "application/pdf",
+      "file_name": "2002_Emmi_ApropriacaoDosCastanhais.pdf",
+      "size": 616553,
+      "created": "2021-08-18T19:25:47.195Z",
+      "filehash": "d2028d9ab6e9b7c0a6c5cc785364257152fa3698"
+  },
+  {
+      "id": "52b58a6e-8971-6133-5c6a-9709e6e63446",
+      "document_id": "90255645-7c17-3224-9ef8-7a7585dd9fdf",
+      "mime_type": "application/pdf",
+      "file_name": "2000_Camargo_AspectosDaAnatomia.pdf",
+      "size": 148281,
+      "created": "2021-08-18T19:26:13.560Z",
+      "filehash": "3359963bd99fa240f1834de799f41dcf7228fa07"
+  },
+  {
+      "id": "3105171b-180c-f867-0b88-0fbf732638f6",
+      "document_id": "20b7b58f-0bd1-3477-9d96-715320ef2feb",
+      "mime_type": "application/pdf",
+      "file_name": "1999_Kainer_MoistStorageOf.pdf",
+      "size": 277127,
+      "created": "2021-08-18T19:26:19.250Z",
+      "filehash": "c46fe817160fcab38954afa868befc7149689878"
+  },
+  {
+      "id": "581e6aeb-1bb7-428f-4ede-2a479c563c7a",
+      "document_id": "6c72f647-9c89-301b-a9ae-7050c282b036",
+      "mime_type": "application/pdf",
+      "file_name": "1998_Kainer_BrazilNutSeedling.pdf",
+      "size": 217623,
+      "created": "2021-08-18T19:26:27.799Z",
+      "filehash": "9fec26a4b4c43de416afbeafebf96a33b6625e6e"
+  },
+  {
+      "id": "7e9e3f71-5606-2c0f-1234-44cfc5863ffe",
+      "document_id": "a09e6e9c-7884-30a8-ae48-04632dd35aed",
+      "mime_type": "application/pdf",
+      "file_name": "1998_JOCE_Directiva98_53.pdf",
+      "size": 70583,
+      "created": "2021-08-18T19:26:30.620Z",
+      "filehash": "30d054ed48205b40ae16bd768cff745627ea52ce"
+  },
+  {
+      "id": "2467aaf3-bba7-5a2f-47fd-f295a4264bb6",
+      "document_id": "c22c8f22-afdc-35a1-8c82-d0fc927661ea",
+      "mime_type": "application/pdf",
+      "file_name": "1996_Trabarelli_RemoçãoDeSementes.pdf",
+      "size": 3424455,
+      "created": "2021-08-18T19:27:06.228Z",
+      "filehash": "16ff9ec2cb7500027f5b4fa287e93666fdb179d0"
+  },
+  {
+      "id": "1afcf39c-4b0e-983d-18ac-773e72165d4a",
+      "document_id": "fb2c0ea1-4b61-31ac-a8c7-a21beb1f977b",
+      "mime_type": "application/pdf",
+      "file_name": "1976_MAPA_Portaria846.pdf",
+      "size": 248923,
+      "created": "2021-09-13T23:15:43.994Z",
+      "filehash": "9321212666f022e06f3db5a99015977eec03855b"
+  },
+  {
+      "id": "1ff138de-f8df-9171-6f8b-d52b3eaf0c02",
+      "document_id": "d95f798a-d1c0-39ac-aa7b-c2b2be02f3d6",
+      "mime_type": "application/pdf",
+      "file_name": "2008_FoodStandards_Tradeinformationsheetno7.pdf",
+      "size": 25082,
+      "created": "2021-08-23T11:01:39.226Z",
+      "filehash": "af52eb09fafc35303fb14896aedb63c0706bf795"
+  },
+  {
+      "id": "63ff1995-016d-31db-471a-918604cf0e5a",
+      "document_id": "b35de712-8468-316f-a729-1e39f25338e9",
+      "mime_type": "application/pdf",
+      "file_name": "Souza_Manualdeseguranca_2004.pdf",
+      "size": 142872,
+      "created": "2021-08-23T11:01:40.071Z",
+      "filehash": "cbfeffaee8010309148095bdb83166a5997f61f1"
+  },
+  {
+      "id": "75cdaf12-fc63-1a67-0a70-ac0e2dff11de",
+      "document_id": "f7c1ab1f-7405-37a7-bcf9-7b4151613b25",
+      "mime_type": "application/pdf",
+      "file_name": "EUregulatorymeasures___Ivarsson_Report.pdf",
+      "size": 1441973,
+      "created": "2021-08-23T11:01:42.321Z",
+      "filehash": "f69b499705eb2daa521ce96174225c3b99f32b1a"
+  },
+  {
+      "id": "37b1241a-bc08-e335-7638-0a3b910f130a",
+      "document_id": "80ce0a74-529e-36ed-b09e-db4d086fc675",
+      "mime_type": "application/pdf",
+      "file_name": "2012_Alvaresetal_Qualidadedacastanha.pdf",
+      "size": 1047347,
+      "created": "2021-08-23T11:01:43.499Z",
+      "filehash": "a85a7a656c1664fd3f12f2c02946b9d474b82ec7"
+  },
+  {
+      "id": "47faa68e-8081-5a17-0390-745c35cf211a",
+      "document_id": "f976e448-c671-3d7d-9b9e-f6b86a0cc0ba",
+      "mime_type": "application/pdf",
+      "file_name": "2018_Ribeiro_ProteçãoePredaçãonoProcesso.pdf",
+      "size": 340153,
+      "created": "2021-08-23T11:02:07.719Z",
+      "filehash": "5377a40d5c8ed3df77548eb21ac90f4a9357bafe"
+  },
+  {
+      "id": "41978d60-7682-a4d3-5b1f-30b6fbef2372",
+      "document_id": "d228c973-8e7e-36fe-b86a-4626f1fba495",
+      "mime_type": "application/pdf",
+      "file_name": "2017_Thomas_NTFPHarvestersAsCitizien.pdf",
+      "size": 18538189,
+      "created": "2021-08-23T11:02:16.860Z",
+      "filehash": "10531272b249d573a631d3172580f08ddc6ea62c"
+  },
+  {
+      "id": "1efb40ac-436a-493d-5aeb-2e15561f39b6",
+      "document_id": "bcef11b5-e207-3ee8-a624-8b4600939ac7",
+      "mime_type": "application/pdf",
+      "file_name": "2013_Bayma_AvaliacaoAmbientalSocial.pdf",
+      "size": 746812,
+      "created": "2021-08-23T11:02:39.628Z",
+      "filehash": "920c9da45a07bd6f1b7452474cfd0a72e181e854"
+  },
+  {
+      "id": "584774fe-5b62-bcbb-75d0-04f8456f3f92",
+      "document_id": "c8f4e532-0236-302b-a0d1-4c6463e1baca",
+      "mime_type": "application/pdf",
+      "file_name": "IDAM_OrientaçõesparaasBoaspraticas.pdf",
+      "size": 8453975,
+      "created": "2021-08-23T11:02:47.640Z",
+      "filehash": "99d99c61053d383637c7ee87a1ca090e1bed5d94"
+  },
+  {
+      "id": "594c99b4-619d-f527-3926-1f806e9f4316",
+      "document_id": "41d996ba-d655-35f2-a0de-bcea9cd8438f",
+      "mime_type": "application/pdf",
+      "file_name": "2014_MAPA_Castanha_do_brasil.pdf",
+      "size": 5647238,
+      "created": "2021-08-23T11:02:53.895Z",
+      "filehash": "8d9a7665d7a981fb8c0c97a3c2565b4ecc59a8c7"
+  },
+  {
+      "id": "438b7b45-a497-9cbf-26b9-7396989161aa",
+      "document_id": "b2d9a0a4-6865-3902-a71e-5506ab1aee57",
+      "mime_type": "application/pdf",
+      "file_name": "DPC_RECOMENDAcoesdepoliticasparaacadeia.pdf",
+      "size": 227256,
+      "created": "2021-08-23T11:03:31.558Z",
+      "filehash": "13ef362bca1719adbfe3ebbfb463cecd44239bf2"
+  },
+  {
+      "id": "6f8ac1a3-9ff5-e2ef-192d-06d44e0169de",
+      "document_id": "023c9f57-5d2f-3f8e-86e6-fb69e72194d8",
+      "mime_type": "application/pdf",
+      "file_name": "2016_IMAFLORA_Panoramanacionaldacadeia.pdf",
+      "size": 4695714,
+      "created": "2021-08-23T11:03:36.683Z",
+      "filehash": "04ad6684de30f8ece8b4a294567d17bcc8422cf7"
+  },
+  {
+      "id": "00fa6993-17dd-facd-5c83-215c77316d62",
+      "document_id": "9910b2de-e4d0-3d6f-9728-815725e00210",
+      "mime_type": "application/pdf",
+      "file_name": "2011_Pedrozo_ProdutosFlorestaisNaoMadeiraveis.pdf",
+      "size": 384881,
+      "created": "2021-08-23T11:03:38.898Z",
+      "filehash": "4d276f7ec73cf9e97254551bcc15e8454489ee64"
+  },
+  {
+      "id": "57bea198-9eab-d4e5-4ef6-b49a2ca17596",
+      "document_id": "0a66303b-2365-3f79-8a8a-afcadfa93357",
+      "mime_type": "application/pdf",
+      "file_name": "2015_Justen_FATORESDEGOVERNANCADOAPL.pdf",
+      "size": 774756,
+      "created": "2021-08-23T11:03:41.108Z",
+      "filehash": "27660d2f1cdf2b58c42a04e4721da6fbb1a66713"
+  },
+  {
+      "id": "3467ca65-8d0e-d8ed-2685-70f4f2c177ee",
+      "document_id": "294e4e05-0f1f-367f-b67a-fec213b4a078",
+      "mime_type": "application/pdf",
+      "file_name": "2005_Ishizahi_ProjetoCastanhaPlanodeNegocios.pdf",
+      "size": 244334,
+      "created": "2021-08-23T11:03:42.975Z",
+      "filehash": "60df80398acd351bb6ffe465ff782ff1f91e8fd3"
+  },
+  {
+      "id": "16fc9f7c-8126-9599-11e4-c9df0a31a5a2",
+      "document_id": "2109b788-c529-38bc-8954-844cb7858068",
+      "mime_type": "application/pdf",
+      "file_name": "2012_Almeida_Governancadecadeiasdevalor.pdf",
+      "size": 9225489,
+      "created": "2021-08-23T11:03:55.671Z",
+      "filehash": "4f50cbe97bb6e85bbfcd828bb4948445c7f75e4d"
+  },
+  {
+      "id": "05734198-7f53-02cf-4e26-aa139561cea6",
+      "document_id": "68a66bed-1b71-3604-a2bb-77c16f9a0dfd",
+      "mime_type": "application/pdf",
+      "file_name": "2018_Ribeiro_TecnopoliticaemlaboratoriosdaEmbrapa.pdf",
+      "size": 3638772,
+      "created": "2021-08-23T11:03:58.447Z",
+      "filehash": "9201df96c4dc0d6a1cdf813f36774b23fa6f0a88"
+  },
+  {
+      "id": "3cdaf442-5648-60c9-6fb7-b606d711db8a",
+      "document_id": "f278c399-f795-3a05-a703-38e6469fb2f9",
+      "mime_type": "application/pdf",
+      "file_name": "2008_Diniz_COMPARACAODASACOESPARAODESENVOLVIMENTO.pdf",
+      "size": 211951,
+      "created": "2021-08-23T11:03:57.484Z",
+      "filehash": "d182aa1737eddef13496417ccfd361b6c7f53956"
+  },
+  {
+      "id": "75afb7c4-df46-fdb1-330d-d08f0041df0e",
+      "document_id": "51a2dab9-073f-3d19-9faa-ec744e1cfe7f",
+      "mime_type": "application/pdf",
+      "file_name": "2005_Amazonas_CadeiaProdutivadacastanha.pdf",
+      "size": 911291,
+      "created": "2021-08-23T11:03:57.891Z",
+      "filehash": "62476120aa74c0b529968f6a58cbc9f6343ff2d4"
+  },
+  {
+      "id": "071513e0-e1fb-a271-7663-eb172971e292",
+      "document_id": "c2c925bf-2d5c-35e7-96ee-0deecc7a2530",
+      "mime_type": "application/pdf",
+      "file_name": "2016_Tomasi_CadeiadeValordaCastanha.pdf",
+      "size": 2870584,
+      "created": "2021-08-23T11:04:01.313Z",
+      "filehash": "7052c67aa258eb09b8d6bbfc1ef7bb84bb9aa3fc"
+  },
+  {
+      "id": "1a569124-f617-0c23-4df2-a771ef91e4ea",
+      "document_id": "0679fd15-65c1-3111-a24b-f13b13aadaea",
+      "mime_type": "application/pdf",
+      "file_name": "2002_Thees_ProjetoCastanhaPlano.pdf",
+      "size": 2089166,
+      "created": "2021-08-23T11:04:02.734Z",
+      "filehash": "66baf0293afd7f8d557c174c8dac99fb4aee226a"
+  },
+  {
+      "id": "1c48fd44-352c-3c15-39ba-059f52a1e616",
+      "document_id": "65f0eb83-353d-3fac-8d71-89b741f69ee9",
+      "mime_type": "application/pdf",
+      "file_name": "2015_ICMBIO_Parceriaparaconservacaodabiodiversidade.pdf",
+      "size": 1025023,
+      "created": "2021-08-23T11:04:03.322Z",
+      "filehash": "c186e256f0813595d602b4209cf005907c2e8e1d"
+  },
+  {
+      "id": "068e3d67-b4e0-1053-2581-63ccb5b1e742",
+      "document_id": "b46bec38-4e3f-3c94-9806-b7a4feedd32f",
+      "mime_type": "application/pdf",
+      "file_name": "2015_Krag_Arranjoprodutivolocal.pdf",
+      "size": 505001,
+      "created": "2021-08-23T11:04:03.602Z",
+      "filehash": "e968614f72c21ed8bda94f22190b54f4d9e71fe0"
+  },
+  {
+      "id": "115c0631-da4b-1a99-178c-f1c71f821bfe",
+      "document_id": "dc8e9832-3512-3eab-8ea4-2f9bd56f5fe0",
+      "mime_type": "application/pdf",
+      "file_name": "DPC_PadroesSustentabilidadenacadeia_2020.pdf",
+      "size": 2519842,
+      "created": "2021-08-23T11:04:23.358Z",
+      "filehash": "3fd1a3a93adc22c625b70abf031c99c6a4e4c70d"
+  },
+  {
+      "id": "56925455-5da1-60e7-3594-f8a969aa73da",
+      "document_id": "5a77cb1b-d125-3d83-af3f-374933d0d42c",
+      "mime_type": "application/pdf",
+      "file_name": "1979_Medri_Anatomiafoliareecofisiologia.pdf",
+      "size": 1792018,
+      "created": "2021-08-24T07:41:23.215Z",
+      "filehash": "f4d6f20140434830b417acff0e972657d8507896"
+  },
+  {
+      "id": "024786d4-ff9d-7e35-3c41-2db9bc0a7ae2",
+      "document_id": "cb519006-58de-3bba-b19c-b2a0c3ecc373",
+      "mime_type": "application/pdf",
+      "file_name": "2005_Serrano_REGENERACAOEESTRUTURAPOPULACIONAL.pdf",
+      "size": 2509311,
+      "created": "2021-08-24T07:43:38.128Z",
+      "filehash": "4dbae3c527dd5de8159464fe162ef22ab4eb0d08"
+  },
+  {
+      "id": "3d9bc816-5f8d-7949-13cf-ea14822a7d3a",
+      "document_id": "e6f43b5f-551f-36b4-bb3a-eaba81af5097",
+      "mime_type": "application/pdf",
+      "file_name": "2009_Silva_REMOCAOEDESTINODESEMENTES.pdf",
+      "size": 5407389,
+      "created": "2021-08-24T07:43:35.027Z",
+      "filehash": "af948eb5b1b71865a74048f05d19c9379c233681"
+  },
+  {
+      "id": "000b8749-4dd4-3f7d-5dd2-39acfdba87c6",
+      "document_id": "0a0fb2cd-e621-3f69-b077-80ae152a066c",
+      "mime_type": "application/pdf",
+      "file_name": "2007_Felzke_Quandoosouricoscomeçamacair.pdf",
+      "size": 2744997,
+      "created": "2021-08-24T07:42:58.039Z",
+      "filehash": "a92f3569dcecff52af3351bc1adea24dfccddbb9"
+  },
+  {
+      "id": "563a7b4f-f5fa-a377-5045-cceab32a8ffa",
+      "document_id": "1d38c941-43c8-3516-b952-119d5c458896",
+      "mime_type": "application/pdf",
+      "file_name": "1808_Bonpland_Bertholletia.pdf",
+      "size": 1922910,
+      "created": "2021-08-24T07:41:20.680Z",
+      "filehash": "759aad8fae4797e161433d1ce4d46d9b458c97f0"
+  },
+  {
+      "id": "746ad165-df8d-1633-7f63-45a03f6a94aa",
+      "document_id": "03d6949d-c5da-3df0-8f3b-40b4343bc692",
+      "mime_type": "application/pdf",
+      "file_name": "2006_Santos_BertholletiaexcelsaHumboldt.pdf",
+      "size": 268239,
+      "created": "2021-08-24T07:41:26.467Z",
+      "filehash": "3952e95df367c9ac042c704d31b45e7a2d81203f"
+  },
+  {
+      "id": "4e2affb3-ab4e-c71d-2e18-c5e1c8aa1c2e",
+      "document_id": "1d9e1223-d052-3884-9b60-5cbd58df7539",
+      "mime_type": "application/pdf",
+      "file_name": "Stoian___2005___Making_the_best_of_two_worlds_Rural_and_peri_urban_livelihood_options_sustained_by_nontimber_forest_prod.pdf",
+      "size": 278683,
+      "created": "2021-09-11T23:59:17.011Z",
+      "filehash": "25259b25449285c0a30c3c0c1bc87de34b89308f"
+  },
+  {
+      "id": "4425e0c6-8a4f-259f-05a7-823c8eca1e86",
+      "document_id": "18bc7692-a3f7-3117-bf29-b3b88ce557af",
+      "mime_type": "application/pdf",
+      "file_name": "Zenteno_et_al___2013___Livelihood_strategies_and_forest_dependence_New_insights_from_Bolivian_forest_communities.pdf",
+      "size": 1004057,
+      "created": "2021-09-11T23:59:16.280Z",
+      "filehash": "ef8ef559f032b5ccbe8738df1810a432326ad724"
+  },
+  {
+      "id": "573412a6-7d95-56ef-5a24-7ef02340c9da",
+      "document_id": "9e8dd2b9-1c55-36df-abe3-747b583115fb",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 2020517,
+      "created": "2021-09-12T21:33:39.113Z",
+      "filehash": "7620cfe4c2ed8c1379e967fcab753a8bbdd605fc"
+  },
+  {
+      "id": "324d5332-a934-a673-68c0-529e0d8eb90a",
+      "document_id": "52832f01-a24b-3725-b12f-5e5280bc19b4",
+      "mime_type": "application/pdf",
+      "file_name": "cx_estudo_sobre_oportunidades_de_financiamento_para_a_cadeia_da_castanha_do_brasil.pdf",
+      "size": 3384753,
+      "created": "2021-09-12T23:08:25.949Z",
+      "filehash": "7a43fbc3c987cb13c806ef329450c4c8697b0545"
+  },
+  {
+      "id": "42cd5f03-0787-87cd-5d49-57eed5993896",
+      "document_id": "b88809f4-5261-346f-8354-065acab8fc31",
+      "mime_type": "application/pdf",
+      "file_name": "Unknown___Unknown___ESTUDO_PADRÕES_DE_SUSTENTABILIDADE_NA_CADEIA_DA_CASTANHA_DO_BRASIL_INSTITUTO_TERROÁ.pdf",
+      "size": 1286819,
+      "created": "2021-09-18T19:19:03.987Z",
+      "filehash": "e5b323edff73eab24d818230a0e6b106d5369d64"
+  },
+  {
+      "id": "57395327-9be3-3805-4910-b61c38a939c2",
+      "document_id": "e6b64974-09e5-3d7f-bbc8-4f1be8708d20",
+      "mime_type": "application/pdf",
+      "file_name": "2018_lima_aposafalenciadosseringais.pdf",
+      "size": 770475,
+      "created": "2021-09-18T19:19:06.735Z",
+      "filehash": "a86934f58cf27241a00d24ac29ad077e011e16cc"
+  },
+  {
+      "id": "4aea42ed-6d95-81db-787b-c391a1553d5e",
+      "document_id": "f6bfbebe-5684-30b9-8acf-2f509eeeabef",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 908985,
+      "created": "2021-09-20T06:42:48.846Z",
+      "filehash": "9540b838e6b08d0445f47092ed80cf0b48388b81"
+  },
+  {
+      "id": "0cc643ec-bd41-4367-0714-33a8c5ce2a36",
+      "document_id": "37ddfecb-71f7-3a44-afc6-f067aeb2c761",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 1039547,
+      "created": "2021-09-20T08:28:29.262Z",
+      "filehash": "d60feed9d545d424f2108dcbef5f25b5399c7835"
+  },
+  {
+      "id": "4ac5cd9b-0af1-414b-4a6a-4e30eefe2dba",
+      "document_id": "80667e71-9923-30bc-a56f-1c87b62aaf5b",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 1297854,
+      "created": "2021-09-20T08:28:27.771Z",
+      "filehash": "dd8089fd031916db9a1729e5784ae801355a1834"
+  },
+  {
+      "id": "62579f4a-4c8b-dacd-6a87-25f29a91bc46",
+      "document_id": "8fd20e03-9b59-3bac-af62-236efc82c354",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 687366,
+      "created": "2021-09-20T08:35:50.056Z",
+      "filehash": "a22d4ee795d3c8c6da8dbb2d31e605cb39408f37"
+  },
+  {
+      "id": "474d1234-bbce-33bd-63d2-cf1c3ac49b0a",
+      "document_id": "6ab19054-b137-3cd3-af00-b40de07a12ea",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 844394,
+      "created": "2021-09-20T08:43:09.636Z",
+      "filehash": "4dde7408519293b5b2e36fcd27c84e1861d73e2b"
+  },
+  {
+      "id": "3eb3c4e6-e100-6aa3-373c-298139a0589a",
+      "document_id": "c670213a-2eaa-30b8-98ec-17e58aa99cf4",
+      "mime_type": "application/pdf",
+      "file_name": "Ribeiro_et_al___2014___Brazil_nut_stock_and_harvesting_at_different_spatial_scales_in_southeastern_Amazonia.pdf",
+      "size": 669663,
+      "created": "2021-09-20T09:41:08.562Z",
+      "filehash": "a7564c4c8a54cabe16ca6e7bfd4a7864f13de1d4"
+  },
+  {
+      "id": "229c684a-cce7-123d-0eca-e5dbffc05af2",
+      "document_id": "ec5b338c-b047-3a33-b200-85c8f882af60",
+      "mime_type": "application/pdf",
+      "file_name": "Scoles_Gribel___2012___The_regeneration_of_Brazil_nut_trees_in_relation_to_nut_harvest_intensity_in_the_Trombetas_River_.pdf",
+      "size": 688826,
+      "created": "2021-09-20T09:41:12.697Z",
+      "filehash": "7fdbc4f353232bd55abd1d2e59b7508c435d97c5"
+  },
+  {
+      "id": "0f191c6e-1c2c-f005-305b-f1cf417067d6",
+      "document_id": "0377ea69-a97e-3d5f-abda-aacff4551fb9",
+      "mime_type": "application/pdf",
+      "file_name": "Nunes_et_al___2012___Economic_benefits_of_forest_conservation_Assessing_the_potential_rents_from_Brazil_nut_concessions_.pdf",
+      "size": 924903,
+      "created": "2021-09-20T09:41:03.328Z",
+      "filehash": "9ce5cabbd3d98a6490336b7e7869e40f88d17cc7"
+  },
+  {
+      "id": "31590742-b113-9093-2a35-e8e94b2b449a",
+      "document_id": "7b8d5e61-9293-31ae-a42a-3f3586226fc1",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 328926,
+      "created": "2021-09-20T20:23:01.015Z",
+      "filehash": "acaf47f74a7b0d9ddf07f0f02d1915a20a8fea7b"
+  },
+  {
+      "id": "4c3dde25-a063-966f-0870-da5463ab4dfa",
+      "document_id": "bf7d06a3-92c0-373d-98d1-4e267648f15f",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 2633495,
+      "created": "2021-09-20T20:23:08.724Z",
+      "filehash": "b61b465d5a05986aae040258fd53620790e90bc7"
+  },
+  {
+      "id": "312075f6-beef-1ec5-3a45-f0c8cb95b222",
+      "document_id": "80ef56e6-c41f-35d8-90a6-06c8a0e1f094",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 1134664,
+      "created": "2021-09-20T20:46:12.491Z",
+      "filehash": "372f49388058da499d53b9148563d35562beffb5"
+  },
+  {
+      "id": "3135e89d-4582-8b91-5956-999c2cac95ce",
+      "document_id": "5499edac-411d-3b94-a54a-a6e279e63236",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 111982,
+      "created": "2021-09-20T21:11:04.235Z",
+      "filehash": "4f9599fe1709581e1eeecf43037f4be69837cd27"
+  },
+  {
+      "id": "7203d95d-ec83-9147-4089-f4fc61c22fde",
+      "document_id": "e330c89a-d374-3d0f-aef7-e6101726514f",
+      "mime_type": "application/pdf",
+      "file_name": "2018___Martins_et_al___Pollen_and_seed_dispersal_of_Brazil_nut_trees_in_the_southwestern_Brazilian_Amazon.pdf",
+      "size": 206121,
+      "created": "2021-09-21T00:50:45.146Z",
+      "filehash": "fe717906b2365a59ba64f01592dc45885622ea82"
+  },
+  {
+      "id": "50519719-6b58-5d8f-6fa7-6db1ee02348e",
+      "document_id": "8837d2ba-6194-3539-819d-e792c576f870",
+      "mime_type": "application/pdf",
+      "file_name": "Schöngart_et_al___2015___Age_and_Growth_Patterns_of_Brazil_Nut_Trees_Bertholletia_excelsa_Bonpl_in_Amazonia_Brazil.pdf",
+      "size": 670861,
+      "created": "2021-09-21T00:50:13.492Z",
+      "filehash": "f41b97787e230dcf8ebf80944e1f2329325ea7d8"
+  },
+  {
+      "id": "4ace389e-569b-a029-621b-00efa3723cc2",
+      "document_id": "123f29e8-38a7-3f65-b1eb-579df013448e",
+      "mime_type": "application/pdf",
+      "file_name": "2015___Rockwell_et_al___Nut_production_in_bertholletia_excelsa_across_a_logged_forest_mosaic_Implications_for_multiple_f.pdf",
+      "size": 3993087,
+      "created": "2021-09-21T00:50:44.320Z",
+      "filehash": "fee33d49612b8e0f0605ae65d777b91d107c718f"
+  },
+  {
+      "id": "7be6d1f6-c4fb-df41-2571-1b77cca24046",
+      "document_id": "261854ae-9d63-3e44-911f-243d0660ac34",
+      "mime_type": "application/pdf",
+      "file_name": "2014___Moll_Rocek_Gilbert_Broadbent___Brazil_Nut__Bertholletia_excelsa__Lecythidaceae_Regeneration_in_Logging_Gaps_in_th.pdf",
+      "size": 1385917,
+      "created": "2021-09-21T00:50:21.585Z",
+      "filehash": "70fe04ec798f6d290457ff26f562397ccb286e6c"
+  },
+  {
+      "id": "11039e35-135b-9039-1138-79a52fb24172",
+      "document_id": "7f64f8bd-7b5f-3df3-b35a-d693688f6969",
+      "mime_type": "application/pdf",
+      "file_name": "2017___Guariguata_et_al___Revisiting_the_cornerstone_of_Amazonian_conservation_a_socioecological_assessment_of_Brazil_nu.pdf",
+      "size": 1262033,
+      "created": "2021-09-21T00:50:18.927Z",
+      "filehash": "9858a11513a4727aa5bf73567b36b7ffd355451e"
+  },
+  {
+      "id": "0e910214-6397-4e99-0b95-59ed3201b7f2",
+      "document_id": "47be1e63-5cb7-383f-9748-3b28cd647baa",
+      "mime_type": "application/pdf",
+      "file_name": "2016_joce_retificacao.pdf",
+      "size": 315468,
+      "created": "2021-09-27T23:13:30.350Z",
+      "filehash": "bd1ec422ba58d93b18c287df96666e12e6fa1803"
+  },
+  {
+      "id": "6926cad7-a993-b2b7-2c22-58b836a2342a",
+      "document_id": "2b2d7598-ba2d-302c-a747-7d8341bc5f59",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 148200,
+      "created": "2021-09-27T20:34:39.504Z",
+      "filehash": "bfdb7bc5a2940f50da0196e165c1b4444a085012"
+  },
+  {
+      "id": "39ac0632-14fd-90f5-23cd-ecd4a855c50e",
+      "document_id": "9ecea12f-c850-3565-92ca-f96d59aa915e",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 835120,
+      "created": "2021-09-27T20:43:28.243Z",
+      "filehash": "3905dd1014da9d1b56b202006a030848e6f58e59"
+  },
+  {
+      "id": "343cfbfb-dccf-5493-3e7e-c115f1d5e12e",
+      "document_id": "ed15c6ca-248c-3891-a8b1-f9bb388231e2",
+      "mime_type": "application/pdf",
+      "file_name": "2014_JOCE_regulamento519.pdf",
+      "size": 456401,
+      "created": "2021-09-27T23:13:31.659Z",
+      "filehash": "51108ce0744865ca0e092842d4054477cfa9098e"
+  },
+  {
+      "id": "1b7fdefd-467d-cb15-2365-e7915cb5f196",
+      "document_id": "d4ab7b62-7951-35ff-9811-d569d2b03e78",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 569166,
+      "created": "2021-09-27T20:45:02.308Z",
+      "filehash": "ae3b718f4d77bee4c1f98572986e8a4faf3c52ac"
+  },
+  {
+      "id": "52d0cf5d-2753-f261-16bb-237a4602eaa6",
+      "document_id": "3d07eff7-fd10-3252-a6ec-673f2f61a3d2",
+      "mime_type": "application/pdf",
+      "file_name": "2018_FAO_thepollinationofcultivated_vol2.pdf",
+      "size": 17862870,
+      "created": "2021-09-28T02:20:43.437Z",
+      "filehash": "47c5b04efde4373879612611b03f396ab4953efd"
+  },
+  {
+      "id": "2b00973f-4499-d19b-2fba-6df0321f8bb2",
+      "document_id": "44ccefe4-4545-3bb1-ab3b-0898679cb310",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 435697,
+      "created": "2021-09-28T20:55:05.088Z",
+      "filehash": "0d74c18cd10e2872f00fa1d84503ceab383d9ce6"
+  },
+  {
+      "id": "62718049-d3ea-4f77-5e6f-e16272bfbcea",
+      "document_id": "7f7a1d61-5975-3388-aa6e-d6194c40e591",
+      "mime_type": "application/pdf",
+      "file_name": "PPP_ECOSAprendizadosColhidos_1.pdf",
+      "size": 29907284,
+      "created": "2021-09-28T20:58:13.371Z",
+      "filehash": "eac10719b5b1d1214017d35028b2f264a1e94f0b"
+  },
+  {
+      "id": "718cb933-ed62-d09f-4a37-3f8fd5cfbe16",
+      "document_id": "aad5d4fb-5054-3bb8-a1c0-46c03decd5f7",
+      "mime_type": "application/pdf",
+      "file_name": "relatorio_pnud_brasil_2017.pdf",
+      "size": 24466100,
+      "created": "2021-09-28T20:56:56.940Z",
+      "filehash": "ecc496f3dce36f351b925882eb493a4b9853bf87"
+  },
+  {
+      "id": "27c06d24-e79b-35db-407e-e306cc41050a",
+      "document_id": "b22e05ea-ae65-3db5-8d6c-3b26941186c3",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 1328112,
+      "created": "2021-09-28T21:03:40.650Z",
+      "filehash": "0648fd899a2dbeb5a5d9e9168d5fca54bb29579a"
+  },
+  {
+      "id": "1fa9c1a7-b72c-70f1-7236-aa6053b84ce6",
+      "document_id": "9c82814e-26fa-3ce6-ac7d-a5531f8f437e",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 5606821,
+      "created": "2021-09-28T22:11:44.235Z",
+      "filehash": "497a9bfc26419b44645e1a382431b6aab59dfd21"
+  },
+  {
+      "id": "098dc028-b64e-fc09-0d0b-3db7282e1e5a",
+      "document_id": "156866ef-da9c-3f79-9fc2-5f66e46efb71",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 9378673,
+      "created": "2021-09-28T22:30:17.318Z",
+      "filehash": "bcac671cf7e56861846ec60e0874b1b36d71f1cc"
+  },
+  {
+      "id": "62c74ae3-ee38-02a7-29bc-0a82de60419e",
+      "document_id": "577c65e4-c125-3159-a0ee-17f744a24704",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 2638976,
+      "created": "2021-09-28T22:38:08.900Z",
+      "filehash": "34b4dfff79bc5ea82062b948fbdd29bf0fe84f35"
+  },
+  {
+      "id": "6f761779-e8bf-61eb-348b-efbd951a0c42",
+      "document_id": "1f265761-3caa-3367-afd8-957cf34f1ea2",
+      "mime_type": "application/pdf",
+      "file_name": "Centro_de_Gestão_e_Estudos_Estratégicos___CGEE___2017___Importância_dos_polinizadores_na_produção_de_alimentos_e_na_seg.pdf",
+      "size": 6790203,
+      "created": "2021-09-28T23:37:18.897Z",
+      "filehash": "755305f033d4fe9c23fd07827055001a5e05e05f"
+  },
+  {
+      "id": "1909e1e9-52b6-c691-55e0-d749238d1536",
+      "document_id": "50cb6597-7f1f-381e-a22e-650654adc5a1",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 821472,
+      "created": "2021-09-28T23:30:29.628Z",
+      "filehash": "b45ed043ce25ceffc662da014cb6cd6a70f88129"
+  },
+  {
+      "id": "21d2854b-9e9e-dc55-591d-9b99b7dc1582",
+      "document_id": "c987833c-cadf-3eb6-9f97-32b2a10804ba",
+      "mime_type": "application/pdf",
+      "file_name": "5222_20541_1_PB.pdf",
+      "size": 1558701,
+      "created": "2021-09-29T21:09:56.486Z",
+      "filehash": "8f1168a7ce4628c4debf84270ce176f39a1adf0e"
+  },
+  {
+      "id": "1cd13f7f-371b-c9ef-1e64-151fef7d90da",
+      "document_id": "7d7c41df-0ed3-3b07-8402-4a6083f42cc5",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 894522,
+      "created": "2021-10-01T17:17:27.715Z",
+      "filehash": "17cca9dc49896f36df980bfaf61afa6b7cb2bd51"
+  },
+  {
+      "id": "6edc8e95-fe1d-012f-745e-1630e9ccac0a",
+      "document_id": "3acc2ab9-0c77-31b8-8721-bafc3b1c0bc2",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 215946,
+      "created": "2021-10-01T17:24:27.634Z",
+      "filehash": "b9f8fe5dadeafab28a9d4379163f0bdbe92bc568"
+  },
+  {
+      "id": "316d57ea-d357-1429-21cb-364d2cb32e72",
+      "document_id": "56031869-1b2c-39bc-ac0b-df8093c7be5b",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 663148,
+      "created": "2021-10-01T17:40:17.490Z",
+      "filehash": "dc8873ff85454f4657a9f774406c00f649d9738f"
+  },
+  {
+      "id": "4729bb3e-498f-3a81-516a-9fca1f31208e",
+      "document_id": "80bb3a14-9e10-3d65-844e-35c01abb2ecc",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 935625,
+      "created": "2021-10-01T20:18:18.152Z",
+      "filehash": "78da2828ef4e8009ad286c5ab0675e4329b8f6e5"
+  },
+  {
+      "id": "78325a47-db52-89db-01be-767e2b661e7a",
+      "document_id": "e56862be-9fd0-3313-a835-9b7d467ed8ea",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 16267,
+      "created": "2021-10-01T21:51:40.428Z",
+      "filehash": "7d54ca41b14ec76e4e85e14e072fe8c2876432e0"
+  },
+  {
+      "id": "231e76d4-1e3b-32b9-4950-a682e1373436",
+      "document_id": "c66bbf9e-df0c-303e-bef0-512ce815f317",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 1344959,
+      "created": "2021-10-01T21:59:20.941Z",
+      "filehash": "586c6a458f053f8c8b3edb66f457a1dbe3d61f09"
+  },
+  {
+      "id": "5e32455c-fee7-6a1f-0c3e-bbc7bec76442",
+      "document_id": "d5f7f206-6ab4-37c6-a0cf-5fe44af30b51",
+      "mime_type": "application/pdf",
+      "file_name": "Unknown___Unknown___1994_IPHAE_AvaliacaoDoProcessamento.pdf",
+      "size": 2661190,
+      "created": "2021-10-01T22:01:03.533Z",
+      "filehash": "f32c80605194fc8fb5543d5066b2f2b203c5a595"
+  },
+  {
+      "id": "01dadaaa-4d00-ec2b-7806-19f521d7656e",
+      "document_id": "191d9541-ff0f-3b24-ac30-ca89e42e8382",
+      "mime_type": "application/pdf",
+      "file_name": "Fernandes_Maroccolo_et_al___Unknown___O_PAPEL_DAS_ASSOCIAÇÕES_E_COOPERATIVAS_NA_ESTRUTURAÇÃO_DA_CADEIA_PRODUTIVA_DA_CAST.pdf",
+      "size": 1797828,
+      "created": "2021-10-01T22:00:44.587Z",
+      "filehash": "a46f1e497b562f5c6ca98579713890461a138cfb"
+  },
+  {
+      "id": "30043cc2-5650-e43b-4f94-d64fe7f767c6",
+      "document_id": "3ce80d5f-d92b-397c-9507-1c8aaf849962",
+      "mime_type": "application/pdf",
+      "file_name": "2010_Candido_COMUNIDADESRIBEIRINHASENGENHEIROS.pdf",
+      "size": 3827832,
+      "created": "2021-10-01T22:01:01.075Z",
+      "filehash": "32b45e02240d29018a9a940f9f3da16d34aaa7a2"
+  },
+  {
+      "id": "587e5a3e-f214-ed89-7eb2-4f0574376c76",
+      "document_id": "721d1ac9-9706-3540-8b72-2914ce7e60a6",
+      "mime_type": "application/pdf",
+      "file_name": "Unknown___2008___Execução.pdf",
+      "size": 4254373,
+      "created": "2021-10-01T22:00:53.701Z",
+      "filehash": "0ece1da908b763946c3ef5117858e3d160ba50b0"
+  },
+  {
+      "id": "2090c2d3-c47b-b6e9-7c3a-0daba10b5d72",
+      "document_id": "791e7c16-dfbc-3a93-9b02-4e051cbe91ec",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 420707,
+      "created": "2021-10-01T22:05:03.993Z",
+      "filehash": "f599f8e7e4be0962b74ff40273d2b5b7da135b5f"
+  },
+  {
+      "id": "4b41b686-df63-51c7-041b-f254b1118666",
+      "document_id": "21add7db-6c15-3d3b-b33e-fdaa806d2fc4",
+      "mime_type": "application/pdf",
+      "file_name": "Valor_IEB_Manicoré_Castanha.pdf",
+      "size": 1588133,
+      "created": "2021-10-02T20:18:58.695Z",
+      "filehash": "5eb849f3c2fce8cfdb55bf9a92d50a781c2f6594"
+  },
+  {
+      "id": "1e4506b1-33c7-01b5-237f-73168ac23b72",
+      "document_id": "fbbd3f0c-8e79-386e-b1ef-274d85bc61e3",
+      "mime_type": "application/pdf",
+      "file_name": "Guia_do_formador_castanheiro__DIGITAL.pdf",
+      "size": 26183028,
+      "created": "2021-10-02T22:46:22.358Z",
+      "filehash": "ba853f74bf9a491cfb601f37478d58b9f9119386"
+  },
+  {
+      "id": "599947f2-93b6-fcc9-2a2b-a826dd22427a",
+      "document_id": "fe207561-78b5-36e3-9df9-a6925762c3b5",
+      "mime_type": "application/pdf",
+      "file_name": "00_Cartaz_Boas_Práticas_na_Prática_completo.pdf",
+      "size": 893732,
+      "created": "2021-10-02T22:46:06.970Z",
+      "filehash": "6d3be4b336e17c3e33da18c0cdfbcc83e86a9a5d"
+  },
+  {
+      "id": "5de96b73-0cee-1941-73b4-268afd06e0b2",
+      "document_id": "3ed08e41-ec83-3c2f-934c-199bad5a833c",
+      "mime_type": "application/pdf",
+      "file_name": "2__Umschlag_46_4__Enhanced_Reader.pdf",
+      "size": 2384781,
+      "created": "2021-10-04T14:04:16.586Z",
+      "filehash": "b64287bb53d680efd5bf376d4713a869141a3871"
+  },
+  {
+      "id": "349ce066-5837-2985-1430-e1c9e6cd2882",
+      "document_id": "17f0669d-b9c5-3868-af20-acdef0d183d5",
+      "mime_type": "application/pdf",
+      "file_name": "CPATU_DOC_30.pdf",
+      "size": 3811511,
+      "created": "2021-10-04T14:19:26.695Z",
+      "filehash": "650c27903e8d059392d678f08f4748e2b241473d"
+  },
+  {
+      "id": "33acd255-2b90-ae83-7f57-4e49a0419eca",
+      "document_id": "03ad2311-f606-3605-a0fe-317b00dc81bd",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 420529,
+      "created": "2021-10-04T14:39:23.438Z",
+      "filehash": "5b3365aee11b2713c12af4dedf8b24b2e8d57231"
+  },
+  {
+      "id": "298e8549-ba83-9cb5-74f3-26e8d9497c82",
+      "document_id": "6d75b390-308c-3573-afd6-245be78b2afe",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 7283103,
+      "created": "2021-10-05T12:08:30.300Z",
+      "filehash": "a1ad6d778a0352140a53733b42ed09c04b1036d3"
+  },
+  {
+      "id": "78c058dc-7912-d01f-0179-d4b783df6276",
+      "document_id": "792bd15f-4d54-381a-961c-635762d88d2a",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 507829,
+      "created": "2021-10-05T13:23:16.093Z",
+      "filehash": "b76c87ea731bca8c9c4f0ab33e98230cafcc0179"
+  },
+  {
+      "id": "6fa7ddb6-c097-a6fd-40cc-6efa9d429f86",
+      "document_id": "3866d39f-f366-3a88-b1ad-8fbde5b81741",
+      "mime_type": "application/pdf",
+      "file_name": "12Publicação_Amazonia_final3_COMPLETO2_6415.pdf",
+      "size": 8611304,
+      "created": "2021-10-05T18:09:42.735Z",
+      "filehash": "cacd3570e0ced81b68dc5bcb91ab13d67f9a9224"
+  },
+  {
+      "id": "0e940822-9cda-ad95-2c93-cd280052a0b2",
+      "document_id": "6ad5956d-769e-3703-bc28-2197a3fd97e2",
+      "mime_type": "application/pdf",
+      "file_name": "parceriasn29_5991.pdf",
+      "size": 4347298,
+      "created": "2021-10-05T18:09:54.136Z",
+      "filehash": "d08fdc70ea5dd3ab5391b54668def2edc05df100"
+  },
+  {
+      "id": "35a88653-cc1c-eba1-0422-8982c672a30a",
+      "document_id": "1d333f6f-bbb8-38a2-8b1d-4058d2dc9e66",
+      "mime_type": "application/pdf",
+      "file_name": "Guia_de_Procedimentos_para_a_Regularizacao_de_Empreendimentos_Comunitarios_Familiares_e_Artesanais.pdf",
+      "size": 7682233,
+      "created": "2021-10-05T18:10:22.806Z",
+      "filehash": "93b639ca18f350de75e5615f184ed29b53cb426e"
+  },
+  {
+      "id": "0ef8c9a7-ae5d-6a57-6fe9-e7b02982a436",
+      "document_id": "dad36b4d-a9ad-3e4d-8ba7-0c24b6fa2626",
+      "mime_type": "application/pdf",
+      "file_name": "Manual_de_Boas_Praticas.pdf",
+      "size": 3824892,
+      "created": "2021-10-05T18:10:30.821Z",
+      "filehash": "753fda5b4e65b79b7c3a2098c3ab9e14fc28b9d9"
+  },
+  {
+      "id": "28149b45-dc42-ea87-5bb1-45dd8c92a562",
+      "document_id": "bbe9c189-b668-39da-ac23-f1ac014899e9",
+      "mime_type": "application/pdf",
+      "file_name": "ProgramaDePequenosProjetosEcossociaisNaAmazoniaPortfolio20132016.pdf",
+      "size": 79408945,
+      "created": "2021-10-05T18:16:22.787Z",
+      "filehash": "0435f25186f1a60a69ded8d5fb72ffbae4e0d5ff"
+  },
+  {
+      "id": "589ed578-d6c8-cfcd-3340-023852b2a7ba",
+      "document_id": "21f57fd7-b35d-3bef-8bf8-8fbe544415fa",
+      "mime_type": "application/pdf",
+      "file_name": "GuiaDeElaboracaoDePequenosProjetosSocioambientaisParaOrganizacoesDeBaseComunitaria.pdf",
+      "size": 2820975,
+      "created": "2021-10-05T18:47:37.844Z",
+      "filehash": "53787dfeb8cbf918e9f057dd16fec4742fa430ee"
+  },
+  {
+      "id": "3590c47c-0bf8-adeb-3bc3-86f4cea332e2",
+      "document_id": "0dc8182f-1bc6-3066-b3ea-22b8bca4f8d1",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 895465,
+      "created": "2021-10-05T18:43:25.177Z",
+      "filehash": "2ba36ef6709ee772307eeaa8b4278260e7c6c460"
+  },
+  {
+      "id": "40a4d5b3-c493-79f3-1892-65f45e73d81e",
+      "document_id": "d02076f9-fa89-397a-82b4-9c61f2f2d97a",
+      "mime_type": "application/pdf",
+      "file_name": "42744_268154_1_PB.pdf",
+      "size": 460960,
+      "created": "2021-10-05T18:47:38.544Z",
+      "filehash": "d98618c0cf733b2910d64dfe357719bf109f20fb"
+  },
+  {
+      "id": "4fc9f05e-0e63-727d-7fe7-fa382c285c2a",
+      "document_id": "e3d1362b-0e01-3b28-bae6-dde5a0b27d80",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 1594784,
+      "created": "2021-10-05T20:18:29.781Z",
+      "filehash": "72ae3d2b320996e88de943313e23e5402c7229d9"
+  },
+  {
+      "id": "538f32e3-083a-a0a7-54f6-537311af354a",
+      "document_id": "504d59ba-04f0-326a-9a95-dd0f6799e9d0",
+      "mime_type": "application/pdf",
+      "file_name": "Fernandes_Alencar___1993___Desenvolvimento_de_árvores_nativas_em_ensaios_de_espécies_4_Castanha_do_brasil_Bertholletia_e.pdf",
+      "size": 1844527,
+      "created": "2021-10-05T20:44:38.233Z",
+      "filehash": "66b642ce994883b299703166bfb58ec0052fd60e"
+  },
+  {
+      "id": "586b0987-1e54-84a5-79aa-3a65cfeac1a2",
+      "document_id": "c6a64eff-d6ea-3cd2-9562-dc10e64518f0",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 491517,
+      "created": "2021-10-05T22:01:46.306Z",
+      "filehash": "d28ba080afcafcc8114204ee72025a6f1d5b35de"
+  },
+  {
+      "id": "63322c8b-a83c-84c3-5138-f6c0960ac3fa",
+      "document_id": "1a29826a-90cb-3258-a203-8dcd3484ac72",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 491509,
+      "created": "2021-10-05T22:01:46.509Z",
+      "filehash": "59acbcc6f618f12515e5fe8ee904f336b4263aa3"
+  },
+  {
+      "id": "4da3e682-946c-8487-3d00-54edf91ac526",
+      "document_id": "4c7d73f7-feba-3522-8d09-72673c00216f",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 491521,
+      "created": "2021-10-05T22:01:46.131Z",
+      "filehash": "fbb6323083502e299cc85379e4f46b1b29859c93"
+  },
+  {
+      "id": "1b76b338-8fe5-3bb1-5cf1-4bd40c4b842a",
+      "document_id": "49d1094b-e1c6-3dbc-90e0-bb4e86f21a93",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 116682,
+      "created": "2021-10-05T22:07:10.607Z",
+      "filehash": "194d2dffdad747c0e2a065ed37bbfed847745391"
+  },
+  {
+      "id": "4592c53e-3b8e-3d9f-02be-6d43da9ca346",
+      "document_id": "c6d35a1e-d898-335b-ba61-f625717006ca",
+      "mime_type": "application/pdf",
+      "file_name": "Scoles2018_D_on_venen_les_nous_del__Brasil.pdf",
+      "size": 576366,
+      "created": "2021-10-05T22:14:54.750Z",
+      "filehash": "e6b5167400e17a80f762cf130c70c73f9700115b"
+  },
+  {
+      "id": "40223313-8d26-4321-7532-0081900cab7a",
+      "document_id": "17840b17-7305-3e28-9a1d-b0bb1d6f648c",
+      "mime_type": "application/pdf",
+      "file_name": "workshop_Sabine.pdf",
+      "size": 1666705,
+      "created": "2021-10-05T22:15:02.215Z",
+      "filehash": "3fee266b33649ec2c17664be1f79d2a24e643ef9"
+  },
+  {
+      "id": "7b5c7304-1a2e-4957-4cc0-bcdc562cadd2",
+      "document_id": "fa5536ed-9643-3d87-a43d-338030743f23",
+      "mime_type": "application/pdf",
+      "file_name": "Padroes_FSC_Castanha.pdf",
+      "size": 384220,
+      "created": "2021-10-05T22:15:09.759Z",
+      "filehash": "e23a75060912aed978d26b5cc5230142961264fc"
+  },
+  {
+      "id": "559677cb-ce0e-4e7f-7bde-3591e26cb282",
+      "document_id": "218f9153-a1ef-3994-aa04-cf95ae6dcbd0",
+      "mime_type": "application/pdf",
+      "file_name": "RELÁTORIO_DO_SEMINARIO_DA_CADEIA_DE_VALOR_DA_CASTANHA.pdf",
+      "size": 2060502,
+      "created": "2021-10-05T22:15:19.259Z",
+      "filehash": "cff5b2a6ba8fc0bd276a73608a21a15dbc301491"
+  },
+  {
+      "id": "49a88cce-a37a-67ef-673d-8e7bf9dce036",
+      "document_id": "231727a2-121b-3c40-8bec-603aef0b6054",
+      "mime_type": "application/pdf",
+      "file_name": "Núcleo_Maturi_UICN2009_Prod_comunit_de_castanha_instrum_difusão_boas_práticas_manejo_Acre.pdf",
+      "size": 3354231,
+      "created": "2021-10-05T22:15:54.037Z",
+      "filehash": "02ab771208aae193a16ac556e049d39cbc119679"
+  },
+  {
+      "id": "49d4b1d5-511d-a4c7-605d-56ca01acef72",
+      "document_id": "e209baf0-7d2d-36f6-a106-22f9bc39e93f",
+      "mime_type": "application/pdf",
+      "file_name": "Manual_Boas_Praticas_Castanha_3ed_Final_povos_MT.pdf",
+      "size": 3540724,
+      "created": "2021-10-05T22:16:07.605Z",
+      "filehash": "7e7de93db22e148562cd0c714b9cdc31cf23a289"
+  },
+  {
+      "id": "15d944a3-bdde-7bbb-310b-db72cf9d0106",
+      "document_id": "64302d4b-f1bd-3fcf-a03a-4f381cdfb640",
+      "mime_type": "application/pdf",
+      "file_name": "The_NoPa_Case2015.pdf",
+      "size": 8940941,
+      "created": "2021-10-05T22:16:22.234Z",
+      "filehash": "1a535bca5fe24056980630ae7f39926309d17584"
+  },
+  {
+      "id": "3213bfbd-240e-82ff-15f3-01ee3a7d116e",
+      "document_id": "d765b800-5600-35df-a2c0-37ac5ae64566",
+      "mime_type": "application/pdf",
+      "file_name": "Relatório_Curso_de_Capacitação_Boas_Práticas_da_Castanha_final.pdf",
+      "size": 6370275,
+      "created": "2021-10-05T22:16:29.207Z",
+      "filehash": "b07f29f76e4e3066f5fb4c222911cc2cea39afec"
+  },
+  {
+      "id": "7569da45-4d3e-8683-5915-19d4bddd2b36",
+      "document_id": "9b099f88-7212-3862-9c22-5a75573464b3",
+      "mime_type": "application/pdf",
+      "file_name": "A_complicada_vida_das__castanheiras_JSBA_24_30mar2017.pdf",
+      "size": 517544,
+      "created": "2021-10-05T22:16:32.092Z",
+      "filehash": "3dbadea9eec5f30da9093d48f57e8283f53a0816"
+  },
+  {
+      "id": "36df9083-5052-5f61-00ea-5595064d6baa",
+      "document_id": "5238ec5b-c45e-3bb0-bac8-ac3e3ff5f7d5",
+      "mime_type": "application/pdf",
+      "file_name": "IDAM2009_Orientac_Boas_Práticas_Manejo_Castanha.pdf",
+      "size": 11210673,
+      "created": "2021-10-05T22:17:26.190Z",
+      "filehash": "82cf948b6b9acd11ac63e8a58be4f64bd0d90ae3"
+  },
+  {
+      "id": "7c845480-6b5e-dadd-1acb-1f4fb88de0da",
+      "document_id": "36253b1f-dcee-3607-b894-5ea715f55c7e",
+      "mime_type": "application/pdf",
+      "file_name": "24155_Texto_do_artigo_94067_1_10_20131112.pdf",
+      "size": 327698,
+      "created": "2021-10-05T22:21:15.542Z",
+      "filehash": "fd4f1bd601fac739914d325363c6f42ae0dd7eb3"
+  },
+  {
+      "id": "44faf0e5-2a9b-c2df-2fe2-5d69a4ad39da",
+      "document_id": "143dd807-49eb-37c8-9383-e5eac5138bdb",
+      "mime_type": "application/pdf",
+      "file_name": "Scoles_et_al_2017_ATBC2017_Mérida_Mex.pdf",
+      "size": 96877,
+      "created": "2021-10-06T00:01:12.626Z",
+      "filehash": "115ad06ee26c8b03c46c6087892cfa92a7315032"
+  },
+  {
+      "id": "7418699a-b6db-c78f-0771-19c46acd3c32",
+      "document_id": "9a5dfe13-3fa9-34b1-9c0f-b0e69f1e2f91",
+      "mime_type": "application/pdf",
+      "file_name": "Silva_et_al_2019_Genetic_structure_of_Bertholletia_excelsa_throughout_the_Brazilian_Amazon_region.pdf",
+      "size": 681172,
+      "created": "2021-10-06T00:01:19.062Z",
+      "filehash": "dd9e577daab2b07a5b00d9498835b4fc893c268b"
+  },
+  {
+      "id": "73151f3d-802c-a1df-79e4-ad02203d4466",
+      "document_id": "ab70d0b9-fb36-33d0-9d87-919c300e272d",
+      "mime_type": "application/pdf",
+      "file_name": "Pereira_et_al_2019_Produção_de_flores_e_frutos_de_Bertholletia_excelsa.pdf",
+      "size": 838276,
+      "created": "2021-10-06T00:01:21.599Z",
+      "filehash": "6e03426aee2841c3120a58ad30bec5fa3ec7bb54"
+  },
+  {
+      "id": "1dab4ed4-c1cb-dce3-2f7a-5826590d6662",
+      "document_id": "66c6876a-8c39-3123-b26a-b69c8bfe3fff",
+      "mime_type": "application/pdf",
+      "file_name": "Dissertação_versão_final_24___Junho_de_2017.pdf",
+      "size": 1871859,
+      "created": "2021-10-06T00:01:50.648Z",
+      "filehash": "4dc3fdfae7349e7dd1f73417b44e0e6d1b591e18"
+  },
+  {
+      "id": "04021ad7-7673-e391-6544-05ec37ad721a",
+      "document_id": "7a1f601c-74ee-30f4-af24-c9a1dfe6192e",
+      "mime_type": "application/pdf",
+      "file_name": "Dissertação_NZL_final.pdf",
+      "size": 3553809,
+      "created": "2021-10-06T00:02:03.736Z",
+      "filehash": "184155c7dc39dea7f6961e7f4ec15ca679a2da4d"
+  },
+  {
+      "id": "0557bf0d-ed53-e4f9-3cd2-c246fdcd7472",
+      "document_id": "67ecf958-a574-3364-a0bf-f1bfd6e49e00",
+      "mime_type": "application/pdf",
+      "file_name": "DISSERTAÇÃO_MAICO_PIMENTEL_versão_pública.pdf",
+      "size": 2772982,
+      "created": "2021-10-06T00:02:05.935Z",
+      "filehash": "de80f1441a16ca87af3d404908b2d6d746fbc104"
+  },
+  {
+      "id": "73b06457-6b3b-f417-437e-f757502d7b7a",
+      "document_id": "1eda7eb8-bde9-3000-bb3c-f1643d02c4a4",
+      "mime_type": "application/pdf",
+      "file_name": "DESENVOLVIMENTO_DE_PLANTAÇÕES_DE_Bertholletia_excelsa_Bonpl_EM_ÁREA_DEGRADADA_SOB_DIFERENTES_TRATAMENTOS_DE_PREPARO_E_AD.pdf",
+      "size": 3188374,
+      "created": "2021-10-06T00:02:24.032Z",
+      "filehash": "14391930e5ee60de7785568a0912cf28363ad6fd"
+  },
+  {
+      "id": "5a0a5676-478b-4655-10d2-352f9276de8e",
+      "document_id": "c32dffcf-08ba-33c8-a4a4-6e4b4f71a0b0",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 1812053,
+      "created": "2021-10-06T15:08:13.413Z",
+      "filehash": "ff5305cafe104d66fba1864f65abc0001bd76636"
+  },
+  {
+      "id": "6bb1b12c-c9a3-3737-2bb7-0c1281c6e46a",
+      "document_id": "671c9fb5-6473-30fa-a934-36454f64ba39",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 80699,
+      "created": "2021-10-06T15:08:03.486Z",
+      "filehash": "0d28f2f7427759f71aca20add900967f511e5ccb"
+  },
+  {
+      "id": "0d5cbe70-de3b-38f9-6f0d-269aaaf6e7ee",
+      "document_id": "dbe50ee9-4e7f-37fd-b42b-d31e114b5451",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 230779,
+      "created": "2021-10-06T15:08:04.464Z",
+      "filehash": "1d22dd6475069aa8aaeeb6f278100ad5d799cf76"
+  },
+  {
+      "id": "6240325e-b69b-3881-469b-e2f57116ea46",
+      "document_id": "f4f10b02-da9e-35fd-a1e6-77854bf83bd0",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 218405,
+      "created": "2021-10-06T15:08:04.329Z",
+      "filehash": "441b921536a118b16af9bab32a38a89de6ec3cfd"
+  },
+  {
+      "id": "26ebf11d-56ab-3d6d-3263-4122d426eb72",
+      "document_id": "79ff3afe-c673-3653-94a3-a2705c37b842",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 630213,
+      "created": "2021-10-06T15:08:08.027Z",
+      "filehash": "d33fe9ae9342cb59d455a39b87c87e678686752c"
+  },
+  {
+      "id": "607340e7-647d-2529-026d-9c20a33a259e",
+      "document_id": "a5b8edca-f0ed-3959-a533-cb1441062524",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 179916,
+      "created": "2021-10-06T15:13:36.947Z",
+      "filehash": "95b223011369affead3cc4677a851868327b19d0"
+  },
+  {
+      "id": "5701c219-5175-2673-0919-d130f59a2ca6",
+      "document_id": "4123a918-8067-3893-aa03-b4062c087342",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 817138,
+      "created": "2021-10-06T15:13:37.560Z",
+      "filehash": "7389804ad7a602e09b7d94c5e09efbc76af4a5b3"
+  },
+  {
+      "id": "4d90434b-3e6d-27bd-74e1-2f5e58aa2dd2",
+      "document_id": "65038199-6fb1-3e1a-9ccf-89bc91c65453",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 689273,
+      "created": "2021-10-06T15:13:37.935Z",
+      "filehash": "01656dbe58741bda3ce93e2f38db55b3bb95f471"
+  },
+  {
+      "id": "10367f46-9a3a-a783-107d-ab75b6f28c02",
+      "document_id": "26d2b36d-b309-3259-8456-5ef84c6516c5",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 277881,
+      "created": "2021-10-06T15:30:24.774Z",
+      "filehash": "0381c0c5b150e329e57484db26b3d8087f3e5542"
+  },
+  {
+      "id": "0d8b36d9-ac7a-a4b3-53d3-c5fde0228f86",
+      "document_id": "48d8da96-b310-3f9a-b122-8dd4869d8e99",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 4894692,
+      "created": "2021-10-06T15:30:22.503Z",
+      "filehash": "5f5111bca028a722952838fa962811403baa66c0"
+  },
+  {
+      "id": "7b55251e-b219-4935-5ce3-0f1332a8a37a",
+      "document_id": "60a328ed-1d39-3a68-bb90-5022485101ea",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 3494357,
+      "created": "2021-10-06T15:50:16.856Z",
+      "filehash": "7540c9ec666557b52451356737c4af70dc849cb6"
+  },
+  {
+      "id": "04109ab7-00c9-95d9-6d73-818826fa3316",
+      "document_id": "ff798c17-24a9-30e6-a8c2-2924f73c0329",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 904901,
+      "created": "2021-10-06T15:51:11.365Z",
+      "filehash": "1079e8cded0c0b0705e9fd324897415c8164fe8a"
+  },
+  {
+      "id": "3f64dbf8-60b9-90ed-593a-dfb58a0a3442",
+      "document_id": "cfb5b37a-3151-3259-b29b-ec31d159ae51",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 726296,
+      "created": "2021-10-06T15:51:08.830Z",
+      "filehash": "dc71ffc7005d808ec5e1c4cdb896ce840b45894f"
+  },
+  {
+      "id": "27114c31-8c41-9903-4502-3de2ed1a356e",
+      "document_id": "6c845410-a89d-3bd5-8dcf-2a99bda43aa0",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 693552,
+      "created": "2021-10-06T15:51:12.986Z",
+      "filehash": "806f3e56452c41e931017b673827647909670b13"
+  },
+  {
+      "id": "46111108-b319-97f5-30c9-9c10502a369a",
+      "document_id": "f7f2d7c6-d12c-3ff0-8bf4-d923875e5ac7",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 151249,
+      "created": "2021-10-06T15:51:12.450Z",
+      "filehash": "398bf65847f430ba4e3cbfee135f40c29f2d829a"
+  },
+  {
+      "id": "4a2bfefc-eaa1-910b-1c90-fa3db33a37c6",
+      "document_id": "ec65cd2f-f4e2-3350-a9e9-344dd58a9a95",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 195645,
+      "created": "2021-10-06T15:51:08.934Z",
+      "filehash": "b642598fb4fdf4bc5389610e4d659e31b95cd35c"
+  },
+  {
+      "id": "1984df6f-41b1-a137-741f-b698795a3a1e",
+      "document_id": "6c99847e-28c5-3834-b877-12a5f631e8c9",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 275108,
+      "created": "2021-10-06T15:51:18.151Z",
+      "filehash": "c057ba0ca288624bfd51cc6a491f1b61ac392095"
+  },
+  {
+      "id": "78c07294-bc0c-84ff-60a1-f1f7a0a3e022",
+      "document_id": "c3b28b08-333e-31c2-a637-79295470be96",
+      "mime_type": "application/pdf",
+      "file_name": "2017___Costa_Tonini_Filho___Atributos_do_solo_relacionados_com_a_produção_da_castanheira_do_Brasil_Bertholletia_excelsa.pdf",
+      "size": 1461484,
+      "created": "2021-10-06T16:34:16.261Z",
+      "filehash": "c7bb9b4ff3369c97a0b32cb5e81993b0a48e3f9e"
+  },
+  {
+      "id": "780f81dd-6218-2a77-3830-ae5266c3e27a",
+      "document_id": "37f2bfcc-8d78-3fa1-a516-01086c4f59ea",
+      "mime_type": "application/pdf",
+      "file_name": "Lobo___2016___IMPACTOS_SOCIOAMBIENTAIS_DA_COLETA_DE_CASTANHA__DO_PARÁ_Bertholletia_excelsa__Bonpl_NA_RESERVA_BIOLÓGICA_D.pdf",
+      "size": 1316326,
+      "created": "2021-10-06T16:34:14.251Z",
+      "filehash": "64fdd579ae570a0deaf87881084ea32ba84b4c11"
+  },
+  {
+      "id": "2e2767d5-886f-8479-00e7-46fe1ec53bde",
+      "document_id": "717c42c6-7d96-3a2d-8658-a48ca72e9560",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 507647,
+      "created": "2021-10-06T18:30:07.176Z",
+      "filehash": "d93fd7385f235e8a224c862b78e0b161d3a73e07"
+  },
+  {
+      "id": "184eb0f5-bd00-37c5-0fee-57eca9f44b0a",
+      "document_id": "4925df59-dd63-3b42-9e86-58f3c23f99ef",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 175529,
+      "created": "2021-10-06T18:33:54.061Z",
+      "filehash": "7a2083ddd2ca6b2ba2b85a33911d9a13c2e7f9b0"
+  },
+  {
+      "id": "48e68885-d651-e921-37fc-547ddfcc8d16",
+      "document_id": "c3bbe425-cd23-3928-9984-f86d6f1751c1",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 345999,
+      "created": "2021-10-06T18:42:45.904Z",
+      "filehash": "3b547269b44db6b3c212989ee06e16bfcba92141"
+  },
+  {
+      "id": "3693ddec-d32b-fc93-248e-d36921f06782",
+      "document_id": "1564d438-6de0-38f7-8f22-8062a8e277f2",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 399867,
+      "created": "2021-10-06T18:52:26.012Z",
+      "filehash": "4c47e7515253f93d17b9475baec3842b48dd265e"
+  },
+  {
+      "id": "36bffc43-09bc-82e3-479f-6d515c6b5976",
+      "document_id": "e3990f85-bff3-3398-bfdd-f52a9032c95b",
+      "mime_type": "application/pdf",
+      "file_name": "2009___Yang___Brazil_nuts_and_associated_health_benefits_A_review.pdf",
+      "size": 314733,
+      "created": "2021-10-06T19:27:22.058Z",
+      "filehash": "aa28c6a25a782a37037be7cf1478f6777f192080"
+  },
+  {
+      "id": "55a52f99-81ef-ed67-1f2e-29ac228b5bce",
+      "document_id": "a67bf479-5768-3342-9918-5e75f748a413",
+      "mime_type": "application/pdf",
+      "file_name": "238_Texto_do_Artigo_228_1_10_20120507.pdf",
+      "size": 1487013,
+      "created": "2021-10-06T19:27:27.439Z",
+      "filehash": "1ad18f7464b9ce1b06ce6186af6cf9f98a8a3517"
+  },
+  {
+      "id": "6a6c8007-68e0-fa01-47e6-eb7c7256c41e",
+      "document_id": "9f554c16-6988-34dc-81c5-be68b333ddea",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 373440,
+      "created": "2021-10-06T19:58:57.014Z",
+      "filehash": "e1d103a0cb92f19afa9694defc279974430f3123"
+  },
+  {
+      "id": "15a01abe-c1b5-0d87-3245-6f3ba1f8adaa",
+      "document_id": "1db53586-2928-338a-928d-19bacba5299b",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 528840,
+      "created": "2021-10-06T21:07:02.038Z",
+      "filehash": "778fc6c8dff431a466fa75cfb6fb94ad3257273d"
+  },
+  {
+      "id": "4b83c9d5-733d-0e1d-759b-89c3cb28b12e",
+      "document_id": "d4e7b4ab-dbdc-3e3e-8b05-ae330352f761",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 928349,
+      "created": "2021-10-06T21:07:02.727Z",
+      "filehash": "8823e2fb1c1a01bb9389c1ab3d8cbadbd81a35db"
+  },
+  {
+      "id": "4ae7c1f0-81cd-50e9-5306-70a84c69139e",
+      "document_id": "05e026f7-c3a0-3279-b67e-24976510e69d",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 363105,
+      "created": "2021-10-06T21:08:42.147Z",
+      "filehash": "2c4776844e817aaed2b84288822127d071c0e674"
+  },
+  {
+      "id": "73429760-a9dd-ebd5-0798-0ea44829a4ee",
+      "document_id": "ec975329-bca8-370e-8fbd-d5daf8a27e0f",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 972845,
+      "created": "2021-10-06T21:13:08.765Z",
+      "filehash": "3c253887a0f192e6b536799f043c14281abe8980"
+  },
+  {
+      "id": "24a6e65b-9956-b1ff-63ca-e5bee68a8cf6",
+      "document_id": "ce8262d5-4576-3ef3-90cc-8e06c7a74dc1",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 1954406,
+      "created": "2021-10-06T21:18:13.607Z",
+      "filehash": "386de363b37b1617bb84199be8e3ec009ad430a7"
+  },
+  {
+      "id": "3233531d-e3e6-a9cb-4205-d729ff0a9656",
+      "document_id": "c7743062-d7c6-3389-a463-b9432fc5b569",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 439588,
+      "created": "2021-10-06T21:17:58.596Z",
+      "filehash": "cf2a716737c50304359a48acd023d125e78cf383"
+  },
+  {
+      "id": "66948193-faef-e381-412d-aadd5a5dd532",
+      "document_id": "3f7023e9-c072-30d2-a6a3-64d20b4d92bb",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 71611,
+      "created": "2021-10-06T21:26:17.392Z",
+      "filehash": "710a337d7e213d07ae7d716737dd3ee24d3e2254"
+  },
+  {
+      "id": "55891f8e-ba8d-a03d-7266-b96cd0d87c26",
+      "document_id": "ce6f9b2f-b281-3a5e-9458-17b128f670e3",
+      "mime_type": "application/pdf",
+      "file_name": "Cavalcante_et_al___2012___Pollination_requirements_and_the_foraging_behavior_of_potential_pollinators_of_cultivated_Braz.pdf",
+      "size": 4799972,
+      "created": "2021-10-06T21:58:44.311Z",
+      "filehash": "01a9a56f2c480246c87eedf5847a954d5c15c9d7"
+  },
+  {
+      "id": "3b22cb57-d866-e02b-49f5-75c796f87e7e",
+      "document_id": "68e925ff-3617-3af2-beb1-16a4b08586a4",
+      "mime_type": "application/pdf",
+      "file_name": "2017___Souza_et_al___BIOMASSA_CRESCIMENTO_E_RESPOSTAS_ECOFISIOLÓGICAS_DE_PLANTAS_JOVENS_DE_iBertholletia_excelsai_BONPL_.pdf",
+      "size": 439588,
+      "created": "2021-10-06T21:58:59.593Z",
+      "filehash": "e198e59621b45b24da31d93eae5423a444e12143"
+  },
+  {
+      "id": "5ba87466-5f92-a855-35bc-d3f4fa087faa",
+      "document_id": "d01f7628-40a4-3e9d-91bb-97a6c93b39d1",
+      "mime_type": "application/pdf",
+      "file_name": "1987___S_M_SUN_ALTENBACH_LEUNG___Properties_biosynthesis_and_processing_of_a_sulfurrich_protein_in_Brazil_nut_Berthollet.pdf",
+      "size": 707225,
+      "created": "2021-10-06T21:57:53.764Z",
+      "filehash": "f3e6807c1970fbc5d9ba1261c0a23e3feeb4258e"
+  },
+  {
+      "id": "525cdb4f-e93b-da9d-0d4b-904fc0288202",
+      "document_id": "88780370-63c9-35d9-97b7-2d81bd192c6c",
+      "mime_type": "application/pdf",
+      "file_name": "1978___T_A___Observations_on_the_fruits_and_seeds_of_neotropical_Lecythidaceae.pdf",
+      "size": 1971562,
+      "created": "2021-10-06T21:58:57.410Z",
+      "filehash": "8623d18f90afc8910246797d58ed1660fc278236"
+  },
+  {
+      "id": "42456fc2-46de-72cd-7eb2-f49f2b1bdf56",
+      "document_id": "3fc1cfec-8301-379a-b19b-aa2db5e8f124",
+      "mime_type": "application/pdf",
+      "file_name": "2021___da_Cunha_Júnior_et_al___Symbiotic_drink_based_on_Brazil_nuts_Bertholletia_excelsa_HBK_production_character.pdf",
+      "size": 978377,
+      "created": "2021-10-10T22:54:33.393Z",
+      "filehash": "407cfe8566000d1e5d6c696978dde8c2adfdb353"
+  },
+  {
+      "id": "779e2f67-b619-289f-6a7a-52cc8e2be082",
+      "document_id": "eec45de9-2f58-3933-8b73-dfb9d8e03b67",
+      "mime_type": "application/pdf",
+      "file_name": "2015___Ferreira_et_al___Características_nutricionais_de_plantas_jovens_de_Bertholletia_excelsa_Bonpl_sob_tratamentos.pdf",
+      "size": 475613,
+      "created": "2021-10-10T21:02:03.008Z",
+      "filehash": "c466fc9e56949263c0abe859741758f609a62b8a"
+  },
+  {
+      "id": "32df1f1b-fb9a-e3b9-6cb1-d229c8d18c02",
+      "document_id": "e1b7113c-be63-3627-9d92-9b8ca5b89a61",
+      "mime_type": "application/pdf",
+      "file_name": "Projeto_Sentinelas_da_Floresta___2016___Manual_de_boas_práticas_de_manejo_coleta_e_beneficiamento_da_castanha_do_brasil2.pdf",
+      "size": 7345867,
+      "created": "2021-10-12T15:54:09.286Z",
+      "filehash": "5742f2cd0c21d502601825713e6531ce74ffea9a"
+  },
+  {
+      "id": "2c0e17b3-31e2-128f-4030-02b0b98be002",
+      "document_id": "c078d23b-ebb5-38eb-8382-7143fb7a5fa8",
+      "mime_type": "application/pdf",
+      "file_name": "Tonini_Pedrozo___2014___Variações_anuais_na_produção_de_frutos_e_sementes_de_castanheira_do_brasil_bertholletia_excelsa_.pdf",
+      "size": 252331,
+      "created": "2021-10-12T22:59:30.034Z",
+      "filehash": "775c5931aa090ee3db39c3547416a76f666be804"
+  },
+  {
+      "id": "3e501a58-e4ae-ab51-2bf7-60de1c9be12e",
+      "document_id": "8f149773-aea6-306c-9bdd-9d4ee1fcd68b",
+      "mime_type": "application/pdf",
+      "file_name": "2019___de_Carvalho_Campos_Botelho_et_al___Fruits_seeds_and_oil_of_Brazil_nuts_produced_in_Mato_Grosso_State.pdf",
+      "size": 835072,
+      "created": "2021-10-12T22:59:31.106Z",
+      "filehash": "fc1e6aa729e30014e707ed772a7168727304bd31"
+  },
+  {
+      "id": "1c7a8657-3e71-9749-6480-44c38a0879c2",
+      "document_id": "e09f1cf8-f1ee-3ac9-b6d2-a4727e7b4bff",
+      "mime_type": "application/pdf",
+      "file_name": "2009___Gonçalves_et_al___Determination_and_fractionation_of_barium_in_Brazil_nuts.pdf",
+      "size": 587952,
+      "created": "2021-10-16T23:44:29.998Z",
+      "filehash": "b869c5425a97c76763e74fe04fdd907db27ff6dc"
+  },
+  {
+      "id": "604e3655-54f9-5201-27d6-5f4bb3387d46",
+      "document_id": "05dae481-4351-361a-be66-23140915d9dd",
+      "mime_type": "application/pdf",
+      "file_name": "Dionisio_et_al___2019___Seedling_production_of_Bertholletia_excelsa_in_response_to_seed_origin_and_position_inside_fruit.pdf",
+      "size": 1728107,
+      "created": "2021-10-16T23:44:27.078Z",
+      "filehash": "6580b260dc7930896d15ab559f37bddcb7f14f25"
+  },
+  {
+      "id": "21c3d8ac-496a-a387-139d-bd7916487e72",
+      "document_id": "03293e6e-fd81-3d3b-aa75-92d7402d6c19",
+      "mime_type": "application/pdf",
+      "file_name": "2021___Hou_et_al___The_effect_of_Bertholletia_excelsa_on_body_weight_cholestrol_and_c_reactive_protein_A_systematic_revi.pdf",
+      "size": 3055215,
+      "created": "2021-10-16T23:44:28.810Z",
+      "filehash": "3f4b642985d15cd64be68c16faa71b9b8c47ddca"
+  },
+  {
+      "id": "58d8006a-377f-d9b9-56f3-d8013f7881f6",
+      "document_id": "d8697ec5-2592-3e98-836e-9bcb99ca1664",
+      "mime_type": "application/pdf",
+      "file_name": "1994___Prado_Filho___Umidade_relativa_de_equilibrio_e_oxidação_de_lipídeos_em_farinhas_de_castanha_do_Pará_de_macadâmia_.pdf",
+      "size": 445471,
+      "created": "2021-10-16T23:44:26.004Z",
+      "filehash": "c6ef3ab0ceeb824ba4c1fbd0b8922f996d8d6869"
+  },
+  {
+      "id": "069aa5ce-e126-a49d-7f31-1904d38895e2",
+      "document_id": "ba85257e-ea22-388a-8a7d-ecb629d3d834",
+      "mime_type": "application/pdf",
+      "file_name": "2009___Ferreira_Tonini___Comportamento_da_castanha_do_brasil_Bertholletia_excelsa_e_da_cupiúba_Goupia_glabra_em_sistema_.pdf",
+      "size": 431387,
+      "created": "2021-10-16T23:44:25.347Z",
+      "filehash": "d48050b4259281046d31f147b0591d2dc37d0cac"
+  },
+  {
+      "id": "1c97ebfa-b023-89ff-56bf-d55f99a8983a",
+      "document_id": "4cdd5718-9667-3e2b-b5ed-1bb59dc916a4",
+      "mime_type": "application/pdf",
+      "file_name": "Nogueira_Lahr_Giacon___2018___Desenvolvimento_e_caracterização_de_painéis_de_partículas_aglomeradas_utilizando_o_resíduo.pdf",
+      "size": 557612,
+      "created": "2021-10-16T23:44:24.395Z",
+      "filehash": "875172ad51add6881a4c0dc6b2593be41cbeec6b"
+  },
+  {
+      "id": "4ea4d62d-936d-1b5b-4287-338cfcb89966",
+      "document_id": "2f7f0678-8fde-33c3-aa5e-dd5f6ed970eb",
+      "mime_type": "application/pdf",
+      "file_name": "a04v57n4.pdf",
+      "size": 172752,
+      "created": "2021-12-24T00:03:30.260Z",
+      "filehash": "5df2f38f394690e1fc1229d8aa4fe4e6a3e0dfa0"
+  },
+  {
+      "id": "697b6ef5-a757-3293-4287-338cfcb89966",
+      "document_id": "2f7f0678-8fde-33c3-aa5e-dd5f6ed970eb",
+      "mime_type": "application/pdf",
+      "file_name": "Cardarelli_De_Oliveira___2000___Conservação_do_leite_de_castanha_do_pará.pdf",
+      "size": 307399,
+      "created": "2021-10-16T23:44:21.911Z",
+      "filehash": "3c6ffb655f93048496728d9d4abf07b761f9603f"
+  },
+  {
+      "id": "45522fd0-09a6-4073-2e4e-91ba5fc89a92",
+      "document_id": "4e5a5d9e-d7f8-30da-8bd4-6663cbf2e734",
+      "mime_type": "application/pdf",
+      "file_name": "2008___Souza_Menezes___Extrusão_de_misturas_de_castanha_do_Brasil_com_mandioca.pdf",
+      "size": 440653,
+      "created": "2021-10-16T23:44:20.173Z",
+      "filehash": "dc89d08218abbb16851bb7805037daefde8ef049"
+  },
+  {
+      "id": "2d3ada3d-a0b5-2763-05dd-4e1525e89cea",
+      "document_id": "3bec1fb4-0ec8-31c4-b3be-2543bb2ebcca",
+      "mime_type": "application/pdf",
+      "file_name": "2004___Souza_Menezes___Processamentos_de_amêndoa_e_torta_de_castanha_do_Brasil_e_farinha_de_mandioca_parâmetros_de_quali.pdf",
+      "size": 511921,
+      "created": "2021-10-16T23:44:22.602Z",
+      "filehash": "f696b82bca0f7d1f7b2c982208576eeba55eadd4"
+  },
+  {
+      "id": "7229b382-4e2f-642f-7efd-16632db8ac26",
+      "document_id": "132d50db-d175-3cdb-b774-0c8971dfeb6c",
+      "mime_type": "application/pdf",
+      "file_name": "plphys_v111_2_469.pdf",
+      "size": 1856520,
+      "created": "2022-01-07T13:46:39.108Z",
+      "filehash": "dd260906a6ad207ddda995c72a7caba19ce61f48"
+  },
+  {
+      "id": "7a7990bb-9027-4b39-2e1a-8f18b9f8b0d6",
+      "document_id": "06a08be0-6fcc-37f9-ab51-fb1e339af259",
+      "mime_type": "application/pdf",
+      "file_name": "0014_57939600375_4.pdf",
+      "size": 718779,
+      "created": "2022-01-07T13:46:16.418Z",
+      "filehash": "626ba13e5788b7e973693aa33ab57a1212b95bf4"
+  },
+  {
+      "id": "5e5caa0e-bdf7-caf5-7170-a9a0e328b45a",
+      "document_id": "6ca39f70-88ae-34b0-8804-df0a36127c1e",
+      "mime_type": "application/pdf",
+      "file_name": "237668082021.pdf",
+      "size": 14287966,
+      "created": "2022-01-07T13:48:34.904Z",
+      "filehash": "a7181e92a7158caf8623d42b4688d4326099df2c"
+  },
+  {
+      "id": "32a5fbf3-b5c9-fb0b-48ff-65fba948b6b2",
+      "document_id": "6a10dec0-5e89-344c-b3da-bd8ef23d3b9b",
+      "mime_type": "application/pdf",
+      "file_name": "IJP_Volume_7_Issue_5_Pages_9443_9451.pdf",
+      "size": 375283,
+      "created": "2022-01-07T13:46:25.125Z",
+      "filehash": "57492c4d665642d780891631361aed4ddf116c28"
+  },
+  {
+      "id": "2f0b2eb7-8be7-dc89-273a-5766c1c8c012",
+      "document_id": "17950a47-e17f-36dd-b13d-cb91a4e219d3",
+      "mime_type": "application/pdf",
+      "file_name": "plphys_v87_4_859.pdf",
+      "size": 2124324,
+      "created": "2022-01-07T13:48:51.929Z",
+      "filehash": "a1970f9f2258e7bafef7524eb04ac9a4554b4c1c"
+  },
+  {
+      "id": "32f9a831-537d-9c73-5657-d01c4e08c4c2",
+      "document_id": "17cd624f-8f01-3ec0-a6ea-4fd649bda5ca",
+      "mime_type": "application/pdf",
+      "file_name": "document_1.pdf",
+      "size": 608688,
+      "created": "2022-01-07T13:46:11.921Z",
+      "filehash": "af583f1632901a790f46b755153ff55c0d0d252c"
+  },
+  {
+      "id": "2aecada7-9347-5151-421f-2e49b118c5ee",
+      "document_id": "16c6e751-47b3-3ed0-a816-885c7755a031",
+      "mime_type": "application/pdf",
+      "file_name": "document.pdf",
+      "size": 1028545,
+      "created": "2022-01-07T13:46:22.528Z",
+      "filehash": "5a3b309461a60323b28afd9918dd17fca58e939c"
+  },
+  {
+      "id": "7459660b-a33d-620b-7703-9d9b1ce35d4a",
+      "document_id": "537df835-42fe-3107-a79f-c06a5c37da1f",
+      "mime_type": "application/pdf",
+      "file_name": "Tourne_et_al___2019___Strategies_to_optimize_modeling_habitat_suitability_of_Bertholletia_excelsa_in_the_PanAmazonia.pdf",
+      "size": 2581785,
+      "created": "2021-10-20T13:20:04.404Z",
+      "filehash": "5f0eb6b134c5915c6b3cba097582ba1031fd5df5"
+  },
+  {
+      "id": "3723a64c-8efb-3809-553e-8f06356366aa",
+      "document_id": "2280eaa4-4eb9-3bc2-b41c-a0a0c37605d5",
+      "mime_type": "application/pdf",
+      "file_name": "Freitas_et_al___2007___Extraction_and_simultaneous_separation_of_the_Brazil_nuts_oil_with_ethanol.pdf",
+      "size": 439181,
+      "created": "2021-10-20T13:22:51.939Z",
+      "filehash": "18deaa5922cad7ce31d520694bc14794edfb43e3"
+  },
+  {
+      "id": "6fb27236-bdaf-859b-1894-a98e5e936a2e",
+      "document_id": "a68e0f8f-e5a0-31b0-a70b-32c872394198",
+      "mime_type": "application/pdf",
+      "file_name": "Vasquez_et_al___2021___Supercritical_carbon_dioxide_extraction_of_oil_and_minor_lipid_compounds_of_cake_byproduct_from_B.pdf",
+      "size": 2784231,
+      "created": "2021-10-20T13:20:23.654Z",
+      "filehash": "185524f6d95779c3cf729940e9cf0058f9e26c15"
+  },
+  {
+      "id": "56e294d6-0bb9-42d1-045c-07bbc1a36b5a",
+      "document_id": "0830bcfe-13a0-34f0-8545-909bdf321db6",
+      "mime_type": "application/pdf",
+      "file_name": "Nelson_et_al___1985___Observations_on_flower_visitors_to_Bertholletia_excelsa_HBK_and_Couratari_tenuicarpa_AC_Sm_Lecythi.pdf",
+      "size": 862951,
+      "created": "2021-10-20T13:20:13.640Z",
+      "filehash": "eed70edfb16fde0e91dc037ad4c3af852a5ee3ad"
+  },
+  {
+      "id": "4c820016-8ad4-5a69-5bea-c41687c36db2",
+      "document_id": "7e607a75-21f6-33f4-adfc-2471b1f60a9c",
+      "mime_type": "application/pdf",
+      "file_name": "Centro_de_Gestão_e_Estudos_Estratégicos___CGEE___2008___Mapeamento_e_Diagnóstico_das_Instituições_de_Ensino_e_Pesquisa_e.pdf",
+      "size": 28708338,
+      "created": "2021-10-20T13:22:25.363Z",
+      "filehash": "9cde2b176bc866d5744eb4da1a4812cd73e738d3"
+  },
+  {
+      "id": "35004ba5-3992-cbd9-3379-80714de3700a",
+      "document_id": "f036ed1b-d9cf-3e91-9a85-af4c3ca95edd",
+      "mime_type": "application/pdf",
+      "file_name": "Chalita_et_al___2019___Characterization_of_bacterial_endophytes_from_the_roots_of_native_and_cultivated_brazil_nut_trees.pdf",
+      "size": 1133537,
+      "created": "2021-10-20T13:23:56.467Z",
+      "filehash": "ac710ac5723283fc5c47177d4676055abc741b81"
+  },
+  {
+      "id": "17706fcc-d9a8-2337-76cf-9af97713738e",
+      "document_id": "8a3a654e-b804-3f2f-b8dc-8bd5c2d5f24a",
+      "mime_type": "application/pdf",
+      "file_name": "Marcadenti_et_al___2021___Effects_of_a_Brazilian_cardioprotective_diet_and_nuts_on_cardiometabolic_parameters_after_myoc.pdf",
+      "size": 1018313,
+      "created": "2021-10-20T13:24:38.651Z",
+      "filehash": "7d345786127807a68655e391534d9644da4dd155"
+  },
+  {
+      "id": "1a4055b4-8af5-9ab7-4e5e-57543d3375e6",
+      "document_id": "56eebcf0-8b1c-3fbc-9387-6f3dffdebb11",
+      "mime_type": "application/pdf",
+      "file_name": "Centro_de_Gestão_e_Estudos_Estratégicos___CGEE___2008___Resumo_Executivo_Sub_rede_de_Dermocosméticos_na_Amazônia_a_parti.pdf",
+      "size": 1134391,
+      "created": "2021-10-20T13:23:39.263Z",
+      "filehash": "33b828cb48fdd674eaa53e3a611a4ff751bf7e2c"
+  },
+  {
+      "id": "43b67cec-bb56-a6fb-7618-c29229de11b6",
+      "document_id": "21a831f1-73b5-39f1-a8e7-4b6c3ee9a3c5",
+      "mime_type": "application/pdf",
+      "file_name": "v53n1_a03_2.pdf",
+      "size": 344314,
+      "created": "2021-11-02T20:49:51.303Z",
+      "filehash": "5185180e143ef29d8ed1178c56087c75deb60578"
+  },
+  {
+      "id": "3a2c2a4f-7b0c-77a3-1f08-a49d527b82f6",
+      "document_id": "45337cba-8e2b-32b5-bc89-a9f26fd8e7cf",
+      "mime_type": "application/pdf",
+      "file_name": "full_text.pdf",
+      "size": 489175,
+      "created": "2021-11-09T16:16:57.016Z",
+      "filehash": "73a44de8e5ab9e09d0a496c18a4bee09a274c38b"
+  }
+]
