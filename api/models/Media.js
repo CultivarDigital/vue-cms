@@ -13,13 +13,13 @@ const MediaSchema = mongoose.Schema({
   description: {
     type: String
   },
-  picture: Object,
+  picture: Object, // TODO transferir dados dos legados e remover este campo
   image: {
     type: ObjectId,
     ref: 'Attachment',
     autopopulate: true
   },
-  documents: [Object],
+  documents: [Object], // TODO transferir dados dos legados e remover este campo
   docs: [{
     type: ObjectId,
     ref: 'Attachment',

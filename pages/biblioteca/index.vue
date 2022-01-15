@@ -23,8 +23,8 @@
               <div v-if="filterOptions">
                 <b-card v-if="filterOptions.categories && filterOptions.categories.length" title="Categorias" no-body class="mb-4">
                   <b-list-group flush>
-                    <b-list-group-item v-for="category in filterOptions.categories" :key="category" class="bg-primary pointer-event" @click="filter({category})">{{ category }}</b-list-group-item>
-                    <b-list-group-item v-if="filters.category" class="bg-primary" @click="filter({category: null})">Todas as categorias</b-list-group-item>
+                    <b-list-group-item v-for="category in filterOptions.categories" :key="category" class="pointer" :class="category === filters.category ? 'bg-secondary' : 'bg-primary'" @click="filter({category})">{{ category }}</b-list-group-item>
+                    <b-list-group-item v-if="filters.category" class="bg-primary pointer" @click="filter({category: null})">Todas as categorias</b-list-group-item>
                   </b-list-group>
                 </b-card>
               </div>
