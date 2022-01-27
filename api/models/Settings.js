@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const ObjectId = mongoose.Schema.Types.ObjectId
+const features = require('../../data/features')
 
 const SettingsSchema = mongoose.Schema({
   title: {
@@ -32,7 +33,10 @@ const SettingsSchema = mongoose.Schema({
     autopopulate: true
   }],
   postal_code: String,
-  features: Object
+  features: {
+    type: Object,
+    default: JSON.parse(JSON.stringify(features))
+  }
 }, {
   timestamps: true,
   toJSON: { virtuals: true }

@@ -17,7 +17,7 @@
               <b-button type="submit" variant="success" block size="lg">
                 Entrar
               </b-button>
-              <p v-if="settings.features['shop'].enabled" class="mt-4">
+              <p v-if="settings.features['shop'] && settings.features['shop'].enabled" class="mt-4">
                 Ainda não possúi uma conta?
                 <b-btn variant="primary" size="sm" @click="open('register')">
                   <strong>Cadastre-se</strong>

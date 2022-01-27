@@ -22,7 +22,7 @@
               </div>
               <div v-if="form.category === 'paragraph'">
                 <b-form-group :label="'Texto do parágrafo'">
-                  <quill-editor ref="quillEdit" v-model="form.content" style="background-color: #fff" @input="input" />
+                  <quill-editor ref="quillEdit" v-model="form.content" style="background-color: #fff;" @input="input" />
                 </b-form-group>
               </div>
               <div class="text-right">
@@ -90,7 +90,6 @@ export default {
   watch: {
     value() {
       this.form = { ...this.value }
-      console.log('watch', this.value)
     }
   },
   created() {
@@ -108,7 +107,6 @@ export default {
       } else {
         this.setType(null)
       }
-      console.log('setCat')
     },
     input() {
       this.$emit('input', this.form)

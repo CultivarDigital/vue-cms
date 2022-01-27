@@ -8,12 +8,14 @@
         {{ menu.name }}
       </b-nav-item>
     </template>
-    <template v-for="key in Object.keys(settings.features)">
-      <b-nav-item v-if="settings.features[key].enabled" :key="key" :to="settings.features[key].url">{{ settings.features[key].title }}</b-nav-item>
+    <template v-if="settings && settings.features">
+      <template v-for="key in Object.keys(settings.features)">
+        <b-nav-item v-if="settings.features[key] && settings.features[key].enabled" :key="key" :to="settings.features[key].url">{{ settings.features[key].title }}</b-nav-item>
+      </template>
+      <b-nav-item v-if="settings.features['shop'] && settings.features['shop'].enabled || $auth.user && ($auth.user.role === 'admin' || $auth.user.role === 'super')" :to="'/conta'" variant="primary" size="lg" title="Minha conta">
+        <b-icon-person-fill /> <span class="d-lg-none">Minha conta</span>
+      </b-nav-item>
     </template>
-    <b-nav-item v-if="settings.features['shop'].enabled || $auth.user && ($auth.user.role === 'admin' || $auth.user.role === 'super')" :to="'/conta'" variant="primary" size="lg" title="Minha conta">
-      <b-icon-person-fill /> <span class="d-lg-none">Minha conta</span>
-    </b-nav-item>
   </b-navbar-nav>
 </template>
 

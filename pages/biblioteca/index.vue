@@ -119,7 +119,6 @@ export default {
     }
   },
   watchQuery(newQuery) {
-    console.log('aqui', newQuery)
     this.list(newQuery)
   }
 }
