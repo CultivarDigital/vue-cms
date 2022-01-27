@@ -14,9 +14,9 @@
             <b-col md="3">
               <div class="search mb-4">
                 <b-input-group>
-                  <b-form-input v-model="filters.search" type="search" placeholder="O que você busca?" @keyup.prevent.enter="list" />
+                  <b-form-input v-model="filters.search" type="search" placeholder="O que você busca?" @keyup.prevent.enter="filter" />
                   <b-input-group-append>
-                    <b-button variant="outline-primary" @click="list"><b-icon-search /></b-button>
+                    <b-button variant="outline-primary" @click="filter"><b-icon-search /></b-button>
                   </b-input-group-append>
                 </b-input-group>
               </div>
@@ -38,9 +38,16 @@
             <b-col md="9" class="medias">
               <div v-if="medias">
                 <div class="d-flex align-items-center mb-4">
-                  <Found :items="medias" />&nbsp;<span v-if="filters.category" class="text-primary"> em <strong>{{ filters.category }}</strong></span>
+                  <Found :total="medias.pagination.total" />&nbsp;<span v-if="filters.category" class="text-primary"> em <strong>{{ filters.category }}</strong></span>
                 </div>
-                <Medias :medias="medias" />
+                <Medias :medias="medias.data" />
+                <b-pagination
+                  v-model="page"
+                  :total-rows="medias.pagination.total"
+                  :per-page="medias.pagination.per_page"
+                  aria-controls="my-table"
+                  @input="list"
+                />
               </div>
               <Media v-if="media" :media="media" />
             </b-col>
@@ -58,6 +65,7 @@ export default {
     return {
       medias: null,
       media: null,
+      page: 1,
       tags: [],
       categories,
       filters: {
@@ -97,9 +105,10 @@ export default {
   methods: {
     async list (query) {
       this.media = null
-      this.medias = await this.$axios.$get('/api/medias', { params: this.filters })
+      this.medias = await this.$axios.$get('/api/medias', { params: { page: this.page, ...this.filters } })
     },
-    filter (query) {
+    filter (query = {}) {
+      this.page = 1
       Object.keys(query).forEach(key => {
         this.filters[key] = query[key]
       })
@@ -119,7 +128,7 @@ export default {
     }
   },
   watchQuery(newQuery) {
-    this.list(newQuery)
+    this.list()
   }
 }
 </script>

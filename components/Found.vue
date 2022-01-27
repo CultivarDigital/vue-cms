@@ -1,9 +1,9 @@
 <template>
   <span class="text-primary">
-    <span v-if="items">
-      <strong v-if="items.length === 0">Nenhum item encontrado</strong>
-      <span v-else-if="items.length === 1"><strong>1</strong> item encontrado</span>
-      <span v-else><strong>{{ items.length }}</strong> Itens encontrados</span>
+    <span v-if="total != null">
+      <strong v-if="total === 0">Nenhum item encontrado</strong>
+      <span v-else-if="total === 1"><strong>1</strong> item encontrado</span>
+      <span v-else><strong>{{ total }}</strong> Itens encontrados</span>
     </span>
     <span v-else>
       <b-spinner small /> Carregando...
@@ -14,8 +14,8 @@
 <script>
 export default {
   props: {
-    items: {
-      type: Array,
+    total: {
+      type: Number,
       default: () => null
     }
   }

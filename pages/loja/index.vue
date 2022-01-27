@@ -28,7 +28,7 @@
           <div>
             <b-row>
               <b-col md="9" class="d-flex align-items-center">
-                <Found :items="products" />
+                <Found v-if="products" :total="products.length" />
               </b-col>
               <b-col md="3" class="text-lg-right">
                 <CartButton />
