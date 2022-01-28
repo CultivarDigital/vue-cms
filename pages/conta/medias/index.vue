@@ -8,14 +8,14 @@
         </b-button>
       </div>
       <div v-if="medias">
-        <b-table v-if="medias.length" :fields="table" :items="medias" responsive="sm">
+        <b-table v-if="medias.data && medias.data.length" :fields="table" :items="medias.data" responsive="sm">
           <template v-slot:cell(image)="data">
             <b-img v-if="data.value" :src="data.value.thumb" width="100" rounded />
             <b-img v-else-if="data.item.oembed_thumb" :src="data.item.oembed_thumb" width="100" rounded />
           </template>
-          <template v-slot:cell(tags)="data">
+          <!-- <template v-slot:cell(tags)="data">
             <tags :tags="data.value" />
-          </template>
+          </template> -->
           <template v-slot:cell(publishing_date)="data">
             {{ $moment(data.value).format(data.item.publishing_date_format || "DD/MM/YYYY") }}
           </template>
@@ -29,6 +29,15 @@
           </template>
         </b-table>
         <b-alert v-else show variant="dark" class="text-center">Nenhum item encontrado</b-alert>
+        <div class="d-flex justify-center">
+          <b-pagination
+            v-model="page"
+            :total-rows="medias.pagination.total"
+            :per-page="medias.pagination.per_page"
+            aria-controls="my-table"
+            @input="list"
+          />
+        </div>
       </div>
       <div v-else class="text-center">
         <b-spinner small label="Carregando..." />
@@ -43,11 +52,12 @@ export default {
   data () {
     return {
       medias: null,
+      page: 1,
       table: [
         { key: 'image', label: '' },
         { key: 'title', label: 'Título' },
         { key: 'category', label: 'Categoria' },
-        { key: 'tags', label: 'Tags' },
+        // { key: 'tags', label: 'Tags' },
         { key: 'publishing_date', label: 'Publicação' },
         { key: 'actions', label: '', class: 'text-right' }
       ]
@@ -73,7 +83,7 @@ export default {
   },
   methods: {
     async list () {
-      this.medias = await this.$axios.$get('/api/medias')
+      this.medias = await this.$axios.$get('/api/medias', { params: { page: this.page, ...this.filters } })
     },
     remove (media) {
       this.$bvModal.msgBoxConfirm('Tem certeza que deseja excluír este item?').then(async confirmed => {
