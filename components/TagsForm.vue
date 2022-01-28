@@ -1,6 +1,6 @@
 <template>
   <b-form-group label="Palavras chave">
-    <b-form-tags v-model="tags" placeholder="Insira aqui os palavras chave..." @input="changed" />
+    <b-form-tags v-model="tags" placeholder="Insira aqui as palavras chave..." @input="changed" />
     <div v-if="currentTags && currentTags.length">
       <small>ou selecione abaixo para adicionar:</small>
       <div>
