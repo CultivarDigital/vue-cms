@@ -1,47 +1,38 @@
 <template>
   <ValidationObserver v-slot="{ validate, invalid }">
     <b-form @submit.prevent="validate().then(save)">
-      <b-form-group label="Categoria *">
-        <validation-provider v-slot="{ errors }" name="categoria" rules="required">
-          <b-form-select v-model="form.category" name="category" :options="categories">
+      <b-form-group label="Tipo de publicação *">
+        <validation-provider v-slot="{ errors }" name="tipo" rules="required">
+          <b-form-select v-model="form.type" :options="types">
             <template v-slot:first>
-              <b-form-select-option value="" disabled>-- Selecione uma categoria --</b-form-select-option>
+              <b-form-select-option value="" disabled>Selecione um tipo de publicação</b-form-select-option>
             </template>
           </b-form-select>
           <span class="text-danger">{{ errors[0] }}</span>
         </validation-provider>
       </b-form-group>
-      <div v-if="form.category">
-        <div v-if="form.category === 'Imprensa' || form.category === 'Livros e Artigos Científicos' || form.category === 'Guias e Publicações Curtas' || form.category === 'Leis e Outras Normas'">
-          <b-form-group label="Insira o link do arquivo">
-            <b-form-input v-model="form.url" />
-          </b-form-group>
-          <Upload v-model="form.docs" label="Ou envie os arquivos" type="documents" multiple edit-title @uploaded="fileUploaded" />
-        </div>
-        <div v-if="form.category === 'Notícias'">
-          <b-form-group label="Link da notícia">
-            <b-form-input v-model="form.url" @input="loadUrl" />
-            <b-spinner v-if="loadingUrl" small label="Carregando conteúdo da notícia" />
-          </b-form-group>
-        </div>
-        <div v-if="form.category === 'Áudios'">
-          <b-form-group label="Link do áudio">
-            <b-form-input v-model="form.url" @input="loadUrl" />
-            <b-spinner v-if="loadingUrl" small label="Carregando conteúdo da áudio" />
-            <div v-if="form.oembed && !loadingUrl" class="pt-3" v-html="form.oembed" />
-          </b-form-group>
-        </div>
-        <div v-if="form.category === 'Vídeos'">
+      <b-form-group label="Categorias *">
+        <validation-provider v-slot="{ errors }" name="categoria" rules="required">
+          <b-form-checkbox-group v-model="form.categories" multiple :options="categories" />
+          <span class="text-danger">{{ errors[0] }}</span>
+        </validation-provider>
+      </b-form-group>
+      <div v-if="form.type">
+        <div v-if="form.type === 'Vídeos'">
           <b-form-group label="Link do vídeo">
             <b-form-input v-model="form.url" @input="loadUrl" />
             <b-spinner v-if="loadingUrl" small label="Carregando vídeo" />
             <div v-if="form.oembed && !loadingUrl" class="pt-3" v-html="form.oembed" />
           </b-form-group>
         </div>
+        <div v-else>
+          <b-form-group label="Link">
+            <b-form-input v-model="form.url" />
+          </b-form-group>
+          <Upload v-model="form.docs" label="Adicionar arquivos" type="documents" multiple edit-title @uploaded="fileUploaded" />
+        </div>
         <div>
-          <div v-if="form.category !== 'Vídeos'">
-            <Upload v-model="form.image" type="images" :label="form.category === 'Fotografias' ? 'Enviar fotografia' : 'Foto de capa'" />
-          </div>
+          <Upload v-model="form.image" type="images" :label="form.type === 'Fotografias' ? 'Enviar fotografia' : 'Foto de capa'" />
           <b-row>
             <b-col md="12">
               <b-form-group label="Título *">
@@ -52,8 +43,8 @@
               </b-form-group>
             </b-col>
             <b-col md="12">
-              <b-form-group label="Descrição curta" description="Escreva um texto curto resumindo o conteúdo com até 160 caractéres">
-                <b-form-textarea v-model="form.description" name="description" />
+              <b-form-group label="Descrição">
+                <b-form-textarea v-model="form.description" name="description" rows="8" max-rows="20" />
               </b-form-group>
             </b-col>
             <b-col md="12">
@@ -80,6 +71,7 @@
           </b-button>
         </div>
       </div>
+      <pre>{{ form }}</pre>
     </b-form>
   </ValidationObserver>
 </template>
@@ -92,6 +84,7 @@ import {
 
 import mixinForm from '@/mixins/form'
 import categories from '@/data/categories.json'
+import types from '@/data/media-types.json'
 
 export default {
   components: {
@@ -108,6 +101,7 @@ export default {
   data() {
     return {
       categories,
+      types,
       loadingUrl: false,
       currentTags: [],
       dateFormatOptions: {
@@ -116,18 +110,44 @@ export default {
         YYYY: 'Ano'
       },
       form: {
-        category: '',
-        docs: [],
-        image: null,
-        title: '',
-        description: '',
+        categories: [],
         tags: [],
-        url: '',
-        oembed: '',
+        title: null,
+        description: null,
+        image: null,
+        docs: [],
+        url: null,
+        oembed: null,
         oembed_thumb: null,
         publishing_date: null,
-        publishing_date_format: 'DD/MM/YYYY',
-        publishing_house: ''
+        publishing_date_format: null,
+        publishing_house: null, // Editora
+        aditional_infos: [], // Informações adicionais
+        type: null, // Tipo de documento
+        authors: [], // Autores
+        city: null, // Cidade
+        organizers: [], // Organizadores
+        doi: null, // Identificador de Objeto Digital
+        institution: null, // Instituição
+        number: null, // Número da publicação
+        languages: [], // Idiomas
+        notes: null, // Anotações
+        pages: null, // Páginas
+        patent_legal_status: null, // Disponibilidade
+        source: null, // Fonte
+        volume: null // Volume
+        // category: '',
+        // docs: [],
+        // image: null,
+        // title: '',
+        // description: '',
+        // tags: [],
+        // url: '',
+        // oembed: '',
+        // oembed_thumb: null,
+        // publishing_date: null,
+        // publishing_date_format: 'DD/MM/YYYY',
+        // publishing_house: ''
       }
     }
   },
