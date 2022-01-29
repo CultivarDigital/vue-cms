@@ -11,15 +11,15 @@
         <div>
           <b-row>
             <b-col md="3" class="search">
-              <div class="mb-3">
-                <b-input-group>
-                  <b-form-input v-model="filters.search" type="search" placeholder="O que você busca?" @keyup.prevent.enter="filter" />
-                  <b-input-group-append>
-                    <b-button variant="outline-primary" @click="filter"><b-icon-search /></b-button>
-                  </b-input-group-append>
-                </b-input-group>
-              </div>
               <div v-if="filterOptions">
+                <div class="mb-3">
+                  <b-input-group>
+                    <b-form-input v-model="filters.search" type="search" placeholder="O que você busca?" @keyup.prevent.enter="filter" />
+                    <b-input-group-append>
+                      <b-button variant="outline-primary" @click="filter"><b-icon-search /></b-button>
+                    </b-input-group-append>
+                  </b-input-group>
+                </div>
                 <b-card v-if="filterOptions.categories && filterOptions.categories.length" title="Categorias" no-body class="mb-3 d-none d-md-block">
                   <b-list-group flush>
                     <b-list-group-item v-for="category in filterOptions.categories" :key="category" class="pointer" :class="category === filters.category ? 'bg-secondary' : 'bg-primary'" @click="filter({category})">{{ category }}</b-list-group-item>
@@ -62,6 +62,9 @@
               <Media v-if="media" :media="media" />
             </b-col>
           </b-row>
+          <span v-if="!medias && !media">
+            <b-spinner small /> Carregando...
+          </span>
         </div>
       </b-container>
     </section>
