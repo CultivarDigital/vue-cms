@@ -151,8 +151,6 @@ router.post('/calc_shipping', (req, res) => {
           nCdServico: product.shipping_services.filter(service => service),
           nVlDiametro: product.diameter
         }
-        console.log(product.name)
-        console.log(args)
         let shipping = await calcularPrecoPrazo(args).catch((e) => {
           // eslint-disable-next-line no-console
           console.log(e)
