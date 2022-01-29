@@ -2,19 +2,26 @@ const express = require('express')
 const mongoose = require('mongoose')
 const router = express.Router()
 const auth = require('../config/auth')
+const mediaTypes = require('../../data/media-types.json')
 const Media = mongoose.model('Media')
 
 router.get('/', async (req, res) => {
   const query = {}
 
   if (req.query.search) {
-    query.title = { $regex: req.query.search, $options: 'i' }
+    query.$or = [
+      { title: { $regex: req.query.search, $options: 'i' } },
+      { tags: { $regex: req.query.search, $options: 'i' } }
+    ]
   }
   if (req.query.category) {
     query.categories = req.query.category
   }
   if (req.query.tag) {
     query.tags = req.query.tag
+  }
+  if (req.query.type) {
+    query.type = req.query.type
   }
 
   const pagination = {
@@ -82,7 +89,8 @@ router.get('/filters', (req, res) => {
         }),
         categories: Object.keys(categories).sort((a, b) => {
           return a.localeCompare(b)
-        })
+        }),
+        types: mediaTypes
       })
     }
   })
