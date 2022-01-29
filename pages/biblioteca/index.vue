@@ -5,7 +5,7 @@
       :links="[[title, '/biblioteca']]"
       :active="media.title"
     />
-    <Breadcrumb :active="title" />
+    <Breadcrumb v-else :active="title" />
     <section id="content" class="content pt-4">
       <b-container>
         <div>
@@ -23,7 +23,7 @@
                 <b-card v-if="filterOptions.categories && filterOptions.categories.length" title="Categorias" no-body class="mb-3 d-none d-md-block">
                   <b-list-group flush>
                     <b-list-group-item v-for="category in filterOptions.categories" :key="category" class="pointer" :class="category === filters.category ? 'bg-secondary' : 'bg-primary'" @click="filter({category})">{{ category }}</b-list-group-item>
-                    <b-list-group-item v-if="filters.category" class="bg-primary pointer" @click="filter({category: null})">Todas as categorias</b-list-group-item>
+                    <b-list-group-item v-if="filters.category" class="bg-primary pointer" @click="filter({category: ''})">Todas as categorias</b-list-group-item>
                   </b-list-group>
                 </b-card>
                 <b-form-select v-model="filters.category" :options="filterOptions.categories" class="mb-3 d-md-none" @input="filter">
@@ -124,6 +124,9 @@ export default {
     },
     filter (query = {}) {
       this.page = 1
+      Object.keys(query).forEach(key => {
+        this.filters[key] = query[key]
+      })
       this.list()
     },
     async get (id) {
