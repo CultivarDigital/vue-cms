@@ -7,17 +7,41 @@
           <b-icon-plus /> Cadastrar
         </b-button>
       </div>
+      <b-row v-if="filterOptions" class="mb-3">
+        <b-col cols="12" md="6">
+          <b-form-select v-model="filters.type" :options="filterOptions.types" @input="list">
+            <template v-slot:first>
+              <b-form-select-option value="">Todos os tipos</b-form-select-option>
+            </template>
+          </b-form-select>
+        </b-col>
+        <b-col cols="12" md="6">
+          <b-form-select v-model="filters.category" :options="filterOptions.categories" @input="list">
+            <template v-slot:first>
+              <b-form-select-option value="">Todas as categorias</b-form-select-option>
+            </template>
+          </b-form-select>
+        </b-col>
+      </b-row>
+      <div class="search mb-4">
+        <b-input-group>
+          <b-form-input v-model="filters.search" type="search" placeholder="Procurar..." @keyup.prevent.enter="list" />
+          <b-input-group-append>
+            <b-button variant="outline-primary" @click="list"><b-icon-search /></b-button>
+          </b-input-group-append>
+        </b-input-group>
+      </div>
       <div v-if="medias">
         <b-table v-if="medias.data && medias.data.length" :fields="table" :items="medias.data" responsive="sm">
           <template v-slot:cell(image)="data">
             <b-img v-if="data.value" :src="data.value.thumb" width="100" rounded />
             <b-img v-else-if="data.item.oembed_thumb" :src="data.item.oembed_thumb" width="100" rounded />
           </template>
-          <!-- <template v-slot:cell(tags)="data">
-            <tags :tags="data.value" />
-          </template> -->
-          <template v-slot:cell(publishing_date)="data">
-            {{ $moment(data.value).format(data.item.publishing_date_format || "DD/MM/YYYY") }}
+          <template v-slot:cell(type)="data">
+            {{ data.value }}
+          </template>
+          <template v-slot:cell(categories)="data">
+            <span v-if="data.value">{{ data.value.join(', ') }}</span>
           </template>
           <template v-slot:cell(actions)="data">
             <n-link class="btn btn-info btn-sm" :to="'/conta/medias/' + data.item._id + '/edit'">
@@ -56,14 +80,22 @@ export default {
       table: [
         { key: 'image', label: '' },
         { key: 'title', label: 'Título' },
-        { key: 'category', label: 'Categoria' },
-        // { key: 'tags', label: 'Tags' },
-        { key: 'publishing_date', label: 'Publicação' },
+        { key: 'type', label: 'Tipo' },
+        { key: 'categories', label: 'Categorias' },
         { key: 'actions', label: '', class: 'text-right' }
-      ]
+      ],
+      filters: {
+        tag: this.$route.query.tag || '',
+        category: this.$route.query.category || '',
+        search: this.$route.query.search || '',
+        type: this.$route.query.type || ''
+      }
     }
   },
   computed: {
+    filterOptions() {
+      return this.$store.state.media_filters
+    },
     settings() {
       return this.$store.state.settings
     },
@@ -78,12 +110,23 @@ export default {
       ]
     }
   },
-  created () {
+  async created () {
     this.list()
+
+    if (!this.filterOptions) {
+      const filterOptions = await this.$axios.$get('/api/medias/filters')
+      this.$store.commit('setMediaFilters', filterOptions)
+    }
   },
   methods: {
     async list () {
       this.medias = await this.$axios.$get('/api/medias', { params: { page: this.page, ...this.filters } })
+    },
+    clearFilters () {
+      this.filters.search = null
+      this.filters.tag = null
+      this.filters.category = null
+      this.list()
     },
     remove (media) {
       this.$bvModal.msgBoxConfirm('Tem certeza que deseja excluír este item?').then(async confirmed => {
