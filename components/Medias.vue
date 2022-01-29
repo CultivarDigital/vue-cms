@@ -5,13 +5,13 @@
         <b-media v-for="media in medias" :key="media._id" tag="li" class="border-top py-3">
           <template #aside>
             <b-img v-if="media.image || media.oembed_thumb" :src="media.image ? media.image.thumb : media.oembed_thumb" :alt="media.title" />
-            <b-img v-else blank blank-color="#abc" width="64" alt="placeholder" />
           </template>
-          <h5 class="mt-0 mb-1">
-            <n-link :to="'/biblioteca/' + media._id">{{ media.title }}</n-link>
-          </h5>
+          <b-badge v-if="media.type" class="mb-2">{{ media.type }}</b-badge>
           <p class="mb-0">
-            {{ media.description | truncate(100) }}
+            <n-link :to="'/biblioteca/' + media._id"><strong>{{ media.title }}</strong></n-link>
+          </p>
+          <p class="mb-0">
+            <small>{{ media.description | truncate(200) }}</small>
           </p>
         </b-media>
       </ul>

@@ -4,7 +4,7 @@
       <div v-if="(media.type.includes('Vídeo') || media.type.includes('Áudio')) && media.oembed" v-html="media.oembed" />
       <Banners v-else-if="media.image" :items="[media.image]" />
       <div>
-        <strong v-if="media.type">{{ media.type }}</strong>
+        <b-badge v-if="media.type">{{ media.type }}</b-badge>
         <h3 class="mt-3">{{ media.title }}</h3>
         <small>
           Publicado em: {{ $moment(media.publishing_date).format(media.publishing_date_format || "DD/MM/YYYY") }} em
