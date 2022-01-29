@@ -65,6 +65,11 @@
                 <b-form-input v-model="form.publishing_house" />
               </b-form-group>
             </b-col>
+            <b-col md="12">
+              <b-form-group label="Autores">
+                <AuthorForm v-model="form.authors" />
+              </b-form-group>
+            </b-col>
           </b-row>
           <b-button class="mb-4 mt-4" type="submit" variant="success" block :disabled="invalid">
             Salvar
@@ -122,7 +127,6 @@ export default {
         publishing_date: null,
         publishing_date_format: null,
         publishing_house: null, // Editora
-        aditional_infos: [], // Informações adicionais
         type: null, // Tipo de documento
         authors: [], // Autores
         city: null, // Cidade
@@ -135,7 +139,8 @@ export default {
         pages: null, // Páginas
         patent_legal_status: null, // Disponibilidade
         source: null, // Fonte
-        volume: null // Volume
+        volume: null, // Volume
+        aditional_infos: [] // Informações adicionais
         // category: '',
         // docs: [],
         // image: null,
