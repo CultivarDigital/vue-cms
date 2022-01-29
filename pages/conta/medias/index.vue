@@ -7,7 +7,7 @@
           <b-icon-plus /> Cadastrar
         </b-button>
       </div>
-      <div v-if="filterOptions">
+      <div v-if="filterOptions" class="search">
         <b-row>
           <b-col cols="12" md="6">
             <b-form-select v-model="filters.type" :options="filterOptions.types" class="mb-3" @input="list">
@@ -24,7 +24,7 @@
             </b-form-select>
           </b-col>
         </b-row>
-        <div class="search">
+        <div>
           <b-input-group class="mb-3">
             <b-form-input v-model="filters.search" type="search" placeholder="Procurar..." @keyup.prevent.enter="list" />
             <b-input-group-append>
@@ -38,15 +38,18 @@
           <small><Found :total="medias.pagination.total" />&nbsp;<span v-if="filters.category" class="text-primary"> em <strong>{{ filters.category }}</strong></span></small>
         </div>
         <b-table v-if="medias.data && medias.data.length" :fields="table" :items="medias.data" responsive="sm">
-          <template v-slot:cell(image)="data">
-            <b-img v-if="data.value" :src="data.value.thumb" width="100" rounded />
-            <b-img v-else-if="data.item.oembed_thumb" :src="data.item.oembed_thumb" width="100" rounded />
+          <template v-slot:cell(title)="data">
+            <n-link :to="'/biblioteca/' + data.item._id">
+              <small><strong>{{ data.value }}</strong></small>
+            </n-link>
           </template>
           <template v-slot:cell(type)="data">
-            {{ data.value }}
+            <b-badge>{{ data.value }}</b-badge>
           </template>
           <template v-slot:cell(categories)="data">
-            <span v-if="data.value">{{ data.value.join(', ') }}</span>
+            <div v-if="data.value && data.value.length">
+              <b-badge v-for="category in data.value" :key="category" variant="primary">{{ category }}</b-badge>
+            </div>
           </template>
           <template v-slot:cell(actions)="data">
             <n-link class="btn btn-info btn-sm" :to="'/conta/medias/' + data.item._id + '/edit'">
@@ -84,7 +87,6 @@ export default {
       medias: null,
       page: 1,
       table: [
-        { key: 'image', label: '' },
         { key: 'title', label: 'Título' },
         { key: 'type', label: 'Tipo' },
         { key: 'categories', label: 'Categorias' },
