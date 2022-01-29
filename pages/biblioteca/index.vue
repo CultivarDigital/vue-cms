@@ -5,14 +5,13 @@
       :links="[[title, '/biblioteca']]"
       :active="media.title"
     />
-    <Breadcrumb v-else-if="filters.tag" :links="[[title, '/biblioteca']]" :active="filters.tag" />
-    <Breadcrumb v-else :active="title" />
-    <section class="content pt-4">
+    <Breadcrumb :active="title" />
+    <section id="content" class="content pt-4">
       <b-container>
         <div>
           <b-row>
-            <b-col md="3">
-              <div class="search mb-4">
+            <b-col md="3" class="search">
+              <div class="mb-4">
                 <b-input-group>
                   <b-form-input v-model="filters.search" type="search" placeholder="O que você busca?" @keyup.prevent.enter="filter" />
                   <b-input-group-append>
@@ -21,27 +20,38 @@
                 </b-input-group>
               </div>
               <div v-if="filterOptions">
-                <b-card v-if="filterOptions.categories && filterOptions.categories.length" title="Categorias" no-body class="mb-4">
+                <b-card v-if="filterOptions.categories && filterOptions.categories.length" title="Categorias" no-body class="mb-4 d-none d-md-block">
                   <b-list-group flush>
                     <b-list-group-item v-for="category in filterOptions.categories" :key="category" class="pointer" :class="category === filters.category ? 'bg-secondary' : 'bg-primary'" @click="filter({category})">{{ category }}</b-list-group-item>
                     <b-list-group-item v-if="filters.category" class="bg-primary pointer" @click="filter({category: null})">Todas as categorias</b-list-group-item>
                   </b-list-group>
                 </b-card>
+                <b-form-select v-model="filters.category" :options="filterOptions.categories" class="mb-3 d-md-none" @input="filter">
+                  <template v-slot:first>
+                    <b-form-select-option value="">Todas as categorias</b-form-select-option>
+                  </template>
+                </b-form-select>
+                <b-form-select v-model="filters.type" :options="filterOptions.types" class="mb-3" @input="filter">
+                  <template v-slot:first>
+                    <b-form-select-option value="">Todos os tipos</b-form-select-option>
+                  </template>
+                </b-form-select>
               </div>
 
               <!-- <div class="tags mb-4">
                 <b-button v-for="tag in tags" :key="tag" size="sm" variant="secondary" :class="{ active: (tag === filters.tag) }" class="mb-1 mr-1" @click="filters.tag = tag; list()">{{ tag }}</b-button>
                 <b-button v-if="filters.tag" variant="primary" @click="filters.tag = null; list()">Todos os temas</b-button>
               </div> -->
-              <b-button v-if="filters.search || filters.category || filters.tag" class="mb-4" variant="primary" block @click="clearFilters">Limpar filtros</b-button>
+              <b-button v-if="filters.search || filters.category || filters.type" class="mb-4" variant="primary" block @click="clearFilters">Limpar filtros</b-button>
             </b-col>
-            <b-col md="9" class="medias">
+            <b-col id="media-list" md="9" class="medias">
               <div v-if="medias">
-                <div class="d-flex align-items-center mb-4">
+                <div class="mb-3">
                   <Found :total="medias.pagination.total" />&nbsp;<span v-if="filters.category" class="text-primary"> em <strong>{{ filters.category }}</strong></span>
                 </div>
                 <Medias :medias="medias.data" />
                 <b-pagination
+                  v-if="medias.pagination.total > medias.pagination.per_page"
                   v-model="page"
                   :total-rows="medias.pagination.total"
                   :per-page="medias.pagination.per_page"
@@ -71,7 +81,8 @@ export default {
       filters: {
         tag: this.$route.query.tag || '',
         category: this.$route.query.category || '',
-        search: this.$route.query.search || ''
+        search: this.$route.query.search || '',
+        type: this.$route.query.type || ''
       }
     }
   },
@@ -106,29 +117,23 @@ export default {
     async list (query) {
       this.media = null
       this.medias = await this.$axios.$get('/api/medias', { params: { page: this.page, ...this.filters } })
+      // this.$scrollTo('#media-list', 1000, { offset: -25 })
     },
     filter (query = {}) {
       this.page = 1
-      Object.keys(query).forEach(key => {
-        this.filters[key] = query[key]
-      })
-      const qs = new URLSearchParams(this.filters)
-
-      this.$router.push('/biblioteca?' + qs.toString())
+      this.list()
     },
     async get (id) {
       this.medias = null
       this.media = await this.$axios.$get('/api/medias/' + id)
     },
     clearFilters () {
-      this.filters.search = null
-      this.filters.tag = null
-      this.filters.category = null
+      this.filters.search = ''
+      this.filters.tag = ''
+      this.filters.category = ''
+      this.filters.type = ''
       this.list()
     }
-  },
-  watchQuery(newQuery) {
-    this.list()
   }
 }
 </script>

@@ -60,6 +60,7 @@
         <b-alert v-else show variant="dark" class="text-center">Nenhum item encontrado</b-alert>
         <div class="d-flex justify-center">
           <b-pagination
+            v-if="medias.pagination.total > medias.pagination.per_page"
             v-model="page"
             :total-rows="medias.pagination.total"
             :per-page="medias.pagination.per_page"
@@ -131,6 +132,7 @@ export default {
       this.filters.search = null
       this.filters.tag = null
       this.filters.category = null
+      this.filters.type = null
       this.list()
     },
     remove (media) {
