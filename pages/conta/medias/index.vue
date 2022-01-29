@@ -7,31 +7,36 @@
           <b-icon-plus /> Cadastrar
         </b-button>
       </div>
-      <b-row v-if="filterOptions" class="mb-3">
-        <b-col cols="12" md="6">
-          <b-form-select v-model="filters.type" :options="filterOptions.types" @input="list">
-            <template v-slot:first>
-              <b-form-select-option value="">Todos os tipos</b-form-select-option>
-            </template>
-          </b-form-select>
-        </b-col>
-        <b-col cols="12" md="6">
-          <b-form-select v-model="filters.category" :options="filterOptions.categories" @input="list">
-            <template v-slot:first>
-              <b-form-select-option value="">Todas as categorias</b-form-select-option>
-            </template>
-          </b-form-select>
-        </b-col>
-      </b-row>
-      <div class="search mb-4">
-        <b-input-group>
-          <b-form-input v-model="filters.search" type="search" placeholder="Procurar..." @keyup.prevent.enter="list" />
-          <b-input-group-append>
-            <b-button variant="outline-primary" @click="list"><b-icon-search /></b-button>
-          </b-input-group-append>
-        </b-input-group>
+      <div v-if="filterOptions">
+        <b-row>
+          <b-col cols="12" md="6">
+            <b-form-select v-model="filters.type" :options="filterOptions.types" class="mb-3" @input="list">
+              <template v-slot:first>
+                <b-form-select-option value="">Todos os tipos</b-form-select-option>
+              </template>
+            </b-form-select>
+          </b-col>
+          <b-col cols="12" md="6">
+            <b-form-select v-model="filters.category" :options="filterOptions.categories" class="mb-3" @input="list">
+              <template v-slot:first>
+                <b-form-select-option value="">Todas as categorias</b-form-select-option>
+              </template>
+            </b-form-select>
+          </b-col>
+        </b-row>
+        <div class="search">
+          <b-input-group class="mb-3">
+            <b-form-input v-model="filters.search" type="search" placeholder="Procurar..." @keyup.prevent.enter="list" />
+            <b-input-group-append>
+              <b-button variant="outline-primary" @click="list"><b-icon-search /></b-button>
+            </b-input-group-append>
+          </b-input-group>
+        </div>
       </div>
       <div v-if="medias">
+        <div class="text-right mb-3">
+          <small><Found :total="medias.pagination.total" />&nbsp;<span v-if="filters.category" class="text-primary"> em <strong>{{ filters.category }}</strong></span></small>
+        </div>
         <b-table v-if="medias.data && medias.data.length" :fields="table" :items="medias.data" responsive="sm">
           <template v-slot:cell(image)="data">
             <b-img v-if="data.value" :src="data.value.thumb" width="100" rounded />
