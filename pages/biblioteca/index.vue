@@ -36,6 +36,11 @@
                     <b-form-select-option value="">Todos os tipos</b-form-select-option>
                   </template>
                 </b-form-select>
+                <b-form-select v-model="filters.language" :options="filterOptions.languages" class="mb-3" @input="filter">
+                  <template v-slot:first>
+                    <b-form-select-option value="">Todos os idiomas</b-form-select-option>
+                  </template>
+                </b-form-select>
               </div>
 
               <!-- <div class="tags mb-3">
@@ -85,7 +90,8 @@ export default {
         tag: this.$route.query.tag || '',
         category: this.$route.query.category || '',
         search: this.$route.query.search || '',
-        type: this.$route.query.type || ''
+        type: this.$route.query.type || '',
+        language: this.$route.query.language || ''
       }
     }
   },
@@ -138,6 +144,7 @@ export default {
       this.filters.tag = ''
       this.filters.category = ''
       this.filters.type = ''
+      this.filters.language = ''
       this.list()
     }
   }
