@@ -23,6 +23,9 @@ router.get('/', async (req, res) => {
   if (req.query.type) {
     query.type = req.query.type
   }
+  if (req.query.language) {
+    query.languages = req.query.language
+  }
 
   const pagination = {
     total: await Media.count(query),
@@ -31,7 +34,7 @@ router.get('/', async (req, res) => {
   }
 
   const response = { pagination, data: null }
-  Media.find(query).populate(req.query.populate).skip((pagination.page - 1) * pagination.per_page).limit(pagination.per_page).sort({ createdAt: -1 }).exec((err, medias) => {
+  Media.find(query).populate(req.query.populate).skip((pagination.page - 1) * pagination.per_page).limit(parseInt(pagination.per_page)).sort({ createdAt: -1 }).exec((err, medias) => {
     if (err) {
       res.status(422).send(err.message)
     } else {
@@ -41,35 +44,15 @@ router.get('/', async (req, res) => {
   })
 })
 
-router.get('/tags', (req, res) => {
-  const query = { }
-  Media.find(query, 'tags').exec((err, medias) => {
-    if (err) {
-      res.status(422).send(err)
-    } else {
-      const tags = {}
-      medias.forEach(media => {
-        if (media && media.tags) {
-          media.tags.forEach(tag => {
-            tags[tag] = true
-          })
-        }
-      })
-      res.json(Object.keys(tags).sort((a, b) => {
-        return a.localeCompare(b)
-      }))
-    }
-  })
-})
-
 router.get('/filters', (req, res) => {
   const query = { }
-  Media.find(query, 'tags categories').exec((err, medias) => {
+  Media.find(query, 'tags categories languages').exec((err, medias) => {
     if (err) {
       res.status(422).send(err)
     } else {
       const tags = {}
       const categories = {}
+      const languages = {}
       medias.forEach(media => {
         if (media && media.tags) {
           media.tags.forEach(tag => {
@@ -81,6 +64,11 @@ router.get('/filters', (req, res) => {
             categories[category] = true
           })
         }
+        if (media && media.languages) {
+          media.languages.forEach(language => {
+            languages[language] = true
+          })
+        }
       })
 
       res.json({
@@ -88,6 +76,9 @@ router.get('/filters', (req, res) => {
           return a.localeCompare(b)
         }),
         categories: Object.keys(categories).sort((a, b) => {
+          return a.localeCompare(b)
+        }),
+        languages: Object.keys(languages).sort((a, b) => {
           return a.localeCompare(b)
         }),
         types: mediaTypes
