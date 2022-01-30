@@ -11,7 +11,6 @@ const PageSchema = mongoose.Schema({
     min: 1
   },
   tags: [String],
-  documents: [Object],
   docs: [{
     type: ObjectId,
     ref: 'Attachment',
@@ -20,7 +19,6 @@ const PageSchema = mongoose.Schema({
   title: String,
   description: String,
   content: String,
-  pictures: [Object],
   images: [{
     type: ObjectId,
     ref: 'Attachment',

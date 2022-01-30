@@ -31,13 +31,11 @@ const ProductSchema = mongoose.Schema({
     required: true
   },
   tags: [String],
-  pictures: [Object],
   images: [{
     type: ObjectId,
     ref: 'Attachment',
     autopopulate: true
   }],
-  documents: [Object],
   docs: [{
     type: ObjectId,
     ref: 'Attachment',

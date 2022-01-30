@@ -16,13 +16,11 @@ const PostSchema = mongoose.Schema({
   },
   description: String,
   content: String,
-  picture: Object,
   image: {
     type: ObjectId,
     ref: 'Attachment',
     autopopulate: true
   },
-  documents: [Object],
   docs: [{
     type: ObjectId,
     ref: 'Attachment',

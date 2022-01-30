@@ -13,13 +13,11 @@ const MediaSchema = mongoose.Schema({
   description: {
     type: String
   },
-  picture: Object, // TODO transferir dados dos legados e remover este campo
   image: {
     type: ObjectId,
     ref: 'Attachment',
     autopopulate: true
   },
-  documents: [Object], // TODO transferir dados dos legados e remover este campo
   docs: [{
     type: ObjectId,
     ref: 'Attachment',
@@ -35,7 +33,6 @@ const MediaSchema = mongoose.Schema({
   },
   publishing_house: String, // Editora
 
-  aditional_infos: [Object], // TODO Copiar este valor para a correção abaixo e remover este campo
   additional_infos: [Object], // Informações adicionais
   type: String, // Tipo de documento
   authors: [Object], // Autores

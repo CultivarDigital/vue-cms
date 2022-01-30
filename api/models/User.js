@@ -33,7 +33,6 @@ const UserSchema = new mongoose.Schema({
     required: true
   },
   organization: String,
-  picture: Object,
   image: {
     type: ObjectId,
     ref: 'Attachment',
