@@ -3,7 +3,28 @@ const mongoose = require('mongoose')
 const router = express.Router()
 const auth = require('../config/auth')
 const mediaTypes = require('../../data/media-types.json')
+const mendeley = require('../../data/mendeley.json')
 const Media = mongoose.model('Media')
+
+router.get('/fix', async (req, res) => {
+  const response = []
+  const medias = await Media.find({})
+  for (const media of medias) {
+    const doc = mendeley.find(item => item.title === media.title)
+    if (doc) {
+      if (doc.city) {
+        media.city = doc.city
+      }
+    }
+    if (media.aditional_infos) {
+      media.additional_infos = media.aditional_infos
+    }
+    await media.save()
+    response.push(media)
+  }
+
+  res.send(response)
+})
 
 router.get('/', async (req, res) => {
   const query = {}
