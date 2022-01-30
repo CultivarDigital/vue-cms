@@ -9,7 +9,7 @@
       </tbody>
     </table>
     <b-btn variant="success" @click="show_modal = !show_modal"><client-only><b-icon-plus /></client-only> Adicionar autor</b-btn>
-    <b-modal v-model="show_modal" title="Adicionar autor" hide-footer hide-header size="lg">
+    <b-modal v-model="show_modal" title="Adicionar autor" hide-footer size="lg">
       <ValidationObserver v-slot="{ validate, invalid }">
         <b-form @submit.prevent="validate().then(add)">
           <div>

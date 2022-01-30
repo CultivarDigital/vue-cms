@@ -47,8 +47,8 @@
         <p v-if="media.doi">
           DOI: <strong>{{ media.doi }}</strong>
         </p>
-        <p v-for="info in media.aditional_infos" :key="info.label">
-          {{ info.label }} <strong>{{ info.value }}</strong>
+        <p v-for="info in media.additional_infos" :key="info.label">
+          {{ info.label }}: <strong>{{ info.value }}</strong>
         </p>
         <p v-if="media.patent_legal_status">
           Disponibilidade: <strong>{{ media.patent_legal_status }}</strong>
