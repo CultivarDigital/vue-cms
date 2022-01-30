@@ -1,10 +1,10 @@
 <template>
-  <b-form-group label="Palavras chave">
-    <b-form-tags v-model="tags" placeholder="Insira aqui as palavras chave..." @input="changed" />
-    <div v-if="currentTags && currentTags.length">
+  <b-form-group :label="label">
+    <b-form-tags v-model="tags" placeholder="Digite e pressione enter..." @input="changed" />
+    <div v-if="items && items.length && items.length < 16">
       <small>ou selecione abaixo para adicionar:</small>
       <div>
-        <b-badge v-for="tag in currentTags" :key="tag" :variant="tags.includes(tag) ? 'primary' : 'secondary'" class="mb-1 mr-1" @click="addTag(tag)">{{ tag }}</b-badge>
+        <b-badge v-for="tag in items" :key="tag" :variant="tags.includes(tag) ? 'secondary' : 'primary'" class="mb-1 mr-1 pointer" @click="addTag(tag)">{{ tag }}</b-badge>
       </div>
     </div>
   </b-form-group>
@@ -17,9 +17,13 @@ export default {
       type: Array,
       default: () => []
     },
-    currentTags: {
+    items: {
       type: Array,
       default: () => []
+    },
+    label: {
+      type: String,
+      default: 'Palavras chave'
     }
   },
   data () {

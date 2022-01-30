@@ -47,7 +47,7 @@
           <Upload v-model="form.docs" label="Documentos" type="documents" multiple edit-title />
         </b-col>
         <b-col md="12">
-          <tags-form v-model="form.tags" :current-tags="currentTags" />
+          <tags-form v-model="form.tags" :items="currentTags" />
         </b-col>
       </b-row>
       <h4 class="mt-4">Dados de envio <small class="font-weight-light">(incluindo a embalagem)</small></h4>
