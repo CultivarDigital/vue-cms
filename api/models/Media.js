@@ -35,7 +35,8 @@ const MediaSchema = mongoose.Schema({
   },
   publishing_house: String, // Editora
 
-  aditional_infos: [Object], // Informações adicionais
+  aditional_infos: [Object], // TODO Copiar este valor para a correção abaixo e remover este campo
+  additional_infos: [Object], // Informações adicionais
   type: String, // Tipo de documento
   authors: [Object], // Autores
   city: String, // Cidade
