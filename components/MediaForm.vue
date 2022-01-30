@@ -1,6 +1,6 @@
 <template>
   <ValidationObserver v-slot="{ validate, invalid }">
-    <b-form @submit.prevent="validate().then(save)">
+    <b-form v-if="filters" @submit.prevent="validate().then(save)">
       <b-form-group label="Tipo de publicação *">
         <validation-provider v-slot="{ errors }" name="tipo" rules="required">
           <b-form-select v-model="form.type" :options="types">
@@ -11,13 +11,13 @@
           <span class="text-danger">{{ errors[0] }}</span>
         </validation-provider>
       </b-form-group>
-      <b-form-group label="Categorias *">
-        <validation-provider v-slot="{ errors }" name="categoria" rules="required">
-          <b-form-checkbox-group v-model="form.categories" multiple :options="categories" />
-          <span class="text-danger">{{ errors[0] }}</span>
-        </validation-provider>
-      </b-form-group>
       <div v-if="form.type">
+        <b-form-group label="Categorias *">
+          <validation-provider v-slot="{ errors }" name="categoria" rules="required">
+            <b-form-checkbox-group v-model="form.categories" multiple :options="categories" />
+            <span class="text-danger">{{ errors[0] }}</span>
+          </validation-provider>
+        </b-form-group>
         <div v-if="form.type === 'Vídeos'">
           <b-form-group label="Link do vídeo">
             <b-form-input v-model="form.url" @input="loadUrl" />
@@ -47,8 +47,8 @@
                 <b-form-textarea v-model="form.description" name="description" rows="8" max-rows="20" />
               </b-form-group>
             </b-col>
-            <b-col md="12">
-              <tags-form v-model="form.tags" :current-tags="currentTags" />
+            <b-col v-if="filters" md="12">
+              <tags-form v-model="form.tags" :items="filters.tags" />
             </b-col>
             <b-col md="6">
               <b-form-group label="Data da publicação">
@@ -66,8 +66,66 @@
               </b-form-group>
             </b-col>
             <b-col md="12">
+              <b-form-group label="Cidade">
+                <b-form-input v-model="form.city" />
+              </b-form-group>
+            </b-col>
+            <b-col md="12">
               <b-form-group label="Autores">
                 <AuthorForm v-model="form.authors" />
+              </b-form-group>
+            </b-col>
+            <b-col md="12">
+              <b-form-group label="Organizadores">
+                <OrganizerForm v-model="form.organizers" />
+              </b-form-group>
+            </b-col>
+            <b-col md="12">
+              <b-form-group label="DOI" description="Identificador de Objeto Digital">
+                <b-form-input v-model="form.doi" />
+              </b-form-group>
+            </b-col>
+            <b-col md="12">
+              <b-form-group label="Instituição">
+                <b-form-input v-model="form.institution" />
+              </b-form-group>
+            </b-col>
+            <b-col md="12">
+              <b-form-group label="Número da publicação">
+                <b-form-input v-model="form.number" />
+              </b-form-group>
+            </b-col>
+            <b-col md="12">
+              <b-form-group label="Páginas">
+                <b-form-input v-model="form.pages" />
+              </b-form-group>
+            </b-col>
+            <b-col md="12">
+              <b-form-group label="Disponibilidade">
+                <b-form-input v-model="form.patent_legal_status" />
+              </b-form-group>
+            </b-col>
+            <b-col md="12">
+              <b-form-group label="Fonte">
+                <b-form-input v-model="form.source" />
+              </b-form-group>
+            </b-col>
+            <b-col md="12">
+              <b-form-group label="Volume">
+                <b-form-input v-model="form.volume" />
+              </b-form-group>
+            </b-col>
+            <b-col md="12">
+              <tags-form v-model="form.languages" :items="filters.languages" />
+            </b-col>
+            <b-col md="12">
+              <b-form-group label="Informações adicionais">
+                <additional-info-form v-model="form.additional_infos" />
+              </b-form-group>
+            </b-col>
+            <b-col md="12">
+              <b-form-group label="Anotações" description="Este campo é reservado para anotações não aparece para os usuários">
+                <b-form-textarea v-model="form.notes" />
               </b-form-group>
             </b-col>
           </b-row>
@@ -108,7 +166,7 @@ export default {
       categories,
       types,
       loadingUrl: false,
-      currentTags: [],
+      filters: null,
       dateFormatOptions: {
         'DD/MM/YYYY': 'Dia/Mês/Ano',
         'MM/YYYY': 'Mês/Ano',
@@ -140,7 +198,7 @@ export default {
         patent_legal_status: null, // Disponibilidade
         source: null, // Fonte
         volume: null, // Volume
-        aditional_infos: [] // Informações adicionais
+        additional_infos: [] // Informações adicionais
         // category: '',
         // docs: [],
         // image: null,
@@ -158,7 +216,7 @@ export default {
   },
   async created() {
     this.toForm(this.form, this.media)
-    this.currentTags = await this.$axios.$get('/api/medias/current_tags')
+    this.filters = await this.$axios.$get('/api/medias/filters')
   },
   methods: {
     async save() {
