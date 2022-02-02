@@ -7,19 +7,23 @@ services:
     container_name: ${APP_NAME}_node
     command: yarn dev
     ports:
-      - "3000:${PORT}"
+      - "3000:3000"
     volumes:
       - /api/uploads:/api/uploads
     networks:
       - cms
     depends_on:
       - "mongodb"
+    environment:
+      - HOST=0.0.0.0
   mongodb:
     image: mongo:latest
     container_name: ${APP_NAME}_mongo
     volumes:
       - mongodb:/data/db
       - mongodb_config:/data/configdb
+    ports:
+      - "27017:27017"
     networks:
       - cms
 

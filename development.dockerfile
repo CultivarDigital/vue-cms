@@ -11,6 +11,6 @@ COPY package.json ./
 RUN npm install node-sass --sass-binary-name=linux-x64-83
 RUN yarn
 
-# COPY . .
+COPY . .
 
-# EXPOSE 3000
+EXPOSE 3000
