@@ -16,6 +16,7 @@ services:
       - "mongodb"
     environment:
       - HOST=0.0.0.0
+      - MONGO_URI=mongodb
   mongodb:
     image: mongo:latest
     container_name: ${APP_NAME}_mongo
