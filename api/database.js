@@ -1,27 +1,27 @@
-require("dotenv").config();
+require('dotenv').config()
 
-require("./models/Settings");
-require("./models/Attachment");
-require("./models/User");
-require("./models/Menu");
-require("./models/Post");
-require("./models/Event");
-require("./models/Page");
-require("./models/Contact");
-require("./models/Media");
-require("./models/Product");
-require("./models/Order");
-require("./config/passport");
+require('./models/Settings')
+require('./models/Attachment')
+require('./models/User')
+require('./models/Menu')
+require('./models/Post')
+require('./models/Event')
+require('./models/Page')
+require('./models/Contact')
+require('./models/Media')
+require('./models/Product')
+require('./models/Order')
+require('./config/passport')
 
-const mongoose = require("mongoose");
-const isProduction = process.env.NODE_ENV === "production";
+const mongoose = require('mongoose')
+const isProduction = process.env.NODE_ENV === 'production'
 const DATABASE_URI =
-  "mongodb://" + process.env.MONGO_URI + "/" + process.env.APP_NAME;
+  'mongodb://' + (process.env.MONGO_URI || 'localhost') + '/' + process.env.APP_NAME
 
-mongoose.set("useFindAndModify", false);
+mongoose.set('useFindAndModify', false)
 
 if (isProduction) {
-  mongoose.set("debug", true);
+  mongoose.set('debug', true)
   mongoose.connect(DATABASE_URI, {
     keepAlive: 1,
     connectTimeoutMS: 30000,
@@ -29,11 +29,11 @@ if (isProduction) {
     reconnectInterval: 1000,
     useNewUrlParser: true,
     useUnifiedTopology: true
-  });
+  })
 } else {
-  mongoose.set("debug", true);
+  mongoose.set('debug', true)
   mongoose.connect(DATABASE_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
-  });
+  })
 }
