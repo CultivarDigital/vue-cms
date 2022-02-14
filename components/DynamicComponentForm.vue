@@ -124,6 +124,9 @@
                   </b-btn>
                 </b-form-group>
               </div>
+              <div v-if="form.category === 'banners'">
+                <Upload v-model="form.attrs.items" label="Banners" type="images" multiple edit-title edit-description edit-link @input="input" />
+              </div>
               <div class="text-right">
                 <b-btn
                   variant="default"
@@ -189,6 +192,10 @@ export default {
         card: {
           title: 'Card',
           default: 'dynamic-card'
+        },
+        banners: {
+          title: 'Banners',
+          default: 'dynamic-banners'
         }
       },
       form: {

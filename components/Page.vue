@@ -11,6 +11,7 @@
         <div :class="{'edit-page': editMode}" class="mb-5 pt-3">
           <template v-for="(component, index) in components">
             <template v-if="component.type">
+              <DynamicBanners v-if="component.type === 'dynamic-banners'" :key="index" class="dynamic-component" :class="{'active-component': editComponent === index}" :attrs="{ id: 'dynamic-component-' + index, ...component.attrs }" @click="editComponent = index" />
               <DynamicCard v-if="component.type === 'dynamic-card'" :key="index" class="dynamic-component" :class="{'active-component': editComponent === index}" :attrs="{ id: 'dynamic-component-' + index, ...component.attrs }" @click="editComponent = index" />
               <DynamicComponent v-else :id="'dynamic-component-' + index" :key="index" class="dynamic-component" :class="{'active-component': editComponent === index}" :type="component.type" :attrs="component.attrs" @click="editComponent = index" v-html="component.content" />
             </template>

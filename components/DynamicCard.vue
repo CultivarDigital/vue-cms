@@ -35,11 +35,6 @@ export default {
       type: Object,
       default: () => {}
     }
-  },
-  computed: {
-    settings() {
-      return this.$store.state.settings
-    }
   }
 }
 </script>
