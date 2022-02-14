@@ -2,10 +2,13 @@
   <div>
     <b-form-group label="Links">
       <div v-for="(link, index) in value" :key="index" class="mb-3">
-        <b-link v-bind="link"><strong>{{ link.title }}</strong></b-link>
+        <b-link v-bind="link"><b-icon-link /> <strong>{{ link.title }}</strong></b-link>
         <b-link class="ml-1 outline-primary" size="sm" @click="remove(index)"><b-icon-trash /> </b-link>
       </div>
-      <b-button v-b-modal.add-link-modal size="sm">Adicionar link</b-button>
+      <b-btn v-b-modal.add-link-modal size="sm">
+        <b-icon-link />
+        Adicionar link
+      </b-btn>
     </b-form-group>
     <b-modal id="add-link-modal" title="Adicionar link" hide-footer>
       <b-form @submit.prevent="add">

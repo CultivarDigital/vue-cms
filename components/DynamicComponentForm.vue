@@ -71,8 +71,24 @@
                 </b-form-group>
               </div>
               <div v-if="form.category === 'card'">
-                <b-form-group label="Imagem (URL)">
-                  <b-form-input v-model="form.attrs['img-src']" @input="input" />
+                <b-form-group label="Tipo de card">
+                  <b-btn size="sm" :variant="(!form.attrs.orientation || form.attrs.orientation === 'horizontal') ? 'primary' : 'secondary'" @click="form.attrs.orientation = 'horizontal'; input()">
+                    <b-icon-grip-vertical /> Horizontal
+                  </b-btn>
+                  <b-btn size="sm" :variant="form.attrs.orientation === 'vertical' ? 'primary' : 'secondary'" @click="form.attrs.orientation = 'vertical'; input()">
+                    <b-icon-grip-horizontal /> Vertical
+                  </b-btn>
+                </b-form-group>
+                <b-form-group label="Imagem">
+                  <b-form-input v-model="form.attrs['img-src']" placeholder="URL da imagem" class="mb-1" @input="input" />
+                  <div v-if="form.attrs.orientation !== 'vertical'">
+                    <b-btn size="sm" :variant="(!form.attrs['img-align'] || form.attrs['img-align'] === 'left') ? 'primary' : 'secondary'" @click="form.attrs['img-align'] = 'left'; input()">
+                      <b-icon-text-left />
+                    </b-btn>
+                    <b-btn size="sm" :variant="form.attrs['img-align'] === 'right' ? 'primary' : 'secondary'" @click="form.attrs['img-align'] = 'right'; input()">
+                      <b-icon-text-right />
+                    </b-btn>
+                  </div>
                 </b-form-group>
                 <b-form-group label="Cabeçalho">
                   <b-form-input v-model="form.attrs.header" @input="input" />
