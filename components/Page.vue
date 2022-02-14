@@ -87,7 +87,6 @@ export default {
     save() {
       this.page.components = this.components
       this.$axios.$put('/api/pages/' + this.page._id, { components: this.components })
-      this.$toast.success('Página salva!')
     },
     closeComponent(save) {
       this.editComponent = null
